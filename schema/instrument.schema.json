@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sentinelbrief.local/schema/instrument.schema.json",
+  "title": "Instrument",
+  "description": "A legal document (circular, Direction, Rule, Act, guideline)",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "stable identifier, e.g. 'cert-in.directions-70b.2022'"
+    },
+    "issuer": {
+      "type": "string",
+      "enum": ["CERT-In", "RBI", "SEBI", "IRDAI", "MeitY", "NCIIPC", "IFSCA"]
+    },
+    "title": {
+      "type": "string"
+    },
+    "reference_no": {
+      "type": "string",
+      "description": "official reference number"
+    },
+    "issued_on": {
+      "type": "string",
+      "format": "date"
+    },
+    "in_force_from": {
+      "type": "string",
+      "format": "date"
+    },
+    "in_force_until": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "source_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "retrieved_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "language": {
+      "type": "string",
+      "default": "en"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["in_force", "repealed", "not_yet_in_force", "superseded", "draft"]
+    },
+    "supersedes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "superseded_by": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "document_type": {
+      "type": "string",
+      "enum": ["act", "rules", "direction", "circular", "guideline", "notification", "faq", "amendment"]
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "parser_version": { "type": "string" },
+        "extraction_date": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "required": ["id", "issuer", "title", "status"]
+}

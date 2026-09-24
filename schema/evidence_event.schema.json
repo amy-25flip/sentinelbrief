@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sentinelbrief.local/schema/evidence_event.schema.json",
+  "title": "Evidence Event",
+  "description": "An event in the tamper-evident evidence timeline",
+  "type": "object",
+  "properties": {
+    "seq": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "ts_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "actor": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["incident_created", "fact_recorded", "clock_started", "draft_created", "draft_approved", "filing_recorded", "note_added", "attachment_added", "clock_expired", "unknown_resolved"]
+    },
+    "payload": {
+      "type": "object"
+    },
+    "prev_hash": {
+      "type": "string"
+    },
+    "hash": {
+      "type": "string"
+    },
+    "clock_source": {
+      "type": "string"
+    },
+    "ntp_synced": {
+      "type": "boolean"
+    }
+  },
+  "required": ["seq", "ts_utc", "actor", "type", "payload", "prev_hash", "hash"]
+}

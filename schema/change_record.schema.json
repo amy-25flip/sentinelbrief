@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sentinelbrief.local/schema/change_record.schema.json",
+  "title": "Change Record",
+  "description": "Tracks changes between instrument versions",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "old_version": {
+      "type": "string"
+    },
+    "new_version": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["added", "removed", "modified", "moved", "renumbered"]
+    },
+    "diff": {
+      "type": "string"
+    },
+    "impact_note": {
+      "type": "string"
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "$ref": "citation.schema.json"
+      }
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "old_version", "new_version", "kind"]
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sentinelbrief.local/schema/entity_class.schema.json",
+  "title": "Entity Class",
+  "description": "Taxonomy for regulatory applicability",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "regulator": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "parent": {
+      "type": ["string", "null"]
+    },
+    "description": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "valid_from": {
+      "type": "string",
+      "format": "date"
+    },
+    "valid_to": {
+      "type": ["string", "null"],
+      "format": "date"
+    }
+  },
+  "required": ["id", "regulator", "label", "version"]
+}

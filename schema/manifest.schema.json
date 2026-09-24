@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sentinelbrief.local/schema/manifest.schema.json",
+  "title": "Manifest",
+  "description": "Manifest for raw downloaded files",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "integer"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string", "format": "uri" },
+          "filename": { "type": "string" },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "retrieved_at": { "type": "string", "format": "date-time" },
+          "etag": { "type": ["string", "null"] },
+          "last_modified": { "type": ["string", "null"] },
+          "content_type": { "type": "string" },
+          "size_bytes": { "type": "integer" },
+          "parser_version": { "type": "string" },
+          "status": { "type": "string", "enum": ["current", "superseded", "failed"] }
+        },
+        "required": ["url", "filename", "sha256", "retrieved_at"]
+      }
+    }
+  }
+}

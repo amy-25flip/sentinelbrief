@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sentinelbrief.local/schema/benchmark_scenario.schema.json",
+  "title": "Benchmark Scenario",
+  "description": "A benchmark scenario for testing the system",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "entity_profile": {
+      "type": "object",
+      "properties": {
+        "entity_class": { "type": "string" },
+        "is_listed": { "type": "boolean" },
+        "holds_personal_data": { "type": "boolean" },
+        "uses_protected_systems": { "type": "boolean" },
+        "is_regulated_cloud_vps": { "type": "boolean" },
+        "additional_properties": { "type": "object" }
+      },
+      "required": ["entity_class", "is_listed", "holds_personal_data", "uses_protected_systems", "is_regulated_cloud_vps"]
+    },
+    "incident_facts": {
+      "type": "object",
+      "properties": {
+        "description": { "type": "string" },
+        "incident_types": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "when_detected": { "type": ["string", "null"], "format": "date-time" },
+        "when_noticed": { "type": ["string", "null"], "format": "date-time" },
+        "when_occurred": { "type": ["string", "null"], "format": "date-time" },
+        "personal_data_involved": { "type": ["boolean", "null"] },
+        "systems_affected": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "additional_facts": { "type": "object" }
+      },
+      "required": ["description", "incident_types", "systems_affected"]
+    },
+    "law_snapshot_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "expected": {
+      "type": "object",
+      "properties": {
+        "regulators": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "deadlines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "regulator": { "type": "string" },
+              "obligation_id": { "type": "string" },
+              "anchor": { "type": "string" },
+              "deadline_iso8601": { "type": "string" },
+              "deadline_timestamp": { "type": "string", "format": "date-time" }
+            },
+            "required": ["regulator", "obligation_id", "anchor", "deadline_iso8601", "deadline_timestamp"]
+          }
+        },
+        "citations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "obligation_id": { "type": "string" },
+              "instrument_id": { "type": "string" },
+              "paragraph_ref": { "type": "string" }
+            },
+            "required": ["obligation_id", "instrument_id", "paragraph_ref"]
+          }
+        },
+        "required_evidence": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "not_applicable": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "regulator": { "type": "string" },
+              "reason": { "type": "string" }
+            },
+            "required": ["regulator", "reason"]
+          }
+        },
+        "unknowns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "question": { "type": "string" },
+              "affects": { "type": "string" }
+            },
+            "required": ["question", "affects"]
+          }
+        }
+      },
+      "required": ["regulators", "deadlines", "citations", "required_evidence", "not_applicable", "unknowns"]
+    },
+    "adversarial_flags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "split": {
+      "type": "string",
+      "enum": ["dev", "hidden"]
+    },
+    "labels_source": {
+      "type": "string"
+    }
+  },
+  "required": ["id", "description", "entity_profile", "incident_facts", "law_snapshot_date", "expected", "split"]
+}

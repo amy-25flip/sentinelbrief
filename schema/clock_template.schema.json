@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sentinelbrief.local/schema/clock_template.schema.json",
+  "title": "Clock Template",
+  "description": "A clock template defines when a filing is due",
+  "type": "object",
+  "properties": {
+    "regulator": {
+      "type": "string"
+    },
+    "obligation_id": {
+      "type": "string"
+    },
+    "anchor": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "string",
+      "description": "ISO 8601 duration e.g. 'PT6H'"
+    },
+    "calendar": {
+      "type": "string",
+      "enum": ["continuous", "business_days"]
+    },
+    "recipient": {
+      "type": "string"
+    },
+    "channel": {
+      "type": "string"
+    }
+  },
+  "required": ["regulator", "obligation_id", "anchor", "duration", "calendar", "recipient"]
+}
