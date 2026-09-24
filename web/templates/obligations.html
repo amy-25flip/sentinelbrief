@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Obligations — SentinelBrief{% endblock %}
+
+{% block content %}
+<h2>📖 Obligation Browser</h2>
+<p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+    {{ obligations|length }} obligations across {{ instrument_map|length }} instrument(s)
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Instrument</th>
+            <th>Action</th>
+            <th>Deadline</th>
+            <th>Status</th>
+            <th>Confidence</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for obl in obligations %}
+        <tr>
+            <td><a href="/obligations/{{ obl.id }}">{{ obl.paragraph_ref }}</a></td>
+            <td>{{ instrument_map.get(obl.instrument_id, {}).get('issuer', 'Unknown') }}</td>
+            <td>{{ obl.normalized.action[:60] }}{% if obl.normalized.action|length > 60 %}…{% endif %}</td>
+            <td>
+                {% if obl.normalized.deadline.duration_iso8601 %}
+                    {{ obl.normalized.deadline.duration_iso8601 }}
+                    ({{ obl.normalized.deadline.anchor }})
+                {% else %}
+                    —
+                {% endif %}
+            </td>
+            <td><span class="status-badge status-{{ obl.status }}">{{ obl.status | replace('_', ' ') }}</span></td>
+            <td>{{ "%.0f"|format(obl.confidence * 100) }}%</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

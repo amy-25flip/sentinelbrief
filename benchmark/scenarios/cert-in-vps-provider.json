@@ -1,0 +1,49 @@
+{
+  "id": "cert-in-vps-provider",
+  "description": "A VPS provider experiences unauthorized access.",
+  "entity_profile": {
+    "entity_class": "vps_provider",
+    "is_listed": false,
+    "holds_personal_data": true,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": true,
+    "additional_properties": {
+      "is_service_provider": true
+    }
+  },
+  "incident_facts": {
+    "description": "Unauthorized access to VPS infrastructure.",
+    "incident_types": ["unauthorized access"],
+    "when_detected": "2026-09-15T10:00:00+05:30",
+    "when_noticed": "2026-09-15T10:00:00+05:30",
+    "when_occurred": "2026-09-15T08:00:00+05:30",
+    "personal_data_involved": false,
+    "systems_affected": ["vps_infrastructure"]
+  },
+  "law_snapshot_date": "2026-09-24",
+  "expected": {
+    "regulators": ["CERT-In"],
+    "deadlines": [
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-09-15T16:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.vps-cloud-vpn-customer-data-5y",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (v)"
+      }
+    ],
+    "required_evidence": ["subscriber registration records"],
+    "not_applicable": [],
+    "unknowns": []
+  },
+  "adversarial_flags": [],
+  "split": "dev",
+  "labels_source": "CERT-In Directions 70B dated 28 April 2022 (primary text)"
+}

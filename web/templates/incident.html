@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% block title %}Incident Clock — SentinelBrief{% endblock %}
+
+{% block content %}
+<div class="disclaimer">
+    ⚠️ This tool drafts responses for human review. It never auto-files or auto-submits to any regulator.
+    All timestamps are advisory. Verify against the primary regulatory text before acting.
+</div>
+
+<h2>🕐 Incident Clock Workspace</h2>
+<p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;">
+    Start an incident to see all applicable regulatory clocks, deadlines, and unknowns.
+</p>
+
+<form id="incident-form" hx-post="/api/incident/clock" hx-target="#clock-results" hx-swap="innerHTML">
+    <div class="meta-grid">
+        <div class="form-group">
+            <label>Entity Type</label>
+            <select name="entity_class">
+                <option value="body_corporate">Body Corporate</option>
+                <option value="service_provider">Service Provider</option>
+                <option value="intermediary">Intermediary</option>
+                <option value="data_centre">Data Centre</option>
+                <option value="government_org">Government Organisation</option>
+                <option value="vps_provider">VPS Provider</option>
+                <option value="cloud_provider">Cloud Service Provider</option>
+                <option value="vpn_provider">VPN Service Provider</option>
+                <option value="virtual_asset_service_provider">Virtual Asset Service Provider</option>
+                <option value="virtual_asset_exchange">Virtual Asset Exchange</option>
+                <option value="custodian_wallet_provider">Custodian Wallet Provider</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Incident Type (CERT-In Annexure I)</label>
+            <select name="is_annexure_i">
+                <option value="unknown">Unknown / Not Sure</option>
+                <option value="yes">Yes — matches Annexure I type</option>
+                <option value="no">No — does not match any Annexure I type</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>When Noticed (IST)</label>
+            <input type="datetime-local" name="when_noticed">
+        </div>
+        <div class="form-group">
+            <label>When Brought to Notice (IST)</label>
+            <input type="datetime-local" name="when_brought_to_notice">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Incident Description</label>
+        <textarea name="description" rows="3" placeholder="Brief description of what happened..."></textarea>
+    </div>
+
+    <button type="submit" class="btn">⏱ Compute Clocks</button>
+</form>
+
+<div id="clock-results" style="margin-top: 2rem;">
+    <p style="color: var(--text-muted); font-style: italic;">
+        Fill in the form above and click "Compute Clocks" to see applicable regulatory deadlines.
+    </p>
+</div>
+
+<script>
+// Client-side clock computation for demo (the real engine runs server-side)
+document.getElementById('incident-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = new FormData(this);
+    const entityClass = form.get('entity_class');
+    const isAnnexureI = form.get('is_annexure_i');
+    const whenNoticed = form.get('when_noticed');
+    const whenBrought = form.get('when_brought_to_notice');
+
+    let results = '<h2>⏱ Computed Clocks</h2>';
+    let unknowns = [];
+    let deadlines = [];
+
+    // Determine anchor
+    let anchorTime = null;
+    let anchorType = null;
+    if (whenNoticed && whenBrought) {
+        const tn = new Date(whenNoticed);
+        const tb = new Date(whenBrought);
+        anchorTime = tn < tb ? tn : tb;
+        anchorType = tn < tb ? 'noticing' : 'brought_to_notice';
+    } else if (whenNoticed) {
+        anchorTime = new Date(whenNoticed);
+        anchorType = 'noticing';
+    } else if (whenBrought) {
+        anchorTime = new Date(whenBrought);
+        anchorType = 'brought_to_notice';
+    }
+
+    // CERT-In 6h reporting
+    if (isAnnexureI === 'yes' || isAnnexureI === 'unknown') {
+        if (anchorTime) {
+            const deadline = new Date(anchorTime.getTime() + 6 * 60 * 60 * 1000);
+            const now = new Date();
+            const status = now > deadline ? 'OVERDUE' : 'PENDING';
+            const statusClass = status === 'OVERDUE' ? 'color: var(--danger)' : 'color: var(--success)';
+            deadlines.push({
+                obligation: 'Incident Reporting (6 hours)',
+                ref: 'Direction (ii)',
+                anchor: anchorType,
+                deadline: deadline.toISOString(),
+                status: status,
+                statusClass: statusClass,
+                recipient: 'CERT-In'
+            });
+        } else {
+            unknowns.push('When was the incident noticed or brought to notice? (Required to compute CERT-In 6-hour deadline)');
+        }
+        if (isAnnexureI === 'unknown') {
+            unknowns.push('Is this incident of a type listed in CERT-In Annexure I? (Determines whether 6-hour reporting applies)');
+        }
+    }
+
+    // Always applicable: NTP sync, PoC, Log retention
+    results += '<table><thead><tr><th>Obligation</th><th>Reference</th><th>Anchor</th><th>Deadline</th><th>Status</th><th>Recipient</th></tr></thead><tbody>';
+    for (const d of deadlines) {
+        results += `<tr>
+            <td>${d.obligation}</td>
+            <td>${d.ref}</td>
+            <td>${d.anchor}</td>
+            <td>${new Date(d.deadline).toLocaleString('en-IN', {timeZone: 'Asia/Kolkata'})}</td>
+            <td><span style="${d.statusClass}; font-weight: 600;">${d.status}</span></td>
+            <td>${d.recipient}</td>
+        </tr>`;
+    }
+    results += '<tr><td>NTP Synchronisation</td><td>Direction (i)</td><td>—</td><td>Ongoing</td><td style="color: var(--warning)">CHECK</td><td>CERT-In</td></tr>';
+    results += '<tr><td>Designate Point of Contact</td><td>Direction (iii)</td><td>—</td><td>Ongoing</td><td style="color: var(--warning)">CHECK</td><td>CERT-In</td></tr>';
+    results += '<tr><td>Log Retention (180 days, India)</td><td>Direction (iv)</td><td>—</td><td>Ongoing</td><td style="color: var(--warning)">CHECK</td><td>CERT-In</td></tr>';
+    results += '</tbody></table>';
+
+    // Unknowns
+    if (unknowns.length > 0) {
+        results += '<h2 style="color: var(--warning);">❓ Unknowns</h2><ul>';
+        for (const u of unknowns) {
+            results += `<li style="color: var(--warning); margin-bottom: 0.5rem;">${u}</li>`;
+        }
+        results += '</ul>';
+    }
+
+    results += '<p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">This is a client-side demo. The production engine runs server-side with full obligation matching.</p>';
+
+    document.getElementById('clock-results').innerHTML = results;
+});
+</script>
+{% endblock %}

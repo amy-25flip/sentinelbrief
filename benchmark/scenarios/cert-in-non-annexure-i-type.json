@@ -1,0 +1,53 @@
+{
+  "id": "cert-in-non-annexure-i-type",
+  "description": "An incident that is NOT in Annexure I (e.g., a simple hardware failure).",
+  "entity_profile": {
+    "entity_class": "body_corporate",
+    "is_listed": false,
+    "holds_personal_data": true,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Simple hardware failure of a redundant switch.",
+    "incident_types": ["hardware failure"],
+    "when_detected": "2026-09-15T10:00:00+05:30",
+    "when_noticed": "2026-09-15T10:00:00+05:30",
+    "when_occurred": "2026-09-15T10:00:00+05:30",
+    "personal_data_involved": false,
+    "systems_affected": ["network_switch"]
+  },
+  "law_snapshot_date": "2026-09-24",
+  "expected": {
+    "regulators": ["CERT-In"],
+    "deadlines": [],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.ntp-sync",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (i)"
+      },
+      {
+        "obligation_id": "cert-in.directions-70b.2022.designate-poc",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (iii)"
+      },
+      {
+        "obligation_id": "cert-in.directions-70b.2022.log-retention-180d",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (iv)"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [
+      {
+        "regulator": "CERT-In",
+        "reason": "Not an Annexure I incident type, 6-hour reporting does not apply."
+      }
+    ],
+    "unknowns": []
+  },
+  "adversarial_flags": [],
+  "split": "dev",
+  "labels_source": "CERT-In Directions 70B dated 28 April 2022 (primary text)"
+}

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SentinelBrief{% endblock %}</title>
+    <style>
+        :root {
+            --bg: #0f1117;
+            --surface: #1a1d27;
+            --surface-hover: #22252f;
+            --border: #2a2d37;
+            --text: #e4e4e7;
+            --text-muted: #9ca3af;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --success: #22c55e;
+            --chip-bg: #1e293b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Nav */
+        nav {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        nav .logo span { color: var(--accent); }
+        nav .nav-links { display: flex; gap: 1.5rem; }
+        nav .nav-links a { color: var(--text-muted); font-size: 0.9rem; }
+        nav .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+        /* Layout */
+        .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+        .disclaimer {
+            background: #1c1917;
+            border: 1px solid #78350f;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            font-size: 0.8rem;
+            color: #fbbf24;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Cards */
+        .card-grid { display: flex; flex-direction: column; gap: 1rem; }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            transition: border-color 0.2s;
+        }
+        .card:hover { border-color: var(--accent); }
+        .card-headline {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .card-body {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+        .card-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem; }
+        .chip {
+            background: var(--chip-bg);
+            padding: 0.2rem 0.6rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+        .chip.issuer { border-color: var(--accent); color: var(--accent); }
+        .chip.deadline { border-color: var(--danger); color: var(--danger); }
+        .chip.mandatory { border-color: var(--warning); color: var(--warning); }
+        .card-footer {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Obligation detail */
+        .detail-header { margin-bottom: 1.5rem; }
+        .detail-header h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .verbatim {
+            background: #111827;
+            border-left: 3px solid var(--accent);
+            padding: 1rem;
+            font-family: 'Georgia', serif;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin: 1rem 0;
+            white-space: pre-wrap;
+        }
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .meta-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+        }
+        .meta-item label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .meta-item .value { font-weight: 600; margin-top: 0.25rem; }
+
+        /* Section headers */
+        h2 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Incident workspace */
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; font-size: 0.85rem; margin-bottom: 0.25rem; color: var(--text-muted); }
+        .form-group select, .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.375rem;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+        .btn {
+            padding: 0.5rem 1.5rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .btn:hover { background: var(--accent-hover); }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        th, td {
+            padding: 0.5rem 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.85rem;
+        }
+        th { color: var(--text-muted); font-weight: 600; }
+        .status-badge {
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            border-radius: 1rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .status-in_force { background: #064e3b; color: #34d399; }
+        .status-not_yet_in_force { background: #422006; color: #fbbf24; }
+        .status-repealed { background: #450a0a; color: #fca5a5; }
+    </style>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">
+            🛡️ <span>Sentinel</span>Brief
+        </a>
+        <div class="nav-links">
+            <a href="/">Feed</a>
+            <a href="/obligations">Obligations</a>
+            <a href="/incident">Incident Clock</a>
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

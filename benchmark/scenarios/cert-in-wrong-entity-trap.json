@@ -1,0 +1,54 @@
+{
+  "id": "cert-in-wrong-entity-trap",
+  "description": "A virtual asset exchange reports a DDoS but is NOT a VPS/cloud provider.",
+  "entity_profile": {
+    "entity_class": "virtual_asset_exchange",
+    "is_listed": false,
+    "holds_personal_data": true,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false,
+    "additional_properties": {
+      "is_service_provider": true
+    }
+  },
+  "incident_facts": {
+    "description": "DDoS attack.",
+    "incident_types": ["DDoS"],
+    "when_detected": "2026-09-15T10:00:00+05:30",
+    "when_noticed": "2026-09-15T10:00:00+05:30",
+    "when_occurred": "2026-09-15T09:00:00+05:30",
+    "personal_data_involved": false,
+    "systems_affected": ["exchange_frontend"]
+  },
+  "law_snapshot_date": "2026-09-24",
+  "expected": {
+    "regulators": ["CERT-In"],
+    "deadlines": [
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-09-15T16:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.virtual-asset-kyc-5y",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (vi)"
+      }
+    ],
+    "required_evidence": ["KYC records per Annexure III"],
+    "not_applicable": [
+      {
+        "regulator": "CERT-In",
+        "reason": "Direction (v) does NOT apply to virtual asset exchange, only to VPS/Cloud/VPN/Data centres."
+      }
+    ],
+    "unknowns": []
+  },
+  "adversarial_flags": ["wrong_entity_class_trap"],
+  "split": "dev",
+  "labels_source": "CERT-In Directions 70B dated 28 April 2022 (primary text)"
+}

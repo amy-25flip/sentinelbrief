@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block title %}{{ obligation.paragraph_ref }} — SentinelBrief{% endblock %}
+
+{% block content %}
+<div class="disclaimer">
+    ⚠️ AI-assisted summary, not legal advice. Always verify against the primary source.
+</div>
+
+<div class="detail-header">
+    <a href="/obligations" style="font-size: 0.85rem; color: var(--text-muted);">← Back to all obligations</a>
+    <h1>{{ obligation.paragraph_ref }}</h1>
+    <div class="card-chips" style="margin-top: 0.5rem;">
+        <span class="chip issuer">{{ instrument.issuer if instrument else 'Unknown' }}</span>
+        <span class="chip mandatory">Mandatory</span>
+        <span class="status-badge status-{{ obligation.status }}">{{ obligation.status | replace('_', ' ') }}</span>
+        {% if obligation.normalized.deadline.duration_iso8601 %}
+        <span class="chip deadline">⏱ {{ obligation.normalized.deadline.duration_iso8601 }}</span>
+        {% endif %}
+    </div>
+</div>
+
+<h2>Normalized Action</h2>
+<p style="font-size: 1.05rem; margin-bottom: 1rem;">{{ obligation.normalized.action }}</p>
+
+<div class="meta-grid">
+    <div class="meta-item">
+        <label>Trigger</label>
+        <div class="value">{{ obligation.normalized.trigger.type | title }}</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted);">{{ obligation.normalized.trigger.description }}</div>
+    </div>
+    <div class="meta-item">
+        <label>Deadline</label>
+        <div class="value">
+            {% if obligation.normalized.deadline.duration_iso8601 %}
+                {{ obligation.normalized.deadline.duration_iso8601 }}
+                from {{ obligation.normalized.deadline.anchor | replace('_', ' ') }}
+            {% else %}
+                No specific deadline (ongoing)
+            {% endif %}
+        </div>
+        <div style="font-size: 0.8rem; color: var(--text-muted);">Calendar: {{ obligation.normalized.deadline.calendar }}</div>
+    </div>
+    <div class="meta-item">
+        <label>Recipient</label>
+        <div class="value">{{ obligation.normalized.recipient }}</div>
+    </div>
+    <div class="meta-item">
+        <label>Valid From</label>
+        <div class="value">{{ obligation.validity.valid_from }}</div>
+    </div>
+    <div class="meta-item">
+        <label>Verification</label>
+        <div class="value">{{ obligation.verification | replace('_', ' ') | title }}</div>
+        {% if obligation.verification_details %}
+        <div style="font-size: 0.8rem; color: var(--text-muted);">
+            by {{ obligation.verification_details.reviewer }} on {{ obligation.verification_details.date }}
+        </div>
+        {% endif %}
+    </div>
+    <div class="meta-item">
+        <label>Confidence</label>
+        <div class="value">{{ "%.0f"|format(obligation.confidence * 100) }}%</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted);">{{ obligation.confidence_reason }}</div>
+    </div>
+</div>
+
+<h2>Applies To</h2>
+<div class="card-chips">
+    {% for ec in obligation.normalized.actor %}
+    <span class="chip">{{ ec | replace('_', ' ') | title }}</span>
+    {% endfor %}
+</div>
+{% if obligation.applicability and obligation.applicability.conditions %}
+<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">
+    Conditions: {{ obligation.applicability.conditions | join(', ') }}
+</p>
+{% endif %}
+
+<h2>Evidence Required</h2>
+<ul style="padding-left: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
+    {% for ev in obligation.normalized.evidence_required %}
+    <li>{{ ev }}</li>
+    {% endfor %}
+</ul>
+
+<h2>Verbatim Source Text</h2>
+<div class="verbatim">{{ obligation.text_verbatim }}</div>
+
+<h2>Citations ({{ obligation.citations|length }})</h2>
+{% for cit in obligation.citations %}
+<div class="card" style="margin-bottom: 0.75rem;">
+    <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+        {{ cit.paragraph_ref }} · Page {{ cit.page }}
+        {% if cit.char_start is not none %}· chars {{ cit.char_start }}–{{ cit.char_end }}{% endif %}
+    </div>
+    <div class="verbatim" style="font-size: 0.85rem; margin: 0;">{{ cit.excerpt_verbatim }}</div>
+    <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.5rem;">
+        SHA-256: {{ cit.source_sha256[:16] }}…
+        {% if instrument %}· <a href="{{ instrument.url }}" target="_blank" rel="noopener">Source document</a>{% endif %}
+    </div>
+</div>
+{% endfor %}
+
+<h2>Extraction Metadata</h2>
+<div class="meta-grid">
+    <div class="meta-item">
+        <label>Method</label>
+        <div class="value">{{ obligation.extraction.method | title }}</div>
+    </div>
+    <div class="meta-item">
+        <label>Extractor Version</label>
+        <div class="value">{{ obligation.extraction.extractor_version }}</div>
+    </div>
+    {% if obligation.extraction.model %}
+    <div class="meta-item">
+        <label>Model</label>
+        <div class="value">{{ obligation.extraction.model }}</div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
