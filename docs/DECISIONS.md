@@ -97,3 +97,11 @@ Decisions below were made during Review 1 (the reviewer agent, 2026-09-24). See 
 **Decision:** CERT-In's notice of 27 Jun 2022 (`cert-in.directions-70b.msme-extension.2022`, sha256 `f0a2805f2a3bd0745560d417ffb6d41bf2cfe9920a5fd8a45b806ff10d61979f`) is stored as a primary source. It moves effectiveness to 25 Sep 2022 for MSMEs and for Direction (v)(a),(f). It is not modelled beyond a caveat for incidents before that date.
 
 **Reason:** Read from the primary PDF. It does not change any current (post Sep 2022) result.
+
+## 2026-09-24: Benchmark labels assert as-of, citation and not-applicable states
+
+**Decision:** The benchmark verifies expected citation `instrument_id`/`paragraph_ref` against the obligation record, requires expected `not_applicable` obligations to appear in the engine's `not_applicable` list (not merely be absent from `applicable_obligations`, which an unresolved unknown also satisfies), and asserts the labelled `expected.law_as_of`. The scorer does NOT force `as_of` from `law_snapshot_date`.
+
+**Reason:** A scenario label is a contract. `law_snapshot_date` pins the dataset version and the evaluation time; the law that applies is the law as of the *incident* date (principle 5). Forcing the snapshot date as `as_of` (proposed in Review 2) applies today's law to old incidents: a 2021 incident evaluated with a 2026 snapshot gets the 2022 Directions. The pre-effective-date scenario now uses today's snapshot with a 2021 incident, and a mutation test proves that ignoring the incident date is caught.
+
+**Alternative rejected:** Passing `law_snapshot_date` as `as_of` (Review 2): it hides exactly the as-of regression it was meant to catch.

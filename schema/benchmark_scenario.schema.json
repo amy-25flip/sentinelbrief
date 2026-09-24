@@ -53,6 +53,11 @@
     "expected": {
       "type": "object",
       "properties": {
+        "law_as_of": {
+          "type": "string",
+          "format": "date",
+          "description": "The date whose law should apply: the IST date of the earliest known incident time (or the evaluation date if none is known)"
+        },
         "regulators": {
           "type": "array",
           "items": { "type": "string" }

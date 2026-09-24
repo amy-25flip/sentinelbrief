@@ -170,6 +170,17 @@ def test_conflicting_attestation_is_rejected():
         )
 
 
+def test_invalid_annexure_item_is_rejected_even_with_attestation():
+    engine = IncidentClockEngine(DATA_DIR)
+    profile = IncidentProfile(
+        entity_class="nbfc",
+        is_annexure_i_type=True,
+        annexure_i_items=["annexure_i.not-real"],
+    )
+    with pytest.raises(ValueError, match="Unknown Annexure I item"):
+        engine.evaluate(profile, now=NOW)
+
+
 def test_naive_datetime_is_rejected():
     with pytest.raises(ValueError, match="timezone-aware"):
         IncidentProfile(entity_class="nbfc", when_noticed=datetime(2026, 9, 24, 9, 0))

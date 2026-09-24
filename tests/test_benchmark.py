@@ -1,5 +1,6 @@
 """The benchmark must pass on the real engine AND fail when the engine regresses."""
 
+import copy
 import importlib.util
 import sys
 from pathlib import Path
@@ -50,6 +51,60 @@ def test_every_scenario_label_names_its_source():
         assert scenario.get("labels_source")
         for na in scenario["expected"]["not_applicable"]:
             assert na["obligation_id"]
+
+
+def test_law_as_of_comes_from_the_incident_not_the_snapshot_date():
+    """The snapshot date pins the dataset and evaluation time; the incident date picks the law."""
+    bench = scorer.BenchmarkScorer(REPO / "data", REPO / "benchmark" / "scenarios")
+    scenario = next(s for s in bench.scenarios if s["id"] == "cert-in-before-directions-effective")
+    assert scenario["law_snapshot_date"] == "2026-09-24"
+    assert scenario["expected"]["law_as_of"] == "2021-01-05"
+    assert bench.evaluate_scenario(scenario)["failures"] == []
+
+
+def test_wrong_law_as_of_label_is_flagged():
+    bench = scorer.BenchmarkScorer(REPO / "data", REPO / "benchmark" / "scenarios")
+    scenario = copy.deepcopy(next(s for s in bench.scenarios if s["id"] == "cert-in-utc-input"))
+    scenario["expected"]["law_as_of"] = "2026-09-16"
+    assert any("law_as_of" in f for f in bench.evaluate_scenario(scenario)["failures"])
+
+
+def test_every_scenario_states_its_law_as_of():
+    for scenario in scorer.BenchmarkScorer(
+        REPO / "data", REPO / "benchmark" / "scenarios"
+    ).scenarios:
+        assert "law_as_of" in scenario["expected"], scenario["id"]
+
+
+def test_catches_law_evaluated_as_of_today_instead_of_the_incident(monkeypatch):
+    monkeypatch.setattr(engine_module.IncidentProfile, "earliest_known_time", lambda self: None)
+    failed = _failed(_run())
+    assert "cert-in-before-directions-effective" in failed
+    assert len(failed) >= 10  # the law_as_of label is wrong for almost every scenario
+
+
+def test_scorer_checks_citation_labels():
+    bench = scorer.BenchmarkScorer(REPO / "data", REPO / "benchmark" / "scenarios")
+    scenario = copy.deepcopy(
+        next(s for s in bench.scenarios if s["id"] == "cert-in-nbfc-ransomware")
+    )
+    scenario["expected"]["citations"][0]["paragraph_ref"] = "Direction (wrong)"
+
+    failures = bench.evaluate_scenario(scenario)["failures"]
+
+    assert any("citation paragraph" in failure for failure in failures)
+
+
+def test_scorer_distinguishes_not_applicable_from_unknown():
+    bench = scorer.BenchmarkScorer(REPO / "data", REPO / "benchmark" / "scenarios")
+    scenario = copy.deepcopy(
+        next(s for s in bench.scenarios if s["id"] == "cert-in-non-annexure-i-type")
+    )
+    scenario["incident_facts"]["is_annexure_i_type"] = None
+
+    failures = bench.evaluate_scenario(scenario)["failures"]
+
+    assert any("expected not_applicable" in failure for failure in failures)
 
 
 def test_wilson_interval_bounds():

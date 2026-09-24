@@ -20,7 +20,7 @@ import argparse
 import json
 import math
 import sys
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
@@ -88,6 +88,9 @@ class BenchmarkScorer:
         expected = scenario["expected"]
         # Fixed evaluation time keeps pending/overdue status deterministic across runs.
         now = datetime.fromisoformat(f"{scenario['law_snapshot_date']}T12:00:00+05:30")
+        # law_snapshot_date pins the dataset version and the evaluation time. The law's as-of
+        # date is NOT forced from it: the engine must derive it from the incident, and the
+        # label asserts what it should be (expected.law_as_of).
         result = self.engine.evaluate(self._profile(scenario), now=now)
         failures: list[str] = []
 
@@ -101,6 +104,13 @@ class BenchmarkScorer:
         if predicted_regs != expected_regs:
             failures.append(
                 f"regulators: expected {sorted(expected_regs)}, got {sorted(predicted_regs)}"
+            )
+
+        if "law_as_of" in expected and result.law_as_of != date.fromisoformat(
+            expected["law_as_of"]
+        ):
+            failures.append(
+                f"law_as_of: expected {expected['law_as_of']}, got {result.law_as_of.isoformat()}"
             )
 
         by_obl = {d.obligation_id: d for d in result.deadlines}
@@ -128,11 +138,30 @@ class BenchmarkScorer:
 
         applicable = set(result.applicable_obligations)
         for cit in expected["citations"]:
-            if cit["obligation_id"] not in applicable:
-                failures.append(f"should be applicable but is not: {cit['obligation_id']}")
+            obl_id = cit["obligation_id"]
+            if obl_id not in applicable:
+                failures.append(f"should be applicable but is not: {obl_id}")
+                continue
+            obl = self.engine.get_obligation(obl_id) or {}
+            if obl.get("instrument_id") != cit["instrument_id"]:
+                failures.append(
+                    f"citation instrument {obl_id}: expected {cit['instrument_id']}, "
+                    f"got {obl.get('instrument_id')}"
+                )
+            if obl.get("paragraph_ref") != cit["paragraph_ref"]:
+                failures.append(
+                    f"citation paragraph {obl_id}: expected {cit['paragraph_ref']}, "
+                    f"got {obl.get('paragraph_ref')}"
+                )
+        not_applicable = {item["obligation_id"]: item["reason"] for item in result.not_applicable}
         for na in expected["not_applicable"]:
-            if na["obligation_id"] in applicable:
-                failures.append(f"should NOT be applicable but is: {na['obligation_id']}")
+            obl_id = na["obligation_id"]
+            if obl_id in applicable:
+                failures.append(f"should NOT be applicable but is: {obl_id}")
+            elif obl_id not in not_applicable:
+                failures.append(
+                    f"expected not_applicable for {obl_id}, but the engine did not mark it so"
+                )
 
         predicted_unknowns = {
             (obl_id, u.question.lower()) for u in result.unknowns for obl_id in u.affects

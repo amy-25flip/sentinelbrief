@@ -19,3 +19,6 @@ benchmark/hidden/
 htmlcov/
 node_modules/
 .pytest_tmp/
+.pytest_cache_codex/
+.pytest_tmp_codex/
+.tmp/

@@ -324,22 +324,22 @@ class IncidentClockEngine:
         valid_ids = {i["id"] for i in self._annexure_items}
         titles = {_norm(i["title"]): i["id"] for i in self._annexure_items}
 
-        if profile.is_annexure_i_type is not None:
-            return AnnexureResolution(
-                profile.is_annexure_i_type,
-                "user_attested",
-                list(profile.annexure_i_items),
-                [],
-            )
-
         matched: list[str] = []
-        basis = "unresolved"
         for sel in profile.annexure_i_items:
             if sel not in valid_ids:
                 raise ValueError(f"Unknown Annexure I item: {sel}")
             if sel not in matched:
                 matched.append(sel)
-                basis = "structured"
+
+        if profile.is_annexure_i_type is not None:
+            return AnnexureResolution(
+                profile.is_annexure_i_type,
+                "user_attested",
+                matched,
+                [],
+            )
+
+        basis = "structured" if matched else "unresolved"
 
         suggestions: list[str] = []
         for text in profile.incident_types:

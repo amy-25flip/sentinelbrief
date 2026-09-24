@@ -38,3 +38,37 @@ Method: ran every check in HANDOFF myself, read all core code against the primar
 - [minor] [evidence] The hash chain is not wired into the incident workspace yet (Phase 2). `clock_source`/`ntp_synced` are still caller-declared; measure NTP offset if the claim matters.
 - [minor] [security] The incident endpoint accepts sensitive incident details with no authentication or rate limit and no persistence. Acceptable for a local prototype; add auth and a threat model before any hosted use.
 - [nit] `Wilson` interval on n=17 with all passing is [81.6%, 100%]. Say "17/17 on labels written by the builder", not "100% accuracy".
+
+## Review 2 - Codex, 2026-09-24
+
+Method: read Review 1 first, then independently read the stored CERT-In Directions text, FAQ text, MSME extension notice, the seven CERT-In obligation records, Annexure I reference data, the clock engine, scorer, API/templates, ingestion, provenance and evidence code. Re-derived the dev benchmark labels against the loaded CERT-In slice. Fixed scorer and Annexure input-validation gaps; legal interpretation questions from the FAQ are left open rather than encoded as new law.
+
+### Fixed
+
+- [major] [benchmark] [benchmark/runner/scorer.py:91] Scorer used `law_snapshot_date` only to set deterministic `now`, but did not pass it as `as_of`; a scenario with a labelled old law snapshot and newer incident timestamps could pass/fail based on incident time instead of the benchmark label. Evidence: `engine.evaluate(...)` was called without `as_of`, while the engine defaults `as_of` to earliest incident time. Suggested fix: pass `date.fromisoformat(scenario["law_snapshot_date"])` to `evaluate` and add a regression scenario. Status: REWORKED in Review 3 (the proposed fix was wrong: it evaluates today's law for old incidents; see below).
+- [major] [benchmark] [benchmark/runner/scorer.py:133] Scorer still did not verify expected citation `instrument_id`/`paragraph_ref`, and treated expected `not_applicable` as merely "not applicable", allowing an unresolved unknown to satisfy a non-applicability label. Evidence: a synthetic wrong paragraph label and a removed Annexure I attestation were not distinguished by the old checks. Suggested fix: compare citation fields against the obligation record and require expected not-applicable IDs in `result.not_applicable`. Status: FIXED.
+- [minor] [clock] [src/sentinelbrief/clock/engine.py:327] Invalid `annexure_i_items` were not validated when `is_annexure_i_type` was supplied; the engine could echo an unknown structured item in `AnnexureResolution.matched`. Evidence: validation happened only after the attestation branch. Suggested fix: validate structured Annexure I IDs before processing attestation. Status: FIXED.
+- [minor] [test] [pyproject.toml:63] The configured pytest temp/cache paths used `.pytest_tmp` / `.pytest_cache`, but those directories were inaccessible in this working tree, making the requested `uv run pytest -q` gate fail before a product assertion failed. Suggested fix: move pytest basetemp/cache to fresh scratch paths so the gate owns them. Status: REVERTED in Review 3 (an environment problem specific to the review sandbox, whose account cannot write directories created by the owner; not a project defect, and it must not be baked into `pyproject.toml`).
+
+### Open
+
+- [minor] [legal-data] [data/obligations/cert-in.directions-70b.2022.json:298] Direction (iv) is normalized as requiring logs to be maintained within Indian jurisdiction, which matches the Direction text; FAQ Q35 says logs may be stored outside India if production to CERT-In is adhered to in reasonable time, but the FAQ also says it does not replace/amend the Directions. Suggested fix: get human legal interpretation before amending the normalized action or adding an FAQ caveat. Status: OPEN.
+- [minor] [legal-data] [data/obligations/cert-in.directions-70b.2022.json:98] Direction (ii) models the explicit mandatory 6-hour Annexure I reporting duty; FAQ Q10 says intermediaries should also report non-annexure incidents considering nature, severity and impact. Suggested fix: ask counsel whether to encode a separate advisory/mandatory duty, because the threshold is not deterministic in the current data. Status: OPEN.
+
+## Review 3 - the reviewer agent, 2026-09-24 (review of Review 2's changes)
+
+Method: read the full diff of Review 2 against a09d4b2, verified its two legal claims against the stored FAQ text, and tested its scorer change with a probe.
+
+### Accepted from Review 2
+
+- [minor] [clock] Validating `annexure_i_items` before the attestation branch (a bad item id was echoed back in `matched`). Correct. Kept, with its test.
+- [major] [benchmark] Scorer now checks expected citation `instrument_id`/`paragraph_ref`, and requires expected `not_applicable` ids to be in the engine's `not_applicable` list rather than merely absent from `applicable`. Correct and useful. Kept, with its tests.
+- [minor] [legal-data] FAQ Q35 (logs may be stored outside India if produced to CERT-In in reasonable time) and FAQ Q10 (IT Intermediary Rules 2021, Rule 3(1)(l): intermediaries report cyber incidents and share related information) are real and were correctly left OPEN rather than encoded. Both verified verbatim in `data/raw/FAQs_on_CyberSecurityDirections_May2022.txt`. FAQ Q36 adds a related point, recorded in OPEN_QUESTIONS.
+- Agreed with Review 2's criticism that Review 1's claim "scorer checks every label field" was too strong.
+
+### Rejected / fixed
+
+- [major] [benchmark] [benchmark/runner/scorer.py] Forcing `as_of = law_snapshot_date` was wrong. Evidence: with a 2021 incident and a 2026 snapshot the engine default gives `law_as_of=2021-01-05` and no deadline, while the forced value gives `law_as_of=2026-09-24` and a 6-hour deadline under a law not yet in force. It also disabled the engine's incident-date derivation in the benchmark (it only passed because the pre-effective scenario happened to set snapshot = incident date), so a regression to "law as of today" would have gone undetected. Fix: scorer no longer forces `as_of`; every scenario now carries `expected.law_as_of` (schema, model, all 17 scenarios), which the scorer asserts; the pre-effective scenario uses today's snapshot; replaced Review 2's synthetic test (which asserted the wrong behaviour) with tests for correct derivation, a wrong label, presence of the label on every scenario, and a mutation test that ignoring the incident date fails at least 10 scenarios. FIXED.
+- [minor] [config] `pyproject.toml` pointed pytest `cache_dir` and `--basetemp` at `*_codex` directories to work around the review sandbox's permissions. Reverted. The sandbox account also left `.pytest_cache_codex/`, `.pytest_tmp_codex/` and `.tmp/` in the repo root that the owner account cannot delete without elevated rights; they are now git-ignored and can be removed manually from an elevated prompt. FIXED (reverted; leftovers OPEN, harmless).
+
+State after Review 3: 125 tests pass; ruff, ruff format, mypy strict, validate_all and the 17/17 benchmark are green.

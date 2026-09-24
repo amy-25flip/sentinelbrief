@@ -300,6 +300,7 @@ class Expected(BaseModel):
 
     model_config = ConfigDict(frozen=True, extra="ignore")
 
+    law_as_of: date | None = None
     regulators: list[str]
     deadlines: list[ExpectedDeadline]
     citations: list[ExpectedCitation]

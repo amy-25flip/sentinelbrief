@@ -1,6 +1,6 @@
 {
   "id": "cert-in-before-directions-effective",
-  "description": "An incident on 5 Jan 2021, before the Directions took effect on 27 Jun 2022. The law as of the incident date does not include them.",
+  "description": "An incident on 5 Jan 2021, before the Directions took effect on 27 Jun 2022, evaluated today. The law that applies is the law as of the incident date, not as of the snapshot or evaluation date.",
   "entity_profile": {
     "entity_class": "nbfc",
     "is_listed": false,
@@ -19,8 +19,9 @@
     "personal_data_involved": null,
     "when_noticed": "2021-01-05T09:00:00+05:30"
   },
-  "law_snapshot_date": "2021-01-05",
+  "law_snapshot_date": "2026-09-24",
   "expected": {
+    "law_as_of": "2021-01-05",
     "regulators": [],
     "deadlines": [],
     "citations": [],
