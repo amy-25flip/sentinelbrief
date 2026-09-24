@@ -1,0 +1,132 @@
+{
+  "instrument_id": "cert-in.directions-70b.2022",
+  "annex": "Annexure I",
+  "note": "Titles are copied from the primary PDF (whitespace-collapsed) and checked against the stored source text by tests. strong_terms are word-boundary regexes for unambiguous named incident types; a match is shown to the user as a suggestion and treated as Annexure I. weak_terms only ever produce a 'please confirm' suggestion. Free text can never establish that an incident is NOT in Annexure I; only an explicit user attestation can.",
+  "items": [
+    {
+      "id": "annexure_i.i",
+      "title": "Targeted scanning/probing of critical networks/systems",
+      "strong_terms": ["\\btargeted scanning\\b", "\\bprobing\\b"],
+      "weak_terms": ["\\bscanning\\b"]
+    },
+    {
+      "id": "annexure_i.ii",
+      "title": "Compromise of critical systems/information",
+      "strong_terms": ["\\bcompromise of critical (systems?|information)\\b"],
+      "weak_terms": ["\\bcritical systems?\\b"]
+    },
+    {
+      "id": "annexure_i.iii",
+      "title": "Unauthorised access of IT systems/data",
+      "strong_terms": ["\\bunauthori[sz]ed access\\b"],
+      "weak_terms": ["\\bintrusion\\b"]
+    },
+    {
+      "id": "annexure_i.iv",
+      "title": "Defacement of website or intrusion into a website and unauthorised changes such as inserting malicious code, links to external websites etc.",
+      "strong_terms": ["\\bdefacement\\b", "\\bwebsite intrusion\\b"],
+      "weak_terms": ["\\bwebsite\\b"]
+    },
+    {
+      "id": "annexure_i.v",
+      "title": "Malicious code attacks such as spreading of virus/worm/Trojan/Bots/ Spyware/Ransomware/Cryptominers",
+      "strong_terms": [
+        "\\bransomware\\b",
+        "\\bmalware\\b",
+        "\\bmalicious code\\b",
+        "\\b(virus|worm|trojan|bots?|spyware|cryptominers?)\\b"
+      ],
+      "weak_terms": ["\\bencrypted files\\b"]
+    },
+    {
+      "id": "annexure_i.vi",
+      "title": "Attack on servers such as Database, Mail and DNS and network devices such as Routers",
+      "strong_terms": ["\\battacks? on (the )?(servers?|routers?)\\b", "\\bdns attacks?\\b"],
+      "weak_terms": ["\\bserver\\b", "\\brouter\\b"]
+    },
+    {
+      "id": "annexure_i.vii",
+      "title": "Identity Theft, spoofing and phishing attacks",
+      "strong_terms": ["\\bidentity theft\\b", "\\bspoofing\\b", "\\bphishing\\b"],
+      "weak_terms": []
+    },
+    {
+      "id": "annexure_i.viii",
+      "title": "Denial of Service (DoS) and Distributed Denial of Service (DDoS) attacks",
+      "strong_terms": ["\\bddos\\b", "\\bdos attacks?\\b", "\\bdenial[- ]of[- ]service\\b"],
+      "weak_terms": []
+    },
+    {
+      "id": "annexure_i.ix",
+      "title": "Attacks on Critical infrastructure, SCADA and operational technology systems and Wireless networks",
+      "strong_terms": ["\\bscada\\b", "\\boperational technology\\b", "\\bcritical infrastructure\\b"],
+      "weak_terms": ["\\bwireless\\b"]
+    },
+    {
+      "id": "annexure_i.x",
+      "title": "Attacks on Application such as E-Governance, E-Commerce etc.",
+      "strong_terms": ["\\battacks? on (an? |the )?applications?\\b", "\\be-?governance\\b", "\\be-?commerce\\b"],
+      "weak_terms": ["\\bapplication\\b"]
+    },
+    {
+      "id": "annexure_i.xi",
+      "title": "Data Breach",
+      "strong_terms": ["\\bdata breach(es)?\\b"],
+      "weak_terms": ["\\bbreach\\b"]
+    },
+    {
+      "id": "annexure_i.xii",
+      "title": "Data Leak",
+      "strong_terms": ["\\bdata leak(s|age)?\\b"],
+      "weak_terms": ["\\bleak(ed)?\\b"]
+    },
+    {
+      "id": "annexure_i.xiii",
+      "title": "Attacks on Internet of Things (IoT) devices and associated systems, networks, software, servers",
+      "strong_terms": ["\\biot\\b", "\\binternet of things\\b"],
+      "weak_terms": []
+    },
+    {
+      "id": "annexure_i.xiv",
+      "title": "Attacks or incident affecting Digital Payment systems",
+      "strong_terms": ["\\bdigital payment systems?\\b"],
+      "weak_terms": ["\\bpayments?\\b"]
+    },
+    {
+      "id": "annexure_i.xv",
+      "title": "Attacks through Malicious mobile Apps",
+      "strong_terms": ["\\bmalicious mobile apps?\\b"],
+      "weak_terms": ["\\bmobile app\\b"]
+    },
+    {
+      "id": "annexure_i.xvi",
+      "title": "Fake mobile Apps",
+      "strong_terms": ["\\bfake mobile apps?\\b"],
+      "weak_terms": ["\\bfake app\\b"]
+    },
+    {
+      "id": "annexure_i.xvii",
+      "title": "Unauthorised access to social media accounts",
+      "strong_terms": ["\\bsocial media account"],
+      "weak_terms": ["\\bsocial media\\b"]
+    },
+    {
+      "id": "annexure_i.xviii",
+      "title": "Attacks or malicious/ suspicious activities affecting Cloud computing systems/servers/software/applications",
+      "strong_terms": [],
+      "weak_terms": ["\\bcloud\\b"]
+    },
+    {
+      "id": "annexure_i.xix",
+      "title": "Attacks or malicious/suspicious activities affecting systems/ servers/ networks/ software/ applications related to Big Data, Block chain, virtual assets, virtual asset exchanges, custodian wallets, Robotics, 3D and 4D Printing, additive manufacturing, Drones",
+      "strong_terms": [],
+      "weak_terms": ["\\bblock ?chain\\b", "\\bvirtual assets?\\b", "\\bcustodian wallets?\\b", "\\bdrones?\\b", "\\bbig data\\b"]
+    },
+    {
+      "id": "annexure_i.xx",
+      "title": "Attacks or malicious/ suspicious activities affecting systems/ servers/software/ applications related to Artificial Intelligence and Machine Learning",
+      "strong_terms": [],
+      "weak_terms": ["\\bartificial intelligence\\b", "\\bmachine learning\\b"]
+    }
+  ]
+}

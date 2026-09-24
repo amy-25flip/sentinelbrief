@@ -7,6 +7,8 @@ from .base import BaseFetcher
 class KEVFetcher(BaseFetcher):
     """Fetcher for CISA Known Exploited Vulnerabilities (KEV) catalog."""
 
+    keep_history = False  # a daily data feed, not legal evidence
+
     KEV_URL = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
 
     def fetch_catalog(self) -> None:

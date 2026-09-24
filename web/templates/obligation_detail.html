@@ -13,8 +13,10 @@
         <span class="chip issuer">{{ instrument.issuer if instrument else 'Unknown' }}</span>
         <span class="chip mandatory">Mandatory</span>
         <span class="status-badge status-{{ obligation.status }}">{{ obligation.status | replace('_', ' ') }}</span>
-        {% if obligation.normalized.deadline.duration_iso8601 %}
+        {% if obligation.normalized.deadline.kind == 'relative' and obligation.normalized.deadline.duration_iso8601 %}
         <span class="chip deadline">⏱ {{ obligation.normalized.deadline.duration_iso8601 }}</span>
+        {% elif obligation.normalized.deadline.kind == 'retention' %}
+        <span class="chip">Retain {{ obligation.normalized.deadline.duration_iso8601 }}</span>
         {% endif %}
     </div>
 </div>
@@ -31,9 +33,12 @@
     <div class="meta-item">
         <label>Deadline</label>
         <div class="value">
-            {% if obligation.normalized.deadline.duration_iso8601 %}
-                {{ obligation.normalized.deadline.duration_iso8601 }}
-                from {{ obligation.normalized.deadline.anchor | replace('_', ' ') }}
+            {% set dl = obligation.normalized.deadline %}
+            {% if dl.kind == 'relative' and dl.duration_iso8601 %}
+                {{ dl.duration_iso8601 }}
+                from {{ dl.anchor | replace('_', ' ') }}{% if dl.alternative_anchors %}, or {{ dl.alternative_anchors | join(', ') | replace('_', ' ') }} (whichever is earliest){% endif %}
+            {% elif dl.kind == 'retention' %}
+                Retention duty: keep for {{ dl.duration_iso8601 }}. This is not an incident deadline.
             {% else %}
                 No specific deadline (ongoing)
             {% endif %}

@@ -1,0 +1,75 @@
+<h2>⏱ Computed clocks</h2>
+<p style="color: var(--text-muted); font-size: 0.85rem;">
+    Law evaluated as of the incident date: <strong>{{ result.law_as_of }}</strong>
+    · computed {{ result.computed_at | ist }}
+</p>
+
+{% for c in result.caveats %}
+<div class="disclaimer">⚠️ {{ c }}</div>
+{% endfor %}
+
+{% if matched %}
+<p style="margin: 0.75rem 0;">
+    Matched to Annexure I ({{ result.annexure_i.basis | replace('_', ' ') }}), please confirm:
+    {% for m in matched %}<span class="chip">{{ m.title }}</span> {% endfor %}
+</p>
+{% elif result.annexure_i.decision is sameas false %}
+<p style="margin: 0.75rem 0;">You attested this is not an Annexure I incident type.</p>
+{% endif %}
+
+{% if result.deadlines %}
+<table>
+    <thead><tr><th>Obligation</th><th>Clause</th><th>Clock started by</th><th>Deadline (IST)</th><th>Status</th><th>Report to</th></tr></thead>
+    <tbody>
+    {% for d in result.deadlines %}
+    <tr>
+        <td><a href="/obligations/{{ d.obligation_id }}">{{ d.obligation_action }}</a></td>
+        <td>{{ d.citation_paragraph }}</td>
+        <td>{{ d.anchor_type | replace('_', ' ') }} at {{ d.anchor_timestamp | ist }}</td>
+        <td><strong>{{ d.deadline_ist.strftime('%d %b %Y, %H:%M') }} IST</strong> ({{ d.duration_iso8601 }})</td>
+        <td><span style="color: {{ 'var(--danger)' if d.status == 'overdue' else 'var(--success)' }}; font-weight: 600;">{{ d.status | upper }}</span></td>
+        <td>{{ d.recipient }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p style="color: var(--warning); margin: 1rem 0;">No deadline could be computed yet. See the questions below.</p>
+{% endif %}
+
+{% if result.unknowns %}
+<h2 style="color: var(--warning); margin-top: 1.5rem;">❓ Needs your answer</h2>
+<ul>
+    {% for u in result.unknowns %}
+    <li style="margin-bottom: 0.5rem;"><strong>{{ u.question }}</strong><br><span style="color: var(--text-muted);">{{ u.impact }}</span></li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if ongoing %}
+<h2 style="margin-top: 1.5rem;">Ongoing duties (no incident deadline)</h2>
+<ul>
+    {% for o in ongoing %}
+    <li style="margin-bottom: 0.5rem;">
+        <a href="/obligations/{{ o.id }}">{{ o.paragraph }}</a>: {{ o.action }}
+        {% if o.retain %}<span class="chip">Retain {{ o.retain }}</span>{% endif %}
+        {% for c in o.conditions %}<br><span style="color: var(--warning);">Applies only if: {{ c }} (not checked by this tool)</span>{% endfor %}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if result.not_applicable %}
+<details style="margin-top: 1.5rem;">
+    <summary>Not applicable ({{ result.not_applicable | length }})</summary>
+    <ul>
+        {% for n in result.not_applicable %}
+        <li><a href="/obligations/{{ n.obligation_id }}">{{ n.obligation_id }}</a>: {{ n.reason }}</li>
+        {% endfor %}
+    </ul>
+</details>
+{% endif %}
+
+<p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">
+    Draft for human review. Not legal advice. Filing is always done by a person on the regulator's own channel.
+</p>

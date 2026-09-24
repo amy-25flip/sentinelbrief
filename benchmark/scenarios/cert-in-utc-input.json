@@ -1,0 +1,52 @@
+{
+  "id": "cert-in-utc-input",
+  "description": "Noticed time supplied in UTC (04:30Z = 10:00 IST). The deadline instant must be identical regardless of the offset used.",
+  "entity_profile": {
+    "entity_class": "nbfc",
+    "is_listed": false,
+    "holds_personal_data": true,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Noticed time supplied in UTC (04:30Z = 10:00 IST). The deadline instant must be identical regardless of the offset used.",
+    "incident_types": [
+      "data leak"
+    ],
+    "systems_affected": [
+      "core_systems"
+    ],
+    "personal_data_involved": null,
+    "when_noticed": "2026-09-15T04:30:00+00:00"
+  },
+  "law_snapshot_date": "2026-09-24",
+  "expected": {
+    "regulators": [
+      "CERT-In"
+    ],
+    "deadlines": [
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-09-15T16:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": []
+  },
+  "adversarial_flags": [
+    "timezone_offset"
+  ],
+  "split": "dev",
+  "labels_source": "CERT-In Directions 70B dated 28 April 2022 (primary text), labelled independently of the engine"
+}

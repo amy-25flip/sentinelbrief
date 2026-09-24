@@ -25,6 +25,18 @@
       "size_bytes": 1611981,
       "parser_version": "pymupdf-1.28.2",
       "status": "current"
+    },
+    {
+      "url": "https://www.cert-in.org.in/PDF/CERT-In_directions_extension_MSMEs_and_validation_27.06.2022.pdf",
+      "filename": "CERT-In_directions_extension_MSMEs_and_validation_27.06.2022.pdf",
+      "sha256": "f0a2805f2a3bd0745560d417ffb6d41bf2cfe9920a5fd8a45b806ff10d61979f",
+      "retrieved_at": "2026-09-24T16:02:28Z",
+      "etag": null,
+      "last_modified": null,
+      "content_type": "application/pdf",
+      "size_bytes": 761919,
+      "parser_version": "pymupdf-1.28.2",
+      "status": "current"
     }
   ]
 }

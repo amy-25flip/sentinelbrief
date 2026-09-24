@@ -1,25 +1,23 @@
 {
-  "id": "cert-in-data-breach-unknown-time",
-  "description": "A service provider discovers a data breach but doesn't know when it was first noticed.",
+  "id": "cert-in-cloud-outage-not-assumed",
+  "description": "A cloud region power outage mentions 'cloud' but is not obviously an attack. The engine may suggest item xviii but must ask, not start a clock.",
   "entity_profile": {
-    "entity_class": "service_provider",
+    "entity_class": "nbfc",
     "is_listed": false,
     "holds_personal_data": true,
     "uses_protected_systems": false,
     "is_regulated_cloud_vps": false
   },
   "incident_facts": {
-    "description": "Data breach discovered, time unknown.",
+    "description": "A cloud region power outage mentions 'cloud' but is not obviously an attack. The engine may suggest item xviii but must ask, not start a clock.",
     "incident_types": [
-      "data breach"
+      "cloud region power outage"
     ],
-    "when_detected": null,
-    "when_noticed": null,
-    "when_occurred": null,
-    "personal_data_involved": true,
     "systems_affected": [
-      "customer_database"
-    ]
+      "core_systems"
+    ],
+    "personal_data_involved": null,
+    "when_noticed": "2026-09-15T10:00:00+05:30"
   },
   "law_snapshot_date": "2026-09-24",
   "expected": {
@@ -29,9 +27,9 @@
     "deadlines": [],
     "citations": [
       {
-        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "obligation_id": "cert-in.directions-70b.2022.ntp-sync",
         "instrument_id": "cert-in.directions-70b.2022",
-        "paragraph_ref": "Direction (ii)"
+        "paragraph_ref": "Direction (i)"
       }
     ],
     "required_evidence": [],
@@ -49,12 +47,14 @@
     ],
     "unknowns": [
       {
-        "question": "noticed",
+        "question": "Annexure I",
         "affects": "cert-in.directions-70b.2022.incident-reporting-6h"
       }
     ]
   },
-  "adversarial_flags": [],
+  "adversarial_flags": [
+    "keyword_false_positive"
+  ],
   "split": "dev",
-  "labels_source": "CERT-In Directions 70B dated 28 April 2022 (primary text)"
+  "labels_source": "CERT-In Directions 70B dated 28 April 2022 (primary text), labelled independently of the engine"
 }

@@ -43,10 +43,18 @@
           "properties": {
             "kind": {
               "type": "string",
-              "enum": ["relative", "absolute", "recurring", "none"]
+              "enum": ["relative", "absolute", "recurring", "retention", "none"]
             },
             "duration_iso8601": {
               "type": ["string", "null"]
+            },
+            "alternative_anchors": {
+              "type": "array",
+              "description": "Other triggers the source text joins with 'or'. The engine starts the clock at the earliest known trigger (conservative reading).",
+              "items": {
+                "type": "string",
+                "enum": ["detection", "noticing", "brought_to_notice", "awareness", "occurrence"]
+              }
             },
             "anchor": {
               "type": ["string", "null"],

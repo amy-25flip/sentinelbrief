@@ -108,12 +108,13 @@ def test_timeline_export_bundle(tmp_path: Path):
     # Check disclaimer in summary
     with open(bundle_dir / "summary.md") as f:
         summary = f.read()
-        assert "HONEST DISCLAIMER" in summary
+        assert "LIMITS OF THIS EVIDENCE" in summary
+        assert "declared" in summary
 
 
 def test_genesis_hash_zero(tmp_path: Path):
     # 7. Test genesis event has prev_hash = '0' * 64
     storage = tmp_path / "timeline.jsonl"
     timeline = EvidenceTimeline(storage)
-    e = timeline.append("test", "test", {})
+    e = timeline.append("test", "note_added", {})
     assert e.prev_hash == "0" * 64

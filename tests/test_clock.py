@@ -1,134 +1,241 @@
-from datetime import UTC, datetime, timedelta
+import re
+from datetime import UTC, date, datetime, timedelta
+from pathlib import Path
 
+import pytest
 from hypothesis import given
 from hypothesis import strategies as st
 
 from sentinelbrief.clock import IncidentClockEngine, IncidentProfile
 from sentinelbrief.clock.engine import IST, parse_iso8601_duration
 
-# Use the real data directory
-DATA_DIR = "e:/SentinelBrief/data"
+DATA_DIR = Path(__file__).resolve().parents[1] / "data"
+NOTICED = datetime(2026, 9, 24, 9, 0, tzinfo=IST)
+NOW = datetime(2026, 9, 24, 12, 0, tzinfo=UTC)
+
+
+def _dl(result, suffix):
+    return [d for d in result.deadlines if d.obligation_id.endswith(suffix)]
 
 
 def test_basic_cert_in_6h_deadline():
     engine = IncidentClockEngine(DATA_DIR)
-
     noticed = datetime(2023, 10, 1, 12, 0, tzinfo=IST)
     profile = IncidentProfile(
         entity_class="body_corporate", is_annexure_i_type=True, when_noticed=noticed
     )
-
     result = engine.evaluate(profile)
 
-    # Check that cert-in 6h applies
-    deadlines = [d for d in result.deadlines if "incident-reporting-6h" in d.obligation_id]
+    deadlines = _dl(result, "incident-reporting-6h")
     assert len(deadlines) == 1
-
     dl = deadlines[0]
     assert dl.anchor_timestamp == noticed
     assert dl.deadline_utc == noticed.astimezone(UTC) + timedelta(hours=6)
     assert dl.deadline_ist == dl.deadline_utc.astimezone(IST)
     assert dl.duration_iso8601 == "PT6H"
+    assert dl.regulator == "CERT-In"
 
 
-def test_ist_utc_conversion():
-    assert IST.utcoffset(None) == timedelta(hours=5, minutes=30)
-
-
-def test_anchor_disambiguation():
+def test_anchor_takes_earliest_of_joined_triggers():
     engine = IncidentClockEngine(DATA_DIR)
-
-    noticed = datetime(2023, 10, 1, 14, 0, tzinfo=IST)
-    brought_to_notice = datetime(2023, 10, 1, 12, 0, tzinfo=IST)
-
+    noticed = datetime(2026, 9, 24, 14, 0, tzinfo=IST)
+    brought = datetime(2026, 9, 24, 12, 0, tzinfo=IST)
     profile = IncidentProfile(
         entity_class="body_corporate",
         is_annexure_i_type=True,
         when_noticed=noticed,
-        when_brought_to_notice=brought_to_notice,
+        when_brought_to_notice=brought,
     )
+    dl = _dl(engine.evaluate(profile), "incident-reporting-6h")[0]
+    assert (dl.anchor_type, dl.anchor_timestamp) == ("brought_to_notice", brought)
 
-    result = engine.evaluate(profile)
-    dl = next(d for d in result.deadlines if "incident-reporting-6h" in d.obligation_id)
-
-    # Should use the earlier one (brought_to_notice)
-    assert dl.anchor_type == "brought_to_notice"
-    assert dl.anchor_timestamp == brought_to_notice
-
-    # Reverse it
-    profile.when_noticed = datetime(2023, 10, 1, 10, 0, tzinfo=IST)
-    result2 = engine.evaluate(profile)
-    dl2 = next(d for d in result2.deadlines if "incident-reporting-6h" in d.obligation_id)
-    assert dl2.anchor_type == "noticing"
-    assert dl2.anchor_timestamp == profile.when_noticed
+    profile.when_noticed = datetime(2026, 9, 24, 10, 0, tzinfo=IST)
+    dl2 = _dl(engine.evaluate(profile), "incident-reporting-6h")[0]
+    assert (dl2.anchor_type, dl2.anchor_timestamp) == ("noticing", profile.when_noticed)
 
 
-def test_unknowns_generation():
+def test_unknown_noticing_time_is_asked_not_guessed():
     engine = IncidentClockEngine(DATA_DIR)
+    result = engine.evaluate(
+        IncidentProfile(entity_class="body_corporate", is_annexure_i_type=True)
+    )
+    assert any("noticed" in u.question.lower() for u in result.unknowns)
+    assert not result.deadlines
 
+
+def test_detection_only_does_not_start_certin_clock():
+    engine = IncidentClockEngine(DATA_DIR)
     profile = IncidentProfile(
-        entity_class="body_corporate",
-        is_annexure_i_type=True,
-        # missing when_noticed
+        entity_class="body_corporate", is_annexure_i_type=True, when_detected=NOTICED
     )
-
-    result = engine.evaluate(profile)
-    unknowns = [u.question for u in result.unknowns]
-    assert any("noticed" in q.lower() for q in unknowns)
-
-    profile2 = IncidentProfile(
-        entity_class="body_corporate",
-        when_noticed=datetime.now(IST),
-        # missing is_annexure_i_type
-    )
-    result2 = engine.evaluate(profile2)
-    unknowns2 = [u.question for u in result2.unknowns]
-    assert any("annexure" in q.lower() for q in unknowns2)
+    result = engine.evaluate(profile, now=NOW)
+    assert not result.deadlines
+    assert any("noticed" in u.question.lower() for u in result.unknowns)
 
 
 def test_entity_filtering():
     engine = IncidentClockEngine(DATA_DIR)
+    vpn = engine.evaluate(IncidentProfile(entity_class="vpn_provider", is_annexure_i_type=True))
+    assert any("vps-cloud-vpn" in o for o in vpn.applicable_obligations)
+    bc = engine.evaluate(IncidentProfile(entity_class="body_corporate", is_annexure_i_type=True))
+    assert not any("vps-cloud-vpn" in o for o in bc.applicable_obligations)
 
-    profile_vpn = IncidentProfile(entity_class="vpn_provider", when_occurred=datetime.now(IST))
-    result_vpn = engine.evaluate(profile_vpn)
-    assert any("vpn" in d.obligation_id for d in result_vpn.deadlines)
 
-    profile_bc = IncidentProfile(entity_class="body_corporate", when_occurred=datetime.now(IST))
-    result_bc = engine.evaluate(profile_bc)
-    assert not any("vpn" in d.obligation_id for d in result_bc.deadlines)
+def test_retention_duties_never_produce_a_deadline():
+    engine = IncidentClockEngine(DATA_DIR)
+    profile = IncidentProfile(
+        entity_class="vps_provider",
+        incident_types=["ransomware"],
+        when_noticed=NOTICED,
+        when_occurred=datetime(2026, 9, 20, 9, 0, tzinfo=IST),
+    )
+    result = engine.evaluate(profile, now=NOW)
+    assert any("vps-cloud-vpn" in o for o in result.applicable_obligations)
+    assert [d.obligation_id.split(".")[-1] for d in result.deadlines] == ["incident-reporting-6h"]
 
 
 def test_no_deadline_obligations():
     engine = IncidentClockEngine(DATA_DIR)
-    profile = IncidentProfile(entity_class="body_corporate")
-    result = engine.evaluate(profile)
-
-    # NTP sync should be applicable but not produce a deadline
-    assert any("ntp-sync" in ob_id for ob_id in result.applicable_obligations)
-    assert not any("ntp-sync" in d.obligation_id for d in result.deadlines)
+    result = engine.evaluate(IncidentProfile(entity_class="body_corporate"))
+    assert any("ntp-sync" in o for o in result.applicable_obligations)
+    assert not _dl(result, "ntp-sync")
 
 
-@given(
-    st.datetimes(
-        timezones=st.just(UTC),
-        min_value=datetime(2020, 1, 1, tzinfo=UTC),
-        max_value=datetime(2030, 1, 1, tzinfo=UTC),
-    ),
-    st.integers(min_value=0, max_value=1000),
+@pytest.mark.parametrize(
+    "incident_type",
+    [
+        "Attacks on Application such as E-Governance, E-Commerce",
+        "Attack on servers such as Database, Mail and DNS and network devices such as Routers",
+        "ransomware",
+        "DDoS",
+        "data breach",
+        "Data Leak",
+        "phishing",
+    ],
 )
-def test_deadline_arithmetic(anchor_ts, hours_duration):
-    duration = timedelta(hours=hours_duration)
-    deadline_utc = anchor_ts + duration
-    deadline_ist = deadline_utc.astimezone(IST)
-
-    # Just checking basic timezone arithmetic
-    assert deadline_ist.utcoffset() == timedelta(hours=5, minutes=30)
-    assert (deadline_ist - deadline_utc).total_seconds() == 0
-
-
-def test_not_yet_in_force():
+def test_real_annexure_i_types_start_the_clock(incident_type):
     engine = IncidentClockEngine(DATA_DIR)
-    # Inject a mock obligation
+    profile = IncidentProfile(
+        entity_class="nbfc", incident_types=[incident_type], when_noticed=NOTICED
+    )
+    result = engine.evaluate(profile, now=NOW)
+    assert result.annexure_i.decision is True
+    assert len(_dl(result, "incident-reporting-6h")) == 1
+
+
+@pytest.mark.parametrize(
+    "incident_type", ["hardware failure", "cloud region power outage", "kudos", "endosperm"]
+)
+def test_free_text_can_never_conclude_not_reportable(incident_type):
+    """A false 'not reportable' is the worst failure: it must always be an Unknown."""
+    engine = IncidentClockEngine(DATA_DIR)
+    profile = IncidentProfile(
+        entity_class="nbfc", incident_types=[incident_type], when_noticed=NOTICED
+    )
+    result = engine.evaluate(profile, now=NOW)
+    assert result.annexure_i.decision is None
+    assert any("Annexure I" in u.question for u in result.unknowns)
+    assert not any(
+        n["obligation_id"].endswith("incident-reporting-6h") for n in result.not_applicable
+    )
+
+
+def test_weak_term_only_suggests():
+    engine = IncidentClockEngine(DATA_DIR)
+    profile = IncidentProfile(
+        entity_class="nbfc", incident_types=["cloud region power outage"], when_noticed=NOTICED
+    )
+    result = engine.evaluate(profile, now=NOW)
+    assert result.annexure_i.suggestions == ["annexure_i.xviii"]
+    assert "Possible matches" in result.unknowns[0].impact
+
+
+def test_explicit_attestation_makes_annexure_not_applicable():
+    engine = IncidentClockEngine(DATA_DIR)
+    profile = IncidentProfile(
+        entity_class="nbfc",
+        incident_types=["hardware failure"],
+        is_annexure_i_type=False,
+        when_noticed=NOTICED,
+    )
+    result = engine.evaluate(profile, now=NOW)
+    assert not result.deadlines
+    assert any(n["obligation_id"].endswith("incident-reporting-6h") for n in result.not_applicable)
+
+
+def test_conflicting_attestation_is_rejected():
+    with pytest.raises(ValueError, match="Conflicting"):
+        IncidentProfile(
+            entity_class="nbfc", is_annexure_i_type=False, annexure_i_items=["annexure_i.v"]
+        )
+
+
+def test_naive_datetime_is_rejected():
+    with pytest.raises(ValueError, match="timezone-aware"):
+        IncidentProfile(entity_class="nbfc", when_noticed=datetime(2026, 9, 24, 9, 0))
+
+
+def test_naive_datetime_set_after_construction_is_rejected():
+    engine = IncidentClockEngine(DATA_DIR)
+    profile = IncidentProfile(entity_class="nbfc", is_annexure_i_type=True)
+    profile.when_noticed = datetime(2026, 9, 24, 9, 0)
+    with pytest.raises(ValueError, match="timezone-aware"):
+        engine.evaluate(profile, now=NOW)
+
+
+def test_unknown_entity_class_is_rejected_not_silently_empty():
+    engine = IncidentClockEngine(DATA_DIR)
+    with pytest.raises(ValueError, match="Unknown entity class"):
+        engine.evaluate(IncidentProfile(entity_class="NBFC"))
+
+
+def test_law_is_evaluated_as_of_the_incident_date():
+    engine = IncidentClockEngine(DATA_DIR)
+    old = datetime(2021, 1, 5, 9, 0, tzinfo=IST)
+    profile = IncidentProfile(entity_class="nbfc", is_annexure_i_type=True, when_noticed=old)
+    result = engine.evaluate(profile, now=datetime(2021, 1, 5, 10, 0, tzinfo=IST))
+    assert result.law_as_of == date(2021, 1, 5)
+    assert not result.deadlines
+    assert all("not_yet_valid_at_incident_date" in n["reason"] for n in result.not_applicable)
+
+
+def test_msme_caveat_shown_for_the_transition_window_only():
+    engine = IncidentClockEngine(DATA_DIR)
+    window = datetime(2022, 7, 1, 9, 0, tzinfo=IST)
+    r_old = engine.evaluate(
+        IncidentProfile(entity_class="nbfc", is_annexure_i_type=True, when_noticed=window),
+        now=window,
+    )
+    assert r_old.caveats
+    r_new = engine.evaluate(
+        IncidentProfile(entity_class="nbfc", is_annexure_i_type=True, when_noticed=NOTICED),
+        now=NOW,
+    )
+    assert not r_new.caveats
+
+
+def test_unevaluated_conditions_are_surfaced():
+    engine = IncidentClockEngine(DATA_DIR)
+    result = engine.evaluate(IncidentProfile(entity_class="body_corporate"))
+    assert any(o.endswith("comply-with-orders") for o in result.conditions_unevaluated)
+
+
+def test_overdue_status():
+    engine = IncidentClockEngine(DATA_DIR)
+    profile = IncidentProfile(entity_class="nbfc", is_annexure_i_type=True, when_noticed=NOTICED)
+    late = engine.evaluate(profile, now=NOTICED + timedelta(hours=7))
+    assert _dl(late, "incident-reporting-6h")[0].status == "overdue"
+    early = engine.evaluate(profile, now=NOTICED + timedelta(hours=5, minutes=59))
+    assert _dl(early, "incident-reporting-6h")[0].status == "pending"
+
+
+def test_missing_data_dir_fails_loudly(tmp_path):
+    with pytest.raises(FileNotFoundError):
+        IncidentClockEngine(tmp_path / "nope")
+
+
+def test_not_yet_in_force_status():
+    engine = IncidentClockEngine(DATA_DIR)
     engine.obligations.append(
         {
             "id": "mock.dpdp.future",
@@ -137,19 +244,68 @@ def test_not_yet_in_force():
             "normalized": {"deadline": {"kind": "none"}},
         }
     )
-
-    profile = IncidentProfile(entity_class="body_corporate")
-    result = engine.evaluate(profile)
-
-    assert any(na["obligation_id"] == "mock.dpdp.future" for na in result.not_applicable)
-    assert any(
-        na["reason"] == "not_yet_in_force"
-        for na in result.not_applicable
-        if na["obligation_id"] == "mock.dpdp.future"
+    result = engine.evaluate(IncidentProfile(entity_class="body_corporate"))
+    assert {"obligation_id": "mock.dpdp.future", "reason": "not_yet_in_force"} in (
+        result.not_applicable
     )
 
 
-def test_parse_iso8601():
+def test_unsupported_anchor_is_reported_not_silently_skipped():
+    engine = IncidentClockEngine(DATA_DIR)
+    engine.obligations.append(
+        {
+            "id": "mock.publication-anchor",
+            "status": "in_force",
+            "applicability": {"entity_classes": ["body_corporate"]},
+            "normalized": {
+                "action": "x",
+                "deadline": {
+                    "kind": "relative",
+                    "duration_iso8601": "P30D",
+                    "anchor": "publication",
+                },
+            },
+        }
+    )
+    result = engine.evaluate(IncidentProfile(entity_class="body_corporate"))
+    assert any("publication" in u.question for u in result.unknowns)
+
+
+def test_calendar_durations_refused_for_deadlines():
+    with pytest.raises(ValueError):
+        parse_iso8601_duration("P1M", allow_calendar=False)
+    assert parse_iso8601_duration("P5Y") == timedelta(days=5 * 365)
     assert parse_iso8601_duration("PT6H") == timedelta(hours=6)
     assert parse_iso8601_duration("P180D") == timedelta(days=180)
-    assert parse_iso8601_duration("P5Y") == timedelta(days=5 * 365)
+    with pytest.raises(ValueError):
+        parse_iso8601_duration("PT")
+
+
+def test_annexure_reference_titles_are_verbatim_from_the_source():
+    """The 20 Annexure I titles must be real substrings of the stored CERT-In text."""
+    engine = IncidentClockEngine(DATA_DIR)
+    source = (DATA_DIR / "raw" / "CERT-In_Directions_70B_28.04.2022.txt").read_text(
+        encoding="utf-8"
+    )
+    squash = lambda s: re.sub(r"\s+", "", s).lower()  # noqa: E731
+    source_n = squash(source)
+    items = engine.annexure_items()
+    assert len(items) == 20
+    for item in items:
+        assert squash(item["title"]) in source_n, item["id"]
+
+
+@given(
+    st.datetimes(
+        timezones=st.just(UTC),
+        min_value=datetime(2023, 1, 1, tzinfo=UTC),
+        max_value=datetime(2030, 1, 1, tzinfo=UTC),
+    ),
+)
+def test_deadline_is_anchor_plus_six_hours_for_any_instant(anchor):
+    engine = IncidentClockEngine(DATA_DIR)
+    profile = IncidentProfile(entity_class="nbfc", is_annexure_i_type=True, when_noticed=anchor)
+    dl = _dl(engine.evaluate(profile, now=anchor), "incident-reporting-6h")[0]
+    assert dl.deadline_utc == anchor + timedelta(hours=6)
+    assert dl.deadline_ist.utcoffset() == timedelta(hours=5, minutes=30)
+    assert dl.deadline_ist == dl.deadline_utc

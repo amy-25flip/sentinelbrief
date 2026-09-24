@@ -1,15 +1,18 @@
 """FastAPI application for SentinelBrief."""
 
-from datetime import UTC, datetime, timedelta, timezone
+import re
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
+from urllib.parse import parse_qs
 
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-IST = timezone(timedelta(hours=5, minutes=30))
+from sentinelbrief.clock import IncidentClockEngine, IncidentProfile
+from sentinelbrief.clock.engine import ENTITY_HIERARCHY, IST
 
 app = FastAPI(
     title="SentinelBrief",
@@ -25,6 +28,7 @@ STATIC_DIR = WEB_DIR / "static"
 DATA_DIR = BASE_DIR / "data"
 
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
+templates.env.filters["ist"] = lambda dt: dt.astimezone(IST).strftime("%d %b %Y, %H:%M IST")
 
 # Mount static files
 if STATIC_DIR.exists():
@@ -119,10 +123,117 @@ async def obligation_detail(request: Request, obligation_id: str) -> HTMLRespons
 @app.get("/incident", response_class=HTMLResponse)
 async def incident_workspace(request: Request) -> HTMLResponse:
     """Incident clock workspace."""
+    engine = IncidentClockEngine(DATA_DIR)
     return templates.TemplateResponse(
         request=request,
         name="incident.html",
-        context={},
+        context={
+            "entity_classes": sorted(ENTITY_HIERARCHY),
+            "annexure_items": engine.annexure_items(),
+        },
+    )
+
+
+_TIME_FIELDS = (
+    "when_noticed",
+    "when_brought_to_notice",
+    "when_detected",
+    "when_occurred",
+    "when_aware",
+)
+
+
+def _parse_time(value: str, *, form_input: bool) -> datetime:
+    """Form times (datetime-local) are entered in IST. API times must carry an explicit offset."""
+    parsed = datetime.fromisoformat(value)
+    if parsed.tzinfo is None:
+        if not form_input:
+            raise ValueError("timestamps must include a UTC offset, e.g. 2026-09-24T09:00:00+05:30")
+        parsed = parsed.replace(tzinfo=IST)
+    return parsed
+
+
+def _profile_from_payload(payload: dict[str, Any], *, form_input: bool) -> IncidentProfile:
+    kwargs: dict[str, Any] = {}
+    for name in _TIME_FIELDS:
+        value = payload.get(name)
+        if value:
+            kwargs[name] = _parse_time(str(value), form_input=form_input)
+
+    incident_types = payload.get("incident_types") or []
+    if isinstance(incident_types, str):
+        incident_types = [t.strip() for t in re.split(r"[,\n;]", incident_types) if t.strip()]
+
+    attestation = payload.get("annexure_attestation", "unknown")
+    return IncidentProfile(
+        entity_class=str(payload.get("entity_class", "")),
+        incident_types=list(incident_types),
+        annexure_i_items=list(payload.get("annexure_i_items") or []),
+        is_annexure_i_type=False if attestation == "no" else None,
+        **kwargs,
+    )
+
+
+@app.post("/api/incident/clock", response_model=None)
+async def incident_clock(request: Request) -> Response:
+    """Compute regulatory clocks with the deterministic engine.
+
+    HTMX form posts get an HTML fragment (times read as IST); JSON posts get JSON
+    (timestamps need an explicit offset).
+    """
+    is_json = "application/json" in request.headers.get("content-type", "")
+    is_htmx = request.headers.get("hx-request") == "true"
+    try:
+        if is_json:
+            payload = await request.json()
+        else:
+            raw = parse_qs((await request.body()).decode("utf-8"), keep_blank_values=False)
+            payload = {k: (v if k == "annexure_i_items" else v[-1]) for k, v in raw.items()}
+        profile = _profile_from_payload(payload, form_input=not is_json)
+        engine = IncidentClockEngine(DATA_DIR)
+        result = engine.evaluate(profile)
+    except (ValueError, KeyError, TypeError) as exc:
+        if is_htmx:
+            return templates.TemplateResponse(
+                request=request,
+                name="partials/clock_error.html",
+                context={"message": str(exc)},
+                status_code=422,
+            )
+        return JSONResponse({"error": str(exc)}, status_code=422)
+
+    if not is_htmx:
+        return JSONResponse(result.to_dict())
+
+    applicable = set(result.applicable_obligations)
+    with_deadline = {d.obligation_id for d in result.deadlines}
+    ongoing = []
+    for obl_id in result.applicable_obligations:
+        if obl_id in with_deadline:
+            continue
+        obl = engine.get_obligation(obl_id) or {}
+        deadline = (obl.get("normalized") or {}).get("deadline") or {}
+        ongoing.append(
+            {
+                "id": obl_id,
+                "paragraph": obl.get("paragraph_ref", ""),
+                "action": (obl.get("normalized") or {}).get("action", ""),
+                "retain": deadline.get("duration_iso8601")
+                if deadline.get("kind") == "retention"
+                else None,
+                "conditions": result.conditions_unevaluated.get(obl_id, []),
+            }
+        )
+    matched = [{"id": m, "title": engine.annexure_title(m)} for m in result.annexure_i.matched]
+    return templates.TemplateResponse(
+        request=request,
+        name="partials/clock_result.html",
+        context={
+            "result": result,
+            "ongoing": ongoing,
+            "matched": matched,
+            "n_applicable": len(applicable),
+        },
     )
 
 

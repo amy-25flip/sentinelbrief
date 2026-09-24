@@ -63,9 +63,9 @@
       "prompt_version": null,
       "extractor_version": "0.1.0"
     },
-    "verification": "human_verified",
+    "verification": "machine_checked",
     "verification_details": {
-      "reviewer": "antigravity-agent",
+      "reviewer": "antigravity-agent (AI; not a human review)",
       "date": "2026-09-24"
     },
     "confidence": 0.95,
@@ -93,6 +93,7 @@
         "kind": "relative",
         "duration_iso8601": "PT6H",
         "anchor": "noticing",
+        "alternative_anchors": ["brought_to_notice"],
         "calendar": "continuous",
         "fixed_date": null
       },
@@ -138,13 +139,13 @@
       "prompt_version": null,
       "extractor_version": "0.1.0"
     },
-    "verification": "human_verified",
+    "verification": "machine_checked",
     "verification_details": {
-      "reviewer": "antigravity-agent",
+      "reviewer": "antigravity-agent (AI; not a human review)",
       "date": "2026-09-24"
     },
     "confidence": 0.98,
-    "confidence_reason": "Verbatim text from primary PDF. 6-hour deadline and anchor ('noticing such incidents or being brought to notice') are explicit. Note: text uses BOTH 'noticing' and 'being brought to notice' — clock starts from whichever occurs first."
+    "confidence_reason": "Verbatim text from primary PDF. 6-hour deadline and anchor ('noticing such incidents or being brought to notice') are explicit. The text joins two triggers with 'or' (noticing / being brought to notice). Modelled as anchor plus alternative_anchors; the engine starts the clock at the earliest known trigger. That is a conservative reading, not stated in the text."
   },
   {
     "id": "cert-in.directions-70b.2022.comply-with-orders",
@@ -164,9 +165,9 @@
       },
       "action": "Take action, provide information, or provide assistance to CERT-In as specified in the order/direction, in the format and timeframe specified.",
       "deadline": {
-        "kind": "relative",
+        "kind": "none",
         "duration_iso8601": null,
-        "anchor": "noticing",
+        "anchor": "not_applicable",
         "calendar": "continuous",
         "fixed_date": null
       },
@@ -211,9 +212,9 @@
       "prompt_version": null,
       "extractor_version": "0.1.0"
     },
-    "verification": "human_verified",
+    "verification": "machine_checked",
     "verification_details": {
-      "reviewer": "antigravity-agent",
+      "reviewer": "antigravity-agent (AI; not a human review)",
       "date": "2026-09-24"
     },
     "confidence": 0.9,
@@ -283,9 +284,9 @@
       "prompt_version": null,
       "extractor_version": "0.1.0"
     },
-    "verification": "human_verified",
+    "verification": "machine_checked",
     "verification_details": {
-      "reviewer": "antigravity-agent",
+      "reviewer": "antigravity-agent (AI; not a human review)",
       "date": "2026-09-24"
     },
     "confidence": 0.95,
@@ -310,7 +311,7 @@
       },
       "action": "Enable logs of all ICT systems. Maintain securely for rolling 180 days within Indian jurisdiction. Provide to CERT-In with incident reports or when ordered.",
       "deadline": {
-        "kind": "recurring",
+        "kind": "retention",
         "duration_iso8601": "P180D",
         "anchor": "not_applicable",
         "calendar": "continuous",
@@ -356,9 +357,9 @@
       "prompt_version": null,
       "extractor_version": "0.1.0"
     },
-    "verification": "human_verified",
+    "verification": "machine_checked",
     "verification_details": {
-      "reviewer": "antigravity-agent",
+      "reviewer": "antigravity-agent (AI; not a human review)",
       "date": "2026-09-24"
     },
     "confidence": 0.95,
@@ -382,9 +383,9 @@
       },
       "action": "Register and maintain accurate subscriber/customer information (names, hire period, IPs, email, purpose, address, contact, ownership) for 5 years or longer after cancellation/withdrawal.",
       "deadline": {
-        "kind": "relative",
+        "kind": "retention",
         "duration_iso8601": "P5Y",
-        "anchor": "occurrence",
+        "anchor": "not_applicable",
         "calendar": "continuous",
         "fixed_date": null
       },
@@ -428,9 +429,9 @@
       "prompt_version": null,
       "extractor_version": "0.1.0"
     },
-    "verification": "human_verified",
+    "verification": "machine_checked",
     "verification_details": {
-      "reviewer": "antigravity-agent",
+      "reviewer": "antigravity-agent (AI; not a human review)",
       "date": "2026-09-24"
     },
     "confidence": 0.93,
@@ -453,9 +454,9 @@
       },
       "action": "Maintain all KYC information and financial transaction records for 5 years. Transaction records must allow individual transaction reconstruction with party IDs, IPs, timestamps, time zones, transaction IDs, public keys, addresses/accounts, nature, date, and amount.",
       "deadline": {
-        "kind": "relative",
+        "kind": "retention",
         "duration_iso8601": "P5Y",
-        "anchor": "occurrence",
+        "anchor": "not_applicable",
         "calendar": "continuous",
         "fixed_date": null
       },
@@ -499,9 +500,9 @@
       "prompt_version": null,
       "extractor_version": "0.1.0"
     },
-    "verification": "human_verified",
+    "verification": "machine_checked",
     "verification_details": {
-      "reviewer": "antigravity-agent",
+      "reviewer": "antigravity-agent (AI; not a human review)",
       "date": "2026-09-24"
     },
     "confidence": 0.92,

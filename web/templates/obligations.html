@@ -25,9 +25,12 @@
             <td>{{ instrument_map.get(obl.instrument_id, {}).get('issuer', 'Unknown') }}</td>
             <td>{{ obl.normalized.action[:60] }}{% if obl.normalized.action|length > 60 %}…{% endif %}</td>
             <td>
-                {% if obl.normalized.deadline.duration_iso8601 %}
-                    {{ obl.normalized.deadline.duration_iso8601 }}
-                    ({{ obl.normalized.deadline.anchor }})
+                {% set dl = obl.normalized.deadline %}
+                {% if dl.kind == 'relative' and dl.duration_iso8601 %}
+                    {{ dl.duration_iso8601 }}
+                    ({{ dl.anchor | replace('_', ' ') }}{% if dl.alternative_anchors %} or {{ dl.alternative_anchors | join(', ') | replace('_', ' ') }}{% endif %})
+                {% elif dl.kind == 'retention' %}
+                    Retain {{ dl.duration_iso8601 }}
                 {% else %}
                     —
                 {% endif %}

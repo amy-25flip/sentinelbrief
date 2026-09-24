@@ -34,6 +34,9 @@
         "when_detected": { "type": ["string", "null"], "format": "date-time" },
         "when_noticed": { "type": ["string", "null"], "format": "date-time" },
         "when_occurred": { "type": ["string", "null"], "format": "date-time" },
+        "when_brought_to_notice": { "type": ["string", "null"], "format": "date-time" },
+        "is_annexure_i_type": { "type": ["boolean", "null"], "description": "Explicit user attestation; only false can exclude Annexure I" },
+        "annexure_i_items": { "type": "array", "items": { "type": "string" } },
         "personal_data_involved": { "type": ["boolean", "null"] },
         "systems_affected": {
           "type": "array",
@@ -90,9 +93,10 @@
             "type": "object",
             "properties": {
               "regulator": { "type": "string" },
+              "obligation_id": { "type": "string" },
               "reason": { "type": "string" }
             },
-            "required": ["regulator", "reason"]
+            "required": ["regulator", "obligation_id", "reason"]
           }
         },
         "unknowns": {
@@ -100,8 +104,8 @@
           "items": {
             "type": "object",
             "properties": {
-              "question": { "type": "string" },
-              "affects": { "type": "string" }
+              "question": { "type": "string", "description": "Case-insensitive substring that must appear in the question the engine asks" },
+              "affects": { "type": "string", "description": "Obligation id the question blocks" }
             },
             "required": ["question", "affects"]
           }

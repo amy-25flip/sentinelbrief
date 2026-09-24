@@ -1,0 +1,53 @@
+{
+  "id": "cert-in-noticed-before-brought",
+  "description": "Internal noticing at 09:00 IST, outside notification at 12:00 IST. The earlier trigger (noticing) starts the clock.",
+  "entity_profile": {
+    "entity_class": "service_provider",
+    "is_listed": false,
+    "holds_personal_data": true,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Internal noticing at 09:00 IST, outside notification at 12:00 IST. The earlier trigger (noticing) starts the clock.",
+    "incident_types": [
+      "phishing"
+    ],
+    "systems_affected": [
+      "core_systems"
+    ],
+    "personal_data_involved": null,
+    "when_noticed": "2026-09-15T09:00:00+05:30",
+    "when_brought_to_notice": "2026-09-15T12:00:00+05:30"
+  },
+  "law_snapshot_date": "2026-09-24",
+  "expected": {
+    "regulators": [
+      "CERT-In"
+    ],
+    "deadlines": [
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-09-15T15:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": []
+  },
+  "adversarial_flags": [
+    "ambiguous_anchor"
+  ],
+  "split": "dev",
+  "labels_source": "CERT-In Directions 70B dated 28 April 2022 (primary text), labelled independently of the engine"
+}

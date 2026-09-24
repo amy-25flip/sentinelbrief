@@ -3,6 +3,9 @@ from dataclasses import dataclass
 from sentinelbrief.models import Instrument, Obligation
 from sentinelbrief.verify.citation_validator import CitationValidationResult, validate_citation
 
+# Reviewer names that indicate an AI agent. Only a person may set "human_verified".
+_NON_HUMAN_REVIEWERS = ("agent", "antigravity", "claude", "codex", "gpt", "gemini", "llm")
+
 
 @dataclass
 class ObligationValidationResult:
@@ -32,7 +35,18 @@ def validate_obligation(
     if not obligation.text_verbatim:
         errors.append("text_verbatim is empty")
     elif obligation.text_verbatim not in source_text:
-        warnings.append("text_verbatim is not a substring of the source text")
+        errors.append("text_verbatim is not an exact substring of the source text")
+
+    if obligation.verification == "human_verified":
+        reviewer = (
+            (obligation.verification_details.reviewer or "")
+            if obligation.verification_details
+            else ""
+        )
+        if not reviewer:
+            errors.append("human_verified requires a named human reviewer")
+        elif any(tag in reviewer.lower() for tag in _NON_HUMAN_REVIEWERS):
+            errors.append(f"human_verified cannot be set by a non-human reviewer: {reviewer}")
 
     val = obligation.validity
     if val.valid_to is not None and val.valid_from > val.valid_to:

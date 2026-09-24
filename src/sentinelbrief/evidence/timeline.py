@@ -1,13 +1,19 @@
 import hashlib
 import json
+import os
 from collections.abc import Iterator
 from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, get_args
+
+from sentinelbrief.models import EvidenceEvent as EvidenceEventModel
 
 IST = timezone(timedelta(hours=5, minutes=30))
 ZERO_HASH = "0" * 64  # Genesis hash
+EVENT_TYPES: frozenset[str] = frozenset(
+    get_args(EvidenceEventModel.model_fields["type"].annotation)
+)
 
 
 def canonical_json(obj: dict[str, Any]) -> str:
@@ -62,17 +68,24 @@ class EvidenceTimeline:
     Each event: {seq, ts_utc, actor, type, payload, prev_hash, hash}
     hash = SHA-256(canonical_json(event without hash) || prev_hash)
 
-    HONEST DISCLAIMER (to be shown in exports):
-    A hash chain proves ordering and integrity AFTER THE FACT.
-    It does NOT prove that the recorded times were truthful.
-    Clock source and NTP sync status are captured at each event.
+    Limits, stated plainly (shown in every export):
+    - The chain proves ordering and integrity AFTER THE FACT, not that recorded times are true.
+    - clock_source and ntp_synced are DECLARED by the caller. This module does not measure them.
+    - Removing the most recent events cannot be detected from the file alone. Keep the head hash
+      (or event count) somewhere the file owner cannot edit and pass it to verify().
+    - Single writer only. append() refuses to run if the file changed under it, but that check
+      is not a lock.
     """
 
     DISCLAIMER = (
-        "HONEST DISCLAIMER:\n"
-        "A hash chain proves ordering and integrity AFTER THE FACT.\n"
-        "It does NOT prove that the recorded times were truthful.\n"
-        "Clock source and NTP sync status are captured at each event."
+        "LIMITS OF THIS EVIDENCE:\n"
+        "- A hash chain proves ordering and integrity AFTER THE FACT. It does NOT prove that "
+        "the recorded times were truthful.\n"
+        "- clock_source and ntp_synced are declared by whoever recorded each event; they were "
+        "not measured by this tool.\n"
+        "- Removing the most recent events cannot be detected from this file alone. Compare the "
+        "head hash below with a copy held elsewhere (email it, print it, or anchor it with an "
+        "external timestamp authority)."
     )
 
     def __init__(self, storage_path: Path):
@@ -101,6 +114,9 @@ class EvidenceTimeline:
         clock_source: str = "system",
         ntp_synced: bool = False,
     ) -> EvidenceEvent:
+        if event_type not in EVENT_TYPES:
+            raise ValueError(f"Unknown event type '{event_type}'. Allowed: {sorted(EVENT_TYPES)}")
+        self._assert_in_sync()
         seq = len(self.events)
         ts_utc = datetime.now(UTC)
         prev_hash = self.events[-1].hash if self.events else ZERO_HASH
@@ -131,19 +147,49 @@ class EvidenceTimeline:
         )
         self.events.append(event)
 
-        with open(self.storage_path, "a", encoding="utf-8") as f:
+        with open(self.storage_path, "a", encoding="utf-8", newline="\n") as f:
             f.write(json.dumps(event.to_dict()) + "\n")
             f.flush()
+            os.fsync(f.fileno())
 
         return event
 
-    def verify(self) -> tuple[bool, int | None]:
+    def _assert_in_sync(self) -> None:
+        """Refuse to append if another writer changed the file since it was loaded."""
+        on_disk = 0
+        last = ""
+        if self.storage_path.exists():
+            with open(self.storage_path, encoding="utf-8") as f:
+                for line in f:
+                    if line.strip():
+                        on_disk += 1
+                        last = line
+        if on_disk != len(self.events):
+            raise RuntimeError(
+                f"Timeline file has {on_disk} events but {len(self.events)} are loaded: "
+                "another writer changed it. Reload before appending."
+            )
+        if last and json.loads(last)["hash"] != self.events[-1].hash:
+            raise RuntimeError("Timeline file head differs from the loaded head: reload first.")
+
+    def verify(
+        self, expected_head_hash: str | None = None, expected_count: int | None = None
+    ) -> tuple[bool, int | None]:
+        """Re-walk the chain. Returns (valid, first_bad_seq).
+
+        Pass expected_head_hash / expected_count from an independently held record to also
+        detect deletion of the most recent events.
+        """
         prev_hash = ZERO_HASH
+        prev_ts: datetime | None = None
         for i, event in enumerate(self.events):
             if event.seq != i:
                 return False, i
             if event.prev_hash != prev_hash:
                 return False, i
+            if prev_ts is not None and event.ts_utc < prev_ts:
+                return False, i  # time went backwards
+            prev_ts = event.ts_utc
 
             event_dict = event.to_dict()
             del event_dict["hash"]
@@ -154,6 +200,10 @@ class EvidenceTimeline:
 
             prev_hash = event.hash
 
+        if expected_count is not None and len(self.events) != expected_count:
+            return False, min(len(self.events), expected_count)
+        if expected_head_hash is not None and self.head_hash() != expected_head_hash:
+            return False, max(len(self.events) - 1, 0)
         return True, None
 
     def export_bundle(self, output_dir: Path) -> Path:
@@ -165,7 +215,7 @@ class EvidenceTimeline:
         verification_path = output_dir / "verification_result.json"
 
         # 1. Timeline
-        with open(timeline_path, "w", encoding="utf-8") as f:
+        with open(timeline_path, "w", encoding="utf-8", newline="\n") as f:
             for event in self.events:
                 f.write(json.dumps(event.to_dict()) + "\n")
 
@@ -189,17 +239,26 @@ class EvidenceTimeline:
                     "head_hash": self.head_hash(),
                     "event_count": len(self.events),
                     "generated_at": datetime.now(UTC).isoformat(),
+                    "declared_clock_sources": sorted({e.clock_source for e in self.events}),
+                    "events_declared_ntp_synced": sum(e.ntp_synced for e in self.events),
+                    "disclaimer": self.DISCLAIMER,
                 },
                 f,
                 indent=2,
             )
 
         # 4. Summary
-        with open(summary_path, "w", encoding="utf-8") as f:
+        with open(summary_path, "w", encoding="utf-8", newline="\n") as f:
             f.write("# Evidence Timeline Audit Bundle\n\n")
             f.write(self.DISCLAIMER + "\n\n")
             f.write(f"**Event Count:** {len(self.events)}\n")
             f.write(f"**Head Hash:** `{self.head_hash()}`\n")
+            sources = ", ".join(sorted({e.clock_source for e in self.events})) or "none"
+            synced = sum(e.ntp_synced for e in self.events)
+            f.write(
+                f"**Declared clock sources:** {sources} "
+                f"({synced} of {len(self.events)} events declared NTP-synced)\n"
+            )
             f.write(
                 f"**Integrity Valid:** {'Yes' if is_valid else f'No (breaks at seq {broken_seq})'}\n"
             )

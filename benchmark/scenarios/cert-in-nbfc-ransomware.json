@@ -2,7 +2,7 @@
   "id": "cert-in-nbfc-ransomware",
   "description": "An NBFC (body corporate) discovers ransomware.",
   "entity_profile": {
-    "entity_class": "body_corporate",
+    "entity_class": "nbfc",
     "is_listed": false,
     "holds_personal_data": true,
     "uses_protected_systems": false,
@@ -10,16 +10,23 @@
   },
   "incident_facts": {
     "description": "Ransomware infection noticed.",
-    "incident_types": ["malicious code", "ransomware"],
+    "incident_types": [
+      "malicious code",
+      "ransomware"
+    ],
     "when_detected": "2026-09-15T10:00:00+05:30",
     "when_noticed": "2026-09-15T10:00:00+05:30",
     "when_occurred": "2026-09-15T08:00:00+05:30",
     "personal_data_involved": null,
-    "systems_affected": ["internal_servers"]
+    "systems_affected": [
+      "internal_servers"
+    ]
   },
   "law_snapshot_date": "2026-09-24",
   "expected": {
-    "regulators": ["CERT-In"],
+    "regulators": [
+      "CERT-In"
+    ],
     "deadlines": [
       {
         "regulator": "CERT-In",
@@ -49,10 +56,30 @@
         "obligation_id": "cert-in.directions-70b.2022.log-retention-180d",
         "instrument_id": "cert-in.directions-70b.2022",
         "paragraph_ref": "Direction (iv)"
+      },
+      {
+        "obligation_id": "cert-in.directions-70b.2022.comply-with-orders",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (iii)"
       }
     ],
-    "required_evidence": ["log retention policy", "PoC designation record", "NTP configuration records"],
-    "not_applicable": [],
+    "required_evidence": [
+      "log retention policy",
+      "PoC designation record",
+      "NTP configuration records"
+    ],
+    "not_applicable": [
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.vps-cloud-vpn-customer-data-5y",
+        "reason": "Direction (v) names only data centres, VPS, cloud and VPN providers"
+      },
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.virtual-asset-kyc-5y",
+        "reason": "Direction (vi) names only virtual asset service, exchange and custodian wallet providers"
+      }
+    ],
     "unknowns": []
   },
   "adversarial_flags": [],

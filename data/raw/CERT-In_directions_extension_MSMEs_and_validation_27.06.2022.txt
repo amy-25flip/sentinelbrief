@@ -1,0 +1,79 @@
+Page 1 of 4 
+ 
+No. 20(3)/2022-CERT-In 
+Government of India 
+Ministry of Electronics and Information Technology (MeitY) 
+Indian Computer Emergency Response Team (CERT-In) 
+  
+Electronics Niketan, 
+6 CGO Complex, 
+ New Delhi-110003 
+ 
+Dated: 27 June, 2022 
+  
+Subject:  Extension of timelines for enforcement of Cyber Security Directions of 
+28th April, 2022 issued under sub-section (6) of section 70B of the Information 
+Technology Act, 2000 for MSMEs and also for implementation of mechanism for 
+validation of subscribers/customers details by Data Centres, VPS providers, 
+Cloud Service providers and VPN Service providers - regarding 
+  
+Whereas, Indian Computer Emergency Response Team (CERT-In), the national 
+agency appointed by Central Government for performing specified functions in the 
+area of Cyber Security in terms of provisions of Section 70B of the Information 
+Technology Act, as amended (IT Act) has issued Cyber Security Directions No. 
+20(3)/2022-CERT-In on 28.04.2022 in exercise of powers bestowed to CERT-In vide 
+sub-section(6) of the section 70B of the IT Act relating to information security 
+practices, procedure, prevention, response and reporting of cyber incidents for Safe & 
+Trusted Internet. The direction is available at https://cert-in.org.in/PDF/CERT-
+In_Directions_70B_28.04.2022.pdf.   
+ 
+And whereas, these Cyber Security Directions issued on 28th April 2022 is to become 
+effective after 60 days from the date of issuance. 
+ 
+And whereas, the extension of timelines for implementation of these Cyber Security 
+Directions of 28th April, 2022 have been urged in respect of Micro, Small and 
+Medium Enterprises (MSMEs) for providing reasonable time for generating capacity 
+building required for implementation of these Directions and also additional time has 
+been sought as well for implementation of mechanism for validation of 
+subscribers/customers by Data Centres, Virtual Private Server (VPS) providers, Cloud 
+Service providers and Virtual Private Network Service (VPN Service) providers. 
+ 
+And whereas, the matter of extension of timelines for implementation of Cyber 
+Security Directions of 28th April 2022 in respect of MSMEs and also for the aspect of 
+implementation of mechanism for validation of subscribers/customers by Data 
+Centres, Virtual Private Server (VPS) providers, Cloud Service providers and Virtual 
+Private Network Service (VPN Service) providers has been considered.  
+Page 2 of 4 
+ 
+ 
+Now, therefore, it is herein provided that the CERT-In’s Cyber Security Direction 
+No. 20(3)/2022-CERT-In of 28.04.2022 will become effective on 25th September, 
+2022 for Micro, Small & Medium Enterprises (MSMEs) which are covered as per the 
+criteria for classification of micro, small and medium enterprises,  notified  by 
+Ministry of Micro, Small & Medium Enterprises, Government of India vide 
+notification no. 2020 S.O. 1702(E) dated 1st June 2020 in exercise of the powers 
+conferred by sub-section (1) read with sub-section (9) of section 7 of the ‘Micro, 
+Small and Medium Enterprises Development Act, 2006. 
+ 
+Further, it is also provided that the requirement relating to the aspects of  registration 
+and maintenance of “Validated names of subscribers/customers hiring the services” 
+and “Validated address and contact numbers” by Data Centres, Virtual Private Server 
+(VPS) providers, Cloud Service providers and Virtual Private Network Service (VPN 
+Service) providers incorporated at  paragraph no.(v) a.& f  of  CERT-In’s Cyber 
+Security Direction No. 20(3)/2022-CERT-In of 28.04.2022, to the said limited  extent,   
+will become effective on 25th September, 2022 
+ 
+***** 
+ 
+ 
+ 
+Page 3 of 4 
+ 
+Annexure 
+ 
+Notification no. 2020 S.O. 1702(E) dated 1st June 2020, Ministry of Micro, Small & 
+Medium Enterprises, Government of India 
+ 
+Page 4 of 4 
+ 
+ 

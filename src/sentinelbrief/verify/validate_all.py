@@ -6,6 +6,7 @@ from pathlib import Path
 from sentinelbrief.models import Instrument, Obligation
 from sentinelbrief.verify.citation_validator import SourceTextStore
 from sentinelbrief.verify.obligation_validator import validate_obligation
+from sentinelbrief.verify.raw_provenance import verify_raw_dir
 from sentinelbrief.verify.schema_validator import validate_all
 
 
@@ -14,6 +15,16 @@ def main() -> None:
     instruments_dir = os.path.join(base_dir, "data", "instruments")
     obligations_dir = os.path.join(base_dir, "data", "obligations")
     raw_dir = os.path.join(base_dir, "data", "raw")
+
+    print("Running raw-source provenance checks...")
+    prov_errors, prov_warnings = verify_raw_dir(raw_dir)
+    for warning in prov_warnings:
+        print(f"Warning: {warning}")
+    if prov_errors:
+        for error in prov_errors:
+            print(f"Error: {error}")
+        sys.exit(1)
+    print("Raw-source provenance passed.")
 
     print("Running schema validation...")
     invalid_inst = validate_all(instruments_dir, "instrument.schema.json")

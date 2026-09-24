@@ -4,6 +4,8 @@ from .base import BaseFetcher
 class EPSSFetcher(BaseFetcher):
     """Fetcher for FIRST Exploit Prediction Scoring System (EPSS) data."""
 
+    keep_history = False  # a daily data feed, not legal evidence
+
     API_URL = "https://api.first.org/data/v1/epss"
 
     def fetch_by_cve(self, cve_id: str) -> None:

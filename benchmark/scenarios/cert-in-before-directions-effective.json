@@ -1,0 +1,47 @@
+{
+  "id": "cert-in-before-directions-effective",
+  "description": "An incident on 5 Jan 2021, before the Directions took effect on 27 Jun 2022. The law as of the incident date does not include them.",
+  "entity_profile": {
+    "entity_class": "nbfc",
+    "is_listed": false,
+    "holds_personal_data": true,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "An incident on 5 Jan 2021, before the Directions took effect on 27 Jun 2022. The law as of the incident date does not include them.",
+    "incident_types": [
+      "ransomware"
+    ],
+    "systems_affected": [
+      "core_systems"
+    ],
+    "personal_data_involved": null,
+    "when_noticed": "2021-01-05T09:00:00+05:30"
+  },
+  "law_snapshot_date": "2021-01-05",
+  "expected": {
+    "regulators": [],
+    "deadlines": [],
+    "citations": [],
+    "required_evidence": [],
+    "not_applicable": [
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "reason": "Directions not yet in force on the incident date"
+      },
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.ntp-sync",
+        "reason": "Directions not yet in force on the incident date"
+      }
+    ],
+    "unknowns": []
+  },
+  "adversarial_flags": [
+    "law_as_of_incident_date"
+  ],
+  "split": "dev",
+  "labels_source": "CERT-In Directions 70B dated 28 April 2022 (primary text), labelled independently of the engine"
+}

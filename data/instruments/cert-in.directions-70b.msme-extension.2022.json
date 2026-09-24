@@ -1,0 +1,22 @@
+{
+  "$schema": "../schema/instrument.schema.json",
+  "id": "cert-in.directions-70b.msme-extension.2022",
+  "issuer": "CERT-In",
+  "title": "Extension of timelines for enforcement of Cyber Security Directions of 28th April, 2022 for MSMEs and for implementation of mechanism for validation of subscribers/customers details by Data Centres, VPS providers, Cloud Service providers and VPN Service providers",
+  "reference_no": "No. 20(3)/2022-CERT-In (27 June 2022)",
+  "issued_on": "2022-06-27",
+  "in_force_from": "2022-06-27",
+  "in_force_until": null,
+  "url": "https://www.cert-in.org.in/Directions70B.jsp",
+  "source_sha256": "f0a2805f2a3bd0745560d417ffb6d41bf2cfe9920a5fd8a45b806ff10d61979f",
+  "retrieved_at": "2026-09-24T16:02:28Z",
+  "language": "en",
+  "status": "in_force",
+  "supersedes": [],
+  "superseded_by": [],
+  "document_type": "amendment",
+  "provenance": {
+    "parser_version": "pymupdf-1.28.2",
+    "extraction_date": "2026-09-24T16:02:28Z"
+  }
+}

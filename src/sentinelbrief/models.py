@@ -46,8 +46,12 @@ class Deadline(BaseModel):
 
     model_config = ConfigDict(frozen=True, extra="ignore")
 
-    kind: Literal["relative", "absolute", "recurring", "none"]
+    kind: Literal["relative", "absolute", "recurring", "retention", "none"]
     duration_iso8601: str | None = None
+    alternative_anchors: (
+        list[Literal["detection", "noticing", "brought_to_notice", "awareness", "occurrence"]]
+        | None
+    ) = None
     anchor: (
         Literal[
             "detection",
@@ -242,6 +246,9 @@ class IncidentFacts(BaseModel):
     when_detected: datetime | None = None
     when_noticed: datetime | None = None
     when_occurred: datetime | None = None
+    when_brought_to_notice: datetime | None = None
+    is_annexure_i_type: bool | None = None
+    annexure_i_items: list[str] | None = None
     personal_data_involved: bool | None = None
     systems_affected: list[str]
     additional_facts: dict[str, Any] | None = None
@@ -275,6 +282,7 @@ class NotApplicable(BaseModel):
     model_config = ConfigDict(frozen=True, extra="ignore")
 
     regulator: str
+    obligation_id: str
     reason: str
 
 

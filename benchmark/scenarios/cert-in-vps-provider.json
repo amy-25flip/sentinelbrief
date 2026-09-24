@@ -13,16 +13,22 @@
   },
   "incident_facts": {
     "description": "Unauthorized access to VPS infrastructure.",
-    "incident_types": ["unauthorized access"],
+    "incident_types": [
+      "unauthorized access"
+    ],
     "when_detected": "2026-09-15T10:00:00+05:30",
     "when_noticed": "2026-09-15T10:00:00+05:30",
     "when_occurred": "2026-09-15T08:00:00+05:30",
     "personal_data_involved": false,
-    "systems_affected": ["vps_infrastructure"]
+    "systems_affected": [
+      "vps_infrastructure"
+    ]
   },
   "law_snapshot_date": "2026-09-24",
   "expected": {
-    "regulators": ["CERT-In"],
+    "regulators": [
+      "CERT-In"
+    ],
     "deadlines": [
       {
         "regulator": "CERT-In",
@@ -39,8 +45,16 @@
         "paragraph_ref": "Direction (v)"
       }
     ],
-    "required_evidence": ["subscriber registration records"],
-    "not_applicable": [],
+    "required_evidence": [
+      "subscriber registration records"
+    ],
+    "not_applicable": [
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.virtual-asset-kyc-5y",
+        "reason": "Direction (vi) names only virtual asset service, exchange and custodian wallet providers"
+      }
+    ],
     "unknowns": []
   },
   "adversarial_flags": [],

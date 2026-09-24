@@ -1,0 +1,155 @@
+{
+  "instrument_id": "cert-in.faqs-70b.2022",
+  "source_url": "https://www.cert-in.org.in/PDF/FAQs_on_CyberSecurityDirections_May2022.pdf",
+  "source_sha256": "7c4ae9eab453db32a5feece63987f7606373d689755b5b2869bb367b5682d6af",
+  "retrieved_at": "2026-09-24T15:12:15Z",
+  "content_type": "application/pdf",
+  "size_bytes": 1611981,
+  "pages": 28,
+  "page_offsets": [
+    {
+      "page": 1,
+      "char_start": 0,
+      "char_end": 0
+    },
+    {
+      "page": 2,
+      "char_start": 0,
+      "char_end": 0
+    },
+    {
+      "page": 3,
+      "char_start": 0,
+      "char_end": 271
+    },
+    {
+      "page": 4,
+      "char_start": 271,
+      "char_end": 271
+    },
+    {
+      "page": 5,
+      "char_start": 271,
+      "char_end": 2673
+    },
+    {
+      "page": 6,
+      "char_start": 2673,
+      "char_end": 4677
+    },
+    {
+      "page": 7,
+      "char_start": 4677,
+      "char_end": 6764
+    },
+    {
+      "page": 8,
+      "char_start": 6764,
+      "char_end": 9071
+    },
+    {
+      "page": 9,
+      "char_start": 9071,
+      "char_end": 11549
+    },
+    {
+      "page": 10,
+      "char_start": 11549,
+      "char_end": 13804
+    },
+    {
+      "page": 11,
+      "char_start": 13804,
+      "char_end": 15484
+    },
+    {
+      "page": 12,
+      "char_start": 15484,
+      "char_end": 17821
+    },
+    {
+      "page": 13,
+      "char_start": 17821,
+      "char_end": 20329
+    },
+    {
+      "page": 14,
+      "char_start": 20329,
+      "char_end": 22267
+    },
+    {
+      "page": 15,
+      "char_start": 22267,
+      "char_end": 24322
+    },
+    {
+      "page": 16,
+      "char_start": 24322,
+      "char_end": 26507
+    },
+    {
+      "page": 17,
+      "char_start": 26507,
+      "char_end": 28836
+    },
+    {
+      "page": 18,
+      "char_start": 28836,
+      "char_end": 31243
+    },
+    {
+      "page": 19,
+      "char_start": 31243,
+      "char_end": 31642
+    },
+    {
+      "page": 20,
+      "char_start": 31642,
+      "char_end": 33553
+    },
+    {
+      "page": 21,
+      "char_start": 33553,
+      "char_end": 35533
+    },
+    {
+      "page": 22,
+      "char_start": 35533,
+      "char_end": 37346
+    },
+    {
+      "page": 23,
+      "char_start": 37346,
+      "char_end": 39452
+    },
+    {
+      "page": 24,
+      "char_start": 39452,
+      "char_end": 41212
+    },
+    {
+      "page": 25,
+      "char_start": 41212,
+      "char_end": 43308
+    },
+    {
+      "page": 26,
+      "char_start": 43308,
+      "char_end": 43854
+    },
+    {
+      "page": 27,
+      "char_start": 43854,
+      "char_end": 43854
+    },
+    {
+      "page": 28,
+      "char_start": 43854,
+      "char_end": 43854
+    }
+  ],
+  "text_sha256": "28557f0337c625299be02eb287776caf1a47485dc93fe8ad11ebd06ce244f434",
+  "text_chars": 43854,
+  "extractor": "pymupdf",
+  "extractor_version": "1.28.2"
+}
