@@ -1,0 +1,30 @@
+{
+  "$schema": "../schema/manifest.schema.json",
+  "version": 1,
+  "entries": [
+    {
+      "url": "https://www.cert-in.org.in/PDF/CERT-In_Directions_70B_28.04.2022.pdf",
+      "filename": "CERT-In_Directions_70B_28.04.2022.pdf",
+      "sha256": "202c2f3953d792dcfb3ecb3634fc82ab75437ee596de89b8d59a211e8e42431f",
+      "retrieved_at": "2026-09-24T15:11:49Z",
+      "etag": null,
+      "last_modified": null,
+      "content_type": "application/pdf",
+      "size_bytes": 434961,
+      "parser_version": "pymupdf-1.28.2",
+      "status": "current"
+    },
+    {
+      "url": "https://www.cert-in.org.in/PDF/FAQs_on_CyberSecurityDirections_May2022.pdf",
+      "filename": "FAQs_on_CyberSecurityDirections_May2022.pdf",
+      "sha256": "7c4ae9eab453db32a5feece63987f7606373d689755b5b2869bb367b5682d6af",
+      "retrieved_at": "2026-09-24T15:12:15Z",
+      "etag": null,
+      "last_modified": null,
+      "content_type": "application/pdf",
+      "size_bytes": 1611981,
+      "parser_version": "pymupdf-1.28.2",
+      "status": "current"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "source_url": "https://www.cert-in.org.in/PDF/CERT-In_Directions_70B_28.04.2022.pdf",
+  "source_sha256": "202c2f3953d792dcfb3ecb3634fc82ab75437ee596de89b8d59a211e8e42431f",
+  "retrieved_at": "2026-09-24T15:11:49.199114+00:00",
+  "content_type": "application/pdf",
+  "size_bytes": 434961,
+  "pages": 8,
+  "page_offsets": [
+    {
+      "page": 1,
+      "char_start": 0,
+      "char_end": 1918
+    },
+    {
+      "page": 2,
+      "char_start": 1918,
+      "char_end": 4417
+    },
+    {
+      "page": 3,
+      "char_start": 4417,
+      "char_end": 6786
+    },
+    {
+      "page": 4,
+      "char_start": 6786,
+      "char_end": 8937
+    },
+    {
+      "page": 5,
+      "char_start": 8937,
+      "char_end": 10818
+    },
+    {
+      "page": 6,
+      "char_start": 10818,
+      "char_end": 11310
+    },
+    {
+      "page": 7,
+      "char_start": 11310,
+      "char_end": 11812
+    },
+    {
+      "page": 8,
+      "char_start": 11812,
+      "char_end": 13233
+    }
+  ],
+  "text_sha256": "7d5a8e8b675eab68984d3a14451c4fc1642b8edfda449c7a712294fad834ecc6",
+  "text_chars": 13233,
+  "extractor": "PyMuPDF",
+  "extractor_version": "1.28.2"
+}

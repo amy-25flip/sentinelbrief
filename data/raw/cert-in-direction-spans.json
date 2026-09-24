@@ -1,0 +1,37 @@
+{
+  "ntp_sync": {
+    "char_start": 3268,
+    "char_end": 3834,
+    "text": "(i) All service providers, intermediaries, data centres, body corporate and \nGovernment organisations shall connect to the Network Time Protocol \n(NTP) Server of National Informatics Centre (NIC) or National Physical \nLaboratory (NPL) or with NTP servers traceable to these NTP servers, for \nsynchronisation of all their ICT systems clocks. Entities having ICT \ninfrastructure spanning multiple geographies may also use accurate and \nstandard time source other than NPL and NIC, however it is to be ensured \nthat their time source shall not deviate from NPL and NIC."
+  },
+  "incident_reporting": {
+    "char_start": 3836,
+    "char_end": 4415,
+    "text": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+  },
+  "comply_and_poc": {
+    "char_start": 4432,
+    "char_end": 5604,
+    "text": "(iii)When required by order/direction of CERT-In, for the purposes of cyber \nincident response, protective and preventive actions related to cyber \nincidents, the service provider/intermediary/data centre/body corporate is \nmandated to take action or provide information or any such assistance to \nCERT-In, which may contribute towards cyber security mitigation actions \nand enhanced cyber security situational awareness. The order / direction \nmay include the format of the information that is required (up to and \nincluding near real-time), and a specified timeframe in which it is required, \nwhich should be adhered to and compliance provided to CERT-In, else it \nwould be treated as non-compliance of this direction. The service \nproviders, intermediaries, data centres, body corporate and Government \norganisations shall designate a Point of Contact to interface with CERT-In. \nThe Information relating to a Point of Contact shall be sent to CERT-In in \nthe format specified at Annexure II and shall be updated from time to time. \nAll communications from CERT-In seeking information and providing \ndirections for compliance shall be sent to the said Point of Contact."
+  },
+  "comply": {
+    "char_start": 4432,
+    "char_end": 5152,
+    "text": "(iii)When required by order/direction of CERT-In, for the purposes of cyber \nincident response, protective and preventive actions related to cyber \nincidents, the service provider/intermediary/data centre/body corporate is \nmandated to take action or provide information or any such assistance to \nCERT-In, which may contribute towards cyber security mitigation actions \nand enhanced cyber security situational awareness. The order / direction \nmay include the format of the information that is required (up to and \nincluding near real-time), and a specified timeframe in which it is required, \nwhich should be adhered to and compliance provided to CERT-In, else it \nwould be treated as non-compliance of this direction."
+  },
+  "log_retention": {
+    "char_start": 5606,
+    "char_end": 6004,
+    "text": "(iv) All service providers, intermediaries, data centres, body corporate and \nGovernment organisations shall mandatorily enable logs of all their ICT \nsystems and maintain them securely for a rolling period of 180 days and \nthe same shall be maintained within the Indian jurisdiction. These should \nbe provided to CERT-In along with reporting of any incident or when \nordered / directed by CERT-In."
+  },
+  "vps_cloud": {
+    "char_start": 6006,
+    "char_end": 6783,
+    "text": "(v) Data Centres, Virtual Private Server (VPS) providers, Cloud Service \nproviders and Virtual Private Network Service (VPN Service) providers, \nshall be required to register the  following accurate information \nwhich  must be maintained by them for a period of 5 years or longer \nduration as mandated by the law after any cancellation or withdrawal of \nthe registration as the case may be: \na. Validated names of subscribers/customers hiring the services \nb. Period of hire including dates \nc. IPs allotted to / being used by the members \nd. Email address and IP address and time stamp used at the time of \nregistration / on-boarding \ne. Purpose for hiring services \nf. Validated address and contact numbers \ng. Ownership pattern of the subscribers / customers hiring services"
+  },
+  "virtual_assets": {
+    "char_start": 6801,
+    "char_end": 8161,
+    "text": "(vi)     The virtual asset service providers, virtual asset exchange providers and \ncustodian wallet providers (as defined by Ministry of Finance from time to \ntime) shall mandatorily maintain all information obtained as part of Know \nYour Customer (KYC) and records of financial transactions for a period of \nfive years so as to ensure cyber security in the area of payments and \nfinancial markets for citizens while protecting their data, fundamental \nrights and economic freedom in view of the growth of virtual assets.  \nFor the purpose of KYC, the Reserve Bank of India (RBI) Directions 2016 \n/ Securities and Exchange Board of India (SEBI) circular dated April 24, \n2020 / Department of Telecom (DoT) notice September 21, 2021 mandated \nprocedures as amended from time to time may be referred to as per \nAnnexure III. \n  \nWith respect to transaction records, accurate information shall be \nmaintained in such a way that individual transaction can be reconstructed \nalong with the relevant elements comprising of, but not limited to, \ninformation relating to the identification of the relevant parties including \nIP addresses along with timestamps and time zones, transaction ID, the \npublic keys (or equivalent identifiers), addresses or accounts involved (or \nequivalent identifiers), the nature and date of the transaction, and the \namount transferred."
+  }
+}
