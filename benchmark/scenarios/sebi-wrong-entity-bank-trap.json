@@ -1,0 +1,70 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "sebi-wrong-entity-bank-trap",
+  "description": "A scheduled commercial bank suffers a ransomware incident. The bank is regulated by RBI/CERT-In, not SEBI. SEBI CSCRF obligations must be marked entity_class_mismatch.",
+  "entity_profile": {
+    "entity_class": "bank",
+    "is_listed": false,
+    "holds_personal_data": true,
+    "uses_protected_systems": true,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Ransomware encryption on banking server noticed at 10:00 IST on 2025-06-01.",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "annexure_i_items": [
+      "annexure_i.v"
+    ],
+    "when_detected": "2025-06-01T10:00:00+05:30",
+    "when_noticed": "2025-06-01T10:00:00+05:30",
+    "when_occurred": "2025-06-01T08:00:00+05:30",
+    "when_aware": "2025-06-01T10:00:00+05:30",
+    "personal_data_involved": true,
+    "systems_affected": [
+      "Banking Server"
+    ],
+    "is_annexure_i_type": null
+  },
+  "law_snapshot_date": "2025-06-01",
+  "expected": {
+    "law_as_of": "2025-06-01",
+    "regulators": [
+      "CERT-In"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2025-06-01T10:30:00Z"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [
+      {
+        "obligation_id": "sebi.cscrf.2024.incident-reporting-6h",
+        "reason": "entity_class_mismatch"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.vapt-half-yearly",
+        "reason": "entity_class_mismatch"
+      }
+    ],
+    "unknowns": []
+  },
+  "adversarial_flags": [
+    "wrong_entity_class_trap"
+  ],
+  "split": "dev",
+  "labels_source": "SEBI CSCRF Circular entity scoping and CERT-In Directions 70B"
+}
