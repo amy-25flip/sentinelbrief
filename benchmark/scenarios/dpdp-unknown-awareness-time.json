@@ -1,0 +1,72 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "dpdp-unknown-awareness-time",
+  "description": "In 2027, a Data Fiduciary discovers a personal data breach, but the exact timestamp of becoming aware (when_aware) is not provided. The engine must generate an Unknown question.",
+  "entity_profile": {
+    "entity_class": "dpdp.data_fiduciary",
+    "is_listed": false,
+    "holds_personal_data": true,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Data breach identified but awareness timestamp missing.",
+    "incident_types": [
+      "Data breach"
+    ],
+    "annexure_i_items": [
+      "annexure_i.xi"
+    ],
+    "when_detected": null,
+    "when_noticed": "2027-06-01T10:00:00+05:30",
+    "when_occurred": null,
+    "when_aware": null,
+    "personal_data_involved": true,
+    "systems_affected": [
+      "Database"
+    ],
+    "is_annexure_i_type": null
+  },
+  "law_snapshot_date": "2027-06-01",
+  "expected": {
+    "law_as_of": "2027-06-01",
+    "regulators": [
+      "CERT-In",
+      "MeitY"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2027-06-01T10:30:00Z"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      },
+      {
+        "obligation_id": "meity.dpdp-rules.2025.rule7-2-board-detailed",
+        "instrument_id": "meity.dpdp-rules.2025",
+        "paragraph_ref": "Rule 7(2)"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": [
+      {
+        "affects": "meity.dpdp-rules.2025.rule7-2-board-detailed",
+        "question": "When was the incident became known to the entity?"
+      }
+    ]
+  },
+  "adversarial_flags": [
+    "missing_fact"
+  ],
+  "split": "dev",
+  "labels_source": "DPDP Rules 2025 Rule 7(2) and CERT-In Directions 70B"
+}
