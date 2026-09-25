@@ -36,7 +36,7 @@ def test_html_home():
     assert response.status_code == 200
     assert "text/html" in response.headers["content-type"]
     assert "SentinelBrief" in response.text
-    assert "Report the cyber incident" in response.text
+    assert "Report cybersecurity incidents to CERT-In within 6 hours" in response.text
 
 
 def test_html_obligations_browser():

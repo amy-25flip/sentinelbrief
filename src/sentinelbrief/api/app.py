@@ -11,6 +11,7 @@ from fastapi.responses import HTMLResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
+from sentinelbrief.cards import CardFeed
 from sentinelbrief.clock import IncidentClockEngine, IncidentProfile
 from sentinelbrief.clock.engine import IST
 
@@ -68,15 +69,16 @@ def _load_obligations() -> list[dict[str, Any]]:
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request) -> HTMLResponse:
-    """Home page with card feed."""
-    obligations = _load_obligations()
-    instruments = _load_instruments()
+    """Home page with deterministic card feed."""
+    feed = CardFeed(DATA_DIR)
+    fixtures_dir = BASE_DIR / "tests" / "fixtures"
+    feed.load_from_data_dir(fixtures_dir=fixtures_dir)
+    cards = feed.get_feed()
     return templates.TemplateResponse(
         request=request,
         name="index.html",
         context={
-            "obligations": obligations,
-            "instruments": instruments,
+            "cards": cards,
             "now_ist": datetime.now(IST).strftime("%Y-%m-%d %H:%M IST"),
         },
     )

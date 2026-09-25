@@ -6,33 +6,44 @@
     ⚠️ AI-assisted summaries, not legal advice. This tool is not affiliated with any regulator. Always verify against the primary source before acting.
 </div>
 
-<h2>📋 Regulatory Obligations Feed</h2>
+<h2>📋 Intelligence & Compliance Feed</h2>
 <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
-    {{ now_ist }} · {{ obligations|length }} obligations from {{ instruments|length }} instrument(s)
+    {{ now_ist }} · {{ cards|length }} active items in deterministic feed
 </p>
 
 <div class="card-grid">
-    {% for obl in obligations %}
-    <a href="/obligations/{{ obl.id }}" style="text-decoration: none; color: inherit;">
-    <div class="card">
+    {% for card in cards %}
+    <div class="card {% if card.stream == 'vulnerability' %}card-vuln{% endif %}">
         <div class="card-chips">
-            <span class="chip issuer">{{ obl.instrument_id.split('.')[0] | upper }}</span>
-            {% if obl.normalized.deadline.kind == 'relative' and obl.normalized.deadline.duration_iso8601 %}
-            <span class="chip deadline">⏱ {{ obl.normalized.deadline.duration_iso8601 }}</span>
+            {% for chip in card.chips %}
+            <span class="chip {{ chip.chip_type }}">{{ chip.label }}: {{ chip.value }}</span>
+            {% endfor %}
+        </div>
+        <div class="card-headline">
+            {% if card.obligation_id %}
+            <a href="/obligations/{{ card.obligation_id }}" style="text-decoration: none; color: inherit;">
+                {{ card.headline }}
+            </a>
+            {% else %}
+            {{ card.headline }}
             {% endif %}
-            <span class="chip mandatory">Mandatory</span>
-            <span class="chip">{{ obl.status | replace('_', ' ') | title }}</span>
         </div>
-        <div class="card-headline">{{ obl.normalized.action[:80] }}{% if obl.normalized.action|length > 80 %}…{% endif %}</div>
         <div class="card-body">
-            {{ obl.text_verbatim[:200] | replace('\n', ' ') }}{% if obl.text_verbatim|length > 200 %}…{% endif %}
+            {{ card.body }}
         </div>
-        <div class="card-footer">
-            {{ obl.paragraph_ref }} · Valid from {{ obl.validity.valid_from }}
-            · <span style="color: var(--text-muted);">AI-assisted summary, not legal advice. See the source.</span>
+        {% if card.citation_text %}
+        <div class="card-citation" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; font-style: italic; border-left: 2px solid var(--border-color); padding-left: 0.5rem;">
+            "{{ card.citation_text[:140] }}{% if card.citation_text|length > 140 %}…{% endif %}"
+        </div>
+        {% endif %}
+        <div class="card-footer" style="margin-top: 0.75rem; font-size: 0.75rem; color: var(--text-muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+            <div>
+                {% if card.paragraph_ref %}{{ card.paragraph_ref }} · {% endif %}
+                {% if card.source_url %}<a href="{{ card.source_url }}" target="_blank" rel="noopener">Source Link</a> · {% endif %}
+                <span>{{ card.disclaimer }}</span>
+            </div>
         </div>
     </div>
-    </a>
     {% endfor %}
 </div>
 {% endblock %}
