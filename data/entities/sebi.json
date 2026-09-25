@@ -1,30 +1,50 @@
 [
   {
-    "id": "sebi.qsei",
+    "id": "sebi.mii",
     "regulator": "SEBI",
-    "label": "Qualified / Systemically Important RE",
+    "label": "Market Infrastructure Institution",
     "parent": "body_corporate",
-    "description": "Stock Exchanges, Clearing Corporations, Depositories, and Qualified Systemically Important Regulated Entities under CSCRF.",
+    "description": "CSCRF category name read from the SEBI circular. Thresholds and included entity types are not yet modelled.",
     "version": "1.0",
     "valid_from": "2024-08-20",
     "valid_to": null
   },
   {
-    "id": "sebi.msei",
+    "id": "sebi.qualified_re",
+    "regulator": "SEBI",
+    "label": "Qualified Regulated Entity",
+    "parent": "body_corporate",
+    "description": "CSCRF category name read from the SEBI circular. Thresholds and included entity types are not yet modelled.",
+    "version": "1.0",
+    "valid_from": "2024-08-20",
+    "valid_to": null
+  },
+  {
+    "id": "sebi.midsize_re",
     "regulator": "SEBI",
     "label": "Mid-size Regulated Entity",
     "parent": "body_corporate",
-    "description": "Mid-size market intermediaries under SEBI CSCRF framework.",
+    "description": "CSCRF category name read from the SEBI circular. Thresholds and included entity types are not yet modelled.",
     "version": "1.0",
     "valid_from": "2024-08-20",
     "valid_to": null
   },
   {
-    "id": "sebi.smi",
+    "id": "sebi.small_re",
     "regulator": "SEBI",
-    "label": "Small / Non-Systemic RE",
+    "label": "Small-size Regulated Entity",
     "parent": "body_corporate",
-    "description": "Small market intermediaries under SEBI CSCRF framework.",
+    "description": "CSCRF category name read from the SEBI circular. Thresholds and included entity types are not yet modelled.",
+    "version": "1.0",
+    "valid_from": "2024-08-20",
+    "valid_to": null
+  },
+  {
+    "id": "sebi.selfcert_re",
+    "regulator": "SEBI",
+    "label": "Self-certification Regulated Entity",
+    "parent": "body_corporate",
+    "description": "CSCRF category name read from the SEBI circular. Thresholds and included entity types are not yet modelled.",
     "version": "1.0",
     "valid_from": "2024-08-20",
     "valid_to": null

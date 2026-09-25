@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 
 from sentinelbrief.cards.feed import CardFeed
-from sentinelbrief.cards.generator import CardGenerator
+from sentinelbrief.cards.generator import CardGenerator, verify_grounded_body
 from sentinelbrief.cards.models import Card
 from sentinelbrief.models import Citation
 from sentinelbrief.verify.citation_validator import SourceTextStore, validate_citation
@@ -149,6 +149,64 @@ def test_vulnerability_card_never_presents_due_date_as_indian_deadline():
             if chip.label == "US Federal Remediation Date":
                 assert chip.chip_type == "us_federal_deadline"
                 assert chip.value == item["dueDate"]
+
+
+def test_regulatory_card_grounding_rejects_invented_hard_fact(obligations_and_instruments):
+    obligations, _ = obligations_and_instruments
+    obligation = next(o for o in obligations if o["id"].endswith("incident-reporting-6h"))
+    with pytest.raises(ValueError, match="ungrounded fact"):
+        verify_grounded_body(
+            "Report to CERT-In within 72 hours by emailing made-up@example.test.",
+            obligation,
+        )
+
+
+def test_regulatory_card_grounding_rejects_fact_only_in_evidence_required(
+    obligations_and_instruments,
+):
+    obligations, _ = obligations_and_instruments
+    obligation = next(o for o in obligations if o["id"].endswith("ntp-sync"))
+    poisoned = {
+        **obligation,
+        "normalized": {
+            **obligation["normalized"],
+            "evidence_required": ["Retain NTP configuration records for 72 hours"],
+        },
+    }
+    with pytest.raises(ValueError, match="72"):
+        verify_grounded_body(
+            "Retain NTP configuration records for 72 hours.",
+            poisoned,
+        )
+
+
+def test_every_regulatory_card_body_passes_grounding(obligations_and_instruments):
+    obligations, instruments = obligations_and_instruments
+    generator = CardGenerator()
+    for obl in obligations:
+        inst = instruments.get(obl.get("instrument_id", ""))
+        card = generator.generate_regulatory_card(obl, instrument=inst)
+        verify_grounded_body(card.body, obl)
+
+
+def test_vulnerability_source_url_is_single_http_url_and_body_truncates_on_word_boundary():
+    generator = CardGenerator()
+    card = generator.generate_vulnerability_card(
+        {
+            "cveID": "CVE-2026-12345",
+            "vendorProject": "Vendor",
+            "product": "Product",
+            "shortDescription": " ".join(["word"] * 200),
+            "requiredAction": "Apply fixes",
+            "knownRansomwareCampaignUse": "Unknown",
+            "notes": "https://first.example/a; https://second.example/b",
+        },
+        published_at=datetime.now(UTC),
+    )
+    assert card.source_url == "https://www.cve.org/CVERecord?id=CVE-2026-12345"
+    assert len(card.body) <= 500
+    assert card.body.endswith("...")
+    assert not card.body[:-3].endswith("wo")
 
 
 def test_card_feed_loading_and_sorting(obligations_and_instruments):

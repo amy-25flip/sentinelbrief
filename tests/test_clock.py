@@ -286,6 +286,57 @@ def test_unsupported_anchor_is_reported_not_silently_skipped():
     assert any("publication" in u.question for u in result.unknowns)
 
 
+def test_immediate_deadline_is_time_critical_not_a_clock():
+    engine = IncidentClockEngine(DATA_DIR)
+    engine.obligations.append(
+        {
+            "id": "mock.immediate-duty",
+            "instrument_id": "cert-in.directions-70b.2022",
+            "status": "in_force",
+            "applicability": {"entity_classes": ["body_corporate"]},
+            "normalized": {
+                "action": "Do this without delay",
+                "recipient": "CERT-In",
+                "deadline": {"kind": "immediate", "anchor": "noticing"},
+            },
+            "citations": [
+                {
+                    "instrument_id": "cert-in.directions-70b.2022",
+                    "paragraph_ref": "Mock",
+                }
+            ],
+        }
+    )
+    result = engine.evaluate(
+        IncidentProfile(entity_class="body_corporate", when_noticed=NOTICED), now=NOW
+    )
+    assert not any(d.obligation_id == "mock.immediate-duty" for d in result.deadlines)
+    assert [t.obligation_id for t in result.time_critical] == ["mock.immediate-duty"]
+    assert result.to_dict()["time_critical"][0]["action"] == "Do this without delay"
+
+
+def test_relative_deadline_without_duration_is_unknown_data_error():
+    engine = IncidentClockEngine(DATA_DIR)
+    engine.obligations.append(
+        {
+            "id": "mock.relative-missing-duration",
+            "status": "in_force",
+            "applicability": {"entity_classes": ["body_corporate"]},
+            "normalized": {
+                "action": "Broken deadline",
+                "deadline": {"kind": "relative", "anchor": "noticing"},
+            },
+        }
+    )
+    result = engine.evaluate(
+        IncidentProfile(entity_class="body_corporate", when_noticed=NOTICED), now=NOW
+    )
+    assert any(
+        u.affects == ["mock.relative-missing-duration"] and "duration_iso8601" in u.question
+        for u in result.unknowns
+    )
+
+
 def test_calendar_durations_refused_for_deadlines():
     with pytest.raises(ValueError):
         parse_iso8601_duration("P1M", allow_calendar=False)

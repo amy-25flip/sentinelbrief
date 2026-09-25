@@ -22,7 +22,11 @@
           "content_type": { "type": "string" },
           "size_bytes": { "type": "integer" },
           "parser_version": { "type": "string" },
-          "status": { "type": "string", "enum": ["current", "superseded", "failed"] }
+          "status": { "type": "string", "enum": ["current", "superseded", "failed"] },
+          "acquired_by": { "type": "string" },
+          "fetched_by": { "type": "string" },
+          "acquisition_note": { "type": "string" },
+          "authenticity_exemption": { "type": "string" }
         },
         "required": ["url", "filename", "sha256", "retrieved_at"]
       }

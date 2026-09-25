@@ -67,6 +67,19 @@ class DeadlineResult:
 
 
 @dataclass(frozen=True)
+class TimeCriticalResult:
+    """An applicable duty that must be done without delay but has no fixed clock."""
+
+    obligation_id: str
+    regulator: str
+    obligation_action: str
+    anchor_type: str | None
+    citation_paragraph: str
+    citation_instrument: str
+    recipient: str | None
+
+
+@dataclass(frozen=True)
 class Unknown:
     """A fact the system needs but does not have."""
 
@@ -130,6 +143,7 @@ class ClockResult:
 
     incident_profile: IncidentProfile
     deadlines: list[DeadlineResult]
+    time_critical: list[TimeCriticalResult]
     unknowns: list[Unknown]
     applicable_obligations: list[str]
     not_applicable: list[dict[str, Any]]
@@ -162,6 +176,20 @@ class ClockResult:
                     "recipient": d.recipient,
                 }
                 for d in self.deadlines
+            ],
+            "time_critical": [
+                {
+                    "obligation_id": t.obligation_id,
+                    "regulator": t.regulator,
+                    "action": t.obligation_action,
+                    "anchor": t.anchor_type,
+                    "citation": {
+                        "instrument_id": t.citation_instrument,
+                        "paragraph_ref": t.citation_paragraph,
+                    },
+                    "recipient": t.recipient,
+                }
+                for t in self.time_critical
             ],
             "unknowns": [
                 {"question": u.question, "affects": u.affects, "impact": u.impact}
@@ -352,6 +380,7 @@ class IncidentClockEngine:
         annexure = self.resolve_annexure_i(profile)
 
         deadlines: list[DeadlineResult] = []
+        time_critical: list[TimeCriticalResult] = []
         unknowns: list[Unknown] = []
         applicable: list[str] = []
         not_applicable: list[dict[str, Any]] = []
@@ -410,11 +439,12 @@ class IncidentClockEngine:
             if other_conditions:
                 conditions_unevaluated[obs_id] = other_conditions
 
-            self._compute_deadline(obs, profile, now, deadlines, unknowns)
+            self._compute_deadline(obs, profile, now, deadlines, time_critical, unknowns)
 
         return ClockResult(
             incident_profile=profile,
             deadlines=deadlines,
+            time_critical=time_critical,
             unknowns=unknowns,
             applicable_obligations=applicable,
             not_applicable=not_applicable,
@@ -449,6 +479,7 @@ class IncidentClockEngine:
         profile: IncidentProfile,
         now: datetime,
         deadlines: list[DeadlineResult],
+        time_critical: list[TimeCriticalResult],
         unknowns: list[Unknown],
     ) -> None:
         obs_id = obs["id"]
@@ -458,6 +489,21 @@ class IncidentClockEngine:
 
         if kind in (None, "none", "recurring", "retention"):
             return  # ongoing duties never produce an incident deadline
+        if kind == "immediate":
+            citation = (obs.get("citations") or [{}])[0]
+            instrument_id = obs.get("instrument_id", "")
+            time_critical.append(
+                TimeCriticalResult(
+                    obligation_id=obs_id,
+                    regulator=self._issuer.get(instrument_id, instrument_id.split(".")[0].upper()),
+                    obligation_action=norm.get("action", ""),
+                    anchor_type=spec.get("anchor"),
+                    citation_paragraph=citation.get("paragraph_ref", ""),
+                    citation_instrument=citation.get("instrument_id", ""),
+                    recipient=norm.get("recipient"),
+                )
+            )
+            return
         if kind != "relative":
             unknowns.append(
                 Unknown(
@@ -470,7 +516,14 @@ class IncidentClockEngine:
 
         duration_str = spec.get("duration_iso8601")
         if not duration_str:
-            return  # Immediate / unbounded duty ("without delay"): active obligation without fixed duration deadline
+            unknowns.append(
+                Unknown(
+                    question="This relative deadline is missing duration_iso8601 in the dataset.",
+                    affects=[obs_id],
+                    impact="Data error: no deadline was computed; fix the obligation record.",
+                )
+            )
+            return
 
         anchors = [spec.get("anchor"), *(spec.get("alternative_anchors") or [])]
         known: list[tuple[datetime, str]] = []

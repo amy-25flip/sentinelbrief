@@ -25,7 +25,7 @@
       "format": "date"
     },
     "in_force_from": {
-      "type": "string",
+      "type": ["string", "null"],
       "format": "date"
     },
     "in_force_until": {
@@ -70,6 +70,9 @@
         "parser_version": { "type": "string" },
         "extraction_date": { "type": "string", "format": "date-time" }
       }
+    },
+    "acquisition_note": {
+      "type": "string"
     }
   },
   "required": ["id", "issuer", "title", "status"]

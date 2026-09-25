@@ -43,7 +43,7 @@
           "properties": {
             "kind": {
               "type": "string",
-              "enum": ["relative", "absolute", "recurring", "retention", "none"]
+              "enum": ["relative", "absolute", "recurring", "retention", "immediate", "none"]
             },
             "duration_iso8601": {
               "type": ["string", "null"]

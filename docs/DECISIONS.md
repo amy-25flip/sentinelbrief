@@ -108,25 +108,64 @@ Decisions below were made during Review 1 (the reviewer agent, 2026-09-24). See 
 
 ---
 
-## 2026-09-25: DPDP Rules 2025 commencement schedule and bitemporal validity
+## 2026-09-25: Withdrawn Checkpoint 2 DPDP/SEBI/RBI modelling decisions
 
-**Decision:** DPDP Rule 7 (breach intimation and 72-hour reporting) has `validity.valid_from = "2027-05-13"` per Rule 1(2)(c) 18-month commencement from Gazette notification (13 Nov 2025). The engine's `_not_in_force_reason` checks whether `as_of < valid_from`. Incidents on or after 13 May 2027 evaluate Rule 7 as in force; incidents before that date evaluate it as `not_yet_valid_at_incident_date` (or `not_yet_in_force`).
+**Decision:** The previous Checkpoint 2 entries for DPDP commencement, DPDP "without delay" modelling as `relative` without a duration, and multi-regulator DPDP/RBI/SEBI clocks are withdrawn.
 
-**Reason:** Enables compliance planning and simulation of future obligations without falsely presenting them as currently enforceable for incidents today.
+**Reason:** Review 4 found the source PDFs and derived obligations/scenarios were fabricated. The real DPDP and SEBI PDFs are now ingested as raw evidence only. No DPDP, SEBI, or RBI obligations, scenarios, labels, or legal clocks are modelled in this fix round.
 
-**Alternative rejected:** Static `status == "not_yet_in_force"` check that ignores `as_of` (breaks temporal evaluation).
+**Alternative rejected:** Keeping the decisions as historical interpretations. That would leave false legal claims in the project record.
 
-## 2026-09-25: Immediate / "Without delay" deadline modeling
+## 2026-09-25: Immediate deadline kind
 
-**Decision:** Obligations specifying "without delay" (DPDP Rule 7(1) and 7(3)) are modelled with `deadline.kind = "relative"`, `duration_iso8601 = null`, and `anchor = "awareness"`. The engine does not invent a fictional number of hours; ongoing and unbounded duties are reported without an artificial clock.
+**Decision:** `deadline.kind = "immediate"` represents "without delay" duties. The engine never computes a fixed clock for `immediate`; applicable duties are returned in `ClockResult.time_critical` and rendered under "Do without delay". A `relative` deadline with no `duration_iso8601` is a data error and becomes an Unknown.
 
-**Reason:** Regulatory text specifies no hour count; inventing a 24h or 6h default would misstate the law.
+**Reason:** "Without delay" is a real legal timing concept but has no numeric duration. A missing duration on a relative deadline is different: it is malformed data and must fail loudly.
 
-**Alternative rejected:** Assigning an arbitrary duration (e.g. PT24H or PT0S).
+**Alternative rejected:** Reusing `relative` with a null duration, which silently hid data errors.
 
-## 2026-09-25: Multi-regulator parallel clocks and distinct anchors
+## 2026-09-25: Raw source authenticity gate
 
-**Decision:** CERT-In ("noticing" / "brought_to_notice"), RBI DAKSH ("detection" / "occurrence"), and DPDP ("awareness") maintain independent anchors and timelines. When multiple alternative anchors are specified in an obligation, the earliest provided timestamp triggers that obligation's clock.
+**Decision:** Raw provenance validation rejects PDFs whose producer and creator metadata are both empty unless the manifest carries a documented `authenticity_exemption`. Synthetic test fixtures can switch the check off explicitly.
 
-**Reason:** Conservative legal interpretation: prevents an entity from delaying compliance by picking a later trigger when the primary text joins them with "or".
+**Reason:** The fabricated Checkpoint 2 PDFs had blank metadata and were generated in-repo. This check is not proof of authenticity, but it catches that failure mode.
 
+**Alternative rejected:** Trusting the manifest hash alone. A hash only proves stable bytes, not that the bytes came from the regulator.
+
+## 2026-09-25: Generated-source tripwire and live reverify tool
+
+**Decision:** Tests now fail if `scripts/` or `src/` contain PyMuPDF page/text-generation calls used to build primary-source PDFs. `scripts/reverify_sources.py` re-downloads manifest URLs into a temp directory with `BaseFetcher` and compares SHA-256; its live pytest wrapper is marked `live`.
+
+**Reason:** Primary evidence must come from regulator bytes, not generated local PDFs. Reviewers also need a repeatable way to re-check source URLs outside offline test runs.
+
+## 2026-09-25: Provisional RBI and DPDP entity taxonomy
+
+**Decision:** `data/entities/rbi.json` and `data/entities/dpdp.json` remain usable taxonomy scaffolding but are documented as provisional. SEBI categories were replaced with the five CSCRF category names read from the real circular; thresholds and scoped entity lists are not modelled.
+
+**Reason:** The entity hierarchy is useful for UI/testing, but several dates and descriptions have not been re-verified against primary text after Review 4.
+
+## 2026-09-25: Curated but grounded card summaries
+
+**Decision:** Regulatory card summaries remain hand-curated deterministic text, but a grounding verifier rejects card bodies that introduce numbers, durations, email addresses, phone numbers, or named bodies absent from the cited source text or normalized record.
+
+**Reason:** The brief preferred structured templates, but concise cards need readable wording. The verifier prevents hard factual drift while keeping the current deterministic feed.
+
+**Alternative rejected:** Free prose with only length tests; that already allowed unsupported sentences.
+
+## 2026-09-25: Complete PDF and acquisition-marker gates
+
+**Decision:** Raw provenance validation now rejects PDFs that do not end with `%%EOF` or that PyMuPDF opens only after repair, unless the manifest carries a documented exemption. Every current manifest entry must also carry either `fetched_by` or `acquired_by`; `BaseFetcher` writes `fetched_by: "BaseFetcher"` for new pipeline downloads.
+
+**Reason:** Review 5 found the stored SEBI PDF was a truncated reviewer-acquired copy. Hash and text checks passed because the extracted text happened to match, so completeness and acquisition-path checks need to be first-class gates.
+
+## 2026-09-25: Evidence suggestions are not source-stated requirements
+
+**Decision:** `normalized.evidence_required` is retained for now but rendered as "Suggested evidence (not stated in the source text)" with a note that these are builder-authored operational suggestions, not quoted legal requirements.
+
+**Reason:** Review 5 found all current values are not stated in the CERT-In Directions text. Deleting or reauthoring them needs a separate source/professional review; the immediate fix is to stop presenting them as legal requirements.
+
+## 2026-09-25: Card grounding source boundary tightened
+
+**Decision:** Regulatory card hard facts may be grounded only in source-derived text (`text_verbatim`, citation excerpt, paragraph reference) plus rendered numeric deadline durations from `duration_iso8601`. Builder-authored normalized fields such as action, actor, trigger text and evidence suggestions no longer ground card facts.
+
+**Reason:** A previous invented card sentence came from `evidence_required`; trusting builder-authored fields would let that failure repeat.

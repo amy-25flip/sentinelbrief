@@ -46,7 +46,7 @@ class Deadline(BaseModel):
 
     model_config = ConfigDict(frozen=True, extra="ignore")
 
-    kind: Literal["relative", "absolute", "recurring", "retention", "none"]
+    kind: Literal["relative", "absolute", "recurring", "retention", "immediate", "none"]
     duration_iso8601: str | None = None
     alternative_anchors: (
         list[Literal["detection", "noticing", "brought_to_notice", "awareness", "occurrence"]]
@@ -340,6 +340,10 @@ class ManifestEntry(BaseModel):
     size_bytes: int | None = None
     parser_version: str | None = None
     status: Literal["current", "superseded", "failed"] | None = None
+    acquired_by: str | None = None
+    fetched_by: str | None = None
+    acquisition_note: str | None = None
+    authenticity_exemption: str | None = None
 
 
 class Manifest(BaseModel):

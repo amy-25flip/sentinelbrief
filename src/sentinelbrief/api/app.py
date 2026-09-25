@@ -209,9 +209,10 @@ async def incident_clock(request: Request) -> Response:
 
     applicable = set(result.applicable_obligations)
     with_deadline = {d.obligation_id for d in result.deadlines}
+    time_critical_ids = {t.obligation_id for t in result.time_critical}
     ongoing = []
     for obl_id in result.applicable_obligations:
-        if obl_id in with_deadline:
+        if obl_id in with_deadline or obl_id in time_critical_ids:
             continue
         obl = engine.get_obligation(obl_id) or {}
         deadline = (obl.get("normalized") or {}).get("deadline") or {}

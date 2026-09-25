@@ -1,15 +1,13 @@
 {
-  "$schema": "../schema/instrument.schema.json",
   "id": "meity.dpdp-rules.2025",
   "issuer": "MeitY",
   "title": "Digital Personal Data Protection Rules, 2025",
-  "reference_no": "G.S.R. 842(E)",
+  "reference_no": "G.S.R. 846(E)",
   "issued_on": "2025-11-13",
-  "in_force_from": "2025-11-13",
-  "in_force_until": null,
-  "url": "https://www.meity.gov.in/writereaddata/files/DPDP_Rules_2025.pdf",
-  "source_sha256": "2e06c73aa9f0d1c457706c88be2fd50310741aa7d5b054f4cc0325c340ed4437",
-  "retrieved_at": "2026-09-25T07:34:16Z",
+  "in_force_from": null,
+  "url": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
+  "source_sha256": "eabc7d05e013144615d78ddc0e8b9c9aac1920e814f4fad38ce6560951f5aa08",
+  "retrieved_at": "2026-09-25T00:00:00Z",
   "language": "en",
   "status": "in_force",
   "supersedes": [],
@@ -17,6 +15,7 @@
   "document_type": "rules",
   "provenance": {
     "parser_version": "pymupdf-1.28.2",
-    "extraction_date": "2026-09-25T07:34:16Z"
-  }
+    "extraction_date": "2026-09-25T00:00:00Z"
+  },
+  "acquisition_note": "retrieved_at is date-precision placeholder supplied by reviewer, not a verified exact retrieval timestamp."
 }

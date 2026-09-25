@@ -15,7 +15,13 @@ from sentinelbrief.extract.pdf_text import (
 from sentinelbrief.models import Instrument, Obligation
 from sentinelbrief.verify.citation_validator import SourceTextStore, validate_citation
 from sentinelbrief.verify.obligation_validator import validate_obligation
-from sentinelbrief.verify.raw_provenance import verify_raw_dir
+from sentinelbrief.verify.raw_provenance import (
+    validate_acquisition_marker,
+    validate_hand_acquisition,
+    verify_pdf_authenticity,
+    verify_pdf_integrity,
+    verify_raw_dir,
+)
 
 REPO = Path(__file__).resolve().parents[1]
 RAW = REPO / "data" / "raw"
@@ -47,6 +53,7 @@ def raw_dir(tmp_path):
                 "filename": "doc.pdf",
                 "sha256": meta["source_sha256"],
                 "retrieved_at": "2026-01-01T00:00:00Z",
+                "fetched_by": "BaseFetcher",
             }
         ],
     }
@@ -55,12 +62,89 @@ def raw_dir(tmp_path):
 
 
 def test_clean_directory_passes(raw_dir):
+    assert verify_raw_dir(raw_dir, allow_synthetic_fixtures=True) == ([], [])
+
+
+def test_generated_pdf_is_rejected_without_authenticity_exemption(raw_dir):
+    errors, _ = verify_raw_dir(raw_dir)
+    assert any("producer and creator metadata are both empty" in e for e in errors)
+
+
+def test_authenticity_exemption_is_documented(raw_dir):
+    manifest = json.loads((raw_dir / "manifest.json").read_text(encoding="utf-8"))
+    manifest["entries"][0]["authenticity_exemption"] = "unit-test synthetic PDF fixture"
+    (raw_dir / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
     assert verify_raw_dir(raw_dir) == ([], [])
 
 
 def test_committed_raw_data_is_consistent():
     errors, _ = verify_raw_dir(RAW)
     assert errors == []
+
+
+def test_real_committed_pdfs_pass_authenticity_check():
+    manifest = json.loads((RAW / "manifest.json").read_text(encoding="utf-8"))
+    entries = {e["filename"]: e for e in manifest["entries"]}
+    assert (
+        verify_pdf_authenticity(
+            RAW / "CERT-In_Directions_70B_28.04.2022.pdf",
+            entries["CERT-In_Directions_70B_28.04.2022.pdf"],
+        )
+        == []
+    )
+
+
+def test_truncated_pdf_is_rejected(tmp_path):
+    source = RAW / "CERT-In_Directions_70B_28.04.2022.pdf"
+    truncated = tmp_path / "truncated.pdf"
+    truncated.write_bytes(source.read_bytes()[:-128])
+    errors = verify_pdf_integrity(truncated, {"filename": "truncated.pdf"})
+    assert any("does not end with %%EOF" in e for e in errors)
+
+
+def test_real_committed_pdfs_pass_integrity_check():
+    manifest = json.loads((RAW / "manifest.json").read_text(encoding="utf-8"))
+    entries = {e["filename"]: e for e in manifest["entries"]}
+    for filename in (
+        "CERT-In_Directions_70B_28.04.2022.pdf",
+        "FAQs_on_CyberSecurityDirections_May2022.pdf",
+        "CERT-In_directions_extension_MSMEs_and_validation_27.06.2022.pdf",
+        "DPDP_Rules_2025_Gazette_GSR846E.pdf",
+        "SEBI_CSCRF_Circular_2024-08-20.pdf",
+    ):
+        assert verify_pdf_integrity(RAW / filename, entries[filename]) == []
+
+
+def test_manifest_entry_requires_fetch_or_acquisition_marker():
+    assert validate_acquisition_marker({"filename": "missing.pdf"})
+    assert (
+        validate_acquisition_marker({"filename": "fetched.pdf", "fetched_by": "BaseFetcher"}) == []
+    )
+    assert validate_acquisition_marker({"filename": "hand.pdf", "acquired_by": "reviewer"}) == []
+
+
+def test_hand_acquired_manifest_entry_requires_acquired_by_note():
+    entry = {"filename": "hand.pdf"}
+    assert validate_hand_acquisition(entry, hand_acquired=False) == []
+    assert validate_hand_acquisition(entry, hand_acquired=True)
+    assert (
+        validate_hand_acquisition(
+            {"filename": "hand.pdf", "acquired_by": "reviewer via curl"}, hand_acquired=True
+        )
+        == []
+    )
+
+
+def test_real_hand_acquired_sources_have_acquired_by_notes():
+    manifest = json.loads((RAW / "manifest.json").read_text(encoding="utf-8"))
+    by_name = {e["filename"]: e for e in manifest["entries"]}
+    assert by_name["CERT-In_Directions_70B_28.04.2022.pdf"]["acquired_by"]
+    assert by_name["FAQs_on_CyberSecurityDirections_May2022.pdf"]["acquired_by"]
+    assert by_name["CERT-In_directions_extension_MSMEs_and_validation_27.06.2022.pdf"][
+        "acquired_by"
+    ]
+    assert by_name["DPDP_Rules_2025_Gazette_GSR846E.pdf"]["acquired_by"]
+    assert by_name["SEBI_CSCRF_Circular_2024-08-20.pdf"]["acquired_by"]
 
 
 def test_stored_text_is_written_with_lf(raw_dir):

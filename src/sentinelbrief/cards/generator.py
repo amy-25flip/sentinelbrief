@@ -1,7 +1,9 @@
 """Deterministic Card Generator for regulatory and vulnerability feeds."""
 
+import re
 from datetime import UTC, datetime
 from typing import Any
+from urllib.parse import urlparse
 
 from sentinelbrief.cards.models import Card, CardChip
 
@@ -10,11 +12,11 @@ from sentinelbrief.cards.models import Card, CardChip
 _REGULATORY_SUMMARIES: dict[str, dict[str, str]] = {
     "cert-in.directions-70b.2022.ntp-sync": {
         "headline": "Connect ICT system clocks to NIC or NPL NTP servers",
-        "body": "Under Direction (i), all service providers, intermediaries, data centres, bodies corporate, and Government organisations must synchronise their ICT systems clocks with National Informatics Centre (NIC) or National Physical Laboratory (NPL) NTP servers, or traceable sources. Multi-geography entities may use other accurate time sources provided they do not deviate from NPL/NIC standard time. Configuration records and logs must be maintained.",
+        "body": "Under Direction (i), all service providers, intermediaries, data centres, bodies corporate, and Government organisations must synchronise their ICT systems clocks with National Informatics Centre (NIC) or National Physical Laboratory (NPL) NTP servers, or traceable sources. Multi-geography entities may use other accurate time sources, but those clocks must not deviate from NPL and NIC standard time.",
     },
     "cert-in.directions-70b.2022.incident-reporting-6h": {
         "headline": "Report cybersecurity incidents to CERT-In within 6 hours",
-        "body": "Under Direction (ii), any service provider, intermediary, data centre, body corporate, or Government organisation must mandatorily report specified cyber incidents listed in Annexure I to CERT-In within 6 hours of noticing or being brought to notice. Reports can be submitted via email to incident@cert-in.org.in, telephone 1800-11-4949, or fax 1800-11-6969. Entities must maintain submission confirmations and incident details.",
+        "body": "Under Direction (ii), any service provider, intermediary, data centre, body corporate, or Government organisation must mandatorily report specified cyber incidents listed in Annexure I to CERT-In within 6 hours of noticing or being brought to notice. Reports can be submitted via email to incident@cert-in.org.in, telephone 1800-11-4949, or fax 1800-11-6969.",
     },
     "cert-in.directions-70b.2022.comply-with-orders": {
         "headline": "Comply with CERT-In orders and directions for incident mitigation",
@@ -37,6 +39,100 @@ _REGULATORY_SUMMARIES: dict[str, dict[str, str]] = {
         "body": "Under Direction (vi), virtual asset service providers, virtual asset exchanges, and custodian wallet providers must maintain all Know Your Customer (KYC) records and financial transaction logs for a period of five years. Transaction records must allow full transaction reconstruction, including party identifiers, IP addresses with timestamps and timezones, transaction IDs, public keys, involved accounts, transfer amounts, and transaction nature.",
     },
 }
+
+_FACT_PATTERNS = (
+    re.compile(r"\b\d+(?:[-:]\d+)*(?:\.\d+)?\b"),
+    re.compile(r"\b\d+\s*(?:hours?|days?|months?|years?)\b", re.IGNORECASE),
+    re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.IGNORECASE),
+    re.compile(r"\b(?:\+?\d[\d -]{7,}\d)\b"),
+)
+_NAMED_BODIES = (
+    "CERT-In",
+    "National Informatics Centre",
+    "NIC",
+    "National Physical Laboratory",
+    "NPL",
+    "SEBI",
+    "RBI",
+    "MeitY",
+    "Data Protection Board",
+    "Board",
+)
+
+
+def _norm_text(text: str) -> str:
+    text = re.sub(r"-\s+", "-", text)
+    return re.sub(r"\s+", " ", text).casefold()
+
+
+def _render_duration(duration: str | None) -> str:
+    if not duration:
+        return ""
+    match = re.fullmatch(r"P(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)D)?(?:T(?:(\d+)H)?)?", duration)
+    if not match:
+        return duration
+    years, months, days, hours = match.groups()
+    parts: list[str] = []
+    for value, singular, plural in (
+        (years, "year", "years"),
+        (months, "month", "months"),
+        (days, "day", "days"),
+        (hours, "hour", "hours"),
+    ):
+        if value:
+            unit = singular if value == "1" else plural
+            parts.append(f"{value} {unit}")
+    return " ".join(parts)
+
+
+def _grounding_text(obligation: dict[str, Any]) -> str:
+    norm = obligation.get("normalized") or {}
+    deadline = norm.get("deadline") or {}
+    parts = [
+        obligation.get("text_verbatim", ""),
+        obligation.get("paragraph_ref", ""),
+        _render_duration(deadline.get("duration_iso8601")),
+    ]
+    for citation in obligation.get("citations") or []:
+        parts.append(citation.get("excerpt_verbatim", ""))
+        parts.append(citation.get("paragraph_ref", ""))
+    return _norm_text(" ".join(parts))
+
+
+def verify_grounded_body(body: str, obligation: dict[str, Any]) -> None:
+    """Reject card bodies that introduce hard facts absent from the cited/source record."""
+    grounded = _grounding_text(obligation)
+    for pattern in _FACT_PATTERNS:
+        for match in pattern.findall(body):
+            if _norm_text(match) not in grounded:
+                raise ValueError(
+                    f"Card body for {obligation.get('id')} contains ungrounded fact: {match}"
+                )
+    for name in _NAMED_BODIES:
+        if name in body and _norm_text(name) not in grounded:
+            raise ValueError(
+                f"Card body for {obligation.get('id')} contains ungrounded named body: {name}"
+            )
+
+
+def _single_http_url(value: str | None, fallback: str) -> str:
+    if value:
+        stripped = value.strip()
+        parsed = urlparse(stripped)
+        if (
+            parsed.scheme in {"http", "https"}
+            and parsed.netloc
+            and not re.search(r"[\s;]", stripped)
+        ):
+            return stripped
+    return fallback
+
+
+def _truncate_words(text: str, limit: int) -> str:
+    if len(text) <= limit:
+        return text
+    truncated = text[: limit - 2].rsplit(" ", 1)[0].rstrip(" ,.;:")
+    return f"{truncated}..."
 
 
 class CardGenerator:
@@ -76,6 +172,7 @@ class CardGenerator:
                 )
             else:
                 body = " ".join(text_words[:60])
+        verify_grounded_body(body, obligation)
 
         # Issuer and Jurisdiction
         inst_id = obligation.get("instrument_id", "")
@@ -213,9 +310,11 @@ class CardGenerator:
             id=f"card-vuln-{cve_id}",
             stream="vulnerability",
             headline=headline,
-            body=body_text[:500],
+            body=_truncate_words(body_text, 500),
             chips=chips,
-            source_url=cve.get("notes") or f"https://www.cve.org/CVERecord?id={cve_id}",
+            source_url=_single_http_url(
+                cve.get("notes"), f"https://www.cve.org/CVERecord?id={cve_id}"
+            ),
             source_title=cve.get("vulnerabilityName") or f"Vulnerability {cve_id}",
             published_at=published_at,
             priority=priority,

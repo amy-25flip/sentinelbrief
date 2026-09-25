@@ -1,0 +1,220 @@
+{
+  "instrument_id": "meity.dpdp-rules.2025",
+  "source_url": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
+  "source_sha256": "eabc7d05e013144615d78ddc0e8b9c9aac1920e814f4fad38ce6560951f5aa08",
+  "retrieved_at": "2026-09-25T00:00:00Z",
+  "content_type": "application/pdf",
+  "size_bytes": 2492944,
+  "pages": 41,
+  "page_offsets": [
+    {
+      "page": 1,
+      "char_start": 0,
+      "char_end": 1742
+    },
+    {
+      "page": 2,
+      "char_start": 1742,
+      "char_end": 4388
+    },
+    {
+      "page": 3,
+      "char_start": 4388,
+      "char_end": 7288
+    },
+    {
+      "page": 4,
+      "char_start": 7288,
+      "char_end": 9959
+    },
+    {
+      "page": 5,
+      "char_start": 9959,
+      "char_end": 13144
+    },
+    {
+      "page": 6,
+      "char_start": 13144,
+      "char_end": 15727
+    },
+    {
+      "page": 7,
+      "char_start": 15727,
+      "char_end": 18567
+    },
+    {
+      "page": 8,
+      "char_start": 18567,
+      "char_end": 21293
+    },
+    {
+      "page": 9,
+      "char_start": 21293,
+      "char_end": 24269
+    },
+    {
+      "page": 10,
+      "char_start": 24269,
+      "char_end": 26929
+    },
+    {
+      "page": 11,
+      "char_start": 26929,
+      "char_end": 29561
+    },
+    {
+      "page": 12,
+      "char_start": 29561,
+      "char_end": 31963
+    },
+    {
+      "page": 13,
+      "char_start": 31963,
+      "char_end": 34247
+    },
+    {
+      "page": 14,
+      "char_start": 34247,
+      "char_end": 36564
+    },
+    {
+      "page": 15,
+      "char_start": 36564,
+      "char_end": 39069
+    },
+    {
+      "page": 16,
+      "char_start": 39069,
+      "char_end": 41287
+    },
+    {
+      "page": 17,
+      "char_start": 41287,
+      "char_end": 43557
+    },
+    {
+      "page": 18,
+      "char_start": 43557,
+      "char_end": 45687
+    },
+    {
+      "page": 19,
+      "char_start": 45687,
+      "char_end": 47873
+    },
+    {
+      "page": 20,
+      "char_start": 47873,
+      "char_end": 50259
+    },
+    {
+      "page": 21,
+      "char_start": 50259,
+      "char_end": 53108
+    },
+    {
+      "page": 22,
+      "char_start": 53108,
+      "char_end": 55516
+    },
+    {
+      "page": 23,
+      "char_start": 55516,
+      "char_end": 57760
+    },
+    {
+      "page": 24,
+      "char_start": 57760,
+      "char_end": 61279
+    },
+    {
+      "page": 25,
+      "char_start": 61279,
+      "char_end": 64922
+    },
+    {
+      "page": 26,
+      "char_start": 64922,
+      "char_end": 68570
+    },
+    {
+      "page": 27,
+      "char_start": 68570,
+      "char_end": 72590
+    },
+    {
+      "page": 28,
+      "char_start": 72590,
+      "char_end": 76675
+    },
+    {
+      "page": 29,
+      "char_start": 76675,
+      "char_end": 80762
+    },
+    {
+      "page": 30,
+      "char_start": 80762,
+      "char_end": 85230
+    },
+    {
+      "page": 31,
+      "char_start": 85230,
+      "char_end": 89499
+    },
+    {
+      "page": 32,
+      "char_start": 89499,
+      "char_end": 92659
+    },
+    {
+      "page": 33,
+      "char_start": 92659,
+      "char_end": 95945
+    },
+    {
+      "page": 34,
+      "char_start": 95945,
+      "char_end": 99036
+    },
+    {
+      "page": 35,
+      "char_start": 99036,
+      "char_end": 102051
+    },
+    {
+      "page": 36,
+      "char_start": 102051,
+      "char_end": 104709
+    },
+    {
+      "page": 37,
+      "char_start": 104709,
+      "char_end": 107508
+    },
+    {
+      "page": 38,
+      "char_start": 107508,
+      "char_end": 111155
+    },
+    {
+      "page": 39,
+      "char_start": 111155,
+      "char_end": 115605
+    },
+    {
+      "page": 40,
+      "char_start": 115605,
+      "char_end": 119569
+    },
+    {
+      "page": 41,
+      "char_start": 119569,
+      "char_end": 120666
+    }
+  ],
+  "text_sha256": "c08f6930d518feeb0859ecb441f375fd82c487516bd016377b9c7ce94fe8c731",
+  "text_chars": 120666,
+  "extractor": "pymupdf",
+  "extractor_version": "1.28.2"
+}

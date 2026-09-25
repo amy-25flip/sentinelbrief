@@ -81,7 +81,10 @@
 </p>
 {% endif %}
 
-<h2>Evidence Required</h2>
+<h2>Suggested evidence (not stated in the source text)</h2>
+<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: -0.25rem;">
+    These operational records are builder-authored suggestions for review, not legal requirements quoted from the cited source.
+</p>
 <ul style="padding-left: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
     {% for ev in obligation.normalized.evidence_required %}
     <li>{{ ev }}</li>

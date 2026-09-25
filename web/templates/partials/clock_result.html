@@ -37,6 +37,19 @@
 <p style="color: var(--warning); margin: 1rem 0;">No deadline could be computed yet. See the questions below.</p>
 {% endif %}
 
+{% if result.time_critical %}
+<h2 style="margin-top: 1.5rem;">Do without delay</h2>
+<ul>
+    {% for t in result.time_critical %}
+    <li style="margin-bottom: 0.5rem;">
+        <a href="/obligations/{{ t.obligation_id }}">{{ t.obligation_action }}</a>
+        {% if t.citation_paragraph %}<span class="chip">{{ t.citation_paragraph }}</span>{% endif %}
+        {% if t.recipient %}<span class="chip">{{ t.recipient }}</span>{% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
 {% if result.unknowns %}
 <h2 style="color: var(--warning); margin-top: 1.5rem;">❓ Needs your answer</h2>
 <ul>

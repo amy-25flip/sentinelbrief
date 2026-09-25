@@ -1,10 +1,16 @@
 """Tests for FastAPI endpoints."""
 
+import json
+import shutil
+from pathlib import Path
+
 from fastapi.testclient import TestClient
 
+from sentinelbrief.api import app as api_app
 from sentinelbrief.api.app import app
 
 client = TestClient(app)
+REPO = Path(__file__).resolve().parents[1]
 
 
 def test_api_health():
@@ -50,6 +56,14 @@ def test_html_obligation_detail():
     assert response.status_code == 200
     assert "Direction (ii)" in response.text
     assert "incident@cert-in.org.in" in response.text
+
+
+def test_html_obligation_detail_labels_suggested_evidence_as_not_source_text():
+    response = client.get("/obligations/cert-in.directions-70b.2022.incident-reporting-6h")
+    assert response.status_code == 200
+    assert "Suggested evidence (not stated in the source text)" in response.text
+    assert "builder-authored suggestions" in response.text
+    assert "Evidence Required" not in response.text
 
 
 def test_html_obligation_detail_not_found():
@@ -121,6 +135,36 @@ def test_incident_clock_unresolved_type_asks_instead_of_guessing():
     assert "Needs your answer" in r.text
     assert "Annexure I" in r.text
     assert "No deadline could be computed" in r.text
+
+
+def test_incident_clock_fragment_shows_time_critical_duties(monkeypatch, tmp_path):
+    data_dir = tmp_path / "data"
+    shutil.copytree(REPO / "data", data_dir)
+    obligations_path = data_dir / "obligations" / "cert-in.directions-70b.2022.json"
+    obligations = json.loads(obligations_path.read_text(encoding="utf-8"))
+    immediate = {**obligations[0]}
+    immediate["id"] = "mock.immediate-duty"
+    immediate["paragraph_ref"] = "Mock immediate"
+    immediate["normalized"] = {
+        **immediate["normalized"],
+        "action": "Notify without delay",
+        "recipient": "CERT-In",
+        "deadline": {"kind": "immediate", "anchor": "noticing"},
+    }
+    obligations.append(immediate)
+    obligations_path.write_text(json.dumps(obligations, indent=2), encoding="utf-8")
+    monkeypatch.setattr(api_app, "DATA_DIR", data_dir)
+
+    r = client.post(
+        "/api/incident/clock",
+        content="entity_class=nbfc&incident_types=data+breach&when_noticed=2026-09-24T09%3A00",
+        headers={"content-type": "application/x-www-form-urlencoded", "hx-request": "true"},
+    )
+
+    assert r.status_code == 200
+    assert "Do without delay" in r.text
+    assert "Notify without delay" in r.text
+    assert "Notify without delay" not in r.text.split("Ongoing duties", 1)[-1]
 
 
 def test_incident_clock_escapes_user_text():

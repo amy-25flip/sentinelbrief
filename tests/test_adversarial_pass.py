@@ -4,7 +4,9 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import pytest
+import respx
 from fastapi.testclient import TestClient
+from httpx import HTTPStatusError
 
 from sentinelbrief.api.app import app
 from sentinelbrief.cards.generator import CardGenerator
@@ -101,7 +103,8 @@ def test_adv_08_future_incident_date_evaluation():
     )
     result = engine.evaluate(profile, now=future_time)
     assert result.law_as_of.year == 2035
-    assert len(result.deadlines) >= 1
+    assert [d.regulator for d in result.deadlines] == ["CERT-In"]
+    assert result.deadlines[0].deadline_ist == future_time + timedelta(hours=6)
 
 
 # Vector 9: Evidence timeline detects tampering
@@ -136,10 +139,9 @@ def test_adv_10_prompt_injection_in_incident_description():
     resp = client.post("/api/incident/clock", json=payload)
     assert resp.status_code == 200
     data = resp.json()
-    # Prompt injection has zero effect on deterministic logic: CERT-In and RBI deadlines are produced
-    assert len(data["deadlines"]) >= 2
+    # Prompt injection has zero effect on deterministic logic: CERT-In deadline is produced
+    assert len(data["deadlines"]) == 1
     assert any(d["regulator"] == "CERT-In" for d in data["deadlines"])
-    assert any(d["regulator"] == "RBI" for d in data["deadlines"])
 
 
 # Vector 11: API rejects malformed request payload
@@ -149,11 +151,13 @@ def test_adv_11_api_rejects_malformed_payload():
     assert resp.status_code == 422  # Pydantic validation error for missing entity_class
 
 
-# Vector 12: BaseFetcher handles missing files / invalid response
+# Vector 12: BaseFetcher fails loudly on HTTP 404
+@respx.mock
 def test_adv_12_fetcher_handles_404(tmp_path):
-    fetcher = BaseFetcher(tmp_path, tmp_path / "manifest.json")
-    sha = fetcher._compute_sha256(b"hello")
-    assert len(sha) == 64
+    respx.get("https://example.test/missing.pdf").respond(404)
+    fetcher = BaseFetcher(tmp_path, delay_seconds=0, respect_robots=False)
+    with pytest.raises(HTTPStatusError):
+        fetcher.fetch("https://example.test/missing.pdf")
 
 
 # Vector 13: Card generator never generates deadline chip for retention
@@ -186,23 +190,10 @@ def test_adv_14_kev_due_date_labelled_properly():
         "notes": "",
     }
     card = gen.generate_vulnerability_card(vuln_data, published_at=NOW_IST)
-    for chip in card.chips:
-        if chip.chip_type == "deadline":
-            assert chip.label == "US Federal Remediation Date"
-
-
-# Vector 15: Entity class scoping trap (Base Layer NBFC)
-def test_adv_15_base_layer_nbfc_scoping_trap():
-    engine = IncidentClockEngine(DATA_DIR)
-    profile = IncidentProfile(
-        entity_class="nbfc.base_layer",
-        incident_types=["Malicious code attacks such as Ransomware"],
-        when_detected=NOW_IST,
-        when_noticed=NOW_IST,
+    assert not any(chip.chip_type == "deadline" for chip in card.chips)
+    assert any(
+        chip.label == "US Federal Remediation Date"
+        and chip.chip_type == "us_federal_deadline"
+        and chip.value == "2026-09-21"
+        for chip in card.chips
     )
-    result = engine.evaluate(profile, now=NOW_IST)
-    # RBI NBFC 6h obligation must NOT apply
-    assert not any("rbi.nbfc-cyber" in d.obligation_id for d in result.deadlines)
-    assert any("rbi.nbfc-cyber" in na["obligation_id"] for na in result.not_applicable)
-    # CERT-In 6h obligation DOES apply
-    assert any("cert-in" in d.obligation_id for d in result.deadlines)

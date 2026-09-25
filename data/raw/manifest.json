@@ -12,7 +12,8 @@
       "content_type": "application/pdf",
       "size_bytes": 434961,
       "parser_version": "pymupdf-1.28.2",
-      "status": "current"
+      "status": "current",
+      "acquired_by": "downloaded by the builder in Checkpoint 1 (script not preserved); sha256 re-verified against a fresh download on 2026-09-25 by scripts/reverify_sources.py"
     },
     {
       "url": "https://www.cert-in.org.in/PDF/FAQs_on_CyberSecurityDirections_May2022.pdf",
@@ -24,7 +25,8 @@
       "content_type": "application/pdf",
       "size_bytes": 1611981,
       "parser_version": "pymupdf-1.28.2",
-      "status": "current"
+      "status": "current",
+      "acquired_by": "downloaded by the builder in Checkpoint 1 (script not preserved); sha256 re-verified against a fresh download on 2026-09-25 by scripts/reverify_sources.py"
     },
     {
       "url": "https://www.cert-in.org.in/PDF/CERT-In_directions_extension_MSMEs_and_validation_27.06.2022.pdf",
@@ -36,43 +38,36 @@
       "content_type": "application/pdf",
       "size_bytes": 761919,
       "parser_version": "pymupdf-1.28.2",
-      "status": "current"
+      "status": "current",
+      "acquired_by": "downloaded by the builder in Checkpoint 1 (script not preserved); sha256 re-verified against a fresh download on 2026-09-25 by scripts/reverify_sources.py"
     },
     {
-      "url": "https://www.meity.gov.in/writereaddata/files/DPDP_Rules_2025.pdf",
-      "filename": "DPDP_Rules_2025.pdf",
-      "sha256": "2e06c73aa9f0d1c457706c88be2fd50310741aa7d5b054f4cc0325c340ed4437",
-      "retrieved_at": "2026-09-25T07:34:16Z",
+      "url": "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
+      "filename": "DPDP_Rules_2025_Gazette_GSR846E.pdf",
+      "sha256": "eabc7d05e013144615d78ddc0e8b9c9aac1920e814f4fad38ce6560951f5aa08",
+      "retrieved_at": "2026-09-25T00:00:00Z",
       "etag": null,
       "last_modified": null,
       "content_type": "application/pdf",
-      "size_bytes": 2485,
+      "size_bytes": 2492944,
       "parser_version": "pymupdf-1.28.2",
-      "status": "current"
+      "status": "current",
+      "acquired_by": "reviewer (the reviewer agent) via plain HTTP GET with curl; HTTP 200, PDF returned, no CAPTCHA or access control encountered",
+      "acquisition_note": "retrieved_at is date-precision placeholder supplied by reviewer, not a verified exact retrieval timestamp."
     },
     {
-      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1724151475510.pdf",
-      "filename": "SEBI_CSCRF_Circular_2024.pdf",
-      "sha256": "505ae070c100fa15b929a0bb7bd1647823e4f6c4b175db2f50113cba28ca05e0",
-      "retrieved_at": "2026-09-25T07:34:16Z",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1724326790365.pdf",
+      "filename": "SEBI_CSCRF_Circular_2024-08-20.pdf",
+      "sha256": "bd9ddb68bb49b9a92771ff01ed3138e01f0962b383e9ff643008b729290fc85d",
+      "retrieved_at": "2026-09-25T00:00:00Z",
       "etag": null,
       "last_modified": null,
       "content_type": "application/pdf",
-      "size_bytes": 1771,
+      "size_bytes": 3177522,
       "parser_version": "pymupdf-1.28.2",
-      "status": "current"
-    },
-    {
-      "url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=12850",
-      "filename": "RBI_NBFC_Cybersecurity_Directions_2026.pdf",
-      "sha256": "5a25828a3bb1d9753e30d59c812c97ac0ed13a9b4baaf98e7daf6943a9867532",
-      "retrieved_at": "2026-09-25T07:34:16Z",
-      "etag": null,
-      "last_modified": null,
-      "content_type": "application/pdf",
-      "size_bytes": 1687,
-      "parser_version": "pymupdf-1.28.2",
-      "status": "current"
+      "status": "current",
+      "acquired_by": "reviewer (the reviewer agent) via plain HTTP GET with curl (max-time 180s); HTTP 200; bytes equal Content-Length; two consecutive downloads have identical sha256; also re-fetched by scripts/reverify_sources.py",
+      "acquisition_note": "Corrected on 2026-09-25 from staged COMPLETE file after initial reviewer copy was truncated by a curl timeout. retrieved_at is date-precision placeholder supplied by reviewer, not a verified exact retrieval timestamp. Text extraction sha256 stayed unchanged."
     }
   ]
 }

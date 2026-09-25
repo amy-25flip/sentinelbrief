@@ -258,6 +258,7 @@ class BaseFetcher:
             "content_type": response.headers.get("content-type", ""),
             "size_bytes": len(data),
             "status": "current",
+            "fetched_by": "BaseFetcher",
         }
         manifest["entries"].append(entry)
         self._save_manifest(manifest)
