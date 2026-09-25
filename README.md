@@ -11,8 +11,8 @@ SentinelBrief provides three main surfaces:
 
 Current data status:
 - Modelled obligations: CERT-In Directions 70B (2022) only.
-- Ingested but not modelled: real DPDP Rules 2025 Gazette PDF and real SEBI CSCRF 2024 PDF.
-- Blocked: RBI NBFC Cybersecurity Direction, because automated access to the official RBI source returned a CAPTCHA. It must be hand-acquired from the official RBI site before modelling.
+- Ingested but not modelled: real DPDP Rules 2025 Gazette PDF, real SEBI CSCRF 2024 PDF, and real RBI NBFC Cybersecurity Directions 2026 PDF.
+- RBI live reverify is exempted because the official RBI document server returns a CAPTCHA to automated clients; a human must re-check by downloading the official URL and comparing sha256.
 - No DPDP, SEBI, or RBI obligations, benchmark labels, or clock outputs are currently authored.
 
 Disclaimer: This tool is not legal advice and is not affiliated with any regulator.

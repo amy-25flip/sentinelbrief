@@ -3,7 +3,7 @@
 from datetime import date, datetime
 from typing import Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class Bbox(BaseModel):
@@ -334,6 +334,7 @@ class ManifestEntry(BaseModel):
     filename: str
     sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
     retrieved_at: datetime
+    acquired_at: datetime | None = None
     etag: str | None = None
     last_modified: str | None = None
     content_type: str | None = None
@@ -344,6 +345,14 @@ class ManifestEntry(BaseModel):
     fetched_by: str | None = None
     acquisition_note: str | None = None
     authenticity_exemption: str | None = None
+    reverify_exemption: str | None = Field(default=None, min_length=1)
+
+    @field_validator("reverify_exemption")
+    @classmethod
+    def reverify_exemption_must_have_text(cls, value: str | None) -> str | None:
+        if value is not None and not value.strip():
+            raise ValueError("reverify_exemption must be a non-empty reason")
+        return value
 
 
 class Manifest(BaseModel):

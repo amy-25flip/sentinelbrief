@@ -1,0 +1,250 @@
+{
+  "instrument_id": "rbi.nbfc-cyber.2026",
+  "source_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/461MD9FAF2CD7550844EE9A70C884DBE4A8A6.PDF",
+  "source_sha256": "5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073",
+  "retrieved_at": "2026-09-25T00:00:00Z",
+  "content_type": "application/pdf",
+  "size_bytes": 552900,
+  "pages": 47,
+  "page_offsets": [
+    {
+      "page": 1,
+      "char_start": 0,
+      "char_end": 3377
+    },
+    {
+      "page": 2,
+      "char_start": 3377,
+      "char_end": 3831
+    },
+    {
+      "page": 3,
+      "char_start": 3831,
+      "char_end": 5768
+    },
+    {
+      "page": 4,
+      "char_start": 5768,
+      "char_end": 7690
+    },
+    {
+      "page": 5,
+      "char_start": 7690,
+      "char_end": 9423
+    },
+    {
+      "page": 6,
+      "char_start": 9423,
+      "char_end": 11086
+    },
+    {
+      "page": 7,
+      "char_start": 11086,
+      "char_end": 12975
+    },
+    {
+      "page": 8,
+      "char_start": 12975,
+      "char_end": 13219
+    },
+    {
+      "page": 9,
+      "char_start": 13219,
+      "char_end": 13576
+    },
+    {
+      "page": 10,
+      "char_start": 13576,
+      "char_end": 15165
+    },
+    {
+      "page": 11,
+      "char_start": 15165,
+      "char_end": 15395
+    },
+    {
+      "page": 12,
+      "char_start": 15395,
+      "char_end": 17345
+    },
+    {
+      "page": 13,
+      "char_start": 17345,
+      "char_end": 19027
+    },
+    {
+      "page": 14,
+      "char_start": 19027,
+      "char_end": 20629
+    },
+    {
+      "page": 15,
+      "char_start": 20629,
+      "char_end": 22394
+    },
+    {
+      "page": 16,
+      "char_start": 22394,
+      "char_end": 24480
+    },
+    {
+      "page": 17,
+      "char_start": 24480,
+      "char_end": 26543
+    },
+    {
+      "page": 18,
+      "char_start": 26543,
+      "char_end": 28334
+    },
+    {
+      "page": 19,
+      "char_start": 28334,
+      "char_end": 30116
+    },
+    {
+      "page": 20,
+      "char_start": 30116,
+      "char_end": 32117
+    },
+    {
+      "page": 21,
+      "char_start": 32117,
+      "char_end": 33884
+    },
+    {
+      "page": 22,
+      "char_start": 33884,
+      "char_end": 35698
+    },
+    {
+      "page": 23,
+      "char_start": 35698,
+      "char_end": 37528
+    },
+    {
+      "page": 24,
+      "char_start": 37528,
+      "char_end": 39643
+    },
+    {
+      "page": 25,
+      "char_start": 39643,
+      "char_end": 41668
+    },
+    {
+      "page": 26,
+      "char_start": 41668,
+      "char_end": 43539
+    },
+    {
+      "page": 27,
+      "char_start": 43539,
+      "char_end": 44334
+    },
+    {
+      "page": 28,
+      "char_start": 44334,
+      "char_end": 46094
+    },
+    {
+      "page": 29,
+      "char_start": 46094,
+      "char_end": 47753
+    },
+    {
+      "page": 30,
+      "char_start": 47753,
+      "char_end": 49458
+    },
+    {
+      "page": 31,
+      "char_start": 49458,
+      "char_end": 51288
+    },
+    {
+      "page": 32,
+      "char_start": 51288,
+      "char_end": 52949
+    },
+    {
+      "page": 33,
+      "char_start": 52949,
+      "char_end": 54779
+    },
+    {
+      "page": 34,
+      "char_start": 54779,
+      "char_end": 56740
+    },
+    {
+      "page": 35,
+      "char_start": 56740,
+      "char_end": 58635
+    },
+    {
+      "page": 36,
+      "char_start": 58635,
+      "char_end": 60207
+    },
+    {
+      "page": 37,
+      "char_start": 60207,
+      "char_end": 62275
+    },
+    {
+      "page": 38,
+      "char_start": 62275,
+      "char_end": 64068
+    },
+    {
+      "page": 39,
+      "char_start": 64068,
+      "char_end": 65661
+    },
+    {
+      "page": 40,
+      "char_start": 65661,
+      "char_end": 67375
+    },
+    {
+      "page": 41,
+      "char_start": 67375,
+      "char_end": 69365
+    },
+    {
+      "page": 42,
+      "char_start": 69365,
+      "char_end": 71408
+    },
+    {
+      "page": 43,
+      "char_start": 71408,
+      "char_end": 73286
+    },
+    {
+      "page": 44,
+      "char_start": 73286,
+      "char_end": 75020
+    },
+    {
+      "page": 45,
+      "char_start": 75020,
+      "char_end": 76383
+    },
+    {
+      "page": 46,
+      "char_start": 76383,
+      "char_end": 78285
+    },
+    {
+      "page": 47,
+      "char_start": 78285,
+      "char_end": 78861
+    }
+  ],
+  "text_sha256": "c311c3276c1ae9744483054b02829f6e2ffb2e479aee6e8a8c118a82e51227a0",
+  "text_chars": 78861,
+  "extractor": "pymupdf",
+  "extractor_version": "1.28.2"
+}

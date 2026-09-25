@@ -12,8 +12,11 @@ import sys
 import tempfile
 from dataclasses import dataclass
 from pathlib import Path
+from urllib.parse import urlparse
 
 from sentinelbrief.ingest.base import BaseFetcher
+
+RBI_REVERIFY_EXEMPTION_HOSTS = {"rbidocs.rbi.org.in", "rbi.org.in"}
 
 
 @dataclass(frozen=True)
@@ -21,6 +24,7 @@ class ReverifyFinding:
     filename: str
     ok: bool
     message: str
+    skipped: bool = False
 
 
 def load_current_entries(manifest_path: Path) -> list[dict[str, object]]:
@@ -37,6 +41,24 @@ def compare_entry(
 ) -> ReverifyFinding:
     filename = str(entry["filename"])
     expected_sha = str(entry["sha256"])
+    if "reverify_exemption" in entry:
+        reason = str(entry.get("reverify_exemption") or "").strip()
+        if not reason:
+            return ReverifyFinding(
+                filename,
+                False,
+                "reverify_exemption requires a non-empty reason",
+            )
+        host = (urlparse(str(entry["url"])).hostname or "").lower()
+        if host not in RBI_REVERIFY_EXEMPTION_HOSTS:
+            allowed = ", ".join(sorted(RBI_REVERIFY_EXEMPTION_HOSTS))
+            return ReverifyFinding(
+                filename,
+                False,
+                f"reverify_exemption is only allowed for RBI hosts ({allowed}); got {host}",
+            )
+        return ReverifyFinding(filename, True, reason, skipped=True)
+
     try:
         fetcher = BaseFetcher(download_dir, delay_seconds=0, respect_robots=respect_robots)
         result = fetcher.fetch(str(entry["url"]), filename=filename)
@@ -73,10 +95,20 @@ def main(argv: list[str] | None = None) -> int:
 
     findings = reverify_manifest(args.raw_dir, respect_robots=not args.ignore_robots)
     ok = True
+    passed = failed = skipped = 0
     for finding in findings:
-        status = "PASS" if finding.ok else "FAIL"
+        if finding.skipped:
+            status = "SKIP"
+            skipped += 1
+        elif finding.ok:
+            status = "PASS"
+            passed += 1
+        else:
+            status = "FAIL"
+            failed += 1
         print(f"{status} {finding.filename}: {finding.message}")
         ok = ok and finding.ok
+    print(f"Summary: {passed} passed, {failed} failed, {skipped} skipped")
     return 0 if ok else 1
 
 

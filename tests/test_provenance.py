@@ -12,7 +12,7 @@ from sentinelbrief.extract.pdf_text import (
     verify_extraction,
     write_extraction,
 )
-from sentinelbrief.models import Instrument, Obligation
+from sentinelbrief.models import Instrument, ManifestEntry, Obligation
 from sentinelbrief.verify.citation_validator import SourceTextStore, validate_citation
 from sentinelbrief.verify.obligation_validator import validate_obligation
 from sentinelbrief.verify.raw_provenance import (
@@ -77,6 +77,17 @@ def test_authenticity_exemption_is_documented(raw_dir):
     assert verify_raw_dir(raw_dir) == ([], [])
 
 
+def test_manifest_entry_reverify_exemption_requires_text():
+    with pytest.raises(ValueError, match="reverify_exemption"):
+        ManifestEntry(
+            url="https://rbidocs.rbi.org.in/rdocs/notification/PDFs/doc.pdf",
+            filename="doc.pdf",
+            sha256="0" * 64,
+            retrieved_at="2026-01-01T00:00:00Z",
+            reverify_exemption=" ",
+        )
+
+
 def test_committed_raw_data_is_consistent():
     errors, _ = verify_raw_dir(RAW)
     assert errors == []
@@ -111,6 +122,7 @@ def test_real_committed_pdfs_pass_integrity_check():
         "CERT-In_directions_extension_MSMEs_and_validation_27.06.2022.pdf",
         "DPDP_Rules_2025_Gazette_GSR846E.pdf",
         "SEBI_CSCRF_Circular_2024-08-20.pdf",
+        "RBI_NBFC_Cybersecurity_Directions_2026.pdf",
     ):
         assert verify_pdf_integrity(RAW / filename, entries[filename]) == []
 
@@ -145,6 +157,8 @@ def test_real_hand_acquired_sources_have_acquired_by_notes():
     ]
     assert by_name["DPDP_Rules_2025_Gazette_GSR846E.pdf"]["acquired_by"]
     assert by_name["SEBI_CSCRF_Circular_2024-08-20.pdf"]["acquired_by"]
+    assert by_name["RBI_NBFC_Cybersecurity_Directions_2026.pdf"]["acquired_by"]
+    assert by_name["RBI_NBFC_Cybersecurity_Directions_2026.pdf"]["acquired_at"]
 
 
 def test_stored_text_is_written_with_lf(raw_dir):

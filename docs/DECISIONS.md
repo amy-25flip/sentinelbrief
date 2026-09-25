@@ -169,3 +169,11 @@ Decisions below were made during Review 1 (the reviewer agent, 2026-09-24). See 
 **Decision:** Regulatory card hard facts may be grounded only in source-derived text (`text_verbatim`, citation excerpt, paragraph reference) plus rendered numeric deadline durations from `duration_iso8601`. Builder-authored normalized fields such as action, actor, trigger text and evidence suggestions no longer ground card facts.
 
 **Reason:** A previous invented card sentence came from `evidence_required`; trusting builder-authored fields would let that failure repeat.
+
+## 2026-09-25: RBI reverify exemption for CAPTCHA-blocked official PDFs
+
+**Decision:** Manifest entries may carry `reverify_exemption` only with a non-empty reason, and `scripts/reverify_sources.py` accepts it only for official RBI hosts (`rbidocs.rbi.org.in` or `rbi.org.in`). Exempt entries print `SKIP <filename>: <reason>` and are counted as skipped, not failed.
+
+**Reason:** RBI's official document server serves a CAPTCHA to automated clients, but the project owner downloaded `RBI_NBFC_Cybersecurity_Directions_2026.pdf` from the official site in a browser and the reviewer verified its hash, 47 pages, Adobe producer, EOF marker, no repair, and key text. Automated re-download cannot be the gate for this one source; human re-check is comparing the official download to sha256 `5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073`.
+
+**Alternative rejected:** Marking all CAPTCHA-blocked sources as failed forever. That would force the project back toward mirrors or invented substitutes; the exemption is narrower and louder.

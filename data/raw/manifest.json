@@ -68,6 +68,22 @@
       "status": "current",
       "acquired_by": "reviewer (the reviewer agent) via plain HTTP GET with curl (max-time 180s); HTTP 200; bytes equal Content-Length; two consecutive downloads have identical sha256; also re-fetched by scripts/reverify_sources.py",
       "acquisition_note": "Corrected on 2026-09-25 from staged COMPLETE file after initial reviewer copy was truncated by a curl timeout. retrieved_at is date-precision placeholder supplied by reviewer, not a verified exact retrieval timestamp. Text extraction sha256 stayed unchanged."
+    },
+    {
+      "url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/461MD9FAF2CD7550844EE9A70C884DBE4A8A6.PDF",
+      "filename": "RBI_NBFC_Cybersecurity_Directions_2026.pdf",
+      "sha256": "5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073",
+      "retrieved_at": "2026-09-25T00:00:00Z",
+      "acquired_at": "2026-09-25T00:00:00Z",
+      "etag": null,
+      "last_modified": null,
+      "content_type": "application/pdf",
+      "size_bytes": 552900,
+      "parser_version": "pymupdf-1.28.2",
+      "status": "current",
+      "acquired_by": "project owner (a human) downloaded this PDF from the official RBI site in a browser, solving the site's CAPTCHA, on 2026-09-25; the reviewer then verified: 47 pages, producer Adobe PDF Library 26.1.11, ends with %%EOF, opens without repair, text shows reference RBI/DoS/2026-27/461 dated July 31, 2026 and paragraphs 28 and 141 'within six hours of detection'",
+      "acquisition_note": "DoS.CO.CSITEG.55/31.01.015/2026-27 is the second reference number shown in the PDF. rbidocs.rbi.org.in serves a CAPTCHA to automated clients, so scripts/reverify_sources.py cannot re-download this file. It needs a documented reverify exemption; a human can re-check by downloading the URL and comparing sha256. retrieved_at is date-precision placeholder supplied by reviewer, not a verified exact retrieval timestamp.",
+      "reverify_exemption": "the official server serves a CAPTCHA to automated clients; a human re-checks by downloading the URL and comparing sha256"
     }
   ]
 }

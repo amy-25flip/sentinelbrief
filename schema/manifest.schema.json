@@ -17,6 +17,7 @@
           "filename": { "type": "string" },
           "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
           "retrieved_at": { "type": "string", "format": "date-time" },
+          "acquired_at": { "type": "string", "format": "date-time" },
           "etag": { "type": ["string", "null"] },
           "last_modified": { "type": ["string", "null"] },
           "content_type": { "type": "string" },
@@ -26,7 +27,12 @@
           "acquired_by": { "type": "string" },
           "fetched_by": { "type": "string" },
           "acquisition_note": { "type": "string" },
-          "authenticity_exemption": { "type": "string" }
+          "authenticity_exemption": { "type": "string" },
+          "reverify_exemption": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Documented reason scripts/reverify_sources.py may skip live re-download for this entry. Only RBI official hosts may use this, because RBI serves CAPTCHA to automated clients."
+          }
         },
         "required": ["url", "filename", "sha256", "retrieved_at"]
       }

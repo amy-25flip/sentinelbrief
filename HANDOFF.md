@@ -1,13 +1,22 @@
-# Review 5 Fix Handoff
+# Review 6 Fix Handoff
 
 ## 1. Gate output
 
-Commands were run with `UV_CACHE_DIR=E:\SentinelBrief\.uv-cache-work` because uv's default cache path under `C:\Users\Admin` is locked in this sandbox. `pytest` was run with `PYTEST_ADDOPTS='--basetemp=.pytest_tmp_review5 -o cache_dir=.pytest_cache_review5'` because the default `.pytest_tmp` / `.pytest_cache` directories are stale and locked. `pyproject.toml` was not changed.
+Commands were run with `UV_CACHE_DIR=E:\SentinelBrief\.uv-cache-work` because uv's default cache path under `C:\Users\Admin` is locked in this sandbox. `pytest` was run with `PYTEST_ADDOPTS='--basetemp=.pytest_tmp_review6_final -o cache_dir=.pytest_cache_review6_final'` because the default `.pytest_tmp` / `.pytest_cache` directories are stale and locked. `pyproject.toml` was not changed. The temporary pytest directory was removed after the run. Live source reverify was not run because this task explicitly said not to use the network.
 
 `uv run --no-sync pytest -q`
 
 ```
-172 passed, 1 deselected, 1 warning in 5.28s
+........................................................................ [ 40%]
+........................................................................ [ 80%]
+..................................                                       [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  E:\SentinelBrief\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+178 passed, 1 deselected, 1 warning in 5.20s
 ```
 
 `uv run --no-sync ruff check src/ tests/ benchmark/ scripts/`
@@ -50,39 +59,47 @@ All obligations and citations passed validation successfully!
 `uv run --no-sync python benchmark/runner/scorer.py --split dev`
 
 ```
+================================================================
+BENCHMARK RESULTS (split: dev)
+================================================================
 Scenarios passed:   17/17  Wilson 95% CI [81.6%, 100.0%]
 Deadlines matched:  11/11  Wilson 95% CI [74.1%, 100.0%]
 Adversarial passed: 14/14
+----------------------------------------------------------------
+  [PASS] cert-in-ambiguous-anchor [ADVERSARIAL]
+  [PASS] cert-in-attack-on-application [ADVERSARIAL]
+  [PASS] cert-in-attack-on-servers [ADVERSARIAL]
+  [PASS] cert-in-before-directions-effective [ADVERSARIAL]
+  [PASS] cert-in-brought-to-notice [ADVERSARIAL]
+  [PASS] cert-in-cloud-outage-not-assumed [ADVERSARIAL]
+  [PASS] cert-in-data-breach-unknown-time
+  [PASS] cert-in-detection-time-only [ADVERSARIAL]
+  [PASS] cert-in-government-org [ADVERSARIAL]
+  [PASS] cert-in-nbfc-ransomware
+  [PASS] cert-in-non-annexure-i-type [ADVERSARIAL]
+  [PASS] cert-in-noticed-before-brought [ADVERSARIAL]
+  [PASS] cert-in-retention-is-not-a-deadline [ADVERSARIAL]
+  [PASS] cert-in-unattested-hardware-failure [ADVERSARIAL]
+  [PASS] cert-in-utc-input [ADVERSARIAL]
+  [PASS] cert-in-vps-provider
+  [PASS] cert-in-wrong-entity-trap [ADVERSARIAL]
+================================================================
 Note: one instrument (CERT-In) is loaded, so regulator identification is trivial.
 ```
 
-## 2. Review 5 fixes
+## 2. H1 and H2 status
 
-- G1: Replaced the truncated SEBI PDF with `.staging/real_sources/SEBI_CSCRF_Circular_2024-08-20.COMPLETE.pdf`. Regenerated metadata. `text_sha256` stayed `a184672544ce08f82adf0cae53b73fbdfb1983ae5f5d0d04766307d8b1c2b548`; source bytes are now `bd9ddb68bb49b9a92771ff01ed3138e01f0962b383e9ff643008b729290fc85d`, size `3177522`.
-- G2: Raw provenance now rejects PDFs without a trailing `%%EOF` or PDFs PyMuPDF opens as repaired, with the same documented exemption path as the authenticity gate.
-- G3: `BaseFetcher` writes `fetched_by: "BaseFetcher"`; `verify_raw_dir` now errors when a current manifest entry has neither `fetched_by` nor `acquired_by`. Existing CERT-In entries now disclose the Checkpoint 1 manual/script gap.
-- G4: `scripts/reverify_sources.py` respects robots.txt by default and has `--ignore-robots` for explicit reviewer use. Unit tests cover `main()` exit codes.
-- G5: Regulatory card grounding now trusts only source-derived text and rendered numeric durations. Facts present only in `evidence_required` are rejected.
-- G6: Obligation detail pages now label the field as "Suggested evidence (not stated in the source text)" and explain that it is builder-authored, not quoted legal text.
-- G7: DPDP and SEBI manifest/instrument records now state that `retrieved_at=2026-09-25T00:00:00Z` is date-precision only, not a verified exact timestamp.
-- G8: `docs/OPEN_QUESTIONS.md` records the DPDP Rule 1 commencement structure and keeps `in_force_from` null until whole-document modelling.
+- H1: FIXED. The human-acquired RBI PDF is copied to `data/raw/RBI_NBFC_Cybersecurity_Directions_2026.pdf`; extracted text and metadata exist; manifest records URL, sha256 `5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073`, size `552900`, `acquired_at`/`retrieved_at`, `acquired_by`, acquisition note, and `reverify_exemption`. `validate_all` proves provenance/authenticity/completeness gates pass.
+- H2: FIXED. `scripts/reverify_sources.py` now prints `SKIP` for documented RBI-host exemptions, counts skipped entries in the summary, rejects empty exemption reasons, rejects non-RBI exemption hosts, and still fails non-exempt fetch/hash failures.
 
-## 3. Current repo state, with proof
+## 3. RBI facts recorded, not modelled
 
-- Modelled obligations remain CERT-In only: `validate_all` reports `Total Obligations: 7`, `Valid: 7`, `Invalid: 0`.
-- Dev benchmark remains 17 CERT-In scenarios: scorer reports `17/17`, Wilson `[81.6%, 100.0%]`.
-- DPDP and SEBI real PDFs are ingested but unmodelled; RBI remains blocked, not substituted.
-- `benchmark/REVIEW_PACKET.md` was not regenerated in this round because scenarios did not change.
-- Live source reverify was not run in this round because the user explicitly said not to use the network.
+- Instrument only: `data/instruments/rbi.nbfc-cyber.2026.json`.
+- No RBI obligation, scenario, benchmark label, or clock output was authored.
+- Text-confirmed facts recorded in docs: paragraph 2 immediate effect; paragraph 3 applicability; paragraphs 28 and 141 six hours from detection; paragraph 141 CERT-In proactive notification; Chapter VI "Repeal and Other Provisions" / "A. Repeal and Saving"; no incident-reporting "or occurrence" wording in paragraphs 28 or 141.
 
-## 4. Not done or still open
+## 4. Still open
 
-- No DPDP, SEBI, or RBI obligations/scenarios were authored, by design.
-- All current `evidence_required` values remain builder-authored suggestions and need removal, source-based authorship, or compliance-professional review before they can be presented as requirements.
-- DPDP and SEBI effective dates remain `null` in instrument records pending whole-document review.
-- Benchmark labels remain AI-authored and need external compliance review.
-
-## 5. Least sure
-
-1. The EOF/repair PDF gate is a useful completeness check, but it is not proof of regulator authenticity.
-2. The card grounding verifier now catches hard factual drift from builder-authored fields, but softer legal completeness still needs human review.
+- DPDP, SEBI, and RBI remain raw evidence only and unmodelled.
+- RBI chapter/entity scoping must be read carefully before modelling; `data/entities/rbi.json` is still provisional.
+- Benchmark labels remain CERT-In only and AI-authored, pending external compliance review.

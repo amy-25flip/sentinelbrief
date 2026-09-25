@@ -2,7 +2,7 @@
 
 **Audience:** Antigravity ("Anti"). Read this fully before touching anything. Then read `BUILD_BRIEF.md`, `BUILD_BRIEF_CHECKPOINT2.md` and `docs/REVIEW_LOG.md` (Reviews 4 and 5).
 **Reviewers:** the reviewer agent (review), Codex (fixes, and a second review). They re-run your claims.
-**State:** Checkpoint 2 was reviewed, and Codex repaired it. The repo is CERT-In only, with the real DPDP Rules and SEBI CSCRF ingested as raw evidence but not yet modelled, and the RBI NBFC Direction BLOCKED.
+**State:** Checkpoint 2 was reviewed, and Codex repaired it. The repo is CERT-In only, with the real DPDP Rules, SEBI CSCRF, and RBI NBFC Direction ingested as raw evidence but not yet modelled. RBI was human-acquired from the official site because automated clients receive a CAPTCHA; do not refetch it in code.
 
 ---
 
@@ -60,7 +60,7 @@ These all exist now and run on every check or on review:
 
 ## 5. Work packages (smaller on purpose; do them in order; stop and hand off after each pair)
 
-You are strongest at structured, well-specified, high-volume work. These are that. The hard part is reading carefully.
+You are strongest at structured, well-specified, high-volume work. These are that. The hard part is reading carefully. Do WP-A and WP-B first, then WP-C, then WP-D and WP-E.
 
 **WP-A — DPDP Rules 2025 (real Gazette is in `data/raw/DPDP_Rules_2025_Gazette_GSR846E.pdf`, 41 pages).**
 Read the whole document, not just Rule 7. Then:
@@ -76,7 +76,16 @@ Read the whole document, not just Rule 7. Then:
 - Entity classes are the five real categories already in `data/entities/sebi.json`. The thresholds that decide which category an entity belongs to are defined in the circular; do not guess them. Read them, and if you model them, quote them.
 - 8 scenarios, labels first, page-cited quotes.
 
-**WP-C — RBI NBFC Direction: do nothing except prepare.** It is BLOCKED (RBI's server returns a CAPTCHA to automated clients). Do not attempt to fetch it. Write a one-page checklist in `docs/` of exactly what you will read and model once a human places the official PDF in `data/raw` with an `acquired_by` note. Mirror sites are not sources.
+**WP-C — RBI NBFC Direction (real PDF is in `data/raw/RBI_NBFC_Cybersecurity_Directions_2026.pdf`, 47 pages).**
+Do not refetch it: the official RBI document server returns a CAPTCHA to automated clients, and this PDF was human-acquired from the official site with a manifest provenance record and reverify exemption. Read the whole Direction, not just the reporting paragraphs. Determine from the text which paragraphs apply to which NBFC categories: start with Chapter I applicability, then read how later chapters are scoped, and do not assume layer scoping from any other source.
+
+Model at least:
+- Effective date, but only from paragraph 2's immediate-effect sentence.
+- Incident reporting: paragraphs 28 and 141, anchor `detection`, duration `PT6H`, recipient RBI via DAKSH, plus the CERT-In pro-active notification as its own obligation if the text states it as a duty.
+- Vulnerability assessment and penetration testing cadence.
+- Repeal and saving.
+
+Entity classes in `data/entities/rbi.json` are provisional and must be corrected from the text. Create 8 scenarios, labels first, each with a page-cited quote. Include: an NBFC category the reporting duty does or does not cover according to the text; detection unknown so the engine must ask; CERT-In plus RBI overlap with different anchors; and an incident before the effective date.
 
 **WP-D — Clean up your own inventions.** The `evidence_required` lists on the CERT-In obligations are yours and are not in the source. For each entry, either find the words in the Directions and cite them, or move it to a `suggested_evidence` field clearly separate from source-derived fields. The UI already labels them as suggestions; this makes the data honest too.
 
