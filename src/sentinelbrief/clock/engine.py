@@ -112,6 +112,7 @@ class IncidentProfile:
     when_brought_to_notice: datetime | None = None
     when_occurred: datetime | None = None
     when_aware: datetime | None = None
+    personal_data_involved: bool | None = None
     systems_affected: list[str] = field(default_factory=list)
     # Explicit user attestation. Only this can make Annexure I "not applicable".
     is_annexure_i_type: bool | None = None
@@ -403,10 +404,13 @@ class IncidentClockEngine:
                 continue
 
             needs_annexure = False
+            needs_personal_data = False
             other_conditions: list[str] = []
             for cond in applicability.get("conditions") or []:
                 if re.search(r"\bannexure i\b", cond, re.IGNORECASE):
                     needs_annexure = True
+                elif re.search(r"\bpersonal data\b", cond, re.IGNORECASE):
+                    needs_personal_data = True
                 else:
                     other_conditions.append(cond)
 
@@ -430,6 +434,26 @@ class IncidentClockEngine:
                             affects=[obs_id],
                             impact="This decides whether the 6-hour reporting obligation applies."
                             + hint,
+                        )
+                    )
+                    undetermined.append(obs_id)
+                    continue
+
+            if needs_personal_data:
+                if profile.personal_data_involved is False:
+                    not_applicable.append(
+                        {
+                            "obligation_id": obs_id,
+                            "reason": "condition_not_met: no personal data involved",
+                        }
+                    )
+                    continue
+                if profile.personal_data_involved is None:
+                    unknowns.append(
+                        Unknown(
+                            question="Is personal data involved in this incident?",
+                            affects=[obs_id],
+                            impact="DPDP personal data breach notification obligations apply only if personal data is involved.",
                         )
                     )
                     undetermined.append(obs_id)
@@ -542,10 +566,20 @@ class IncidentClockEngine:
                 known.append((value, anchor))
 
         if not known:
-            labels = " or ".join(_ANCHOR_LABELS[a] for a in anchors if a in _ANCHOR_LABELS)
+            if anchors == ["awareness"]:
+                q = "When did the entity become aware of the personal data breach?"
+            elif len(anchors) == 1:
+                lbl = _ANCHOR_LABELS.get(anchors[0], anchors[0])
+                q = f"When was the incident {lbl}?"
+            elif len(anchors) == 2:
+                lbls = [_ANCHOR_LABELS.get(a, a) for a in anchors]
+                q = f"When was the incident {lbls[0]} or {lbls[1]}?"
+            else:
+                lbls = [_ANCHOR_LABELS.get(a, a) for a in anchors]
+                q = f"When was the incident {', '.join(lbls[:-1])}, or {lbls[-1]}?"
             unknowns.append(
                 Unknown(
-                    question=f"When was the incident {labels}?",
+                    question=q,
                     affects=[obs_id],
                     impact="The clock cannot start until this is known.",
                 )

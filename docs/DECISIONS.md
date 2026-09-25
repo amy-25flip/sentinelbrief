@@ -177,3 +177,24 @@ Decisions below were made during Review 1 (the reviewer agent, 2026-09-24). See 
 **Reason:** RBI's official document server serves a CAPTCHA to automated clients, but the project owner downloaded `RBI_NBFC_Cybersecurity_Directions_2026.pdf` from the official site in a browser and the reviewer verified its hash, 47 pages, Adobe producer, EOF marker, no repair, and key text. Automated re-download cannot be the gate for this one source; human re-check is comparing the official download to sha256 `5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073`.
 
 **Alternative rejected:** Marking all CAPTCHA-blocked sources as failed forever. That would force the project back toward mirrors or invented substitutes; the exemption is narrower and louder.
+
+## 2026-09-25: DPDP Rules 2025 Commencement and Rule 7 Breach Intimation Modelling
+
+**Decision:** Model DPDP Rules 2025 (`meity.dpdp-rules.2025`) using Notification No. G.S.R. 846(E) dated 2025-11-13.
+- In accordance with Gazette page 24 Rule 1(4), Rule 7 comes into force 18 months after publication (`valid_from: "2027-05-13"`).
+- Rule 7(1) (intimation to affected Data Principals) and Rule 7(2)(a) (initial intimation to Data Protection Board) are modelled as `deadline.kind: "immediate"` ("without delay") with anchor `awareness`.
+- Rule 7(2)(b) (detailed report to Board) is modelled as `deadline.kind: "relative"`, `PT72H`, anchor `awareness`, with an explicit note regarding the Board's power to allow a longer period upon written request.
+- Applicability condition enforces that personal data must be involved (`personal_data_involved: true`); if `personal_data_involved` is missing/null, an Unknown question is generated.
+
+**Reason:** Read directly from primary Gazette notification G.S.R. 846(E) pages 24 and 26. Prevents applying uncommenced rules before May 2027 and captures the verbatim statutory structure.
+
+## 2026-09-25: SEBI CSCRF Incident Reporting (RS.CO.S1) Multi-Anchor Modelling
+
+**Decision:** Model SEBI CSCRF (`sebi.cscrf.2024`) incident reporting from Circular SEBI/HO/ITD-1/ITD_CSC_EXT/P/CIR/2024/113 dated 2024-08-20.
+- Paragraph 17.1 glide-path establishes in-force date of 2025-01-01 (`valid_from: "2025-01-01"`).
+- Standard RS.CO.S1 (page 123) / Annexure-O Section B.1 (page 200) requires notification within 6 hours of `noticing/detecting` or `being brought to notice` to SEBI (`mkt_incidents@sebi.gov.in`) and CERT-In.
+- Modelled as `deadline.kind: "relative"`, `PT6H`, anchor `noticing`, with `alternative_anchors: ["detection", "brought_to_notice"]`.
+- The engine uses the earliest available timestamp among noticing, detection, and brought-to-notice.
+
+**Reason:** Derived directly from verbatim primary text on page 123 and 200 of the 205-page SEBI Circular. Respects the statutory multi-anchor trigger without collapsing legal terms.
+

@@ -76,6 +76,7 @@ class BenchmarkScorer:
             when_brought_to_notice=_parse_dt(facts.get("when_brought_to_notice")),
             when_occurred=_parse_dt(facts.get("when_occurred")),
             when_aware=_parse_dt(facts.get("when_aware")),
+            personal_data_involved=facts.get("personal_data_involved"),
             systems_affected=facts.get("systems_affected", []),
             is_annexure_i_type=facts.get("is_annexure_i_type"),
         )

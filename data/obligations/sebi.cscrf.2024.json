@@ -1,0 +1,81 @@
+[
+  {
+    "id": "sebi.cscrf.2024.incident-reporting-6h",
+    "instrument_id": "sebi.cscrf.2024",
+    "paragraph_ref": "RS.CO.S1 / Annexure-O Section B.1",
+    "text_verbatim": "1. Any cyber-attack, cybersecurity incident and/ or breach falling under CERT-In \nCybersecurity directions29 shall be notified to SEBI and CERT-In within 6 hours of \nnoticing/ detecting such incidents or being brought to notice about such incidents. This \ninformation shall be shared with SEBI through the mkt_incidents@sebi.gov.in within \n6 hours. However, necessary details of the incidents shall be reported on SEBI Incident \nReporting Portal within 24 hours. Stock Brokers/ Depository Participants shall also \nreport the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In \nwithin 6 hours of noticing/ detecting such incidents or being brought to notice about such \nincidents. All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and \nNCIIPC (as applicable) within 24 hours.",
+    "normalized": {
+      "actor": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "Cyber-attack, cybersecurity incident and/or breach falling under CERT-In directions is noticed/detected or brought to notice"
+      },
+      "action": "Notify SEBI (via mkt_incidents@sebi.gov.in) and CERT-In within 6 hours of noticing/detecting or being brought to notice.",
+      "deadline": {
+        "kind": "relative",
+        "duration_iso8601": "PT6H",
+        "anchor": "noticing",
+        "alternative_anchors": [
+          "detection",
+          "brought_to_notice"
+        ],
+        "calendar": "continuous",
+        "fixed_date": null
+      },
+      "recipient": "SEBI and CERT-In",
+      "evidence_required": [
+        "Email notification record sent to mkt_incidents@sebi.gov.in",
+        "CERT-In incident submission receipt"
+      ]
+    },
+    "applicability": {
+      "entity_classes": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re"
+      ],
+      "conditions": [
+        "Incident falls under CERT-In Cybersecurity directions",
+        "Entity is a SEBI Regulated Entity"
+      ]
+    },
+    "validity": {
+      "valid_from": "2025-01-01",
+      "valid_to": null,
+      "recorded_at": "2026-09-25T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "RS.CO.S1",
+        "page": 123,
+        "char_start": 243670,
+        "char_end": 244485,
+        "excerpt_verbatim": "1. Any cyber-attack, cybersecurity incident and/ or breach falling under CERT-In \nCybersecurity directions29 shall be notified to SEBI and CERT-In within 6 hours of \nnoticing/ detecting such incidents or being brought to notice about such incidents. This \ninformation shall be shared with SEBI through the mkt_incidents@sebi.gov.in within \n6 hours. However, necessary details of the incidents shall be reported on SEBI Incident \nReporting Portal within 24 hours. Stock Brokers/ Depository Participants shall also \nreport the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In \nwithin 6 hours of noticing/ detecting such incidents or being brought to notice about such \nincidents. All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and \nNCIIPC (as applicable) within 24 hours.",
+        "source_sha256": "bd9ddb68bb49b9a92771ff01ed3138e01f0962b383e9ff643008b729290fc85d"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "antigravity-agent (AI; verified against SEBI CSCRF Circular 2024-08-20)",
+      "date": "2026-09-25"
+    },
+    "confidence": 0.95,
+    "confidence_reason": "Verbatim text from primary SEBI CSCRF Circular page 123 (RS.CO.S1) and page 200 (Annexure-O B.1)."
+  }
+]
