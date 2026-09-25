@@ -1,0 +1,70 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "rbi-before-directions-effective-2025",
+  "description": "An incident on 2025-08-15 occurred before RBI NBFC Directions (2026-07-31). RBI 2026 Directions were not in force; only CERT-In applies.",
+  "entity_profile": {
+    "entity_class": "nbfc.middle_layer",
+    "is_listed": false,
+    "holds_personal_data": false,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Ransomware encryption noticed on 2025-08-15 at 10:00 IST.",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "annexure_i_items": [
+      "annexure_i.v"
+    ],
+    "when_detected": "2025-08-15T10:00:00+05:30",
+    "when_noticed": "2025-08-15T10:00:00+05:30",
+    "when_occurred": "2025-08-15T08:00:00+05:30",
+    "when_aware": "2025-08-15T10:00:00+05:30",
+    "personal_data_involved": false,
+    "systems_affected": [
+      "Server"
+    ],
+    "is_annexure_i_type": null
+  },
+  "law_snapshot_date": "2025-08-15",
+  "expected": {
+    "law_as_of": "2025-08-15",
+    "regulators": [
+      "CERT-In"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2025-08-15T10:30:00Z"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [
+      {
+        "obligation_id": "rbi.nbfc-cyber.2026.incident-reporting-6h",
+        "reason": "not_yet_valid_at_incident_date (2026-07-31)"
+      },
+      {
+        "obligation_id": "rbi.nbfc-cyber.2026.vapt-cadence",
+        "reason": "not_yet_valid_at_incident_date (2026-07-31)"
+      }
+    ],
+    "unknowns": []
+  },
+  "adversarial_flags": [
+    "repealed_or_future_instrument_trap"
+  ],
+  "split": "dev",
+  "labels_source": "RBI NBFC Cybersecurity Directions 2026 commencement date (2026-07-31)"
+}
