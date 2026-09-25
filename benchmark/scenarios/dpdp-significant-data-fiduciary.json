@@ -29,7 +29,7 @@
   },
   "law_snapshot_date": "2027-06-15",
   "expected": {
-    "law_as_of": "2027-06-15",
+    "law_as_of": "2027-06-14",
     "regulators": [
       "CERT-In",
       "MeitY"

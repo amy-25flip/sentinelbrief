@@ -45,9 +45,9 @@
       {
         "obligation_id": "rbi.nbfc-cyber.2026.incident-reporting-6h",
         "regulator": "RBI",
-        "anchor": "detection",
+        "anchor": "occurrence",
         "deadline_iso8601": "PT6H",
-        "deadline_timestamp": "2026-09-10T10:30:00Z"
+        "deadline_timestamp": "2026-09-10T09:30:00Z"
       }
     ],
     "citations": [
