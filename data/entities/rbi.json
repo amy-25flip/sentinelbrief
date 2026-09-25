@@ -1,0 +1,62 @@
+[
+  {
+    "id": "bank",
+    "regulator": "RBI",
+    "label": "Commercial Bank",
+    "parent": "body_corporate",
+    "description": "Scheduled Commercial Banks, Small Finance Banks, Payments Banks, Regional Rural Banks.",
+    "version": "1.0",
+    "valid_from": "2016-06-02",
+    "valid_to": null
+  },
+  {
+    "id": "nbfc",
+    "regulator": "RBI",
+    "label": "Non-Banking Financial Company",
+    "parent": "body_corporate",
+    "description": "Non-Banking Financial Companies registered with Reserve Bank of India.",
+    "version": "1.0",
+    "valid_from": "2017-06-08",
+    "valid_to": null
+  },
+  {
+    "id": "nbfc.base_layer",
+    "regulator": "RBI",
+    "label": "NBFC Base Layer",
+    "parent": "nbfc",
+    "description": "NBFCs in the Base Layer as per RBI Scale Based Regulation (SBR) framework.",
+    "version": "1.0",
+    "valid_from": "2022-10-01",
+    "valid_to": null
+  },
+  {
+    "id": "nbfc.middle_layer",
+    "regulator": "RBI",
+    "label": "NBFC Middle Layer",
+    "parent": "nbfc",
+    "description": "NBFCs in the Middle Layer as per RBI Scale Based Regulation (SBR) framework.",
+    "version": "1.0",
+    "valid_from": "2022-10-01",
+    "valid_to": null
+  },
+  {
+    "id": "nbfc.upper_layer",
+    "regulator": "RBI",
+    "label": "NBFC Upper Layer",
+    "parent": "nbfc",
+    "description": "NBFCs in the Upper Layer as per RBI Scale Based Regulation (SBR) framework.",
+    "version": "1.0",
+    "valid_from": "2022-10-01",
+    "valid_to": null
+  },
+  {
+    "id": "nbfc.top_layer",
+    "regulator": "RBI",
+    "label": "NBFC Top Layer",
+    "parent": "nbfc",
+    "description": "NBFCs in the Top Layer as per RBI Scale Based Regulation (SBR) framework.",
+    "version": "1.0",
+    "valid_from": "2022-10-01",
+    "valid_to": null
+  }
+]

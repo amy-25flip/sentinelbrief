@@ -1,0 +1,22 @@
+[
+  {
+    "id": "dpdp.data_fiduciary",
+    "regulator": "DPB",
+    "label": "Data Fiduciary",
+    "parent": "body_corporate",
+    "description": "Any person who alone or in conjunction with other persons determines the purpose and means of processing of personal data (Section 2(i) DPDP Act).",
+    "version": "1.0",
+    "valid_from": "2023-08-11",
+    "valid_to": null
+  },
+  {
+    "id": "dpdp.significant_data_fiduciary",
+    "regulator": "DPB",
+    "label": "Significant Data Fiduciary",
+    "parent": "dpdp.data_fiduciary",
+    "description": "Data Fiduciaries designated by Central Government under Section 10 of DPDP Act.",
+    "version": "1.0",
+    "valid_from": "2023-08-11",
+    "valid_to": null
+  }
+]

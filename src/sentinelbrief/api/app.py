@@ -12,7 +12,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from sentinelbrief.clock import IncidentClockEngine, IncidentProfile
-from sentinelbrief.clock.engine import ENTITY_HIERARCHY, IST
+from sentinelbrief.clock.engine import IST
 
 app = FastAPI(
     title="SentinelBrief",
@@ -128,7 +128,7 @@ async def incident_workspace(request: Request) -> HTMLResponse:
         request=request,
         name="incident.html",
         context={
-            "entity_classes": sorted(ENTITY_HIERARCHY),
+            "entity_classes": sorted(engine.taxonomy.classes.keys()),
             "annexure_items": engine.annexure_items(),
         },
     )

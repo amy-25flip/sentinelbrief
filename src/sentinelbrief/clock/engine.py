@@ -15,44 +15,11 @@ from datetime import UTC, date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
+from sentinelbrief.clock.taxonomy import EntityTaxonomy
 from sentinelbrief.models import Obligation
 
 # IST is UTC+5:30, always. India does not observe DST.
 IST = timezone(timedelta(hours=5, minutes=30))
-
-# Entity taxonomy and implied parent classes
-ENTITY_HIERARCHY: dict[str, set[str]] = {
-    "virtual_asset_exchange": {
-        "virtual_asset_exchange",
-        "service_provider",
-        "body_corporate",
-        "intermediary",
-    },
-    "virtual_asset_service_provider": {
-        "virtual_asset_service_provider",
-        "service_provider",
-        "body_corporate",
-        "intermediary",
-    },
-    "custodian_wallet_provider": {
-        "custodian_wallet_provider",
-        "service_provider",
-        "body_corporate",
-        "intermediary",
-    },
-    "vps_provider": {"vps_provider", "service_provider", "body_corporate"},
-    "cloud_provider": {"cloud_provider", "service_provider", "body_corporate"},
-    "vpn_provider": {"vpn_provider", "service_provider", "body_corporate"},
-    "data_centre": {"data_centre", "service_provider", "body_corporate"},
-    "bank": {"bank", "body_corporate"},
-    "nbfc": {"nbfc", "body_corporate"},
-    "nbfc.base_layer": {"nbfc.base_layer", "nbfc", "body_corporate"},
-    "nbfc.middle_layer": {"nbfc.middle_layer", "nbfc", "body_corporate"},
-    "government_org": {"government_org"},
-    "service_provider": {"service_provider", "body_corporate"},
-    "intermediary": {"intermediary", "body_corporate"},
-    "body_corporate": {"body_corporate"},
-}
 
 # Which IncidentProfile field supplies each anchor.
 _ANCHOR_FIELDS: dict[str, str] = {
@@ -78,16 +45,6 @@ _MSME_EFFECTIVE = date(2022, 9, 25)
 
 def _norm(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip().lower()
-
-
-@dataclass(frozen=True)
-class ClockAnchor:
-    """A timestamp for a specific anchor type."""
-
-    anchor_type: str
-    timestamp: datetime
-    set_by: str
-    set_at: datetime
 
 
 @dataclass(frozen=True)
@@ -133,11 +90,6 @@ class IncidentProfile:
     """User-provided entity and incident facts. All datetimes must be timezone-aware."""
 
     entity_class: str
-    is_listed: bool | None = None
-    holds_personal_data: bool | None = None
-    uses_protected_systems: bool | None = None
-    is_regulated_cloud_vps: bool | None = None
-    is_virtual_asset_provider: bool | None = None
 
     incident_description: str = ""
     incident_types: list[str] = field(default_factory=list)
@@ -147,7 +99,6 @@ class IncidentProfile:
     when_brought_to_notice: datetime | None = None
     when_occurred: datetime | None = None
     when_aware: datetime | None = None
-    personal_data_involved: bool | None = None
     systems_affected: list[str] = field(default_factory=list)
     # Explicit user attestation. Only this can make Annexure I "not applicable".
     is_annexure_i_type: bool | None = None
@@ -261,6 +212,7 @@ def parse_iso8601_duration(duration_str: str, allow_calendar: bool = True) -> ti
 class IncidentClockEngine:
     def __init__(self, data_dir: str | Path):
         self.data_dir = Path(data_dir)
+        self.taxonomy = EntityTaxonomy(self.data_dir / "entities")
         self.obligations: list[dict[str, Any]] = []
         self._issuer: dict[str, str] = {}
         self._annexure_items: list[dict[str, Any]] = []
@@ -316,8 +268,7 @@ class IncidentClockEngine:
     def _matches_entity_class(self, profile_class: str, target_classes: list[str]) -> bool:
         if not target_classes:
             return True
-        implied = ENTITY_HIERARCHY.get(profile_class, {profile_class})
-        return bool(implied & set(target_classes))
+        return self.taxonomy.matches(profile_class, target_classes)
 
     def resolve_annexure_i(self, profile: IncidentProfile) -> AnnexureResolution:
         """Decide whether the incident is an Annexure I type. Never returns False from text."""
@@ -384,11 +335,11 @@ class IncidentClockEngine:
             earliest = profile.earliest_known_time()
             as_of = (earliest or now).astimezone(IST).date()
 
-        if profile.entity_class not in ENTITY_HIERARCHY:
+        if profile.entity_class not in self.taxonomy:
             raise ValueError(
                 f"Unknown entity class '{profile.entity_class}'. Refusing to guess: an "
                 f"unrecognised class would silently report that nothing applies. "
-                f"Known classes: {', '.join(sorted(ENTITY_HIERARCHY))}"
+                f"Known classes: {', '.join(sorted(self.taxonomy.classes.keys()))}"
             )
 
         caveats: list[str] = []

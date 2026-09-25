@@ -320,3 +320,32 @@ def test_deadline_is_anchor_plus_six_hours_for_any_instant(anchor):
     assert dl.deadline_utc == anchor + timedelta(hours=6)
     assert dl.deadline_ist.utcoffset() == timedelta(hours=5, minutes=30)
     assert dl.deadline_ist == dl.deadline_utc
+
+
+def test_taxonomy_loaded_from_data_dir():
+    engine = IncidentClockEngine(DATA_DIR)
+    # Must have loaded entity classes from data/entities/
+    assert hasattr(engine, "taxonomy")
+    assert "body_corporate" in engine.taxonomy
+    assert "virtual_asset_exchange" in engine.taxonomy
+    assert "nbfc.base_layer" in engine.taxonomy
+
+
+def test_unknown_entity_class_raises_value_error():
+    engine = IncidentClockEngine(DATA_DIR)
+    profile = IncidentProfile(
+        entity_class="completely_unknown_entity_type_12345",
+        is_annexure_i_type=True,
+        when_noticed=NOTICED,
+    )
+    with pytest.raises(ValueError, match="Unknown entity class"):
+        engine.evaluate(profile)
+
+
+def test_entity_taxonomy_hierarchy_resolution():
+    engine = IncidentClockEngine(DATA_DIR)
+    # vps_provider inherits service_provider and body_corporate
+    classes = engine.taxonomy.get_ancestors_and_self("vps_provider")
+    assert "vps_provider" in classes
+    assert "service_provider" in classes
+    assert "body_corporate" in classes

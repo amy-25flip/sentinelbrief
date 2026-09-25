@@ -14,6 +14,7 @@ def main() -> None:
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
     instruments_dir = os.path.join(base_dir, "data", "instruments")
     obligations_dir = os.path.join(base_dir, "data", "obligations")
+    entities_dir = os.path.join(base_dir, "data", "entities")
     raw_dir = os.path.join(base_dir, "data", "raw")
 
     print("Running raw-source provenance checks...")
@@ -29,10 +30,15 @@ def main() -> None:
     print("Running schema validation...")
     invalid_inst = validate_all(instruments_dir, "instrument.schema.json")
     invalid_obl = validate_all(obligations_dir, "obligation.schema.json")
+    invalid_ent = (
+        validate_all(entities_dir, "entity_class.schema.json")
+        if os.path.exists(entities_dir)
+        else []
+    )
 
-    if invalid_inst or invalid_obl:
+    if invalid_inst or invalid_obl or invalid_ent:
         print(
-            f"Schema validation failed: {len(invalid_inst)} instruments, {len(invalid_obl)} obligations"
+            f"Schema validation failed: {len(invalid_inst)} instruments, {len(invalid_obl)} obligations, {len(invalid_ent)} entities"
         )
         sys.exit(1)
 

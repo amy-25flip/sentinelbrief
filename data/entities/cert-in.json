@@ -1,0 +1,92 @@
+[
+  {
+    "id": "service_provider",
+    "regulator": "CERT-In",
+    "label": "Service Provider",
+    "parent": "body_corporate",
+    "description": "Providers of IT, network, hosting, digital and technical services in India.",
+    "version": "1.0",
+    "valid_from": "2000-06-09",
+    "valid_to": null
+  },
+  {
+    "id": "intermediary",
+    "regulator": "CERT-In",
+    "label": "Intermediary",
+    "parent": "body_corporate",
+    "description": "Intermediary as defined under section 2(1)(w) of the Information Technology Act, 2000.",
+    "version": "1.0",
+    "valid_from": "2000-06-09",
+    "valid_to": null
+  },
+  {
+    "id": "data_centre",
+    "regulator": "CERT-In",
+    "label": "Data Centre",
+    "parent": "service_provider",
+    "description": "Entities providing data hosting, co-location, and compute infrastructure.",
+    "version": "1.0",
+    "valid_from": "2022-06-27",
+    "valid_to": null
+  },
+  {
+    "id": "vps_provider",
+    "regulator": "CERT-In",
+    "label": "Virtual Private Server (VPS) Provider",
+    "parent": "service_provider",
+    "description": "Entities offering virtual private servers or slices to subscribers.",
+    "version": "1.0",
+    "valid_from": "2022-06-27",
+    "valid_to": null
+  },
+  {
+    "id": "cloud_provider",
+    "regulator": "CERT-In",
+    "label": "Cloud Service Provider",
+    "parent": "service_provider",
+    "description": "Entities providing IaaS, PaaS, SaaS or cloud services in Indian jurisdiction.",
+    "version": "1.0",
+    "valid_from": "2022-06-27",
+    "valid_to": null
+  },
+  {
+    "id": "vpn_provider",
+    "regulator": "CERT-In",
+    "label": "Virtual Private Network (VPN) Provider",
+    "parent": "service_provider",
+    "description": "Entities providing point-to-point and commercial VPN services.",
+    "version": "1.0",
+    "valid_from": "2022-06-27",
+    "valid_to": null
+  },
+  {
+    "id": "virtual_asset_service_provider",
+    "regulator": "CERT-In",
+    "label": "Virtual Asset Service Provider",
+    "parent": "service_provider",
+    "description": "Entities providing virtual digital asset services as defined by Ministry of Finance.",
+    "version": "1.0",
+    "valid_from": "2022-06-27",
+    "valid_to": null
+  },
+  {
+    "id": "virtual_asset_exchange",
+    "regulator": "CERT-In",
+    "label": "Virtual Asset Exchange",
+    "parent": "virtual_asset_service_provider",
+    "description": "Exchanges facilitating trading, exchange, and conversion of virtual digital assets.",
+    "version": "1.0",
+    "valid_from": "2022-06-27",
+    "valid_to": null
+  },
+  {
+    "id": "custodian_wallet_provider",
+    "regulator": "CERT-In",
+    "label": "Custodian Wallet Provider",
+    "parent": "virtual_asset_service_provider",
+    "description": "Entities holding, safeguarding, or managing virtual digital assets on behalf of others.",
+    "version": "1.0",
+    "valid_from": "2022-06-27",
+    "valid_to": null
+  }
+]

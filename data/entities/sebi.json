@@ -1,0 +1,32 @@
+[
+  {
+    "id": "sebi.qsei",
+    "regulator": "SEBI",
+    "label": "Qualified / Systemically Important RE",
+    "parent": "body_corporate",
+    "description": "Stock Exchanges, Clearing Corporations, Depositories, and Qualified Systemically Important Regulated Entities under CSCRF.",
+    "version": "1.0",
+    "valid_from": "2024-08-20",
+    "valid_to": null
+  },
+  {
+    "id": "sebi.msei",
+    "regulator": "SEBI",
+    "label": "Mid-size Regulated Entity",
+    "parent": "body_corporate",
+    "description": "Mid-size market intermediaries under SEBI CSCRF framework.",
+    "version": "1.0",
+    "valid_from": "2024-08-20",
+    "valid_to": null
+  },
+  {
+    "id": "sebi.smi",
+    "regulator": "SEBI",
+    "label": "Small / Non-Systemic RE",
+    "parent": "body_corporate",
+    "description": "Small market intermediaries under SEBI CSCRF framework.",
+    "version": "1.0",
+    "valid_from": "2024-08-20",
+    "valid_to": null
+  }
+]

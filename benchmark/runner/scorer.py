@@ -68,10 +68,6 @@ class BenchmarkScorer:
         facts = scenario["incident_facts"]
         return IncidentProfile(
             entity_class=ep["entity_class"],
-            is_listed=ep.get("is_listed"),
-            holds_personal_data=ep.get("holds_personal_data"),
-            uses_protected_systems=ep.get("uses_protected_systems"),
-            is_regulated_cloud_vps=ep.get("is_regulated_cloud_vps"),
             incident_description=facts.get("description", ""),
             incident_types=facts.get("incident_types", []),
             annexure_i_items=facts.get("annexure_i_items", []),
@@ -79,7 +75,6 @@ class BenchmarkScorer:
             when_noticed=_parse_dt(facts.get("when_noticed")),
             when_brought_to_notice=_parse_dt(facts.get("when_brought_to_notice")),
             when_occurred=_parse_dt(facts.get("when_occurred")),
-            personal_data_involved=facts.get("personal_data_involved"),
             systems_affected=facts.get("systems_affected", []),
             is_annexure_i_type=facts.get("is_annexure_i_type"),
         )

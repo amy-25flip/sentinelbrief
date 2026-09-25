@@ -1,0 +1,22 @@
+[
+  {
+    "id": "body_corporate",
+    "regulator": "General",
+    "label": "Body Corporate",
+    "parent": null,
+    "description": "Any company including a firm, sole proprietorship or other association of individuals engaged in commercial or professional activities (Section 43A IT Act).",
+    "version": "1.0",
+    "valid_from": "2000-06-09",
+    "valid_to": null
+  },
+  {
+    "id": "government_org",
+    "regulator": "General",
+    "label": "Government Organisation",
+    "parent": null,
+    "description": "Ministries, Departments, Attached Offices, Subordinate Offices, Autonomous Bodies, and PSUs of Central or State Governments.",
+    "version": "1.0",
+    "valid_from": "2000-06-09",
+    "valid_to": null
+  }
+]
