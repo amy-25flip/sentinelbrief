@@ -1,0 +1,25 @@
+{
+  "instrument_id": "meity.dpdp-rules.2025",
+  "source_url": "https://www.meity.gov.in/writereaddata/files/DPDP_Rules_2025.pdf",
+  "source_sha256": "2e06c73aa9f0d1c457706c88be2fd50310741aa7d5b054f4cc0325c340ed4437",
+  "retrieved_at": "2026-09-25T07:34:16Z",
+  "content_type": "application/pdf",
+  "size_bytes": 2485,
+  "pages": 2,
+  "page_offsets": [
+    {
+      "page": 1,
+      "char_start": 0,
+      "char_end": 1124
+    },
+    {
+      "page": 2,
+      "char_start": 1124,
+      "char_end": 1869
+    }
+  ],
+  "text_sha256": "2c13e4c95dea02452bd9b3efe5ec5eacb972ef89e7be92e63aeb6d346ff53188",
+  "text_chars": 1869,
+  "extractor": "pymupdf",
+  "extractor_version": "1.28.2"
+}

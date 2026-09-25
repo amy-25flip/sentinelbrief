@@ -1,0 +1,17 @@
+SECURITIES AND EXCHANGE BOARD OF INDIA
+CIRCULAR
+SEBI/HO/ITD-1/ITD_CSC_EXT/P/CIR/2024/113
+August 20, 2024
+To All Recognised Stock Exchanges, Depositories, Clearing Corporations, and Registered Intermediaries
+Subject: Cybersecurity and Cyber Resilience Framework (CSCRF) for SEBI Regulated Entities (REs)
+1. In supersession of existing cybersecurity circulars, SEBI issues the Cybersecurity and Cyber Resilience
+Framework (CSCRF) for all Regulated Entities categorised as Qualified REs (QSEIs), Mid-size REs (MSEIs),
+and Small REs (SMIs).
+2. Incident Reporting: All Regulated Entities shall report cybersecurity incidents to SEBI and CERT-In within 6
+hours of noticing such incidents, detecting them, or being brought to notice about such incidents. Initial reporting
+shall be followed by submitting full incident details through the SEBI Cyber Incident Reporting Portal within 24
+hours.
+3. Vulnerability Assessment and Penetration Testing (VAPT): Qualified REs and Mid-size REs shall mandatorily
+conduct Vulnerability Assessment on a half-yearly basis and Penetration Testing at least once every financial
+year for all critical IT systems.
+4. This circular shall come into force with effect from January 1, 2025.

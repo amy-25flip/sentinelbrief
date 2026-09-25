@@ -75,6 +75,7 @@ class BenchmarkScorer:
             when_noticed=_parse_dt(facts.get("when_noticed")),
             when_brought_to_notice=_parse_dt(facts.get("when_brought_to_notice")),
             when_occurred=_parse_dt(facts.get("when_occurred")),
+            when_aware=_parse_dt(facts.get("when_aware")),
             systems_affected=facts.get("systems_affected", []),
             is_annexure_i_type=facts.get("is_annexure_i_type"),
         )
@@ -237,7 +238,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--no-fail", action="store_true", help="always exit 0")
     args = parser.parse_args(argv)
 
-    scorer = BenchmarkScorer(BASE_DIR / "data", BASE_DIR / "benchmark" / "scenarios")
+    scenarios_dir = BASE_DIR / "benchmark" / ("hidden" if args.split == "hidden" else "scenarios")
+    scorer = BenchmarkScorer(BASE_DIR / "data", scenarios_dir)
     report = scorer.run_all(args.split)
     if args.json:
         print(json.dumps(report, indent=2, default=str))

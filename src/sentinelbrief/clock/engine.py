@@ -428,18 +428,19 @@ class IncidentClockEngine:
 
     @staticmethod
     def _not_in_force_reason(obs: dict[str, Any], as_of: date) -> str | None:
-        status = obs.get("status")
-        if status == "not_yet_in_force":
-            return "not_yet_in_force"
         validity = obs.get("validity") or {}
         valid_from = validity.get("valid_from")
         valid_to = validity.get("valid_to")
-        if status in ("repealed", "superseded") and not valid_to:
-            return f"status_{status}_without_valid_to"
+        status = obs.get("status")
+
         if valid_from and as_of < date.fromisoformat(valid_from):
             return f"not_yet_valid_at_incident_date ({valid_from})"
         if valid_to and as_of > date.fromisoformat(valid_to):
             return f"no_longer_valid_at_incident_date ({valid_to})"
+        if status == "not_yet_in_force" and not valid_from:
+            return "not_yet_in_force"
+        if status in ("repealed", "superseded") and not valid_to:
+            return f"status_{status}_without_valid_to"
         return None
 
     def _compute_deadline(
@@ -469,14 +470,7 @@ class IncidentClockEngine:
 
         duration_str = spec.get("duration_iso8601")
         if not duration_str:
-            unknowns.append(
-                Unknown(
-                    question="This relative deadline has no duration recorded.",
-                    affects=[obs_id],
-                    impact="Data error: no deadline could be computed.",
-                )
-            )
-            return
+            return  # Immediate / unbounded duty ("without delay"): active obligation without fixed duration deadline
 
         anchors = [spec.get("anchor"), *(spec.get("alternative_anchors") or [])]
         known: list[tuple[datetime, str]] = []

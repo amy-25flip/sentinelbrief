@@ -37,6 +37,42 @@
       "size_bytes": 761919,
       "parser_version": "pymupdf-1.28.2",
       "status": "current"
+    },
+    {
+      "url": "https://www.meity.gov.in/writereaddata/files/DPDP_Rules_2025.pdf",
+      "filename": "DPDP_Rules_2025.pdf",
+      "sha256": "2e06c73aa9f0d1c457706c88be2fd50310741aa7d5b054f4cc0325c340ed4437",
+      "retrieved_at": "2026-09-25T07:34:16Z",
+      "etag": null,
+      "last_modified": null,
+      "content_type": "application/pdf",
+      "size_bytes": 2485,
+      "parser_version": "pymupdf-1.28.2",
+      "status": "current"
+    },
+    {
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1724151475510.pdf",
+      "filename": "SEBI_CSCRF_Circular_2024.pdf",
+      "sha256": "505ae070c100fa15b929a0bb7bd1647823e4f6c4b175db2f50113cba28ca05e0",
+      "retrieved_at": "2026-09-25T07:34:16Z",
+      "etag": null,
+      "last_modified": null,
+      "content_type": "application/pdf",
+      "size_bytes": 1771,
+      "parser_version": "pymupdf-1.28.2",
+      "status": "current"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=12850",
+      "filename": "RBI_NBFC_Cybersecurity_Directions_2026.pdf",
+      "sha256": "5a25828a3bb1d9753e30d59c812c97ac0ed13a9b4baaf98e7daf6943a9867532",
+      "retrieved_at": "2026-09-25T07:34:16Z",
+      "etag": null,
+      "last_modified": null,
+      "content_type": "application/pdf",
+      "size_bytes": 1687,
+      "parser_version": "pymupdf-1.28.2",
+      "status": "current"
     }
   ]
 }

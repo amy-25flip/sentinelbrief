@@ -1,0 +1,22 @@
+{
+  "$schema": "../schema/instrument.schema.json",
+  "id": "meity.dpdp-rules.2025",
+  "issuer": "MeitY",
+  "title": "Digital Personal Data Protection Rules, 2025",
+  "reference_no": "G.S.R. 842(E)",
+  "issued_on": "2025-11-13",
+  "in_force_from": "2025-11-13",
+  "in_force_until": null,
+  "url": "https://www.meity.gov.in/writereaddata/files/DPDP_Rules_2025.pdf",
+  "source_sha256": "2e06c73aa9f0d1c457706c88be2fd50310741aa7d5b054f4cc0325c340ed4437",
+  "retrieved_at": "2026-09-25T07:34:16Z",
+  "language": "en",
+  "status": "in_force",
+  "supersedes": [],
+  "superseded_by": [],
+  "document_type": "rules",
+  "provenance": {
+    "parser_version": "pymupdf-1.28.2",
+    "extraction_date": "2026-09-25T07:34:16Z"
+  }
+}

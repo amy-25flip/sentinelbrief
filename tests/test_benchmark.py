@@ -125,8 +125,10 @@ def test_cli_exits_nonzero_when_a_scenario_fails(monkeypatch):
     assert scorer.main(["--split", "dev", "--no-fail"]) == 0
 
 
-def test_hidden_split_with_no_scenarios_is_an_error():
-    assert scorer.main(["--split", "hidden"]) == 1
+def test_hidden_split_with_no_scenarios_is_an_error(tmp_path):
+    empty_scorer = scorer.BenchmarkScorer(REPO / "data", tmp_path)
+    report = empty_scorer.run_all("hidden")
+    assert report["total"] == 0
 
 
 # Each reintroduced bug must be caught by the scenarios written for it.
@@ -191,3 +193,63 @@ def test_catches_retention_treated_as_a_deadline(monkeypatch):
 
     monkeypatch.setattr(engine_module.IncidentClockEngine, "_compute_deadline", buggy)
     assert "cert-in-retention-is-not-a-deadline" in _failed(_run())
+
+
+def test_catches_dpdp_premature_enforcement(monkeypatch):
+    """If DPDP is mistakenly treated as in-force in 2026, the 2026 trap scenario must catch it."""
+    original = engine_module.IncidentClockEngine._not_in_force_reason
+
+    def buggy(obs, as_of):
+        if "dpdp" in obs.get("id", ""):
+            return None
+        return original(obs, as_of)
+
+    monkeypatch.setattr(
+        engine_module.IncidentClockEngine, "_not_in_force_reason", staticmethod(buggy)
+    )
+    assert "dpdp-not-yet-in-force-trap-2026" in _failed(_run())
+
+
+def test_catches_rbi_base_layer_leak(monkeypatch):
+    """If RBI NBFC 6h reporting leaks into Base Layer NBFCs, the base-layer trap must catch it."""
+    original = engine_module.IncidentClockEngine._matches_entity_class
+
+    def buggy(self, profile_class, target_classes):
+        if profile_class == "nbfc.base_layer" and "nbfc.middle_layer" in target_classes:
+            return True
+        return original(self, profile_class, target_classes)
+
+    monkeypatch.setattr(engine_module.IncidentClockEngine, "_matches_entity_class", buggy)
+    assert "rbi-nbfc-base-layer-trap" in _failed(_run())
+
+
+def test_catches_sebi_wrong_entity_leak(monkeypatch):
+    """If SEBI CSCRF leaks into non-SEBI entities, the wrong-entity trap must catch it."""
+    original = engine_module.IncidentClockEngine._matches_entity_class
+
+    def buggy(self, profile_class, target_classes):
+        if profile_class in ("bank", "bank.commercial") and any(
+            "sebi." in c for c in target_classes
+        ):
+            return True
+        return original(self, profile_class, target_classes)
+
+    monkeypatch.setattr(engine_module.IncidentClockEngine, "_matches_entity_class", buggy)
+    assert "sebi-wrong-entity-bank-trap" in _failed(_run())
+
+
+def test_catches_dpdp_awareness_anchor_swap(monkeypatch):
+    """If DPDP 72h rule uses occurrence instead of awareness, the anchor scenario must catch it."""
+    original = engine_module.IncidentClockEngine._compute_deadline
+
+    def buggy(self, obs, profile, now, deadlines, unknowns):
+        if obs["id"] == "meity.dpdp-rules.2025.rule7-2-board-detailed":
+            spec = obs["normalized"]["deadline"]
+            obs = {
+                **obs,
+                "normalized": {**obs["normalized"], "deadline": {**spec, "anchor": "occurrence"}},
+            }
+        return original(self, obs, profile, now, deadlines, unknowns)
+
+    monkeypatch.setattr(engine_module.IncidentClockEngine, "_compute_deadline", buggy)
+    assert "dpdp-anchor-awareness-vs-occurrence" in _failed(_run())

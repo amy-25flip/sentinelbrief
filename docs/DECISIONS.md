@@ -105,3 +105,28 @@ Decisions below were made during Review 1 (the reviewer agent, 2026-09-24). See 
 **Reason:** A scenario label is a contract. `law_snapshot_date` pins the dataset version and the evaluation time; the law that applies is the law as of the *incident* date (principle 5). Forcing the snapshot date as `as_of` (proposed in Review 2) applies today's law to old incidents: a 2021 incident evaluated with a 2026 snapshot gets the 2022 Directions. The pre-effective-date scenario now uses today's snapshot with a 2021 incident, and a mutation test proves that ignoring the incident date is caught.
 
 **Alternative rejected:** Passing `law_snapshot_date` as `as_of` (Review 2): it hides exactly the as-of regression it was meant to catch.
+
+---
+
+## 2026-09-25: DPDP Rules 2025 commencement schedule and bitemporal validity
+
+**Decision:** DPDP Rule 7 (breach intimation and 72-hour reporting) has `validity.valid_from = "2027-05-13"` per Rule 1(2)(c) 18-month commencement from Gazette notification (13 Nov 2025). The engine's `_not_in_force_reason` checks whether `as_of < valid_from`. Incidents on or after 13 May 2027 evaluate Rule 7 as in force; incidents before that date evaluate it as `not_yet_valid_at_incident_date` (or `not_yet_in_force`).
+
+**Reason:** Enables compliance planning and simulation of future obligations without falsely presenting them as currently enforceable for incidents today.
+
+**Alternative rejected:** Static `status == "not_yet_in_force"` check that ignores `as_of` (breaks temporal evaluation).
+
+## 2026-09-25: Immediate / "Without delay" deadline modeling
+
+**Decision:** Obligations specifying "without delay" (DPDP Rule 7(1) and 7(3)) are modelled with `deadline.kind = "relative"`, `duration_iso8601 = null`, and `anchor = "awareness"`. The engine does not invent a fictional number of hours; ongoing and unbounded duties are reported without an artificial clock.
+
+**Reason:** Regulatory text specifies no hour count; inventing a 24h or 6h default would misstate the law.
+
+**Alternative rejected:** Assigning an arbitrary duration (e.g. PT24H or PT0S).
+
+## 2026-09-25: Multi-regulator parallel clocks and distinct anchors
+
+**Decision:** CERT-In ("noticing" / "brought_to_notice"), RBI DAKSH ("detection" / "occurrence"), and DPDP ("awareness") maintain independent anchors and timelines. When multiple alternative anchors are specified in an obligation, the earliest provided timestamp triggers that obligation's clock.
+
+**Reason:** Conservative legal interpretation: prevents an entity from delaying compliance by picking a later trigger when the primary text joins them with "or".
+

@@ -136,7 +136,8 @@ def test_free_text_can_never_conclude_not_reportable(incident_type):
     assert result.annexure_i.decision is None
     assert any("Annexure I" in u.question for u in result.unknowns)
     assert not any(
-        n["obligation_id"].endswith("incident-reporting-6h") for n in result.not_applicable
+        n["obligation_id"] == "cert-in.directions-70b.2022.incident-reporting-6h"
+        for n in result.not_applicable
     )
 
 
@@ -160,7 +161,10 @@ def test_explicit_attestation_makes_annexure_not_applicable():
     )
     result = engine.evaluate(profile, now=NOW)
     assert not result.deadlines
-    assert any(n["obligation_id"].endswith("incident-reporting-6h") for n in result.not_applicable)
+    assert any(
+        n["obligation_id"] == "cert-in.directions-70b.2022.incident-reporting-6h"
+        for n in result.not_applicable
+    )
 
 
 def test_conflicting_attestation_is_rejected():

@@ -1,0 +1,20 @@
+{
+  "instrument_id": "sebi.cscrf.2024",
+  "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1724151475510.pdf",
+  "source_sha256": "505ae070c100fa15b929a0bb7bd1647823e4f6c4b175db2f50113cba28ca05e0",
+  "retrieved_at": "2026-09-25T07:34:16Z",
+  "content_type": "application/pdf",
+  "size_bytes": 1771,
+  "pages": 1,
+  "page_offsets": [
+    {
+      "page": 1,
+      "char_start": 0,
+      "char_end": 1212
+    }
+  ],
+  "text_sha256": "0682d661a519debff1cb6433f567c4a7338155866f4bebbc4790b4d304d1be32",
+  "text_chars": 1212,
+  "extractor": "pymupdf",
+  "extractor_version": "1.28.2"
+}

@@ -1,0 +1,25 @@
+MINISTRY OF ELECTRONICS AND INFORMATION TECHNOLOGY
+NOTIFICATION
+New Delhi, the 13th November, 2025
+G.S.R. 842(E).-In exercise of the powers conferred by section 40 of the Digital Personal Data Protection Act,
+2023 (22 of 2023), the Central Government hereby makes the following rules, namely:-
+1. Short title and commencement.-(1) These rules may be called the Digital Personal Data Protection Rules,
+2025.
+(2) They shall come into force in the following manner, namely:-
+(a) rules 1, 2, 17, 18, 19, 20 and 21 shall come into force on the date of their publication in the Official Gazette;
+(b) rule 4 shall come into force on the expiry of one year from the date of their publication in the Official Gazette;
+and
+(c) rules 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 22 and 23 shall come into force on the expiry of eighteen
+months from the date of their publication in the Official Gazette.
+2. Definitions.-In these rules, unless the context otherwise requires,-
+(a) 'Act' means the Digital Personal Data Protection Act, 2023;
+(b) 'Board' means the Data Protection Board of India established under section 18 of the Act.
+7. Intimation of personal data breach.-
+(1) Where a Data Fiduciary becomes aware of a personal data breach, it shall intimate the Board without delay,
+providing an initial description of the breach, including the nature, extent, and timing of the incident.
+(2) The Data Fiduciary shall submit a detailed report to the Board within 72 hours of becoming aware of the
+personal data breach, containing the root cause analysis, remedial actions taken or proposed to be taken, and
+the status of intimation to data principals.
+(3) The Data Fiduciary shall also intimate each affected Data Principal without delay regarding the personal
+data breach, describing the nature of the breach, likely consequences, and safety measures recommended to
+be taken.

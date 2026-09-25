@@ -1,0 +1,22 @@
+{
+  "$schema": "../schema/instrument.schema.json",
+  "id": "sebi.cscrf.2024",
+  "issuer": "SEBI",
+  "title": "Cybersecurity and Cyber Resilience Framework (CSCRF) for SEBI Regulated Entities (REs)",
+  "reference_no": "SEBI/HO/ITD-1/ITD_CSC_EXT/P/CIR/2024/113",
+  "issued_on": "2024-08-20",
+  "in_force_from": "2025-01-01",
+  "in_force_until": null,
+  "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1724151475510.pdf",
+  "source_sha256": "505ae070c100fa15b929a0bb7bd1647823e4f6c4b175db2f50113cba28ca05e0",
+  "retrieved_at": "2026-09-25T07:34:16Z",
+  "language": "en",
+  "status": "in_force",
+  "supersedes": [],
+  "superseded_by": [],
+  "document_type": "circular",
+  "provenance": {
+    "parser_version": "pymupdf-1.28.2",
+    "extraction_date": "2026-09-25T07:34:16Z"
+  }
+}

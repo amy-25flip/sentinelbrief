@@ -1,0 +1,22 @@
+{
+  "$schema": "../schema/instrument.schema.json",
+  "id": "rbi.nbfc-cyber.2026",
+  "issuer": "RBI",
+  "title": "Reserve Bank of India (Non-Banking Financial Companies – Cybersecurity, Technology: Risk, Resilience and Assurance Framework) Directions, 2026",
+  "reference_no": "RBI/DoS/2026-27/461",
+  "issued_on": "2026-07-31",
+  "in_force_from": "2026-07-31",
+  "in_force_until": null,
+  "url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=12850",
+  "source_sha256": "5a25828a3bb1d9753e30d59c812c97ac0ed13a9b4baaf98e7daf6943a9867532",
+  "retrieved_at": "2026-09-25T07:34:16Z",
+  "language": "en",
+  "status": "in_force",
+  "supersedes": [],
+  "superseded_by": [],
+  "document_type": "direction",
+  "provenance": {
+    "parser_version": "pymupdf-1.28.2",
+    "extraction_date": "2026-09-25T07:34:16Z"
+  }
+}
