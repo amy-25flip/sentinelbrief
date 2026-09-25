@@ -1,0 +1,61 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "dpdp-no-personal-data",
+  "description": "Adversarial condition test: In June 2027, a Data Fiduciary suffers a server failure without any personal data breach (personal_data_involved = false). DPDP Rule 7 breach notification duties do not apply.",
+  "entity_profile": {
+    "entity_class": "dpdp.data_fiduciary",
+    "is_listed": false,
+    "holds_personal_data": true,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Internal batch processing cluster crashed on 2027-06-25 at 16:00 IST. No personal data affected.",
+    "incident_types": [
+      "Attacks on servers such as Database, Mail and DNS"
+    ],
+    "annexure_i_items": [
+      "annexure_i.iv"
+    ],
+    "when_detected": "2027-06-25T16:00:00+05:30",
+    "when_noticed": "2027-06-25T16:00:00+05:30",
+    "when_occurred": "2027-06-25T16:00:00+05:30",
+    "when_aware": "2027-06-25T16:00:00+05:30",
+    "personal_data_involved": false,
+    "systems_affected": [
+      "Batch Cluster"
+    ],
+    "is_annexure_i_type": null
+  },
+  "law_snapshot_date": "2027-06-25",
+  "expected": {
+    "law_as_of": "2027-06-25",
+    "regulators": [
+      "CERT-In"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2027-06-25T16:30:00Z"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": []
+  },
+  "adversarial_flags": [
+    "wrong_entity_class_trap"
+  ],
+  "split": "dev",
+  "labels_source": "DPDP Rules 2025 Gazette GSR 846(E) page 26 Rule 7(1) (requires personal data breach) and CERT-In Directions 70B"
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "sebi-qualified-re-ddos",
+  "description": "A Qualified Regulated Entity experiences a Distributed Denial of Service (DDoS) attack on its public trading API. Reporting to CERT-In (6h) and SEBI (6h) applies.",
+  "entity_profile": {
+    "entity_class": "sebi.qualified_re",
+    "is_listed": true,
+    "holds_personal_data": true,
+    "uses_protected_systems": true,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "DDoS flood targeting order placement endpoint on 2025-06-10 at 08:00 IST.",
+    "incident_types": [
+      "Denial of Service (DoS) and Distributed Denial of Service (DDoS) attacks"
+    ],
+    "annexure_i_items": [
+      "annexure_i.i"
+    ],
+    "when_detected": "2025-06-10T08:00:00+05:30",
+    "when_noticed": "2025-06-10T08:00:00+05:30",
+    "when_occurred": "2025-06-10T08:00:00+05:30",
+    "when_aware": "2025-06-10T08:00:00+05:30",
+    "personal_data_involved": false,
+    "systems_affected": [
+      "Order API Gateway"
+    ],
+    "is_annexure_i_type": null
+  },
+  "law_snapshot_date": "2025-06-10",
+  "expected": {
+    "law_as_of": "2025-06-10",
+    "regulators": [
+      "CERT-In",
+      "SEBI"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2025-06-10T08:30:00Z"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.incident-reporting-6h",
+        "regulator": "SEBI",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2025-06-10T08:30:00Z"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.incident-reporting-6h",
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "RS.CO.S1 / Annexure-O Section B.1"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": []
+  },
+  "adversarial_flags": [],
+  "split": "dev",
+  "labels_source": "SEBI CSCRF Circular 2024-08-20 page 123 (RS.CO.S1) & page 200 (Annexure-O B.1)"
+}

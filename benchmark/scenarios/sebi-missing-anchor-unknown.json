@@ -1,0 +1,69 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "sebi-missing-anchor-unknown",
+  "description": "Adversarial missing fact test: A Self-certification RE discovers a cyber incident on 2025-09-01, but does not record when it was first noticed or detected. The engine must emit an Unknown asking for the noticing/detection timestamp.",
+  "entity_profile": {
+    "entity_class": "sebi.selfcert_re",
+    "is_listed": false,
+    "holds_personal_data": false,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Malicious script found on staff terminal.",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "annexure_i_items": [
+      "annexure_i.v"
+    ],
+    "when_detected": null,
+    "when_noticed": null,
+    "when_brought_to_notice": null,
+    "when_occurred": null,
+    "when_aware": null,
+    "personal_data_involved": false,
+    "systems_affected": [
+      "Staff Terminal"
+    ],
+    "is_annexure_i_type": null
+  },
+  "law_snapshot_date": "2025-09-01",
+  "expected": {
+    "law_as_of": "2025-09-01",
+    "regulators": [
+      "CERT-In",
+      "SEBI"
+    ],
+    "deadlines": [],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.incident-reporting-6h",
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "RS.CO.S1 / Annexure-O Section B.1"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": [
+      {
+        "question": "When was the incident first noticed or brought to notice?",
+        "affects": "cert-in.directions-70b.2022.incident-reporting-6h"
+      },
+      {
+        "question": "When was the incident first noticed, detected, or brought to notice?",
+        "affects": "sebi.cscrf.2024.incident-reporting-6h"
+      }
+    ]
+  },
+  "adversarial_flags": [
+    "missing_fact_trap"
+  ],
+  "split": "dev",
+  "labels_source": "SEBI CSCRF Circular 2024-08-20 page 123 / 200 and CERT-In Directions 70B"
+}

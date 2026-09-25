@@ -1,0 +1,82 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "dpdp-commencement-after-may-2027",
+  "description": "In June 2027 (after DPDP Rules 2025 Rule 7 commencement on 13 May 2027), a Data Fiduciary becomes aware of a personal data breach. Dual reporting to CERT-In (6h) and DPDP (72h detailed report + without delay intimation) applies.",
+  "entity_profile": {
+    "entity_class": "dpdp.data_fiduciary",
+    "is_listed": false,
+    "holds_personal_data": true,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Customer database breach; entity became aware on 2027-06-01 at 10:00 IST.",
+    "incident_types": [
+      "Data breach"
+    ],
+    "annexure_i_items": [
+      "annexure_i.xi"
+    ],
+    "when_detected": "2027-06-01T10:00:00+05:30",
+    "when_noticed": "2027-06-01T10:00:00+05:30",
+    "when_occurred": "2027-06-01T10:00:00+05:30",
+    "when_aware": "2027-06-01T10:00:00+05:30",
+    "personal_data_involved": true,
+    "systems_affected": [
+      "Customer DB"
+    ],
+    "is_annexure_i_type": null
+  },
+  "law_snapshot_date": "2027-06-01",
+  "expected": {
+    "law_as_of": "2027-06-01",
+    "regulators": [
+      "CERT-In",
+      "MeitY"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2027-06-01T10:30:00Z"
+      },
+      {
+        "obligation_id": "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
+        "regulator": "MeitY",
+        "anchor": "awareness",
+        "deadline_iso8601": "PT72H",
+        "deadline_timestamp": "2027-06-04T04:30:00Z"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      },
+      {
+        "obligation_id": "meity.dpdp-rules.2025.rule7-1-principal-intimation",
+        "instrument_id": "meity.dpdp-rules.2025",
+        "paragraph_ref": "Rule 7(1)"
+      },
+      {
+        "obligation_id": "meity.dpdp-rules.2025.rule7-2-a-board-initial",
+        "instrument_id": "meity.dpdp-rules.2025",
+        "paragraph_ref": "Rule 7(2)(a)"
+      },
+      {
+        "obligation_id": "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
+        "instrument_id": "meity.dpdp-rules.2025",
+        "paragraph_ref": "Rule 7(2)(b)"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": []
+  },
+  "adversarial_flags": [],
+  "split": "dev",
+  "labels_source": "DPDP Rules 2025 Gazette GSR 846(E) page 26 Rule 7 and CERT-In Directions 70B"
+}

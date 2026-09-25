@@ -1,0 +1,74 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "dpdp-awareness-later-than-occurrence",
+  "description": "Adversarial anchor test: A breach occurred on 2027-06-01 but the Data Fiduciary only internally noticed and became aware of the breach on 2027-06-03. DPDP 72-hour board reporting starts strictly from awareness.",
+  "entity_profile": {
+    "entity_class": "dpdp.data_fiduciary",
+    "is_listed": false,
+    "holds_personal_data": true,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Unauthorized exfiltration occurred 2 days before security audit discovery.",
+    "incident_types": [
+      "Data breach"
+    ],
+    "annexure_i_items": [
+      "annexure_i.xi"
+    ],
+    "when_detected": "2027-06-03T09:00:00+05:30",
+    "when_noticed": "2027-06-03T09:00:00+05:30",
+    "when_occurred": "2027-06-01T09:00:00+05:30",
+    "when_aware": "2027-06-03T09:00:00+05:30",
+    "personal_data_involved": true,
+    "systems_affected": [
+      "DB"
+    ],
+    "is_annexure_i_type": null
+  },
+  "law_snapshot_date": "2027-06-03",
+  "expected": {
+    "law_as_of": "2027-06-01",
+    "regulators": [
+      "CERT-In",
+      "MeitY"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2027-06-03T09:30:00Z"
+      },
+      {
+        "obligation_id": "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
+        "regulator": "MeitY",
+        "anchor": "awareness",
+        "deadline_iso8601": "PT72H",
+        "deadline_timestamp": "2027-06-06T03:30:00Z"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      },
+      {
+        "obligation_id": "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
+        "instrument_id": "meity.dpdp-rules.2025",
+        "paragraph_ref": "Rule 7(2)(b)"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": []
+  },
+  "adversarial_flags": [
+    "ambiguous_anchor"
+  ],
+  "split": "dev",
+  "labels_source": "DPDP Rules 2025 Gazette GSR 846(E) page 26 Rule 7(2)(b) awareness anchor clause"
+}

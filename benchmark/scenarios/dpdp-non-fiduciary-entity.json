@@ -1,0 +1,74 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "dpdp-non-fiduciary-entity",
+  "description": "Adversarial entity scope test: A pure body corporate that is not a Data Fiduciary suffers a cyber incident in June 2027. DPDP Rule 7 fiduciary obligations must be marked entity_class_mismatch.",
+  "entity_profile": {
+    "entity_class": "body_corporate",
+    "is_listed": false,
+    "holds_personal_data": false,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Ransomware encryption on internal operational server on 2027-06-01 at 10:00 IST.",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "annexure_i_items": [
+      "annexure_i.v"
+    ],
+    "when_detected": "2027-06-01T10:00:00+05:30",
+    "when_noticed": "2027-06-01T10:00:00+05:30",
+    "when_occurred": "2027-06-01T10:00:00+05:30",
+    "when_aware": "2027-06-01T10:00:00+05:30",
+    "personal_data_involved": false,
+    "systems_affected": [
+      "Ops Server"
+    ],
+    "is_annexure_i_type": null
+  },
+  "law_snapshot_date": "2027-06-01",
+  "expected": {
+    "law_as_of": "2027-06-01",
+    "regulators": [
+      "CERT-In"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2027-06-01T10:30:00Z"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [
+      {
+        "obligation_id": "meity.dpdp-rules.2025.rule7-1-principal-intimation",
+        "reason": "entity_class_mismatch"
+      },
+      {
+        "obligation_id": "meity.dpdp-rules.2025.rule7-2-a-board-initial",
+        "reason": "entity_class_mismatch"
+      },
+      {
+        "obligation_id": "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
+        "reason": "entity_class_mismatch"
+      }
+    ],
+    "unknowns": []
+  },
+  "adversarial_flags": [
+    "wrong_entity_class_trap"
+  ],
+  "split": "dev",
+  "labels_source": "DPDP Rules 2025 Gazette GSR 846(E) page 26 Rule 7(1) & 7(2) entity scoping"
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "dpdp-significant-data-fiduciary",
+  "description": "A Significant Data Fiduciary (SDF) designated under DPDP Act Section 10 suffers a large-scale personal data breach in June 2027. DPDP Rule 7 detailed reporting duty applies.",
+  "entity_profile": {
+    "entity_class": "dpdp.significant_data_fiduciary",
+    "is_listed": true,
+    "holds_personal_data": true,
+    "uses_protected_systems": true,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Large-scale user data vault breach discovered on 2027-06-15 at 14:00 IST.",
+    "incident_types": [
+      "Data breach"
+    ],
+    "annexure_i_items": [
+      "annexure_i.xi"
+    ],
+    "when_detected": "2027-06-15T14:00:00+05:30",
+    "when_noticed": "2027-06-15T14:00:00+05:30",
+    "when_occurred": "2027-06-15T14:00:00+05:30",
+    "when_aware": "2027-06-15T14:00:00+05:30",
+    "personal_data_involved": true,
+    "systems_affected": [
+      "User Data Vault"
+    ],
+    "is_annexure_i_type": null
+  },
+  "law_snapshot_date": "2027-06-15",
+  "expected": {
+    "law_as_of": "2027-06-15",
+    "regulators": [
+      "CERT-In",
+      "MeitY"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2027-06-15T14:30:00Z"
+      },
+      {
+        "obligation_id": "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
+        "regulator": "MeitY",
+        "anchor": "awareness",
+        "deadline_iso8601": "PT72H",
+        "deadline_timestamp": "2027-06-18T08:30:00Z"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      },
+      {
+        "obligation_id": "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
+        "instrument_id": "meity.dpdp-rules.2025",
+        "paragraph_ref": "Rule 7(2)(b)"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": []
+  },
+  "adversarial_flags": [],
+  "split": "dev",
+  "labels_source": "DPDP Rules 2025 Gazette GSR 846(E) page 26 Rule 7(2)(b) and CERT-In Directions 70B"
+}
