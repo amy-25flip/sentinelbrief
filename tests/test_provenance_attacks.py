@@ -45,6 +45,18 @@ PINNED_SOURCES: dict[str, tuple[str, bool]] = {
         "bd9ddb68bb49b9a92771ff01ed3138e01f0962b383e9ff643008b729290fc85d",
         False,
     ),
+    "RBI_UCB_Cybersecurity_Directions_2026.pdf": (
+        "c0225a9b1eed70d2900dd81eaeab7ec5be5e9574e64e84edbb7a33f434b593f9",
+        True,
+    ),
+    "RBI_AIFI_Cybersecurity_Directions_2026.pdf": (
+        "9658157f623bc8e8d60cec88948c4f2ce3146570c54f1094cf04bdd44c0e468a",
+        True,
+    ),
+    "RBI_PaymentsBanks_Cybersecurity_Directions_2026.pdf": (
+        "1d66101517708f620176f214abd869af24a1190ef1d796f943ca53c6fb17e4c5",
+        True,
+    ),
     "RBI_NBFC_Cybersecurity_Directions_2026.pdf": (
         "5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073",
         True,

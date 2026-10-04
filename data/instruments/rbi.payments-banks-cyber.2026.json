@@ -1,0 +1,22 @@
+{
+  "id": "rbi.payments-banks-cyber.2026",
+  "issuer": "RBI",
+  "title": "Reserve Bank of India (Payments Banks - Cybersecurity, Technology: Risk, Resilience and Assurance Framework) Directions, 2026",
+  "reference_no": "RBI/DoS/2026-27/428",
+  "issued_on": "2026-07-31",
+  "in_force_from": "2026-07-31",
+  "url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13625",
+  "source_sha256": "1d66101517708f620176f214abd869af24a1190ef1d796f943ca53c6fb17e4c5",
+  "retrieved_at": "2026-10-04T00:00:00Z",
+  "language": "en",
+  "status": "in_force",
+  "supersedes": [],
+  "superseded_by": [],
+  "document_type": "direction",
+  "description": "Paragraph 2 states: \"These Directions shall come into force with immediate effect.\" The stored PDF is the version 'Updated as on October 01, 2026'.",
+  "provenance": {
+    "parser_version": "pymupdf-1.28.2",
+    "extraction_date": "2026-10-04T00:00:00Z"
+  },
+  "acquisition_note": "Raw evidence only so far; no obligations are modelled from this instrument. The exact PDF URL is in data/raw/manifest.json. Second reference: DoS.CO.CSITEG.22/31.01.015/2026-27."
+}

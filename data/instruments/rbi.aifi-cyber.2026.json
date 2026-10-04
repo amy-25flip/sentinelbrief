@@ -1,0 +1,22 @@
+{
+  "id": "rbi.aifi-cyber.2026",
+  "issuer": "RBI",
+  "title": "Reserve Bank of India (All India Financial Institutions – Cybersecurity, Technology: Risk, Resilience and Assurance Framework) Directions, 2026",
+  "reference_no": "RBI/DoS/2026-27/456",
+  "issued_on": "2026-07-31",
+  "in_force_from": "2026-07-31",
+  "url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13597",
+  "source_sha256": "9658157f623bc8e8d60cec88948c4f2ce3146570c54f1094cf04bdd44c0e468a",
+  "retrieved_at": "2026-10-04T00:00:00Z",
+  "language": "en",
+  "status": "in_force",
+  "supersedes": [],
+  "superseded_by": [],
+  "document_type": "direction",
+  "description": "Paragraph 2 states: \"These Directions shall come into force with immediate effect.\"",
+  "provenance": {
+    "parser_version": "pymupdf-1.28.2",
+    "extraction_date": "2026-10-04T00:00:00Z"
+  },
+  "acquisition_note": "Raw evidence only so far; no obligations are modelled from this instrument. The exact PDF URL is in data/raw/manifest.json. Second reference: DoS.CO.CSITEG.50/31.01.015/2026-27."
+}

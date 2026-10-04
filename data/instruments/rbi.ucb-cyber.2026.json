@@ -1,0 +1,22 @@
+{
+  "id": "rbi.ucb-cyber.2026",
+  "issuer": "RBI",
+  "title": "Reserve Bank of India (Urban Co-operative Banks – Cybersecurity, Technology: Risk, Resilience and Assurance Framework) Directions, 2026",
+  "reference_no": "RBI/DoS/2026-27/437",
+  "issued_on": "2026-07-31",
+  "in_force_from": "2026-07-31",
+  "url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13616",
+  "source_sha256": "c0225a9b1eed70d2900dd81eaeab7ec5be5e9574e64e84edbb7a33f434b593f9",
+  "retrieved_at": "2026-10-04T00:00:00Z",
+  "language": "en",
+  "status": "in_force",
+  "supersedes": [],
+  "superseded_by": [],
+  "document_type": "direction",
+  "description": "Paragraph 2 states: \"These Directions shall come into force with immediate effect.\"",
+  "provenance": {
+    "parser_version": "pymupdf-1.28.2",
+    "extraction_date": "2026-10-04T00:00:00Z"
+  },
+  "acquisition_note": "Raw evidence only so far; no obligations are modelled from this instrument. The exact PDF URL is in data/raw/manifest.json. Second reference: DoS.CO.CSITEG.31/31.01.015/2026-27."
+}

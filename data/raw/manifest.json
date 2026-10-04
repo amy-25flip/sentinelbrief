@@ -84,6 +84,54 @@
       "acquired_by": "project owner (a human) downloaded this PDF from the official RBI site in a browser, solving the site's CAPTCHA, on 2026-09-25; the reviewer then verified: 47 pages, producer Adobe PDF Library 26.1.11, ends with %%EOF, opens without repair, text shows reference RBI/DoS/2026-27/461 dated July 31, 2026 and paragraphs 28 and 141 'within six hours of detection'",
       "acquisition_note": "DoS.CO.CSITEG.55/31.01.015/2026-27 is the second reference number shown in the PDF. rbidocs.rbi.org.in serves a CAPTCHA to automated clients, so scripts/reverify_sources.py cannot re-download this file. It needs a documented reverify exemption; a human can re-check by downloading the URL and comparing sha256. retrieved_at is date-precision placeholder supplied by reviewer, not a verified exact retrieval timestamp.",
       "reverify_exemption": "the official server serves a CAPTCHA to automated clients; a human re-checks by downloading the URL and comparing sha256"
+    },
+    {
+      "url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/437MDA9AD9C6F79B74CC8ABD98AAB32B1CD7D.PDF",
+      "filename": "RBI_UCB_Cybersecurity_Directions_2026.pdf",
+      "sha256": "c0225a9b1eed70d2900dd81eaeab7ec5be5e9574e64e84edbb7a33f434b593f9",
+      "retrieved_at": "2026-10-04T00:00:00Z",
+      "acquired_at": "2026-10-04T00:00:00Z",
+      "etag": null,
+      "last_modified": null,
+      "content_type": "application/pdf",
+      "size_bytes": 533982,
+      "parser_version": "pymupdf-1.28.2",
+      "status": "current",
+      "acquired_by": "project owner (a human) downloaded this PDF from the official RBI site in a browser on 2026-10-04; the reviewer then verified: 49 pages, producer Adobe PDF Library 26.1.11, ends with %%EOF, opens without repair, first page shows reference RBI/DoS/2026-27/437 dated July 31, 2026; 25 of 25 sampled paragraphs of the PDF text occur in the official HTML page https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13616, which links to this exact file name",
+      "acquisition_note": "DoS.CO.CSITEG.31/31.01.015/2026-27 is the second reference number shown in the PDF. rbidocs.rbi.org.in serves a CAPTCHA to automated clients, so scripts/reverify_sources.py cannot re-download this file. retrieved_at is date precision, not an exact retrieval timestamp.",
+      "reverify_exemption": "the official server serves a CAPTCHA to automated clients; a human re-checks by downloading the URL and comparing sha256"
+    },
+    {
+      "url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/456MDC4C94C45185348009970C11F344F27C4.PDF",
+      "filename": "RBI_AIFI_Cybersecurity_Directions_2026.pdf",
+      "sha256": "9658157f623bc8e8d60cec88948c4f2ce3146570c54f1094cf04bdd44c0e468a",
+      "retrieved_at": "2026-10-04T00:00:00Z",
+      "acquired_at": "2026-10-04T00:00:00Z",
+      "etag": null,
+      "last_modified": null,
+      "content_type": "application/pdf",
+      "size_bytes": 528509,
+      "parser_version": "pymupdf-1.28.2",
+      "status": "current",
+      "acquired_by": "project owner (a human) downloaded this PDF from the official RBI site in a browser on 2026-10-04; the reviewer then verified: 50 pages, producer Adobe PDF Library 26.1.11, ends with %%EOF, opens without repair, first page shows reference RBI/DoS/2026-27/456 dated July 31, 2026; 24 of 25 sampled paragraphs of the PDF text occur in the official HTML page https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13597, which links to this exact file name",
+      "acquisition_note": "DoS.CO.CSITEG.50/31.01.015/2026-27 is the second reference number shown in the PDF. rbidocs.rbi.org.in serves a CAPTCHA to automated clients, so scripts/reverify_sources.py cannot re-download this file. retrieved_at is date precision, not an exact retrieval timestamp.",
+      "reverify_exemption": "the official server serves a CAPTCHA to automated clients; a human re-checks by downloading the URL and comparing sha256"
+    },
+    {
+      "url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/428MD47757204F5E54CE99FB1E19E8C458655.PDF",
+      "filename": "RBI_PaymentsBanks_Cybersecurity_Directions_2026.pdf",
+      "sha256": "1d66101517708f620176f214abd869af24a1190ef1d796f943ca53c6fb17e4c5",
+      "retrieved_at": "2026-10-04T00:00:00Z",
+      "acquired_at": "2026-10-04T00:00:00Z",
+      "etag": null,
+      "last_modified": null,
+      "content_type": "application/pdf",
+      "size_bytes": 490320,
+      "parser_version": "pymupdf-1.28.2",
+      "status": "current",
+      "acquired_by": "project owner (a human) downloaded this PDF from the official RBI site in a browser on 2026-10-04; the reviewer then verified: 54 pages, producer Adobe PDF Library 26.2.171, ends with %%EOF, opens without repair, first page shows reference RBI/DoS/2026-27/428 dated July 31, 2026; 25 of 25 sampled paragraphs of the PDF text occur in the official HTML page https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13625, which links to this exact file name",
+      "acquisition_note": "DoS.CO.CSITEG.22/31.01.015/2026-27 is the second reference number shown in the PDF. The first page says 'Updated as on October 01, 2026', so this is an amended version, not the text as issued on 31 July 2026. rbidocs.rbi.org.in serves a CAPTCHA to automated clients, so scripts/reverify_sources.py cannot re-download this file. retrieved_at is date precision, not an exact retrieval timestamp.",
+      "reverify_exemption": "the official server serves a CAPTCHA to automated clients; a human re-checks by downloading the URL and comparing sha256"
     }
   ]
 }
