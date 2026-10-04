@@ -14,9 +14,10 @@
     "regulator": "RBI",
     "label": "Non-Banking Financial Company",
     "parent": "body_corporate",
-    "description": "Non-Banking Financial Companies registered with Reserve Bank of India.",
+    "description": "Paragraph 3(1): ‘all Non-Banking Financial Companies ... registered with RBI ... unless specified otherwise’.",
+    "needs_refinement": true,
     "version": "1.0",
-    "valid_from": "2017-06-08",
+    "valid_from": "2026-07-31",
     "valid_to": null
   },
   {
@@ -24,9 +25,30 @@
     "regulator": "RBI",
     "label": "NBFC Base Layer",
     "parent": "nbfc",
-    "description": "NBFCs in the Base Layer as per RBI Scale Based Regulation (SBR) framework.",
+    "description": "Paragraph 3 uses ‘NBFCs-Base Layer (NBFCs-BL)’ and divides it by asset size.",
+    "needs_refinement": true,
     "version": "1.0",
-    "valid_from": "2022-10-01",
+    "valid_from": "2026-07-31",
+    "valid_to": null
+  },
+  {
+    "id": "nbfc.bl_below_500cr",
+    "regulator": "RBI",
+    "label": "NBFC Base Layer below ₹500 crore",
+    "parent": "nbfc.base_layer",
+    "description": "Paragraph 3(2): ‘NBFCs-Base Layer (NBFCs-BL) with asset size below ₹500 crore’.",
+    "version": "1.0",
+    "valid_from": "2026-07-31",
+    "valid_to": null
+  },
+  {
+    "id": "nbfc.bl_500cr_and_above",
+    "regulator": "RBI",
+    "label": "NBFC Base Layer ₹500 crore and above",
+    "parent": "nbfc.base_layer",
+    "description": "Paragraph 3(3): ‘NBFCs-BL with asset size ₹500 crore and above’.",
+    "version": "1.0",
+    "valid_from": "2026-07-31",
     "valid_to": null
   },
   {
@@ -34,9 +56,9 @@
     "regulator": "RBI",
     "label": "NBFC Middle Layer",
     "parent": "nbfc",
-    "description": "NBFCs in the Middle Layer as per RBI Scale Based Regulation (SBR) framework.",
+    "description": "Paragraph 3(4): ‘NBFCs-Middle Layer (NBFCs-ML)’.",
     "version": "1.0",
-    "valid_from": "2022-10-01",
+    "valid_from": "2026-07-31",
     "valid_to": null
   },
   {
@@ -44,9 +66,9 @@
     "regulator": "RBI",
     "label": "NBFC Upper Layer",
     "parent": "nbfc",
-    "description": "NBFCs in the Upper Layer as per RBI Scale Based Regulation (SBR) framework.",
+    "description": "Paragraph 3(4): ‘NBFCs-Upper Layer (NBFCs-UL)’.",
     "version": "1.0",
-    "valid_from": "2022-10-01",
+    "valid_from": "2026-07-31",
     "valid_to": null
   },
   {
@@ -54,9 +76,29 @@
     "regulator": "RBI",
     "label": "NBFC Top Layer",
     "parent": "nbfc",
-    "description": "NBFCs in the Top Layer as per RBI Scale Based Regulation (SBR) framework.",
+    "description": "Paragraph 3(4): ‘NBFCs-Top Layer (NBFCs-TL)’.",
     "version": "1.0",
-    "valid_from": "2022-10-01",
+    "valid_from": "2026-07-31",
+    "valid_to": null
+  },
+  {
+    "id": "nbfc.cic",
+    "regulator": "RBI",
+    "label": "Core Investment Company",
+    "parent": "nbfc",
+    "description": "Paragraph 3(2) names ‘Core Investment Companies (CICs)’; paragraph 3(4) says Chapter V is ‘excluding CICs’.",
+    "version": "1.0",
+    "valid_from": "2026-07-31",
+    "valid_to": null
+  },
+  {
+    "id": "nbfc.hfc",
+    "regulator": "RBI",
+    "label": "Housing Finance Company",
+    "parent": "nbfc",
+    "description": "Paragraph 3(1) includes NBFCs registered under the ‘National Housing Bank (NHB) Act, 1987’.",
+    "version": "1.0",
+    "valid_from": "2026-07-31",
     "valid_to": null
   }
 ]

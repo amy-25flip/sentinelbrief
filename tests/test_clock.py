@@ -473,3 +473,183 @@ def test_awareness_unknown_wording_and_sebi_does_not_leak_to_bank():
         IncidentProfile(entity_class="bank", is_annexure_i_type=True, when_noticed=NOTICED)
     )
     assert "sebi.cscrf.2024.incident-reporting-6h" not in bank.applicable_obligations
+
+
+def test_rbi_generic_nbfc_requires_category_refinement_but_specific_class_does_not():
+    engine = IncidentClockEngine(DATA_DIR)
+    generic = engine.evaluate(
+        IncidentProfile(
+            entity_class="nbfc",
+            incident_types=["ransomware"],
+            when_detected=NOTICED,
+            when_noticed=NOTICED,
+        ),
+        now=NOW,
+    )
+    affected = {
+        item for u in generic.unknowns if "NBFC category" in u.question for item in u.affects
+    }
+    assert affected == {
+        "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h",
+        "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h",
+        "rbi.nbfc-cyber.2026.ch5-cert-in-notification",
+    }
+    assert affected <= set(generic.undetermined)
+    assert not affected.intersection(item["obligation_id"] for item in generic.not_applicable)
+
+    specific = engine.evaluate(
+        IncidentProfile(
+            entity_class="nbfc.middle_layer",
+            incident_types=["ransomware"],
+            when_detected=NOTICED,
+            when_noticed=NOTICED,
+        ),
+        now=NOW,
+    )
+    assert not any("NBFC category" in u.question for u in specific.unknowns)
+
+
+def test_rbi_refinement_is_not_asked_before_direction_commences():
+    engine = IncidentClockEngine(DATA_DIR)
+    old = datetime(2026, 7, 1, 10, tzinfo=IST)
+    result = engine.evaluate(
+        IncidentProfile(
+            entity_class="nbfc",
+            incident_types=["ransomware"],
+            when_detected=old,
+            when_noticed=old,
+        ),
+        now=old,
+    )
+    assert not any("NBFC category" in u.question for u in result.unknowns)
+
+
+def test_rbi_exclusion_wins_over_positive_middle_layer_match():
+    engine = IncidentClockEngine(DATA_DIR)
+    result = engine.evaluate(
+        IncidentProfile(
+            entity_classes=["nbfc.middle_layer", "nbfc.cic"],
+            incident_types=["ransomware"],
+            when_detected=NOTICED,
+            when_noticed=NOTICED,
+        ),
+        now=NOW,
+    )
+    rbi_not_applicable = {
+        item["obligation_id"]: item["reason"]
+        for item in result.not_applicable
+        if item["obligation_id"].startswith("rbi.nbfc-cyber.2026.ch5")
+    }
+    assert rbi_not_applicable
+    assert set(rbi_not_applicable.values()) == {"excluded_entity_class"}
+
+
+def test_rbi_hfc_duty_requires_hfc_and_a_chapter_v_layer():
+    engine = IncidentClockEngine(DATA_DIR)
+    hfc_only = engine.evaluate(
+        IncidentProfile(
+            entity_class="nbfc.hfc",
+            is_cyber_incident=True,
+            when_detected=NOTICED,
+        ),
+        now=NOW,
+    )
+    assert not any(
+        d.obligation_id.endswith("ch5-hfc-incident-reporting-nhb") for d in hfc_only.deadlines
+    )
+
+    layered_hfc = engine.evaluate(
+        IncidentProfile(
+            entity_classes=["nbfc.middle_layer", "nbfc.hfc"],
+            is_cyber_incident=True,
+            when_detected=NOTICED,
+        ),
+        now=NOW,
+    )
+    assert any(
+        d.obligation_id.endswith("ch5-hfc-incident-reporting-nhb") for d in layered_hfc.deadlines
+    )
+
+
+def test_rbi_cyber_incident_true_false_and_annexure_inference():
+    engine = IncidentClockEngine(DATA_DIR)
+    base = {"entity_class": "nbfc.middle_layer", "when_detected": NOTICED}
+
+    explicit_true = engine.evaluate(IncidentProfile(**base, is_cyber_incident=True), now=NOW)
+    assert any(
+        d.obligation_id.endswith("ch5-incident-reporting-6h") for d in explicit_true.deadlines
+    )
+
+    explicit_false = engine.evaluate(IncidentProfile(**base, is_cyber_incident=False), now=NOW)
+    reasons = {item["reason"] for item in explicit_false.not_applicable}
+    assert "condition_not_met: user attested not a cyber incident" in reasons
+
+    inferred = engine.evaluate(IncidentProfile(**base, annexure_i_items=["annexure_i.v"]), now=NOW)
+    assert any(d.obligation_id.endswith("ch5-incident-reporting-6h") for d in inferred.deadlines)
+
+
+def test_rbi_cyber_incident_unknown_quotes_definition_for_each_event_duty():
+    engine = IncidentClockEngine(DATA_DIR)
+    result = engine.evaluate(
+        IncidentProfile(
+            entity_class="nbfc.middle_layer",
+            incident_types=["hardware failure"],
+            when_detected=NOTICED,
+        ),
+        now=NOW,
+    )
+    rbi_questions = [u for u in result.unknowns if "cyber incident" in u.question.lower()]
+    assert {item for u in rbi_questions for item in u.affects} == {
+        "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h",
+        "rbi.nbfc-cyber.2026.ch5-cert-in-notification",
+    }
+    assert all(
+        "A cyber event that adversely affects the cybersecurity of an information asset"
+        in u.question
+        for u in rbi_questions
+    )
+
+
+@pytest.mark.parametrize(
+    "kwargs",
+    [
+        {"is_cyber_incident": False, "is_annexure_i_type": True},
+        {"is_cyber_incident": False, "annexure_i_items": ["annexure_i.v"]},
+    ],
+)
+def test_rbi_negative_cyber_attestation_conflict_is_rejected(kwargs):
+    with pytest.raises(ValueError, match="Conflicting"):
+        IncidentProfile(entity_class="nbfc.middle_layer", **kwargs)
+
+
+def test_rbi_detection_is_not_substituted_with_noticing():
+    engine = IncidentClockEngine(DATA_DIR)
+    result = engine.evaluate(
+        IncidentProfile(
+            entity_class="nbfc.middle_layer",
+            incident_types=["ransomware"],
+            when_noticed=NOTICED,
+        ),
+        now=NOW,
+    )
+    assert not any(d.obligation_id.endswith("ch5-incident-reporting-6h") for d in result.deadlines)
+    assert any(
+        u.affects == ["rbi.nbfc-cyber.2026.ch5-incident-reporting-6h"] and "detected" in u.question
+        for u in result.unknowns
+    )
+
+
+def test_rbi_kind_none_notification_is_applicable_but_not_time_critical():
+    engine = IncidentClockEngine(DATA_DIR)
+    result = engine.evaluate(
+        IncidentProfile(
+            entity_class="nbfc.middle_layer",
+            is_cyber_incident=True,
+            when_detected=NOTICED,
+        ),
+        now=NOW,
+    )
+    duty = "rbi.nbfc-cyber.2026.ch5-cert-in-notification"
+    assert duty in result.applicable_obligations
+    assert duty not in {item.obligation_id for item in result.deadlines}
+    assert duty not in {item.obligation_id for item in result.time_critical}

@@ -41,6 +41,7 @@
         "when_occurred": { "type": ["string", "null"], "format": "date-time" },
         "when_brought_to_notice": { "type": ["string", "null"], "format": "date-time" },
         "is_annexure_i_type": { "type": ["boolean", "null"], "description": "Explicit user attestation; only false can exclude Annexure I" },
+        "is_cyber_incident": { "type": ["boolean", "null"], "description": "Explicit user attestation against the RBI paragraph 4(7) definition" },
         "annexure_i_items": { "type": "array", "items": { "type": "string" } },
         "personal_data_involved": { "type": ["boolean", "null"] },
         "systems_affected": {

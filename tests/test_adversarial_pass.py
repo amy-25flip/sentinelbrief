@@ -103,8 +103,11 @@ def test_adv_08_future_incident_date_evaluation():
     )
     result = engine.evaluate(profile, now=future_time)
     assert result.law_as_of.year == 2035
-    assert [d.regulator for d in result.deadlines] == ["CERT-In"]
-    assert result.deadlines[0].deadline_ist == future_time + timedelta(hours=6)
+    assert {d.obligation_id for d in result.deadlines} == {
+        "cert-in.directions-70b.2022.incident-reporting-6h",
+        "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h",
+    }
+    assert all(d.deadline_ist == future_time + timedelta(hours=6) for d in result.deadlines)
 
 
 # Vector 9: Evidence timeline detects tampering
@@ -139,9 +142,11 @@ def test_adv_10_prompt_injection_in_incident_description():
     resp = client.post("/api/incident/clock", json=payload)
     assert resp.status_code == 200
     data = resp.json()
-    # Prompt injection has zero effect on deterministic logic: CERT-In deadline is produced
-    assert len(data["deadlines"]) == 1
-    assert any(d["regulator"] == "CERT-In" for d in data["deadlines"])
+    # Prompt injection has zero effect on deterministic logic: both real clocks are produced.
+    assert {item["obligation_id"] for item in data["deadlines"]} == {
+        "cert-in.directions-70b.2022.incident-reporting-6h",
+        "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h",
+    }
 
 
 # Vector 11: API rejects malformed request payload

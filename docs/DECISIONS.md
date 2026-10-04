@@ -204,3 +204,59 @@ Decisions below were made during Review 1 (the reviewer agent, 2026-09-24). See 
 **Decision:** Keep the modelled six-hour duty on all five CSCRF categories pending counsel review. PDF page 123 places RS.CO.S1-S3 beneath the heading "MIIs and Qualified REs (Mandatory)", which supports a narrower reading. PDF page 200, Annexure-O B.1, says: "Any cyber-attack(s), cybersecurity incident(s) and breach(es) experienced by REs falling under CERT-In Cybersecurity directions" and then states the six-hour duty, which supports REs generally.
 
 **Alternative and reason:** Limit RS.CO.S1 to MIIs and Qualified REs. The broader reading is retained because Annexure-O uses "REs" without the category qualifier and because it does not tell a potentially covered user that no SEBI duty applies.
+
+## 2026-10-04: RBI Decision 1 — commencement on 31 July 2026
+
+**Decision:** RBI obligations use `valid_from: 2026-07-31`.
+
+**Text:** The Direction is dated "July 31, 2026" (PDF page 1), and paragraph 2 says, "These Directions shall come into force with immediate effect" (page 3).
+
+**Alternative and safety:** A later operational date could be inferred from publication or implementation practice, but the text names none. Using the printed issue date is the earliest text-supported date and therefore never tells a user the duties began later.
+
+## 2026-10-04: RBI Decision 2 — chapter-specific entity classes and refinement
+
+**Decision:** Model `nbfc.bl_below_500cr`, `nbfc.bl_500cr_and_above`, `nbfc.middle_layer`, `nbfc.upper_layer`, `nbfc.top_layer`, plus additive `nbfc.cic` and `nbfc.hfc` roles. Mark `nbfc` and `nbfc.base_layer` as needing refinement; those coarse profiles produce an Unknown rather than non-applicability for event duties whose chapter cannot be selected.
+
+**Text:** Paragraph 3 says Chapter III applies to "NBFCs-Base Layer (NBFCs-BL) with asset size below ₹500 crore, and Core Investment Companies (CICs)" (page 3); Chapter IV applies to "NBFCs-BL with asset size ₹500 crore and above" (page 3); Chapter V applies to "NBFCs-Top Layer (NBFCs-TL), NBFCs-Upper Layer (NBFCs-UL), and NBFCs-Middle Layer (NBFCs-ML) ... excluding CICs" (pages 3-4).
+
+**Alternative and safety:** Treat generic `nbfc` as outside every specific chapter. Rejected because it silently says no duty where the category is merely unknown; asking for refinement never tells the user they owe less.
+
+## 2026-10-04: RBI Decision 3 — CIC exclusion overrides layer
+
+**Decision:** A profile holding `nbfc.cic` is excluded from all Chapter V obligations even if it also holds a Chapter V layer.
+
+**Text:** Paragraph 3(2) assigns "Core Investment Companies (CICs)" to Chapter III (page 3), while paragraph 3(4) ends Chapter V scope with "excluding CICs" (page 4).
+
+**Alternative and safety:** Let a positive Middle/Upper/Top match override CIC status. Rejected because it ignores the express exclusion and would misstate Chapter V; checking exclusions first respects the narrower text without suppressing Chapter III duties that may later be modelled.
+
+## 2026-10-04: RBI Decision 4 — RBI cyber-incident gate is wider than Annexure I
+
+**Decision:** Add a separate `rbi_cyber_incident` gate. An explicit attestation decides; otherwise an Annexure-I match establishes the RBI condition, while a non-match remains Unknown.
+
+**Text:** Paragraph 4(7) defines a Cyber Incident as "A cyber event that adversely affects the cybersecurity of an information asset whether resulting from malicious activity or not" (page 4). The source note says it "includes cybersecurity incidents as well as IT incidents" (page 5).
+
+**Alternative and safety:** Reuse the narrower CERT-In Annexure-I gate or infer false from unmatched text. Rejected because either could suppress an RBI duty; the independent Unknown never tells a user they owe less.
+
+## 2026-10-04: RBI Decision 5 — paragraph 141 CERT-In notification has no deadline
+
+**Decision:** Model the paragraph 141 CERT-In notification as `deadline.kind = none`: applicable, but neither a computed deadline nor time-critical.
+
+**Text:** Paragraph 141 says, "The NBFC shall also pro-actively notify Indian Computer Emergency Response Team (CERT-In) regarding cyber incidents" (page 44). It states no duration or channel for this sentence.
+
+**Alternative and safety:** Treat "pro-actively" as `immediate` or import CERT-In's own six-hour limit. Rejected because either invents timing in this RBI duty. The separate CERT-In Direction (ii) clock remains modelled where Annexure I applies, so no existing six-hour duty is removed.
+
+## 2026-10-04: RBI Decision 6 — conservative Chapter V HFC redirection
+
+**Decision:** For a Chapter V HFC, replace the RBI-recipient duty with a contested NHB duty at six hours from detection, confidence 0.5. Require both an HFC role and a Chapter V layer; do not extend the note to paragraph 28.
+
+**Text:** The paragraph 141 note says, "In respect of Housing Finance Companies, cyber incidents shall continue to be reported to NHB and not RBI" (page 44). The preceding sentence says "within six hours of detection" (page 43) but the note itself gives no time limit or channel.
+
+**Alternative and safety:** Give the NHB duty no deadline, or apply the note to Chapter IV too. Inheriting the surrounding six-hour clock is the conservative choice that does not tell a Chapter V HFC it has longer; Chapter IV extension remains an explicit open question rather than unsupported scope.
+
+## 2026-10-04: RBI Decision 7 — detection is the sole RBI clock anchor
+
+**Decision:** Paragraphs 28 and 141 use only `detection`; a missing detection timestamp produces an Unknown even when noticing is known.
+
+**Text:** Paragraph 28 requires reporting "within six hours of detection" (page 18), and paragraph 141 repeats "within six hours of detection" (page 43).
+
+**Alternative and safety:** Substitute CERT-In's "noticing ... or being brought to notice" anchor. Rejected because the RBI text does not offer it. Asking for detection preserves the written trigger and cannot silently postpone or erase the clock.

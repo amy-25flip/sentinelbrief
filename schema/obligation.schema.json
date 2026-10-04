@@ -89,6 +89,16 @@
           "type": "array",
           "items": { "type": "string" }
         },
+        "all_of_entity_classes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "excluded_entity_classes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
         "conditions": {
           "type": "array",
           "items": { "type": "string" }
@@ -97,7 +107,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "enum": ["cert_in_annexure_i", "personal_data_involved"]
+            "enum": ["cert_in_annexure_i", "personal_data_involved", "rbi_cyber_incident"]
           },
           "uniqueItems": true
         }

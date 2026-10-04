@@ -38,6 +38,10 @@ _REGULATORY_SUMMARIES: dict[str, dict[str, str]] = {
         "headline": "Retain KYC and transaction records for 5 years",
         "body": "Under Direction (vi), virtual asset service providers, virtual asset exchanges, and custodian wallet providers must maintain all Know Your Customer (KYC) records and financial transaction logs for a period of five years. Transaction records must allow full transaction reconstruction, including party identifiers, IP addresses with timestamps and timezones, transaction IDs, public keys, involved accounts, transfer amounts, and transaction nature.",
     },
+    "rbi.nbfc-cyber.2026.ch5-cert-in-notification": {
+        "headline": "Pro-actively notify CERT-In regarding cyber incidents",
+        "body": "Under Paragraph 141, the NBFC shall also pro-actively notify the Indian Computer Emergency Response Team (CERT-In) regarding cyber incidents. The Direction states this notification duty separately from the preceding reporting sentence. It supplies no time limit or notification channel for this CERT-In duty, so SentinelBrief lists it without a computed deadline.",
+    },
 }
 
 _FACT_PATTERNS = (

@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "rbi-cic-in-middle-layer-excluded",
+  "description": "A profile carrying both Middle Layer and CIC must be excluded from every Chapter V duty.",
+  "entity_profile": {"entity_classes": ["nbfc.middle_layer", "nbfc.cic"], "is_listed": false, "holds_personal_data": false, "uses_protected_systems": false, "is_regulated_cloud_vps": false},
+  "incident_facts": {"description": "Ransomware incident", "incident_types": ["Malicious code attacks such as Ransomware"], "when_detected": "2026-10-01T10:00:00+05:30", "when_noticed": "2026-10-01T10:00:00+05:30", "systems_affected": ["server"]},
+  "law_snapshot_date": "2026-10-04",
+  "expected": {
+    "law_as_of": "2026-10-01", "regulators": ["CERT-In"],
+    "deadlines": [{"regulator": "CERT-In", "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "anchor": "noticing", "deadline_iso8601": "PT6H", "deadline_timestamp": "2026-10-01T16:00:00+05:30"}],
+    "citations": [{"obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "instrument_id": "cert-in.directions-70b.2022", "paragraph_ref": "Direction (ii)"}],
+    "required_evidence": [],
+    "not_applicable": [
+      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h", "reason": "Chapter IV class mismatch"},
+      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h", "reason": "CIC excluded"},
+      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-cert-in-notification", "reason": "CIC excluded"},
+      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb", "reason": "CIC excluded"},
+      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-va-half-yearly", "reason": "CIC excluded"},
+      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-pt-annual", "reason": "CIC excluded"}
+    ],
+    "unknowns": [], "time_critical": []
+  },
+  "adversarial_flags": ["exclusion_must_win_over_positive_layer_match"],
+  "split": "dev",
+  "labels_source": "RBI NBFC Direction paragraphs 3(2) and 3(4); CERT-In Direction (ii)",
+  "source_quotes": [
+    {"document": "rbi.nbfc-cyber.2026", "page": 4, "quote": "Middle Layer (NBFCs-ML) as defined in Reserve Bank of India (Non-\nBanking Financial Companies – Registration, Exemptions and Framework \nfor Scale Based Regulation) Directions, 2025, excluding CICs."},
+    {"document": "cert-in.directions-70b.2022", "page": 2, "quote": "mentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents."}
+  ]
+}

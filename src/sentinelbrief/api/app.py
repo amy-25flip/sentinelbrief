@@ -181,12 +181,27 @@ def _profile_from_payload(payload: dict[str, Any], *, form_input: bool) -> Incid
         if personal_data.lower() not in {"true", "false"}:
             raise ValueError("personal_data_involved must be true or false")
         personal_data = personal_data.lower() == "true"
+    cyber_incident = payload.get("is_cyber_incident")
+    if cyber_incident is None:
+        cyber_attestation = payload.get("cyber_incident_attestation", "unknown")
+        if cyber_attestation not in {"unknown", "yes", "no"}:
+            raise ValueError("cyber_incident_attestation must be unknown, yes or no")
+        cyber_incident = (
+            True if cyber_attestation == "yes" else False if cyber_attestation == "no" else None
+        )
+    elif isinstance(cyber_incident, str):
+        if cyber_incident.lower() not in {"true", "false"}:
+            raise ValueError("is_cyber_incident must be true, false or null")
+        cyber_incident = cyber_incident.lower() == "true"
+    elif not isinstance(cyber_incident, bool):
+        raise ValueError("is_cyber_incident must be true, false or null")
     return IncidentProfile(
         entity_class=str(primary_class) if entity_classes is None else None,
         entity_classes=list(entity_classes) if entity_classes is not None else None,
         incident_types=list(incident_types),
         annexure_i_items=list(payload.get("annexure_i_items") or []),
         is_annexure_i_type=False if attestation == "no" else None,
+        is_cyber_incident=cyber_incident,
         personal_data_involved=personal_data,
         **kwargs,
     )

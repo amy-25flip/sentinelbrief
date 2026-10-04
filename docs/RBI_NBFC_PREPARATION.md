@@ -1,6 +1,6 @@
-# RBI NBFC Direction preparation notes (WP-C)
+# RBI NBFC Direction build notes (WP-C complete)
 
-This is a neutral source-reading checklist. It does not decide obligation scope or exemptions before the Direction is modelled.
+The stored 47-page text has now been read in full and the labels-first model in `docs/LABELS_RBI.md` has been implemented.
 
 ## Verified source and locations
 
@@ -11,12 +11,12 @@ This is a neutral source-reading checklist. It does not decide obligation scope 
 - Paragraph 28 is on PDF page 18: "The NBFC shall report cyber incidents on DAKSH platform ... within six hours of detection."
 - Paragraph 141 begins on PDF page 43 (and continues on page 44): it requires RBI reporting on DAKSH within six hours of detection and says the NBFC shall also pro-actively notify CERT-In.
 
-## Questions the modelling pass must answer from the text
+## Answers established by the modelling pass
 
-1. Which chapter contains each candidate duty, and which paragraph 3 class therefore receives it?
-2. Do paragraphs 28 and 141 duplicate duties for different chapter scopes, or require separate records?
-3. Does paragraph 141's CERT-In sentence need a separate obligation, and how does it interact with the CERT-In Directions' Annexure-I gate and six-hour clock?
-4. What exact cadence and class scope apply to vulnerability assessment and penetration testing?
-5. What do the repeal-and-saving provisions preserve, and over what validity interval?
+1. Paragraph 28 is in Chapter IV and applies only to Base Layer NBFCs with asset size ₹500 crore and above. Paragraphs 121 and 141 are in Chapter V and apply to Middle, Upper and Top Layer NBFCs, excluding CICs.
+2. Paragraphs 28 and 141 are separate records because paragraph 3 gives them different chapter scopes. Chapter III paragraphs 7-9 contain no incident-reporting duty.
+3. Paragraph 141's CERT-In sentence is a separate applicable duty with `deadline.kind = none`; it is wider than CERT-In Direction (ii), whose Annexure-I gate and six-hour clock remain separate.
+4. Paragraph 121 requires VA at least once every six months and PT at least once in 12 months for the stated critical/DMZ systems, within Chapter V only.
+5. Paragraphs 155-156 repeal prior IT Framework/IT Governance directions while preserving earlier actions, approvals, rights, liabilities, penalties and proceedings. No repeal obligation was created because this build was expressly limited to paragraphs 28, 121 and 141, and the cited repeal circular is not stored.
 
-Only after those questions are answered with page quotes should labels or RBI obligations be authored. Candidate scenarios should test the text-derived chapter scopes, a missing detection timestamp, CERT-In overlap, pre-commencement timing, VAPT cadence, and a non-NBFC entity—without pre-deciding that any NBFC class is exempt.
+The unresolved HFC scope, NHB timing/channel, cross-regime anchor timing, missing repeal circular, and unmodelled paragraphs are tracked in `docs/OPEN_QUESTIONS.md`.

@@ -285,3 +285,78 @@ def test_catches_sebi_entity_leak(monkeypatch):
 
     _mutate_loaded_obligations(monkeypatch, mutation)
     assert "sebi-non-sebi-entity-bank-trap" in _failed(_run())
+
+
+def test_catches_rbi_refinement_rule_removed(monkeypatch):
+    monkeypatch.setattr(
+        engine_module.IncidentClockEngine,
+        "_needs_entity_refinement",
+        lambda self, profile_classes, target_classes: False,
+    )
+    assert "rbi-generic-nbfc-must-ask-category" in _failed(_run())
+
+
+def test_catches_rbi_exclusions_ignored(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"].startswith("rbi.nbfc-cyber.2026.ch5"):
+                item["applicability"]["excluded_entity_classes"] = []
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "rbi-cic-in-middle-layer-excluded" in _failed(_run())
+
+
+def test_catches_rbi_all_of_ignored(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"].endswith("ch5-hfc-incident-reporting-nhb"):
+                item["applicability"]["all_of_entity_classes"] = []
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "rbi-ml-ransomware" in _failed(_run())
+
+
+def test_catches_rbi_cyber_incident_requirement_ignored(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"].startswith("rbi.nbfc-cyber.2026"):
+                item["applicability"]["requires"] = []
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "rbi-ml-hardware-failure-unattested" in _failed(_run())
+
+
+def test_catches_rbi_detection_replaced_by_noticing(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"].startswith("rbi.nbfc-cyber.2026"):
+                deadline = item["normalized"]["deadline"]
+                if deadline["kind"] == "relative":
+                    deadline["anchor"] = "noticing"
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "rbi-detected-before-noticed" in _failed(_run())
+
+
+def test_catches_rbi_valid_from_ignored(monkeypatch):
+    original = engine_module.IncidentClockEngine._not_in_force_reason
+
+    def mutation(item, as_of):
+        if item["id"].startswith("rbi.nbfc-cyber.2026"):
+            return None
+        return original(item, as_of)
+
+    monkeypatch.setattr(
+        engine_module.IncidentClockEngine, "_not_in_force_reason", staticmethod(mutation)
+    )
+    assert "rbi-incident-before-commencement" in _failed(_run())
+
+
+def test_catches_rbi_chapter_iv_leaking_to_chapter_iii(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"].endswith("ch4-incident-reporting-6h"):
+                item["applicability"]["entity_classes"].append("nbfc.bl_below_500cr")
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "rbi-bl-below-500cr-no-reporting-duty" in _failed(_run())

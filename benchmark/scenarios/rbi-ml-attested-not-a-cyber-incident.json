@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "rbi-ml-attested-not-a-cyber-incident",
+  "description": "Explicit negative attestations make both incident-reporting regimes not applicable while recurring Chapter V duties remain.",
+  "entity_profile": {"entity_class": "nbfc.middle_layer", "is_listed": false, "holds_personal_data": false, "uses_protected_systems": false, "is_regulated_cloud_vps": false},
+  "incident_facts": {"description": "Hardware failure outside the RBI definition", "incident_types": ["hardware failure"], "is_annexure_i_type": false, "is_cyber_incident": false, "when_detected": "2026-10-01T10:00:00+05:30", "when_noticed": "2026-10-01T10:00:00+05:30", "systems_affected": ["non-information asset"]},
+  "law_snapshot_date": "2026-10-04",
+  "expected": {
+    "law_as_of": "2026-10-01", "regulators": ["CERT-In", "RBI"], "deadlines": [], "citations": [], "required_evidence": [],
+    "not_applicable": [
+      {"regulator": "CERT-In", "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "reason": "condition_not_met: user attested not an Annexure I type"},
+      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h", "reason": "condition_not_met: user attested not a cyber incident"},
+      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-cert-in-notification", "reason": "condition_not_met: user attested not a cyber incident"}
+    ],
+    "unknowns": [], "time_critical": []
+  },
+  "adversarial_flags": ["explicit_negative_attestation_controls_without_prose_gating"],
+  "split": "dev",
+  "labels_source": "RBI NBFC Direction paragraph 4(7); CERT-In Direction (ii)",
+  "source_quotes": [
+    {"document": "rbi.nbfc-cyber.2026", "page": 4, "quote": "‘Cyber Incident’ - A cyber event that adversely affects the cybersecurity of \nan information asset whether resulting from malicious activity or not."},
+    {"document": "cert-in.directions-70b.2022", "page": 2, "quote": "shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In"}
+  ]
+}

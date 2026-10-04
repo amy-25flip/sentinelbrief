@@ -1,0 +1,336 @@
+[
+  {
+    "id": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h",
+    "instrument_id": "rbi.nbfc-cyber.2026",
+    "paragraph_ref": "Paragraph 28",
+    "text_verbatim": "28. The NBFC shall report cyber incidents on DAKSH platform (Reserve Bank’s \nAdvanced Supervisory Monitoring System - https://daksh.rbi.org.in) within six \nhours of detection.",
+    "normalized": {
+      "actor": ["nbfc.bl_500cr_and_above"],
+      "trigger": {
+        "type": "event",
+        "description": "A cyber incident is detected"
+      },
+      "action": "Report the cyber incident on RBI's DAKSH platform.",
+      "deadline": {
+        "kind": "relative",
+        "duration_iso8601": "PT6H",
+        "anchor": "detection",
+        "calendar": "continuous"
+      },
+      "recipient": "RBI via DAKSH (https://daksh.rbi.org.in)"
+    },
+    "applicability": {
+      "entity_classes": ["nbfc.bl_500cr_and_above"],
+      "requires": ["rbi_cyber_incident"]
+    },
+    "validity": {
+      "valid_from": "2026-07-31",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "rbi.nbfc-cyber.2026",
+        "paragraph_ref": "Paragraph 28",
+        "page": 18,
+        "char_start": 27749,
+        "char_end": 27924,
+        "excerpt_verbatim": "28. The NBFC shall report cyber incidents on DAKSH platform (Reserve Bank’s \nAdvanced Supervisory Monitoring System - https://daksh.rbi.org.in) within six \nhours of detection.",
+        "source_sha256": "5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "Codex builder; checked against stored RBI text",
+      "date": "2026-10-04"
+    },
+    "confidence": 1.0,
+    "confidence_reason": "Paragraph 28 expressly gives the DAKSH channel, six-hour duration, and detection anchor."
+  },
+  {
+    "id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h",
+    "instrument_id": "rbi.nbfc-cyber.2026",
+    "paragraph_ref": "Paragraph 141, first sentence",
+    "text_verbatim": "141. The NBFC shall report cyber incidents to RBI within six hours of detection on \nDAKSH platform (Reserve Bank’s Advanced Supervisory Monitoring System - \nRBI (NBFCs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n44 \nhttps://daksh.rbi.org.in).",
+    "normalized": {
+      "actor": ["nbfc.middle_layer", "nbfc.upper_layer", "nbfc.top_layer"],
+      "trigger": {
+        "type": "event",
+        "description": "A cyber incident is detected"
+      },
+      "action": "Report the cyber incident to RBI on the DAKSH platform.",
+      "deadline": {
+        "kind": "relative",
+        "duration_iso8601": "PT6H",
+        "anchor": "detection",
+        "calendar": "continuous"
+      },
+      "recipient": "RBI via DAKSH (https://daksh.rbi.org.in)"
+    },
+    "applicability": {
+      "entity_classes": ["nbfc.middle_layer", "nbfc.upper_layer", "nbfc.top_layer"],
+      "excluded_entity_classes": ["nbfc.cic", "nbfc.hfc"],
+      "requires": ["rbi_cyber_incident"]
+    },
+    "validity": {
+      "valid_from": "2026-07-31",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "rbi.nbfc-cyber.2026",
+        "paragraph_ref": "Paragraph 141, first sentence",
+        "page": 43,
+        "char_start": 73129,
+        "char_end": 73286,
+        "excerpt_verbatim": "141. The NBFC shall report cyber incidents to RBI within six hours of detection on \nDAKSH platform (Reserve Bank’s Advanced Supervisory Monitoring System - \n",
+        "source_sha256": "5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "Codex builder; checked against stored RBI text",
+      "date": "2026-10-04"
+    },
+    "confidence": 1.0,
+    "confidence_reason": "Paragraph 141 expressly gives the RBI recipient, DAKSH channel, six-hour duration, and detection anchor."
+  },
+  {
+    "id": "rbi.nbfc-cyber.2026.ch5-cert-in-notification",
+    "instrument_id": "rbi.nbfc-cyber.2026",
+    "paragraph_ref": "Paragraph 141, second sentence",
+    "text_verbatim": "The NBFC shall also pro-actively notify Indian Computer \nEmergency Response Team (CERT-In) regarding cyber incidents.",
+    "normalized": {
+      "actor": ["nbfc.middle_layer", "nbfc.upper_layer", "nbfc.top_layer"],
+      "trigger": {
+        "type": "event",
+        "description": "A cyber incident occurs"
+      },
+      "action": "Pro-actively notify Indian Computer Emergency Response Team (CERT-In) regarding the cyber incident.",
+      "deadline": {
+        "kind": "none",
+        "duration_iso8601": null,
+        "anchor": "not_applicable",
+        "calendar": "continuous"
+      },
+      "recipient": "Indian Computer Emergency Response Team (CERT-In)"
+    },
+    "applicability": {
+      "entity_classes": ["nbfc.middle_layer", "nbfc.upper_layer", "nbfc.top_layer"],
+      "excluded_entity_classes": ["nbfc.cic"],
+      "requires": ["rbi_cyber_incident"]
+    },
+    "validity": {
+      "valid_from": "2026-07-31",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "rbi.nbfc-cyber.2026",
+        "paragraph_ref": "Paragraph 141, second sentence",
+        "page": 44,
+        "char_start": 73423,
+        "char_end": 73540,
+        "excerpt_verbatim": "The NBFC shall also pro-actively notify Indian Computer \nEmergency Response Team (CERT-In) regarding cyber incidents.",
+        "source_sha256": "5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "Codex builder; checked against stored RBI text",
+      "date": "2026-10-04"
+    },
+    "confidence": 1.0,
+    "confidence_reason": "Paragraph 141 states the notification duty but supplies no time limit or channel, so no deadline is invented."
+  },
+  {
+    "id": "rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb",
+    "instrument_id": "rbi.nbfc-cyber.2026",
+    "paragraph_ref": "Paragraph 141, note",
+    "text_verbatim": "(Note: In respect of Housing Finance Companies, cyber incidents shall continue \nto be reported to NHB and not RBI)",
+    "normalized": {
+      "actor": ["nbfc.middle_layer", "nbfc.upper_layer", "nbfc.top_layer", "nbfc.hfc"],
+      "trigger": {
+        "type": "event",
+        "description": "A cyber incident is detected at a Housing Finance Company"
+      },
+      "action": "Report the cyber incident to NHB rather than RBI.",
+      "deadline": {
+        "kind": "relative",
+        "duration_iso8601": "PT6H",
+        "anchor": "detection",
+        "calendar": "continuous"
+      },
+      "recipient": "National Housing Bank (NHB)"
+    },
+    "applicability": {
+      "entity_classes": ["nbfc.middle_layer", "nbfc.upper_layer", "nbfc.top_layer"],
+      "all_of_entity_classes": ["nbfc.hfc"],
+      "excluded_entity_classes": ["nbfc.cic"],
+      "requires": ["rbi_cyber_incident"]
+    },
+    "validity": {
+      "valid_from": "2026-07-31",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "rbi.nbfc-cyber.2026",
+        "paragraph_ref": "Paragraph 141, note",
+        "page": 44,
+        "char_start": 73542,
+        "char_end": 73656,
+        "excerpt_verbatim": "(Note: In respect of Housing Finance Companies, cyber incidents shall continue \nto be reported to NHB and not RBI)",
+        "source_sha256": "5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "Codex builder; checked against stored RBI text",
+      "date": "2026-10-04"
+    },
+    "confidence": 0.5,
+    "confidence_reason": "Contested conservative reading: the note redirects HFC reporting to NHB, but the text gives no time limit or channel for NHB; PT6H from detection is inherited from the surrounding sentence so the model never tells an HFC it owes less."
+  },
+  {
+    "id": "rbi.nbfc-cyber.2026.ch5-va-half-yearly",
+    "instrument_id": "rbi.nbfc-cyber.2026",
+    "paragraph_ref": "Paragraph 121, first sentence (VA)",
+    "text_verbatim": "121. The NBFC shall conduct vulnerability assessment (VA) at least once in every six \nmonths and penetration testing (PT) at least once in 12 months for critical \ninformation systems and / or those in the De-Militarised Zone (DMZ) having \ncustomer interface. The NBFC shall also conduct VA / PT of such information \nsystems \nthroughout \ntheir \nlifecycle \nincluding \npre-implementation, \npost \nimplementation, and  after changes.",
+    "normalized": {
+      "actor": ["nbfc.middle_layer", "nbfc.upper_layer", "nbfc.top_layer"],
+      "trigger": {
+        "type": "periodic",
+        "description": "Critical information systems and / or systems in the DMZ having customer interface"
+      },
+      "action": "Conduct vulnerability assessment at least once in every six months.",
+      "deadline": {
+        "kind": "recurring",
+        "duration_iso8601": "P6M",
+        "anchor": "not_applicable",
+        "calendar": "continuous"
+      }
+    },
+    "applicability": {
+      "entity_classes": ["nbfc.middle_layer", "nbfc.upper_layer", "nbfc.top_layer"],
+      "excluded_entity_classes": ["nbfc.cic"],
+      "conditions": ["critical information systems and / or those in the De-Militarised Zone (DMZ) having customer interface"]
+    },
+    "validity": {
+      "valid_from": "2026-07-31",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "rbi.nbfc-cyber.2026",
+        "paragraph_ref": "Paragraph 121",
+        "page": 41,
+        "char_start": 67944,
+        "char_end": 68372,
+        "excerpt_verbatim": "121. The NBFC shall conduct vulnerability assessment (VA) at least once in every six \nmonths and penetration testing (PT) at least once in 12 months for critical \ninformation systems and / or those in the De-Militarised Zone (DMZ) having \ncustomer interface. The NBFC shall also conduct VA / PT of such information \nsystems \nthroughout \ntheir \nlifecycle \nincluding \npre-implementation, \npost \nimplementation, and  after changes.",
+        "source_sha256": "5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "Codex builder; checked against stored RBI text",
+      "date": "2026-10-04"
+    },
+    "confidence": 1.0,
+    "confidence_reason": "Paragraph 121 expressly gives the six-month minimum cadence and system scope."
+  },
+  {
+    "id": "rbi.nbfc-cyber.2026.ch5-pt-annual",
+    "instrument_id": "rbi.nbfc-cyber.2026",
+    "paragraph_ref": "Paragraph 121, first sentence (PT)",
+    "text_verbatim": "121. The NBFC shall conduct vulnerability assessment (VA) at least once in every six \nmonths and penetration testing (PT) at least once in 12 months for critical \ninformation systems and / or those in the De-Militarised Zone (DMZ) having \ncustomer interface. The NBFC shall also conduct VA / PT of such information \nsystems \nthroughout \ntheir \nlifecycle \nincluding \npre-implementation, \npost \nimplementation, and  after changes.",
+    "normalized": {
+      "actor": ["nbfc.middle_layer", "nbfc.upper_layer", "nbfc.top_layer"],
+      "trigger": {
+        "type": "periodic",
+        "description": "Critical information systems and / or systems in the DMZ having customer interface"
+      },
+      "action": "Conduct penetration testing at least once in 12 months.",
+      "deadline": {
+        "kind": "recurring",
+        "duration_iso8601": "P12M",
+        "anchor": "not_applicable",
+        "calendar": "continuous"
+      }
+    },
+    "applicability": {
+      "entity_classes": ["nbfc.middle_layer", "nbfc.upper_layer", "nbfc.top_layer"],
+      "excluded_entity_classes": ["nbfc.cic"],
+      "conditions": ["critical information systems and / or those in the De-Militarised Zone (DMZ) having customer interface"]
+    },
+    "validity": {
+      "valid_from": "2026-07-31",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "rbi.nbfc-cyber.2026",
+        "paragraph_ref": "Paragraph 121",
+        "page": 41,
+        "char_start": 67944,
+        "char_end": 68372,
+        "excerpt_verbatim": "121. The NBFC shall conduct vulnerability assessment (VA) at least once in every six \nmonths and penetration testing (PT) at least once in 12 months for critical \ninformation systems and / or those in the De-Militarised Zone (DMZ) having \ncustomer interface. The NBFC shall also conduct VA / PT of such information \nsystems \nthroughout \ntheir \nlifecycle \nincluding \npre-implementation, \npost \nimplementation, and  after changes.",
+        "source_sha256": "5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "Codex builder; checked against stored RBI text",
+      "date": "2026-10-04"
+    },
+    "confidence": 1.0,
+    "confidence_reason": "Paragraph 121 expressly gives the 12-month minimum cadence and system scope."
+  }
+]

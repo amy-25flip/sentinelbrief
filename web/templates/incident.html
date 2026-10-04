@@ -76,6 +76,18 @@
         </div>
     </fieldset>
 
+    <fieldset style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin: 1rem 0;">
+        <legend style="padding: 0 0.5rem; color: var(--text-muted); font-size: 0.85rem;">
+            RBI cyber incident attestation
+        </legend>
+        <label for="cyber_incident_attestation">Does the event meet RBI paragraph 4(7)'s cyber incident definition?</label>
+        <select id="cyber_incident_attestation" name="cyber_incident_attestation">
+            <option value="unknown">I am not sure. Ask me.</option>
+            <option value="yes">Yes, this is a cyber incident</option>
+            <option value="no">No, this is not a cyber incident</option>
+        </select>
+    </fieldset>
+
     <button type="submit" class="btn">⏱ Compute Clocks</button>
 </form>
 

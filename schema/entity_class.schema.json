@@ -20,6 +20,10 @@
     "description": {
       "type": "string"
     },
+    "needs_refinement": {
+      "type": "boolean",
+      "default": false
+    },
     "version": {
       "type": "string"
     },

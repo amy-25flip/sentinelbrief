@@ -117,6 +117,46 @@ def test_incident_clock_json_accepts_multiple_entity_classes():
     assert "meity.dpdp-rules.2025.rule7-2-b-board-detailed" in ids
 
 
+def test_incident_clock_json_accepts_three_state_rbi_cyber_incident():
+    base = {
+        "entity_class": "nbfc.middle_layer",
+        "when_detected": _ist(9),
+        "incident_types": ["hardware failure"],
+    }
+    yes = client.post("/api/incident/clock", json={**base, "is_cyber_incident": True})
+    assert yes.status_code == 200
+    assert any(
+        item["obligation_id"].endswith("ch5-incident-reporting-6h")
+        for item in yes.json()["deadlines"]
+    )
+
+    no = client.post("/api/incident/clock", json={**base, "is_cyber_incident": False})
+    assert no.status_code == 200
+    assert any(
+        item["reason"] == "condition_not_met: user attested not a cyber incident"
+        for item in no.json()["not_applicable"]
+    )
+
+    unknown = client.post("/api/incident/clock", json={**base, "is_cyber_incident": None})
+    assert unknown.status_code == 200
+    assert any("cyber incident" in item["question"].lower() for item in unknown.json()["unknowns"])
+
+
+def test_incident_clock_form_accepts_rbi_cyber_incident_attestation():
+    page = client.get("/incident")
+    assert 'name="cyber_incident_attestation"' in page.text
+    response = client.post(
+        "/api/incident/clock",
+        content=(
+            "entity_class=nbfc.middle_layer&incident_types=hardware+failure&"
+            "when_detected=2026-09-24T09%3A00&cyber_incident_attestation=yes"
+        ),
+        headers={"content-type": "application/x-www-form-urlencoded", "hx-request": "true"},
+    )
+    assert response.status_code == 200
+    assert "Report the cyber incident to RBI" in response.text
+
+
 def test_incident_clock_form_accepts_repeated_also_classes():
     r = client.post(
         "/api/incident/clock",

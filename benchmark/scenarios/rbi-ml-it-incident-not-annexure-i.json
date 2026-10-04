@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "rbi-ml-it-incident-not-annexure-i",
+  "description": "An attested RBI cyber incident can trigger RBI duties even when the user attests it is not Annexure I.",
+  "entity_profile": {"entity_class": "nbfc.middle_layer", "is_listed": false, "holds_personal_data": false, "uses_protected_systems": false, "is_regulated_cloud_vps": false},
+  "incident_facts": {"description": "Hardware failure affecting availability", "incident_types": ["hardware failure"], "is_annexure_i_type": false, "is_cyber_incident": true, "when_detected": "2026-10-01T10:00:00+05:30", "when_noticed": "2026-10-01T10:00:00+05:30", "systems_affected": ["server"]},
+  "law_snapshot_date": "2026-10-04",
+  "expected": {
+    "law_as_of": "2026-10-01", "regulators": ["CERT-In", "RBI"],
+    "deadlines": [{"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h", "anchor": "detection", "deadline_iso8601": "PT6H", "deadline_timestamp": "2026-10-01T16:00:00+05:30"}],
+    "citations": [
+      {"obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h", "instrument_id": "rbi.nbfc-cyber.2026", "paragraph_ref": "Paragraph 141, first sentence"},
+      {"obligation_id": "rbi.nbfc-cyber.2026.ch5-cert-in-notification", "instrument_id": "rbi.nbfc-cyber.2026", "paragraph_ref": "Paragraph 141, second sentence"}
+    ],
+    "required_evidence": [],
+    "not_applicable": [{"regulator": "CERT-In", "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "reason": "condition_not_met: user attested not an Annexure I type"}],
+    "unknowns": [], "time_critical": []
+  },
+  "adversarial_flags": ["rbi_definition_is_wider_than_annexure_i"],
+  "split": "dev",
+  "labels_source": "RBI NBFC Direction paragraphs 4(7) and 141; CERT-In Direction (ii)",
+  "source_quotes": [
+    {"document": "rbi.nbfc-cyber.2026", "page": 4, "quote": "‘Cyber Incident’ - A cyber event that adversely affects the cybersecurity of \nan information asset whether resulting from malicious activity or not."},
+    {"document": "rbi.nbfc-cyber.2026", "page": 43, "quote": "within six hours of detection"},
+    {"document": "rbi.nbfc-cyber.2026", "page": 44, "quote": "The NBFC shall also pro-actively notify Indian Computer \nEmergency Response Team (CERT-In) regarding cyber incidents."}
+  ]
+}

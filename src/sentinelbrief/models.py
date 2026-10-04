@@ -88,8 +88,12 @@ class Applicability(BaseModel):
     model_config = ConfigDict(frozen=True, extra="ignore")
 
     entity_classes: list[str] | None = None
+    all_of_entity_classes: list[str] | None = None
+    excluded_entity_classes: list[str] | None = None
     conditions: list[str] | None = None
-    requires: list[Literal["cert_in_annexure_i", "personal_data_involved"]] | None = None
+    requires: (
+        list[Literal["cert_in_annexure_i", "personal_data_involved", "rbi_cyber_incident"]] | None
+    ) = None
 
 
 class Validity(BaseModel):
@@ -190,6 +194,7 @@ class EntityClass(BaseModel):
     label: str
     parent: str | None = None
     description: str | None = None
+    needs_refinement: bool = False
     version: str
     valid_from: date | None = None
     valid_to: date | None = None
@@ -258,6 +263,7 @@ class IncidentFacts(BaseModel):
     when_occurred: datetime | None = None
     when_brought_to_notice: datetime | None = None
     is_annexure_i_type: bool | None = None
+    is_cyber_incident: bool | None = None
     annexure_i_items: list[str] | None = None
     personal_data_involved: bool | None = None
     systems_affected: list[str]

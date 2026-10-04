@@ -117,6 +117,8 @@ class IncidentProfile:
     systems_affected: list[str] = field(default_factory=list)
     # Explicit user attestation. Only this can make Annexure I "not applicable".
     is_annexure_i_type: bool | None = None
+    # Explicit user attestation against RBI paragraph 4(7)'s cyber-incident definition.
+    is_cyber_incident: bool | None = None
 
     def __post_init__(self) -> None:
         self.validate()
@@ -140,6 +142,13 @@ class IncidentProfile:
         if self.is_annexure_i_type is False and self.annexure_i_items:
             raise ValueError(
                 "Conflicting input: incident attested as NOT Annexure I but Annexure I types selected"
+            )
+        if self.is_cyber_incident is False and (
+            self.annexure_i_items or self.is_annexure_i_type is True
+        ):
+            raise ValueError(
+                "Conflicting input: incident attested as NOT a cyber incident but "
+                "Annexure I types were selected or attested"
             )
 
     def earliest_known_time(self) -> datetime | None:
@@ -311,6 +320,28 @@ class IncidentClockEngine:
         )
         return bool(ancestors.intersection(target_classes))
 
+    def _matches_all_entity_classes(
+        self, profile_classes: list[str], target_classes: list[str]
+    ) -> bool:
+        """Return true only when every target is held directly or through ancestry."""
+        ancestors = set().union(
+            *(self.taxonomy.get_ancestors_and_self(item) for item in profile_classes)
+        )
+        return set(target_classes).issubset(ancestors)
+
+    def _needs_entity_refinement(
+        self, profile_classes: list[str], target_classes: list[str]
+    ) -> bool:
+        """Whether a coarse profile class is an ancestor of a target legal class."""
+        for profile_class in profile_classes:
+            entity = self.taxonomy.classes[profile_class]
+            if not entity.needs_refinement:
+                continue
+            for target in target_classes:
+                if profile_class in self.taxonomy.get_ancestors_and_self(target):
+                    return True
+        return False
+
     def resolve_annexure_i(self, profile: IncidentProfile) -> AnnexureResolution:
         """Decide whether the incident is an Annexure I type. Never returns False from text."""
         valid_ids = {i["id"] for i in self._annexure_items}
@@ -410,15 +441,43 @@ class IncidentClockEngine:
                 continue
 
             applicability = obs.get("applicability") or {}
-            if not self._matches_entity_class(
-                profile.entity_classes or [], applicability.get("entity_classes") or []
+            excluded = applicability.get("excluded_entity_classes") or []
+            if excluded and self._matches_entity_class(profile.entity_classes or [], excluded):
+                not_applicable.append({"obligation_id": obs_id, "reason": "excluded_entity_class"})
+                continue
+
+            all_of = applicability.get("all_of_entity_classes") or []
+            if all_of and not self._matches_all_entity_classes(
+                profile.entity_classes or [], all_of
             ):
+                not_applicable.append(
+                    {"obligation_id": obs_id, "reason": "all_of_entity_classes_not_met"}
+                )
+                continue
+
+            target_classes = applicability.get("entity_classes") or []
+            if not self._matches_entity_class(profile.entity_classes or [], target_classes):
+                trigger_type = ((obs.get("normalized") or {}).get("trigger") or {}).get("type")
+                if trigger_type == "event" and self._needs_entity_refinement(
+                    profile.entity_classes or [], target_classes
+                ):
+                    choices = ", ".join(target_classes)
+                    unknowns.append(
+                        Unknown(
+                            question=f"What is the NBFC category? Choose one of: {choices}.",
+                            affects=[obs_id],
+                            impact="The RBI chapter and this obligation cannot be decided from a coarse NBFC class.",
+                        )
+                    )
+                    undetermined.append(obs_id)
+                    continue
                 not_applicable.append({"obligation_id": obs_id, "reason": "entity_class_mismatch"})
                 continue
 
             requirements = applicability.get("requires") or []
             needs_annexure = "cert_in_annexure_i" in requirements
             needs_personal_data = "personal_data_involved" in requirements
+            needs_rbi_cyber_incident = "rbi_cyber_incident" in requirements
 
             if needs_annexure:
                 if annexure.decision is False:
@@ -460,6 +519,30 @@ class IncidentClockEngine:
                             question="Is personal data involved in this incident?",
                             affects=[obs_id],
                             impact="DPDP personal data breach notification obligations apply only if personal data is involved.",
+                        )
+                    )
+                    undetermined.append(obs_id)
+                    continue
+
+            if needs_rbi_cyber_incident:
+                if profile.is_cyber_incident is False:
+                    not_applicable.append(
+                        {
+                            "obligation_id": obs_id,
+                            "reason": "condition_not_met: user attested not a cyber incident",
+                        }
+                    )
+                    continue
+                if profile.is_cyber_incident is None and annexure.decision is not True:
+                    unknowns.append(
+                        Unknown(
+                            question=(
+                                'Is this a cyber incident: "A cyber event that adversely affects '
+                                "the cybersecurity of an information asset whether resulting from "
+                                'malicious activity or not" (RBI paragraph 4(7))?'
+                            ),
+                            affects=[obs_id],
+                            impact="This decides whether the RBI cyber-incident obligation applies.",
                         )
                     )
                     undetermined.append(obs_id)
