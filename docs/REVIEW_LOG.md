@@ -203,3 +203,31 @@ Label amendment (in `docs/LABELS_SEBI.md`): where a SEBI reporting duty applies 
 Correction recorded: Review 7 J3 "scope tension" was the reviewer's misreading. Status of J3: the DECISIONS entry is rewritten and the open question closed.
 
 Gates: see the commit message.
+
+## Review 10 - the reviewer agent, 2026-10-04: adversarial pass on the provenance controls, and hidden set A
+
+### Provenance attacks (`tests/test_provenance_attacks.py`, run against a copy of the real data)
+
+| # | Attack | Result |
+|---|---|---|
+| 1 | A typed-up PDF with blank metadata, with an acquisition marker | Stopped: authenticity gate |
+| 2 | A truncated download | Stopped: completeness gate and sha256 |
+| 3 | A file with no manifest entry, or an entry with no acquisition marker | Stopped: both |
+| 4 | A generated PDF with forged "Adobe PDF Library" metadata, an `acquired_by` marker, an RBI-host URL and a `reverify_exemption` | **Got through every offline gate, and live reverify would skip it** |
+
+- [major] [provenance] M1. **Attack 4 defeats the controls.** Producer metadata is trivially forged, `acquired_by` is free text, and `reverify_exemption` for an RBI host removes the one check that compares bytes with the regulator. Offline code cannot tell forged bytes from real ones. Control added: `PINNED_SOURCES` in `tests/test_provenance_attacks.py` lists every committed source with its sha256 and exemption flag, and the suite fails if the manifest's source set differs. A source can no longer be added, replaced or newly exempted without a change to that list, which a reviewer sees and answers by running `scripts/reverify_sources.py` (or, for an exempt source, by a person downloading it). This is a tripwire, not proof: it moves the trust to the review of one small list. Status: MITIGATED.
+- [minor] [provenance] M2. `authenticity_exemption` waives the authenticity and the completeness gates together. No committed source uses it; a test now pins that. Status: FIXED (pinned).
+- [minor] [provenance] M3. The generated-source tripwire scanned only `scripts/` and `src/` for three PyMuPDF calls. It now also scans `benchmark/` and `tests/` (three named test files that build synthetic fixtures excepted) and looks for `set_metadata(`, `reportlab`, `fpdf` and a literal PDF header. Status: FIXED.
+
+### Hidden set A
+
+14 scenarios in `benchmark/hidden/` (git-ignored), written by the reviewer agent for the regimes Codex built or repaired: RBI (11), DPDP commencement boundary (2), and one NBFC that is also a stock broker. Labels were typed from the law without running the engine. They cover cases the dev set does not: midnight rollover, the first and last minutes around each commencement date, an HFC in Chapter IV, a Top Layer CIC, a Base Layer CIC with no size, UTC input, and a three-regulator entity.
+
+Result of the first and only run: **14/14 scenarios, 24/24 deadlines** (Wilson 95% interval for 14/14: 78.5% to 100%). The engine was not changed after the run.
+
+Limits: 14 is a small sample; the labels are AI-authored; the SEBI duties in the last scenario were built by the reviewer agent, so that scenario is not independent for SEBI. Hidden set B (SEBI remaining duties and the workspace, to be written by Codex) does not exist yet.
+
+### Sources that could not be acquired by code
+
+- **IRDAI Information and Cyber Security Guidelines, 2023** (ref IRDAI/GA&HR/GDL/MISC/88/04/2023, 24 April 2023, 175 pages). Official page: https://irdai.gov.in/document-detail?documentId=3314780 . BLOCKED for automated fetch: `https://irdai.gov.in/robots.txt` says `User-Agent: *` / `Disallow: /`, and `BaseFetcher` refused. Needs a person to download it in a browser.
+- **Other RBI cybersecurity Directions of 31 July 2026.** The HTML pages are public: Non-Banking Financial Companies (id=13592), All India Financial Institutions (id=13597), Urban Co-operative Banks (id=13615 or 13616), Payments Banks (id=13624 or 13625) under `https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=`. Commercial Banks, Small Finance Banks and others were not located in the ids scanned (13586 to 13632). This confirms an AIFI Direction exists, so there are at least seven. The PDFs sit on `rbidocs.rbi.org.in`, which serves a CAPTCHA to automated clients; they need a person to download them.

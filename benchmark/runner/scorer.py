@@ -292,7 +292,7 @@ def _print_report(report: dict[str, Any]) -> None:
         for failure in r["failures"]:
             print(f"        - {failure}")
     print("=" * 64)
-    print("Note: one instrument (CERT-In) is loaded, so regulator identification is trivial.")
+    print("Labels are AI-authored and not yet reviewed by a compliance professional.")
 
 
 def main(argv: list[str] | None = None) -> int:

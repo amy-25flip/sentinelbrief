@@ -61,3 +61,9 @@ Things needing a human or a primary-source check.
 - [ ] **Quarterly reports (page 124):** within 15 days of each quarter end. Not modelled.
 - [ ] **"Cybersecurity incident" in the CSCRF:** the tool reuses one cyber-incident attestation for the RBI definition (paragraph 4(7)) and the SEBI term. Is one question enough for both regimes?
 - [ ] **NCIIPC "as applicable" (page 123):** the 24-hour sentence lists NCIIPC as a recipient "as applicable"; the tool shows the separate NCIIPC duty only for protected systems.
+
+## Sources awaiting a human download (2026-10-04)
+
+- [ ] **IRDAI Information and Cyber Security Guidelines, 2023:** the regulator's robots.txt disallows all automated access. A person must download the PDF from https://irdai.gov.in/document-detail?documentId=3314780 and record `acquired_by` in the manifest. Not ingested; no IRDAI obligation exists.
+- [ ] **RBI cybersecurity Directions for other entity types** (AIFIs, UCBs, Payments Banks found; Commercial Banks and Small Finance Banks not yet located): PDFs need a person to download them. Not ingested.
+- [ ] **RBI list of repealed circulars and the old circular texts** (for the migrator): not located or ingested.
