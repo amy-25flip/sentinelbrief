@@ -250,6 +250,9 @@ def _profile_from_payload(payload: dict[str, Any], *, form_input: bool) -> Incid
         annexure_i_items=list(payload.get("annexure_i_items") or []),
         is_annexure_i_type=False if attestation == "no" else None,
         is_cyber_incident=cyber_incident,
+        sebi_severity=(str(payload["sebi_severity"]).lower() or None)
+        if payload.get("sebi_severity")
+        else None,
         personal_data_involved=personal_data,
         uses_protected_systems=protected_systems,
         external_events=external_events,

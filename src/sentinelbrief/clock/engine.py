@@ -126,6 +126,8 @@ class IncidentProfile:
     external_events: dict[str, datetime] = field(default_factory=dict)
     personal_data_involved: bool | None = None
     uses_protected_systems: bool | None = None
+    # Severity as classified by the SEBI regulated entity itself (Annexure-O 3.5). Never inferred.
+    sebi_severity: str | None = None
     systems_affected: list[str] = field(default_factory=list)
     # Explicit user attestation. Only this can make Annexure I "not applicable".
     is_annexure_i_type: bool | None = None
@@ -151,6 +153,13 @@ class IncidentProfile:
                     f"{name} must be timezone-aware; a naive datetime would be silently read "
                     "in the server's local timezone, which can shift a legal deadline by hours"
                 )
+        if self.sebi_severity is not None and self.sebi_severity not in (
+            "low",
+            "medium",
+            "high",
+            "critical",
+        ):
+            raise ValueError("sebi_severity must be low, medium, high or critical")
         for obligation_id, value in self.external_events.items():
             if not isinstance(value, datetime) or value.tzinfo is None or value.utcoffset() is None:
                 raise ValueError(
@@ -732,6 +741,30 @@ class IncidentClockEngine:
                                     impact="This decides whether a SEBI incident-reporting duty applies.",
                                 )
                             )
+                        undetermined.append(obs_id)
+                        requirement_unknown = True
+                        break
+
+                elif requirement == "sebi_high_or_critical":
+                    if profile.sebi_severity in ("low", "medium"):
+                        not_applicable.append(
+                            {
+                                "obligation_id": obs_id,
+                                "reason": "condition_not_met: severity classified low or medium; a "
+                                "forensic report may still be required if the RCA is inconclusive "
+                                "or SEBI / HPSC-CS directs it (Annexure-O 4.2)",
+                            }
+                        )
+                        requirement_failed = True
+                        break
+                    if profile.sebi_severity is None:
+                        unknowns.append(
+                            Unknown(
+                                question="What severity has the entity classified the incident as (low, medium, high or critical)?",
+                                affects=[obs_id],
+                                impact="A forensic report is required for High or Critical incidents (Annexure-O 4.1).",
+                            )
+                        )
                         undetermined.append(obs_id)
                         requirement_unknown = True
                         break

@@ -37,6 +37,7 @@ _FACT_FIELDS = (
     "systems_affected",
     "is_annexure_i_type",
     "is_cyber_incident",
+    "sebi_severity",
     "external_events",
 )
 # A person approves and files. Names that indicate an AI agent or a placeholder are refused.

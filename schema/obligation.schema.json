@@ -22,18 +22,30 @@
       "properties": {
         "actor": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": {
+            "type": "string"
+          }
         },
         "trigger": {
           "type": "object",
           "properties": {
             "type": {
               "type": "string",
-              "enum": ["event", "periodic", "condition", "always"]
+              "enum": [
+                "event",
+                "periodic",
+                "condition",
+                "always"
+              ]
             },
-            "description": { "type": "string" }
+            "description": {
+              "type": "string"
+            }
           },
-          "required": ["type", "description"]
+          "required": [
+            "type",
+            "description"
+          ]
         },
         "action": {
           "type": "string"
@@ -43,34 +55,81 @@
           "properties": {
             "kind": {
               "type": "string",
-              "enum": ["relative", "absolute", "recurring", "retention", "immediate", "none"]
+              "enum": [
+                "relative",
+                "absolute",
+                "recurring",
+                "retention",
+                "immediate",
+                "none"
+              ]
             },
             "duration_iso8601": {
-              "type": ["string", "null"]
+              "type": [
+                "string",
+                "null"
+              ]
             },
             "alternative_anchors": {
               "type": "array",
               "description": "Other triggers the source text joins with 'or'. The engine starts the clock at the earliest known trigger (conservative reading).",
               "items": {
                 "type": "string",
-                "enum": ["detection", "noticing", "brought_to_notice", "awareness", "occurrence", "reported"]
+                "enum": [
+                  "detection",
+                  "noticing",
+                  "brought_to_notice",
+                  "awareness",
+                  "occurrence",
+                  "reported"
+                ]
               }
             },
             "anchor": {
-              "type": ["string", "null"],
-              "enum": ["detection", "noticing", "brought_to_notice", "awareness", "occurrence", "publication", "fixed_date", "not_applicable", "reported", "external_event"]
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "detection",
+                "noticing",
+                "brought_to_notice",
+                "awareness",
+                "occurrence",
+                "publication",
+                "fixed_date",
+                "not_applicable",
+                "reported",
+                "external_event"
+              ]
             },
             "calendar": {
               "type": "string",
-              "enum": ["continuous", "business_days"],
+              "enum": [
+                "continuous",
+                "business_days"
+              ],
               "default": "continuous"
             },
             "fixed_date": {
-              "type": ["string", "null"],
+              "type": [
+                "string",
+                "null"
+              ],
               "format": "date"
+            },
+            "fixed_schedule": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+              },
+              "description": "Month-day due dates (MM-DD) for a recurring duty tied to the calendar."
             }
           },
-          "required": ["kind"]
+          "required": [
+            "kind"
+          ]
         },
         "recipient": {
           "type": "string"
@@ -78,42 +137,69 @@
         "evidence_required": {
           "description": "Evidence the cited text itself requires. Every item must be words quoted from text_verbatim.",
           "type": "array",
-          "items": { "type": "string" }
+          "items": {
+            "type": "string"
+          }
         },
         "suggested_evidence": {
           "description": "Operational suggestions written by the dataset authors. Not stated in the source text and not a legal requirement.",
           "type": "array",
-          "items": { "type": "string" }
+          "items": {
+            "type": "string"
+          }
         }
       },
-      "required": ["actor", "trigger", "action", "deadline"]
+      "required": [
+        "actor",
+        "trigger",
+        "action",
+        "deadline"
+      ]
     },
     "applicability": {
       "type": "object",
       "properties": {
         "entity_classes": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": {
+            "type": "string"
+          }
         },
         "all_of_entity_classes": {
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "uniqueItems": true
         },
         "excluded_entity_classes": {
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "uniqueItems": true
         },
         "conditions": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": {
+            "type": "string"
+          }
         },
         "requires": {
           "type": "array",
           "items": {
             "type": "string",
-            "enum": ["cert_in_annexure_i", "personal_data_involved", "rbi_cyber_incident", "irdai_cyber_incident", "sebi_other_cybersecurity_incident", "sebi_cybersecurity_incident", "sebi_incident_reporting_applies", "nciipc_protected_system"]
+            "enum": [
+              "cert_in_annexure_i",
+              "personal_data_involved",
+              "rbi_cyber_incident",
+              "irdai_cyber_incident",
+              "sebi_other_cybersecurity_incident",
+              "sebi_cybersecurity_incident",
+              "sebi_incident_reporting_applies",
+              "nciipc_protected_system",
+              "sebi_high_or_critical"
+            ]
           },
           "uniqueItems": true
         }
@@ -127,7 +213,10 @@
           "format": "date"
         },
         "valid_to": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "format": "date"
         },
         "recorded_at": {
@@ -135,11 +224,19 @@
           "format": "date-time"
         }
       },
-      "required": ["valid_from", "recorded_at"]
+      "required": [
+        "valid_from",
+        "recorded_at"
+      ]
     },
     "status": {
       "type": "string",
-      "enum": ["in_force", "repealed", "not_yet_in_force", "superseded"]
+      "enum": [
+        "in_force",
+        "repealed",
+        "not_yet_in_force",
+        "superseded"
+      ]
     },
     "citations": {
       "type": "array",
@@ -153,29 +250,54 @@
       "properties": {
         "method": {
           "type": "string",
-          "enum": ["manual", "rule", "llm"]
+          "enum": [
+            "manual",
+            "rule",
+            "llm"
+          ]
         },
         "model": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "prompt_version": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "extractor_version": {
           "type": "string"
         }
       },
-      "required": ["method", "extractor_version"]
+      "required": [
+        "method",
+        "extractor_version"
+      ]
     },
     "verification": {
       "type": "string",
-      "enum": ["unverified", "machine_checked", "human_verified"]
+      "enum": [
+        "unverified",
+        "machine_checked",
+        "human_verified"
+      ]
     },
     "verification_details": {
-      "type": ["object", "null"],
+      "type": [
+        "object",
+        "null"
+      ],
       "properties": {
-        "reviewer": { "type": "string" },
-        "date": { "type": "string", "format": "date" }
+        "reviewer": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        }
       }
     },
     "confidence": {

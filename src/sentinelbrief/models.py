@@ -78,6 +78,8 @@ class Deadline(BaseModel):
     ) = None
     calendar: Literal["continuous", "business_days"] = "continuous"
     fixed_date: date | None = None
+    # Month-day due dates (MM-DD) for a recurring duty tied to the calendar, e.g. quarter ends.
+    fixed_schedule: list[str] | None = None
 
 
 class Normalized(BaseModel):
@@ -116,6 +118,7 @@ class Applicability(BaseModel):
                 "sebi_cybersecurity_incident",
                 "sebi_incident_reporting_applies",
                 "nciipc_protected_system",
+                "sebi_high_or_critical",
             ]
         ]
         | None
@@ -295,6 +298,7 @@ class IncidentFacts(BaseModel):
     external_events: dict[str, datetime] | None = None
     is_annexure_i_type: bool | None = None
     is_cyber_incident: bool | None = None
+    sebi_severity: Literal["low", "medium", "high", "critical"] | None = None
     annexure_i_items: list[str] | None = None
     personal_data_involved: bool | None = None
     systems_affected: list[str]

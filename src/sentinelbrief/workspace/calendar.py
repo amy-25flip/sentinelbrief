@@ -81,33 +81,50 @@ def recurring_duties_ics(
             continue
         if obligation_id not in result.applicable_obligations:
             continue
-        months = _interval_months(deadline.get("duration_iso8601") or "")
-        first = _add_months(last_done, months)
-        rule = (
-            f"FREQ=YEARLY;INTERVAL={months // 12}"
-            if months % 12 == 0
-            else f"FREQ=MONTHLY;INTERVAL={months}"
-        )
         citation = (
             f"{obligation.get('instrument_id', '')} {obligation.get('paragraph_ref', '')}".strip()
         )
-        uid = hashlib.sha256(f"{obligation_id}|{last_done.isoformat()}".encode()).hexdigest()[:32]
-        description = (
-            f"{normalized.get('action', '')}\n\nSource: {citation}\n"
-            f"Counted from the date you gave as last performed ({last_done.isoformat()}). "
-            "Not legal advice; read the cited clause."
-        )
-        event = [
-            "BEGIN:VEVENT",
-            f"UID:{uid}@sentinelbrief",
-            f"DTSTAMP:{stamp}",
-            f"DTSTART;VALUE=DATE:{first.strftime('%Y%m%d')}",
-            f"RRULE:{rule}",
-            f"SUMMARY:{_escape(normalized.get('action', obligation_id))}",
-            f"DESCRIPTION:{_escape(description)}",
-            "END:VEVENT",
-        ]
-        for line in event:
-            lines.extend(_fold(line))
+        schedule = deadline.get("fixed_schedule")
+        if schedule:
+            # Due dates fixed by the clause (for example the 15th after each quarter end): one
+            # yearly event per date, starting at its next occurrence after `last_done`.
+            occurrences = []
+            for month_day in schedule:
+                month, day = (int(part) for part in month_day.split("-"))
+                due = date(last_done.year, month, day)
+                if due <= last_done:
+                    due = date(last_done.year + 1, month, day)
+                occurrences.append(
+                    (due, "FREQ=YEARLY;INTERVAL=1", month_day, "Due on a date fixed by the clause.")
+                )
+        else:
+            months = _interval_months(deadline.get("duration_iso8601") or "")
+            rule = (
+                f"FREQ=YEARLY;INTERVAL={months // 12}"
+                if months % 12 == 0
+                else f"FREQ=MONTHLY;INTERVAL={months}"
+            )
+            basis = f"Counted from the date you gave as last performed ({last_done.isoformat()})."
+            occurrences = [(_add_months(last_done, months), rule, "", basis)]
+        for first, rule, seed, basis in sorted(occurrences):
+            uid = hashlib.sha256(
+                f"{obligation_id}|{last_done.isoformat()}|{seed}".encode()
+            ).hexdigest()[:32]
+            description = (
+                f"{normalized.get('action', '')}\n\nSource: {citation}\n{basis} "
+                "Not legal advice; read the cited clause."
+            )
+            event = [
+                "BEGIN:VEVENT",
+                f"UID:{uid}@sentinelbrief",
+                f"DTSTAMP:{stamp}",
+                f"DTSTART;VALUE=DATE:{first.strftime('%Y%m%d')}",
+                f"RRULE:{rule}",
+                f"SUMMARY:{_escape(normalized.get('action', obligation_id))}",
+                f"DESCRIPTION:{_escape(description)}",
+                "END:VEVENT",
+            ]
+            for line in event:
+                lines.extend(_fold(line))
     lines.append("END:VCALENDAR")
     return "\r\n".join(lines) + "\r\n", undetermined

@@ -54,6 +54,8 @@ def main(argv: list[str]) -> int:
             hh, mm = value.split(":")
             events = kwargs.setdefault("external_events", {})
             events[key[4:]] = day.replace(hour=int(hh), minute=int(mm), tzinfo=IST)  # type: ignore[index]
+        elif key == "severity":
+            kwargs["sebi_severity"] = value
         elif key in BOOL_KEYS:
             kwargs[BOOL_KEYS[key]] = value == "true"
         else:
