@@ -7,13 +7,14 @@ Indian cyber-regulatory compliance - obligation dataset, incident clock, filing 
 SentinelBrief provides three main surfaces:
 1. **Dataset**: Citation-first structured obligations parsed from primary regulatory texts.
 2. **Card Feed**: Deterministic cards grounded in obligation records and cited source text.
-3. **Incident Clock**: A deterministic tool to determine filing deadlines from incident facts and entity class.
+3. **Incident Clock**: A deterministic tool to determine filing deadlines from incident facts and one or more entity classes (`entity_classes`). Legal gating uses the structured `applicability.requires` keys on each obligation; prose conditions are shown to the user and never evaluated.
 
 Current data status:
-- Modelled obligations: CERT-In Directions 70B (2022) only.
-- Ingested but not modelled: real DPDP Rules 2025 Gazette PDF, real SEBI CSCRF 2024 PDF, and real RBI NBFC Cybersecurity Directions 2026 PDF.
+- Modelled obligations (11): CERT-In Directions 70B (2022), 7; DPDP Rules 2025 Rule 7, 3; SEBI CSCRF 2024 incident reporting, 1.
+- Ingested but not modelled: RBI NBFC Cybersecurity Directions 2026. Three further SEBI reporting duties are recorded in `docs/OPEN_QUESTIONS.md` and not modelled.
+- Benchmark: 37 dev scenarios, each with a clause quote verified against the page text. Labels are AI-authored and not yet reviewed by a compliance professional, so no accuracy figure should be quoted.
+- Two readings are contested and recorded for counsel in `docs/DECISIONS.md`: the date from which SEBI CSCRF duties bind, and the DPDP Rule 7 commencement date.
 - RBI live reverify is exempted because the official RBI document server returns a CAPTCHA to automated clients; a human must re-check by downloading the official URL and comparing sha256.
-- No DPDP, SEBI, or RBI obligations, benchmark labels, or clock outputs are currently authored.
 
 Disclaimer: This tool is not legal advice and is not affiliated with any regulator.
 

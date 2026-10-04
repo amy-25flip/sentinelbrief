@@ -69,6 +69,11 @@
                               "document":  "cert-in.directions-70b.2022",
                               "page":  2,
                               "quote":  "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+                          },
+                          {
+                              "document":  "meity.dpdp-rules.2025",
+                              "page":  26,
+                              "quote":  "(1) On becoming aware of any personal data breach, the Data \nFiduciary shall, to the best of its knowledge, intimate to each affected Data Principal, in a concise, clear and \nplain manner and without delay, through her user account or any mode of communication registered by her \nwith the Data Fiduciary, —"
                           }
                       ]
 }

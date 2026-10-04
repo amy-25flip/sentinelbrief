@@ -103,3 +103,40 @@ Note: one instrument (CERT-In) is loaded, so regulator identification is trivial
 - DPDP, SEBI, and RBI remain raw evidence only and unmodelled.
 - RBI chapter/entity scoping must be read carefully before modelling; `data/entities/rbi.json` is still provisional.
 - Benchmark labels remain CERT-In only and AI-authored, pending external compliance review.
+
+# Review 7 and Review 8 fixes (2026-10-04)
+
+The fixer (Codex) made the code and data changes in commits `831b353` and the Review 8 follow-up. Codex could not write `HANDOFF.md` or `README.md` in its sandbox on two attempts, so the reviewer (the reviewer agent) wrote this section and the README status lines. Sections above this line describe the earlier Review 6 state and are out of date.
+
+## Gate output (`python scripts/check.py`, run by the reviewer)
+
+```
+PASS  pytest             190 passed, 1 deselected, 1 warning
+PASS  ruff check         All checks passed!
+PASS  ruff format        46 files already formatted
+PASS  mypy (strict)      Success: no issues found in 28 source files
+PASS  validate_all       All obligations and citations passed validation successfully!
+PASS  benchmark dev      Scenarios passed:   37/37  Wilson 95% CI [90.6%, 100.0%]
+ALL GATES PASSED
+```
+
+## Findings
+
+- J1 FIXED: the engine gates on `applicability.requires`; prose conditions are never evaluated. Scenarios `sebi-mii-hardware-failure-unattested` and `sebi-mii-attested-not-annexure-i`.
+- J2 FIXED: SEBI `valid_from` is the issue date 2024-08-20; paragraphs 17.1 and 17.2 (PDF page 9) quoted; reading recorded as contested.
+- J3 FIXED: SEBI scope tension and three unmodelled duties recorded in DECISIONS and OPEN_QUESTIONS.
+- J4 FIXED: unit and mutation tests added (178 to 190 tests).
+- J5 FIXED: `source_quotes` on all 37 dev scenarios, verified against page text.
+- J6 FIXED: `IncidentProfile.entity_classes` in the engine, scorer, API and form. Scenario `sebi-mii-also-data-fiduciary-2027`.
+- J7 FIXED: `docs/RBI_NBFC_PREPARATION.md` neutralised, pages verified.
+- J8, J9 FIXED: DECISIONS entries carry quotes, pages and alternatives.
+- K1 FIXED: ten scenarios now also quote the clause their outcome turns on.
+- K2 FIXED by the reviewer (this section and README).
+- J10 OPEN: the builder's Checkpoint 2B handoff. See `BUILD_BRIEF_CHECKPOINT3.md`, WP-0.
+
+## Still open
+
+- RBI NBFC Direction and three SEBI duties are not modelled.
+- Benchmark labels are not reviewed by a compliance professional.
+- Two contested readings await counsel (SEBI binding date; DPDP 13 or 14 May 2027).
+- Live source reverify was last run on 2026-09-25, not in this round.
