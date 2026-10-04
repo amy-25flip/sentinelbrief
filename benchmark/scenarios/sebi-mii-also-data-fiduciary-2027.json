@@ -1,123 +1,161 @@
 {
-    "$schema":  "../../schema/benchmark_scenario.schema.json",
-    "id":  "sebi-mii-also-data-fiduciary-2027",
-    "description":  "One incident profile carries both SEBI MII and DPDP Data Fiduciary classes, so all applicable regimes are evaluated.",
-    "entity_profile":  {
-                           "entity_classes":  [
-                                                  "sebi.mii",
-                                                  "dpdp.data_fiduciary"
-                                              ],
-                           "is_listed":  true,
-                           "holds_personal_data":  true,
-                           "uses_protected_systems":  true,
-                           "is_regulated_cloud_vps":  false
-                       },
-    "incident_facts":  {
-                           "description":  "Ransomware and personal data breach.",
-                           "incident_types":  [
-                                                  "Malicious code attacks such as Ransomware",
-                                                  "Data breach"
-                                              ],
-                           "personal_data_involved":  true,
-                           "when_noticed":  "2027-06-01T10:00:00+05:30",
-                           "when_detected":  "2027-06-01T10:00:00+05:30",
-                           "when_aware":  "2027-06-01T10:00:00+05:30",
-                           "systems_affected":  [
-                                                    "Customer system"
-                                                ]
-                       },
-    "law_snapshot_date":  "2026-09-25",
-    "expected":  {
-                     "law_as_of":  "2027-06-01",
-                     "regulators":  [
-                                        "CERT-In",
-                                        "SEBI",
-                                        "MeitY"
-                                    ],
-                     "deadlines":  [
-                                       {
-                                           "obligation_id":  "cert-in.directions-70b.2022.incident-reporting-6h",
-                                           "regulator":  "CERT-In",
-                                           "anchor":  "noticing",
-                                           "deadline_iso8601":  "PT6H",
-                                           "deadline_timestamp":  "2027-06-01T16:00:00+05:30"
-                                       },
-                                       {
-                                           "obligation_id":  "sebi.cscrf.2024.incident-reporting-6h",
-                                           "regulator":  "SEBI",
-                                           "anchor":  "noticing",
-                                           "deadline_iso8601":  "PT6H",
-                                           "deadline_timestamp":  "2027-06-01T16:00:00+05:30"
-                                       },
-                                       {
-                                           "obligation_id":  "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
-                                           "regulator":  "MeitY",
-                                           "anchor":  "awareness",
-                                           "deadline_iso8601":  "PT72H",
-                                           "deadline_timestamp":  "2027-06-04T10:00:00+05:30"
-                                       }
-                                   ],
-                     "citations":  [
-                                       {
-                                           "obligation_id":  "cert-in.directions-70b.2022.incident-reporting-6h",
-                                           "instrument_id":  "cert-in.directions-70b.2022",
-                                           "paragraph_ref":  "Direction (ii)"
-                                       },
-                                       {
-                                           "obligation_id":  "sebi.cscrf.2024.incident-reporting-6h",
-                                           "instrument_id":  "sebi.cscrf.2024",
-                                           "paragraph_ref":  "RS.CO.S1 / Annexure-O Section B.1"
-                                       },
-                                       {
-                                           "obligation_id":  "meity.dpdp-rules.2025.rule7-1-principal-intimation",
-                                           "instrument_id":  "meity.dpdp-rules.2025",
-                                           "paragraph_ref":  "Rule 7(1)"
-                                       },
-                                       {
-                                           "obligation_id":  "meity.dpdp-rules.2025.rule7-2-a-board-initial",
-                                           "instrument_id":  "meity.dpdp-rules.2025",
-                                           "paragraph_ref":  "Rule 7(2)(a)"
-                                       },
-                                       {
-                                           "obligation_id":  "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
-                                           "instrument_id":  "meity.dpdp-rules.2025",
-                                           "paragraph_ref":  "Rule 7(2)(b)"
-                                       }
-                                   ],
-                     "required_evidence":  [
-
-                                           ],
-                     "not_applicable":  [
-
-                                        ],
-                     "unknowns":  [
-
-                                  ],
-                     "time_critical":  [
-                                           "meity.dpdp-rules.2025.rule7-1-principal-intimation",
-                                           "meity.dpdp-rules.2025.rule7-2-a-board-initial"
-                                       ]
-                 },
-    "adversarial_flags":  [
-                              "multi_regime_entity"
-                          ],
-    "split":  "dev",
-    "labels_source":  "CERT-In Directions page 2; SEBI CSCRF page 123; DPDP Rules page 26",
-    "source_quotes":  [
-                          {
-                              "document":  "cert-in.directions-70b.2022",
-                              "page":  2,
-                              "quote":  "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
-                          },
-                          {
-                              "document":  "sebi.cscrf.2024",
-                              "page":  123,
-                              "quote":  "1. Any cyber-attack, cybersecurity incident and/ or breach falling under CERT-In \nCybersecurity directions29 shall be notified to SEBI and CERT-In within 6 hours of \nnoticing/ detecting such incidents or being brought to notice about such incidents. This \ninformation shall be shared with SEBI through the mkt_incidents@sebi.gov.in within \n6 hours. However, necessary details of the incidents shall be reported on SEBI Incident \nReporting Portal within 24 hours. Stock Brokers/ Depository Participants shall also \nreport the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In \nwithin 6 hours of noticing/ detecting such incidents or being brought to notice about such \nincidents. All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and \nNCIIPC (as applicable) within 24 hours."
-                          },
-                          {
-                              "document":  "meity.dpdp-rules.2025",
-                              "page":  26,
-                              "quote":  "(b) within seventy-two hours of becoming aware of the breach, or within such longer period as the \nBoard may allow on a request made in writing in this behalf, — \n(i) \nupdated and detailed information in respect of such description; \n(ii) the broad facts related to the events, circumstances and reasons leading to the breach; \n(iii) measures implemented or proposed, if any, to mitigate risk;  \n(iv) any findings regarding the person who caused the breach;  \n(v) remedial measures taken to prevent recurrence of such breach; and \n(vi) a report regarding the intimations given to affected Data Principals."
-                          }
-                      ]
+    "$schema": "../../schema/benchmark_scenario.schema.json",
+    "id": "sebi-mii-also-data-fiduciary-2027",
+    "description": "One incident profile carries both SEBI MII and DPDP Data Fiduciary classes, so all applicable regimes are evaluated.",
+    "entity_profile": {
+        "entity_classes": [
+            "sebi.mii",
+            "dpdp.data_fiduciary"
+        ],
+        "is_listed": true,
+        "holds_personal_data": true,
+        "uses_protected_systems": true,
+        "is_regulated_cloud_vps": false
+    },
+    "incident_facts": {
+        "description": "Ransomware and personal data breach.",
+        "incident_types": [
+            "Malicious code attacks such as Ransomware",
+            "Data breach"
+        ],
+        "personal_data_involved": true,
+        "when_noticed": "2027-06-01T10:00:00+05:30",
+        "when_detected": "2027-06-01T10:00:00+05:30",
+        "when_aware": "2027-06-01T10:00:00+05:30",
+        "systems_affected": [
+            "Customer system"
+        ]
+    },
+    "law_snapshot_date": "2026-09-25",
+    "expected": {
+        "law_as_of": "2027-06-01",
+        "regulators": [
+            "CERT-In",
+            "SEBI",
+            "MeitY"
+        ],
+        "deadlines": [
+            {
+                "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+                "regulator": "CERT-In",
+                "anchor": "noticing",
+                "deadline_iso8601": "PT6H",
+                "deadline_timestamp": "2027-06-01T16:00:00+05:30"
+            },
+            {
+                "obligation_id": "sebi.cscrf.2024.incident-reporting-6h",
+                "regulator": "SEBI",
+                "anchor": "noticing",
+                "deadline_iso8601": "PT6H",
+                "deadline_timestamp": "2027-06-01T16:00:00+05:30"
+            },
+            {
+                "obligation_id": "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
+                "regulator": "MeitY",
+                "anchor": "awareness",
+                "deadline_iso8601": "PT72H",
+                "deadline_timestamp": "2027-06-04T10:00:00+05:30"
+            },
+            {
+                "obligation_id": "sebi.cscrf.2024.incident-portal-24h",
+                "regulator": "SEBI",
+                "anchor": "noticing",
+                "deadline_iso8601": "PT24H",
+                "deadline_timestamp": "2027-06-02T10:00:00+05:30"
+            }
+        ],
+        "citations": [
+            {
+                "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+                "instrument_id": "cert-in.directions-70b.2022",
+                "paragraph_ref": "Direction (ii)"
+            },
+            {
+                "obligation_id": "sebi.cscrf.2024.incident-reporting-6h",
+                "instrument_id": "sebi.cscrf.2024",
+                "paragraph_ref": "RS.CO.S1 / Annexure-O Section B.1"
+            },
+            {
+                "obligation_id": "meity.dpdp-rules.2025.rule7-1-principal-intimation",
+                "instrument_id": "meity.dpdp-rules.2025",
+                "paragraph_ref": "Rule 7(1)"
+            },
+            {
+                "obligation_id": "meity.dpdp-rules.2025.rule7-2-a-board-initial",
+                "instrument_id": "meity.dpdp-rules.2025",
+                "paragraph_ref": "Rule 7(2)(a)"
+            },
+            {
+                "obligation_id": "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
+                "instrument_id": "meity.dpdp-rules.2025",
+                "paragraph_ref": "Rule 7(2)(b)"
+            },
+            {
+                "obligation_id": "sebi.cscrf.2024.incident-portal-24h",
+                "instrument_id": "sebi.cscrf.2024",
+                "paragraph_ref": "RS.CO.S1 (Incident Reporting Portal)"
+            },
+            {
+                "obligation_id": "sebi.cscrf.2024.nciipc-protected-system-report",
+                "instrument_id": "sebi.cscrf.2024",
+                "paragraph_ref": "RS.CO.S1 item 3 (NCIIPC)"
+            }
+        ],
+        "required_evidence": [],
+        "not_applicable": [],
+        "unknowns": [
+            {
+                "question": "reported to SEBI",
+                "affects": "sebi.cscrf.2024.post-incident-interim-report-3d"
+            },
+            {
+                "question": "reported to SEBI",
+                "affects": "sebi.cscrf.2024.post-incident-mitigation-7d"
+            },
+            {
+                "question": "reported to SEBI",
+                "affects": "sebi.cscrf.2024.post-incident-rca-30d"
+            },
+            {
+                "question": "reported to SEBI",
+                "affects": "sebi.cscrf.2024.post-incident-vapt-45d"
+            }
+        ],
+        "time_critical": [
+            "meity.dpdp-rules.2025.rule7-1-principal-intimation",
+            "meity.dpdp-rules.2025.rule7-2-a-board-initial"
+        ]
+    },
+    "adversarial_flags": [
+        "multi_regime_entity"
+    ],
+    "split": "dev",
+    "labels_source": "CERT-In Directions page 2; SEBI CSCRF page 123; DPDP Rules page 26",
+    "source_quotes": [
+        {
+            "document": "cert-in.directions-70b.2022",
+            "page": 2,
+            "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+        },
+        {
+            "document": "sebi.cscrf.2024",
+            "page": 123,
+            "quote": "1. Any cyber-attack, cybersecurity incident and/ or breach falling under CERT-In \nCybersecurity directions29 shall be notified to SEBI and CERT-In within 6 hours of \nnoticing/ detecting such incidents or being brought to notice about such incidents. This \ninformation shall be shared with SEBI through the mkt_incidents@sebi.gov.in within \n6 hours. However, necessary details of the incidents shall be reported on SEBI Incident \nReporting Portal within 24 hours. Stock Brokers/ Depository Participants shall also \nreport the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In \nwithin 6 hours of noticing/ detecting such incidents or being brought to notice about such \nincidents. All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and \nNCIIPC (as applicable) within 24 hours."
+        },
+        {
+            "document": "meity.dpdp-rules.2025",
+            "page": 26,
+            "quote": "(b) within seventy-two hours of becoming aware of the breach, or within such longer period as the \nBoard may allow on a request made in writing in this behalf, — \n(i) \nupdated and detailed information in respect of such description; \n(ii) the broad facts related to the events, circumstances and reasons leading to the breach; \n(iii) measures implemented or proposed, if any, to mitigate risk;  \n(iv) any findings regarding the person who caused the breach;  \n(v) remedial measures taken to prevent recurrence of such breach; and \n(vi) a report regarding the intimations given to affected Data Principals."
+        },
+        {
+            "document": "sebi.cscrf.2024",
+            "page": 201,
+            "quote": "3.3. RE shall undertake the necessary activities and submit the relevant reports \nas per the following timelines: \nTable 36: Timelines for post-cyber incident activity(ies) and report \nsubmission \nS. \nNo. \nName of the Report/ Activity \nTimeline for Submission \n(from \nthe \ndate \nof \nreporting the incident or \nbeing brought to notice \nabout the incident) \n1 \nInterim Report* \n3 Days \n2 \nMitigation measure \n7 Days \n3 \nRoot Cause Analysis (RCA) report** \n30 Days# \n4 \nForensic Audit Report (on the incident) and \nits closure report \nRefer clause 3.4 below  \n5 \nVulnerability Assessment and Penetration \nTesting (VAPT) for the incident and its \nclosure reports \n45 days"
+        },
+        {
+            "document": "sebi.cscrf.2024",
+            "page": 124,
+            "quote": "Additionally, the REs, whose systems \nhave been identified as “Protected system” by NCIIPC shall also report the incident to \nNCIIPC."
+        }
+    ]
 }

@@ -199,11 +199,13 @@ Decisions below were made during Review 1 (the reviewer agent, 2026-09-24). See 
 
 **Alternative and reason:** Duties may bind only from 1 January 2025 for the six categories with earlier circulars, and from 1 April 2025 for other REs. Category mapping is not yet encoded. Applying from issue avoids telling a user they owe less during the contested interval; confidence is therefore 0.7, not a claim that the interpretation is settled.
 
-## 2026-09-25: SEBI incident-reporting category scope is conservatively broad
+## 2026-09-25: SEBI incident-reporting scope is all REs (corrected 2026-10-04)
 
-**Decision:** Keep the modelled six-hour duty on all five CSCRF categories pending counsel review. PDF page 123 places RS.CO.S1-S3 beneath the heading "MIIs and Qualified REs (Mandatory)", which supports a narrower reading. PDF page 200, Annexure-O B.1, says: "Any cyber-attack(s), cybersecurity incident(s) and breach(es) experienced by REs falling under CERT-In Cybersecurity directions" and then states the six-hour duty, which supports REs generally.
+**Decision:** The SEBI incident-reporting duties bind all five CSCRF categories and the stock broker and depository participant roles.
 
-**Alternative and reason:** Limit RS.CO.S1 to MIIs and Qualified REs. The broader reading is retained because Annexure-O uses "REs" without the category qualifier and because it does not tell a potentially covered user that no SEBI duty applies.
+**Text:** On PDF page 123 the applicability cell of row "RS.CO.S1, RS.CO.S2, RS.CO.S3" reads "All REs (Mandatory)". Annexure-O B.1 (page 200) says "experienced by REs".
+
+**Correction:** An earlier version of this entry, and Review 7 finding J3, recorded a tension between a heading "MIIs and Qualified REs (Mandatory)" and Annexure-O. That was the reviewer's misreading of the extracted text, which prints each table cell after its row: "MIIs and Qualified REs (Mandatory)" is the cell of the row above (RS.MA.S5). The rendered PDF page shows this. There is no tension and no alternative reading to record.
 
 ## 2026-10-04: RBI Decision 1 — commencement on 31 July 2026
 
@@ -260,3 +262,67 @@ Decisions below were made during Review 1 (the reviewer agent, 2026-09-24). See 
 **Text:** Paragraph 28 requires reporting "within six hours of detection" (page 18), and paragraph 141 repeats "within six hours of detection" (page 43).
 
 **Alternative and safety:** Substitute CERT-In's "noticing ... or being brought to notice" anchor. Rejected because the RBI text does not offer it. Asking for detection preserves the written trigger and cannot silently postpone or erase the clock.
+
+## 2026-10-04: SEBI Decision 1 - the portal filing shares the six-hour starting event
+
+**Decision:** `incident-portal-24h` is `PT24H` from noticing, detection or being brought to notice, earliest known.
+
+**Text:** "However, necessary details of the incidents shall be reported on SEBI Incident Reporting Portal within 24 hours." (page 123). Annexure-O B.1: "This information shall be shared to SEBI through the email ID mkt_incidents@sebi.gov.in within 6 hours and SEBI Incident Reporting Portal within 24 hours." (page 200).
+
+**Alternative and safety:** 24 hours from the six-hour email. Rejected: the text does not say so, and that reading gives a later deadline. The chosen reading is the earlier one.
+
+## 2026-10-04: SEBI Decision 2 - "all other" incidents: 24 hours from the same events (contested)
+
+**Decision:** `other-incidents-24h` is `PT24H` from the same three events. Confidence 0.5.
+
+**Text:** "All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and NCIIPC (as applicable) within 24 hours." (page 123). The sentence names no starting event.
+
+**Alternative and safety:** 24 hours from classification, or from the end of the day. Neither is in the text and both are later. The earliest text-supported start is used, so the tool never shows a later deadline than a stricter reading would.
+
+## 2026-10-04: SEBI Decision 3 - what "other" means, and when to ask
+
+**Decision:** Structured key `sebi_other_cybersecurity_incident`. Annexure I matched: not applicable, the six-hour duties apply. Annexure I unresolved: the Annexure I question. Attested not Annexure I: the cyber-incident attestation decides, and when it is missing the engine asks "Is this a cybersecurity incident?".
+
+**Text:** the six-hour sentence covers incidents "falling under CERT-In Cybersecurity directions"; the next sentence covers "All other cybersecurity incident(s)" (page 123).
+
+**Alternative and safety:** treat every non-Annexure-I event as an "other" incident. Rejected: a hardware fault is not necessarily a cybersecurity incident, and the circular gives no definition to decide it from free text. Asking never tells a user they owe less.
+
+## 2026-10-04: SEBI Decision 4 - Annexure-O A.1 criteria are not evaluated
+
+**Decision:** Every Annexure I incident keeps the six-hour duty.
+
+**Text:** Annexure-O A.1: "Any incident stated under CERT-In Cybersecurity directions and meeting below criteria shall be mandatorily reported within 6 hours" with four criteria (page 198).
+
+**Alternative and safety:** apply six hours only when a criterion is met, 24 hours otherwise. Not modelled: the criteria ("severe nature", "large-scale") need judgement. Keeping six hours can only tell a user they owe more. Open question.
+
+## 2026-10-04: SEBI Decision 5 - stock broker and depository participant are roles
+
+**Decision:** Classes `sebi.stock_broker` and `sebi.depository_participant` are roles held in addition to a size category. Every duty that binds REs lists both roles, so a profile holding only a role still owes them.
+
+**Text:** "Stock Brokers/ Depository Participants shall also report the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In within 6 hours" (page 123).
+
+**Alternative and safety:** require a size category before any SEBI duty applies. Rejected: a broker who has not picked a category would be told it owes nothing.
+
+## 2026-10-04: SEBI Decision 6 - NCIIPC report has no computed deadline
+
+**Decision:** `nciipc-protected-system-report` needs `uses_protected_systems` (true, false, or unknown, which asks) and a cybersecurity incident. Deadline kind `none`.
+
+**Text:** "Additionally, the REs, whose systems have been identified as "Protected system" by NCIIPC shall also report the incident to NCIIPC." (page 124). Annexure-O 3.1: "shall report and inform the incident to NCIIPC in a timely manner" (page 200).
+
+**Alternative and safety:** model "timely" as six or 24 hours. Rejected: the text gives no number. The duty is shown as applicable with no clock.
+
+## 2026-10-04: SEBI Decision 7 - Table 36 clocks run from the report or being brought to notice
+
+**Decision:** Four duties (`P3D`, `P7D`, `P30D`, `P45D`) with anchor `reported` (new fact `when_reported_to_sebi`) and alternative anchor brought to notice, earliest known, counted from the timestamp. If neither is known the engine asks. They apply whenever a SEBI incident-reporting duty applies. The report time is not used for "law as of" unless it is the only time given.
+
+**Text:** Table 36 heading: "Timeline for Submission (from the date of reporting the incident or being brought to notice about the incident)"; rows "Interim Report* 3 Days", "Mitigation measure 7 Days", "Root Cause Analysis (RCA) report** 30 Days#", VAPT "45 days" (page 201). Footnote: "Additional time may be provided by SEBI for the submission of RCA on a case-by-case basis on request of the RE" (page 202).
+
+**Alternative and safety:** count whole calendar days from the date, which ends later in the day. The timestamp reading is the earlier one. Open question.
+
+## 2026-10-04: SEBI Decision 8 - forensic and quarterly reports are not modelled
+
+**Decision:** Not modelled.
+
+**Text:** "the maximum period for the submission of forensic audit report shall be 75 days from date of reporting of incident" for incidents classified High or Critical (page 203); quarterly reports "within 15 days from the quarter ended June, September, December and March" (page 124).
+
+**Reason:** the forensic duty depends on a severity classification the tool does not hold; the quarterly report is periodic, not incident-driven. Both are open questions.

@@ -61,3 +61,13 @@ Review 7 said page 123 puts the incident clause under "MIIs and Qualified REs (M
 ## Existing scenarios that change
 
 Every existing scenario in which `sebi.cscrf.2024.incident-reporting-6h` produces a deadline now also expects: the portal deadline 24 hours after the same anchor time; and the "reported to SEBI" unknown for the four post-incident duties, unless a brought-to-notice time is given, in which case those four deadlines are computed from it. Scenarios whose entity profile says `uses_protected_systems` true expect the NCIIPC duty as applicable; where the profile omits it, the "Protected system" unknown. Existing expectations do not otherwise change. Each changed scenario gains the quote of the clause that adds the expectation.
+
+## Amendment 1 (2026-10-04, by the label author, during the build)
+
+Decision 7 says the post-incident duties apply whenever a SEBI incident-reporting duty applies. The table rows did not spell out the consequence for every row, so:
+
+- every row with a SEBI reporting deadline and no report time also expects the "reported to SEBI" unknown for the four post-incident duties (rows 2 to 5, 8 and 9, as row 1 states);
+- `sebi-other-incident-unresolved-asks` also expects the "Annexure I" unknown for the four post-incident duties, since they depend on the same unresolved fact;
+- `sebi-nbfc-is-not-a-sebi-re` also expects the RBI Chapter V deadline (16:00, detection), which the profile implies.
+
+Existing scenario `sebi-mii-attested-not-annexure-i` (attested not Annexure I, cyber-incident status not given) now expects the "cybersecurity incident" unknown for the other-incident, NCIIPC and post-incident duties, per decision 3.

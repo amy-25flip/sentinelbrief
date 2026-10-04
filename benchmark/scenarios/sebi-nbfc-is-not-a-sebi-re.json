@@ -1,0 +1,128 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "sebi-nbfc-is-not-a-sebi-re",
+  "description": "A Middle Layer NBFC is not a SEBI regulated entity: no SEBI duty and no SEBI question, while its RBI and CERT-In clocks run.",
+  "entity_profile": {
+    "entity_classes": [
+      "nbfc.middle_layer"
+    ],
+    "is_listed": false,
+    "holds_personal_data": false,
+    "is_regulated_cloud_vps": false,
+    "uses_protected_systems": false
+  },
+  "incident_facts": {
+    "description": "A Middle Layer NBFC is not a SEBI regulated entity: no SEBI duty and no SEBI question, while its RBI and CERT-In clocks run.",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "systems_affected": [
+      "Core system"
+    ],
+    "when_noticed": "2026-10-01T10:00:00+05:30",
+    "when_detected": "2026-10-01T10:00:00+05:30"
+  },
+  "law_snapshot_date": "2026-10-04",
+  "expected": {
+    "law_as_of": "2026-10-01",
+    "regulators": [
+      "CERT-In",
+      "RBI"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      },
+      {
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h",
+        "regulator": "RBI",
+        "anchor": "detection",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      },
+      {
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h",
+        "instrument_id": "rbi.nbfc-cyber.2026",
+        "paragraph_ref": "Paragraph 141, first sentence"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [
+      {
+        "obligation_id": "sebi.cscrf.2024.incident-reporting-6h",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.incident-portal-24h",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.broker-dp-exchange-reporting-6h",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.other-incidents-24h",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.nciipc-protected-system-report",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.post-incident-interim-report-3d",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.post-incident-mitigation-7d",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.post-incident-rca-30d",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.post-incident-vapt-45d",
+        "reason": "see description"
+      }
+    ],
+    "unknowns": []
+  },
+  "adversarial_flags": [
+    "sebi_duties_must_not_leak_to_nbfc"
+  ],
+  "split": "dev",
+  "labels_source": "docs/LABELS_SEBI.md (written before implementation); SEBI CSCRF pages 123, 124, 200 to 202",
+  "source_quotes": [
+    {
+      "document": "sebi.cscrf.2024",
+      "page": 123,
+      "quote": "All REs \n(Mandatory)"
+    },
+    {
+      "document": "rbi.nbfc-cyber.2026",
+      "page": 3,
+      "quote": "The provisions contained in these Directions shall be applicable to all Non-\nBanking Financial Companies (hereinafter collectively referred to as \n'NBFCs' and individually as 'NBFC') registered with RBI under the \nprovisions of the RBI Act, 1934, Factoring Regulation Act, 2011,  National \nHousing Bank (NHB) Act, 1987, unless specified otherwise."
+    },
+    {
+      "document": "rbi.nbfc-cyber.2026",
+      "page": 43,
+      "quote": "141. The NBFC shall report cyber incidents to RBI within six hours of detection on \nDAKSH platform"
+    },
+    {
+      "document": "cert-in.directions-70b.2022",
+      "page": 2,
+      "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+    }
+  ]
+}

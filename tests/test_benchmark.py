@@ -402,3 +402,98 @@ def test_catches_rbi_chapter_iv_leaking_to_chapter_iii(monkeypatch):
 
     _mutate_loaded_obligations(monkeypatch, mutation)
     assert "rbi-bl-below-500cr-no-reporting-duty" in _failed(_run())
+
+
+# --- SEBI remaining reporting duties (docs/LABELS_SEBI.md) ---
+
+
+def _sebi(items, suffix):
+    return next(item for item in items if item["id"] == f"sebi.cscrf.2024.{suffix}")
+
+
+def test_catches_sebi_portal_duty_dropped(monkeypatch):
+    def mutation(items):
+        items.remove(_sebi(items, "incident-portal-24h"))
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "sebi-portal-24h-after-noticing" in _failed(_run())
+
+
+def test_catches_sebi_broker_duty_leaking_to_non_brokers(monkeypatch):
+    def mutation(items):
+        _sebi(items, "broker-dp-exchange-reporting-6h")["applicability"]["entity_classes"].append(
+            "sebi.small_re"
+        )
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "sebi-non-broker-no-exchange-duty" in _failed(_run())
+
+
+def test_catches_sebi_role_only_profile_treated_as_not_an_re(monkeypatch):
+    def mutation(items):
+        for item in items:
+            classes = item["applicability"]["entity_classes"]
+            if item["id"] == "sebi.cscrf.2024.incident-reporting-6h":
+                classes[:] = [c for c in classes if c != "sebi.stock_broker"]
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "sebi-broker-role-only-still-owes-re-duties" in _failed(_run())
+
+
+def test_catches_sebi_other_incident_applied_to_annexure_i_incidents(monkeypatch):
+    def mutation(items):
+        _sebi(items, "other-incidents-24h")["applicability"]["requires"] = []
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    failed = _failed(_run())
+    assert {"sebi-portal-24h-after-noticing", "sebi-not-a-cyber-incident"} <= failed
+
+
+def test_catches_sebi_other_incident_without_cyber_attestation(monkeypatch):
+    original = engine_module.IncidentClockEngine._resolve_cyber_incident
+
+    def mutation(profile, annexure, *, negative_requires_annexure_false):
+        resolved = original(
+            profile, annexure, negative_requires_annexure_false=negative_requires_annexure_false
+        )
+        return True if resolved is None and annexure.decision is False else resolved
+
+    monkeypatch.setattr(
+        engine_module.IncidentClockEngine, "_resolve_cyber_incident", staticmethod(mutation)
+    )
+    assert "sebi-mii-attested-not-annexure-i" in _failed(_run())
+
+
+def test_catches_sebi_nciipc_duty_assumed_when_status_unknown(monkeypatch):
+    def mutation(items):
+        _sebi(items, "nciipc-protected-system-report")["applicability"]["requires"] = [
+            "sebi_cybersecurity_incident"
+        ]
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "sebi-protected-system-unknown-asks" in _failed(_run())
+
+
+def test_catches_sebi_post_incident_anchor_replaced_by_noticing(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if ".post-incident-" in item["id"]:
+                item["normalized"]["deadline"]["anchor"] = "noticing"
+                item["normalized"]["deadline"]["alternative_anchors"] = []
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    failed = _failed(_run())
+    assert {
+        "sebi-post-incident-reports-from-report-date",
+        "sebi-portal-24h-after-noticing",
+    } <= failed
+
+
+def test_catches_sebi_duties_leaking_to_an_nbfc(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"].startswith("sebi.cscrf.2024."):
+                item["applicability"]["entity_classes"].append("nbfc.middle_layer")
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "sebi-nbfc-is-not-a-sebi-re" in _failed(_run())

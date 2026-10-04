@@ -18,11 +18,11 @@
         "entity_classes": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
         "is_listed": { "type": "boolean" },
         "holds_personal_data": { "type": "boolean" },
-        "uses_protected_systems": { "type": "boolean" },
+        "uses_protected_systems": { "type": ["boolean", "null"] },
         "is_regulated_cloud_vps": { "type": "boolean" },
         "additional_properties": { "type": "object" }
       },
-      "required": ["is_listed", "holds_personal_data", "uses_protected_systems", "is_regulated_cloud_vps"],
+      "required": ["is_listed", "holds_personal_data", "is_regulated_cloud_vps"],
       "oneOf": [
         { "required": ["entity_class"], "not": { "required": ["entity_classes"] } },
         { "required": ["entity_classes"], "not": { "required": ["entity_class"] } }
@@ -40,6 +40,7 @@
         "when_noticed": { "type": ["string", "null"], "format": "date-time" },
         "when_occurred": { "type": ["string", "null"], "format": "date-time" },
         "when_brought_to_notice": { "type": ["string", "null"], "format": "date-time" },
+        "when_reported_to_sebi": { "type": ["string", "null"], "format": "date-time" },
         "is_annexure_i_type": { "type": ["boolean", "null"], "description": "Explicit user attestation; only false can exclude Annexure I" },
         "is_cyber_incident": { "type": ["boolean", "null"], "description": "Explicit user attestation against the RBI paragraph 4(7) definition" },
         "annexure_i_items": { "type": "array", "items": { "type": "string" } },

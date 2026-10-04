@@ -1,87 +1,115 @@
 {
-    "$schema":  "../../schema/benchmark_scenario.schema.json",
-    "id":  "sebi-anchor-detection-vs-noticing",
-    "description":  "Adversarial anchor test: A Small-size RE detects an incident via automated SIEM alert at 08:00 IST, which was internally reviewed/noticed by security staff at 10:00 IST on 2025-08-01. SEBI CSCRF specifies within 6 hours of noticing/detecting or being brought to notice; the earlier trigger anchors the clock.",
-    "entity_profile":  {
-                           "entity_class":  "sebi.small_re",
-                           "is_listed":  false,
-                           "holds_personal_data":  false,
-                           "uses_protected_systems":  false,
-                           "is_regulated_cloud_vps":  false
-                       },
-    "incident_facts":  {
-                           "description":  "Port scanning and unauthorized probe detected by SIEM at 08:00 IST and reviewed at 10:00 IST.",
-                           "incident_types":  [
-                                                  "Scanning/probing of critical networks/systems"
-                                              ],
-                           "annexure_i_items":  [
-                                                    "annexure_i.iii"
-                                                ],
-                           "when_detected":  "2025-08-01T08:00:00+05:30",
-                           "when_noticed":  "2025-08-01T10:00:00+05:30",
-                           "when_occurred":  "2025-08-01T08:00:00+05:30",
-                           "when_aware":  "2025-08-01T10:00:00+05:30",
-                           "personal_data_involved":  false,
-                           "systems_affected":  [
-                                                    "Perimeter Firewall"
-                                                ],
-                           "is_annexure_i_type":  null
-                       },
-    "law_snapshot_date":  "2025-08-01",
-    "expected":  {
-                     "law_as_of":  "2025-08-01",
-                     "regulators":  [
-                                        "CERT-In",
-                                        "SEBI"
-                                    ],
-                     "deadlines":  [
-                                       {
-                                           "obligation_id":  "cert-in.directions-70b.2022.incident-reporting-6h",
-                                           "regulator":  "CERT-In",
-                                           "anchor":  "noticing",
-                                           "deadline_iso8601":  "PT6H",
-                                           "deadline_timestamp":  "2025-08-01T10:30:00Z"
-                                       },
-                                       {
-                                           "obligation_id":  "sebi.cscrf.2024.incident-reporting-6h",
-                                           "regulator":  "SEBI",
-                                           "anchor":  "detection",
-                                           "deadline_iso8601":  "PT6H",
-                                           "deadline_timestamp":  "2025-08-01T08:30:00Z"
-                                       }
-                                   ],
-                     "citations":  [
-                                       {
-                                           "obligation_id":  "cert-in.directions-70b.2022.incident-reporting-6h",
-                                           "instrument_id":  "cert-in.directions-70b.2022",
-                                           "paragraph_ref":  "Direction (ii)"
-                                       },
-                                       {
-                                           "obligation_id":  "sebi.cscrf.2024.incident-reporting-6h",
-                                           "instrument_id":  "sebi.cscrf.2024",
-                                           "paragraph_ref":  "RS.CO.S1 / Annexure-O Section B.1"
-                                       }
-                                   ],
-                     "required_evidence":  [
-
-                                           ],
-                     "not_applicable":  [
-
-                                        ],
-                     "unknowns":  [
-
-                                  ]
-                 },
-    "adversarial_flags":  [
-                              "ambiguous_anchor"
-                          ],
-    "split":  "dev",
-    "labels_source":  "SEBI CSCRF Circular 2024-08-20 page 123 (RS.CO.S1) \u0026 page 200 (Annexure-O B.1) noticing/detecting anchor clause",
-    "source_quotes":  [
-                          {
-                              "document":  "sebi.cscrf.2024",
-                              "page":  123,
-                              "quote":  "1. Any cyber-attack, cybersecurity incident and/ or breach falling under CERT-In \nCybersecurity directions29 shall be notified to SEBI and CERT-In within 6 hours of \nnoticing/ detecting such incidents or being brought to notice about such incidents. This \ninformation shall be shared with SEBI through the mkt_incidents@sebi.gov.in within \n6 hours. However, necessary details of the incidents shall be reported on SEBI Incident \nReporting Portal within 24 hours. Stock Brokers/ Depository Participants shall also \nreport the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In \nwithin 6 hours of noticing/ detecting such incidents or being brought to notice about such \nincidents. All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and \nNCIIPC (as applicable) within 24 hours."
-                          }
-                      ]
+    "$schema": "../../schema/benchmark_scenario.schema.json",
+    "id": "sebi-anchor-detection-vs-noticing",
+    "description": "Adversarial anchor test: A Small-size RE detects an incident via automated SIEM alert at 08:00 IST, which was internally reviewed/noticed by security staff at 10:00 IST on 2025-08-01. SEBI CSCRF specifies within 6 hours of noticing/detecting or being brought to notice; the earlier trigger anchors the clock.",
+    "entity_profile": {
+        "entity_class": "sebi.small_re",
+        "is_listed": false,
+        "holds_personal_data": false,
+        "uses_protected_systems": false,
+        "is_regulated_cloud_vps": false
+    },
+    "incident_facts": {
+        "description": "Port scanning and unauthorized probe detected by SIEM at 08:00 IST and reviewed at 10:00 IST.",
+        "incident_types": [
+            "Scanning/probing of critical networks/systems"
+        ],
+        "annexure_i_items": [
+            "annexure_i.iii"
+        ],
+        "when_detected": "2025-08-01T08:00:00+05:30",
+        "when_noticed": "2025-08-01T10:00:00+05:30",
+        "when_occurred": "2025-08-01T08:00:00+05:30",
+        "when_aware": "2025-08-01T10:00:00+05:30",
+        "personal_data_involved": false,
+        "systems_affected": [
+            "Perimeter Firewall"
+        ],
+        "is_annexure_i_type": null
+    },
+    "law_snapshot_date": "2025-08-01",
+    "expected": {
+        "law_as_of": "2025-08-01",
+        "regulators": [
+            "CERT-In",
+            "SEBI"
+        ],
+        "deadlines": [
+            {
+                "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+                "regulator": "CERT-In",
+                "anchor": "noticing",
+                "deadline_iso8601": "PT6H",
+                "deadline_timestamp": "2025-08-01T10:30:00Z"
+            },
+            {
+                "obligation_id": "sebi.cscrf.2024.incident-reporting-6h",
+                "regulator": "SEBI",
+                "anchor": "detection",
+                "deadline_iso8601": "PT6H",
+                "deadline_timestamp": "2025-08-01T08:30:00Z"
+            },
+            {
+                "obligation_id": "sebi.cscrf.2024.incident-portal-24h",
+                "regulator": "SEBI",
+                "anchor": "detection",
+                "deadline_iso8601": "PT24H",
+                "deadline_timestamp": "2025-08-02T02:30:00+00:00"
+            }
+        ],
+        "citations": [
+            {
+                "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+                "instrument_id": "cert-in.directions-70b.2022",
+                "paragraph_ref": "Direction (ii)"
+            },
+            {
+                "obligation_id": "sebi.cscrf.2024.incident-reporting-6h",
+                "instrument_id": "sebi.cscrf.2024",
+                "paragraph_ref": "RS.CO.S1 / Annexure-O Section B.1"
+            },
+            {
+                "obligation_id": "sebi.cscrf.2024.incident-portal-24h",
+                "instrument_id": "sebi.cscrf.2024",
+                "paragraph_ref": "RS.CO.S1 (Incident Reporting Portal)"
+            }
+        ],
+        "required_evidence": [],
+        "not_applicable": [],
+        "unknowns": [
+            {
+                "question": "reported to SEBI",
+                "affects": "sebi.cscrf.2024.post-incident-interim-report-3d"
+            },
+            {
+                "question": "reported to SEBI",
+                "affects": "sebi.cscrf.2024.post-incident-mitigation-7d"
+            },
+            {
+                "question": "reported to SEBI",
+                "affects": "sebi.cscrf.2024.post-incident-rca-30d"
+            },
+            {
+                "question": "reported to SEBI",
+                "affects": "sebi.cscrf.2024.post-incident-vapt-45d"
+            }
+        ]
+    },
+    "adversarial_flags": [
+        "ambiguous_anchor"
+    ],
+    "split": "dev",
+    "labels_source": "SEBI CSCRF Circular 2024-08-20 page 123 (RS.CO.S1) & page 200 (Annexure-O B.1) noticing/detecting anchor clause",
+    "source_quotes": [
+        {
+            "document": "sebi.cscrf.2024",
+            "page": 123,
+            "quote": "1. Any cyber-attack, cybersecurity incident and/ or breach falling under CERT-In \nCybersecurity directions29 shall be notified to SEBI and CERT-In within 6 hours of \nnoticing/ detecting such incidents or being brought to notice about such incidents. This \ninformation shall be shared with SEBI through the mkt_incidents@sebi.gov.in within \n6 hours. However, necessary details of the incidents shall be reported on SEBI Incident \nReporting Portal within 24 hours. Stock Brokers/ Depository Participants shall also \nreport the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In \nwithin 6 hours of noticing/ detecting such incidents or being brought to notice about such \nincidents. All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and \nNCIIPC (as applicable) within 24 hours."
+        },
+        {
+            "document": "sebi.cscrf.2024",
+            "page": 201,
+            "quote": "3.3. RE shall undertake the necessary activities and submit the relevant reports \nas per the following timelines: \nTable 36: Timelines for post-cyber incident activity(ies) and report \nsubmission \nS. \nNo. \nName of the Report/ Activity \nTimeline for Submission \n(from \nthe \ndate \nof \nreporting the incident or \nbeing brought to notice \nabout the incident) \n1 \nInterim Report* \n3 Days \n2 \nMitigation measure \n7 Days \n3 \nRoot Cause Analysis (RCA) report** \n30 Days# \n4 \nForensic Audit Report (on the incident) and \nits closure report \nRefer clause 3.4 below  \n5 \nVulnerability Assessment and Penetration \nTesting (VAPT) for the incident and its \nclosure reports \n45 days"
+        }
+    ]
 }

@@ -49,7 +49,16 @@ class Deadline(BaseModel):
     kind: Literal["relative", "absolute", "recurring", "retention", "immediate", "none"]
     duration_iso8601: str | None = None
     alternative_anchors: (
-        list[Literal["detection", "noticing", "brought_to_notice", "awareness", "occurrence"]]
+        list[
+            Literal[
+                "detection",
+                "noticing",
+                "brought_to_notice",
+                "awareness",
+                "occurrence",
+                "reported",
+            ]
+        ]
         | None
     ) = None
     anchor: (
@@ -62,6 +71,7 @@ class Deadline(BaseModel):
             "publication",
             "fixed_date",
             "not_applicable",
+            "reported",
         ]
         | None
     ) = None
@@ -92,7 +102,18 @@ class Applicability(BaseModel):
     excluded_entity_classes: list[str] | None = None
     conditions: list[str] | None = None
     requires: (
-        list[Literal["cert_in_annexure_i", "personal_data_involved", "rbi_cyber_incident"]] | None
+        list[
+            Literal[
+                "cert_in_annexure_i",
+                "personal_data_involved",
+                "rbi_cyber_incident",
+                "sebi_other_cybersecurity_incident",
+                "sebi_cybersecurity_incident",
+                "sebi_incident_reporting_applies",
+                "nciipc_protected_system",
+            ]
+        ]
+        | None
     ) = None
 
 
@@ -239,7 +260,7 @@ class EntityProfile(BaseModel):
     entity_classes: list[str] | None = None
     is_listed: bool
     holds_personal_data: bool
-    uses_protected_systems: bool
+    uses_protected_systems: bool | None = None
     is_regulated_cloud_vps: bool
     additional_properties: dict[str, Any] | None = None
 
@@ -263,6 +284,7 @@ class IncidentFacts(BaseModel):
     when_noticed: datetime | None = None
     when_occurred: datetime | None = None
     when_brought_to_notice: datetime | None = None
+    when_reported_to_sebi: datetime | None = None
     is_annexure_i_type: bool | None = None
     is_cyber_incident: bool | None = None
     annexure_i_items: list[str] | None = None

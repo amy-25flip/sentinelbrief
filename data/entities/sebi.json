@@ -48,5 +48,27 @@
     "version": "1.0",
     "valid_from": "2024-08-20",
     "valid_to": null
+  },
+  {
+    "id": "sebi.stock_broker",
+    "regulator": "SEBI",
+    "label": "Stock Broker",
+    "parent": "body_corporate",
+    "description": "Stock Brokers shall also report the incidents to Stock Exchanges along with SEBI and CERT-In.",
+    "is_role": true,
+    "version": "1.0",
+    "valid_from": "2024-08-20",
+    "valid_to": null
+  },
+  {
+    "id": "sebi.depository_participant",
+    "regulator": "SEBI",
+    "label": "Depository Participant",
+    "parent": "body_corporate",
+    "description": "Depository Participants shall also report the incidents to Depositories along with SEBI and CERT-In.",
+    "is_role": true,
+    "version": "1.0",
+    "valid_from": "2024-08-20",
+    "valid_to": null
   }
 ]

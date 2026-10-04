@@ -1,0 +1,96 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "sebi-other-incident-unresolved-asks",
+  "description": "Free text that matches no Annexure I type and no attestation: the engine must ask, because the answer decides between the six-hour and the 24-hour duties.",
+  "entity_profile": {
+    "entity_classes": [
+      "sebi.midsize_re"
+    ],
+    "is_listed": false,
+    "holds_personal_data": false,
+    "is_regulated_cloud_vps": false,
+    "uses_protected_systems": false
+  },
+  "incident_facts": {
+    "description": "Free text that matches no Annexure I type and no attestation: the engine must ask, because the answer decides between the six-hour and the 24-hour duties.",
+    "incident_types": [
+      "hardware failure"
+    ],
+    "systems_affected": [
+      "Core system"
+    ],
+    "when_noticed": "2026-10-01T10:00:00+05:30"
+  },
+  "law_snapshot_date": "2026-10-04",
+  "expected": {
+    "law_as_of": "2026-10-01",
+    "regulators": [
+      "CERT-In"
+    ],
+    "deadlines": [],
+    "citations": [],
+    "required_evidence": [],
+    "not_applicable": [
+      {
+        "obligation_id": "sebi.cscrf.2024.broker-dp-exchange-reporting-6h",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.nciipc-protected-system-report",
+        "reason": "see description"
+      }
+    ],
+    "unknowns": [
+      {
+        "question": "Annexure I",
+        "affects": "cert-in.directions-70b.2022.incident-reporting-6h"
+      },
+      {
+        "question": "Annexure I",
+        "affects": "sebi.cscrf.2024.incident-reporting-6h"
+      },
+      {
+        "question": "Annexure I",
+        "affects": "sebi.cscrf.2024.incident-portal-24h"
+      },
+      {
+        "question": "Annexure I",
+        "affects": "sebi.cscrf.2024.other-incidents-24h"
+      },
+      {
+        "question": "Annexure I",
+        "affects": "sebi.cscrf.2024.post-incident-interim-report-3d"
+      },
+      {
+        "question": "Annexure I",
+        "affects": "sebi.cscrf.2024.post-incident-mitigation-7d"
+      },
+      {
+        "question": "Annexure I",
+        "affects": "sebi.cscrf.2024.post-incident-rca-30d"
+      },
+      {
+        "question": "Annexure I",
+        "affects": "sebi.cscrf.2024.post-incident-vapt-45d"
+      }
+    ]
+  },
+  "adversarial_flags": [
+    "free_text_never_excludes",
+    "unknown_decides_between_two_clocks"
+  ],
+  "split": "dev",
+  "labels_source": "docs/LABELS_SEBI.md (written before implementation); SEBI CSCRF pages 123, 124, 200 to 202",
+  "source_quotes": [
+    {
+      "document": "sebi.cscrf.2024",
+      "page": 123,
+      "quote": "1. Any cyber-attack, cybersecurity incident and/ or breach falling under CERT-In \nCybersecurity directions29 shall be notified to SEBI and CERT-In within 6 hours of \nnoticing/ detecting such incidents or being brought to notice about such incidents. This \ninformation shall be shared with SEBI through the mkt_incidents@sebi.gov.in within \n6 hours. However, necessary details of the incidents shall be reported on SEBI Incident \nReporting Portal within 24 hours. Stock Brokers/ Depository Participants shall also \nreport the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In \nwithin 6 hours of noticing/ detecting such incidents or being brought to notice about such \nincidents. All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and \nNCIIPC (as applicable) within 24 hours."
+    },
+    {
+      "document": "cert-in.directions-70b.2022",
+      "page": 2,
+      "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+    }
+  ]
+}

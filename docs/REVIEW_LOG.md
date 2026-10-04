@@ -189,3 +189,17 @@ Accepted: the six obligations, the entity classes, exclusions, all-of classes, t
 - [minor] [engine] L3. **Contradictory input passes silently.** Probe: `is_cyber_incident` false with the incident type "Malicious code attacks such as Ransomware" returns the CERT-In six-hour deadline and "not a cyber incident" for RBI. The attestation must still win (only an attestation excludes), but the result needs a caveat that says the stated type matched an Annexure I item while the user attested it is not a cyber incident, and that both should be re-checked. Status: FIXED. Proof: the negative attestation still excludes the RBI event duties while an Annexure I match adds a `re-check` caveat; the scorer enforces optional `expected.caveats_contain`, and both the unit test and `rbi-contradictory-attestation-caveat` pass.
 - [minor] [data] L4. The instrument record's `acquisition_note` still said "Raw evidence only; no RBI obligations ...". The builder could not write that file. Status: FIXED by the reviewer in this commit.
 - [note] An HFC in the Base Layer at or above Rs 500 crore gets the paragraph 28 duty to RBI. Whether the paragraph 141 note also governs paragraph 28 is recorded in OPEN_QUESTIONS and left as is.
+
+## Build 10 - Codex then the reviewer agent, 2026-10-04: SEBI remaining reporting duties
+
+Labels: `docs/LABELS_SEBI.md`, committed before implementation (306dfb8).
+
+Who did what: Codex wrote the engine keys, the model and schema fields, the API and form fields and the role classes, then stopped at its usage limit with the gates failing. The reviewer agent finished the build: fixed two defects in the partial engine work (the RBI negative attestation was overridden by an Annexure I match, caught by `rbi-contradictory-attestation-caveat`; a mypy error), wrote the eight obligation records from the stored text, the 12 scenarios, the rule-based additions to 10 older scenarios, 13 unit tests (`tests/test_sebi_reporting.py`) and 8 mutation tests. This build has therefore NOT had an independent review; Codex should review it when its limit resets.
+
+How the labels stayed honest: the 12 new scenario files carry labels typed from the table, and all 12 passed on the first engine run. Additions to the 10 older scenarios were derived from each scenario's existing label by rule (portal deadline = six-hour deadline + 18 hours on the same anchor, and so on); the script stopped on any disagreement with the engine, and there was none.
+
+Label amendment (in `docs/LABELS_SEBI.md`): where a SEBI reporting duty applies or is undetermined, the four post-incident duties follow it, so rows that did not mention them also expect the "reported to SEBI" (or "Annexure I") unknown for those four.
+
+Correction recorded: Review 7 J3 "scope tension" was the reviewer's misreading. Status of J3: the DECISIONS entry is rewritten and the open question closed.
+
+Gates: see the commit message.

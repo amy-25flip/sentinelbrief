@@ -1,0 +1,159 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "sebi-post-incident-brought-to-notice-earlier",
+  "description": "Table 36 counts from reporting or being brought to notice; the earlier known time wins. No noticing time is given, so the six-hour clocks run from being brought to notice.",
+  "entity_profile": {
+    "entity_classes": [
+      "sebi.qualified_re"
+    ],
+    "is_listed": false,
+    "holds_personal_data": false,
+    "is_regulated_cloud_vps": false,
+    "uses_protected_systems": false
+  },
+  "incident_facts": {
+    "description": "Table 36 counts from reporting or being brought to notice; the earlier known time wins. No noticing time is given, so the six-hour clocks run from being brought to notice.",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "systems_affected": [
+      "Core system"
+    ],
+    "when_brought_to_notice": "2026-10-01T09:00:00+05:30",
+    "when_reported_to_sebi": "2026-10-01T15:00:00+05:30"
+  },
+  "law_snapshot_date": "2026-10-04",
+  "expected": {
+    "law_as_of": "2026-10-01",
+    "regulators": [
+      "CERT-In",
+      "SEBI"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "brought_to_notice",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T15:00:00+05:30"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.incident-reporting-6h",
+        "regulator": "SEBI",
+        "anchor": "brought_to_notice",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T15:00:00+05:30"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.incident-portal-24h",
+        "regulator": "SEBI",
+        "anchor": "brought_to_notice",
+        "deadline_iso8601": "PT24H",
+        "deadline_timestamp": "2026-10-02T09:00:00+05:30"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.post-incident-interim-report-3d",
+        "regulator": "SEBI",
+        "anchor": "brought_to_notice",
+        "deadline_iso8601": "P3D",
+        "deadline_timestamp": "2026-10-04T09:00:00+05:30"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.post-incident-mitigation-7d",
+        "regulator": "SEBI",
+        "anchor": "brought_to_notice",
+        "deadline_iso8601": "P7D",
+        "deadline_timestamp": "2026-10-08T09:00:00+05:30"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.post-incident-rca-30d",
+        "regulator": "SEBI",
+        "anchor": "brought_to_notice",
+        "deadline_iso8601": "P30D",
+        "deadline_timestamp": "2026-10-31T09:00:00+05:30"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.post-incident-vapt-45d",
+        "regulator": "SEBI",
+        "anchor": "brought_to_notice",
+        "deadline_iso8601": "P45D",
+        "deadline_timestamp": "2026-11-15T09:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.incident-reporting-6h",
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "RS.CO.S1 / Annexure-O Section B.1"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.incident-portal-24h",
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "RS.CO.S1 (Incident Reporting Portal)"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.post-incident-interim-report-3d",
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "Annexure-O B.3.3, Table 36 row 1"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.post-incident-mitigation-7d",
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "Annexure-O B.3.3, Table 36 row 2"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.post-incident-rca-30d",
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "Annexure-O B.3.3, Table 36 row 3"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.post-incident-vapt-45d",
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "Annexure-O B.3.3, Table 36 row 5"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [
+      {
+        "obligation_id": "sebi.cscrf.2024.other-incidents-24h",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.nciipc-protected-system-report",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.broker-dp-exchange-reporting-6h",
+        "reason": "see description"
+      }
+    ],
+    "unknowns": []
+  },
+  "adversarial_flags": [
+    "earliest_known_anchor_wins"
+  ],
+  "split": "dev",
+  "labels_source": "docs/LABELS_SEBI.md (written before implementation); SEBI CSCRF pages 123, 124, 200 to 202",
+  "source_quotes": [
+    {
+      "document": "sebi.cscrf.2024",
+      "page": 201,
+      "quote": "3.3. RE shall undertake the necessary activities and submit the relevant reports \nas per the following timelines: \nTable 36: Timelines for post-cyber incident activity(ies) and report \nsubmission \nS. \nNo. \nName of the Report/ Activity \nTimeline for Submission \n(from \nthe \ndate \nof \nreporting the incident or \nbeing brought to notice \nabout the incident) \n1 \nInterim Report* \n3 Days \n2 \nMitigation measure \n7 Days \n3 \nRoot Cause Analysis (RCA) report** \n30 Days# \n4 \nForensic Audit Report (on the incident) and \nits closure report \nRefer clause 3.4 below  \n5 \nVulnerability Assessment and Penetration \nTesting (VAPT) for the incident and its \nclosure reports \n45 days"
+    },
+    {
+      "document": "sebi.cscrf.2024",
+      "page": 123,
+      "quote": "1. Any cyber-attack, cybersecurity incident and/ or breach falling under CERT-In \nCybersecurity directions29 shall be notified to SEBI and CERT-In within 6 hours of \nnoticing/ detecting such incidents or being brought to notice about such incidents. This \ninformation shall be shared with SEBI through the mkt_incidents@sebi.gov.in within \n6 hours. However, necessary details of the incidents shall be reported on SEBI Incident \nReporting Portal within 24 hours. Stock Brokers/ Depository Participants shall also \nreport the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In \nwithin 6 hours of noticing/ detecting such incidents or being brought to notice about such \nincidents. All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and \nNCIIPC (as applicable) within 24 hours."
+    },
+    {
+      "document": "cert-in.directions-70b.2022",
+      "page": 2,
+      "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+    }
+  ]
+}

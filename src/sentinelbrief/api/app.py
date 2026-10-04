@@ -142,6 +142,7 @@ _TIME_FIELDS = (
     "when_detected",
     "when_occurred",
     "when_aware",
+    "when_reported_to_sebi",
 )
 
 
@@ -195,6 +196,24 @@ def _profile_from_payload(payload: dict[str, Any], *, form_input: bool) -> Incid
         cyber_incident = cyber_incident.lower() == "true"
     elif not isinstance(cyber_incident, bool):
         raise ValueError("is_cyber_incident must be true, false or null")
+    protected_systems = payload.get("uses_protected_systems")
+    if protected_systems is None:
+        protected_attestation = payload.get("protected_system_attestation", "unknown")
+        if protected_attestation not in {"unknown", "yes", "no"}:
+            raise ValueError("protected_system_attestation must be unknown, yes or no")
+        protected_systems = (
+            True
+            if protected_attestation == "yes"
+            else False
+            if protected_attestation == "no"
+            else None
+        )
+    elif isinstance(protected_systems, str):
+        if protected_systems.lower() not in {"true", "false"}:
+            raise ValueError("uses_protected_systems must be true, false or null")
+        protected_systems = protected_systems.lower() == "true"
+    elif not isinstance(protected_systems, bool):
+        raise ValueError("uses_protected_systems must be true, false or null")
     return IncidentProfile(
         entity_class=str(primary_class) if entity_classes is None else None,
         entity_classes=list(entity_classes) if entity_classes is not None else None,
@@ -203,6 +222,7 @@ def _profile_from_payload(payload: dict[str, Any], *, form_input: bool) -> Incid
         is_annexure_i_type=False if attestation == "no" else None,
         is_cyber_incident=cyber_incident,
         personal_data_involved=personal_data,
+        uses_protected_systems=protected_systems,
         **kwargs,
     )
 

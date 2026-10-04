@@ -28,6 +28,7 @@ _ANCHOR_FIELDS: dict[str, str] = {
     "detection": "when_detected",
     "occurrence": "when_occurred",
     "awareness": "when_aware",
+    "reported": "when_reported_to_sebi",
 }
 _ANCHOR_LABELS: dict[str, str] = {
     "noticing": "first noticed",
@@ -35,7 +36,11 @@ _ANCHOR_LABELS: dict[str, str] = {
     "detection": "detected",
     "occurrence": "occurring",
     "awareness": "became known to the entity",
+    "reported": "reported to SEBI",
 }
+_LAW_AS_OF_DATETIME_FIELDS = tuple(
+    value for key, value in _ANCHOR_FIELDS.items() if key != "reported"
+)
 _DATETIME_FIELDS = tuple(_ANCHOR_FIELDS.values())
 
 # CERT-In's MSME notice of 27 Jun 2022 delays effectiveness to 25 Sep 2022 for MSMEs and for
@@ -113,7 +118,11 @@ class IncidentProfile:
     when_brought_to_notice: datetime | None = None
     when_occurred: datetime | None = None
     when_aware: datetime | None = None
+    # A filing timestamp is a downstream event. It is excluded from law_as_of unless no
+    # incident timestamp is available, so a late report cannot move the governing-law date.
+    when_reported_to_sebi: datetime | None = None
     personal_data_involved: bool | None = None
+    uses_protected_systems: bool | None = None
     systems_affected: list[str] = field(default_factory=list)
     # Explicit user attestation. Only this can make Annexure I "not applicable".
     is_annexure_i_type: bool | None = None
@@ -152,8 +161,14 @@ class IncidentProfile:
             )
 
     def earliest_known_time(self) -> datetime | None:
-        known = [getattr(self, n) for n in _DATETIME_FIELDS if getattr(self, n) is not None]
-        return min(known) if known else None
+        incident_times: list[datetime] = [
+            getattr(self, name)
+            for name in _LAW_AS_OF_DATETIME_FIELDS
+            if getattr(self, name) is not None
+        ]
+        if incident_times:
+            return min(incident_times)
+        return self.when_reported_to_sebi
 
 
 @dataclass
@@ -420,6 +435,37 @@ class IncidentClockEngine:
                 return f"{item_id.split('.')[-1]}. {item['title']}"
         return item_id
 
+    @staticmethod
+    def _resolve_cyber_incident(
+        profile: IncidentProfile,
+        annexure: AnnexureResolution,
+        *,
+        negative_requires_annexure_false: bool,
+    ) -> bool | None:
+        """Resolve the shared cyber-incident fact without inferring false from free text.
+
+        RBI's explicit paragraph-4(7) attestation remains decisive. SEBI's broader key is
+        false only when both the cyber-incident and Annexure-I attestations are false.
+        """
+        if profile.is_cyber_incident is False and (
+            annexure.decision is False or not negative_requires_annexure_false
+        ):
+            return False
+        if annexure.decision is True or profile.is_cyber_incident is True:
+            return True
+        return None
+
+    def _annexure_unknown(self, obs_id: str, annexure: AnnexureResolution) -> Unknown:
+        hint = ""
+        if annexure.suggestions:
+            listed = "; ".join(self.annexure_title(item) for item in annexure.suggestions)
+            hint = f" Possible matches to confirm: {listed}."
+        return Unknown(
+            question="Is this incident of a type listed in CERT-In Annexure I?",
+            affects=[obs_id],
+            impact="This decides whether the reporting obligation applies." + hint,
+        )
+
     def evaluate(
         self,
         profile: IncidentProfile,
@@ -509,78 +555,176 @@ class IncidentClockEngine:
                 continue
 
             requirements = applicability.get("requires") or []
-            needs_annexure = "cert_in_annexure_i" in requirements
-            needs_personal_data = "personal_data_involved" in requirements
-            needs_rbi_cyber_incident = "rbi_cyber_incident" in requirements
+            requirement_failed = False
+            requirement_unknown = False
 
-            if needs_annexure:
-                if annexure.decision is False:
-                    not_applicable.append(
-                        {
-                            "obligation_id": obs_id,
-                            "reason": "condition_not_met: user attested not an Annexure I type",
-                        }
-                    )
-                    continue
-                if annexure.decision is None:
-                    hint = ""
-                    if annexure.suggestions:
-                        listed = "; ".join(self.annexure_title(s) for s in annexure.suggestions)
-                        hint = f" Possible matches to confirm: {listed}."
-                    unknowns.append(
-                        Unknown(
-                            question="Is this incident of a type listed in CERT-In Annexure I?",
-                            affects=[obs_id],
-                            impact="This decides whether the 6-hour reporting obligation applies."
-                            + hint,
+            for requirement in requirements:
+                if requirement == "cert_in_annexure_i":
+                    if annexure.decision is False:
+                        not_applicable.append(
+                            {
+                                "obligation_id": obs_id,
+                                "reason": "condition_not_met: user attested not an Annexure I type",
+                            }
                         )
-                    )
-                    undetermined.append(obs_id)
-                    continue
+                        requirement_failed = True
+                        break
+                    if annexure.decision is None:
+                        unknowns.append(self._annexure_unknown(obs_id, annexure))
+                        undetermined.append(obs_id)
+                        requirement_unknown = True
+                        break
 
-            if needs_personal_data:
-                if profile.personal_data_involved is False:
-                    not_applicable.append(
-                        {
-                            "obligation_id": obs_id,
-                            "reason": "condition_not_met: no personal data involved",
-                        }
-                    )
-                    continue
-                if profile.personal_data_involved is None:
-                    unknowns.append(
-                        Unknown(
-                            question="Is personal data involved in this incident?",
-                            affects=[obs_id],
-                            impact="DPDP personal data breach notification obligations apply only if personal data is involved.",
+                elif requirement == "personal_data_involved":
+                    if profile.personal_data_involved is False:
+                        not_applicable.append(
+                            {
+                                "obligation_id": obs_id,
+                                "reason": "condition_not_met: no personal data involved",
+                            }
                         )
-                    )
-                    undetermined.append(obs_id)
-                    continue
+                        requirement_failed = True
+                        break
+                    if profile.personal_data_involved is None:
+                        unknowns.append(
+                            Unknown(
+                                question="Is personal data involved in this incident?",
+                                affects=[obs_id],
+                                impact="DPDP personal data breach notification obligations apply only if personal data is involved.",
+                            )
+                        )
+                        undetermined.append(obs_id)
+                        requirement_unknown = True
+                        break
 
-            if needs_rbi_cyber_incident:
-                if profile.is_cyber_incident is False:
-                    not_applicable.append(
-                        {
-                            "obligation_id": obs_id,
-                            "reason": "condition_not_met: user attested not a cyber incident",
-                        }
+                elif requirement == "rbi_cyber_incident":
+                    cyber = self._resolve_cyber_incident(
+                        profile, annexure, negative_requires_annexure_false=False
                     )
-                    continue
-                if profile.is_cyber_incident is None and annexure.decision is not True:
-                    unknowns.append(
-                        Unknown(
-                            question=(
-                                'Is this a cyber incident: "A cyber event that adversely affects '
-                                "the cybersecurity of an information asset whether resulting from "
-                                'malicious activity or not" (RBI paragraph 4(7))?'
-                            ),
-                            affects=[obs_id],
-                            impact="This decides whether the RBI cyber-incident obligation applies.",
+                    if cyber is False:
+                        not_applicable.append(
+                            {
+                                "obligation_id": obs_id,
+                                "reason": "condition_not_met: user attested not a cyber incident",
+                            }
                         )
+                        requirement_failed = True
+                        break
+                    if cyber is None:
+                        unknowns.append(
+                            Unknown(
+                                question=(
+                                    'Is this a cyber incident: "A cyber event that adversely affects '
+                                    "the cybersecurity of an information asset whether resulting from "
+                                    'malicious activity or not" (RBI paragraph 4(7))?'
+                                ),
+                                affects=[obs_id],
+                                impact="This decides whether the RBI cyber-incident obligation applies.",
+                            )
+                        )
+                        undetermined.append(obs_id)
+                        requirement_unknown = True
+                        break
+
+                elif requirement == "sebi_other_cybersecurity_incident":
+                    if annexure.decision is True:
+                        not_applicable.append(
+                            {
+                                "obligation_id": obs_id,
+                                "reason": "condition_not_met: Annexure I incident uses the six-hour duties",
+                            }
+                        )
+                        requirement_failed = True
+                        break
+                    if annexure.decision is None:
+                        unknowns.append(self._annexure_unknown(obs_id, annexure))
+                        undetermined.append(obs_id)
+                        requirement_unknown = True
+                        break
+                    cyber = self._resolve_cyber_incident(
+                        profile, annexure, negative_requires_annexure_false=True
                     )
-                    undetermined.append(obs_id)
-                    continue
+                    if cyber is False:
+                        not_applicable.append(
+                            {
+                                "obligation_id": obs_id,
+                                "reason": "condition_not_met: user attested not a cybersecurity incident",
+                            }
+                        )
+                        requirement_failed = True
+                        break
+                    if cyber is None:
+                        unknowns.append(
+                            Unknown(
+                                question="Is this a cybersecurity incident?",
+                                affects=[obs_id],
+                                impact="This decides whether the SEBI other-incident duty applies.",
+                            )
+                        )
+                        undetermined.append(obs_id)
+                        requirement_unknown = True
+                        break
+
+                elif requirement in {
+                    "sebi_cybersecurity_incident",
+                    "sebi_incident_reporting_applies",
+                }:
+                    cyber = self._resolve_cyber_incident(
+                        profile, annexure, negative_requires_annexure_false=True
+                    )
+                    if cyber is False:
+                        not_applicable.append(
+                            {
+                                "obligation_id": obs_id,
+                                "reason": "condition_not_met: no SEBI cybersecurity incident-reporting duty applies",
+                            }
+                        )
+                        requirement_failed = True
+                        break
+                    if cyber is None:
+                        if annexure.decision is None:
+                            unknowns.append(self._annexure_unknown(obs_id, annexure))
+                        else:
+                            unknowns.append(
+                                Unknown(
+                                    question="Is this a cybersecurity incident?",
+                                    affects=[obs_id],
+                                    impact="This decides whether a SEBI incident-reporting duty applies.",
+                                )
+                            )
+                        undetermined.append(obs_id)
+                        requirement_unknown = True
+                        break
+
+                elif requirement == "nciipc_protected_system":
+                    if profile.uses_protected_systems is False:
+                        not_applicable.append(
+                            {
+                                "obligation_id": obs_id,
+                                "reason": "condition_not_met: system not identified as a Protected system by NCIIPC",
+                            }
+                        )
+                        requirement_failed = True
+                        break
+                    if profile.uses_protected_systems is None:
+                        unknowns.append(
+                            Unknown(
+                                question="Has NCIIPC identified an affected system as a Protected system?",
+                                affects=[obs_id],
+                                impact="This decides whether the NCIIPC reporting duty applies.",
+                            )
+                        )
+                        undetermined.append(obs_id)
+                        requirement_unknown = True
+                        break
+
+                else:
+                    raise ValueError(
+                        f"Unsupported applicability requirement '{requirement}' on {obs_id}"
+                    )
+
+            if requirement_failed or requirement_unknown:
+                continue
 
             applicable.append(obs_id)
             conditions = applicability.get("conditions") or []

@@ -1,82 +1,721 @@
-{
-    "id":  "sebi.cscrf.2024.incident-reporting-6h",
-    "instrument_id":  "sebi.cscrf.2024",
-    "paragraph_ref":  "RS.CO.S1 / Annexure-O Section B.1",
-    "text_verbatim":  "1. Any cyber-attack, cybersecurity incident and/ or breach falling under CERT-In \nCybersecurity directions29 shall be notified to SEBI and CERT-In within 6 hours of \nnoticing/ detecting such incidents or being brought to notice about such incidents. This \ninformation shall be shared with SEBI through the mkt_incidents@sebi.gov.in within \n6 hours. However, necessary details of the incidents shall be reported on SEBI Incident \nReporting Portal within 24 hours. Stock Brokers/ Depository Participants shall also \nreport the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In \nwithin 6 hours of noticing/ detecting such incidents or being brought to notice about such \nincidents. All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and \nNCIIPC (as applicable) within 24 hours.",
-    "normalized":  {
-                       "actor":  [
-                                     "sebi.mii",
-                                     "sebi.qualified_re",
-                                     "sebi.midsize_re",
-                                     "sebi.small_re",
-                                     "sebi.selfcert_re"
-                                 ],
-                       "trigger":  {
-                                       "type":  "event",
-                                       "description":  "Cyber-attack, cybersecurity incident and/or breach falling under CERT-In directions is noticed/detected or brought to notice"
-                                   },
-                       "action":  "Notify SEBI (via mkt_incidents@sebi.gov.in) and CERT-In within 6 hours of noticing/detecting or being brought to notice.",
-                       "deadline":  {
-                                        "kind":  "relative",
-                                        "duration_iso8601":  "PT6H",
-                                        "anchor":  "noticing",
-                                        "alternative_anchors":  [
-                                                                    "detection",
-                                                                    "brought_to_notice"
-                                                                ],
-                                        "calendar":  "continuous",
-                                        "fixed_date":  null
-                                    },
-                       "recipient":  "SEBI and CERT-In",
-                       "evidence_required":  [
-                                                 "Email notification record sent to mkt_incidents@sebi.gov.in",
-                                                 "CERT-In incident submission receipt"
-                                             ]
-                   },
-    "applicability":  {
-                          "entity_classes":  [
-                                                 "sebi.mii",
-                                                 "sebi.qualified_re",
-                                                 "sebi.midsize_re",
-                                                 "sebi.small_re",
-                                                 "sebi.selfcert_re"
-                                             ],
-                          "conditions":  [
-                                             "Incident falls under CERT-In Cybersecurity directions",
-                                             "Entity is a SEBI Regulated Entity"
-                                         ],
-                          "requires":  [
-                                           "cert_in_annexure_i"
-                                       ]
-                      },
-    "validity":  {
-                     "valid_from":  "2024-08-20",
-                     "valid_to":  null,
-                     "recorded_at":  "2026-09-25T00:00:00Z"
-                 },
-    "status":  "in_force",
-    "citations":  [
-                      {
-                          "instrument_id":  "sebi.cscrf.2024",
-                          "paragraph_ref":  "RS.CO.S1",
-                          "page":  123,
-                          "char_start":  243670,
-                          "char_end":  244485,
-                          "excerpt_verbatim":  "1. Any cyber-attack, cybersecurity incident and/ or breach falling under CERT-In \nCybersecurity directions29 shall be notified to SEBI and CERT-In within 6 hours of \nnoticing/ detecting such incidents or being brought to notice about such incidents. This \ninformation shall be shared with SEBI through the mkt_incidents@sebi.gov.in within \n6 hours. However, necessary details of the incidents shall be reported on SEBI Incident \nReporting Portal within 24 hours. Stock Brokers/ Depository Participants shall also \nreport the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In \nwithin 6 hours of noticing/ detecting such incidents or being brought to notice about such \nincidents. All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and \nNCIIPC (as applicable) within 24 hours.",
-                          "source_sha256":  "bd9ddb68bb49b9a92771ff01ed3138e01f0962b383e9ff643008b729290fc85d"
-                      }
-                  ],
-    "extraction":  {
-                       "method":  "manual",
-                       "model":  null,
-                       "prompt_version":  null,
-                       "extractor_version":  "0.1.0"
-                   },
-    "verification":  "machine_checked",
-    "verification_details":  {
-                                 "reviewer":  "antigravity-agent (AI; verified against SEBI CSCRF Circular 2024-08-20)",
-                                 "date":  "2026-09-25"
-                             },
-    "confidence":  0.7,
-    "confidence_reason":  "Conservative contested interpretation. Paragraph 17.1 states, \"For six categories of REs where cybersecurity and cyber resilience circular already exists - by January 01, 2025.\" Paragraph 17.2 states, \"For other REs where CSCRF is being issued for the first time - by April 01, 2025.\" (PDF page 9). Those are compliance glide-path dates; the previous model treated 2025-01-01 as a single in-force date. valid_from now uses the circular issue date, 2024-08-20, so the tool does not tell a user they owe less pending legal review."
-}
+[
+  {
+    "id": "sebi.cscrf.2024.incident-reporting-6h",
+    "instrument_id": "sebi.cscrf.2024",
+    "paragraph_ref": "RS.CO.S1 / Annexure-O Section B.1",
+    "text_verbatim": "1. Any cyber-attack, cybersecurity incident and/ or breach falling under CERT-In \nCybersecurity directions29 shall be notified to SEBI and CERT-In within 6 hours of \nnoticing/ detecting such incidents or being brought to notice about such incidents. This \ninformation shall be shared with SEBI through the mkt_incidents@sebi.gov.in within \n6 hours. However, necessary details of the incidents shall be reported on SEBI Incident \nReporting Portal within 24 hours. Stock Brokers/ Depository Participants shall also \nreport the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In \nwithin 6 hours of noticing/ detecting such incidents or being brought to notice about such \nincidents. All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and \nNCIIPC (as applicable) within 24 hours.",
+    "normalized": {
+      "actor": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "Cyber-attack, cybersecurity incident and/or breach falling under CERT-In directions is noticed/detected or brought to notice"
+      },
+      "action": "Notify SEBI (via mkt_incidents@sebi.gov.in) and CERT-In within 6 hours of noticing/detecting or being brought to notice.",
+      "deadline": {
+        "kind": "relative",
+        "duration_iso8601": "PT6H",
+        "anchor": "noticing",
+        "alternative_anchors": [
+          "detection",
+          "brought_to_notice"
+        ],
+        "calendar": "continuous",
+        "fixed_date": null
+      },
+      "recipient": "SEBI and CERT-In",
+      "evidence_required": [
+        "Email notification record sent to mkt_incidents@sebi.gov.in",
+        "CERT-In incident submission receipt"
+      ]
+    },
+    "applicability": {
+      "entity_classes": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "conditions": [
+        "Incident falls under CERT-In Cybersecurity directions",
+        "Entity is a SEBI Regulated Entity"
+      ],
+      "requires": [
+        "cert_in_annexure_i"
+      ]
+    },
+    "validity": {
+      "valid_from": "2024-08-20",
+      "valid_to": null,
+      "recorded_at": "2026-09-25T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "RS.CO.S1",
+        "page": 123,
+        "char_start": 243670,
+        "char_end": 244485,
+        "excerpt_verbatim": "1. Any cyber-attack, cybersecurity incident and/ or breach falling under CERT-In \nCybersecurity directions29 shall be notified to SEBI and CERT-In within 6 hours of \nnoticing/ detecting such incidents or being brought to notice about such incidents. This \ninformation shall be shared with SEBI through the mkt_incidents@sebi.gov.in within \n6 hours. However, necessary details of the incidents shall be reported on SEBI Incident \nReporting Portal within 24 hours. Stock Brokers/ Depository Participants shall also \nreport the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In \nwithin 6 hours of noticing/ detecting such incidents or being brought to notice about such \nincidents. All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and \nNCIIPC (as applicable) within 24 hours.",
+        "source_sha256": "bd9ddb68bb49b9a92771ff01ed3138e01f0962b383e9ff643008b729290fc85d"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "antigravity-agent (AI; verified against SEBI CSCRF Circular 2024-08-20)",
+      "date": "2026-09-25"
+    },
+    "confidence": 0.7,
+    "confidence_reason": "Scope is not contested: the applicability cell of row RS.CO.S1, RS.CO.S2, RS.CO.S3 on PDF page 123 reads \"All REs (Mandatory)\", and Annexure-O B.1 (page 200) says \"experienced by REs\". Binding date contested: paragraph 17.1 states, \"For six categories of REs where cybersecurity and cyber resilience circular already exists - by January 01, 2025.\" Paragraph 17.2 states, \"For other REs where CSCRF is being issued for the first time - by April 01, 2025.\" (PDF page 9). Those are compliance glide-path dates. valid_from uses the circular issue date, 2024-08-20, so the tool does not tell a user they owe less pending legal review."
+  },
+  {
+    "id": "sebi.cscrf.2024.incident-portal-24h",
+    "instrument_id": "sebi.cscrf.2024",
+    "paragraph_ref": "RS.CO.S1 (Incident Reporting Portal)",
+    "text_verbatim": "However, necessary details of the incidents shall be reported on SEBI Incident \nReporting Portal within 24 hours.",
+    "normalized": {
+      "actor": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "Incident falling under CERT-In directions is noticed, detected or brought to notice"
+      },
+      "action": "Report the necessary details of the incident on the SEBI Incident Reporting Portal within 24 hours.",
+      "deadline": {
+        "calendar": "continuous",
+        "fixed_date": null,
+        "kind": "relative",
+        "duration_iso8601": "PT24H",
+        "anchor": "noticing",
+        "alternative_anchors": [
+          "detection",
+          "brought_to_notice"
+        ]
+      },
+      "recipient": "SEBI Incident Reporting Portal"
+    },
+    "applicability": {
+      "entity_classes": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "conditions": [
+        "Incident falls under CERT-In Cybersecurity directions"
+      ],
+      "requires": [
+        "cert_in_annexure_i"
+      ]
+    },
+    "validity": {
+      "valid_from": "2024-08-20",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "RS.CO.S1 (Incident Reporting Portal)",
+        "page": 123,
+        "char_start": 244019,
+        "char_end": 244132,
+        "excerpt_verbatim": "However, necessary details of the incidents shall be reported on SEBI Incident \nReporting Portal within 24 hours.",
+        "source_sha256": "bd9ddb68bb49b9a92771ff01ed3138e01f0962b383e9ff643008b729290fc85d"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored SEBI CSCRF text, page checked against the PDF)",
+      "date": "2026-10-04"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "The sentence names no separate starting event; it continues the six-hour sentence, and Annexure-O B.1 (page 200) joins them: \"within 6 hours and SEBI Incident Reporting Portal within 24 hours\". The six-hour anchors are used. Binding date contested: paragraph 17.1 states, \"For six categories of REs where cybersecurity and cyber resilience circular already exists - by January 01, 2025.\" Paragraph 17.2 states, \"For other REs where CSCRF is being issued for the first time - by April 01, 2025.\" (PDF page 9). Those are compliance glide-path dates. valid_from uses the circular issue date, 2024-08-20, so the tool does not tell a user they owe less pending legal review."
+  },
+  {
+    "id": "sebi.cscrf.2024.broker-dp-exchange-reporting-6h",
+    "instrument_id": "sebi.cscrf.2024",
+    "paragraph_ref": "RS.CO.S1 (Stock Brokers/ Depository Participants)",
+    "text_verbatim": "Stock Brokers/ Depository Participants shall also \nreport the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In \nwithin 6 hours of noticing/ detecting such incidents or being brought to notice about such \nincidents.",
+    "normalized": {
+      "actor": [
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "Incident falling under CERT-In directions is noticed, detected or brought to notice"
+      },
+      "action": "Also report the incident to the Stock Exchanges/ Depositories, along with SEBI and CERT-In, within 6 hours.",
+      "deadline": {
+        "calendar": "continuous",
+        "fixed_date": null,
+        "kind": "relative",
+        "duration_iso8601": "PT6H",
+        "anchor": "noticing",
+        "alternative_anchors": [
+          "detection",
+          "brought_to_notice"
+        ]
+      },
+      "recipient": "Stock Exchanges/ Depositories"
+    },
+    "applicability": {
+      "entity_classes": [
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "conditions": [
+        "Entity is a Stock Broker or Depository Participant",
+        "Incident falls under CERT-In Cybersecurity directions"
+      ],
+      "requires": [
+        "cert_in_annexure_i"
+      ]
+    },
+    "validity": {
+      "valid_from": "2024-08-20",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "RS.CO.S1 (Stock Brokers/ Depository Participants)",
+        "page": 123,
+        "char_start": 244133,
+        "char_end": 244369,
+        "excerpt_verbatim": "Stock Brokers/ Depository Participants shall also \nreport the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In \nwithin 6 hours of noticing/ detecting such incidents or being brought to notice about such \nincidents.",
+        "source_sha256": "bd9ddb68bb49b9a92771ff01ed3138e01f0962b383e9ff643008b729290fc85d"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored SEBI CSCRF text, page checked against the PDF)",
+      "date": "2026-10-04"
+    },
+    "confidence": 0.7,
+    "confidence_reason": "Text is explicit on actor, recipient, duration and starting events. Binding date contested: paragraph 17.1 states, \"For six categories of REs where cybersecurity and cyber resilience circular already exists - by January 01, 2025.\" Paragraph 17.2 states, \"For other REs where CSCRF is being issued for the first time - by April 01, 2025.\" (PDF page 9). Those are compliance glide-path dates. valid_from uses the circular issue date, 2024-08-20, so the tool does not tell a user they owe less pending legal review."
+  },
+  {
+    "id": "sebi.cscrf.2024.other-incidents-24h",
+    "instrument_id": "sebi.cscrf.2024",
+    "paragraph_ref": "RS.CO.S1 (all other cybersecurity incidents)",
+    "text_verbatim": "All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and \nNCIIPC (as applicable) within 24 hours.",
+    "normalized": {
+      "actor": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "A cybersecurity incident that does not fall under CERT-In directions"
+      },
+      "action": "Report the incident to SEBI, CERT-In and NCIIPC (as applicable) within 24 hours.",
+      "deadline": {
+        "calendar": "continuous",
+        "fixed_date": null,
+        "kind": "relative",
+        "duration_iso8601": "PT24H",
+        "anchor": "noticing",
+        "alternative_anchors": [
+          "detection",
+          "brought_to_notice"
+        ]
+      },
+      "recipient": "SEBI, CERT-In and NCIIPC (as applicable)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "conditions": [
+        "Cybersecurity incident not falling under CERT-In Cybersecurity directions",
+        "NCIIPC only as applicable"
+      ],
+      "requires": [
+        "sebi_other_cybersecurity_incident"
+      ]
+    },
+    "validity": {
+      "valid_from": "2024-08-20",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "RS.CO.S1 (all other cybersecurity incidents)",
+        "page": 123,
+        "char_start": 244370,
+        "char_end": 244485,
+        "excerpt_verbatim": "All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and \nNCIIPC (as applicable) within 24 hours.",
+        "source_sha256": "bd9ddb68bb49b9a92771ff01ed3138e01f0962b383e9ff643008b729290fc85d"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored SEBI CSCRF text, page checked against the PDF)",
+      "date": "2026-10-04"
+    },
+    "confidence": 0.5,
+    "confidence_reason": "Contested: the sentence names no starting event for the 24 hours. The six-hour anchors are used as the conservative reading. \"As applicable\" for NCIIPC is not evaluated. Binding date contested: paragraph 17.1 states, \"For six categories of REs where cybersecurity and cyber resilience circular already exists - by January 01, 2025.\" Paragraph 17.2 states, \"For other REs where CSCRF is being issued for the first time - by April 01, 2025.\" (PDF page 9). Those are compliance glide-path dates. valid_from uses the circular issue date, 2024-08-20, so the tool does not tell a user they owe less pending legal review."
+  },
+  {
+    "id": "sebi.cscrf.2024.nciipc-protected-system-report",
+    "instrument_id": "sebi.cscrf.2024",
+    "paragraph_ref": "RS.CO.S1 item 3 (NCIIPC)",
+    "text_verbatim": "Additionally, the REs, whose systems \nhave been identified as “Protected system” by NCIIPC shall also report the incident to \nNCIIPC.",
+    "normalized": {
+      "actor": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "A cybersecurity incident at an RE whose systems NCIIPC has identified as a Protected system"
+      },
+      "action": "Also report the incident to NCIIPC.",
+      "deadline": {
+        "calendar": "continuous",
+        "fixed_date": null,
+        "kind": "none",
+        "duration_iso8601": null,
+        "anchor": "not_applicable"
+      },
+      "recipient": "NCIIPC"
+    },
+    "applicability": {
+      "entity_classes": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "conditions": [
+        "Systems identified as \"Protected system\" by NCIIPC"
+      ],
+      "requires": [
+        "nciipc_protected_system",
+        "sebi_cybersecurity_incident"
+      ]
+    },
+    "validity": {
+      "valid_from": "2024-08-20",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "RS.CO.S1 item 3 (NCIIPC)",
+        "page": 124,
+        "char_start": 245333,
+        "char_end": 245466,
+        "excerpt_verbatim": "Additionally, the REs, whose systems \nhave been identified as “Protected system” by NCIIPC shall also report the incident to \nNCIIPC.",
+        "source_sha256": "bd9ddb68bb49b9a92771ff01ed3138e01f0962b383e9ff643008b729290fc85d"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored SEBI CSCRF text, page checked against the PDF)",
+      "date": "2026-10-04"
+    },
+    "confidence": 0.7,
+    "confidence_reason": "No time limit in the text; Annexure-O 3.1 (page 200) says \"in a timely manner\". Modelled as an applicable duty with no computed deadline. Binding date contested: paragraph 17.1 states, \"For six categories of REs where cybersecurity and cyber resilience circular already exists - by January 01, 2025.\" Paragraph 17.2 states, \"For other REs where CSCRF is being issued for the first time - by April 01, 2025.\" (PDF page 9). Those are compliance glide-path dates. valid_from uses the circular issue date, 2024-08-20, so the tool does not tell a user they owe less pending legal review."
+  },
+  {
+    "id": "sebi.cscrf.2024.post-incident-interim-report-3d",
+    "instrument_id": "sebi.cscrf.2024",
+    "paragraph_ref": "Annexure-O B.3.3, Table 36 row 1",
+    "text_verbatim": "3.3. RE shall undertake the necessary activities and submit the relevant reports \nas per the following timelines: \nTable 36: Timelines for post-cyber incident activity(ies) and report \nsubmission \nS. \nNo. \nName of the Report/ Activity \nTimeline for Submission \n(from \nthe \ndate \nof \nreporting the incident or \nbeing brought to notice \nabout the incident) \n1 \nInterim Report* \n3 Days \n2 \nMitigation measure \n7 Days \n3 \nRoot Cause Analysis (RCA) report** \n30 Days# \n4 \nForensic Audit Report (on the incident) and \nits closure report \nRefer clause 3.4 below  \n5 \nVulnerability Assessment and Penetration \nTesting (VAPT) for the incident and its \nclosure reports \n45 days",
+    "normalized": {
+      "actor": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "The incident is reported to SEBI or brought to notice"
+      },
+      "action": "Submit the Interim Report to SEBI within 3 days.",
+      "deadline": {
+        "calendar": "continuous",
+        "fixed_date": null,
+        "kind": "relative",
+        "duration_iso8601": "P3D",
+        "anchor": "reported",
+        "alternative_anchors": [
+          "brought_to_notice"
+        ]
+      },
+      "recipient": "SEBI"
+    },
+    "applicability": {
+      "entity_classes": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "conditions": [
+        "A cybersecurity incident has been reported, or must be reported, to SEBI"
+      ],
+      "requires": [
+        "sebi_incident_reporting_applies"
+      ]
+    },
+    "validity": {
+      "valid_from": "2024-08-20",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "Annexure-O B.3.3, Table 36 row 1",
+        "page": 201,
+        "char_start": 359309,
+        "char_end": 359976,
+        "excerpt_verbatim": "3.3. RE shall undertake the necessary activities and submit the relevant reports \nas per the following timelines: \nTable 36: Timelines for post-cyber incident activity(ies) and report \nsubmission \nS. \nNo. \nName of the Report/ Activity \nTimeline for Submission \n(from \nthe \ndate \nof \nreporting the incident or \nbeing brought to notice \nabout the incident) \n1 \nInterim Report* \n3 Days \n2 \nMitigation measure \n7 Days \n3 \nRoot Cause Analysis (RCA) report** \n30 Days# \n4 \nForensic Audit Report (on the incident) and \nits closure report \nRefer clause 3.4 below  \n5 \nVulnerability Assessment and Penetration \nTesting (VAPT) for the incident and its \nclosure reports \n45 days",
+        "source_sha256": "bd9ddb68bb49b9a92771ff01ed3138e01f0962b383e9ff643008b729290fc85d"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored SEBI CSCRF text, page checked against the PDF)",
+      "date": "2026-10-04"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Table 36 counts from \"the date of reporting the incident or being brought to notice about the incident\" (PDF page 201); the earlier known of the two is used. Whether \"Days\" runs from the timestamp or the calendar date is an open question; the timestamp reading is the earlier one. Row quoted in the scenario labels: \"Interim Report* \\n3 Days\". Binding date contested: paragraph 17.1 states, \"For six categories of REs where cybersecurity and cyber resilience circular already exists - by January 01, 2025.\" Paragraph 17.2 states, \"For other REs where CSCRF is being issued for the first time - by April 01, 2025.\" (PDF page 9). Those are compliance glide-path dates. valid_from uses the circular issue date, 2024-08-20, so the tool does not tell a user they owe less pending legal review."
+  },
+  {
+    "id": "sebi.cscrf.2024.post-incident-mitigation-7d",
+    "instrument_id": "sebi.cscrf.2024",
+    "paragraph_ref": "Annexure-O B.3.3, Table 36 row 2",
+    "text_verbatim": "3.3. RE shall undertake the necessary activities and submit the relevant reports \nas per the following timelines: \nTable 36: Timelines for post-cyber incident activity(ies) and report \nsubmission \nS. \nNo. \nName of the Report/ Activity \nTimeline for Submission \n(from \nthe \ndate \nof \nreporting the incident or \nbeing brought to notice \nabout the incident) \n1 \nInterim Report* \n3 Days \n2 \nMitigation measure \n7 Days \n3 \nRoot Cause Analysis (RCA) report** \n30 Days# \n4 \nForensic Audit Report (on the incident) and \nits closure report \nRefer clause 3.4 below  \n5 \nVulnerability Assessment and Penetration \nTesting (VAPT) for the incident and its \nclosure reports \n45 days",
+    "normalized": {
+      "actor": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "The incident is reported to SEBI or brought to notice"
+      },
+      "action": "Complete and submit the mitigation measure within 7 days.",
+      "deadline": {
+        "calendar": "continuous",
+        "fixed_date": null,
+        "kind": "relative",
+        "duration_iso8601": "P7D",
+        "anchor": "reported",
+        "alternative_anchors": [
+          "brought_to_notice"
+        ]
+      },
+      "recipient": "SEBI"
+    },
+    "applicability": {
+      "entity_classes": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "conditions": [
+        "A cybersecurity incident has been reported, or must be reported, to SEBI"
+      ],
+      "requires": [
+        "sebi_incident_reporting_applies"
+      ]
+    },
+    "validity": {
+      "valid_from": "2024-08-20",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "Annexure-O B.3.3, Table 36 row 2",
+        "page": 201,
+        "char_start": 359309,
+        "char_end": 359976,
+        "excerpt_verbatim": "3.3. RE shall undertake the necessary activities and submit the relevant reports \nas per the following timelines: \nTable 36: Timelines for post-cyber incident activity(ies) and report \nsubmission \nS. \nNo. \nName of the Report/ Activity \nTimeline for Submission \n(from \nthe \ndate \nof \nreporting the incident or \nbeing brought to notice \nabout the incident) \n1 \nInterim Report* \n3 Days \n2 \nMitigation measure \n7 Days \n3 \nRoot Cause Analysis (RCA) report** \n30 Days# \n4 \nForensic Audit Report (on the incident) and \nits closure report \nRefer clause 3.4 below  \n5 \nVulnerability Assessment and Penetration \nTesting (VAPT) for the incident and its \nclosure reports \n45 days",
+        "source_sha256": "bd9ddb68bb49b9a92771ff01ed3138e01f0962b383e9ff643008b729290fc85d"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored SEBI CSCRF text, page checked against the PDF)",
+      "date": "2026-10-04"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Table 36 counts from \"the date of reporting the incident or being brought to notice about the incident\" (PDF page 201); the earlier known of the two is used. Whether \"Days\" runs from the timestamp or the calendar date is an open question; the timestamp reading is the earlier one. Row: \"Mitigation measure \\n7 Days\". Binding date contested: paragraph 17.1 states, \"For six categories of REs where cybersecurity and cyber resilience circular already exists - by January 01, 2025.\" Paragraph 17.2 states, \"For other REs where CSCRF is being issued for the first time - by April 01, 2025.\" (PDF page 9). Those are compliance glide-path dates. valid_from uses the circular issue date, 2024-08-20, so the tool does not tell a user they owe less pending legal review."
+  },
+  {
+    "id": "sebi.cscrf.2024.post-incident-rca-30d",
+    "instrument_id": "sebi.cscrf.2024",
+    "paragraph_ref": "Annexure-O B.3.3, Table 36 row 3",
+    "text_verbatim": "3.3. RE shall undertake the necessary activities and submit the relevant reports \nas per the following timelines: \nTable 36: Timelines for post-cyber incident activity(ies) and report \nsubmission \nS. \nNo. \nName of the Report/ Activity \nTimeline for Submission \n(from \nthe \ndate \nof \nreporting the incident or \nbeing brought to notice \nabout the incident) \n1 \nInterim Report* \n3 Days \n2 \nMitigation measure \n7 Days \n3 \nRoot Cause Analysis (RCA) report** \n30 Days# \n4 \nForensic Audit Report (on the incident) and \nits closure report \nRefer clause 3.4 below  \n5 \nVulnerability Assessment and Penetration \nTesting (VAPT) for the incident and its \nclosure reports \n45 days",
+    "normalized": {
+      "actor": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "The incident is reported to SEBI or brought to notice"
+      },
+      "action": "Submit the Root Cause Analysis (RCA) report within 30 days. Additional time may be provided by SEBI on a case-by-case basis on request of the RE.",
+      "deadline": {
+        "calendar": "continuous",
+        "fixed_date": null,
+        "kind": "relative",
+        "duration_iso8601": "P30D",
+        "anchor": "reported",
+        "alternative_anchors": [
+          "brought_to_notice"
+        ]
+      },
+      "recipient": "SEBI"
+    },
+    "applicability": {
+      "entity_classes": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "conditions": [
+        "A cybersecurity incident has been reported, or must be reported, to SEBI"
+      ],
+      "requires": [
+        "sebi_incident_reporting_applies"
+      ]
+    },
+    "validity": {
+      "valid_from": "2024-08-20",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "Annexure-O B.3.3, Table 36 row 3",
+        "page": 201,
+        "char_start": 359309,
+        "char_end": 359976,
+        "excerpt_verbatim": "3.3. RE shall undertake the necessary activities and submit the relevant reports \nas per the following timelines: \nTable 36: Timelines for post-cyber incident activity(ies) and report \nsubmission \nS. \nNo. \nName of the Report/ Activity \nTimeline for Submission \n(from \nthe \ndate \nof \nreporting the incident or \nbeing brought to notice \nabout the incident) \n1 \nInterim Report* \n3 Days \n2 \nMitigation measure \n7 Days \n3 \nRoot Cause Analysis (RCA) report** \n30 Days# \n4 \nForensic Audit Report (on the incident) and \nits closure report \nRefer clause 3.4 below  \n5 \nVulnerability Assessment and Penetration \nTesting (VAPT) for the incident and its \nclosure reports \n45 days",
+        "source_sha256": "bd9ddb68bb49b9a92771ff01ed3138e01f0962b383e9ff643008b729290fc85d"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored SEBI CSCRF text, page checked against the PDF)",
+      "date": "2026-10-04"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Table 36 counts from \"the date of reporting the incident or being brought to notice about the incident\" (PDF page 201); the earlier known of the two is used. Whether \"Days\" runs from the timestamp or the calendar date is an open question; the timestamp reading is the earlier one. Row: \"Root Cause Analysis (RCA) report** \\n30 Days#\". The footnote on page 202 says \"Additional time may be provided by SEBI for the submission of RCA on a case-by-case basis on request of the RE\". Binding date contested: paragraph 17.1 states, \"For six categories of REs where cybersecurity and cyber resilience circular already exists - by January 01, 2025.\" Paragraph 17.2 states, \"For other REs where CSCRF is being issued for the first time - by April 01, 2025.\" (PDF page 9). Those are compliance glide-path dates. valid_from uses the circular issue date, 2024-08-20, so the tool does not tell a user they owe less pending legal review."
+  },
+  {
+    "id": "sebi.cscrf.2024.post-incident-vapt-45d",
+    "instrument_id": "sebi.cscrf.2024",
+    "paragraph_ref": "Annexure-O B.3.3, Table 36 row 5",
+    "text_verbatim": "3.3. RE shall undertake the necessary activities and submit the relevant reports \nas per the following timelines: \nTable 36: Timelines for post-cyber incident activity(ies) and report \nsubmission \nS. \nNo. \nName of the Report/ Activity \nTimeline for Submission \n(from \nthe \ndate \nof \nreporting the incident or \nbeing brought to notice \nabout the incident) \n1 \nInterim Report* \n3 Days \n2 \nMitigation measure \n7 Days \n3 \nRoot Cause Analysis (RCA) report** \n30 Days# \n4 \nForensic Audit Report (on the incident) and \nits closure report \nRefer clause 3.4 below  \n5 \nVulnerability Assessment and Penetration \nTesting (VAPT) for the incident and its \nclosure reports \n45 days",
+    "normalized": {
+      "actor": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "The incident is reported to SEBI or brought to notice"
+      },
+      "action": "Submit the VAPT for the incident and its closure reports within 45 days.",
+      "deadline": {
+        "calendar": "continuous",
+        "fixed_date": null,
+        "kind": "relative",
+        "duration_iso8601": "P45D",
+        "anchor": "reported",
+        "alternative_anchors": [
+          "brought_to_notice"
+        ]
+      },
+      "recipient": "SEBI"
+    },
+    "applicability": {
+      "entity_classes": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "conditions": [
+        "A cybersecurity incident has been reported, or must be reported, to SEBI"
+      ],
+      "requires": [
+        "sebi_incident_reporting_applies"
+      ]
+    },
+    "validity": {
+      "valid_from": "2024-08-20",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "Annexure-O B.3.3, Table 36 row 5",
+        "page": 201,
+        "char_start": 359309,
+        "char_end": 359976,
+        "excerpt_verbatim": "3.3. RE shall undertake the necessary activities and submit the relevant reports \nas per the following timelines: \nTable 36: Timelines for post-cyber incident activity(ies) and report \nsubmission \nS. \nNo. \nName of the Report/ Activity \nTimeline for Submission \n(from \nthe \ndate \nof \nreporting the incident or \nbeing brought to notice \nabout the incident) \n1 \nInterim Report* \n3 Days \n2 \nMitigation measure \n7 Days \n3 \nRoot Cause Analysis (RCA) report** \n30 Days# \n4 \nForensic Audit Report (on the incident) and \nits closure report \nRefer clause 3.4 below  \n5 \nVulnerability Assessment and Penetration \nTesting (VAPT) for the incident and its \nclosure reports \n45 days",
+        "source_sha256": "bd9ddb68bb49b9a92771ff01ed3138e01f0962b383e9ff643008b729290fc85d"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored SEBI CSCRF text, page checked against the PDF)",
+      "date": "2026-10-04"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Table 36 counts from \"the date of reporting the incident or being brought to notice about the incident\" (PDF page 201); the earlier known of the two is used. Whether \"Days\" runs from the timestamp or the calendar date is an open question; the timestamp reading is the earlier one. Row: \"closure reports \\n45 days\". Binding date contested: paragraph 17.1 states, \"For six categories of REs where cybersecurity and cyber resilience circular already exists - by January 01, 2025.\" Paragraph 17.2 states, \"For other REs where CSCRF is being issued for the first time - by April 01, 2025.\" (PDF page 9). Those are compliance glide-path dates. valid_from uses the circular issue date, 2024-08-20, so the tool does not tell a user they owe less pending legal review."
+  }
+]
