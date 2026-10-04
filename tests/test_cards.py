@@ -51,7 +51,7 @@ def test_every_obligation_generates_valid_card(obligations_and_instruments):
 
 
 def test_card_headline_and_body_length_bounds(obligations_and_instruments):
-    """Headline must be <= 12 words, body must be between 45 and 75 words."""
+    """Headline <= 12 words; body 45 to 75 words, shorter only when a short clause is quoted whole."""
     obligations, instruments = obligations_and_instruments
     generator = CardGenerator()
 
@@ -65,9 +65,15 @@ def test_card_headline_and_body_length_bounds(obligations_and_instruments):
         assert len(headline_words) <= 12, (
             f"Headline exceeds 12 words for {obl['id']}: {len(headline_words)} words ('{card.headline}')"
         )
-        assert 45 <= len(body_words) <= 75, (
-            f"Body word count not between 45 and 75 for {obl['id']}: {len(body_words)} words"
-        )
+        assert len(body_words) <= 75, f"Body exceeds 75 words for {obl['id']}: {len(body_words)}"
+        clause = " ".join(obl["text_verbatim"].split())
+        if len(body_words) < 45:
+            # A body may be shorter than 45 words only when the clause itself is short and is
+            # quoted whole: padding it with text the source does not contain is not allowed.
+            assert len(clause.split()) < 50 and clause in card.body, (
+                f"Short body for {obl['id']} does not quote its short clause in full"
+            )
+        assert "must be maintained as prescribed" not in card.body
 
 
 def test_no_retention_or_ongoing_duty_shows_deadline_chip(obligations_and_instruments):

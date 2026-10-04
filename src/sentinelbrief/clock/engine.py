@@ -733,16 +733,24 @@ class IncidentClockEngine:
 
             self._compute_deadline(obs, profile, now, deadlines, time_critical, unknowns)
 
-        for pending in refinement_unknowns.values():
+        for family, pending in refinement_unknowns.items():
+            entity = self.taxonomy.classes[family]
+            if not entity.refinement_question:
+                raise ValueError(
+                    f"Entity class '{family}' needs refinement but has no refinement_question"
+                )
             choices = ", ".join(pending["choices"])
+            impact = (
+                f"These obligations cannot be decided from the class '{family}' alone; "
+                "they are neither shown as applying nor as not applying."
+            )
+            if entity.refinement_note:
+                impact += " " + entity.refinement_note
             unknowns.append(
                 Unknown(
-                    question=f"What is the NBFC category? Choose one of: {choices}.",
+                    question=f"{entity.refinement_question} Choose one of: {choices}.",
                     affects=pending["affects"],
-                    impact=(
-                        "The RBI chapter and these obligations cannot be decided from the "
-                        "available NBFC classes."
-                    ),
+                    impact=impact,
                 )
             )
 

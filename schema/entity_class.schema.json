@@ -24,6 +24,14 @@
       "type": "boolean",
       "default": false
     },
+    "refinement_question": {
+      "description": "Asked when a profile holds only this needs_refinement class.",
+      "type": "string"
+    },
+    "refinement_note": {
+      "description": "Added to the impact text of the refinement question, for example to state what the dataset does not cover.",
+      "type": "string"
+    },
     "is_role": {
       "type": "boolean",
       "default": false

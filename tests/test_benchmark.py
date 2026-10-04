@@ -497,3 +497,68 @@ def test_catches_sebi_duties_leaking_to_an_nbfc(monkeypatch):
 
     _mutate_loaded_obligations(monkeypatch, mutation)
     assert "sebi-nbfc-is-not-a-sebi-re" in _failed(_run())
+
+
+# --- RBI Directions for UCBs, AIFIs and Payments Banks (docs/LABELS_RBI_BANKS.md) ---
+
+
+def test_catches_ucb_reporting_restricted_to_level_ii_and_above(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"] == "rbi.ucb-cyber.2026.incident-reporting-6h":
+                item["applicability"]["entity_classes"] = [
+                    "ucb.level_ii",
+                    "ucb.level_iii",
+                    "ucb.level_iv",
+                ]
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    failed = _failed(_run())
+    assert {"rbi-ucb-level1-ransomware", "rbi-ucb-generic-reports-and-is-asked-level"} <= failed
+
+
+def test_catches_ucb_va_pt_leaking_to_level_i(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"] in ("rbi.ucb-cyber.2026.va-half-yearly", "rbi.ucb-cyber.2026.pt-annual"):
+                item["applicability"]["entity_classes"] = ["ucb"]
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    failed = _failed(_run())
+    assert {"rbi-ucb-level1-ransomware", "rbi-ucb-generic-reports-and-is-asked-level"} <= failed
+
+
+def test_catches_generic_bank_treated_as_resolved(monkeypatch):
+    original = engine_module.IncidentClockEngine._unresolved_refinement_families
+
+    def mutation(self, profile_classes):
+        return [f for f in original(self, profile_classes) if f != "bank"]
+
+    monkeypatch.setattr(
+        engine_module.IncidentClockEngine, "_unresolved_refinement_families", mutation
+    )
+    assert "rbi-generic-bank-is-asked-its-kind" in _failed(_run())
+
+
+def test_catches_a_direction_leaking_to_another_entity_type(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"].startswith("rbi.aifi-cyber.2026."):
+                item["applicability"]["entity_classes"].append("nbfc.middle_layer")
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "rbi-each-direction-keeps-to-its-own-entities" in _failed(_run())
+
+
+def test_catches_valid_from_ignored_for_the_new_rbi_directions(monkeypatch):
+    original = engine_module.IncidentClockEngine._not_in_force_reason
+
+    def mutation(item, as_of):
+        if item["id"].startswith("rbi.ucb-cyber.2026."):
+            return None
+        return original(item, as_of)
+
+    monkeypatch.setattr(
+        engine_module.IncidentClockEngine, "_not_in_force_reason", staticmethod(mutation)
+    )
+    assert "rbi-ucb-before-commencement" in _failed(_run())

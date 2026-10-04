@@ -1,0 +1,73 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "rbi-aifi-hardware-failure-unattested",
+  "description": "Free text that matches nothing: the engine asks both the CERT-In question and the RBI cyber-incident question.",
+  "entity_profile": {
+    "entity_classes": [
+      "aifi"
+    ],
+    "is_listed": false,
+    "holds_personal_data": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Free text that matches nothing: the engine asks both the CERT-In question and the RBI cyber-incident question.",
+    "incident_types": [
+      "hardware failure"
+    ],
+    "systems_affected": [
+      "Core banking system"
+    ],
+    "when_detected": "2026-10-01T10:00:00+05:30",
+    "when_noticed": "2026-10-01T10:00:00+05:30"
+  },
+  "law_snapshot_date": "2026-10-04",
+  "expected": {
+    "law_as_of": "2026-10-01",
+    "regulators": [
+      "CERT-In",
+      "RBI"
+    ],
+    "deadlines": [],
+    "citations": [],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": [
+      {
+        "question": "Annexure I",
+        "affects": "cert-in.directions-70b.2022.incident-reporting-6h"
+      },
+      {
+        "question": "cyber incident",
+        "affects": "rbi.aifi-cyber.2026.incident-reporting-6h"
+      },
+      {
+        "question": "cyber incident",
+        "affects": "rbi.aifi-cyber.2026.cert-in-notification"
+      }
+    ]
+  },
+  "adversarial_flags": [
+    "free_text_never_excludes",
+    "unknown_beats_keyword_guess"
+  ],
+  "split": "dev",
+  "labels_source": "docs/LABELS_RBI_BANKS.md (written before implementation)",
+  "source_quotes": [
+    {
+      "document": "rbi.aifi-cyber.2026",
+      "page": 5,
+      "quote": "A cyber event that adversely affects the cybersecurity of \nan information asset whether resulting from malicious activity or not."
+    },
+    {
+      "document": "rbi.aifi-cyber.2026",
+      "page": 39,
+      "quote": "177. The AIFI shall report cyber incidents within six hours of detection on DAKSH \nplatform (Reserve Bank’s Advanced Supervisory Monitoring System -\nhttps://daksh.rbi.org.in)."
+    },
+    {
+      "document": "cert-in.directions-70b.2022",
+      "page": 2,
+      "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+    }
+  ]
+}

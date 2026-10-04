@@ -1,30 +1,120 @@
 {
-  "$schema": "../../schema/benchmark_scenario.schema.json",
-  "id": "rbi-bank-is-not-an-nbfc",
-  "description": "A bank is a body corporate for CERT-In but is not covered by the NBFC-specific RBI Direction.",
-  "entity_profile": {"entity_class": "bank", "is_listed": false, "holds_personal_data": false, "uses_protected_systems": false, "is_regulated_cloud_vps": false},
-  "incident_facts": {"description": "Ransomware incident", "incident_types": ["Malicious code attacks such as Ransomware"], "when_detected": "2026-10-01T10:00:00+05:30", "when_noticed": "2026-10-01T10:00:00+05:30", "systems_affected": ["server"]},
-  "law_snapshot_date": "2026-10-04",
-  "expected": {
-    "law_as_of": "2026-10-01", "regulators": ["CERT-In"],
-    "deadlines": [{"regulator": "CERT-In", "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "anchor": "noticing", "deadline_iso8601": "PT6H", "deadline_timestamp": "2026-10-01T16:00:00+05:30"}],
-    "citations": [{"obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "instrument_id": "cert-in.directions-70b.2022", "paragraph_ref": "Direction (ii)"}],
-    "required_evidence": [],
-    "not_applicable": [
-      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h", "reason": "entity_class_mismatch"},
-      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h", "reason": "entity_class_mismatch"},
-      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-cert-in-notification", "reason": "entity_class_mismatch"},
-      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb", "reason": "all_of_entity_classes_not_met"},
-      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-va-half-yearly", "reason": "entity_class_mismatch"},
-      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-pt-annual", "reason": "entity_class_mismatch"}
+    "$schema": "../../schema/benchmark_scenario.schema.json",
+    "id": "rbi-bank-is-not-an-nbfc",
+    "description": "A bank is a body corporate for CERT-In but is not covered by the NBFC-specific RBI Direction.",
+    "entity_profile": {
+        "entity_class": "bank",
+        "is_listed": false,
+        "holds_personal_data": false,
+        "uses_protected_systems": false,
+        "is_regulated_cloud_vps": false
+    },
+    "incident_facts": {
+        "description": "Ransomware incident",
+        "incident_types": [
+            "Malicious code attacks such as Ransomware"
+        ],
+        "when_detected": "2026-10-01T10:00:00+05:30",
+        "when_noticed": "2026-10-01T10:00:00+05:30",
+        "systems_affected": [
+            "server"
+        ]
+    },
+    "law_snapshot_date": "2026-10-04",
+    "expected": {
+        "law_as_of": "2026-10-01",
+        "regulators": [
+            "CERT-In"
+        ],
+        "deadlines": [
+            {
+                "regulator": "CERT-In",
+                "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+                "anchor": "noticing",
+                "deadline_iso8601": "PT6H",
+                "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+            }
+        ],
+        "citations": [
+            {
+                "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+                "instrument_id": "cert-in.directions-70b.2022",
+                "paragraph_ref": "Direction (ii)"
+            }
+        ],
+        "required_evidence": [],
+        "not_applicable": [
+            {
+                "regulator": "RBI",
+                "obligation_id": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h",
+                "reason": "entity_class_mismatch"
+            },
+            {
+                "regulator": "RBI",
+                "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h",
+                "reason": "entity_class_mismatch"
+            },
+            {
+                "regulator": "RBI",
+                "obligation_id": "rbi.nbfc-cyber.2026.ch5-cert-in-notification",
+                "reason": "entity_class_mismatch"
+            },
+            {
+                "regulator": "RBI",
+                "obligation_id": "rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb",
+                "reason": "all_of_entity_classes_not_met"
+            },
+            {
+                "regulator": "RBI",
+                "obligation_id": "rbi.nbfc-cyber.2026.ch5-va-half-yearly",
+                "reason": "entity_class_mismatch"
+            },
+            {
+                "regulator": "RBI",
+                "obligation_id": "rbi.nbfc-cyber.2026.ch5-pt-annual",
+                "reason": "entity_class_mismatch"
+            }
+        ],
+        "unknowns": [
+            {
+                "question": "kind of bank",
+                "affects": "rbi.payments-banks-cyber.2026.incident-reporting-6h"
+            },
+            {
+                "question": "kind of bank",
+                "affects": "rbi.payments-banks-cyber.2026.cert-in-notification"
+            },
+            {
+                "question": "kind of bank",
+                "affects": "rbi.payments-banks-cyber.2026.va-half-yearly"
+            },
+            {
+                "question": "kind of bank",
+                "affects": "rbi.payments-banks-cyber.2026.pt-annual"
+            }
+        ],
+        "time_critical": []
+    },
+    "adversarial_flags": [
+        "nbfc_duties_must_not_leak_to_bank"
     ],
-    "unknowns": [], "time_critical": []
-  },
-  "adversarial_flags": ["nbfc_duties_must_not_leak_to_bank"],
-  "split": "dev",
-  "labels_source": "RBI NBFC Direction paragraph 3(1); CERT-In Direction (ii)",
-  "source_quotes": [
-    {"document": "rbi.nbfc-cyber.2026", "page": 3, "quote": "The provisions contained in these Directions shall be applicable to all Non-\nBanking Financial Companies"},
-    {"document": "cert-in.directions-70b.2022", "page": 2, "quote": "Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents"}
-  ]
+    "split": "dev",
+    "labels_source": "RBI NBFC Direction paragraph 3(1); CERT-In Direction (ii)",
+    "source_quotes": [
+        {
+            "document": "rbi.nbfc-cyber.2026",
+            "page": 3,
+            "quote": "The provisions contained in these Directions shall be applicable to all Non-\nBanking Financial Companies"
+        },
+        {
+            "document": "cert-in.directions-70b.2022",
+            "page": 2,
+            "quote": "Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents"
+        },
+        {
+            "document": "rbi.payments-banks-cyber.2026",
+            "page": 4,
+            "quote": "These Directions shall be applicable to Payments Banks"
+        }
+    ]
 }

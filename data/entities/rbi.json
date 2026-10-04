@@ -5,6 +5,9 @@
     "label": "Commercial Bank",
     "parent": "body_corporate",
     "description": "Scheduled Commercial Banks, Small Finance Banks, Payments Banks, Regional Rural Banks.",
+    "needs_refinement": true,
+    "refinement_question": "What kind of bank is it?",
+    "refinement_note": "Only the Payments Banks Direction is in the dataset. RBI Directions for commercial banks, small finance banks and other bank types are not covered, so no RBI duty can be shown for them.",
     "version": "1.0",
     "valid_from": "2016-06-02",
     "valid_to": null
@@ -16,6 +19,7 @@
     "parent": "body_corporate",
     "description": "Paragraph 3(1): ‘all Non-Banking Financial Companies ... registered with RBI ... unless specified otherwise’.",
     "needs_refinement": true,
+    "refinement_question": "What is the NBFC category?",
     "version": "1.0",
     "valid_from": "2026-07-31",
     "valid_to": null
@@ -27,6 +31,7 @@
     "parent": "nbfc",
     "description": "Paragraph 3 uses ‘NBFCs-Base Layer (NBFCs-BL)’ and divides it by asset size.",
     "needs_refinement": true,
+    "refinement_question": "What is the NBFC category?",
     "version": "1.0",
     "valid_from": "2026-07-31",
     "valid_to": null
@@ -99,6 +104,78 @@
     "parent": "nbfc",
     "description": "Paragraph 3(1) includes NBFCs registered under the ‘National Housing Bank (NHB) Act, 1987’.",
     "is_role": true,
+    "version": "1.0",
+    "valid_from": "2026-07-31",
+    "valid_to": null
+  },
+  {
+    "id": "bank.payments_bank",
+    "regulator": "RBI",
+    "label": "Payments Bank",
+    "parent": "bank",
+    "description": "Payments Banks Direction paragraph 3: 'These Directions shall be applicable to Payments Banks'.",
+    "version": "1.0",
+    "valid_from": "2026-07-31",
+    "valid_to": null
+  },
+  {
+    "id": "ucb",
+    "regulator": "RBI",
+    "label": "Urban Co-operative Bank",
+    "parent": "body_corporate",
+    "description": "UCB Direction paragraph 3: 'These Directions shall be applicable to Urban Co-operative Banks'.",
+    "needs_refinement": true,
+    "refinement_question": "What is the UCB level?",
+    "version": "1.0",
+    "valid_from": "2026-07-31",
+    "valid_to": null
+  },
+  {
+    "id": "ucb.level_i",
+    "regulator": "RBI",
+    "label": "UCB Level I",
+    "parent": "ucb",
+    "description": "UCB Direction paragraph 4, Level I: 'Applicable to the UCB irrespective of digital services / products offered by it.' Chapters II and III.",
+    "version": "1.0",
+    "valid_from": "2026-07-31",
+    "valid_to": null
+  },
+  {
+    "id": "ucb.level_ii",
+    "regulator": "RBI",
+    "label": "UCB Level II",
+    "parent": "ucb",
+    "description": "UCB Direction paragraph 4, Level II: 'The UCB which is a sub-member of Centralised Payment Systems (CPS) and satisfies at least one of the criteria given below'. Chapters II to IV.",
+    "version": "1.0",
+    "valid_from": "2026-07-31",
+    "valid_to": null
+  },
+  {
+    "id": "ucb.level_iii",
+    "regulator": "RBI",
+    "label": "UCB Level III",
+    "parent": "ucb",
+    "description": "UCB Direction paragraph 4, Level III: 'The UCB which satisfies at least one of the criteria given below'. Chapters II to V.",
+    "version": "1.0",
+    "valid_from": "2026-07-31",
+    "valid_to": null
+  },
+  {
+    "id": "ucb.level_iv",
+    "regulator": "RBI",
+    "label": "UCB Level IV",
+    "parent": "ucb",
+    "description": "UCB Direction paragraph 4, Level IV: 'The UCB which is a direct member / sub-member of CPS and satisfies at least one of the criteria given below'. Chapters II to VI.",
+    "version": "1.0",
+    "valid_from": "2026-07-31",
+    "valid_to": null
+  },
+  {
+    "id": "aifi",
+    "regulator": "RBI",
+    "label": "All India Financial Institution",
+    "parent": "body_corporate",
+    "description": "AIFI Direction paragraph 3: Export-Import Bank of India, National Bank for Agriculture and Rural Development, Small Industries Development Bank of India, National Housing Bank and National Bank for Financing Infrastructure and Development.",
     "version": "1.0",
     "valid_from": "2026-07-31",
     "valid_to": null

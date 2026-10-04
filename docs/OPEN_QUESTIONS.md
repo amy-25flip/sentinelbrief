@@ -67,3 +67,12 @@ Things needing a human or a primary-source check.
 - [ ] **IRDAI Information and Cyber Security Guidelines, 2023:** the regulator's robots.txt disallows all automated access. A person must download the PDF from https://irdai.gov.in/document-detail?documentId=3314780 and record `acquired_by` in the manifest. Not ingested; no IRDAI obligation exists.
 - [ ] **RBI cybersecurity Directions for other entity types** (AIFIs, UCBs, Payments Banks found; Commercial Banks and Small Finance Banks not yet located): PDFs need a person to download them. Not ingested.
 - [ ] **RBI list of repealed circulars and the old circular texts** (for the migrator): not located or ingested.
+
+## Build 11 (RBI Directions for UCBs, AIFIs and Payments Banks), 2026-10-04
+
+- [ ] **Payments Banks amended text:** the stored PDF is "Updated as on October 01, 2026". Did paragraphs 150 and 181 read the same from 31 July 2026? The version as issued is not in the dataset.
+- [ ] **Bank Directions not ingested:** commercial banks, small finance banks, and any others (regional rural banks, local area banks). A generic `bank` is asked its kind and can only choose Payments Bank.
+- [ ] **UCB level criteria (paragraph 4)** are not evaluated; the user states the level.
+- [ ] **Unread paragraphs:** only the scoping, definition, reporting, CERT-In notification, VA/PT and repeal-opening paragraphs of these three Directions were read. The other control paragraphs are not modelled.
+- [ ] **AIFI and HFC interplay:** NHB is itself an AIFI and receives HFC incident reports under the NBFC Direction's paragraph 141 note. No text ingested says how.
+- [x] **Other RBI cybersecurity Directions (UCBs, AIFIs, Payments Banks):** ingested (human-acquired) and modelled in Build 11.

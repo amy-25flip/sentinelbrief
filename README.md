@@ -12,9 +12,9 @@ SentinelBrief turns "we have an incident" into what Indian law requires, by when
 4. **Incident workspace**: a case with field-level filing drafts, approval by a named person, a hash-chained evidence timeline, an audit bundle and a calendar export for recurring duties. It files nothing: a person submits on the regulator's own channel and records the reference.
 
 Current data status:
-- Modelled obligations (25): CERT-In Directions 70B (2022), 7; DPDP Rules 2025 Rule 7, 3; SEBI CSCRF 2024 incident reporting and post-incident reports, 9; RBI NBFC Cybersecurity Directions 2026 (paragraphs 28, 121, 141), 6.
-- Not modelled: IRDAI; the other RBI Directions; the rest of the RBI NBFC Direction; SEBI forensic and quarterly reports. See `docs/OPEN_QUESTIONS.md`.
-- Benchmark: 68 dev scenarios, each with clause quotes verified against the page text; labels for RBI and SEBI were written and committed before implementation (`docs/LABELS_RBI.md`, `docs/LABELS_SEBI.md`). Labels are AI-authored and not yet reviewed by a compliance professional, and there is no hidden split yet, so no accuracy figure should be quoted.
+- Modelled obligations (37): CERT-In Directions 70B (2022), 7; DPDP Rules 2025 Rule 7, 3; SEBI CSCRF 2024 incident reporting and post-incident reports, 9; RBI cybersecurity Directions 2026 for NBFCs, 6, and for Urban Co-operative Banks, All India Financial Institutions and Payments Banks, 4 each (incident reporting, CERT-In notification, VA and PT cadence).
+- Not modelled: IRDAI (only the covering letter has been supplied; the guidelines are its Annexure A); RBI Directions for commercial banks, small finance banks and other bank types; the remaining paragraphs of the four RBI Directions; SEBI forensic and quarterly reports. See `docs/OPEN_QUESTIONS.md`.
+- Benchmark: 80 dev scenarios, each with clause quotes verified against the page text; labels for RBI and SEBI were written and committed before implementation (`docs/LABELS_RBI.md`, `docs/LABELS_SEBI.md`). Labels are AI-authored and not yet reviewed by a compliance professional, and there is no hidden split yet, so no accuracy figure should be quoted.
 - Contested readings recorded for counsel in `docs/DECISIONS.md`: the date from which SEBI CSCRF duties bind; the DPDP Rule 7 commencement date; the starting event for SEBI's 24-hour "other incident" duty; the time limit for HFCs reporting to NHB.
 - RBI live reverify is exempted because the official RBI document server returns a CAPTCHA to automated clients; a human must re-check by downloading the official URL and comparing sha256.
 

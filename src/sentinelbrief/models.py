@@ -220,6 +220,8 @@ class EntityClass(BaseModel):
     description: str | None = None
     needs_refinement: bool = False
     is_role: bool = False
+    refinement_question: str | None = None
+    refinement_note: str | None = None
     version: str
     valid_from: date | None = None
     valid_to: date | None = None

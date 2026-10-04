@@ -18,5 +18,5 @@
     "parser_version": "pymupdf-1.28.2",
     "extraction_date": "2026-10-04T00:00:00Z"
   },
-  "acquisition_note": "Raw evidence only so far; no obligations are modelled from this instrument. The exact PDF URL is in data/raw/manifest.json. Second reference: DoS.CO.CSITEG.50/31.01.015/2026-27."
+  "acquisition_note": "Incident reporting, CERT-In notification and VA/PT cadence are modelled; the other paragraphs are not. The exact PDF URL is in data/raw/manifest.json. Second reference: DoS.CO.CSITEG.50/31.01.015/2026-27."
 }

@@ -1,0 +1,104 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "rbi-ucb-level1-ransomware",
+  "description": "A Level I UCB: the reporting duty is in Chapter III, which binds every UCB; VA and PT are Chapter IV duties and do not reach Level I.",
+  "entity_profile": {
+    "entity_classes": [
+      "ucb.level_i"
+    ],
+    "is_listed": false,
+    "holds_personal_data": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "A Level I UCB: the reporting duty is in Chapter III, which binds every UCB; VA and PT are Chapter IV duties and do not reach Level I.",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "systems_affected": [
+      "Core banking system"
+    ],
+    "when_detected": "2026-10-01T10:00:00+05:30",
+    "when_noticed": "2026-10-01T10:00:00+05:30"
+  },
+  "law_snapshot_date": "2026-10-04",
+  "expected": {
+    "law_as_of": "2026-10-01",
+    "regulators": [
+      "CERT-In",
+      "RBI"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      },
+      {
+        "obligation_id": "rbi.ucb-cyber.2026.incident-reporting-6h",
+        "regulator": "RBI",
+        "anchor": "detection",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      },
+      {
+        "obligation_id": "rbi.ucb-cyber.2026.incident-reporting-6h",
+        "instrument_id": "rbi.ucb-cyber.2026",
+        "paragraph_ref": "Paragraph 88"
+      },
+      {
+        "obligation_id": "rbi.ucb-cyber.2026.cert-in-notification",
+        "instrument_id": "rbi.ucb-cyber.2026",
+        "paragraph_ref": "Paragraph 87, second sentence"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [
+      {
+        "obligation_id": "rbi.ucb-cyber.2026.va-half-yearly",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "rbi.ucb-cyber.2026.pt-annual",
+        "reason": "see description"
+      }
+    ],
+    "unknowns": []
+  },
+  "adversarial_flags": [
+    "chapter_scope"
+  ],
+  "split": "dev",
+  "labels_source": "docs/LABELS_RBI_BANKS.md (written before implementation)",
+  "source_quotes": [
+    {
+      "document": "rbi.ucb-cyber.2026",
+      "page": 29,
+      "quote": "88. The UCB shall report cyber incidents within six hours of detection on DAKSH \nplatform (Reserve Bank’s Advanced Supervisory Monitoring System - \nhttps://daksh.rbi.org.in)."
+    },
+    {
+      "document": "rbi.ucb-cyber.2026",
+      "page": 4,
+      "quote": "Applicable to the UCB irrespective of digital \nservices / products offered by it."
+    },
+    {
+      "document": "rbi.ucb-cyber.2026",
+      "page": 4,
+      "quote": "For the purpose of these Directions, a UCB is categorised into one of the four \nlevels based on its digital depth and interconnectedness to the payment systems \nlandscape. Depending on the UCB category, the applicability of Chapter II to \nChapter VI of these Directions is as given below:"
+    },
+    {
+      "document": "cert-in.directions-70b.2022",
+      "page": 2,
+      "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+    }
+  ]
+}

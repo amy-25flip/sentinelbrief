@@ -1,0 +1,105 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "rbi-ucb-generic-reports-and-is-asked-level",
+  "description": "A UCB whose level is not given still gets the reporting deadline (all UCBs); the level is asked only for VA and PT.",
+  "entity_profile": {
+    "entity_classes": [
+      "ucb"
+    ],
+    "is_listed": false,
+    "holds_personal_data": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "A UCB whose level is not given still gets the reporting deadline (all UCBs); the level is asked only for VA and PT.",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "systems_affected": [
+      "Core banking system"
+    ],
+    "when_detected": "2026-10-01T10:00:00+05:30",
+    "when_noticed": "2026-10-01T10:00:00+05:30"
+  },
+  "law_snapshot_date": "2026-10-04",
+  "expected": {
+    "law_as_of": "2026-10-01",
+    "regulators": [
+      "CERT-In",
+      "RBI"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      },
+      {
+        "obligation_id": "rbi.ucb-cyber.2026.incident-reporting-6h",
+        "regulator": "RBI",
+        "anchor": "detection",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      },
+      {
+        "obligation_id": "rbi.ucb-cyber.2026.incident-reporting-6h",
+        "instrument_id": "rbi.ucb-cyber.2026",
+        "paragraph_ref": "Paragraph 88"
+      },
+      {
+        "obligation_id": "rbi.ucb-cyber.2026.cert-in-notification",
+        "instrument_id": "rbi.ucb-cyber.2026",
+        "paragraph_ref": "Paragraph 87, second sentence"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": [
+      {
+        "question": "UCB level",
+        "affects": "rbi.ucb-cyber.2026.va-half-yearly"
+      },
+      {
+        "question": "UCB level",
+        "affects": "rbi.ucb-cyber.2026.pt-annual"
+      }
+    ]
+  },
+  "adversarial_flags": [
+    "refinement_only_where_it_matters",
+    "coarse_class_must_not_silently_be_not_applicable"
+  ],
+  "split": "dev",
+  "labels_source": "docs/LABELS_RBI_BANKS.md (written before implementation)",
+  "source_quotes": [
+    {
+      "document": "rbi.ucb-cyber.2026",
+      "page": 29,
+      "quote": "88. The UCB shall report cyber incidents within six hours of detection on DAKSH \nplatform (Reserve Bank’s Advanced Supervisory Monitoring System - \nhttps://daksh.rbi.org.in)."
+    },
+    {
+      "document": "rbi.ucb-cyber.2026",
+      "page": 4,
+      "quote": "Applicable to the UCB irrespective of digital \nservices / products offered by it."
+    },
+    {
+      "document": "rbi.ucb-cyber.2026",
+      "page": 33,
+      "quote": "116. The UCB shall periodically conduct VA / PT of internet facing web / mobile \napplications, servers, and network components throughout their lifecycle (pre-\nimplementation, post implementation, and after changes). VA of critical \napplications and those on DMZ shall be conducted at least once in every six \nmonths. PT shall be conducted at least once in a year."
+    },
+    {
+      "document": "cert-in.directions-70b.2022",
+      "page": 2,
+      "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+    }
+  ]
+}

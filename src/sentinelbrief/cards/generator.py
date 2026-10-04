@@ -166,13 +166,15 @@ class CardGenerator:
         else:
             action_words = norm.get("action", "").split()
             headline = " ".join(action_words[:12]) if action_words else f"Obligation {obs_id}"
-            raw_text = obligation.get("text_verbatim", "").replace("\n", " ")
+            raw_text = " ".join(obligation.get("text_verbatim", "").split())
             text_words = raw_text.split()
             if len(text_words) < 50:
+                # Short clause: quote it whole. Nothing here may state a requirement the source
+                # does not state, so a short clause gives a short card.
                 body = (
-                    f"Under {obligation.get('paragraph_ref', 'the regulations')}, covered entities must comply "
-                    f"with the following mandatory requirement: {raw_text} Compliance records and relevant evidence "
-                    f"must be maintained as prescribed by the regulatory authority."
+                    f"{obligation.get('paragraph_ref', 'The cited clause')} states: {raw_text} "
+                    "This card quotes the clause in full and adds no requirement of its own; "
+                    "read the cited source before acting."
                 )
             else:
                 body = " ".join(text_words[:60])

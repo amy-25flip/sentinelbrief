@@ -231,3 +231,17 @@ Limits: 14 is a small sample; the labels are AI-authored; the SEBI duties in the
 
 - **IRDAI Information and Cyber Security Guidelines, 2023** (ref IRDAI/GA&HR/GDL/MISC/88/04/2023, 24 April 2023, 175 pages). Official page: https://irdai.gov.in/document-detail?documentId=3314780 . BLOCKED for automated fetch: `https://irdai.gov.in/robots.txt` says `User-Agent: *` / `Disallow: /`, and `BaseFetcher` refused. Needs a person to download it in a browser.
 - **Other RBI cybersecurity Directions of 31 July 2026.** The HTML pages are public: Non-Banking Financial Companies (id=13592), All India Financial Institutions (id=13597), Urban Co-operative Banks (id=13615 or 13616), Payments Banks (id=13624 or 13625) under `https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=`. Commercial Banks, Small Finance Banks and others were not located in the ids scanned (13586 to 13632). This confirms an AIFI Direction exists, so there are at least seven. The PDFs sit on `rbidocs.rbi.org.in`, which serves a CAPTCHA to automated clients; they need a person to download them.
+
+## Build 11 - the reviewer agent, 2026-10-04: RBI Directions for UCBs, AIFIs and Payments Banks
+
+Labels: `docs/LABELS_RBI_BANKS.md`, committed before implementation (8cee753). Sources: three PDFs supplied by the project owner, cross-checked against RBI's public HTML pages (74 of 75 sampled paragraphs match; each page links to the exact file), ingested in f803fc4 and pinned.
+
+Built by the reviewer agent because Codex was at its usage limit (the launch failed with the limit error). **Not independently reviewed.**
+
+- 12 obligations (four per Direction), 7 entity classes, a data-driven refinement question, 12 scenarios, 8 unit tests, 5 mutation tests.
+- The 12 scenario files carry labels typed from the table and all passed on the first engine run. One older scenario (`rbi-bank-is-not-an-nbfc`) gained the "kind of bank" unknown by the spec's rule.
+- Hidden set A re-run after the build: 14/14, unchanged.
+
+Found while building:
+- [major] [cards] N1. **The card generator invented a requirement.** For clauses under 50 words it appended "Compliance records and relevant evidence must be maintained as prescribed by the regulatory authority." No source says that; it was padding to reach the word count, present since Checkpoint 2, and affected every short-clause card (including the NBFC CERT-In notification). The grounding verifier missed it because the sentence has no number or named body. Fixed: short clauses are quoted whole with no added claim; the length test permits a short body only then and fails if the padding sentence returns. Status: FIXED.
+- [minor] [tests] N2. the reviewer agent's own calendar test asserted that a generic `bank` has no undetermined recurring duty. With the Payments Banks Direction modelled that is no longer true; the test now asserts the bank is asked. Status: FIXED.

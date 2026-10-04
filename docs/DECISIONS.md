@@ -334,3 +334,23 @@ Decisions below were made during Review 1 (the reviewer agent, 2026-09-24). See 
 **Reason:** Review 5 found that none of the listed items is in the source text. The page already labelled them as suggestions; the data now says the same thing, and a future author cannot put an invented item back into the source-stated field without the gate failing.
 
 **Alternative rejected:** deleting the lists. They are useful operational prompts once clearly separated from what the law says.
+
+## 2026-10-04: RBI Directions for UCBs, AIFIs and Payments Banks (Build 11)
+
+Quotes and pages are in `docs/LABELS_RBI_BANKS.md`; each decision below names the alternative and why the choice never tells a user they owe less.
+
+1. **Commencement 2026-07-31 for all three.** "These Directions shall come into force with immediate effect" (page 4 of each), dated July 31, 2026. For Payments Banks the stored PDF says "Updated as on October 01, 2026", so paragraphs 150 and 181 are the amended text; confidence 0.8. Alternative: date the Payments Banks duties from 1 October 2026. Rejected: that would tell a Payments Bank it owed nothing in August and September.
+2. **Every UCB reports, whatever its level.** Paragraphs 87 and 88 are in Chapter III, and paragraph 4 says Level I is "Applicable to the UCB irrespective of digital services / products offered by it". The duty is recorded against `ucb`, so a profile with no level still gets the deadline. Alternative: ask the level first. Rejected: the answer cannot change the outcome.
+3. **UCB VA and PT bind Levels II to IV.** Paragraph 116 is in Chapter IV. A bare `ucb` is asked its level for these two duties only.
+4. **The refinement question is data.** `refinement_question` on each coarse class; the engine raises if a coarse class has none. Alternative: one hard-coded wording. Rejected: it asked a UCB for its "NBFC category".
+5. **A generic `bank` is asked its kind.** Only the Payments Banks Direction is in the dataset; `refinement_note` says so in the question's impact text. No class exists for bank types whose Direction is not ingested, because choosing one would show no RBI duty and so tell that bank it owes nothing. Alternative: treat `bank` as having no RBI duty, as before. Rejected for the same reason.
+6. **`aifi` is one class.** Paragraph 3 names five institutions and scopes no chapter.
+7. **The cyber-incident gate is shared** with the NBFC Direction: the definition is word for word the same in all four.
+8. **CERT-In notification has no deadline** in any of the three texts; shown as applicable with no clock.
+9. **Anchor is detection only**, as written.
+
+## 2026-10-04: Regulatory cards never pad a short clause
+
+**Decision:** When a clause is shorter than 50 words the card quotes it whole and says it adds no requirement; the body may then be shorter than 45 words. The length test allows a short body only in that case.
+
+**Reason:** The generator used to append "Compliance records and relevant evidence must be maintained as prescribed by the regulatory authority" to reach the word count. No source says that. The grounding verifier checks numbers and names, so it did not catch a sentence with neither. A test now fails if that sentence appears.

@@ -279,8 +279,11 @@ def test_calendar_never_silently_drops_an_undetermined_duty():
     ics, undetermined = recurring_duties_ics(engine, ["nbfc"], date(2026, 10, 1))
     assert "BEGIN:VEVENT" not in ics
     assert {u.split(".")[-1] for u in undetermined} == {"ch5-va-half-yearly", "ch5-pt-annual"}
-    ics_bank, none = recurring_duties_ics(engine, ["bank"], date(2026, 10, 1))
-    assert "BEGIN:VEVENT" not in ics_bank and none == []
+    ics_bank, asked = recurring_duties_ics(engine, ["bank"], date(2026, 10, 1))
+    assert "BEGIN:VEVENT" not in ics_bank  # a generic bank is asked its kind, never told "nothing"
+    assert {u.split(".")[-1] for u in asked} == {"va-half-yearly", "pt-annual"}
+    ics_small, none = recurring_duties_ics(engine, ["nbfc.bl_below_500cr"], date(2026, 10, 1))
+    assert "BEGIN:VEVENT" not in ics_small and none == []
     before, _ = recurring_duties_ics(engine, ["nbfc.middle_layer"], date(2026, 7, 1))
     assert "BEGIN:VEVENT" not in before  # the Direction was not yet in force
 

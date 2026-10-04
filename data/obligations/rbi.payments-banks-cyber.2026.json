@@ -1,0 +1,252 @@
+[
+  {
+    "id": "rbi.payments-banks-cyber.2026.incident-reporting-6h",
+    "instrument_id": "rbi.payments-banks-cyber.2026",
+    "paragraph_ref": "Paragraph 181, first sentence",
+    "text_verbatim": "181. The bank shall report cyber incidents within six hours of detection on DAKSH \nplatform (Reserve Bank’s Advanced Supervisory Monitoring System -  \nhttps://daksh.rbi.org.in).",
+    "normalized": {
+      "actor": [
+        "bank.payments_bank"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "A cyber incident is detected"
+      },
+      "action": "Report the cyber incident on RBI's DAKSH platform within six hours of detection.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "relative",
+        "duration_iso8601": "PT6H",
+        "anchor": "detection"
+      },
+      "recipient": "RBI via DAKSH (https://daksh.rbi.org.in)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "bank.payments_bank"
+      ],
+      "conditions": [
+        "Entity is covered by the Payments Banks Direction",
+        "Event is a cyber incident as the Direction defines it"
+      ],
+      "requires": [
+        "rbi_cyber_incident"
+      ]
+    },
+    "validity": {
+      "valid_from": "2026-07-31",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "rbi.payments-banks-cyber.2026",
+        "paragraph_ref": "Paragraph 181, first sentence",
+        "page": 44,
+        "char_start": 80635,
+        "char_end": 80812,
+        "excerpt_verbatim": "181. The bank shall report cyber incidents within six hours of detection on DAKSH \nplatform (Reserve Bank’s Advanced Supervisory Monitoring System -  \nhttps://daksh.rbi.org.in).",
+        "source_sha256": "1d66101517708f620176f214abd869af24a1190ef1d796f943ca53c6fb17e4c5"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored RBI text, page from page_offsets)",
+      "date": "2026-10-04"
+    },
+    "confidence": 0.8,
+    "confidence_reason": "Text is explicit on actor, duration, starting event and channel. The stored text is the version 'Updated as on October 01, 2026'; whether this paragraph read the same between 31 July and 1 October 2026 is not verified."
+  },
+  {
+    "id": "rbi.payments-banks-cyber.2026.cert-in-notification",
+    "instrument_id": "rbi.payments-banks-cyber.2026",
+    "paragraph_ref": "Paragraph 181, second sentence",
+    "text_verbatim": "The bank shall also pro-actively notify CERT-In regarding \ncyber incidents.",
+    "normalized": {
+      "actor": [
+        "bank.payments_bank"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "A cyber incident occurs"
+      },
+      "action": "Pro-actively notify Indian Computer Emergency Response Team (CERT-In) regarding the cyber incident.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "none",
+        "duration_iso8601": null,
+        "anchor": "not_applicable"
+      },
+      "recipient": "Indian Computer Emergency Response Team (CERT-In)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "bank.payments_bank"
+      ],
+      "conditions": [
+        "Entity is covered by the Payments Banks Direction",
+        "Event is a cyber incident as the Direction defines it"
+      ],
+      "requires": [
+        "rbi_cyber_incident"
+      ]
+    },
+    "validity": {
+      "valid_from": "2026-07-31",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "rbi.payments-banks-cyber.2026",
+        "paragraph_ref": "Paragraph 181, second sentence",
+        "page": 44,
+        "char_start": 80813,
+        "char_end": 80888,
+        "excerpt_verbatim": "The bank shall also pro-actively notify CERT-In regarding \ncyber incidents.",
+        "source_sha256": "1d66101517708f620176f214abd869af24a1190ef1d796f943ca53c6fb17e4c5"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored RBI text, page from page_offsets)",
+      "date": "2026-10-04"
+    },
+    "confidence": 0.8,
+    "confidence_reason": "The sentence states a duty with no time limit or channel; modelled as applicable with no computed deadline. CERT-In's own six-hour duty is separate. The stored text is the version 'Updated as on October 01, 2026'; whether this paragraph read the same between 31 July and 1 October 2026 is not verified."
+  },
+  {
+    "id": "rbi.payments-banks-cyber.2026.va-half-yearly",
+    "instrument_id": "rbi.payments-banks-cyber.2026",
+    "paragraph_ref": "Paragraph 150 (VA)",
+    "text_verbatim": "150. For critical information systems and / or those in the DMZ having customer \ninterface, VA shall be conducted at least once in every six months and PT at least \nonce in 12 months.",
+    "normalized": {
+      "actor": [
+        "bank.payments_bank"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Recurring"
+      },
+      "action": "Conduct VA of critical information systems and / or those in the DMZ having customer interface at least once in every six months.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P6M",
+        "anchor": "not_applicable"
+      }
+    },
+    "applicability": {
+      "entity_classes": [
+        "bank.payments_bank"
+      ],
+      "conditions": [
+        "Entity is covered by the Payments Banks Direction"
+      ]
+    },
+    "validity": {
+      "valid_from": "2026-07-31",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "rbi.payments-banks-cyber.2026",
+        "paragraph_ref": "Paragraph 150 (VA)",
+        "page": 39,
+        "char_start": 71976,
+        "char_end": 72159,
+        "excerpt_verbatim": "150. For critical information systems and / or those in the DMZ having customer \ninterface, VA shall be conducted at least once in every six months and PT at least \nonce in 12 months.",
+        "source_sha256": "1d66101517708f620176f214abd869af24a1190ef1d796f943ca53c6fb17e4c5"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored RBI text, page from page_offsets)",
+      "date": "2026-10-04"
+    },
+    "confidence": 0.8,
+    "confidence_reason": "Text states the minimum frequency. Which systems are critical is not evaluated. The stored text is the version 'Updated as on October 01, 2026'; whether this paragraph read the same between 31 July and 1 October 2026 is not verified."
+  },
+  {
+    "id": "rbi.payments-banks-cyber.2026.pt-annual",
+    "instrument_id": "rbi.payments-banks-cyber.2026",
+    "paragraph_ref": "Paragraph 150 (PT)",
+    "text_verbatim": "150. For critical information systems and / or those in the DMZ having customer \ninterface, VA shall be conducted at least once in every six months and PT at least \nonce in 12 months.",
+    "normalized": {
+      "actor": [
+        "bank.payments_bank"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Recurring"
+      },
+      "action": "Conduct PT of critical information systems and / or those in the DMZ having customer interface at least once in 12 months.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P12M",
+        "anchor": "not_applicable"
+      }
+    },
+    "applicability": {
+      "entity_classes": [
+        "bank.payments_bank"
+      ],
+      "conditions": [
+        "Entity is covered by the Payments Banks Direction"
+      ]
+    },
+    "validity": {
+      "valid_from": "2026-07-31",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "rbi.payments-banks-cyber.2026",
+        "paragraph_ref": "Paragraph 150 (PT)",
+        "page": 39,
+        "char_start": 71976,
+        "char_end": 72159,
+        "excerpt_verbatim": "150. For critical information systems and / or those in the DMZ having customer \ninterface, VA shall be conducted at least once in every six months and PT at least \nonce in 12 months.",
+        "source_sha256": "1d66101517708f620176f214abd869af24a1190ef1d796f943ca53c6fb17e4c5"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored RBI text, page from page_offsets)",
+      "date": "2026-10-04"
+    },
+    "confidence": 0.8,
+    "confidence_reason": "Text states the minimum frequency. Which systems are critical is not evaluated. The stored text is the version 'Updated as on October 01, 2026'; whether this paragraph read the same between 31 July and 1 October 2026 is not verified."
+  }
+]
