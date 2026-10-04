@@ -112,7 +112,9 @@ def raw_copy(tmp_path) -> Path:
     target = tmp_path / "raw"
     target.mkdir()
     for path in RAW.iterdir():
-        if (path.is_file() and "CERT-In_Directions_70B" in path.name) or path.name == "manifest.json":
+        if (
+            path.is_file() and "CERT-In_Directions_70B" in path.name
+        ) or path.name == "manifest.json":
             shutil.copy2(path, target / path.name)
     manifest = json.loads((target / "manifest.json").read_text(encoding="utf-8"))
     manifest["entries"] = [e for e in manifest["entries"] if (target / e["filename"]).exists()]
