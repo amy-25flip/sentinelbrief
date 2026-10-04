@@ -235,6 +235,10 @@ class BenchmarkScorer:
                     f"got {sorted(got_time_critical)}"
                 )
 
+        for substring in expected.get("caveats_contain", []):
+            if not any(substring in caveat for caveat in result.caveats):
+                failures.append(f"expected caveat substring not found: {substring}")
+
         return {
             "id": scenario["id"],
             "passed": not failures,

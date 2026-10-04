@@ -57,7 +57,9 @@
                                       },
                                       {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h"},
                                       {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h"},
-                                      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch5-cert-in-notification"}
+                                      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch5-cert-in-notification"},
+                                      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch5-va-half-yearly"},
+                                      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch5-pt-annual"}
                                   ]
                  },
     "adversarial_flags":  [

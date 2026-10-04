@@ -127,6 +127,18 @@ def test_scorer_distinguishes_not_applicable_from_unknown():
     assert any("expected not_applicable" in failure for failure in failures)
 
 
+def test_scorer_checks_caveat_substring_labels():
+    bench = scorer.BenchmarkScorer(REPO / "data", REPO / "benchmark" / "scenarios")
+    scenario = copy.deepcopy(
+        next(s for s in bench.scenarios if s["id"] == "rbi-contradictory-attestation-caveat")
+    )
+    scenario["expected"]["caveats_contain"] = ["words absent from every caveat"]
+
+    failures = bench.evaluate_scenario(scenario)["failures"]
+
+    assert any("expected caveat substring not found" in failure for failure in failures)
+
+
 def test_wilson_interval_bounds():
     lo, hi = scorer.wilson_interval(17, 17)
     assert 0.8 < lo < 0.85 and hi == 1.0
@@ -290,10 +302,40 @@ def test_catches_sebi_entity_leak(monkeypatch):
 def test_catches_rbi_refinement_rule_removed(monkeypatch):
     monkeypatch.setattr(
         engine_module.IncidentClockEngine,
-        "_needs_entity_refinement",
-        lambda self, profile_classes, target_classes: False,
+        "_refinement_family_for_targets",
+        lambda self, profile_classes, target_classes, trigger_type: None,
     )
     assert "rbi-generic-nbfc-must-ask-category" in _failed(_run())
+
+
+def test_catches_role_class_treated_as_resolving_the_family(monkeypatch):
+    original = engine_module.IncidentClockEngine._unresolved_refinement_families
+
+    def buggy(self, profile_classes):
+        if any(self.taxonomy.classes[item].is_role for item in profile_classes):
+            return []
+        return original(self, profile_classes)
+
+    monkeypatch.setattr(engine_module.IncidentClockEngine, "_unresolved_refinement_families", buggy)
+    assert {
+        "rbi-hfc-without-layer-must-ask-category",
+        "rbi-cic-without-layer-must-ask-category",
+    } <= _failed(_run())
+
+
+def test_catches_refinement_limited_to_event_duties(monkeypatch):
+    original = engine_module.IncidentClockEngine._refinement_family_for_targets
+
+    def buggy(self, profile_classes, target_classes, trigger_type):
+        if trigger_type != "event":
+            return None
+        return original(self, profile_classes, target_classes, trigger_type)
+
+    monkeypatch.setattr(engine_module.IncidentClockEngine, "_refinement_family_for_targets", buggy)
+    assert {
+        "rbi-generic-nbfc-must-ask-category",
+        "rbi-hfc-without-layer-must-ask-category",
+    } <= _failed(_run())
 
 
 def test_catches_rbi_exclusions_ignored(monkeypatch):

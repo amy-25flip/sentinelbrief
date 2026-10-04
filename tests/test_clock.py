@@ -486,13 +486,24 @@ def test_rbi_generic_nbfc_requires_category_refinement_but_specific_class_does_n
         ),
         now=NOW,
     )
-    affected = {
-        item for u in generic.unknowns if "NBFC category" in u.question for item in u.affects
-    }
+    category_questions = [u for u in generic.unknowns if "NBFC category" in u.question]
+    assert len(category_questions) == 1
+    assert all(
+        choice in category_questions[0].question
+        for choice in (
+            "nbfc.bl_500cr_and_above",
+            "nbfc.middle_layer",
+            "nbfc.upper_layer",
+            "nbfc.top_layer",
+        )
+    )
+    affected = set(category_questions[0].affects)
     assert affected == {
         "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h",
         "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h",
         "rbi.nbfc-cyber.2026.ch5-cert-in-notification",
+        "rbi.nbfc-cyber.2026.ch5-va-half-yearly",
+        "rbi.nbfc-cyber.2026.ch5-pt-annual",
     }
     assert affected <= set(generic.undetermined)
     assert not affected.intersection(item["obligation_id"] for item in generic.not_applicable)
@@ -507,6 +518,82 @@ def test_rbi_generic_nbfc_requires_category_refinement_but_specific_class_does_n
         now=NOW,
     )
     assert not any("NBFC category" in u.question for u in specific.unknowns)
+
+
+def test_rbi_hfc_role_without_layer_keeps_family_unresolved():
+    engine = IncidentClockEngine(DATA_DIR)
+    result = engine.evaluate(
+        IncidentProfile(
+            entity_class="nbfc.hfc",
+            incident_types=["ransomware"],
+            when_detected=NOTICED,
+            when_noticed=NOTICED,
+        ),
+        now=NOW,
+    )
+    questions = [u for u in result.unknowns if "NBFC category" in u.question]
+    assert len(questions) == 1
+    assert set(questions[0].affects) == {
+        "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h",
+        "rbi.nbfc-cyber.2026.ch5-cert-in-notification",
+        "rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb",
+        "rbi.nbfc-cyber.2026.ch5-va-half-yearly",
+        "rbi.nbfc-cyber.2026.ch5-pt-annual",
+    }
+    assert "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h" not in questions[0].affects
+
+
+def test_rbi_cic_role_without_layer_keeps_only_chapter_iv_unresolved():
+    engine = IncidentClockEngine(DATA_DIR)
+    result = engine.evaluate(
+        IncidentProfile(
+            entity_class="nbfc.cic",
+            incident_types=["ransomware"],
+            when_detected=NOTICED,
+            when_noticed=NOTICED,
+        ),
+        now=NOW,
+    )
+    questions = [u for u in result.unknowns if "NBFC category" in u.question]
+    assert len(questions) == 1
+    assert questions[0].affects == ["rbi.nbfc-cyber.2026.ch4-incident-reporting-6h"]
+    chapter_v = {
+        item["obligation_id"]
+        for item in result.not_applicable
+        if item["obligation_id"].startswith("rbi.nbfc-cyber.2026.ch5")
+    }
+    assert len(chapter_v) == 5
+
+
+def test_rbi_base_layer_without_size_refines_only_its_most_specific_family():
+    engine = IncidentClockEngine(DATA_DIR)
+    result = engine.evaluate(
+        IncidentProfile(
+            entity_class="nbfc.base_layer",
+            incident_types=["ransomware"],
+            when_detected=NOTICED,
+            when_noticed=NOTICED,
+        ),
+        now=NOW,
+    )
+    questions = [u for u in result.unknowns if "NBFC category" in u.question]
+    assert len(questions) == 1
+    assert questions[0].affects == ["rbi.nbfc-cyber.2026.ch4-incident-reporting-6h"]
+
+
+def test_rbi_generic_plus_specific_layer_needs_no_refinement_question():
+    engine = IncidentClockEngine(DATA_DIR)
+    result = engine.evaluate(
+        IncidentProfile(
+            entity_classes=["nbfc", "nbfc.middle_layer"],
+            incident_types=["ransomware"],
+            when_detected=NOTICED,
+            when_noticed=NOTICED,
+        ),
+        now=NOW,
+    )
+    assert not any("NBFC category" in u.question for u in result.unknowns)
+    assert "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h" in result.applicable_obligations
 
 
 def test_rbi_refinement_is_not_asked_before_direction_commences():
@@ -586,6 +673,23 @@ def test_rbi_cyber_incident_true_false_and_annexure_inference():
 
     inferred = engine.evaluate(IncidentProfile(**base, annexure_i_items=["annexure_i.v"]), now=NOW)
     assert any(d.obligation_id.endswith("ch5-incident-reporting-6h") for d in inferred.deadlines)
+
+
+def test_rbi_negative_cyber_attestation_with_annexure_type_match_adds_caveat():
+    engine = IncidentClockEngine(DATA_DIR)
+    result = engine.evaluate(
+        IncidentProfile(
+            entity_class="nbfc.middle_layer",
+            incident_types=["Malicious code attacks such as Ransomware"],
+            is_cyber_incident=False,
+            when_detected=NOTICED,
+            when_noticed=NOTICED,
+        ),
+        now=NOW,
+    )
+    assert any("re-check" in caveat for caveat in result.caveats)
+    assert "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h" not in result.applicable_obligations
+    assert "cert-in.directions-70b.2022.incident-reporting-6h" in result.applicable_obligations
 
 
 def test_rbi_cyber_incident_unknown_quotes_definition_for_each_event_duty():

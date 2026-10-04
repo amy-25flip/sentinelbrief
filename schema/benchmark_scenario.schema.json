@@ -121,7 +121,12 @@
             "required": ["question", "affects"]
           }
         },
-        "time_critical": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+        "time_critical": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "caveats_contain": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
       },
       "required": ["regulators", "deadlines", "citations", "required_evidence", "not_applicable", "unknowns"]
     },

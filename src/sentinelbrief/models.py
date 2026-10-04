@@ -195,6 +195,7 @@ class EntityClass(BaseModel):
     parent: str | None = None
     description: str | None = None
     needs_refinement: bool = False
+    is_role: bool = False
     version: str
     valid_from: date | None = None
     valid_to: date | None = None

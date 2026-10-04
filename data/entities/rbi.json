@@ -87,6 +87,7 @@
     "label": "Core Investment Company",
     "parent": "nbfc",
     "description": "Paragraph 3(2) names ‘Core Investment Companies (CICs)’; paragraph 3(4) says Chapter V is ‘excluding CICs’.",
+    "is_role": true,
     "version": "1.0",
     "valid_from": "2026-07-31",
     "valid_to": null
@@ -97,6 +98,7 @@
     "label": "Housing Finance Company",
     "parent": "nbfc",
     "description": "Paragraph 3(1) includes NBFCs registered under the ‘National Housing Bank (NHB) Act, 1987’.",
+    "is_role": true,
     "version": "1.0",
     "valid_from": "2026-07-31",
     "valid_to": null

@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "rbi-base-layer-without-size-must-ask",
+  "description": "Base Layer without an asset-size band leaves Chapter IV unresolved but cannot imply a Chapter V duty.",
+  "entity_profile": {"entity_class": "nbfc.base_layer", "is_listed": false, "holds_personal_data": false, "uses_protected_systems": false, "is_regulated_cloud_vps": false},
+  "incident_facts": {"description": "Ransomware incident", "incident_types": ["Malicious code attacks such as Ransomware"], "when_detected": "2026-10-01T10:00:00+05:30", "when_noticed": "2026-10-01T10:00:00+05:30", "systems_affected": ["server"]},
+  "law_snapshot_date": "2026-10-04",
+  "expected": {
+    "law_as_of": "2026-10-01",
+    "regulators": ["CERT-In"],
+    "deadlines": [{"regulator": "CERT-In", "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "anchor": "noticing", "deadline_iso8601": "PT6H", "deadline_timestamp": "2026-10-01T16:00:00+05:30"}],
+    "citations": [{"obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "instrument_id": "cert-in.directions-70b.2022", "paragraph_ref": "Direction (ii)"}],
+    "required_evidence": [],
+    "not_applicable": [
+      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h", "reason": "Chapter V class mismatch"},
+      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-cert-in-notification", "reason": "Chapter V class mismatch"},
+      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb", "reason": "Chapter V class mismatch"},
+      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-va-half-yearly", "reason": "Chapter V class mismatch"},
+      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-pt-annual", "reason": "Chapter V class mismatch"}
+    ],
+    "unknowns": [{"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h"}],
+    "time_critical": []
+  },
+  "adversarial_flags": ["most_specific_refinement_family_limits_scope"],
+  "split": "dev",
+  "labels_source": "docs/LABELS_RBI.md Amendment 1; RBI NBFC Direction paragraph 3",
+  "source_quotes": [{"document": "rbi.nbfc-cyber.2026", "page": 3, "quote": "The provisions contained in Chapter IV shall be applicable only for NBFCs-\nBL with asset size ₹500 crore and above."}]
+}

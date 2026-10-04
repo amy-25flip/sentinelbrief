@@ -215,7 +215,7 @@ Decisions below were made during Review 1 (the reviewer agent, 2026-09-24). See 
 
 ## 2026-10-04: RBI Decision 2 — chapter-specific entity classes and refinement
 
-**Decision:** Model `nbfc.bl_below_500cr`, `nbfc.bl_500cr_and_above`, `nbfc.middle_layer`, `nbfc.upper_layer`, `nbfc.top_layer`, plus additive `nbfc.cic` and `nbfc.hfc` roles. Mark `nbfc` and `nbfc.base_layer` as needing refinement; those coarse profiles produce an Unknown rather than non-applicability for event duties whose chapter cannot be selected.
+**Decision:** Model `nbfc.bl_below_500cr`, `nbfc.bl_500cr_and_above`, `nbfc.middle_layer`, `nbfc.upper_layer`, `nbfc.top_layer`, plus additive role classes `nbfc.cic` and `nbfc.hfc`. Mark `nbfc` and `nbfc.base_layer` as needing refinement. A role class does not resolve its refinement family: only a held descendant that is neither a refinement class nor a role selects the category. An unresolved family produces one Unknown covering every affected duty, regardless of trigger type; exclusions and required additive roles are applied first.
 
 **Text:** Paragraph 3 says Chapter III applies to "NBFCs-Base Layer (NBFCs-BL) with asset size below ₹500 crore, and Core Investment Companies (CICs)" (page 3); Chapter IV applies to "NBFCs-BL with asset size ₹500 crore and above" (page 3); Chapter V applies to "NBFCs-Top Layer (NBFCs-TL), NBFCs-Upper Layer (NBFCs-UL), and NBFCs-Middle Layer (NBFCs-ML) ... excluding CICs" (pages 3-4).
 

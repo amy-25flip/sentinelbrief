@@ -329,18 +329,47 @@ class IncidentClockEngine:
         )
         return set(target_classes).issubset(ancestors)
 
-    def _needs_entity_refinement(
-        self, profile_classes: list[str], target_classes: list[str]
-    ) -> bool:
-        """Whether a coarse profile class is an ancestor of a target legal class."""
-        for profile_class in profile_classes:
-            entity = self.taxonomy.classes[profile_class]
-            if not entity.needs_refinement:
-                continue
-            for target in target_classes:
-                if profile_class in self.taxonomy.get_ancestors_and_self(target):
-                    return True
-        return False
+    def _unresolved_refinement_families(self, profile_classes: list[str]) -> list[str]:
+        """Return the most-specific refinement families not resolved by a layer class."""
+        candidates = {
+            ancestor
+            for profile_class in profile_classes
+            for ancestor in self.taxonomy.get_ancestors_and_self(profile_class)
+            if self.taxonomy.classes[ancestor].needs_refinement
+        }
+        most_specific = {
+            candidate
+            for candidate in candidates
+            if not any(
+                candidate != other and candidate in self.taxonomy.get_ancestors_and_self(other)
+                for other in candidates
+            )
+        }
+
+        unresolved: list[str] = []
+        for family in sorted(most_specific):
+            resolved = any(
+                family in self.taxonomy.get_ancestors_and_self(profile_class)
+                and not self.taxonomy.classes[profile_class].needs_refinement
+                and not self.taxonomy.classes[profile_class].is_role
+                for profile_class in profile_classes
+            )
+            if not resolved:
+                unresolved.append(family)
+        return unresolved
+
+    def _refinement_family_for_targets(
+        self,
+        profile_classes: list[str],
+        target_classes: list[str],
+        trigger_type: str | None,
+    ) -> str | None:
+        """Return the unresolved family whose descendant targets need a category answer."""
+        del trigger_type  # Refinement applies to event, periodic, and every other duty type.
+        for family in self._unresolved_refinement_families(profile_classes):
+            if any(family in self.taxonomy.get_ancestors_and_self(t) for t in target_classes):
+                return family
+        return None
 
     def resolve_annexure_i(self, profile: IncidentProfile) -> AnnexureResolution:
         """Decide whether the incident is an Annexure I type. Never returns False from text."""
@@ -423,6 +452,12 @@ class IncidentClockEngine:
             )
 
         annexure = self.resolve_annexure_i(profile)
+        if profile.is_cyber_incident is False and annexure.decision is True:
+            caveats.append(
+                "The stated incident type matched a CERT-In Annexure I item while the user "
+                "attested it is not a cyber incident; re-check both the stated type and the "
+                "cyber-incident attestation."
+            )
 
         deadlines: list[DeadlineResult] = []
         time_critical: list[TimeCriticalResult] = []
@@ -431,6 +466,7 @@ class IncidentClockEngine:
         not_applicable: list[dict[str, Any]] = []
         undetermined: list[str] = []
         conditions_unevaluated: dict[str, list[str]] = {}
+        refinement_unknowns: dict[str, dict[str, list[str]]] = {}
 
         for obs in self.obligations:
             obs_id = obs["id"]
@@ -458,16 +494,14 @@ class IncidentClockEngine:
             target_classes = applicability.get("entity_classes") or []
             if not self._matches_entity_class(profile.entity_classes or [], target_classes):
                 trigger_type = ((obs.get("normalized") or {}).get("trigger") or {}).get("type")
-                if trigger_type == "event" and self._needs_entity_refinement(
-                    profile.entity_classes or [], target_classes
-                ):
-                    choices = ", ".join(target_classes)
-                    unknowns.append(
-                        Unknown(
-                            question=f"What is the NBFC category? Choose one of: {choices}.",
-                            affects=[obs_id],
-                            impact="The RBI chapter and this obligation cannot be decided from a coarse NBFC class.",
-                        )
+                family = self._refinement_family_for_targets(
+                    profile.entity_classes or [], target_classes, trigger_type
+                )
+                if family is not None:
+                    pending = refinement_unknowns.setdefault(family, {"affects": [], "choices": []})
+                    pending["affects"].append(obs_id)
+                    pending["choices"].extend(
+                        choice for choice in target_classes if choice not in pending["choices"]
                     )
                     undetermined.append(obs_id)
                     continue
@@ -554,6 +588,19 @@ class IncidentClockEngine:
                 conditions_unevaluated[obs_id] = conditions
 
             self._compute_deadline(obs, profile, now, deadlines, time_critical, unknowns)
+
+        for pending in refinement_unknowns.values():
+            choices = ", ".join(pending["choices"])
+            unknowns.append(
+                Unknown(
+                    question=f"What is the NBFC category? Choose one of: {choices}.",
+                    affects=pending["affects"],
+                    impact=(
+                        "The RBI chapter and these obligations cannot be decided from the "
+                        "available NBFC classes."
+                    ),
+                )
+            )
 
         return ClockResult(
             incident_profile=profile,

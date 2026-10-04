@@ -24,6 +24,10 @@
       "type": "boolean",
       "default": false
     },
+    "is_role": {
+      "type": "boolean",
+      "default": false
+    },
     "version": {
       "type": "string"
     },
