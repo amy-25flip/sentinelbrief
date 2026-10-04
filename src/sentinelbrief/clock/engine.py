@@ -522,6 +522,18 @@ class IncidentClockEngine:
                 "cyber-incident attestation."
             )
 
+        incident_times = [
+            getattr(profile, name)
+            for name in _LAW_AS_OF_DATETIME_FIELDS
+            if getattr(profile, name) is not None
+        ]
+        reported = profile.when_reported_to_sebi
+        if reported is not None and incident_times and reported < min(incident_times):
+            caveats.append(
+                "The time reported to SEBI is earlier than every incident time given; re-check "
+                "the timestamps."
+            )
+
         deadlines: list[DeadlineResult] = []
         time_critical: list[TimeCriticalResult] = []
         unknowns: list[Unknown] = []
@@ -534,7 +546,11 @@ class IncidentClockEngine:
         for obs in self.obligations:
             obs_id = obs["id"]
 
-            reason = self._not_in_force_reason(obs, as_of)
+            # A duty whose clock starts from another event is governed by the law on the day of
+            # that event (when it is known), not on the day of the incident.
+            started = profile.external_events.get(obs_id)
+            governing = started.astimezone(IST).date() if started is not None else as_of
+            reason = self._not_in_force_reason(obs, governing)
             if reason:
                 not_applicable.append({"obligation_id": obs_id, "reason": reason})
                 continue

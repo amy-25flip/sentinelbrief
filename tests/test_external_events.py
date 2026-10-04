@@ -136,3 +136,50 @@ def test_json_api_accepts_external_events():
         json={**base, "external_events": {IRDAI_6H: "2026-10-02T09:00:00+05:30"}},
     )
     assert wrong.status_code == 422
+
+
+def test_external_duty_is_governed_by_the_law_on_the_day_of_its_event(engine):
+    """Catches: an order received after the guidelines began being ignored because the incident
+    predates them, or one received before they began being given a clock."""
+    old_incident = datetime(2023, 4, 1, 10, 0, tzinfo=IST)
+    after = datetime(2023, 5, 2, 9, 0, tzinfo=IST)
+    result = engine.evaluate(
+        IncidentProfile(
+            entity_classes=["irdai.insurer"],
+            incident_types=[RANSOMWARE],
+            when_noticed=old_incident,
+            external_events={ORDER: after},
+        )
+    )
+    deadlines = {d.obligation_id: d for d in result.deadlines}
+    assert deadlines[ORDER].deadline_ist == after + timedelta(hours=72)
+    assert IRDAI_6H in {n["obligation_id"] for n in result.not_applicable}
+    assert result.law_as_of == old_incident.date()
+    before = engine.evaluate(
+        _profile(external_events={ORDER: datetime(2023, 4, 2, 9, 0, tzinfo=IST)})
+    )
+    assert ORDER in {n["obligation_id"] for n in before.not_applicable}
+
+
+def test_report_time_before_the_incident_is_flagged(engine):
+    """Catches: an impossible order of events accepted with no warning."""
+    odd = engine.evaluate(
+        IncidentProfile(
+            entity_classes=["sebi.mii"],
+            incident_types=[RANSOMWARE],
+            when_noticed=T10,
+            when_reported_to_sebi=T10 - timedelta(hours=2),
+            uses_protected_systems=False,
+        )
+    )
+    assert any("earlier than every incident time" in c for c in odd.caveats)
+    fine = engine.evaluate(
+        IncidentProfile(
+            entity_classes=["sebi.mii"],
+            incident_types=[RANSOMWARE],
+            when_noticed=T10,
+            when_reported_to_sebi=T10 + timedelta(hours=2),
+            uses_protected_systems=False,
+        )
+    )
+    assert not any("earlier than every incident time" in c for c in fine.caveats)
