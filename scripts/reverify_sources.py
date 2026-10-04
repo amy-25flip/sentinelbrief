@@ -16,7 +16,9 @@ from urllib.parse import urlparse
 
 from sentinelbrief.ingest.base import BaseFetcher
 
-RBI_REVERIFY_EXEMPTION_HOSTS = {"rbidocs.rbi.org.in", "rbi.org.in"}
+# Hosts that refuse automated clients: RBI serves a CAPTCHA; IRDAI's robots.txt disallows all
+# automated access. Each exempt source is also pinned in tests/test_provenance_attacks.py.
+RBI_REVERIFY_EXEMPTION_HOSTS = {"rbidocs.rbi.org.in", "rbi.org.in", "irdai.gov.in"}
 
 
 @dataclass(frozen=True)
@@ -55,7 +57,7 @@ def compare_entry(
             return ReverifyFinding(
                 filename,
                 False,
-                f"reverify_exemption is only allowed for RBI hosts ({allowed}); got {host}",
+                f"reverify_exemption is only allowed for RBI hosts and irdai.gov.in ({allowed}); got {host}",
             )
         return ReverifyFinding(filename, True, reason, skipped=True)
 

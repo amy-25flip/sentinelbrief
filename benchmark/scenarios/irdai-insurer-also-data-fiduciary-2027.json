@@ -1,0 +1,105 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "irdai-insurer-also-data-fiduciary-2027",
+  "description": "An insurer that is a Data Fiduciary: CERT-In with a copy to IRDAI in six hours, and the Data Protection Board track.",
+  "entity_profile": {
+    "entity_classes": [
+      "irdai.insurer",
+      "dpdp.data_fiduciary"
+    ],
+    "is_listed": false,
+    "holds_personal_data": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "An insurer that is a Data Fiduciary: CERT-In with a copy to IRDAI in six hours, and the Data Protection Board track.",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware",
+      "Data breach"
+    ],
+    "systems_affected": [
+      "Policy administration system"
+    ],
+    "personal_data_involved": true,
+    "when_noticed": "2027-06-01T10:00:00+05:30",
+    "when_aware": "2027-06-01T11:00:00+05:30"
+  },
+  "law_snapshot_date": "2026-10-04",
+  "expected": {
+    "law_as_of": "2027-06-01",
+    "regulators": [
+      "CERT-In",
+      "IRDAI",
+      "MeitY"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2027-06-01T16:00:00+05:30"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.incident-reporting-6h",
+        "regulator": "IRDAI",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2027-06-01T16:00:00+05:30"
+      },
+      {
+        "obligation_id": "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
+        "regulator": "MeitY",
+        "anchor": "awareness",
+        "deadline_iso8601": "PT72H",
+        "deadline_timestamp": "2027-06-04T11:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.incident-reporting-6h",
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.10, 3.5 item 3"
+      },
+      {
+        "obligation_id": "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
+        "instrument_id": "meity.dpdp-rules.2025",
+        "paragraph_ref": "Rule 7(2)(b)"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": [],
+    "time_critical": [
+      "meity.dpdp-rules.2025.rule7-1-principal-intimation",
+      "meity.dpdp-rules.2025.rule7-2-a-board-initial"
+    ]
+  },
+  "adversarial_flags": [
+    "multi_regime_entity"
+  ],
+  "split": "dev",
+  "labels_source": "docs/LABELS_IRDAI.md (written before ingestion and implementation)",
+  "source_quotes": [
+    {
+      "document": "irdai.ics-guidelines.2023",
+      "page": 224,
+      "quote": "Organization shall mandatorily report cyber incidents to \nCert-In within 6 hours of noticing or being brought to \nnotice about such incidents with a copy to IRDAI and \nother concerned regulators / authorities. The details \nregarding methods and formats of reporting cyber \nincident is published on Cert-In website."
+    },
+    {
+      "document": "meity.dpdp-rules.2025",
+      "page": 26,
+      "quote": "(b) within seventy-two hours of becoming aware of the breach, or within such longer period as the \nBoard may allow on a request made in writing in this behalf, — \n(i) \nupdated and detailed information in respect of such description; \n(ii) the broad facts related to the events, circumstances and reasons leading to the breach; \n(iii) measures implemented or proposed, if any, to mitigate risk;  \n(iv) any findings regarding the person who caused the breach;  \n(v) remedial measures taken to prevent recurrence of such breach; and \n(vi) a report regarding the intimations given to affected Data Principals."
+    },
+    {
+      "document": "cert-in.directions-70b.2022",
+      "page": 2,
+      "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+    }
+  ]
+}

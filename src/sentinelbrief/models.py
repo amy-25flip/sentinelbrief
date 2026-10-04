@@ -110,6 +110,7 @@ class Applicability(BaseModel):
                 "cert_in_annexure_i",
                 "personal_data_involved",
                 "rbi_cyber_incident",
+                "irdai_cyber_incident",
                 "sebi_other_cybersecurity_incident",
                 "sebi_cybersecurity_incident",
                 "sebi_incident_reporting_applies",

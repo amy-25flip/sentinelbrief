@@ -132,6 +132,22 @@
       "acquired_by": "project owner (a human) downloaded this PDF from the official RBI site in a browser on 2026-10-04; the reviewer then verified: 54 pages, producer Adobe PDF Library 26.2.171, ends with %%EOF, opens without repair, first page shows reference RBI/DoS/2026-27/428 dated July 31, 2026; 25 of 25 sampled paragraphs of the PDF text occur in the official HTML page https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13625, which links to this exact file name",
       "acquisition_note": "DoS.CO.CSITEG.22/31.01.015/2026-27 is the second reference number shown in the PDF. The first page says 'Updated as on October 01, 2026', so this is an amended version, not the text as issued on 31 July 2026. rbidocs.rbi.org.in serves a CAPTCHA to automated clients, so scripts/reverify_sources.py cannot re-download this file. retrieved_at is date precision, not an exact retrieval timestamp.",
       "reverify_exemption": "the official server serves a CAPTCHA to automated clients; a human re-checks by downloading the URL and comparing sha256"
+    },
+    {
+      "url": "https://irdai.gov.in/document-detail?documentId=3314780",
+      "filename": "IRDAI_Information_and_Cyber_Security_Guidelines_2023.pdf",
+      "sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98",
+      "retrieved_at": "2026-10-04T00:00:00Z",
+      "acquired_at": "2026-10-04T00:00:00Z",
+      "etag": null,
+      "last_modified": null,
+      "content_type": "application/pdf",
+      "size_bytes": 2761056,
+      "parser_version": "pymupdf-1.28.2",
+      "status": "current",
+      "acquired_by": "project owner (a human) downloaded this PDF from the official IRDAI document page in a browser on 2026-10-04; the reviewer then verified: 305 pages (Hindi 1 to 130, English 131 to 305 marked 'Page N of 175'), producer Microsoft® Word 2016, creation date D:20230424111653+05'30', ends with %%EOF, opens without repair. The reviewer did NOT compare these bytes with the regulator's copy: irdai.gov.in/robots.txt disallows all automated access.",
+      "acquisition_note": "url is the official document page, not a direct file link. The covering circular (ref IRDAI/GA&HR/GDL/MISC/88/04/2023 dated 24 April 2023) is a separate 2-page scanned letter and is not ingested; its OCR text is unreliable. The Hindi pages extract as unreadable glyphs.",
+      "reverify_exemption": "irdai.gov.in/robots.txt disallows all automated access (User-Agent: * / Disallow: /); a human re-checks by downloading from the document page and comparing sha256"
     }
   ]
 }

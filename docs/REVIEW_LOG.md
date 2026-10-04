@@ -245,3 +245,12 @@ Built by the reviewer agent because Codex was at its usage limit (the launch fai
 Found while building:
 - [major] [cards] N1. **The card generator invented a requirement.** For clauses under 50 words it appended "Compliance records and relevant evidence must be maintained as prescribed by the regulatory authority." No source says that; it was padding to reach the word count, present since Checkpoint 2, and affected every short-clause card (including the NBFC CERT-In notification). The grounding verifier missed it because the sentence has no number or named body. Fixed: short clauses are quoted whole with no added claim; the length test permits a short body only then and fails if the padding sentence returns. Status: FIXED.
 - [minor] [tests] N2. the reviewer agent's own calendar test asserted that a generic `bank` has no undetermined recurring duty. With the Payments Banks Direction modelled that is no longer true; the test now asserts the bank is asked. Status: FIXED.
+
+## Build 12 - the reviewer agent, 2026-10-04: IRDAI Information and Cyber Security Guidelines, 2023
+
+Labels: `docs/LABELS_IRDAI.md`, committed before ingestion and implementation (2956ac7). Built by the reviewer agent (Codex at its usage limit). **Not independently reviewed.**
+
+- Source: 305-page PDF supplied by the project owner (the first file supplied was only the 2-page covering circular). Hindi on pages 1 to 130, English on 131 to 305. IRDAI's robots.txt forbids automated access, so the bytes were not compared with the regulator's copy; this is stated in the manifest and in OPEN_QUESTIONS.
+- One obligation, two entity classes, one new `requires` key, 9 scenarios (all passed on the first engine run against hand-typed labels), 6 unit tests, 4 mutation tests.
+- The reverify exemption now also covers irdai.gov.in; a test checks a look-alike host is still rejected.
+- Honest scope: of 24 policies, only Policy 2.10 was read in full. The module is partial and the README says so.

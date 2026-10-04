@@ -1,0 +1,58 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "irdai-attested-not-a-cyber-incident",
+  "description": "Attested neither an Annexure I type nor a cyber incident.",
+  "entity_profile": {
+    "entity_classes": [
+      "irdai.insurer"
+    ],
+    "is_listed": false,
+    "holds_personal_data": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Attested neither an Annexure I type nor a cyber incident.",
+    "incident_types": [
+      "hardware failure"
+    ],
+    "systems_affected": [
+      "Policy administration system"
+    ],
+    "when_noticed": "2026-10-01T10:00:00+05:30",
+    "is_annexure_i_type": false,
+    "is_cyber_incident": false
+  },
+  "law_snapshot_date": "2026-10-04",
+  "expected": {
+    "law_as_of": "2026-10-01",
+    "regulators": [
+      "CERT-In"
+    ],
+    "deadlines": [],
+    "citations": [],
+    "required_evidence": [],
+    "not_applicable": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.incident-reporting-6h",
+        "reason": "see description"
+      }
+    ],
+    "unknowns": []
+  },
+  "adversarial_flags": [
+    "explicit_attestation"
+  ],
+  "split": "dev",
+  "labels_source": "docs/LABELS_IRDAI.md (written before ingestion and implementation)",
+  "source_quotes": [
+    {
+      "document": "irdai.ics-guidelines.2023",
+      "page": 224,
+      "quote": "Organization shall mandatorily report cyber incidents to \nCert-In within 6 hours of noticing or being brought to \nnotice about such incidents with a copy to IRDAI and \nother concerned regulators / authorities. The details \nregarding methods and formats of reporting cyber \nincident is published on Cert-In website."
+    }
+  ]
+}

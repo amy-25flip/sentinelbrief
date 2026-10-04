@@ -57,6 +57,10 @@ PINNED_SOURCES: dict[str, tuple[str, bool]] = {
         "1d66101517708f620176f214abd869af24a1190ef1d796f943ca53c6fb17e4c5",
         True,
     ),
+    "IRDAI_Information_and_Cyber_Security_Guidelines_2023.pdf": (
+        "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98",
+        True,
+    ),
     "RBI_NBFC_Cybersecurity_Directions_2026.pdf": (
         "5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073",
         True,

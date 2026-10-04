@@ -597,7 +597,7 @@ class IncidentClockEngine:
                         requirement_unknown = True
                         break
 
-                elif requirement == "rbi_cyber_incident":
+                elif requirement in {"rbi_cyber_incident", "irdai_cyber_incident"}:
                     cyber = self._resolve_cyber_incident(
                         profile, annexure, negative_requires_annexure_false=False
                     )
@@ -611,17 +611,24 @@ class IncidentClockEngine:
                         requirement_failed = True
                         break
                     if cyber is None:
-                        unknowns.append(
-                            Unknown(
-                                question=(
-                                    'Is this a cyber incident: "A cyber event that adversely affects '
-                                    "the cybersecurity of an information asset whether resulting from "
-                                    'malicious activity or not" (RBI paragraph 4(7))?'
-                                ),
-                                affects=[obs_id],
-                                impact="This decides whether the RBI cyber-incident obligation applies.",
+                        if requirement == "irdai_cyber_incident":
+                            question = (
+                                "Is this a cyber incident? The IRDAI guidelines do not define the "
+                                'term; Policy 2.10 defines an incident as "the occurrence of any '
+                                "exceptional situation that could compromise the Confidentiality, "
+                                'Integrity or Availability of Information assets".'
                             )
-                        )
+                            impact = "This decides whether the IRDAI reporting obligation applies."
+                        else:
+                            question = (
+                                'Is this a cyber incident: "A cyber event that adversely affects '
+                                "the cybersecurity of an information asset whether resulting from "
+                                'malicious activity or not" (RBI paragraph 4(7))?'
+                            )
+                            impact = (
+                                "This decides whether the RBI cyber-incident obligation applies."
+                            )
+                        unknowns.append(Unknown(question=question, affects=[obs_id], impact=impact))
                         undetermined.append(obs_id)
                         requirement_unknown = True
                         break

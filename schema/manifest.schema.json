@@ -31,7 +31,7 @@
           "reverify_exemption": {
             "type": "string",
             "minLength": 1,
-            "description": "Documented reason scripts/reverify_sources.py may skip live re-download for this entry. Only RBI official hosts may use this, because RBI serves CAPTCHA to automated clients."
+            "description": "Documented reason scripts/reverify_sources.py may skip live re-download for this entry. Only RBI official hosts (CAPTCHA for automated clients) and irdai.gov.in (robots.txt disallows all automated access) may use this."
           }
         },
         "required": ["url", "filename", "sha256", "retrieved_at"]

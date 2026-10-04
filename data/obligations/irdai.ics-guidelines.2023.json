@@ -1,0 +1,72 @@
+[
+  {
+    "id": "irdai.ics-guidelines.2023.incident-reporting-6h",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.10, 3.5 item 3",
+    "text_verbatim": "Organization shall mandatorily report cyber incidents to \nCert-In within 6 hours of noticing or being brought to \nnotice about such incidents with a copy to IRDAI and \nother concerned regulators / authorities. The details \nregarding methods and formats of reporting cyber \nincident is published on Cert-In website.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "A cyber incident is noticed or brought to notice"
+      },
+      "action": "Report the cyber incident to CERT-In within 6 hours of noticing or being brought to notice, with a copy to IRDAI and other concerned regulators / authorities.",
+      "deadline": {
+        "kind": "relative",
+        "duration_iso8601": "PT6H",
+        "anchor": "noticing",
+        "alternative_anchors": [
+          "brought_to_notice"
+        ],
+        "calendar": "continuous"
+      },
+      "recipient": "CERT-In, with a copy to IRDAI and other concerned regulators / authorities"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "conditions": [
+        "Entity is an insurer or insurance intermediary regulated by IRDAI",
+        "Event is a cyber incident"
+      ],
+      "requires": [
+        "irdai_cyber_incident"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.10, 3.5 item 3",
+        "page": 224,
+        "char_start": 460108,
+        "char_end": 460422,
+        "excerpt_verbatim": "Organization shall mandatorily report cyber incidents to \nCert-In within 6 hours of noticing or being brought to \nnotice about such incidents with a copy to IRDAI and \nother concerned regulators / authorities. The details \nregarding methods and formats of reporting cyber \nincident is published on Cert-In website.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 224, English page 94 of 175)",
+      "date": "2026-10-04"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Two contested points. (1) Date: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year. (2) Scope: the sentence says 'cyber incidents' without 'as mentioned in Annexure I', so it is read as wider than CERT-In Direction (ii); the guidelines do not define the term. Both readings are the ones that never tell a user they owe less. The source bytes were not compared with the regulator's copy (robots.txt forbids automated access)."
+  }
+]

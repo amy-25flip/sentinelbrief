@@ -562,3 +562,49 @@ def test_catches_valid_from_ignored_for_the_new_rbi_directions(monkeypatch):
         engine_module.IncidentClockEngine, "_not_in_force_reason", staticmethod(mutation)
     )
     assert "rbi-ucb-before-commencement" in _failed(_run())
+
+
+# --- IRDAI guidelines (docs/LABELS_IRDAI.md) ---
+
+
+def _irdai(items):
+    return next(i for i in items if i["id"] == "irdai.ics-guidelines.2023.incident-reporting-6h")
+
+
+def test_catches_irdai_gate_collapsed_into_annexure_i(monkeypatch):
+    def mutation(items):
+        _irdai(items)["applicability"]["requires"] = ["cert_in_annexure_i"]
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    failed = _failed(_run())
+    assert {"irdai-cyber-incident-not-annexure-i", "irdai-hardware-failure-unattested"} <= failed
+
+
+def test_catches_irdai_clock_started_by_detection(monkeypatch):
+    def mutation(items):
+        _irdai(items)["normalized"]["deadline"]["alternative_anchors"].append("detection")
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "irdai-detection-only-asks" in _failed(_run())
+
+
+def test_catches_irdai_duty_leaking_to_a_bank(monkeypatch):
+    def mutation(items):
+        _irdai(items)["applicability"]["entity_classes"].append("bank")
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "irdai-payments-bank-is-not-an-insurer" in _failed(_run())
+
+
+def test_catches_irdai_valid_from_ignored(monkeypatch):
+    original = engine_module.IncidentClockEngine._not_in_force_reason
+
+    def mutation(item, as_of):
+        if item["id"].startswith("irdai."):
+            return None
+        return original(item, as_of)
+
+    monkeypatch.setattr(
+        engine_module.IncidentClockEngine, "_not_in_force_reason", staticmethod(mutation)
+    )
+    assert "irdai-before-the-guidelines" in _failed(_run())

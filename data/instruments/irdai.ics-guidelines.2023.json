@@ -1,0 +1,22 @@
+{
+  "id": "irdai.ics-guidelines.2023",
+  "issuer": "IRDAI",
+  "title": "IRDAI Information and Cyber Security Guidelines, 2023",
+  "reference_no": "IRDAI/GA&HR/GDL/MISC/88/04/2023",
+  "issued_on": "2023-04-24",
+  "in_force_from": null,
+  "url": "https://irdai.gov.in/document-detail?documentId=3314780",
+  "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98",
+  "retrieved_at": "2026-10-04T00:00:00Z",
+  "language": "en",
+  "status": "in_force",
+  "supersedes": [],
+  "superseded_by": [],
+  "document_type": "guideline",
+  "description": "Annexure A to the covering circular of 24 April 2023. The cover page reads 'VER- 1.0 APRIL, 2023'. The reference number and date come from the covering circular, which is not ingested. in_force_from is left null: the covering circular gives some entities until the next financial year.",
+  "provenance": {
+    "parser_version": "pymupdf-1.28.2",
+    "extraction_date": "2026-10-04T00:00:00Z"
+  },
+  "acquisition_note": "Only Policy 2.10 item 3.5(3) (incident reporting) is modelled. The other policies are not."
+}

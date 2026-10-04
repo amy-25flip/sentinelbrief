@@ -113,7 +113,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "enum": ["cert_in_annexure_i", "personal_data_involved", "rbi_cyber_incident", "sebi_other_cybersecurity_incident", "sebi_cybersecurity_incident", "sebi_incident_reporting_applies", "nciipc_protected_system"]
+            "enum": ["cert_in_annexure_i", "personal_data_involved", "rbi_cyber_incident", "irdai_cyber_incident", "sebi_other_cybersecurity_incident", "sebi_cybersecurity_incident", "sebi_incident_reporting_applies", "nciipc_protected_system"]
           },
           "uniqueItems": true
         }

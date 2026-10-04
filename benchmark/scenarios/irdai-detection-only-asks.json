@@ -1,0 +1,62 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "irdai-detection-only-asks",
+  "description": "Only a detection time is known. The IRDAI clause, like CERT-In's, counts from noticing or being brought to notice, so the engine asks.",
+  "entity_profile": {
+    "entity_classes": [
+      "irdai.insurer"
+    ],
+    "is_listed": false,
+    "holds_personal_data": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Only a detection time is known. The IRDAI clause, like CERT-In's, counts from noticing or being brought to notice, so the engine asks.",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "systems_affected": [
+      "Policy administration system"
+    ],
+    "when_detected": "2026-10-01T10:00:00+05:30"
+  },
+  "law_snapshot_date": "2026-10-04",
+  "expected": {
+    "law_as_of": "2026-10-01",
+    "regulators": [
+      "CERT-In",
+      "IRDAI"
+    ],
+    "deadlines": [],
+    "citations": [],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": [
+      {
+        "question": "noticed",
+        "affects": "cert-in.directions-70b.2022.incident-reporting-6h"
+      },
+      {
+        "question": "noticed",
+        "affects": "irdai.ics-guidelines.2023.incident-reporting-6h"
+      }
+    ]
+  },
+  "adversarial_flags": [
+    "detection_is_not_this_clock"
+  ],
+  "split": "dev",
+  "labels_source": "docs/LABELS_IRDAI.md (written before ingestion and implementation)",
+  "source_quotes": [
+    {
+      "document": "irdai.ics-guidelines.2023",
+      "page": 224,
+      "quote": "Organization shall mandatorily report cyber incidents to \nCert-In within 6 hours of noticing or being brought to \nnotice about such incidents with a copy to IRDAI and \nother concerned regulators / authorities. The details \nregarding methods and formats of reporting cyber \nincident is published on Cert-In website."
+    },
+    {
+      "document": "cert-in.directions-70b.2022",
+      "page": 2,
+      "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+    }
+  ]
+}

@@ -76,3 +76,14 @@ Things needing a human or a primary-source check.
 - [ ] **Unread paragraphs:** only the scoping, definition, reporting, CERT-In notification, VA/PT and repeal-opening paragraphs of these three Directions were read. The other control paragraphs are not modelled.
 - [ ] **AIFI and HFC interplay:** NHB is itself an AIFI and receives HFC incident reports under the NBFC Direction's paragraph 141 note. No text ingested says how.
 - [x] **Other RBI cybersecurity Directions (UCBs, AIFIs, Payments Banks):** ingested (human-acquired) and modelled in Build 11.
+
+## Build 12 (IRDAI), 2026-10-04
+
+- [x] **IRDAI Information and Cyber Security Guidelines, 2023:** ingested (human-acquired) and the incident-reporting duty modelled.
+- [ ] **IRDAI source not independently verified:** nobody has compared the stored bytes with the regulator's copy. A person should re-download from https://irdai.gov.in/document-detail?documentId=3314780 and compare sha256 `2c8d2fda...618c98`.
+- [ ] **IRDAI commencement:** does the duty bind from 24 April 2023 for every entity, or from the next financial year for those that had completed the FY 2022-23 audit?
+- [ ] **IRDAI scope of "cyber incidents":** Annexure I types only, or any cyber incident?
+- [ ] **IRDAI: what "a copy to IRDAI" requires** (channel, format) is not stated in Policy 2.10.
+- [ ] **IRDAI: 23 other policies unread.** Notably third-party breach notice "within 4 hours from the time of breach discovery" (PDF page 283), lost-device reporting "within 4 hours" (pages 176 and 212), and the IT Rules 2021 section (pages 296 to 299) with 72-hour and 24-hour duties. None is modelled.
+- [ ] **IRDAI covering circular not ingested:** it is a 2-page scan whose OCR text is unreliable ("24st Apr, 2023"). The reference number and date in the instrument record come from it.
+- [ ] **Later IRDAI amendments or clarifications** to the 2023 guidelines, if any, are not in the dataset.

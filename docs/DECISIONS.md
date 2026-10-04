@@ -354,3 +354,15 @@ Quotes and pages are in `docs/LABELS_RBI_BANKS.md`; each decision below names th
 **Decision:** When a clause is shorter than 50 words the card quotes it whole and says it adds no requirement; the body may then be shorter than 45 words. The length test allows a short body only in that case.
 
 **Reason:** The generator used to append "Compliance records and relevant evidence must be maintained as prescribed by the regulatory authority" to reach the word count. No source says that. The grounding verifier checks numbers and names, so it did not catch a sentence with neither. A test now fails if that sentence appears.
+
+## 2026-10-04: IRDAI Information and Cyber Security Guidelines, 2023 (Build 12)
+
+Quotes and pages are in `docs/LABELS_IRDAI.md`.
+
+1. **One duty modelled.** Policy 2.10, 3.5 item 3 (PDF page 224): "Organization shall mandatorily report cyber incidents to Cert-In within 6 hours of noticing or being brought to notice about such incidents with a copy to IRDAI and other concerned regulators / authorities." `PT6H`, anchors noticing and brought to notice.
+2. **`valid_from` 2023-04-24 (contested, confidence 0.6).** The covering circular gives entities that had completed their FY 2022-23 security audit until the next financial year. Alternative: 1 April 2024 for those entities. The earlier date never tells a user they owe less. The instrument's `in_force_from` is left null.
+3. **"Cyber incidents" is read as wider than Annexure I (contested).** The sentence omits "as mentioned in Annexure I", which CERT-In Direction (ii) has, and the guidelines do not define the term. New key `irdai_cyber_incident`: attestation decides; an Annexure I match is a cyber incident; otherwise the engine asks, quoting Policy 2.10's definition of an incident. Alternative: gate on Annexure I only, since the report goes to CERT-In in CERT-In's format. Rejected because it could show no IRDAI duty where the wording may impose one.
+4. **Classes `irdai.insurer` and `irdai.intermediary`.** Section 1.4 excludes insurance agents, micro-insurance agents, point of sale persons and individual surveyors; they get no class.
+5. **Detection does not start this clock.** The text says noticing or being brought to notice.
+6. **Re-verification exemption extended to irdai.gov.in.** Its robots.txt disallows all automated access, so `BaseFetcher` refuses and `scripts/reverify_sources.py` would fail on every run. The exemption list is now RBI hosts plus irdai.gov.in; every exempt source is pinned by sha256 in `tests/test_provenance_attacks.py`. Alternative: ignore robots.txt. Rejected.
+7. **This source has no independent anchor.** Unlike the RBI files, the reviewer could not compare the text with the regulator's site. It is accepted on the owner's download, the file's metadata (Microsoft Word 2016, created 24 April 2023), its 305-page structure, and a search-engine snippet of the official file reading "Page 1 of 175". The manifest says so.

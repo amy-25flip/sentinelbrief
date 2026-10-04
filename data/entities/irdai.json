@@ -1,0 +1,22 @@
+[
+  {
+    "id": "irdai.insurer",
+    "regulator": "IRDAI",
+    "label": "Insurer (including Foreign Re-Insurance Branches)",
+    "parent": "body_corporate",
+    "description": "Guidelines 1.4: 'applicable to all Insurers including Foreign Re-Insurance Branches (FRBs) and Insurance Intermediaries regulated by' IRDAI.",
+    "version": "1.0",
+    "valid_from": "2023-04-24",
+    "valid_to": null
+  },
+  {
+    "id": "irdai.intermediary",
+    "regulator": "IRDAI",
+    "label": "Insurance Intermediary",
+    "parent": "body_corporate",
+    "description": "Guidelines 1.4: 'Insurance Intermediaries regulated by' IRDAI. 'Insurance Agents, Micro-Insurance Agents, Point of Sale Persons and Individual Surveyors will not fall under purview of these guidelines' and have no class here.",
+    "version": "1.0",
+    "valid_from": "2023-04-24",
+    "valid_to": null
+  }
+]
