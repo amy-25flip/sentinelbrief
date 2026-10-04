@@ -37,3 +37,39 @@ Read for this spec: the English table of contents, section 1 (purpose, scope, ap
 | `irdai-before-the-guidelines` | `irdai.insurer`; noticed 2023-04-01 10:00 | CERT-In 6h 2023-04-01 16:00. IRDAI 6h not applicable, reason containing "not_yet_valid_at_incident_date (2023-04-24)". |
 | `irdai-payments-bank-is-not-an-insurer` | `bank.payments_bank`; detected and noticed 10:00 | IRDAI 6h not applicable. No IRDAI question. |
 | `irdai-insurer-also-data-fiduciary-2027` | `irdai.insurer` and `dpdp.data_fiduciary`; 2027-06-01; types ransomware and "Data breach"; personal data involved; noticed 10:00, aware 11:00 | CERT-In 6h 16:00, IRDAI 6h 16:00, DPDP rule7-2-b 2027-06-04 11:00 (awareness). The two immediate DPDP duties are time critical. |
+
+## Part 2 (2026-10-05): the other time-bound duties, labels written before implementation
+
+Read in full for this part: Policy 2.2 section 3.3 (PDF page 176), Policy 2.8 section 3.5 (page 212), Policy 2.19 section 3.7 (pages 282 to 283) and Policy 2.24 (pages 296 to 299).
+
+### What the text says
+
+| Duty | Text | Page |
+|---|---|---|
+| Government order | 2.24 item 7: "The Organization shall as soon as possible, but not later than seventy-two hours of the receipt of an order, provide information under its control or possession, or assistance to the Government agency which is lawfully authorized" | 298 |
+| Grievance | 2.24 item 10(I): the Grievance Officer shall "acknowledge the complaint within twenty-four hours and dispose off such complaint within a period of fifteen days from the date of its receipt" | 298 |
+| Takedown | 2.24 item 11: "The Organization shall within twenty-four hours from the receipt of a complaint made by an individual ... take all reasonable and practicable measures to remove or disable access to such content" | 299 |
+| Retention | 2.24 item 5: "shall retained his information for a period of one hundred and eighty days after any cancellation or withdrawal of his registration" | 297 to 298 |
+| Cloud contract | 2.19, 3.7.2: "Organization shall contractually assure that they are informed of any confirmed breach immediately without any delay. For suspected breach, Organization shall be informed within 4 hours from the time of breach discovery." | 283 |
+| Lost device | 2.8, 3.5 item 3: "In case of loss of device, the employee shall inform IT function within 4 hours." | 212 |
+
+### Decisions
+
+1. **None of these clocks starts from a cyber incident.** They start from an order, a complaint, a cancellation, or the loss of a device. New deadline anchor `external_event`: the duty is recorded with its duration and shown as applicable, but the engine never computes a deadline for it from incident facts and never asks a question about it.
+2. **The cloud clause is a contract requirement on the organization**, not a notification the organization must make. Recorded as an ongoing duty with no deadline; the four hours bind the cloud provider under the contract.
+3. **The lost-device clause is an internal duty** (employee to IT function). Recorded with recipient "the Organization's IT function"; it is not a report to any regulator.
+4. **Policy 2.24 restates the IT (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021.** Whether an insurer is an "intermediary" under those Rules is not evaluated; it is a prose condition shown to the user. The Rules themselves are not ingested.
+5. Not modelled: 2.24 item 8 (report to CERT-In under the 2013 Rules; no time limit, and it overlaps Policy 2.10); Policy 2.2 section 3.3 (lost device reported "immediately", and treated as an incident after four hours), which is an internal escalation rule.
+6. Same `valid_from` (2023-04-24, contested) and entity classes as Part 1.
+
+### Obligation ids (all prefixed `irdai.ics-guidelines.2023.`)
+
+`gov-order-information-72h`, `grievance-acknowledge-24h`, `grievance-dispose-15d`, `content-takedown-24h`, `registration-data-retention-180d`, `cloud-breach-notice-contract-clause`, `lost-device-internal-report-4h`.
+
+### Labels
+
+| Id | Profile and facts | Expected |
+|---|---|---|
+| `irdai-other-duties-give-no-incident-clock` | `irdai.insurer`; ransomware; noticed 2026-10-01 10:00 | Deadlines: only CERT-In 6h and IRDAI 6h, both 16:00. All seven duties above are applicable. None has a deadline. No unknowns. Nothing is time critical. |
+| `irdai-other-duties-do-not-reach-an-nbfc` | `nbfc.middle_layer`; detected and noticed 10:00 | All seven not applicable. |
+| `irdai-other-duties-before-the-guidelines` | `irdai.insurer`; noticed 2023-04-01 10:00 | All seven not applicable, reason containing "not_yet_valid_at_incident_date (2023-04-24)". |
