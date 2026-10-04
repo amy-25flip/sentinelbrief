@@ -3,7 +3,7 @@
 from datetime import date, datetime
 from typing import Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
 class Bbox(BaseModel):
@@ -89,6 +89,7 @@ class Applicability(BaseModel):
 
     entity_classes: list[str] | None = None
     conditions: list[str] | None = None
+    requires: list[Literal["cert_in_annexure_i", "personal_data_involved"]] | None = None
 
 
 class Validity(BaseModel):
@@ -228,12 +229,21 @@ class EntityProfile(BaseModel):
 
     model_config = ConfigDict(frozen=True, extra="ignore")
 
-    entity_class: str
+    entity_class: str | None = None
+    entity_classes: list[str] | None = None
     is_listed: bool
     holds_personal_data: bool
     uses_protected_systems: bool
     is_regulated_cloud_vps: bool
     additional_properties: dict[str, Any] | None = None
+
+    @model_validator(mode="after")
+    def exactly_one_entity_class_shape(self) -> "EntityProfile":
+        if (self.entity_class is None) == (self.entity_classes is None):
+            raise ValueError("Supply exactly one of entity_class or entity_classes")
+        if self.entity_classes is not None and not self.entity_classes:
+            raise ValueError("entity_classes must contain at least one class")
+        return self
 
 
 class IncidentFacts(BaseModel):
@@ -307,6 +317,17 @@ class Expected(BaseModel):
     required_evidence: list[str]
     not_applicable: list[NotApplicable]
     unknowns: list[Unknown]
+    time_critical: list[str] | None = None
+
+
+class SourceQuote(BaseModel):
+    """A benchmark label justified by exact text on a stored PDF page."""
+
+    model_config = ConfigDict(frozen=True, extra="ignore")
+
+    document: str
+    page: int = Field(ge=1)
+    quote: str = Field(min_length=1)
 
 
 class BenchmarkScenario(BaseModel):
@@ -323,6 +344,7 @@ class BenchmarkScenario(BaseModel):
     adversarial_flags: list[str] | None = None
     split: Literal["dev", "hidden"]
     labels_source: str | None = None
+    source_quotes: list[SourceQuote] | None = None
 
 
 class ManifestEntry(BaseModel):

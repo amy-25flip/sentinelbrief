@@ -181,20 +181,26 @@ Decisions below were made during Review 1 (the reviewer agent, 2026-09-24). See 
 ## 2026-09-25: DPDP Rules 2025 Commencement and Rule 7 Breach Intimation Modelling
 
 **Decision:** Model DPDP Rules 2025 (`meity.dpdp-rules.2025`) using Notification No. G.S.R. 846(E) dated 2025-11-13.
-- In accordance with Gazette page 24 Rule 1(4), Rule 7 comes into force 18 months after publication (`valid_from: "2027-05-13"`).
+- Gazette PDF page 24, Rule 1(4), says exactly: "Rules 3, 5 to 16, 22 and 23 shall come into force eighteen months after the date of publication of this Gazette." Counting eighteen calendar months from 13 November 2025 gives the conservative `valid_from: "2027-05-13"` for Rule 7.
 - Rule 7(1) (intimation to affected Data Principals) and Rule 7(2)(a) (initial intimation to Data Protection Board) are modelled as `deadline.kind: "immediate"` ("without delay") with anchor `awareness`.
 - Rule 7(2)(b) (detailed report to Board) is modelled as `deadline.kind: "relative"`, `PT72H`, anchor `awareness`, with an explicit note regarding the Board's power to allow a longer period upon written request.
 - Applicability condition enforces that personal data must be involved (`personal_data_involved: true`); if `personal_data_involved` is missing/null, an Unknown question is generated.
 
-**Reason:** Read directly from primary Gazette notification G.S.R. 846(E) pages 24 and 26. Prevents applying uncommenced rules before May 2027 and captures the verbatim statutory structure.
+**Alternative and reason:** Counsel could treat "after" as excluding the anniversary day and select 14 May 2027. The earlier date is retained pending counsel review because it never tells a user that the duty starts later than the conservative reading. Rule 7 wording is quoted in each obligation from Gazette PDF page 26.
 
 ## 2026-09-25: SEBI CSCRF Incident Reporting (RS.CO.S1) Multi-Anchor Modelling
 
 **Decision:** Model SEBI CSCRF (`sebi.cscrf.2024`) incident reporting from Circular SEBI/HO/ITD-1/ITD_CSC_EXT/P/CIR/2024/113 dated 2024-08-20.
-- Paragraph 17.1 glide-path establishes in-force date of 2025-01-01 (`valid_from: "2025-01-01"`).
+- PDF page 9 calls the dates a "glide-path for adoption of CSCRF provisions". Paragraph 17.1 says exactly: "For six categories of REs where cybersecurity and cyber resilience circular already exists – by January 01, 2025." Paragraph 17.2 says exactly: "For other REs where CSCRF is being issued for the first time – by April 01, 2025."
+- Because those words describe a compliance glide path, not one universal in-force date, the conservative model uses the circular's issue date, 20 August 2024, as `valid_from` pending legal review.
 - Standard RS.CO.S1 (page 123) / Annexure-O Section B.1 (page 200) requires notification within 6 hours of `noticing/detecting` or `being brought to notice` to SEBI (`mkt_incidents@sebi.gov.in`) and CERT-In.
 - Modelled as `deadline.kind: "relative"`, `PT6H`, anchor `noticing`, with `alternative_anchors: ["detection", "brought_to_notice"]`.
 - The engine uses the earliest available timestamp among noticing, detection, and brought-to-notice.
 
-**Reason:** Derived directly from verbatim primary text on page 123 and 200 of the 205-page SEBI Circular. Respects the statutory multi-anchor trigger without collapsing legal terms.
+**Alternative and reason:** Duties may bind only from 1 January 2025 for the six categories with earlier circulars, and from 1 April 2025 for other REs. Category mapping is not yet encoded. Applying from issue avoids telling a user they owe less during the contested interval; confidence is therefore 0.7, not a claim that the interpretation is settled.
 
+## 2026-09-25: SEBI incident-reporting category scope is conservatively broad
+
+**Decision:** Keep the modelled six-hour duty on all five CSCRF categories pending counsel review. PDF page 123 places RS.CO.S1-S3 beneath the heading "MIIs and Qualified REs (Mandatory)", which supports a narrower reading. PDF page 200, Annexure-O B.1, says: "Any cyber-attack(s), cybersecurity incident(s) and breach(es) experienced by REs falling under CERT-In Cybersecurity directions" and then states the six-hour duty, which supports REs generally.
+
+**Alternative and reason:** Limit RS.CO.S1 to MIIs and Qualified REs. The broader reading is retained because Annexure-O uses "REs" without the category qualifier and because it does not tell a potentially covered user that no SEBI duty applies.

@@ -1,35 +1,28 @@
 {
     "$schema":  "../../schema/benchmark_scenario.schema.json",
-    "id":  "dpdp-non-fiduciary-entity",
-    "description":  "Adversarial entity scope test: A pure body corporate that is not a Data Fiduciary suffers a cyber incident in June 2027. DPDP Rule 7 fiduciary obligations must be marked entity_class_mismatch.",
+    "id":  "sebi-incident-before-issue-date",
+    "description":  "A SEBI MII notices ransomware before the CSCRF circular issue date; CERT-In applies and SEBI is not yet valid.",
     "entity_profile":  {
-                           "entity_class":  "body_corporate",
-                           "is_listed":  false,
+                           "entity_class":  "sebi.mii",
+                           "is_listed":  true,
                            "holds_personal_data":  false,
-                           "uses_protected_systems":  false,
+                           "uses_protected_systems":  true,
                            "is_regulated_cloud_vps":  false
                        },
     "incident_facts":  {
-                           "description":  "Ransomware encryption on internal operational server on 2027-06-01 at 10:00 IST.",
+                           "description":  "Incident facts as stated in the scenario.",
                            "incident_types":  [
                                                   "Malicious code attacks such as Ransomware"
                                               ],
-                           "annexure_i_items":  [
-                                                    "annexure_i.v"
-                                                ],
-                           "when_detected":  "2027-06-01T10:00:00+05:30",
-                           "when_noticed":  "2027-06-01T10:00:00+05:30",
-                           "when_occurred":  "2027-06-01T10:00:00+05:30",
-                           "when_aware":  "2027-06-01T10:00:00+05:30",
-                           "personal_data_involved":  false,
+                           "when_noticed":  "2024-08-01T10:00:00+05:30",
                            "systems_affected":  [
-                                                    "Ops Server"
+                                                    "Core system"
                                                 ],
                            "is_annexure_i_type":  null
                        },
-    "law_snapshot_date":  "2027-06-01",
+    "law_snapshot_date":  "2026-09-25",
     "expected":  {
-                     "law_as_of":  "2027-06-01",
+                     "law_as_of":  "2024-08-01",
                      "regulators":  [
                                         "CERT-In"
                                     ],
@@ -39,7 +32,7 @@
                                            "regulator":  "CERT-In",
                                            "anchor":  "noticing",
                                            "deadline_iso8601":  "PT6H",
-                                           "deadline_timestamp":  "2027-06-01T10:30:00Z"
+                                           "deadline_timestamp":  "2024-08-01T16:00:00+05:30"
                                        }
                                    ],
                      "citations":  [
@@ -54,16 +47,9 @@
                                            ],
                      "not_applicable":  [
                                             {
-                                                "obligation_id":  "meity.dpdp-rules.2025.rule7-1-principal-intimation",
-                                                "reason":  "entity_class_mismatch"
-                                            },
-                                            {
-                                                "obligation_id":  "meity.dpdp-rules.2025.rule7-2-a-board-initial",
-                                                "reason":  "entity_class_mismatch"
-                                            },
-                                            {
-                                                "obligation_id":  "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
-                                                "reason":  "entity_class_mismatch"
+                                                "regulator":  "SEBI",
+                                                "obligation_id":  "sebi.cscrf.2024.incident-reporting-6h",
+                                                "reason":  "not_yet_valid_at_incident_date (2024-08-20)"
                                             }
                                         ],
                      "unknowns":  [
@@ -71,10 +57,10 @@
                                   ]
                  },
     "adversarial_flags":  [
-                              "wrong_entity_class_trap"
+                              "law_as_of_incident_date"
                           ],
     "split":  "dev",
-    "labels_source":  "DPDP Rules 2025 Gazette GSR 846(E) page 26 Rule 7(1) \u0026 7(2) entity scoping",
+    "labels_source":  "SEBI CSCRF issue date, circular PDF page 1; CERT-In Directions page 2",
     "source_quotes":  [
                           {
                               "document":  "cert-in.directions-70b.2022",

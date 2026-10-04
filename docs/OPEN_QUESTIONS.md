@@ -37,3 +37,12 @@ Things needing a human or a primary-source check.
 - [ ] **RBI RSS feed:** Verify `rbi.org.in/Scripts/rss.aspx` is real and useful.
 - [ ] **SEBI RSS feed:** Verify `sebi.gov.in/rss.html` is real and useful.
 - [ ] **Mandatory/advisory card chip:** Regulatory cards still show `Mandatory` from the current obligation set because obligations do not yet carry a mandatory/advisory field. Add a schema field before modelling advisory duties.
+
+## Review 7 legal questions for counsel / next modelling round
+
+- [ ] **SEBI glide path:** Does the page 9 "glide-path for adoption" make CSCRF duties binding only by 1 January 2025 for the six categories with an existing circular and by 1 April 2025 for other REs, or can duties bind from the 20 August 2024 issue date? The engine uses the earlier date conservatively.
+- [ ] **SEBI category scope:** Page 123 heads RS.CO.S1-S3 "MIIs and Qualified REs (Mandatory)", while Annexure-O B.1 on page 200 applies its six-hour language to "REs" generally. Should the six-hour duty be limited to MIIs and Qualified REs?
+- [ ] **DPDP date arithmetic:** Rule 1(4), PDF page 24, says "eighteen months after the date of publication". Confirm whether publication on 13 November 2025 produces 13 May 2027 or, because of "after", 14 May 2027. The model uses 13 May conservatively.
+- [ ] **SEBI portal duty not yet modelled:** Page 123 says, "However, necessary details of the incidents shall be reported on SEBI Incident Reporting Portal within 24 hours." Page 200 likewise says "SEBI Incident Reporting Portal within 24 hours."
+- [ ] **SEBI stock-broker/depository-participant duty not yet modelled:** Page 123 says, "Stock Brokers/ Depository Participants shall also report the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In within 6 hours" of the stated triggers; page 200 repeats the duty.
+- [ ] **SEBI other-incident duty not yet modelled:** Page 123 says, "All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and NCIIPC (as applicable) within 24 hours." Page 200 says "Any/ all other cybersecurity incident(s)" with the same recipients and period.

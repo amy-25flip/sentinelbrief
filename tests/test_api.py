@@ -75,6 +75,8 @@ def test_html_incident_workspace():
     response = client.get("/incident")
     assert response.status_code == 200
     assert "Incident Clock Workspace" in response.text
+    assert "Also a (tick all that apply)" in response.text
+    assert 'name="also_classes"' in response.text
 
 
 def _ist(hour):
@@ -96,6 +98,38 @@ def test_incident_clock_json_uses_the_engine():
     assert dl["obligation_id"].endswith("incident-reporting-6h")
     assert dl["deadline_ist"] == "2026-09-24T15:00:00+05:30"
     assert dl["regulator"] == "CERT-In"
+
+
+def test_incident_clock_json_accepts_multiple_entity_classes():
+    r = client.post(
+        "/api/incident/clock",
+        json={
+            "entity_classes": ["sebi.mii", "dpdp.data_fiduciary", "sebi.mii"],
+            "incident_types": ["Malicious code attacks such as Ransomware"],
+            "personal_data_involved": True,
+            "when_noticed": "2027-06-01T10:00:00+05:30",
+            "when_aware": "2027-06-01T10:00:00+05:30",
+        },
+    )
+    assert r.status_code == 200
+    ids = {item["obligation_id"] for item in r.json()["deadlines"]}
+    assert "sebi.cscrf.2024.incident-reporting-6h" in ids
+    assert "meity.dpdp-rules.2025.rule7-2-b-board-detailed" in ids
+
+
+def test_incident_clock_form_accepts_repeated_also_classes():
+    r = client.post(
+        "/api/incident/clock",
+        content=(
+            "entity_class=sebi.mii&also_classes=dpdp.data_fiduciary&"
+            "also_classes=sebi.mii&incident_types=ransomware&personal_data_involved=true&"
+            "when_noticed=2027-06-01T10%3A00&when_aware=2027-06-01T10%3A00"
+        ),
+        headers={"content-type": "application/x-www-form-urlencoded", "hx-request": "true"},
+    )
+    assert r.status_code == 200
+    assert "mkt_incidents@sebi.gov.in" in r.text
+    assert "Intimate to the Data Protection Board" in r.text
 
 
 def test_incident_clock_json_rejects_naive_time():

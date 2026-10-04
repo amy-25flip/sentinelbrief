@@ -102,7 +102,8 @@ class AnnexureResolution:
 class IncidentProfile:
     """User-provided entity and incident facts. All datetimes must be timezone-aware."""
 
-    entity_class: str
+    entity_class: str | None = None
+    entity_classes: list[str] | None = None
 
     incident_description: str = ""
     incident_types: list[str] = field(default_factory=list)
@@ -121,6 +122,14 @@ class IncidentProfile:
         self.validate()
 
     def validate(self) -> None:
+        if self.entity_class is not None and self.entity_classes is not None:
+            raise ValueError("Supply either entity_class or entity_classes, not both")
+        if self.entity_class is not None:
+            self.entity_classes = [self.entity_class]
+            self.entity_class = None
+        if not self.entity_classes:
+            raise ValueError("At least one entity class is required")
+        self.entity_classes = list(dict.fromkeys(self.entity_classes))
         for name in _DATETIME_FIELDS:
             value = getattr(self, name)
             if value is not None and (value.tzinfo is None or value.utcoffset() is None):
@@ -294,10 +303,13 @@ class IncidentClockEngine:
     def annexure_items(self) -> list[dict[str, Any]]:
         return list(self._annexure_items)
 
-    def _matches_entity_class(self, profile_class: str, target_classes: list[str]) -> bool:
+    def _matches_entity_class(self, profile_classes: list[str], target_classes: list[str]) -> bool:
         if not target_classes:
             return True
-        return self.taxonomy.matches(profile_class, target_classes)
+        ancestors = set().union(
+            *(self.taxonomy.get_ancestors_and_self(item) for item in profile_classes)
+        )
+        return bool(ancestors.intersection(target_classes))
 
     def resolve_annexure_i(self, profile: IncidentProfile) -> AnnexureResolution:
         """Decide whether the incident is an Annexure I type. Never returns False from text."""
@@ -364,12 +376,13 @@ class IncidentClockEngine:
             earliest = profile.earliest_known_time()
             as_of = (earliest or now).astimezone(IST).date()
 
-        if profile.entity_class not in self.taxonomy:
-            raise ValueError(
-                f"Unknown entity class '{profile.entity_class}'. Refusing to guess: an "
-                f"unrecognised class would silently report that nothing applies. "
-                f"Known classes: {', '.join(sorted(self.taxonomy.classes.keys()))}"
-            )
+        for entity_class in profile.entity_classes or []:
+            if entity_class not in self.taxonomy:
+                raise ValueError(
+                    f"Unknown entity class '{entity_class}'. Refusing to guess: an "
+                    f"unrecognised class would silently report that nothing applies. "
+                    f"Known classes: {', '.join(sorted(self.taxonomy.classes.keys()))}"
+                )
 
         caveats: list[str] = []
         if as_of < _MSME_EFFECTIVE:
@@ -398,21 +411,14 @@ class IncidentClockEngine:
 
             applicability = obs.get("applicability") or {}
             if not self._matches_entity_class(
-                profile.entity_class, applicability.get("entity_classes") or []
+                profile.entity_classes or [], applicability.get("entity_classes") or []
             ):
                 not_applicable.append({"obligation_id": obs_id, "reason": "entity_class_mismatch"})
                 continue
 
-            needs_annexure = False
-            needs_personal_data = False
-            other_conditions: list[str] = []
-            for cond in applicability.get("conditions") or []:
-                if re.search(r"\bannexure i\b", cond, re.IGNORECASE):
-                    needs_annexure = True
-                elif re.search(r"\bpersonal data\b", cond, re.IGNORECASE):
-                    needs_personal_data = True
-                else:
-                    other_conditions.append(cond)
+            requirements = applicability.get("requires") or []
+            needs_annexure = "cert_in_annexure_i" in requirements
+            needs_personal_data = "personal_data_involved" in requirements
 
             if needs_annexure:
                 if annexure.decision is False:
@@ -460,8 +466,9 @@ class IncidentClockEngine:
                     continue
 
             applicable.append(obs_id)
-            if other_conditions:
-                conditions_unevaluated[obs_id] = other_conditions
+            conditions = applicability.get("conditions") or []
+            if conditions:
+                conditions_unevaluated[obs_id] = conditions
 
             self._compute_deadline(obs, profile, now, deadlines, time_critical, unknowns)
 

@@ -1,77 +1,90 @@
 {
-  "$schema": "../../schema/benchmark_scenario.schema.json",
-  "id": "dpdp-multi-regulator-cert-in",
-  "description": "Multi-regulator overlap test: In July 2027, an online platform that is a Data Fiduciary suffers a major ransomware incident exfiltrating customer records. Dual reporting to CERT-In (6 hours from noticing) and DPDP (72 hours from awareness, plus without delay intimation) applies.",
-  "entity_profile": {
-    "entity_class": "dpdp.data_fiduciary",
-    "is_listed": false,
-    "holds_personal_data": true,
-    "uses_protected_systems": false,
-    "is_regulated_cloud_vps": false
-  },
-  "incident_facts": {
-    "description": "Ransomware encryption and data exfiltration noticed and aware on 2027-07-01 at 10:00 IST.",
-    "incident_types": [
-      "Malicious code attacks such as Ransomware",
-      "Data breach"
-    ],
-    "annexure_i_items": [
-      "annexure_i.v",
-      "annexure_i.xi"
-    ],
-    "when_detected": "2027-07-01T10:00:00+05:30",
-    "when_noticed": "2027-07-01T10:00:00+05:30",
-    "when_occurred": "2027-07-01T08:00:00+05:30",
-    "when_aware": "2027-07-01T10:00:00+05:30",
-    "personal_data_involved": true,
-    "systems_affected": [
-      "Customer DB",
-      "Application Server"
-    ],
-    "is_annexure_i_type": null
-  },
-  "law_snapshot_date": "2027-07-01",
-  "expected": {
-    "law_as_of": "2027-07-01",
-    "regulators": [
-      "CERT-In",
-      "MeitY"
-    ],
-    "deadlines": [
-      {
-        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
-        "regulator": "CERT-In",
-        "anchor": "noticing",
-        "deadline_iso8601": "PT6H",
-        "deadline_timestamp": "2027-07-01T10:30:00Z"
-      },
-      {
-        "obligation_id": "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
-        "regulator": "MeitY",
-        "anchor": "awareness",
-        "deadline_iso8601": "PT72H",
-        "deadline_timestamp": "2027-07-04T04:30:00Z"
-      }
-    ],
-    "citations": [
-      {
-        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
-        "instrument_id": "cert-in.directions-70b.2022",
-        "paragraph_ref": "Direction (ii)"
-      },
-      {
-        "obligation_id": "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
-        "instrument_id": "meity.dpdp-rules.2025",
-        "paragraph_ref": "Rule 7(2)(b)"
-      }
-    ],
-    "required_evidence": [],
-    "not_applicable": [],
-    "unknowns": []
-  },
-  "adversarial_flags": [
-    "multi_regulator_overlap"
-  ],
-  "split": "dev",
-  "labels_source": "CERT-In Directions 70B Direction (ii) and DPDP Rules 2025 Gazette GSR 846(E) page 26 Rule 7"
+    "$schema":  "../../schema/benchmark_scenario.schema.json",
+    "id":  "dpdp-multi-regulator-cert-in",
+    "description":  "Multi-regulator overlap test: In July 2027, an online platform that is a Data Fiduciary suffers a major ransomware incident exfiltrating customer records. Dual reporting to CERT-In (6 hours from noticing) and DPDP (72 hours from awareness, plus without delay intimation) applies.",
+    "entity_profile":  {
+                           "entity_class":  "dpdp.data_fiduciary",
+                           "is_listed":  false,
+                           "holds_personal_data":  true,
+                           "uses_protected_systems":  false,
+                           "is_regulated_cloud_vps":  false
+                       },
+    "incident_facts":  {
+                           "description":  "Ransomware encryption and data exfiltration noticed and aware on 2027-07-01 at 10:00 IST.",
+                           "incident_types":  [
+                                                  "Malicious code attacks such as Ransomware",
+                                                  "Data breach"
+                                              ],
+                           "annexure_i_items":  [
+                                                    "annexure_i.v",
+                                                    "annexure_i.xi"
+                                                ],
+                           "when_detected":  "2027-07-01T10:00:00+05:30",
+                           "when_noticed":  "2027-07-01T10:00:00+05:30",
+                           "when_occurred":  "2027-07-01T08:00:00+05:30",
+                           "when_aware":  "2027-07-01T10:00:00+05:30",
+                           "personal_data_involved":  true,
+                           "systems_affected":  [
+                                                    "Customer DB",
+                                                    "Application Server"
+                                                ],
+                           "is_annexure_i_type":  null
+                       },
+    "law_snapshot_date":  "2027-07-01",
+    "expected":  {
+                     "law_as_of":  "2027-07-01",
+                     "regulators":  [
+                                        "CERT-In",
+                                        "MeitY"
+                                    ],
+                     "deadlines":  [
+                                       {
+                                           "obligation_id":  "cert-in.directions-70b.2022.incident-reporting-6h",
+                                           "regulator":  "CERT-In",
+                                           "anchor":  "noticing",
+                                           "deadline_iso8601":  "PT6H",
+                                           "deadline_timestamp":  "2027-07-01T10:30:00Z"
+                                       },
+                                       {
+                                           "obligation_id":  "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
+                                           "regulator":  "MeitY",
+                                           "anchor":  "awareness",
+                                           "deadline_iso8601":  "PT72H",
+                                           "deadline_timestamp":  "2027-07-04T04:30:00Z"
+                                       }
+                                   ],
+                     "citations":  [
+                                       {
+                                           "obligation_id":  "cert-in.directions-70b.2022.incident-reporting-6h",
+                                           "instrument_id":  "cert-in.directions-70b.2022",
+                                           "paragraph_ref":  "Direction (ii)"
+                                       },
+                                       {
+                                           "obligation_id":  "meity.dpdp-rules.2025.rule7-2-b-board-detailed",
+                                           "instrument_id":  "meity.dpdp-rules.2025",
+                                           "paragraph_ref":  "Rule 7(2)(b)"
+                                       }
+                                   ],
+                     "required_evidence":  [
+
+                                           ],
+                     "not_applicable":  [
+
+                                        ],
+                     "unknowns":  [
+
+                                  ]
+                 },
+    "adversarial_flags":  [
+                              "multi_regulator_overlap"
+                          ],
+    "split":  "dev",
+    "labels_source":  "CERT-In Directions 70B Direction (ii) and DPDP Rules 2025 Gazette GSR 846(E) page 26 Rule 7",
+    "source_quotes":  [
+                          {
+                              "document":  "meity.dpdp-rules.2025",
+                              "page":  26,
+                              "quote":  "(b) within seventy-two hours of becoming aware of the breach, or within such longer period as the \nBoard may allow on a request made in writing in this behalf, — \n(i) \nupdated and detailed information in respect of such description; \n(ii) the broad facts related to the events, circumstances and reasons leading to the breach; \n(iii) measures implemented or proposed, if any, to mitigate risk;  \n(iv) any findings regarding the person who caused the breach;  \n(v) remedial measures taken to prevent recurrence of such breach; and \n(vi) a report regarding the intimations given to affected Data Principals."
+                          }
+                      ]
 }

@@ -404,3 +404,72 @@ def test_entity_taxonomy_hierarchy_resolution():
     assert "vps_provider" in classes
     assert "service_provider" in classes
     assert "body_corporate" in classes
+
+
+def test_multiple_entity_classes_union_deduplicates_and_rejects_unknowns():
+    engine = IncidentClockEngine(DATA_DIR)
+    profile = IncidentProfile(
+        entity_classes=["sebi.mii", "dpdp.data_fiduciary", "sebi.mii"],
+        incident_types=["Malicious code attacks such as Ransomware"],
+        personal_data_involved=True,
+        when_noticed=NOTICED,
+        when_aware=NOTICED,
+    )
+    result = engine.evaluate(profile, now=NOW)
+    assert profile.entity_classes == ["sebi.mii", "dpdp.data_fiduciary"]
+    assert "sebi.cscrf.2024.incident-reporting-6h" in result.applicable_obligations
+    with pytest.raises(ValueError, match="Unknown entity class"):
+        engine.evaluate(IncidentProfile(entity_classes=["sebi.mii", "unknown.class"]))
+    with pytest.raises(ValueError, match="either entity_class or entity_classes"):
+        IncidentProfile(entity_class="sebi.mii", entity_classes=["sebi.mii"])
+    with pytest.raises(ValueError, match="At least one"):
+        IncidentProfile(entity_classes=[])
+
+
+def test_structured_personal_data_gate_and_dpdp_boundaries():
+    engine = IncidentClockEngine(DATA_DIR)
+    before = datetime(2027, 5, 12, 10, tzinfo=IST)
+    after = datetime(2027, 5, 13, 10, tzinfo=IST)
+    false_result = engine.evaluate(
+        IncidentProfile(
+            entity_class="dpdp.data_fiduciary", personal_data_involved=False, when_aware=after
+        )
+    )
+    assert all("rule7" not in item for item in false_result.applicable_obligations)
+    unknown_result = engine.evaluate(
+        IncidentProfile(entity_class="dpdp.data_fiduciary", when_aware=after)
+    )
+    assert any(
+        u.question == "Is personal data involved in this incident?" for u in unknown_result.unknowns
+    )
+    before_result = engine.evaluate(
+        IncidentProfile(
+            entity_class="dpdp.data_fiduciary", personal_data_involved=True, when_aware=before
+        )
+    )
+    assert all("rule7" not in item for item in before_result.applicable_obligations)
+    after_result = engine.evaluate(
+        IncidentProfile(
+            entity_class="dpdp.data_fiduciary", personal_data_involved=True, when_aware=after
+        )
+    )
+    assert {item.obligation_id for item in after_result.time_critical} == {
+        "meity.dpdp-rules.2025.rule7-1-principal-intimation",
+        "meity.dpdp-rules.2025.rule7-2-a-board-initial",
+    }
+
+
+def test_awareness_unknown_wording_and_sebi_does_not_leak_to_bank():
+    engine = IncidentClockEngine(DATA_DIR)
+    result = engine.evaluate(
+        IncidentProfile(entity_class="dpdp.data_fiduciary", personal_data_involved=True),
+        as_of=date(2027, 6, 1),
+    )
+    assert any(
+        u.question == "When did the entity become aware of the personal data breach?"
+        for u in result.unknowns
+    )
+    bank = engine.evaluate(
+        IncidentProfile(entity_class="bank", is_annexure_i_type=True, when_noticed=NOTICED)
+    )
+    assert "sebi.cscrf.2024.incident-reporting-6h" not in bank.applicable_obligations

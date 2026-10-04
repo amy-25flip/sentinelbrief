@@ -24,6 +24,15 @@
                 {% endfor %}
             </select>
         </div>
+        <fieldset class="form-group">
+            <legend>Also a (tick all that apply)</legend>
+            {% for ec in entity_classes %}
+            <label class="also-class-option" data-entity-class="{{ ec }}">
+                <input type="checkbox" name="also_classes" value="{{ ec }}">
+                {{ ec | replace('_', ' ') | replace('.', ' · ') }}
+            </label>
+            {% endfor %}
+        </fieldset>
         <div class="form-group">
             <label for="incident_types">What happened (short label, e.g. "ransomware")</label>
             <input id="incident_types" type="text" name="incident_types" placeholder="ransomware, data breach">
@@ -69,6 +78,19 @@
 
     <button type="submit" class="btn">⏱ Compute Clocks</button>
 </form>
+
+<script>
+const primaryClass = document.getElementById("entity_class");
+function updateAlsoClasses() {
+    document.querySelectorAll(".also-class-option").forEach((label) => {
+        const isPrimary = label.dataset.entityClass === primaryClass.value;
+        label.hidden = isPrimary;
+        if (isPrimary) label.querySelector("input").checked = false;
+    });
+}
+primaryClass.addEventListener("change", updateAlsoClasses);
+updateAlsoClasses();
+</script>
 
 <div id="clock-results" style="margin-top: 2rem;" aria-live="polite">
     <p style="color: var(--text-muted); font-style: italic;">

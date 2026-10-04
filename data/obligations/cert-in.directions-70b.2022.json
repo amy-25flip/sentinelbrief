@@ -1,511 +1,524 @@
 [
-  {
-    "id": "cert-in.directions-70b.2022.ntp-sync",
-    "instrument_id": "cert-in.directions-70b.2022",
-    "paragraph_ref": "Direction (i)",
-    "text_verbatim": "(i) All service providers, intermediaries, data centres, body corporate and \nGovernment organisations shall connect to the Network Time Protocol \n(NTP) Server of National Informatics Centre (NIC) or National Physical \nLaboratory (NPL) or with NTP servers traceable to these NTP servers, for \nsynchronisation of all their ICT systems clocks. Entities having ICT \ninfrastructure spanning multiple geographies may also use accurate and \nstandard time source other than NPL and NIC, however it is to be ensured \nthat their time source shall not deviate from NPL and NIC.",
-    "normalized": {
-      "actor": [
-        "service_provider",
-        "intermediary",
-        "data_centre",
-        "body_corporate",
-        "government_org"
-      ],
-      "trigger": {
-        "type": "always",
-        "description": "Ongoing obligation for all covered entities"
-      },
-      "action": "Connect ICT systems clocks to NIC or NPL NTP servers, or to NTP servers traceable to them. Multi-geography entities may use other accurate time sources but must not deviate from NPL/NIC.",
-      "deadline": {
-        "kind": "none",
-        "duration_iso8601": null,
-        "anchor": "not_applicable",
-        "calendar": "continuous",
-        "fixed_date": null
-      },
-      "recipient": "CERT-In",
-      "evidence_required": [
-        "NTP configuration records",
-        "clock synchronisation logs"
-      ]
+    {
+        "id":  "cert-in.directions-70b.2022.ntp-sync",
+        "instrument_id":  "cert-in.directions-70b.2022",
+        "paragraph_ref":  "Direction (i)",
+        "text_verbatim":  "(i) All service providers, intermediaries, data centres, body corporate and \nGovernment organisations shall connect to the Network Time Protocol \n(NTP) Server of National Informatics Centre (NIC) or National Physical \nLaboratory (NPL) or with NTP servers traceable to these NTP servers, for \nsynchronisation of all their ICT systems clocks. Entities having ICT \ninfrastructure spanning multiple geographies may also use accurate and \nstandard time source other than NPL and NIC, however it is to be ensured \nthat their time source shall not deviate from NPL and NIC.",
+        "normalized":  {
+                           "actor":  [
+                                         "service_provider",
+                                         "intermediary",
+                                         "data_centre",
+                                         "body_corporate",
+                                         "government_org"
+                                     ],
+                           "trigger":  {
+                                           "type":  "always",
+                                           "description":  "Ongoing obligation for all covered entities"
+                                       },
+                           "action":  "Connect ICT systems clocks to NIC or NPL NTP servers, or to NTP servers traceable to them. Multi-geography entities may use other accurate time sources but must not deviate from NPL/NIC.",
+                           "deadline":  {
+                                            "kind":  "none",
+                                            "duration_iso8601":  null,
+                                            "anchor":  "not_applicable",
+                                            "calendar":  "continuous",
+                                            "fixed_date":  null
+                                        },
+                           "recipient":  "CERT-In",
+                           "evidence_required":  [
+                                                     "NTP configuration records",
+                                                     "clock synchronisation logs"
+                                                 ]
+                       },
+        "applicability":  {
+                              "entity_classes":  [
+                                                     "service_provider",
+                                                     "intermediary",
+                                                     "data_centre",
+                                                     "body_corporate",
+                                                     "government_org"
+                                                 ],
+                              "conditions":  [
+
+                                             ]
+                          },
+        "validity":  {
+                         "valid_from":  "2022-06-27",
+                         "valid_to":  null,
+                         "recorded_at":  "2026-09-24T15:12:00Z"
+                     },
+        "status":  "in_force",
+        "citations":  [
+                          {
+                              "instrument_id":  "cert-in.directions-70b.2022",
+                              "paragraph_ref":  "Direction (i)",
+                              "page":  2,
+                              "char_start":  3268,
+                              "char_end":  3834,
+                              "excerpt_verbatim":  "(i) All service providers, intermediaries, data centres, body corporate and \nGovernment organisations shall connect to the Network Time Protocol \n(NTP) Server of National Informatics Centre (NIC) or National Physical \nLaboratory (NPL) or with NTP servers traceable to these NTP servers, for \nsynchronisation of all their ICT systems clocks. Entities having ICT \ninfrastructure spanning multiple geographies may also use accurate and \nstandard time source other than NPL and NIC, however it is to be ensured \nthat their time source shall not deviate from NPL and NIC.",
+                              "source_sha256":  "202c2f3953d792dcfb3ecb3634fc82ab75437ee596de89b8d59a211e8e42431f"
+                          }
+                      ],
+        "extraction":  {
+                           "method":  "manual",
+                           "model":  null,
+                           "prompt_version":  null,
+                           "extractor_version":  "0.1.0"
+                       },
+        "verification":  "machine_checked",
+        "verification_details":  {
+                                     "reviewer":  "antigravity-agent (AI; not a human review)",
+                                     "date":  "2026-09-24"
+                                 },
+        "confidence":  0.95,
+        "confidence_reason":  "Verbatim text from primary PDF. NTP obligation clear and unambiguous."
     },
-    "applicability": {
-      "entity_classes": [
-        "service_provider",
-        "intermediary",
-        "data_centre",
-        "body_corporate",
-        "government_org"
-      ],
-      "conditions": []
+    {
+        "id":  "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id":  "cert-in.directions-70b.2022",
+        "paragraph_ref":  "Direction (ii)",
+        "text_verbatim":  "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime.",
+        "normalized":  {
+                           "actor":  [
+                                         "service_provider",
+                                         "intermediary",
+                                         "data_centre",
+                                         "body_corporate",
+                                         "government_org"
+                                     ],
+                           "trigger":  {
+                                           "type":  "event",
+                                           "description":  "Cyber incident of a type listed in Annexure I is noticed or brought to notice"
+                                       },
+                           "action":  "Report the cyber incident to CERT-In via email (incident@cert-in.org.in), phone (1800-11-4949), or fax (1800-11-6969).",
+                           "deadline":  {
+                                            "kind":  "relative",
+                                            "duration_iso8601":  "PT6H",
+                                            "anchor":  "noticing",
+                                            "alternative_anchors":  [
+                                                                        "brought_to_notice"
+                                                                    ],
+                                            "calendar":  "continuous",
+                                            "fixed_date":  null
+                                        },
+                           "recipient":  "CERT-In",
+                           "evidence_required":  [
+                                                     "incident report submission confirmation",
+                                                     "timestamp of noticing or being brought to notice",
+                                                     "incident details per CERT-In format"
+                                                 ]
+                       },
+        "applicability":  {
+                              "entity_classes":  [
+                                                     "service_provider",
+                                                     "intermediary",
+                                                     "data_centre",
+                                                     "body_corporate",
+                                                     "government_org"
+                                                 ],
+                              "conditions":  [
+                                                 "incident is of a type listed in Annexure I"
+                                             ],
+                              "requires":  [
+                                               "cert_in_annexure_i"
+                                           ]
+                          },
+        "validity":  {
+                         "valid_from":  "2022-06-27",
+                         "valid_to":  null,
+                         "recorded_at":  "2026-09-24T15:12:00Z"
+                     },
+        "status":  "in_force",
+        "citations":  [
+                          {
+                              "instrument_id":  "cert-in.directions-70b.2022",
+                              "paragraph_ref":  "Direction (ii)",
+                              "page":  2,
+                              "char_start":  3836,
+                              "char_end":  4415,
+                              "excerpt_verbatim":  "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime.",
+                              "source_sha256":  "202c2f3953d792dcfb3ecb3634fc82ab75437ee596de89b8d59a211e8e42431f"
+                          }
+                      ],
+        "extraction":  {
+                           "method":  "manual",
+                           "model":  null,
+                           "prompt_version":  null,
+                           "extractor_version":  "0.1.0"
+                       },
+        "verification":  "machine_checked",
+        "verification_details":  {
+                                     "reviewer":  "antigravity-agent (AI; not a human review)",
+                                     "date":  "2026-09-24"
+                                 },
+        "confidence":  0.98,
+        "confidence_reason":  "Verbatim text from primary PDF. 6-hour deadline and anchor (\u0027noticing such incidents or being brought to notice\u0027) are explicit. The text joins two triggers with \u0027or\u0027 (noticing / being brought to notice). Modelled as anchor plus alternative_anchors; the engine starts the clock at the earliest known trigger. That is a conservative reading, not stated in the text."
     },
-    "validity": {
-      "valid_from": "2022-06-27",
-      "valid_to": null,
-      "recorded_at": "2026-09-24T15:12:00Z"
+    {
+        "id":  "cert-in.directions-70b.2022.comply-with-orders",
+        "instrument_id":  "cert-in.directions-70b.2022",
+        "paragraph_ref":  "Direction (iii)",
+        "text_verbatim":  "(iii)When required by order/direction of CERT-In, for the purposes of cyber \nincident response, protective and preventive actions related to cyber \nincidents, the service provider/intermediary/data centre/body corporate is \nmandated to take action or provide information or any such assistance to \nCERT-In, which may contribute towards cyber security mitigation actions \nand enhanced cyber security situational awareness. The order / direction \nmay include the format of the information that is required (up to and \nincluding near real-time), and a specified timeframe in which it is required, \nwhich should be adhered to and compliance provided to CERT-In, else it \nwould be treated as non-compliance of this direction.",
+        "normalized":  {
+                           "actor":  [
+                                         "service_provider",
+                                         "intermediary",
+                                         "data_centre",
+                                         "body_corporate"
+                                     ],
+                           "trigger":  {
+                                           "type":  "event",
+                                           "description":  "CERT-In issues an order or direction requiring action, information, or assistance"
+                                       },
+                           "action":  "Take action, provide information, or provide assistance to CERT-In as specified in the order/direction, in the format and timeframe specified.",
+                           "deadline":  {
+                                            "kind":  "none",
+                                            "duration_iso8601":  null,
+                                            "anchor":  "not_applicable",
+                                            "calendar":  "continuous",
+                                            "fixed_date":  null
+                                        },
+                           "recipient":  "CERT-In",
+                           "evidence_required":  [
+                                                     "compliance records",
+                                                     "information provided",
+                                                     "action taken records"
+                                                 ]
+                       },
+        "applicability":  {
+                              "entity_classes":  [
+                                                     "service_provider",
+                                                     "intermediary",
+                                                     "data_centre",
+                                                     "body_corporate"
+                                                 ],
+                              "conditions":  [
+                                                 "CERT-In has issued a specific order or direction"
+                                             ]
+                          },
+        "validity":  {
+                         "valid_from":  "2022-06-27",
+                         "valid_to":  null,
+                         "recorded_at":  "2026-09-24T15:12:00Z"
+                     },
+        "status":  "in_force",
+        "citations":  [
+                          {
+                              "instrument_id":  "cert-in.directions-70b.2022",
+                              "paragraph_ref":  "Direction (iii)",
+                              "page":  3,
+                              "char_start":  4432,
+                              "char_end":  5152,
+                              "excerpt_verbatim":  "(iii)When required by order/direction of CERT-In, for the purposes of cyber \nincident response, protective and preventive actions related to cyber \nincidents, the service provider/intermediary/data centre/body corporate is \nmandated to take action or provide information or any such assistance to \nCERT-In, which may contribute towards cyber security mitigation actions \nand enhanced cyber security situational awareness. The order / direction \nmay include the format of the information that is required (up to and \nincluding near real-time), and a specified timeframe in which it is required, \nwhich should be adhered to and compliance provided to CERT-In, else it \nwould be treated as non-compliance of this direction.",
+                              "source_sha256":  "202c2f3953d792dcfb3ecb3634fc82ab75437ee596de89b8d59a211e8e42431f"
+                          }
+                      ],
+        "extraction":  {
+                           "method":  "manual",
+                           "model":  null,
+                           "prompt_version":  null,
+                           "extractor_version":  "0.1.0"
+                       },
+        "verification":  "machine_checked",
+        "verification_details":  {
+                                     "reviewer":  "antigravity-agent (AI; not a human review)",
+                                     "date":  "2026-09-24"
+                                 },
+        "confidence":  0.9,
+        "confidence_reason":  "Verbatim text from primary PDF. Deadline is variable (set by each CERT-In order), not fixed."
     },
-    "status": "in_force",
-    "citations": [
-      {
-        "instrument_id": "cert-in.directions-70b.2022",
-        "paragraph_ref": "Direction (i)",
-        "page": 2,
-        "char_start": 3268,
-        "char_end": 3834,
-        "excerpt_verbatim": "(i) All service providers, intermediaries, data centres, body corporate and \nGovernment organisations shall connect to the Network Time Protocol \n(NTP) Server of National Informatics Centre (NIC) or National Physical \nLaboratory (NPL) or with NTP servers traceable to these NTP servers, for \nsynchronisation of all their ICT systems clocks. Entities having ICT \ninfrastructure spanning multiple geographies may also use accurate and \nstandard time source other than NPL and NIC, however it is to be ensured \nthat their time source shall not deviate from NPL and NIC.",
-        "source_sha256": "202c2f3953d792dcfb3ecb3634fc82ab75437ee596de89b8d59a211e8e42431f"
-      }
-    ],
-    "extraction": {
-      "method": "manual",
-      "model": null,
-      "prompt_version": null,
-      "extractor_version": "0.1.0"
+    {
+        "id":  "cert-in.directions-70b.2022.designate-poc",
+        "instrument_id":  "cert-in.directions-70b.2022",
+        "paragraph_ref":  "Direction (iii)",
+        "text_verbatim":  "The service \nproviders, intermediaries, data centres, body corporate and Government \norganisations shall designate a Point of Contact to interface with CERT-In. \nThe Information relating to a Point of Contact shall be sent to CERT-In in \nthe format specified at Annexure II and shall be updated from time to time. \nAll communications from CERT-In seeking information and providing \ndirections for compliance shall be sent to the said Point of Contact.",
+        "normalized":  {
+                           "actor":  [
+                                         "service_provider",
+                                         "intermediary",
+                                         "data_centre",
+                                         "body_corporate",
+                                         "government_org"
+                                     ],
+                           "trigger":  {
+                                           "type":  "always",
+                                           "description":  "Ongoing obligation for all entities"
+                                       },
+                           "action":  "Designate a Point of Contact to interface with CERT-In. Send PoC information in Annexure II format. Keep updated.",
+                           "deadline":  {
+                                            "kind":  "none",
+                                            "duration_iso8601":  null,
+                                            "anchor":  "not_applicable",
+                                            "calendar":  "continuous",
+                                            "fixed_date":  null
+                                        },
+                           "recipient":  "CERT-In",
+                           "evidence_required":  [
+                                                     "PoC designation record",
+                                                     "Annexure II submission confirmation"
+                                                 ]
+                       },
+        "applicability":  {
+                              "entity_classes":  [
+                                                     "service_provider",
+                                                     "intermediary",
+                                                     "data_centre",
+                                                     "body_corporate",
+                                                     "government_org"
+                                                 ],
+                              "conditions":  [
+
+                                             ]
+                          },
+        "validity":  {
+                         "valid_from":  "2022-06-27",
+                         "valid_to":  null,
+                         "recorded_at":  "2026-09-24T15:12:00Z"
+                     },
+        "status":  "in_force",
+        "citations":  [
+                          {
+                              "instrument_id":  "cert-in.directions-70b.2022",
+                              "paragraph_ref":  "Direction (iii)",
+                              "page":  3,
+                              "char_start":  5153,
+                              "char_end":  5604,
+                              "excerpt_verbatim":  "The service \nproviders, intermediaries, data centres, body corporate and Government \norganisations shall designate a Point of Contact to interface with CERT-In. \nThe Information relating to a Point of Contact shall be sent to CERT-In in \nthe format specified at Annexure II and shall be updated from time to time. \nAll communications from CERT-In seeking information and providing \ndirections for compliance shall be sent to the said Point of Contact.",
+                              "source_sha256":  "202c2f3953d792dcfb3ecb3634fc82ab75437ee596de89b8d59a211e8e42431f"
+                          }
+                      ],
+        "extraction":  {
+                           "method":  "manual",
+                           "model":  null,
+                           "prompt_version":  null,
+                           "extractor_version":  "0.1.0"
+                       },
+        "verification":  "machine_checked",
+        "verification_details":  {
+                                     "reviewer":  "antigravity-agent (AI; not a human review)",
+                                     "date":  "2026-09-24"
+                                 },
+        "confidence":  0.95,
+        "confidence_reason":  "Verbatim text from primary PDF. PoC designation is clear."
     },
-    "verification": "machine_checked",
-    "verification_details": {
-      "reviewer": "antigravity-agent (AI; not a human review)",
-      "date": "2026-09-24"
+    {
+        "id":  "cert-in.directions-70b.2022.log-retention-180d",
+        "instrument_id":  "cert-in.directions-70b.2022",
+        "paragraph_ref":  "Direction (iv)",
+        "text_verbatim":  "(iv) All service providers, intermediaries, data centres, body corporate and \nGovernment organisations shall mandatorily enable logs of all their ICT \nsystems and maintain them securely for a rolling period of 180 days and \nthe same shall be maintained within the Indian jurisdiction. These should \nbe provided to CERT-In along with reporting of any incident or when \nordered / directed by CERT-In.",
+        "normalized":  {
+                           "actor":  [
+                                         "service_provider",
+                                         "intermediary",
+                                         "data_centre",
+                                         "body_corporate",
+                                         "government_org"
+                                     ],
+                           "trigger":  {
+                                           "type":  "always",
+                                           "description":  "Ongoing obligation for all entities"
+                                       },
+                           "action":  "Enable logs of all ICT systems. Maintain securely for rolling 180 days within Indian jurisdiction. Provide to CERT-In with incident reports or when ordered.",
+                           "deadline":  {
+                                            "kind":  "retention",
+                                            "duration_iso8601":  "P180D",
+                                            "anchor":  "not_applicable",
+                                            "calendar":  "continuous",
+                                            "fixed_date":  null
+                                        },
+                           "recipient":  "CERT-In",
+                           "evidence_required":  [
+                                                     "log retention policy",
+                                                     "log storage location evidence (Indian jurisdiction)",
+                                                     "log availability records"
+                                                 ]
+                       },
+        "applicability":  {
+                              "entity_classes":  [
+                                                     "service_provider",
+                                                     "intermediary",
+                                                     "data_centre",
+                                                     "body_corporate",
+                                                     "government_org"
+                                                 ],
+                              "conditions":  [
+
+                                             ]
+                          },
+        "validity":  {
+                         "valid_from":  "2022-06-27",
+                         "valid_to":  null,
+                         "recorded_at":  "2026-09-24T15:12:00Z"
+                     },
+        "status":  "in_force",
+        "citations":  [
+                          {
+                              "instrument_id":  "cert-in.directions-70b.2022",
+                              "paragraph_ref":  "Direction (iv)",
+                              "page":  3,
+                              "char_start":  5606,
+                              "char_end":  6004,
+                              "excerpt_verbatim":  "(iv) All service providers, intermediaries, data centres, body corporate and \nGovernment organisations shall mandatorily enable logs of all their ICT \nsystems and maintain them securely for a rolling period of 180 days and \nthe same shall be maintained within the Indian jurisdiction. These should \nbe provided to CERT-In along with reporting of any incident or when \nordered / directed by CERT-In.",
+                              "source_sha256":  "202c2f3953d792dcfb3ecb3634fc82ab75437ee596de89b8d59a211e8e42431f"
+                          }
+                      ],
+        "extraction":  {
+                           "method":  "manual",
+                           "model":  null,
+                           "prompt_version":  null,
+                           "extractor_version":  "0.1.0"
+                       },
+        "verification":  "machine_checked",
+        "verification_details":  {
+                                     "reviewer":  "antigravity-agent (AI; not a human review)",
+                                     "date":  "2026-09-24"
+                                 },
+        "confidence":  0.95,
+        "confidence_reason":  "Verbatim text from primary PDF. 180-day rolling period and Indian jurisdiction requirement explicit."
     },
-    "confidence": 0.95,
-    "confidence_reason": "Verbatim text from primary PDF. NTP obligation clear and unambiguous."
-  },
-  {
-    "id": "cert-in.directions-70b.2022.incident-reporting-6h",
-    "instrument_id": "cert-in.directions-70b.2022",
-    "paragraph_ref": "Direction (ii)",
-    "text_verbatim": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime.",
-    "normalized": {
-      "actor": [
-        "service_provider",
-        "intermediary",
-        "data_centre",
-        "body_corporate",
-        "government_org"
-      ],
-      "trigger": {
-        "type": "event",
-        "description": "Cyber incident of a type listed in Annexure I is noticed or brought to notice"
-      },
-      "action": "Report the cyber incident to CERT-In via email (incident@cert-in.org.in), phone (1800-11-4949), or fax (1800-11-6969).",
-      "deadline": {
-        "kind": "relative",
-        "duration_iso8601": "PT6H",
-        "anchor": "noticing",
-        "alternative_anchors": ["brought_to_notice"],
-        "calendar": "continuous",
-        "fixed_date": null
-      },
-      "recipient": "CERT-In",
-      "evidence_required": [
-        "incident report submission confirmation",
-        "timestamp of noticing or being brought to notice",
-        "incident details per CERT-In format"
-      ]
+    {
+        "id":  "cert-in.directions-70b.2022.vps-cloud-vpn-customer-data-5y",
+        "instrument_id":  "cert-in.directions-70b.2022",
+        "paragraph_ref":  "Direction (v)",
+        "text_verbatim":  "(v) Data Centres, Virtual Private Server (VPS) providers, Cloud Service \nproviders and Virtual Private Network Service (VPN Service) providers, \nshall be required to register the  following accurate information \nwhich  must be maintained by them for a period of 5 years or longer \nduration as mandated by the law after any cancellation or withdrawal of \nthe registration as the case may be: \na. Validated names of subscribers/customers hiring the services \nb. Period of hire including dates \nc. IPs allotted to / being used by the members \nd. Email address and IP address and time stamp used at the time of \nregistration / on-boarding \ne. Purpose for hiring services \nf. Validated address and contact numbers \ng. Ownership pattern of the subscribers / customers hiring services",
+        "normalized":  {
+                           "actor":  [
+                                         "data_centre",
+                                         "vps_provider",
+                                         "cloud_provider",
+                                         "vpn_provider"
+                                     ],
+                           "trigger":  {
+                                           "type":  "always",
+                                           "description":  "Ongoing obligation for data centres, VPS, cloud, and VPN providers"
+                                       },
+                           "action":  "Register and maintain accurate subscriber/customer information (names, hire period, IPs, email, purpose, address, contact, ownership) for 5 years or longer after cancellation/withdrawal.",
+                           "deadline":  {
+                                            "kind":  "retention",
+                                            "duration_iso8601":  "P5Y",
+                                            "anchor":  "not_applicable",
+                                            "calendar":  "continuous",
+                                            "fixed_date":  null
+                                        },
+                           "recipient":  "CERT-In",
+                           "evidence_required":  [
+                                                     "subscriber registration records",
+                                                     "validated customer information",
+                                                     "IP allocation logs",
+                                                     "retention policy documentation"
+                                                 ]
+                       },
+        "applicability":  {
+                              "entity_classes":  [
+                                                     "data_centre",
+                                                     "vps_provider",
+                                                     "cloud_provider",
+                                                     "vpn_provider"
+                                                 ],
+                              "conditions":  [
+
+                                             ]
+                          },
+        "validity":  {
+                         "valid_from":  "2022-06-27",
+                         "valid_to":  null,
+                         "recorded_at":  "2026-09-24T15:12:00Z"
+                     },
+        "status":  "in_force",
+        "citations":  [
+                          {
+                              "instrument_id":  "cert-in.directions-70b.2022",
+                              "paragraph_ref":  "Direction (v)",
+                              "page":  3,
+                              "char_start":  6006,
+                              "char_end":  6783,
+                              "excerpt_verbatim":  "(v) Data Centres, Virtual Private Server (VPS) providers, Cloud Service \nproviders and Virtual Private Network Service (VPN Service) providers, \nshall be required to register the  following accurate information \nwhich  must be maintained by them for a period of 5 years or longer \nduration as mandated by the law after any cancellation or withdrawal of \nthe registration as the case may be: \na. Validated names of subscribers/customers hiring the services \nb. Period of hire including dates \nc. IPs allotted to / being used by the members \nd. Email address and IP address and time stamp used at the time of \nregistration / on-boarding \ne. Purpose for hiring services \nf. Validated address and contact numbers \ng. Ownership pattern of the subscribers / customers hiring services",
+                              "source_sha256":  "202c2f3953d792dcfb3ecb3634fc82ab75437ee596de89b8d59a211e8e42431f"
+                          }
+                      ],
+        "extraction":  {
+                           "method":  "manual",
+                           "model":  null,
+                           "prompt_version":  null,
+                           "extractor_version":  "0.1.0"
+                       },
+        "verification":  "machine_checked",
+        "verification_details":  {
+                                     "reviewer":  "antigravity-agent (AI; not a human review)",
+                                     "date":  "2026-09-24"
+                                 },
+        "confidence":  0.93,
+        "confidence_reason":  "Verbatim text from primary PDF. 5-year retention explicit. Applies only to data centres, VPS, cloud, and VPN providers."
     },
-    "applicability": {
-      "entity_classes": [
-        "service_provider",
-        "intermediary",
-        "data_centre",
-        "body_corporate",
-        "government_org"
-      ],
-      "conditions": [
-        "incident is of a type listed in Annexure I"
-      ]
-    },
-    "validity": {
-      "valid_from": "2022-06-27",
-      "valid_to": null,
-      "recorded_at": "2026-09-24T15:12:00Z"
-    },
-    "status": "in_force",
-    "citations": [
-      {
-        "instrument_id": "cert-in.directions-70b.2022",
-        "paragraph_ref": "Direction (ii)",
-        "page": 2,
-        "char_start": 3836,
-        "char_end": 4415,
-        "excerpt_verbatim": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime.",
-        "source_sha256": "202c2f3953d792dcfb3ecb3634fc82ab75437ee596de89b8d59a211e8e42431f"
-      }
-    ],
-    "extraction": {
-      "method": "manual",
-      "model": null,
-      "prompt_version": null,
-      "extractor_version": "0.1.0"
-    },
-    "verification": "machine_checked",
-    "verification_details": {
-      "reviewer": "antigravity-agent (AI; not a human review)",
-      "date": "2026-09-24"
-    },
-    "confidence": 0.98,
-    "confidence_reason": "Verbatim text from primary PDF. 6-hour deadline and anchor ('noticing such incidents or being brought to notice') are explicit. The text joins two triggers with 'or' (noticing / being brought to notice). Modelled as anchor plus alternative_anchors; the engine starts the clock at the earliest known trigger. That is a conservative reading, not stated in the text."
-  },
-  {
-    "id": "cert-in.directions-70b.2022.comply-with-orders",
-    "instrument_id": "cert-in.directions-70b.2022",
-    "paragraph_ref": "Direction (iii)",
-    "text_verbatim": "(iii)When required by order/direction of CERT-In, for the purposes of cyber \nincident response, protective and preventive actions related to cyber \nincidents, the service provider/intermediary/data centre/body corporate is \nmandated to take action or provide information or any such assistance to \nCERT-In, which may contribute towards cyber security mitigation actions \nand enhanced cyber security situational awareness. The order / direction \nmay include the format of the information that is required (up to and \nincluding near real-time), and a specified timeframe in which it is required, \nwhich should be adhered to and compliance provided to CERT-In, else it \nwould be treated as non-compliance of this direction.",
-    "normalized": {
-      "actor": [
-        "service_provider",
-        "intermediary",
-        "data_centre",
-        "body_corporate"
-      ],
-      "trigger": {
-        "type": "event",
-        "description": "CERT-In issues an order or direction requiring action, information, or assistance"
-      },
-      "action": "Take action, provide information, or provide assistance to CERT-In as specified in the order/direction, in the format and timeframe specified.",
-      "deadline": {
-        "kind": "none",
-        "duration_iso8601": null,
-        "anchor": "not_applicable",
-        "calendar": "continuous",
-        "fixed_date": null
-      },
-      "recipient": "CERT-In",
-      "evidence_required": [
-        "compliance records",
-        "information provided",
-        "action taken records"
-      ]
-    },
-    "applicability": {
-      "entity_classes": [
-        "service_provider",
-        "intermediary",
-        "data_centre",
-        "body_corporate"
-      ],
-      "conditions": [
-        "CERT-In has issued a specific order or direction"
-      ]
-    },
-    "validity": {
-      "valid_from": "2022-06-27",
-      "valid_to": null,
-      "recorded_at": "2026-09-24T15:12:00Z"
-    },
-    "status": "in_force",
-    "citations": [
-      {
-        "instrument_id": "cert-in.directions-70b.2022",
-        "paragraph_ref": "Direction (iii)",
-        "page": 3,
-        "char_start": 4432,
-        "char_end": 5152,
-        "excerpt_verbatim": "(iii)When required by order/direction of CERT-In, for the purposes of cyber \nincident response, protective and preventive actions related to cyber \nincidents, the service provider/intermediary/data centre/body corporate is \nmandated to take action or provide information or any such assistance to \nCERT-In, which may contribute towards cyber security mitigation actions \nand enhanced cyber security situational awareness. The order / direction \nmay include the format of the information that is required (up to and \nincluding near real-time), and a specified timeframe in which it is required, \nwhich should be adhered to and compliance provided to CERT-In, else it \nwould be treated as non-compliance of this direction.",
-        "source_sha256": "202c2f3953d792dcfb3ecb3634fc82ab75437ee596de89b8d59a211e8e42431f"
-      }
-    ],
-    "extraction": {
-      "method": "manual",
-      "model": null,
-      "prompt_version": null,
-      "extractor_version": "0.1.0"
-    },
-    "verification": "machine_checked",
-    "verification_details": {
-      "reviewer": "antigravity-agent (AI; not a human review)",
-      "date": "2026-09-24"
-    },
-    "confidence": 0.9,
-    "confidence_reason": "Verbatim text from primary PDF. Deadline is variable (set by each CERT-In order), not fixed."
-  },
-  {
-    "id": "cert-in.directions-70b.2022.designate-poc",
-    "instrument_id": "cert-in.directions-70b.2022",
-    "paragraph_ref": "Direction (iii)",
-    "text_verbatim": "The service \nproviders, intermediaries, data centres, body corporate and Government \norganisations shall designate a Point of Contact to interface with CERT-In. \nThe Information relating to a Point of Contact shall be sent to CERT-In in \nthe format specified at Annexure II and shall be updated from time to time. \nAll communications from CERT-In seeking information and providing \ndirections for compliance shall be sent to the said Point of Contact.",
-    "normalized": {
-      "actor": [
-        "service_provider",
-        "intermediary",
-        "data_centre",
-        "body_corporate",
-        "government_org"
-      ],
-      "trigger": {
-        "type": "always",
-        "description": "Ongoing obligation for all entities"
-      },
-      "action": "Designate a Point of Contact to interface with CERT-In. Send PoC information in Annexure II format. Keep updated.",
-      "deadline": {
-        "kind": "none",
-        "duration_iso8601": null,
-        "anchor": "not_applicable",
-        "calendar": "continuous",
-        "fixed_date": null
-      },
-      "recipient": "CERT-In",
-      "evidence_required": [
-        "PoC designation record",
-        "Annexure II submission confirmation"
-      ]
-    },
-    "applicability": {
-      "entity_classes": [
-        "service_provider",
-        "intermediary",
-        "data_centre",
-        "body_corporate",
-        "government_org"
-      ],
-      "conditions": []
-    },
-    "validity": {
-      "valid_from": "2022-06-27",
-      "valid_to": null,
-      "recorded_at": "2026-09-24T15:12:00Z"
-    },
-    "status": "in_force",
-    "citations": [
-      {
-        "instrument_id": "cert-in.directions-70b.2022",
-        "paragraph_ref": "Direction (iii)",
-        "page": 3,
-        "char_start": 5153,
-        "char_end": 5604,
-        "excerpt_verbatim": "The service \nproviders, intermediaries, data centres, body corporate and Government \norganisations shall designate a Point of Contact to interface with CERT-In. \nThe Information relating to a Point of Contact shall be sent to CERT-In in \nthe format specified at Annexure II and shall be updated from time to time. \nAll communications from CERT-In seeking information and providing \ndirections for compliance shall be sent to the said Point of Contact.",
-        "source_sha256": "202c2f3953d792dcfb3ecb3634fc82ab75437ee596de89b8d59a211e8e42431f"
-      }
-    ],
-    "extraction": {
-      "method": "manual",
-      "model": null,
-      "prompt_version": null,
-      "extractor_version": "0.1.0"
-    },
-    "verification": "machine_checked",
-    "verification_details": {
-      "reviewer": "antigravity-agent (AI; not a human review)",
-      "date": "2026-09-24"
-    },
-    "confidence": 0.95,
-    "confidence_reason": "Verbatim text from primary PDF. PoC designation is clear."
-  },
-  {
-    "id": "cert-in.directions-70b.2022.log-retention-180d",
-    "instrument_id": "cert-in.directions-70b.2022",
-    "paragraph_ref": "Direction (iv)",
-    "text_verbatim": "(iv) All service providers, intermediaries, data centres, body corporate and \nGovernment organisations shall mandatorily enable logs of all their ICT \nsystems and maintain them securely for a rolling period of 180 days and \nthe same shall be maintained within the Indian jurisdiction. These should \nbe provided to CERT-In along with reporting of any incident or when \nordered / directed by CERT-In.",
-    "normalized": {
-      "actor": [
-        "service_provider",
-        "intermediary",
-        "data_centre",
-        "body_corporate",
-        "government_org"
-      ],
-      "trigger": {
-        "type": "always",
-        "description": "Ongoing obligation for all entities"
-      },
-      "action": "Enable logs of all ICT systems. Maintain securely for rolling 180 days within Indian jurisdiction. Provide to CERT-In with incident reports or when ordered.",
-      "deadline": {
-        "kind": "retention",
-        "duration_iso8601": "P180D",
-        "anchor": "not_applicable",
-        "calendar": "continuous",
-        "fixed_date": null
-      },
-      "recipient": "CERT-In",
-      "evidence_required": [
-        "log retention policy",
-        "log storage location evidence (Indian jurisdiction)",
-        "log availability records"
-      ]
-    },
-    "applicability": {
-      "entity_classes": [
-        "service_provider",
-        "intermediary",
-        "data_centre",
-        "body_corporate",
-        "government_org"
-      ],
-      "conditions": []
-    },
-    "validity": {
-      "valid_from": "2022-06-27",
-      "valid_to": null,
-      "recorded_at": "2026-09-24T15:12:00Z"
-    },
-    "status": "in_force",
-    "citations": [
-      {
-        "instrument_id": "cert-in.directions-70b.2022",
-        "paragraph_ref": "Direction (iv)",
-        "page": 3,
-        "char_start": 5606,
-        "char_end": 6004,
-        "excerpt_verbatim": "(iv) All service providers, intermediaries, data centres, body corporate and \nGovernment organisations shall mandatorily enable logs of all their ICT \nsystems and maintain them securely for a rolling period of 180 days and \nthe same shall be maintained within the Indian jurisdiction. These should \nbe provided to CERT-In along with reporting of any incident or when \nordered / directed by CERT-In.",
-        "source_sha256": "202c2f3953d792dcfb3ecb3634fc82ab75437ee596de89b8d59a211e8e42431f"
-      }
-    ],
-    "extraction": {
-      "method": "manual",
-      "model": null,
-      "prompt_version": null,
-      "extractor_version": "0.1.0"
-    },
-    "verification": "machine_checked",
-    "verification_details": {
-      "reviewer": "antigravity-agent (AI; not a human review)",
-      "date": "2026-09-24"
-    },
-    "confidence": 0.95,
-    "confidence_reason": "Verbatim text from primary PDF. 180-day rolling period and Indian jurisdiction requirement explicit."
-  },
-  {
-    "id": "cert-in.directions-70b.2022.vps-cloud-vpn-customer-data-5y",
-    "instrument_id": "cert-in.directions-70b.2022",
-    "paragraph_ref": "Direction (v)",
-    "text_verbatim": "(v) Data Centres, Virtual Private Server (VPS) providers, Cloud Service \nproviders and Virtual Private Network Service (VPN Service) providers, \nshall be required to register the  following accurate information \nwhich  must be maintained by them for a period of 5 years or longer \nduration as mandated by the law after any cancellation or withdrawal of \nthe registration as the case may be: \na. Validated names of subscribers/customers hiring the services \nb. Period of hire including dates \nc. IPs allotted to / being used by the members \nd. Email address and IP address and time stamp used at the time of \nregistration / on-boarding \ne. Purpose for hiring services \nf. Validated address and contact numbers \ng. Ownership pattern of the subscribers / customers hiring services",
-    "normalized": {
-      "actor": [
-        "data_centre",
-        "vps_provider",
-        "cloud_provider",
-        "vpn_provider"
-      ],
-      "trigger": {
-        "type": "always",
-        "description": "Ongoing obligation for data centres, VPS, cloud, and VPN providers"
-      },
-      "action": "Register and maintain accurate subscriber/customer information (names, hire period, IPs, email, purpose, address, contact, ownership) for 5 years or longer after cancellation/withdrawal.",
-      "deadline": {
-        "kind": "retention",
-        "duration_iso8601": "P5Y",
-        "anchor": "not_applicable",
-        "calendar": "continuous",
-        "fixed_date": null
-      },
-      "recipient": "CERT-In",
-      "evidence_required": [
-        "subscriber registration records",
-        "validated customer information",
-        "IP allocation logs",
-        "retention policy documentation"
-      ]
-    },
-    "applicability": {
-      "entity_classes": [
-        "data_centre",
-        "vps_provider",
-        "cloud_provider",
-        "vpn_provider"
-      ],
-      "conditions": []
-    },
-    "validity": {
-      "valid_from": "2022-06-27",
-      "valid_to": null,
-      "recorded_at": "2026-09-24T15:12:00Z"
-    },
-    "status": "in_force",
-    "citations": [
-      {
-        "instrument_id": "cert-in.directions-70b.2022",
-        "paragraph_ref": "Direction (v)",
-        "page": 3,
-        "char_start": 6006,
-        "char_end": 6783,
-        "excerpt_verbatim": "(v) Data Centres, Virtual Private Server (VPS) providers, Cloud Service \nproviders and Virtual Private Network Service (VPN Service) providers, \nshall be required to register the  following accurate information \nwhich  must be maintained by them for a period of 5 years or longer \nduration as mandated by the law after any cancellation or withdrawal of \nthe registration as the case may be: \na. Validated names of subscribers/customers hiring the services \nb. Period of hire including dates \nc. IPs allotted to / being used by the members \nd. Email address and IP address and time stamp used at the time of \nregistration / on-boarding \ne. Purpose for hiring services \nf. Validated address and contact numbers \ng. Ownership pattern of the subscribers / customers hiring services",
-        "source_sha256": "202c2f3953d792dcfb3ecb3634fc82ab75437ee596de89b8d59a211e8e42431f"
-      }
-    ],
-    "extraction": {
-      "method": "manual",
-      "model": null,
-      "prompt_version": null,
-      "extractor_version": "0.1.0"
-    },
-    "verification": "machine_checked",
-    "verification_details": {
-      "reviewer": "antigravity-agent (AI; not a human review)",
-      "date": "2026-09-24"
-    },
-    "confidence": 0.93,
-    "confidence_reason": "Verbatim text from primary PDF. 5-year retention explicit. Applies only to data centres, VPS, cloud, and VPN providers."
-  },
-  {
-    "id": "cert-in.directions-70b.2022.virtual-asset-kyc-5y",
-    "instrument_id": "cert-in.directions-70b.2022",
-    "paragraph_ref": "Direction (vi)",
-    "text_verbatim": "(vi)     The virtual asset service providers, virtual asset exchange providers and \ncustodian wallet providers (as defined by Ministry of Finance from time to \ntime) shall mandatorily maintain all information obtained as part of Know \nYour Customer (KYC) and records of financial transactions for a period of \nfive years so as to ensure cyber security in the area of payments and \nfinancial markets for citizens while protecting their data, fundamental \nrights and economic freedom in view of the growth of virtual assets.  \nFor the purpose of KYC, the Reserve Bank of India (RBI) Directions 2016 \n/ Securities and Exchange Board of India (SEBI) circular dated April 24, \n2020 / Department of Telecom (DoT) notice September 21, 2021 mandated \nprocedures as amended from time to time may be referred to as per \nAnnexure III. \n  \nWith respect to transaction records, accurate information shall be \nmaintained in such a way that individual transaction can be reconstructed \nalong with the relevant elements comprising of, but not limited to, \ninformation relating to the identification of the relevant parties including \nIP addresses along with timestamps and time zones, transaction ID, the \npublic keys (or equivalent identifiers), addresses or accounts involved (or \nequivalent identifiers), the nature and date of the transaction, and the \namount transferred.",
-    "normalized": {
-      "actor": [
-        "virtual_asset_service_provider",
-        "virtual_asset_exchange",
-        "custodian_wallet_provider"
-      ],
-      "trigger": {
-        "type": "always",
-        "description": "Ongoing obligation for virtual asset providers"
-      },
-      "action": "Maintain all KYC information and financial transaction records for 5 years. Transaction records must allow individual transaction reconstruction with party IDs, IPs, timestamps, time zones, transaction IDs, public keys, addresses/accounts, nature, date, and amount.",
-      "deadline": {
-        "kind": "retention",
-        "duration_iso8601": "P5Y",
-        "anchor": "not_applicable",
-        "calendar": "continuous",
-        "fixed_date": null
-      },
-      "recipient": "CERT-In",
-      "evidence_required": [
-        "KYC records per Annexure III",
-        "financial transaction records with required elements",
-        "retention policy documentation"
-      ]
-    },
-    "applicability": {
-      "entity_classes": [
-        "virtual_asset_service_provider",
-        "virtual_asset_exchange",
-        "custodian_wallet_provider"
-      ],
-      "conditions": [
-        "as defined by Ministry of Finance from time to time"
-      ]
-    },
-    "validity": {
-      "valid_from": "2022-06-27",
-      "valid_to": null,
-      "recorded_at": "2026-09-24T15:12:00Z"
-    },
-    "status": "in_force",
-    "citations": [
-      {
-        "instrument_id": "cert-in.directions-70b.2022",
-        "paragraph_ref": "Direction (vi)",
-        "page": 4,
-        "char_start": 6801,
-        "char_end": 8161,
-        "excerpt_verbatim": "(vi)     The virtual asset service providers, virtual asset exchange providers and \ncustodian wallet providers (as defined by Ministry of Finance from time to \ntime) shall mandatorily maintain all information obtained as part of Know \nYour Customer (KYC) and records of financial transactions for a period of \nfive years so as to ensure cyber security in the area of payments and \nfinancial markets for citizens while protecting their data, fundamental \nrights and economic freedom in view of the growth of virtual assets.  \nFor the purpose of KYC, the Reserve Bank of India (RBI) Directions 2016 \n/ Securities and Exchange Board of India (SEBI) circular dated April 24, \n2020 / Department of Telecom (DoT) notice September 21, 2021 mandated \nprocedures as amended from time to time may be referred to as per \nAnnexure III. \n  \nWith respect to transaction records, accurate information shall be \nmaintained in such a way that individual transaction can be reconstructed \nalong with the relevant elements comprising of, but not limited to, \ninformation relating to the identification of the relevant parties including \nIP addresses along with timestamps and time zones, transaction ID, the \npublic keys (or equivalent identifiers), addresses or accounts involved (or \nequivalent identifiers), the nature and date of the transaction, and the \namount transferred.",
-        "source_sha256": "202c2f3953d792dcfb3ecb3634fc82ab75437ee596de89b8d59a211e8e42431f"
-      }
-    ],
-    "extraction": {
-      "method": "manual",
-      "model": null,
-      "prompt_version": null,
-      "extractor_version": "0.1.0"
-    },
-    "verification": "machine_checked",
-    "verification_details": {
-      "reviewer": "antigravity-agent (AI; not a human review)",
-      "date": "2026-09-24"
-    },
-    "confidence": 0.92,
-    "confidence_reason": "Verbatim text from primary PDF. 5-year retention explicit. Scope: virtual asset providers only."
-  }
+    {
+        "id":  "cert-in.directions-70b.2022.virtual-asset-kyc-5y",
+        "instrument_id":  "cert-in.directions-70b.2022",
+        "paragraph_ref":  "Direction (vi)",
+        "text_verbatim":  "(vi)     The virtual asset service providers, virtual asset exchange providers and \ncustodian wallet providers (as defined by Ministry of Finance from time to \ntime) shall mandatorily maintain all information obtained as part of Know \nYour Customer (KYC) and records of financial transactions for a period of \nfive years so as to ensure cyber security in the area of payments and \nfinancial markets for citizens while protecting their data, fundamental \nrights and economic freedom in view of the growth of virtual assets.  \nFor the purpose of KYC, the Reserve Bank of India (RBI) Directions 2016 \n/ Securities and Exchange Board of India (SEBI) circular dated April 24, \n2020 / Department of Telecom (DoT) notice September 21, 2021 mandated \nprocedures as amended from time to time may be referred to as per \nAnnexure III. \n  \nWith respect to transaction records, accurate information shall be \nmaintained in such a way that individual transaction can be reconstructed \nalong with the relevant elements comprising of, but not limited to, \ninformation relating to the identification of the relevant parties including \nIP addresses along with timestamps and time zones, transaction ID, the \npublic keys (or equivalent identifiers), addresses or accounts involved (or \nequivalent identifiers), the nature and date of the transaction, and the \namount transferred.",
+        "normalized":  {
+                           "actor":  [
+                                         "virtual_asset_service_provider",
+                                         "virtual_asset_exchange",
+                                         "custodian_wallet_provider"
+                                     ],
+                           "trigger":  {
+                                           "type":  "always",
+                                           "description":  "Ongoing obligation for virtual asset providers"
+                                       },
+                           "action":  "Maintain all KYC information and financial transaction records for 5 years. Transaction records must allow individual transaction reconstruction with party IDs, IPs, timestamps, time zones, transaction IDs, public keys, addresses/accounts, nature, date, and amount.",
+                           "deadline":  {
+                                            "kind":  "retention",
+                                            "duration_iso8601":  "P5Y",
+                                            "anchor":  "not_applicable",
+                                            "calendar":  "continuous",
+                                            "fixed_date":  null
+                                        },
+                           "recipient":  "CERT-In",
+                           "evidence_required":  [
+                                                     "KYC records per Annexure III",
+                                                     "financial transaction records with required elements",
+                                                     "retention policy documentation"
+                                                 ]
+                       },
+        "applicability":  {
+                              "entity_classes":  [
+                                                     "virtual_asset_service_provider",
+                                                     "virtual_asset_exchange",
+                                                     "custodian_wallet_provider"
+                                                 ],
+                              "conditions":  [
+                                                 "as defined by Ministry of Finance from time to time"
+                                             ]
+                          },
+        "validity":  {
+                         "valid_from":  "2022-06-27",
+                         "valid_to":  null,
+                         "recorded_at":  "2026-09-24T15:12:00Z"
+                     },
+        "status":  "in_force",
+        "citations":  [
+                          {
+                              "instrument_id":  "cert-in.directions-70b.2022",
+                              "paragraph_ref":  "Direction (vi)",
+                              "page":  4,
+                              "char_start":  6801,
+                              "char_end":  8161,
+                              "excerpt_verbatim":  "(vi)     The virtual asset service providers, virtual asset exchange providers and \ncustodian wallet providers (as defined by Ministry of Finance from time to \ntime) shall mandatorily maintain all information obtained as part of Know \nYour Customer (KYC) and records of financial transactions for a period of \nfive years so as to ensure cyber security in the area of payments and \nfinancial markets for citizens while protecting their data, fundamental \nrights and economic freedom in view of the growth of virtual assets.  \nFor the purpose of KYC, the Reserve Bank of India (RBI) Directions 2016 \n/ Securities and Exchange Board of India (SEBI) circular dated April 24, \n2020 / Department of Telecom (DoT) notice September 21, 2021 mandated \nprocedures as amended from time to time may be referred to as per \nAnnexure III. \n  \nWith respect to transaction records, accurate information shall be \nmaintained in such a way that individual transaction can be reconstructed \nalong with the relevant elements comprising of, but not limited to, \ninformation relating to the identification of the relevant parties including \nIP addresses along with timestamps and time zones, transaction ID, the \npublic keys (or equivalent identifiers), addresses or accounts involved (or \nequivalent identifiers), the nature and date of the transaction, and the \namount transferred.",
+                              "source_sha256":  "202c2f3953d792dcfb3ecb3634fc82ab75437ee596de89b8d59a211e8e42431f"
+                          }
+                      ],
+        "extraction":  {
+                           "method":  "manual",
+                           "model":  null,
+                           "prompt_version":  null,
+                           "extractor_version":  "0.1.0"
+                       },
+        "verification":  "machine_checked",
+        "verification_details":  {
+                                     "reviewer":  "antigravity-agent (AI; not a human review)",
+                                     "date":  "2026-09-24"
+                                 },
+        "confidence":  0.92,
+        "confidence_reason":  "Verbatim text from primary PDF. 5-year retention explicit. Scope: virtual asset providers only."
+    }
 ]

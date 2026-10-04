@@ -54,6 +54,25 @@ def test_every_scenario_label_names_its_source():
             assert na["obligation_id"]
 
 
+def test_every_dev_scenario_has_verified_source_quotes():
+    bench = scorer.BenchmarkScorer(REPO / "data", REPO / "benchmark" / "scenarios")
+    for scenario in bench.scenarios:
+        assert scenario.get("source_quotes"), scenario["id"]
+        scorer.verify_source_quotes(scenario, REPO / "data")
+
+
+def test_source_quote_verifier_rejects_fabrication_and_wrong_page():
+    bench = scorer.BenchmarkScorer(REPO / "data", REPO / "benchmark" / "scenarios")
+    scenario = copy.deepcopy(bench.scenarios[0])
+    scenario["source_quotes"][0]["quote"] = "fabricated legal words absent from the source"
+    with pytest.raises(ValueError, match="not on PDF page"):
+        scorer.verify_source_quotes(scenario, REPO / "data")
+    scenario = copy.deepcopy(bench.scenarios[0])
+    scenario["source_quotes"][0]["page"] = 9999
+    with pytest.raises(ValueError, match="does not exist"):
+        scorer.verify_source_quotes(scenario, REPO / "data")
+
+
 def test_law_as_of_comes_from_the_incident_not_the_snapshot_date():
     """The snapshot date pins the dataset and evaluation time; the incident date picks the law."""
     bench = scorer.BenchmarkScorer(REPO / "data", REPO / "benchmark" / "scenarios")
@@ -200,3 +219,69 @@ def test_catches_retention_treated_as_a_deadline(monkeypatch):
 
     monkeypatch.setattr(engine_module.IncidentClockEngine, "_compute_deadline", buggy)
     assert "cert-in-retention-is-not-a-deadline" in _failed(_run())
+
+
+def _mutate_loaded_obligations(monkeypatch, mutation):
+    original = engine_module.IncidentClockEngine._load_obligations
+
+    def changed(self):
+        original(self)
+        mutation(self.obligations)
+
+    monkeypatch.setattr(engine_module.IncidentClockEngine, "_load_obligations", changed)
+
+
+def test_catches_personal_data_gate_ignored(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"].startswith("meity.dpdp-rules.2025.rule7"):
+                item["applicability"]["requires"] = []
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "dpdp-no-personal-data" in _failed(_run())
+
+
+def test_catches_awareness_swapped_for_occurrence(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"].endswith("rule7-2-b-board-detailed"):
+                item["normalized"]["deadline"]["anchor"] = "occurrence"
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "dpdp-awareness-later-than-occurrence" in _failed(_run())
+
+
+def test_catches_dpdp_valid_from_ignored(monkeypatch):
+    original = engine_module.IncidentClockEngine._not_in_force_reason
+
+    def mutation(item, as_of):
+        if item["id"].startswith("meity.dpdp-rules.2025.rule7"):
+            return None
+        return original(item, as_of)
+
+    monkeypatch.setattr(
+        engine_module.IncidentClockEngine, "_not_in_force_reason", staticmethod(mutation)
+    )
+    assert "dpdp-commencement-before-may-2027" in _failed(_run())
+
+
+def test_catches_structured_requires_ignored(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"].endswith("incident-reporting-6h"):
+                item["applicability"]["requires"] = []
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert {"sebi-mii-hardware-failure-unattested", "sebi-mii-attested-not-annexure-i"} <= _failed(
+        _run()
+    )
+
+
+def test_catches_sebi_entity_leak(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"] == "sebi.cscrf.2024.incident-reporting-6h":
+                item["applicability"]["entity_classes"].append("bank")
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "sebi-non-sebi-entity-bank-trap" in _failed(_run())

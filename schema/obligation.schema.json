@@ -92,6 +92,14 @@
         "conditions": {
           "type": "array",
           "items": { "type": "string" }
+        },
+        "requires": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["cert_in_annexure_i", "personal_data_involved"]
+          },
+          "uniqueItems": true
         }
       }
     },

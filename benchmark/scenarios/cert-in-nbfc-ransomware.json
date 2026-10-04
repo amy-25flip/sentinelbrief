@@ -1,89 +1,100 @@
 {
-  "id": "cert-in-nbfc-ransomware",
-  "description": "An NBFC (body corporate) discovers ransomware.",
-  "entity_profile": {
-    "entity_class": "nbfc",
-    "is_listed": false,
-    "holds_personal_data": true,
-    "uses_protected_systems": false,
-    "is_regulated_cloud_vps": false
-  },
-  "incident_facts": {
-    "description": "Ransomware infection noticed.",
-    "incident_types": [
-      "malicious code",
-      "ransomware"
-    ],
-    "when_detected": "2026-09-15T10:00:00+05:30",
-    "when_noticed": "2026-09-15T10:00:00+05:30",
-    "when_occurred": "2026-09-15T08:00:00+05:30",
-    "personal_data_involved": null,
-    "systems_affected": [
-      "internal_servers"
-    ]
-  },
-  "law_snapshot_date": "2026-09-24",
-  "expected": {
-    "law_as_of": "2026-09-15",
-    "regulators": [
-      "CERT-In"
-    ],
-    "deadlines": [
-      {
-        "regulator": "CERT-In",
-        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
-        "anchor": "noticing",
-        "deadline_iso8601": "PT6H",
-        "deadline_timestamp": "2026-09-15T16:00:00+05:30"
-      }
-    ],
-    "citations": [
-      {
-        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
-        "instrument_id": "cert-in.directions-70b.2022",
-        "paragraph_ref": "Direction (ii)"
-      },
-      {
-        "obligation_id": "cert-in.directions-70b.2022.ntp-sync",
-        "instrument_id": "cert-in.directions-70b.2022",
-        "paragraph_ref": "Direction (i)"
-      },
-      {
-        "obligation_id": "cert-in.directions-70b.2022.designate-poc",
-        "instrument_id": "cert-in.directions-70b.2022",
-        "paragraph_ref": "Direction (iii)"
-      },
-      {
-        "obligation_id": "cert-in.directions-70b.2022.log-retention-180d",
-        "instrument_id": "cert-in.directions-70b.2022",
-        "paragraph_ref": "Direction (iv)"
-      },
-      {
-        "obligation_id": "cert-in.directions-70b.2022.comply-with-orders",
-        "instrument_id": "cert-in.directions-70b.2022",
-        "paragraph_ref": "Direction (iii)"
-      }
-    ],
-    "required_evidence": [
-      "log retention policy",
-      "PoC designation record",
-      "NTP configuration records"
-    ],
-    "not_applicable": [
-      {
-        "regulator": "CERT-In",
-        "obligation_id": "cert-in.directions-70b.2022.vps-cloud-vpn-customer-data-5y",
-        "reason": "Direction (v) names only data centres, VPS, cloud and VPN providers"
-      },
-      {
-        "regulator": "CERT-In",
-        "obligation_id": "cert-in.directions-70b.2022.virtual-asset-kyc-5y",
-        "reason": "Direction (vi) names only virtual asset service, exchange and custodian wallet providers"
-      }
-    ],
-    "unknowns": []
-  },
-  "adversarial_flags": [],
-  "split": "dev",
-  "labels_source": "CERT-In Directions 70B dated 28 April 2022 (primary text)"
+    "id":  "cert-in-nbfc-ransomware",
+    "description":  "An NBFC (body corporate) discovers ransomware.",
+    "entity_profile":  {
+                           "entity_class":  "nbfc",
+                           "is_listed":  false,
+                           "holds_personal_data":  true,
+                           "uses_protected_systems":  false,
+                           "is_regulated_cloud_vps":  false
+                       },
+    "incident_facts":  {
+                           "description":  "Ransomware infection noticed.",
+                           "incident_types":  [
+                                                  "malicious code",
+                                                  "ransomware"
+                                              ],
+                           "when_detected":  "2026-09-15T10:00:00+05:30",
+                           "when_noticed":  "2026-09-15T10:00:00+05:30",
+                           "when_occurred":  "2026-09-15T08:00:00+05:30",
+                           "personal_data_involved":  null,
+                           "systems_affected":  [
+                                                    "internal_servers"
+                                                ]
+                       },
+    "law_snapshot_date":  "2026-09-24",
+    "expected":  {
+                     "law_as_of":  "2026-09-15",
+                     "regulators":  [
+                                        "CERT-In"
+                                    ],
+                     "deadlines":  [
+                                       {
+                                           "regulator":  "CERT-In",
+                                           "obligation_id":  "cert-in.directions-70b.2022.incident-reporting-6h",
+                                           "anchor":  "noticing",
+                                           "deadline_iso8601":  "PT6H",
+                                           "deadline_timestamp":  "2026-09-15T16:00:00+05:30"
+                                       }
+                                   ],
+                     "citations":  [
+                                       {
+                                           "obligation_id":  "cert-in.directions-70b.2022.incident-reporting-6h",
+                                           "instrument_id":  "cert-in.directions-70b.2022",
+                                           "paragraph_ref":  "Direction (ii)"
+                                       },
+                                       {
+                                           "obligation_id":  "cert-in.directions-70b.2022.ntp-sync",
+                                           "instrument_id":  "cert-in.directions-70b.2022",
+                                           "paragraph_ref":  "Direction (i)"
+                                       },
+                                       {
+                                           "obligation_id":  "cert-in.directions-70b.2022.designate-poc",
+                                           "instrument_id":  "cert-in.directions-70b.2022",
+                                           "paragraph_ref":  "Direction (iii)"
+                                       },
+                                       {
+                                           "obligation_id":  "cert-in.directions-70b.2022.log-retention-180d",
+                                           "instrument_id":  "cert-in.directions-70b.2022",
+                                           "paragraph_ref":  "Direction (iv)"
+                                       },
+                                       {
+                                           "obligation_id":  "cert-in.directions-70b.2022.comply-with-orders",
+                                           "instrument_id":  "cert-in.directions-70b.2022",
+                                           "paragraph_ref":  "Direction (iii)"
+                                       }
+                                   ],
+                     "required_evidence":  [
+                                               "log retention policy",
+                                               "PoC designation record",
+                                               "NTP configuration records"
+                                           ],
+                     "not_applicable":  [
+                                            {
+                                                "regulator":  "CERT-In",
+                                                "obligation_id":  "cert-in.directions-70b.2022.vps-cloud-vpn-customer-data-5y",
+                                                "reason":  "Direction (v) names only data centres, VPS, cloud and VPN providers"
+                                            },
+                                            {
+                                                "regulator":  "CERT-In",
+                                                "obligation_id":  "cert-in.directions-70b.2022.virtual-asset-kyc-5y",
+                                                "reason":  "Direction (vi) names only virtual asset service, exchange and custodian wallet providers"
+                                            }
+                                        ],
+                     "unknowns":  [
+
+                                  ]
+                 },
+    "adversarial_flags":  [
+
+                          ],
+    "split":  "dev",
+    "labels_source":  "CERT-In Directions 70B dated 28 April 2022 (primary text)",
+    "source_quotes":  [
+                          {
+                              "document":  "cert-in.directions-70b.2022",
+                              "page":  2,
+                              "quote":  "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+                          }
+                      ]
 }

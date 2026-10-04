@@ -15,13 +15,18 @@
       "type": "object",
       "properties": {
         "entity_class": { "type": "string" },
+        "entity_classes": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
         "is_listed": { "type": "boolean" },
         "holds_personal_data": { "type": "boolean" },
         "uses_protected_systems": { "type": "boolean" },
         "is_regulated_cloud_vps": { "type": "boolean" },
         "additional_properties": { "type": "object" }
       },
-      "required": ["entity_class", "is_listed", "holds_personal_data", "uses_protected_systems", "is_regulated_cloud_vps"]
+      "required": ["is_listed", "holds_personal_data", "uses_protected_systems", "is_regulated_cloud_vps"],
+      "oneOf": [
+        { "required": ["entity_class"], "not": { "required": ["entity_classes"] } },
+        { "required": ["entity_classes"], "not": { "required": ["entity_class"] } }
+      ]
     },
     "incident_facts": {
       "type": "object",
@@ -114,7 +119,8 @@
             },
             "required": ["question", "affects"]
           }
-        }
+        },
+        "time_critical": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
       },
       "required": ["regulators", "deadlines", "citations", "required_evidence", "not_applicable", "unknowns"]
     },
@@ -128,6 +134,18 @@
     },
     "labels_source": {
       "type": "string"
+    },
+    "source_quotes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "document": { "type": "string" },
+          "page": { "type": "integer", "minimum": 1 },
+          "quote": { "type": "string", "minLength": 1 }
+        },
+        "required": ["document", "page", "quote"]
+      }
     }
   },
   "required": ["id", "description", "entity_profile", "incident_facts", "law_snapshot_date", "expected", "split"]

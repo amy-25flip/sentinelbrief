@@ -167,11 +167,27 @@ def _profile_from_payload(payload: dict[str, Any], *, form_input: bool) -> Incid
         incident_types = [t.strip() for t in re.split(r"[,\n;]", incident_types) if t.strip()]
 
     attestation = payload.get("annexure_attestation", "unknown")
+    also_classes = payload.get("also_classes") or []
+    if isinstance(also_classes, str):
+        also_classes = [also_classes]
+    primary_class = payload.get("entity_class")
+    entity_classes = payload.get("entity_classes")
+    if entity_classes is not None and primary_class is not None:
+        raise ValueError("Supply either entity_class or entity_classes, not both")
+    if entity_classes is None and also_classes:
+        entity_classes = [primary_class, *also_classes]
+    personal_data = payload.get("personal_data_involved")
+    if isinstance(personal_data, str):
+        if personal_data.lower() not in {"true", "false"}:
+            raise ValueError("personal_data_involved must be true or false")
+        personal_data = personal_data.lower() == "true"
     return IncidentProfile(
-        entity_class=str(payload.get("entity_class", "")),
+        entity_class=str(primary_class) if entity_classes is None else None,
+        entity_classes=list(entity_classes) if entity_classes is not None else None,
         incident_types=list(incident_types),
         annexure_i_items=list(payload.get("annexure_i_items") or []),
         is_annexure_i_type=False if attestation == "no" else None,
+        personal_data_involved=personal_data,
         **kwargs,
     )
 
@@ -190,7 +206,8 @@ async def incident_clock(request: Request) -> Response:
             payload = await request.json()
         else:
             raw = parse_qs((await request.body()).decode("utf-8"), keep_blank_values=False)
-            payload = {k: (v if k == "annexure_i_items" else v[-1]) for k, v in raw.items()}
+            repeated = {"annexure_i_items", "also_classes"}
+            payload = {k: (v if k in repeated else v[-1]) for k, v in raw.items()}
         profile = _profile_from_payload(payload, form_input=not is_json)
         engine = IncidentClockEngine(DATA_DIR)
         result = engine.evaluate(profile)

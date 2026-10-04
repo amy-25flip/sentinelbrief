@@ -1,53 +1,39 @@
 {
     "$schema":  "../../schema/benchmark_scenario.schema.json",
-    "id":  "sebi-missing-anchor-unknown",
-    "description":  "Adversarial missing fact test: A Self-certification RE discovers a cyber incident on 2025-09-01, but does not record when it was first noticed or detected. The engine must emit an Unknown asking for the noticing/detection timestamp.",
+    "id":  "sebi-mii-hardware-failure-unattested",
+    "description":  "A SEBI MII reports a hardware failure without attesting that it is an Annexure I type; free text never excludes either structured 6-hour duty.",
     "entity_profile":  {
-                           "entity_class":  "sebi.selfcert_re",
-                           "is_listed":  false,
+                           "entity_class":  "sebi.mii",
+                           "is_listed":  true,
                            "holds_personal_data":  false,
-                           "uses_protected_systems":  false,
+                           "uses_protected_systems":  true,
                            "is_regulated_cloud_vps":  false
                        },
     "incident_facts":  {
-                           "description":  "Malicious script found on staff terminal.",
+                           "description":  "Incident facts as stated in the scenario.",
                            "incident_types":  [
-                                                  "Malicious code attacks such as Ransomware"
+                                                  "hardware failure"
                                               ],
-                           "annexure_i_items":  [
-                                                    "annexure_i.v"
-                                                ],
-                           "when_detected":  null,
-                           "when_noticed":  null,
-                           "when_brought_to_notice":  null,
-                           "when_occurred":  null,
-                           "when_aware":  null,
-                           "personal_data_involved":  false,
+                           "when_noticed":  "2026-09-15T10:00:00+05:30",
                            "systems_affected":  [
-                                                    "Staff Terminal"
+                                                    "Core system"
                                                 ],
                            "is_annexure_i_type":  null
                        },
-    "law_snapshot_date":  "2025-09-01",
+    "law_snapshot_date":  "2026-09-25",
     "expected":  {
-                     "law_as_of":  "2025-09-01",
+                     "law_as_of":  "2026-09-15",
                      "regulators":  [
-                                        "CERT-In",
-                                        "SEBI"
+                                        "CERT-In"
                                     ],
                      "deadlines":  [
 
                                    ],
                      "citations":  [
                                        {
-                                           "obligation_id":  "cert-in.directions-70b.2022.incident-reporting-6h",
+                                           "obligation_id":  "cert-in.directions-70b.2022.ntp-sync",
                                            "instrument_id":  "cert-in.directions-70b.2022",
-                                           "paragraph_ref":  "Direction (ii)"
-                                       },
-                                       {
-                                           "obligation_id":  "sebi.cscrf.2024.incident-reporting-6h",
-                                           "instrument_id":  "sebi.cscrf.2024",
-                                           "paragraph_ref":  "RS.CO.S1 / Annexure-O Section B.1"
+                                           "paragraph_ref":  "Direction (i)"
                                        }
                                    ],
                      "required_evidence":  [
@@ -58,21 +44,26 @@
                                         ],
                      "unknowns":  [
                                       {
-                                          "question":  "When was the incident first noticed or brought to notice?",
+                                          "question":  "Annexure I",
                                           "affects":  "cert-in.directions-70b.2022.incident-reporting-6h"
                                       },
                                       {
-                                          "question":  "When was the incident first noticed, detected, or brought to notice?",
+                                          "question":  "Annexure I",
                                           "affects":  "sebi.cscrf.2024.incident-reporting-6h"
                                       }
                                   ]
                  },
     "adversarial_flags":  [
-                              "missing_fact_trap"
+                              "free_text_never_excludes"
                           ],
     "split":  "dev",
-    "labels_source":  "SEBI CSCRF Circular 2024-08-20 page 123 / 200 and CERT-In Directions 70B",
+    "labels_source":  "CERT-In Directions page 2 and SEBI CSCRF page 123",
     "source_quotes":  [
+                          {
+                              "document":  "cert-in.directions-70b.2022",
+                              "page":  2,
+                              "quote":  "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+                          },
                           {
                               "document":  "sebi.cscrf.2024",
                               "page":  123,

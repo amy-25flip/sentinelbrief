@@ -1,67 +1,78 @@
 {
-  "id": "cert-in-brought-to-notice",
-  "description": "An external party alerts the entity at 10:00 IST; the internal team only notices at 11:00 IST. The clock runs from the earlier trigger.",
-  "entity_profile": {
-    "entity_class": "service_provider",
-    "is_listed": false,
-    "holds_personal_data": true,
-    "uses_protected_systems": false,
-    "is_regulated_cloud_vps": false
-  },
-  "incident_facts": {
-    "description": "Data leak reported by an external researcher before internal noticing.",
-    "incident_types": [
-      "data leak"
-    ],
-    "when_detected": "2026-09-15T11:00:00+05:30",
-    "when_noticed": "2026-09-15T11:00:00+05:30",
-    "when_occurred": "2026-09-15T07:00:00+05:30",
-    "personal_data_involved": true,
-    "systems_affected": [
-      "s3_bucket"
-    ],
-    "when_brought_to_notice": "2026-09-15T10:00:00+05:30"
-  },
-  "law_snapshot_date": "2026-09-24",
-  "expected": {
-    "law_as_of": "2026-09-15",
-    "regulators": [
-      "CERT-In"
-    ],
-    "deadlines": [
-      {
-        "regulator": "CERT-In",
-        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
-        "anchor": "brought_to_notice",
-        "deadline_iso8601": "PT6H",
-        "deadline_timestamp": "2026-09-15T16:00:00+05:30"
-      }
-    ],
-    "citations": [
-      {
-        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
-        "instrument_id": "cert-in.directions-70b.2022",
-        "paragraph_ref": "Direction (ii)"
-      }
-    ],
-    "required_evidence": [],
-    "not_applicable": [
-      {
-        "regulator": "CERT-In",
-        "obligation_id": "cert-in.directions-70b.2022.vps-cloud-vpn-customer-data-5y",
-        "reason": "Direction (v) names only data centres, VPS, cloud and VPN providers"
-      },
-      {
-        "regulator": "CERT-In",
-        "obligation_id": "cert-in.directions-70b.2022.virtual-asset-kyc-5y",
-        "reason": "Direction (vi) names only virtual asset service, exchange and custodian wallet providers"
-      }
-    ],
-    "unknowns": []
-  },
-  "adversarial_flags": [
-    "ambiguous_anchor"
-  ],
-  "split": "dev",
-  "labels_source": "CERT-In Directions 70B dated 28 April 2022 (primary text)"
+    "id":  "cert-in-brought-to-notice",
+    "description":  "An external party alerts the entity at 10:00 IST; the internal team only notices at 11:00 IST. The clock runs from the earlier trigger.",
+    "entity_profile":  {
+                           "entity_class":  "service_provider",
+                           "is_listed":  false,
+                           "holds_personal_data":  true,
+                           "uses_protected_systems":  false,
+                           "is_regulated_cloud_vps":  false
+                       },
+    "incident_facts":  {
+                           "description":  "Data leak reported by an external researcher before internal noticing.",
+                           "incident_types":  [
+                                                  "data leak"
+                                              ],
+                           "when_detected":  "2026-09-15T11:00:00+05:30",
+                           "when_noticed":  "2026-09-15T11:00:00+05:30",
+                           "when_occurred":  "2026-09-15T07:00:00+05:30",
+                           "personal_data_involved":  true,
+                           "systems_affected":  [
+                                                    "s3_bucket"
+                                                ],
+                           "when_brought_to_notice":  "2026-09-15T10:00:00+05:30"
+                       },
+    "law_snapshot_date":  "2026-09-24",
+    "expected":  {
+                     "law_as_of":  "2026-09-15",
+                     "regulators":  [
+                                        "CERT-In"
+                                    ],
+                     "deadlines":  [
+                                       {
+                                           "regulator":  "CERT-In",
+                                           "obligation_id":  "cert-in.directions-70b.2022.incident-reporting-6h",
+                                           "anchor":  "brought_to_notice",
+                                           "deadline_iso8601":  "PT6H",
+                                           "deadline_timestamp":  "2026-09-15T16:00:00+05:30"
+                                       }
+                                   ],
+                     "citations":  [
+                                       {
+                                           "obligation_id":  "cert-in.directions-70b.2022.incident-reporting-6h",
+                                           "instrument_id":  "cert-in.directions-70b.2022",
+                                           "paragraph_ref":  "Direction (ii)"
+                                       }
+                                   ],
+                     "required_evidence":  [
+
+                                           ],
+                     "not_applicable":  [
+                                            {
+                                                "regulator":  "CERT-In",
+                                                "obligation_id":  "cert-in.directions-70b.2022.vps-cloud-vpn-customer-data-5y",
+                                                "reason":  "Direction (v) names only data centres, VPS, cloud and VPN providers"
+                                            },
+                                            {
+                                                "regulator":  "CERT-In",
+                                                "obligation_id":  "cert-in.directions-70b.2022.virtual-asset-kyc-5y",
+                                                "reason":  "Direction (vi) names only virtual asset service, exchange and custodian wallet providers"
+                                            }
+                                        ],
+                     "unknowns":  [
+
+                                  ]
+                 },
+    "adversarial_flags":  [
+                              "ambiguous_anchor"
+                          ],
+    "split":  "dev",
+    "labels_source":  "CERT-In Directions 70B dated 28 April 2022 (primary text)",
+    "source_quotes":  [
+                          {
+                              "document":  "cert-in.directions-70b.2022",
+                              "page":  2,
+                              "quote":  "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+                          }
+                      ]
 }

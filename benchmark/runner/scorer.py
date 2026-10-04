@@ -19,6 +19,7 @@ Exit status is 1 if any scenario fails, so CI can gate on regressions.
 import argparse
 import json
 import math
+import re
 import sys
 from datetime import date, datetime
 from pathlib import Path
@@ -27,6 +28,47 @@ from typing import Any
 from sentinelbrief.clock.engine import IST, IncidentClockEngine, IncidentProfile
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+
+def verify_source_quotes(
+    scenario: dict[str, Any], data_dir: str | Path = BASE_DIR / "data"
+) -> None:
+    """Raise ValueError unless every label quote occurs on its declared stored PDF page."""
+    root = Path(data_dir)
+    quotes = scenario.get("source_quotes") or []
+    instruments: dict[str, dict[str, Any]] = {}
+    for path in (root / "instruments").glob("*.json"):
+        value = json.loads(path.read_text(encoding="utf-8"))
+        for item in value if isinstance(value, list) else [value]:
+            instruments[item["id"]] = item
+    manifest = json.loads((root / "raw" / "manifest.json").read_text(encoding="utf-8"))
+    by_hash = {entry["sha256"]: entry for entry in manifest["entries"]}
+    for source_quote in quotes:
+        instrument_id = source_quote["document"]
+        instrument = instruments.get(instrument_id)
+        if instrument is None:
+            raise ValueError(f"Unknown source quote instrument: {instrument_id}")
+        entry = by_hash.get(instrument.get("source_sha256"))
+        if entry is None:
+            raise ValueError(f"No stored raw source for instrument: {instrument_id}")
+        stem = Path(entry["filename"]).stem
+        meta = json.loads((root / "raw" / f"{stem}.meta.json").read_text(encoding="utf-8"))
+        page = next(
+            (item for item in meta["page_offsets"] if item["page"] == source_quote["page"]),
+            None,
+        )
+        if page is None:
+            raise ValueError(f"Page {source_quote['page']} does not exist in {instrument_id}")
+        text_value = (root / "raw" / f"{stem}.txt").read_text(encoding="utf-8")
+        page_text = text_value[page["char_start"] : page["char_end"]]
+
+        def collapse(value: str) -> str:
+            return re.sub(r"\s+", " ", value).strip()
+
+        if collapse(source_quote["quote"]) not in collapse(page_text):
+            raise ValueError(
+                f"Source quote for {instrument_id} is not on PDF page {source_quote['page']}"
+            )
 
 
 def wilson_interval(successes: int, total: int, z: float = 1.96) -> tuple[float, float]:
@@ -67,7 +109,8 @@ class BenchmarkScorer:
         ep = scenario["entity_profile"]
         facts = scenario["incident_facts"]
         return IncidentProfile(
-            entity_class=ep["entity_class"],
+            entity_class=ep.get("entity_class"),
+            entity_classes=ep.get("entity_classes"),
             incident_description=facts.get("description", ""),
             incident_types=facts.get("incident_types", []),
             annexure_i_items=facts.get("annexure_i_items", []),
@@ -90,6 +133,10 @@ class BenchmarkScorer:
         # label asserts what it should be (expected.law_as_of).
         result = self.engine.evaluate(self._profile(scenario), now=now)
         failures: list[str] = []
+        try:
+            verify_source_quotes(scenario, self.data_dir)
+        except ValueError as exc:
+            failures.append(str(exc))
 
         predicted_regs = {_norm_reg(d.regulator) for d in result.deadlines}
         for obl_id in result.applicable_obligations:
@@ -177,6 +224,15 @@ class BenchmarkScorer:
             matched_unknowns |= hits
         for extra in sorted(predicted_unknowns - matched_unknowns):
             failures.append(f"unexpected unknown asked: {extra[1]} ({extra[0]})")
+
+        if "time_critical" in expected:
+            got_time_critical = {item.obligation_id for item in result.time_critical}
+            wanted_time_critical = set(expected["time_critical"])
+            if got_time_critical != wanted_time_critical:
+                failures.append(
+                    f"time_critical: expected {sorted(wanted_time_critical)}, "
+                    f"got {sorted(got_time_critical)}"
+                )
 
         return {
             "id": scenario["id"],
