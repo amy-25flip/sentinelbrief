@@ -57,3 +57,15 @@ Below, "CERT-In 6h" is `cert-in.directions-70b.2022.incident-reporting-6h`. Unle
 ## Existing scenarios that change
 
 Scenarios that use the class `nbfc` with an incident on or after 2026-07-31 now also expect the "NBFC category" unknown for the three RBI duties named in `rbi-generic-nbfc-must-ask-category`. Their existing expectations do not change. The clause is para 3 (page 3).
+
+## Amendment 1 (2026-10-04, by the label author, after Review 9)
+
+The refinement question applies to every RBI duty, not only the three event duties, because a generic NBFC must not be told the VA and PT duties do not apply. So `rbi-generic-nbfc-must-ask-category`, and the existing generic-NBFC scenarios, also expect the "NBFC category" unknown for `ch5-va-half-yearly` and `ch5-pt-annual`. New labels:
+
+| Id | Profile and facts | Expected |
+|---|---|---|
+| `rbi-hfc-without-layer-must-ask-category` | `nbfc.hfc` only; detected and noticed 10:00 | CERT-In 6h 16:00. Unknown "NBFC category" affecting ch4 reporting, the HFC duty, ch5 CERT-In notification, VA and PT. ch5 reporting to RBI not applicable (HFC excluded). |
+| `rbi-cic-without-layer-must-ask-category` | `nbfc.cic` only; same times | CERT-In 6h 16:00. Every ch5 duty not applicable (CIC excluded). Unknown "NBFC category" affecting ch4 reporting only. |
+| `rbi-generic-plus-specific-class-no-question` | `nbfc` and `nbfc.middle_layer`; same times | As `rbi-ml-ransomware`. ch4 not applicable. No unknowns. |
+| `rbi-base-layer-without-size-must-ask` | `nbfc.base_layer`; same times | CERT-In 6h 16:00. Unknown "NBFC category" affecting ch4 reporting only. Every ch5 duty not applicable. |
+| `rbi-contradictory-attestation-caveat` | `nbfc.middle_layer`; ransomware; attested not a cyber incident | CERT-In 6h 16:00. ch5 reporting and CERT-In notification not applicable. The result carries a caveat containing "re-check". |

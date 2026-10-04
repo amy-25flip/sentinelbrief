@@ -18,5 +18,5 @@
     "parser_version": "pymupdf-1.28.2",
     "extraction_date": "2026-09-25T00:00:00Z"
   },
-  "acquisition_note": "Raw evidence only; no RBI obligations, scenarios, or labels are authored in this ingest. The exact PDF URL is recorded in data/raw/manifest.json. The PDF also shows second reference DoS.CO.CSITEG.55/31.01.015/2026-27."
+  "acquisition_note": "The exact PDF URL is recorded in data/raw/manifest.json. The PDF also shows second reference DoS.CO.CSITEG.55/31.01.015/2026-27."
 }
