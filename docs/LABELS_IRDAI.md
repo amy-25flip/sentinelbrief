@@ -73,3 +73,12 @@ Read in full for this part: Policy 2.2 section 3.3 (PDF page 176), Policy 2.8 se
 | `irdai-other-duties-give-no-incident-clock` | `irdai.insurer`; ransomware; noticed 2026-10-01 10:00 | Deadlines: only CERT-In 6h and IRDAI 6h, both 16:00. All seven duties above are applicable. None has a deadline. No unknowns. Nothing is time critical. |
 | `irdai-other-duties-do-not-reach-an-nbfc` | `nbfc.middle_layer`; detected and noticed 10:00 | All seven not applicable. |
 | `irdai-other-duties-before-the-guidelines` | `irdai.insurer`; noticed 2023-04-01 10:00 | All seven not applicable, reason containing "not_yet_valid_at_incident_date (2023-04-24)". |
+
+## Part 3 (2026-10-05): entering the event that starts an external clock, labels before implementation
+
+New fact `external_events`: a map from an obligation id to the time its starting event happened (the order was received, the complaint was received, the device was lost). Only obligations with the `external_event` anchor may appear in it; anything else is an input error. When a time is given, the deadline is that time plus the duration, with anchor `external_event`. The time does not change "law as of", which stays tied to the incident. Durations count from the timestamp (the earlier reading, as for SEBI Table 36).
+
+| Id | Profile and facts | Expected |
+|---|---|---|
+| `irdai-government-order-clock` | `irdai.insurer`; ransomware; noticed 2026-10-01 10:00; order received 2026-10-02 09:00 | CERT-In 6h and IRDAI 6h 2026-10-01 16:00. `gov-order-information-72h` due 2026-10-05 09:00 (external_event). The other external duties have no deadline. law_as_of 2026-10-01. |
+| `irdai-complaint-clocks` | `irdai.intermediary`; ransomware; noticed 2026-10-01 10:00; complaint received 2026-10-01 12:00, given for both grievance duties | `grievance-acknowledge-24h` due 2026-10-02 12:00; `grievance-dispose-15d` due 2026-10-16 12:00; plus the two six-hour deadlines at 16:00. |
