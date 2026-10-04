@@ -158,3 +158,15 @@ No new source documents were added and all sources re-verify. The labels commit 
 - [minor] [docs] J9. Anti's two new DECISIONS entries state conclusions without exact quotes or alternatives (brief section 3, step 6). Amend them as J2 and J8 require. Status: FIXED. Proof: Both builder entries now contain exact page quotes and alternatives.
 - [process] J10. **No Checkpoint 2B handoff was written** (`HANDOFF.md` is still the previous fixer's). This is for the builder, not the fixer; do not write it. Status: OPEN (builder).
 
+## Review 8 - the reviewer agent, 2026-10-04 (the fixer's Review 7 repairs, commit 831b353)
+
+Method: re-ran `scripts/check.py` (6 gates pass; 190 tests; 37/37 dev scenarios); read every distinct `source_quotes` entry; checked page numbers against the page offsets of the stored text (SEBI paragraphs 17.1 and 17.2 on page 9; SEBI incident clause on page 123; RBI paragraph 2 on page 3, paragraph 28 on page 18, paragraph 141 across pages 43 and 44); confirmed the engine no longer matches prose for legal gating.
+
+Accepted: J1 to J9 as fixed. Every quote is a real clause on the cited page.
+
+### Findings
+
+- [minor] [benchmark] K1. **Seven scenarios quote only CERT-In Direction (ii) although their expected outcome turns on a different clause.** `cert-in-before-directions-effective` (turns on the commencement clause of the Directions); `dpdp-commencement-before-may-2027` (turns on DPDP Rule 1(4), page 24); `dpdp-awareness-unknown`, `dpdp-no-personal-data`, `dpdp-non-fiduciary-entity` (turn on DPDP Rule 7, page 26); `sebi-incident-before-issue-date` (turns on the circular's date); `sebi-non-sebi-entity-bank-trap` (turns on the SEBI clause it excludes). Also `cert-in-non-annexure-i-type`, `cert-in-unattested-hardware-failure` and `cert-in-cloud-outage-not-assumed` quote only Direction (i) although the point of each is the Annexure I limit in Direction (ii). Required fix: add to each the quote of the clause the outcome turns on (keep the existing quote). Status: OPEN.
+- [minor] [docs] K2. `HANDOFF.md` has no "Review 7 fixes" section and `README.md` was not checked against the `entity_classes` and `applicability.requires` changes (the fixer reported "Access denied" on both files). Status: OPEN.
+- [process] J10 remains OPEN for the builder.
+
