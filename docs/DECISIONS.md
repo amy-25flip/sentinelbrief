@@ -326,3 +326,11 @@ Decisions below were made during Review 1 (the reviewer agent, 2026-09-24). See 
 **Text:** "the maximum period for the submission of forensic audit report shall be 75 days from date of reporting of incident" for incidents classified High or Critical (page 203); quarterly reports "within 15 days from the quarter ended June, September, December and March" (page 124).
 
 **Reason:** the forensic duty depends on a severity classification the tool does not hold; the quarterly report is periodic, not incident-driven. Both are open questions.
+
+## 2026-10-04: Author-written evidence lists move to `suggested_evidence`
+
+**Decision:** Every existing `normalized.evidence_required` list is renamed to `normalized.suggested_evidence`. `evidence_required` stays in the schema for evidence the cited text itself demands, and the obligation validator rejects any item that is not quoted from `text_verbatim`.
+
+**Reason:** Review 5 found that none of the listed items is in the source text. The page already labelled them as suggestions; the data now says the same thing, and a future author cannot put an invented item back into the source-stated field without the gate failing.
+
+**Alternative rejected:** deleting the lists. They are useful operational prompts once clearly separated from what the law says.

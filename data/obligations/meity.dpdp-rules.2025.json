@@ -22,7 +22,7 @@
                                             "fixed_date":  null
                                         },
                            "recipient":  "Data Principal",
-                           "evidence_required":  [
+                           "suggested_evidence":  [
                                                      "Intimation records sent to affected Data Principals",
                                                      "Communication logs and delivery receipts"
                                                  ]
@@ -93,7 +93,7 @@
                                             "fixed_date":  null
                                         },
                            "recipient":  "Data Protection Board of India",
-                           "evidence_required":  [
+                           "suggested_evidence":  [
                                                      "Initial breach intimation notice submitted to the Board",
                                                      "Submission receipt / acknowledgement"
                                                  ]
@@ -164,7 +164,7 @@
                                             "fixed_date":  null
                                         },
                            "recipient":  "Data Protection Board of India",
-                           "evidence_required":  [
+                           "suggested_evidence":  [
                                                      "Detailed breach report submitted to the Board",
                                                      "Root cause analysis report",
                                                      "Board extension request and approval (if applicable)"

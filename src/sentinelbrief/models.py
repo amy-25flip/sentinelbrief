@@ -89,7 +89,10 @@ class Normalized(BaseModel):
     action: str
     deadline: Deadline
     recipient: str | None = None
+    # Source-stated only: every item must be quoted from text_verbatim (validator-enforced).
     evidence_required: list[str] | None = None
+    # Author suggestions, not in the source text and not a legal requirement.
+    suggested_evidence: list[str] | None = None
 
 
 class Applicability(BaseModel):

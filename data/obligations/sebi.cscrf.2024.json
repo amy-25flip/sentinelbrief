@@ -31,7 +31,7 @@
         "fixed_date": null
       },
       "recipient": "SEBI and CERT-In",
-      "evidence_required": [
+      "suggested_evidence": [
         "Email notification record sent to mkt_incidents@sebi.gov.in",
         "CERT-In incident submission receipt"
       ]

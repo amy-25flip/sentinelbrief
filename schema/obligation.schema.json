@@ -76,6 +76,12 @@
           "type": "string"
         },
         "evidence_required": {
+          "description": "Evidence the cited text itself requires. Every item must be words quoted from text_verbatim.",
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "suggested_evidence": {
+          "description": "Operational suggestions written by the dataset authors. Not stated in the source text and not a legal requirement.",
           "type": "array",
           "items": { "type": "string" }
         }

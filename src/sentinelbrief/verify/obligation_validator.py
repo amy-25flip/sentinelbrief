@@ -37,6 +37,14 @@ def validate_obligation(
     elif obligation.text_verbatim not in source_text:
         errors.append("text_verbatim is not an exact substring of the source text")
 
+    collapsed_source = " ".join(obligation.text_verbatim.split())
+    for item in obligation.normalized.evidence_required or []:
+        if " ".join(item.split()) not in collapsed_source:
+            errors.append(
+                f"evidence_required item is not quoted from text_verbatim: {item!r}; "
+                "author suggestions belong in suggested_evidence"
+            )
+
     if obligation.verification == "human_verified":
         reviewer = (
             (obligation.verification_details.reviewer or "")
