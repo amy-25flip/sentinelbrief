@@ -71,3 +71,41 @@ Decision 7 says the post-incident duties apply whenever a SEBI incident-reportin
 - `sebi-nbfc-is-not-a-sebi-re` also expects the RBI Chapter V deadline (16:00, detection), which the profile implies.
 
 Existing scenario `sebi-mii-attested-not-annexure-i` (attested not Annexure I, cyber-incident status not given) now expects the "cybersecurity incident" unknown for the other-incident, NCIIPC and post-incident duties, per decision 3.
+
+## Part 2 (2026-10-05): forensic report and quarterly reports, labels before implementation
+
+These close decision 8 of Part 1, which left both unmodelled.
+
+### What the text says
+
+| Point | Text | Page |
+|---|---|---|
+| Who must file a forensic report | Annexure-O 4.1: "For all incidents classified as High or Critical, the RE shall submit a forensic audit/ investigation report." 4.2: "For incidents classified as low or medium, forensic report shall be submitted if the RCA is inconclusive or if the SEBI/ HPSC-CS directs the same." | 203 |
+| By when | 4.3: "the maximum period for the submission of forensic audit report shall be 75 days from date of reporting of incident." | 203 |
+| Severity | Annexure-O A.2: four categories, Low, Medium, High, Critical. 3.5: "RE shall classify the cybersecurity incident based on its severity as per Table 35". A.4: an incident that disrupts normal operations "must be classified as High or Critical". | 198 to 199, 202 |
+| Quarterly | RS.CO.S1 item 4: quarterly reports "shall be submitted to SEBI within 15 days from the quarter ended June, September, December and March of every year." | 124 |
+
+### Decisions
+
+1. New fact `sebi_severity` (low, medium, high, critical, or not given). The tool does not classify; the RE does (3.5). New `requires` key `sebi_high_or_critical`: high or critical applies; low or medium does not apply, with a reason that says a report may still be required under 4.2; not given asks (question contains "severity").
+2. `post-incident-forensic-report-75d`: `P75D`, anchor `reported` only (the text says "from date of reporting of incident" and, unlike Table 36, does not add "or being brought to notice"). Counted from the timestamp. It is a maximum; the actual timeline is "decided based on discussion with all stakeholders", which the action text keeps.
+3. It applies only when a SEBI incident-reporting duty applies, so the incident-reporting question is resolved first and the severity question is asked only after it.
+4. `quarterly-report-15d`: a recurring duty on all REs, every three months, due on 15 July, 15 October, 15 January and 15 April. It is not an incident deadline. New data field `fixed_schedule` (month-day list) so the calendar export can place it on those dates.
+
+### Labels
+
+Unless stated: `sebi.qualified_re`; ransomware; noticed 2026-10-01 10:00; `uses_protected_systems` false; reported to SEBI 2026-10-01 15:00. "Forensic" is `sebi.cscrf.2024.post-incident-forensic-report-75d`.
+
+| Id | Facts | Expected for the forensic duty |
+|---|---|---|
+| `sebi-forensic-high-severity-75-days` | severity high | Deadline 2026-12-15 15:00 (reported). |
+| `sebi-forensic-critical-severity` | severity critical | Deadline 2026-12-15 15:00 (reported). |
+| `sebi-forensic-medium-not-required` | severity medium | Not applicable. No unknown. |
+| `sebi-forensic-severity-unknown-asks` | severity not given | Unknown "severity". No deadline. |
+| `sebi-forensic-needs-report-time` | severity high; no report time; brought to notice 09:00 | Unknown "reported to SEBI" for Forensic: being brought to notice does not start this clock, although it starts the Table 36 clocks (interim due 2026-10-04 09:00). |
+
+All five also expect the Part 1 outcomes for the same facts.
+
+### Existing scenarios that change
+
+For each existing scenario, the forensic duty follows the interim-report duty: where that is not applicable, so is Forensic; where it carries the "Annexure I" or "cybersecurity incident" unknown, Forensic carries the same; where it has a deadline or the "reported to SEBI" unknown, Forensic carries the "severity" unknown (no existing scenario states a severity).
