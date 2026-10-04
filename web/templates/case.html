@@ -45,7 +45,14 @@
         {% for f in d.fields %}
         <tr>
             <td>{{ f.label }}</td>
-            <td>{% if f.value is none %}<em style="color: var(--warning);">to be completed by you</em>{% else %}{{ f.value }}{% endif %}</td>
+            <td>{% if f.origin == 'source_text' and row.status != 'filed' %}
+                <form method="post" action="/api/cases/{{ view.case.id }}/drafts/{{ d.obligation_id }}/fields">
+                    <input type="hidden" name="label" value="{{ f.label }}">
+                    <textarea name="value" rows="2" style="width: 100%;" placeholder="to be completed by you">{{ f.value or '' }}</textarea>
+                    <input type="text" name="recorded_by" placeholder="Your name" required>
+                    <button type="submit" class="btn">Save</button>
+                </form>
+                {% elif f.value is none %}<em style="color: var(--warning);">left empty</em>{% else %}{{ f.value }}{% endif %}</td>
             <td style="font-size: 0.8rem; color: var(--text-muted);">
                 {% if f.origin == 'source_text' %}required by the clause, quoted ({{ f.citation }})
                 {% elif f.origin == 'your_input' %}your input
@@ -59,6 +66,12 @@
     {% if row.status == 'draft' %}
     <form method="post" action="/api/cases/{{ view.case.id }}/drafts/{{ d.obligation_id }}/approve" style="margin-top: 0.75rem;">
         <input type="text" name="approver" placeholder="Approver's name" required>
+        {% if row.open_fields %}
+        <label style="display: block; font-size: 0.85rem; color: var(--warning);">
+            <input type="checkbox" name="accept_open_fields" value="true" required>
+            {{ row.open_fields }} field(s) the clause requires are still empty; I will complete them on the regulator's channel.
+        </label>
+        {% endif %}
         <button type="submit" class="btn">Approve this draft</button>
     </form>
     {% elif row.status == 'approved' %}

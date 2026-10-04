@@ -8,7 +8,7 @@ import zipfile
 from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any
-from urllib.parse import parse_qs
+from urllib.parse import parse_qs, urlparse
 
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Response
@@ -39,6 +39,22 @@ templates.env.filters["ist"] = lambda dt: dt.astimezone(IST).strftime("%d %b %Y,
 # Mount static files
 if STATIC_DIR.exists():
     app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+
+
+@app.middleware("http")
+async def same_origin_for_state_changes(request: Request, call_next: Any) -> Any:
+    """Refuse state-changing requests sent by another website.
+
+    The app has no login and usually runs on localhost, so a page on another site could
+    otherwise post to it from the user's browser (approve a draft, change facts). Browsers
+    send Origin on such requests; a mismatch with Host is refused. Non-browser clients,
+    which send no Origin, are unaffected.
+    """
+    if request.method not in {"GET", "HEAD", "OPTIONS"}:
+        origin = request.headers.get("origin")
+        if origin is not None and urlparse(origin).netloc != request.headers.get("host", ""):
+            return JSONResponse({"error": "cross-origin request refused"}, status_code=403)
+    return await call_next(request)
 
 
 def _load_json(path: Path) -> Any:
@@ -417,12 +433,34 @@ async def approve_draft(request: Request, case_id: str, obligation_id: str) -> R
     """A named person approves the current content of one draft. Nothing is submitted."""
     try:
         payload, is_json = await _payload(request)
-        digest = _case_store().approve(case_id, obligation_id, str(payload.get("approver", "")))
+        accept = payload.get("accept_open_fields") in (True, "true", "on", "yes")
+        digest = _case_store().approve(
+            case_id, obligation_id, str(payload.get("approver", "")), accept_open_fields=accept
+        )
     except (ValueError, KeyError, TypeError) as exc:
         return _case_error(exc)
     if is_json:
         return JSONResponse({"status": "approved", "draft_sha256": digest})
     return RedirectResponse(f"/cases/{case_id}", status_code=303)
+
+
+@app.post("/api/cases/{case_id}/drafts/{obligation_id}/fields", response_model=None)
+async def complete_draft_field(request: Request, case_id: str, obligation_id: str) -> Response:
+    """A person completes one field the cited clause requires. Stored on this machine only."""
+    try:
+        payload, is_json = await _payload(request)
+        _case_store().set_entry(
+            case_id,
+            obligation_id,
+            str(payload.get("label", "")),
+            str(payload.get("value", "")),
+            str(payload.get("recorded_by", "")),
+        )
+    except (ValueError, KeyError, TypeError) as exc:
+        return _case_error(exc)
+    if is_json:
+        return JSONResponse({"ok": True})
+    return RedirectResponse(f"/cases/{case_id}#draft-{obligation_id}", status_code=303)
 
 
 @app.post("/api/cases/{case_id}/drafts/{obligation_id}/filed", response_model=None)

@@ -8,7 +8,8 @@ import hashlib
 import json
 import re
 import uuid
-from datetime import UTC, datetime
+from dataclasses import replace
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -152,7 +153,17 @@ class CaseStore:
     ) -> tuple[ClockResult, list[FilingDraft]]:
         case = self._read(case_id)
         result = self.engine.evaluate(facts_to_profile(case["facts"]), now=now)
-        return result, build_drafts(self.engine, result, self.content)
+        drafts = []
+        for draft in build_drafts(self.engine, result, self.content):
+            entries = (case.get("entries") or {}).get(draft.obligation_id) or {}
+            fields = [
+                replace(f, value=entries[f.label])
+                if f.origin == "source_text" and f.label in entries
+                else f
+                for f in draft.fields
+            ]
+            drafts.append(replace(draft, fields=fields))
+        return result, drafts
 
     def view(self, case_id: str, now: datetime | None = None) -> dict[str, Any]:
         """Everything a page or API client needs for one case."""
@@ -236,22 +247,73 @@ class CaseStore:
             raise KeyError(f"No draft for {obligation_id} in this case")
         return draft
 
-    def approve(self, case_id: str, obligation_id: str, approver: str) -> str:
-        """A named person approves the current draft content. Returns the content digest."""
+    def set_entry(
+        self, case_id: str, obligation_id: str, label: str, value: str, actor: str
+    ) -> None:
+        """A person completes one field the clause requires. Withdraws an unfiled approval."""
+        actor = _require_person(actor, "The person completing the field")
+        case = self._read(case_id)
+        state = case["drafts"].get(obligation_id) or {}
+        if state.get("status") == "filed":
+            raise ValueError("This filing is already recorded as filed")
+        draft = self._draft(case_id, obligation_id)
+        if label not in {f.label for f in draft.fields if f.origin == "source_text"}:
+            raise ValueError("That is not a field the cited clause requires for this filing")
+        text = value.strip()
+        entries = case.setdefault("entries", {}).setdefault(obligation_id, {})
+        if text:
+            entries[label] = text
+        else:
+            entries.pop(label, None)
+        withdrawn = state.get("status") == "approved"
+        if withdrawn:
+            case["drafts"][obligation_id] = {
+                "status": "draft",
+                "note": "field changed; approve again",
+            }
+        self.timeline(case_id).append(
+            actor,
+            "note_added",
+            {
+                "obligation_id": obligation_id,
+                "field": label,
+                "value": text,
+                "approval_withdrawn": withdrawn,
+            },
+        )
+        self._write(case)
+
+    def approve(
+        self, case_id: str, obligation_id: str, approver: str, accept_open_fields: bool = False
+    ) -> str:
+        """A named person approves the current draft content. Returns the content digest.
+
+        A draft with fields still empty is approved only if the approver says so explicitly.
+        """
         approver = _require_person(approver, "The approver")
         case = self._read(case_id)
         if (case["drafts"].get(obligation_id) or {}).get("status") == "filed":
             raise ValueError("This filing is already recorded as filed")
-        digest = draft_digest(self._draft(case_id, obligation_id))
+        draft = self._draft(case_id, obligation_id)
+        empty = len(draft.open_fields())
+        if empty and not accept_open_fields:
+            raise ValueError(
+                f"{empty} field(s) the clause requires are still empty. Complete them, or approve "
+                "with accept_open_fields to record that they will be completed on the regulator's channel."
+            )
+        digest = draft_digest(draft)
         now = datetime.now(UTC).isoformat()
         self.timeline(case_id).append(
-            approver, "draft_approved", {"obligation_id": obligation_id, "draft_sha256": digest}
+            approver,
+            "draft_approved",
+            {"obligation_id": obligation_id, "draft_sha256": digest, "fields_left_empty": empty},
         )
         case["drafts"][obligation_id] = {
             "status": "approved",
             "approved_by": approver,
             "approved_at": now,
             "approved_digest": digest,
+            "fields_left_empty": empty,
         }
         self._write(case)
         return digest
@@ -263,6 +325,10 @@ class CaseStore:
         filed_by = _require_person(filed_by, "The person who filed")
         if filed_at.tzinfo is None or filed_at.utcoffset() is None:
             raise ValueError("filed_at must be timezone-aware")
+        if filed_at > datetime.now(UTC) + timedelta(minutes=5):
+            raise ValueError(
+                "filed_at is in the future; record a filing only after it has been made"
+            )
         if not reference.strip():
             raise ValueError(
                 "A filing reference (acknowledgement number or message id) is required"

@@ -34,6 +34,7 @@ RBI_6H = "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h"
 DPDP_72H = "meity.dpdp-rules.2025.rule7-2-b-board-detailed"
 DPDP_PRINCIPAL = "meity.dpdp-rules.2025.rule7-1-principal-intimation"
 RBI_CERT_IN = "rbi.nbfc-cyber.2026.ch5-cert-in-notification"
+FILED = datetime(2026, 10, 4, 12, 0, tzinfo=IST)  # a filing can only be recorded after it was made
 
 
 def _profile(**overrides) -> IncidentProfile:
@@ -147,16 +148,16 @@ def test_case_lifecycle_requires_a_person_at_each_step(store):
     """Catches: filing recorded without approval, or approval by an AI agent or nobody."""
     case_id = store.create(_profile(), "Asha Rao")
     with pytest.raises(ValueError, match="approved by a person"):
-        store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", T10)
+        store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", FILED)
     for bad in ("", " ", "Claude", "codex", "auto"):
         with pytest.raises(ValueError, match="person"):
             store.approve(case_id, CERT_6H, bad)
     digest = store.approve(case_id, CERT_6H, "Asha Rao")
     with pytest.raises(ValueError, match="reference"):
-        store.record_filing(case_id, CERT_6H, "Asha Rao", " ", T10)
+        store.record_filing(case_id, CERT_6H, "Asha Rao", " ", FILED)
     with pytest.raises(ValueError, match="timezone-aware"):
         store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", datetime(2027, 6, 1, 12, 0))
-    store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", T10 + timedelta(hours=2))
+    store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", FILED)
     row = next(r for r in store.view(case_id)["drafts"] if r["draft"]["obligation_id"] == CERT_6H)
     assert (
         row["status"] == "filed"
@@ -174,7 +175,7 @@ def test_changing_a_fact_withdraws_unfiled_approvals(store):
     case_id = store.create(_profile(), "Asha Rao")
     store.approve(case_id, RBI_6H, "Asha Rao")
     store.approve(case_id, CERT_6H, "Asha Rao")
-    store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", T10 + timedelta(hours=2))
+    store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", FILED)
     store.update_facts(
         case_id, {"when_detected": (T10 - timedelta(hours=3)).isoformat()}, "Asha Rao"
     )
@@ -183,7 +184,7 @@ def test_changing_a_fact_withdraws_unfiled_approvals(store):
     assert rows[RBI_6H]["draft"]["due_ist"] == "01 Jun 2027, 13:00 IST"
     assert rows[CERT_6H]["status"] == "filed"
     with pytest.raises(ValueError, match="approved by a person"):
-        store.record_filing(case_id, RBI_6H, "Asha Rao", "DAKSH-9", T10)
+        store.record_filing(case_id, RBI_6H, "Asha Rao", "DAKSH-9", FILED)
 
 
 def test_answering_an_unknown_through_facts_produces_the_deadline(store):
@@ -214,7 +215,7 @@ def test_every_state_change_is_on_the_evidence_chain(store):
     """Catches: an approval or filing that leaves no tamper-evident record."""
     case_id = store.create(_profile(), "Asha Rao")
     store.approve(case_id, CERT_6H, "Asha Rao")
-    store.record_filing(case_id, CERT_6H, "Vikram Shah", "CERTIN-1", T10 + timedelta(hours=2))
+    store.record_filing(case_id, CERT_6H, "Vikram Shah", "CERTIN-1", FILED)
     timeline = store.timeline(case_id)
     assert [e.type for e in timeline] == ["incident_created", "draft_approved", "filing_recorded"]
     assert [e.actor for e in timeline] == ["Asha Rao", "Asha Rao", "Vikram Shah"]
@@ -405,3 +406,91 @@ def test_incident_form_offers_opening_a_case():
     """Catches: no way to open a case from the incident page."""
     page = TestClient(app).get("/incident")
     assert 'name="opened_by"' in page.text and 'formaction="/api/cases"' in page.text
+
+
+# --- Review 11 (self-review) fixes ---
+
+
+def test_filing_cannot_be_recorded_before_it_was_made(store):
+    """Catches: a filing recorded with a future time, making the timeline claim it already happened."""
+    case_id = store.create(_profile(), "Asha Rao")
+    store.approve(case_id, CERT_6H, "Asha Rao")
+    future = datetime.now(IST) + timedelta(days=1)
+    with pytest.raises(ValueError, match="in the future"):
+        store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", future)
+    store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", FILED)
+
+
+def test_clause_fields_can_be_completed_and_are_covered_by_the_approval(store):
+    """Catches: an approval that covers blanks, or a field changed after approval without notice."""
+    case_id = store.create(_profile(), "Asha Rao")
+    with pytest.raises(ValueError, match=r"6 field\(s\) the clause requires are still empty"):
+        store.approve(case_id, DPDP_72H, "Asha Rao")
+    row = next(r for r in store.view(case_id)["drafts"] if r["draft"]["obligation_id"] == DPDP_72H)
+    labels = [f["label"] for f in row["draft"]["fields"] if f["origin"] == "source_text"]
+    with pytest.raises(ValueError, match="not a field the cited clause requires"):
+        store.set_entry(case_id, DPDP_72H, "Favourite colour", "blue", "Asha Rao")
+    with pytest.raises(ValueError, match="person"):
+        store.set_entry(case_id, DPDP_72H, labels[0], "text", "codex")
+    for label in labels:
+        store.set_entry(case_id, DPDP_72H, label, f"Completed: {label[:20]}", "Asha Rao")
+    row = next(r for r in store.view(case_id)["drafts"] if r["draft"]["obligation_id"] == DPDP_72H)
+    assert row["open_fields"] == 0
+    digest = store.approve(case_id, DPDP_72H, "Asha Rao")
+    store.set_entry(case_id, DPDP_72H, labels[0], "Corrected text", "Vikram Shah")
+    row = next(r for r in store.view(case_id)["drafts"] if r["draft"]["obligation_id"] == DPDP_72H)
+    assert row["status"] == "draft" and "approve again" in row["note"]
+    assert store.approve(case_id, DPDP_72H, "Asha Rao") != digest
+    events = [(e.type, e.actor) for e in store.timeline(case_id)]
+    assert events.count(("note_added", "Asha Rao")) == 6 and ("note_added", "Vikram Shah") in events
+    assert store.timeline(case_id).verify() == (True, None)
+
+
+def test_approving_with_blanks_needs_an_explicit_statement(store):
+    """Catches: blanks approved silently, with no record that the approver knew."""
+    case_id = store.create(_profile(), "Asha Rao")
+    store.approve(case_id, DPDP_72H, "Asha Rao", accept_open_fields=True)
+    row = next(r for r in store.view(case_id)["drafts"] if r["draft"]["obligation_id"] == DPDP_72H)
+    assert row["status"] == "approved" and row["fields_left_empty"] == 6
+    approved = [e for e in store.timeline(case_id) if e.type == "draft_approved"][-1]
+    assert approved.payload["fields_left_empty"] == 6
+
+
+def test_cross_site_posts_are_refused(client):
+    """Catches: a page on another site approving a draft through the user's browser."""
+    created = client.post("/api/cases", json={**_JSON_FACTS, "opened_by": "Asha Rao"})
+    case_id = created.json()["case_id"]
+    url = f"/api/cases/{case_id}/drafts/{RBI_6H}/approve"
+    evil = client.post(
+        url, json={"approver": "Asha Rao"}, headers={"origin": "https://evil.example"}
+    )
+    assert evil.status_code == 403
+    assert (
+        client.post("/api/cases", json=_JSON_FACTS, headers={"origin": "null"}).status_code == 403
+    )
+    same = client.post(url, json={"approver": "Asha Rao"}, headers={"origin": "http://testserver"})
+    assert same.status_code == 200, same.text
+    assert (
+        client.get(f"/api/cases/{case_id}", headers={"origin": "https://evil.example"}).status_code
+        == 200
+    )
+
+
+def test_case_page_lets_a_person_fill_clause_fields(client):
+    """Catches: 'to be completed by you' with nowhere to complete it."""
+    facts = {
+        "entity_classes": ["dpdp.data_fiduciary"],
+        "incident_types": ["Data breach"],
+        "personal_data_involved": True,
+        "when_noticed": "2027-06-01T10:00:00+05:30",
+        "when_aware": "2027-06-01T10:00:00+05:30",
+        "opened_by": "Asha Rao",
+    }
+    case_id = client.post("/api/cases", json=facts).json()["case_id"]
+    page = client.get(f"/cases/{case_id}")
+    assert f"/api/cases/{case_id}/drafts/{DPDP_72H}/fields" in page.text
+    assert 'name="accept_open_fields"' in page.text
+    blocked = client.post(
+        f"/api/cases/{case_id}/drafts/{DPDP_72H}/approve", json={"approver": "Asha Rao"}
+    )
+    assert blocked.status_code == 422 and "still empty" in blocked.json()["error"]
