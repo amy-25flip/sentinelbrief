@@ -84,6 +84,15 @@ Things needing a human or a primary-source check.
 - [ ] **IRDAI commencement:** does the duty bind from 24 April 2023 for every entity, or from the next financial year for those that had completed the FY 2022-23 audit?
 - [ ] **IRDAI scope of "cyber incidents":** Annexure I types only, or any cyber incident?
 - [ ] **IRDAI: what "a copy to IRDAI" requires** (channel, format) is not stated in Policy 2.10.
-- [ ] **IRDAI: 23 other policies unread.** Notably third-party breach notice "within 4 hours from the time of breach discovery" (PDF page 283), lost-device reporting "within 4 hours" (pages 176 and 212), and the IT Rules 2021 section (pages 296 to 299) with 72-hour and 24-hour duties. None is modelled.
+- [x] **IRDAI: other policies with stated hours (superseded by Build 13 below).** Notably third-party breach notice "within 4 hours from the time of breach discovery" (PDF page 283), lost-device reporting "within 4 hours" (pages 176 and 212), and the IT Rules 2021 section (pages 296 to 299) with 72-hour and 24-hour duties. None is modelled.
 - [ ] **IRDAI covering circular not ingested:** it is a 2-page scan whose OCR text is unreliable ("24st Apr, 2023"). The reference number and date in the instrument record come from it.
 - [ ] **Later IRDAI amendments or clarifications** to the 2023 guidelines, if any, are not in the dataset.
+
+## Build 13 (IRDAI Part 2), 2026-10-05
+
+- [x] **IRDAI time-bound duties in Policies 2.8, 2.19 and 2.24:** modelled with clocks that do not start from the incident.
+- [ ] **IT Rules 2021 not ingested:** Policy 2.24 restates them. Are insurers and insurance intermediaries "intermediaries" under those Rules for these duties? The tool shows the duties to every IRDAI entity with that condition unevaluated.
+- [ ] **IRDAI 2.24 item 8** (report cyber security incidents to CERT-In under the 2013 Rules, no time limit) is not modelled; it overlaps Policy 2.10.
+- [ ] **IRDAI Policy 2.2 section 3.3** (lost device reported "immediately"; treated as an incident if reported after more than 4 hours or if the remote wipe fails) is not modelled.
+- [ ] **A workflow for external clocks:** the tool lists these duties but offers no way to enter the date of an order or complaint and get a deadline.
+- [ ] **IRDAI: about 20 policies remain unread** for duties without the word "hours" (audit cadence, VA/PT frequency, annual reviews).

@@ -24,7 +24,8 @@
   "expected": {
     "law_as_of": "2026-10-01",
     "regulators": [
-      "CERT-In"
+      "CERT-In",
+      "IRDAI"
     ],
     "deadlines": [],
     "citations": [],
@@ -61,6 +62,11 @@
       "document": "cert-in.directions-70b.2022",
       "page": 2,
       "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+    },
+    {
+      "document": "irdai.ics-guidelines.2023",
+      "page": 283,
+      "quote": "Organization shall contractually assure that they \nare informed of any confirmed breach immediately without any \ndelay.  For suspected breach, Organization shall be informed within \n4 hours from the time of breach discovery."
     }
   ]
 }

@@ -18,5 +18,5 @@
     "parser_version": "pymupdf-1.28.2",
     "extraction_date": "2026-10-04T00:00:00Z"
   },
-  "acquisition_note": "Only Policy 2.10 item 3.5(3) (incident reporting) is modelled. The other policies are not."
+  "acquisition_note": "Modelled: Policy 2.10 item 3.5(3) (incident reporting) and the time-bound duties of Policies 2.8, 2.19 and 2.24. The other policies are not modelled."
 }

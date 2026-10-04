@@ -66,6 +66,8 @@
     <li style="margin-bottom: 0.5rem;">
         <a href="/obligations/{{ o.id }}">{{ o.paragraph }}</a>: {{ o.action }}
         {% if o.retain %}<span class="chip">Retain {{ o.retain }}</span>{% endif %}
+        {% if o.within %}<span class="chip">Within {{ o.within }} of: {{ o.starts_from }}</span>
+        <br><span style="color: var(--text-muted);">This clock does not start from the incident, so no deadline is computed here.</span>{% endif %}
         {% for c in o.conditions %}<br><span style="color: var(--warning);">Applies only if: {{ c }} (not checked by this tool)</span>{% endfor %}
     </li>
     {% endfor %}

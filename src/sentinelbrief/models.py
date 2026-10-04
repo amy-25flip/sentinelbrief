@@ -72,6 +72,7 @@ class Deadline(BaseModel):
             "fixed_date",
             "not_applicable",
             "reported",
+            "external_event",
         ]
         | None
     ) = None

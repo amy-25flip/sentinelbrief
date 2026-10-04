@@ -281,6 +281,12 @@ async def incident_clock(request: Request) -> Response:
                 "retain": deadline.get("duration_iso8601")
                 if deadline.get("kind") == "retention"
                 else None,
+                "within": deadline.get("duration_iso8601")
+                if deadline.get("anchor") == "external_event"
+                else None,
+                "starts_from": ((obl.get("normalized") or {}).get("trigger") or {}).get(
+                    "description", ""
+                ),
                 "conditions": result.conditions_unevaluated.get(obl_id, []),
             }
         )

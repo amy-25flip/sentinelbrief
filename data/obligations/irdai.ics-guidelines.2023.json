@@ -68,5 +68,447 @@
     },
     "confidence": 0.6,
     "confidence_reason": "Two contested points. (1) Date: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year. (2) Scope: the sentence says 'cyber incidents' without 'as mentioned in Annexure I', so it is read as wider than CERT-In Direction (ii); the guidelines do not define the term. Both readings are the ones that never tell a user they owe less. The source bytes were not compared with the regulator's copy (robots.txt forbids automated access)."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.gov-order-information-72h",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.24, 3.1 item 7",
+    "text_verbatim": "7. The Organization shall as soon as possible, but not later than \nseventy-two hours of the receipt of an order, provide \ninformation under its control or possession, or assistance to \nthe Government agency which is lawfully authorized for \ninvestigative or protective or cybersecurity activities, for the \npurposes of verification of identity, or for the prevention, \ndetection, investigation, or prosecution, of offences under \nany law for the time being in force, or for cyber security \nincidents.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "receipt of an order from a lawfully authorised Government agency"
+      },
+      "action": "Provide the information or assistance as soon as possible, and not later than seventy-two hours of the receipt of the order.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "relative",
+        "duration_iso8601": "PT72H",
+        "anchor": "external_event"
+      },
+      "recipient": "The Government agency that issued the order"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "conditions": [
+        "Entity is an intermediary under the IT Rules 2021 (not evaluated)",
+        "An order has been received"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.24, 3.1 item 7",
+        "page": 298,
+        "char_start": 587745,
+        "char_end": 588245,
+        "excerpt_verbatim": "7. The Organization shall as soon as possible, but not later than \nseventy-two hours of the receipt of an order, provide \ninformation under its control or possession, or assistance to \nthe Government agency which is lawfully authorized for \ninvestigative or protective or cybersecurity activities, for the \npurposes of verification of identity, or for the prevention, \ndetection, investigation, or prosecution, of offences under \nany law for the time being in force, or for cyber security \nincidents.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 298)",
+      "date": "2026-10-05"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "The clock starts from receipt of an order, not from an incident. Policy 2.24 restates the IT (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021; whether the entity is an intermediary under those Rules is not evaluated. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.grievance-acknowledge-24h",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.24, 3.1 item 10(I) (acknowledge)",
+    "text_verbatim": "acknowledge the complaint within twenty-four hours \nand dispose off such complaint within a period of \nfifteen days from the date of its receipt;",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "receipt of a user or victim complaint by the Grievance Officer"
+      },
+      "action": "The Grievance Officer acknowledges the complaint within twenty-four hours.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "relative",
+        "duration_iso8601": "PT24H",
+        "anchor": "external_event"
+      },
+      "recipient": "The complainant"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "conditions": [
+        "Entity is an intermediary under the IT Rules 2021 (not evaluated)",
+        "A complaint has been received"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.24, 3.1 item 10(I) (acknowledge)",
+        "page": 298,
+        "char_start": 589334,
+        "char_end": 589479,
+        "excerpt_verbatim": "acknowledge the complaint within twenty-four hours \nand dispose off such complaint within a period of \nfifteen days from the date of its receipt;",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 298)",
+      "date": "2026-10-05"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "The clock starts from receipt of a complaint. Policy 2.24 restates the IT (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021; whether the entity is an intermediary under those Rules is not evaluated. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.grievance-dispose-15d",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.24, 3.1 item 10(I) (dispose)",
+    "text_verbatim": "acknowledge the complaint within twenty-four hours \nand dispose off such complaint within a period of \nfifteen days from the date of its receipt;",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "receipt of a user or victim complaint by the Grievance Officer"
+      },
+      "action": "The Grievance Officer disposes of the complaint within fifteen days from the date of its receipt.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "relative",
+        "duration_iso8601": "P15D",
+        "anchor": "external_event"
+      },
+      "recipient": "The complainant"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "conditions": [
+        "Entity is an intermediary under the IT Rules 2021 (not evaluated)",
+        "A complaint has been received"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.24, 3.1 item 10(I) (dispose)",
+        "page": 298,
+        "char_start": 589334,
+        "char_end": 589479,
+        "excerpt_verbatim": "acknowledge the complaint within twenty-four hours \nand dispose off such complaint within a period of \nfifteen days from the date of its receipt;",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 298)",
+      "date": "2026-10-05"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "The clock starts from receipt of a complaint. Policy 2.24 restates the IT (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021; whether the entity is an intermediary under those Rules is not evaluated. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.content-takedown-24h",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.24, 3.1 item 11",
+    "text_verbatim": "11. The Organization shall within twenty-four hours from the \nreceipt of a complaint made by an individual or any person \non his behalf under this sub-rule, in relation to any content \nwhich is prima facie in the nature of any material which \nexposes the private area of such individual, shows such \nindividual in full or partial nudity or shows or depicts such \nindividual in any sexual act or conduct, or is in the nature of \nimpersonation in an electronic form, including artificially \nmorphed images of such individual, take all reasonable and \npracticable measures to remove or disable access to such \ncontent which is hosted, stored, published or transmitted by \nit.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "receipt of a complaint by an individual about content exposing them or impersonating them"
+      },
+      "action": "Within twenty-four hours of the complaint, take all reasonable and practicable measures to remove or disable access to the content.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "relative",
+        "duration_iso8601": "PT24H",
+        "anchor": "external_event"
+      }
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "conditions": [
+        "Entity is an intermediary under the IT Rules 2021 (not evaluated)",
+        "A complaint of the kind described has been received"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.24, 3.1 item 11",
+        "page": 299,
+        "char_start": 589680,
+        "char_end": 590352,
+        "excerpt_verbatim": "11. The Organization shall within twenty-four hours from the \nreceipt of a complaint made by an individual or any person \non his behalf under this sub-rule, in relation to any content \nwhich is prima facie in the nature of any material which \nexposes the private area of such individual, shows such \nindividual in full or partial nudity or shows or depicts such \nindividual in any sexual act or conduct, or is in the nature of \nimpersonation in an electronic form, including artificially \nmorphed images of such individual, take all reasonable and \npracticable measures to remove or disable access to such \ncontent which is hosted, stored, published or transmitted by \nit.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 299)",
+      "date": "2026-10-05"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "The clock starts from receipt of a complaint. Policy 2.24 restates the IT (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021; whether the entity is an intermediary under those Rules is not evaluated. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.registration-data-retention-180d",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.24, 3.1 item 5",
+    "text_verbatim": "5. The Organization which collects information from a user for \nregistration on the computer resource, shall retained his \ninformation for a period of one hundred and eighty days",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "always",
+        "description": "cancellation or withdrawal of a user's registration"
+      },
+      "action": "Retain the user's registration information for one hundred and eighty days after any cancellation or withdrawal of the registration.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "retention",
+        "duration_iso8601": "P180D",
+        "anchor": "not_applicable"
+      }
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "conditions": [
+        "Entity is an intermediary under the IT Rules 2021 (not evaluated)"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.24, 3.1 item 5",
+        "page": 297,
+        "char_start": 587131,
+        "char_end": 587309,
+        "excerpt_verbatim": "5. The Organization which collects information from a user for \nregistration on the computer resource, shall retained his \ninformation for a period of one hundred and eighty days",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 297)",
+      "date": "2026-10-05"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "A retention period, not a deadline. The sentence continues on PDF page 298 ('after any cancellation or withdrawal of his registration'). Policy 2.24 restates the IT (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021; whether the entity is an intermediary under those Rules is not evaluated. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.cloud-breach-notice-contract-clause",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.19, 3.7.2",
+    "text_verbatim": "Organization shall contractually assure that they \nare informed of any confirmed breach immediately without any \ndelay.  For suspected breach, Organization shall be informed within \n4 hours from the time of breach discovery.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "always",
+        "description": "a contract with a cloud service provider"
+      },
+      "action": "Ensure the cloud service contract requires the provider to inform the Organization of any confirmed breach immediately, and of a suspected breach within 4 hours of discovery.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "none",
+        "duration_iso8601": null,
+        "anchor": "not_applicable"
+      }
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "conditions": [
+        "Entity uses a cloud service provider (not evaluated)"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.19, 3.7.2",
+        "page": 283,
+        "char_start": 561882,
+        "char_end": 562106,
+        "excerpt_verbatim": "Organization shall contractually assure that they \nare informed of any confirmed breach immediately without any \ndelay.  For suspected breach, Organization shall be informed within \n4 hours from the time of breach discovery.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 283)",
+      "date": "2026-10-05"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "A contract requirement on the Organization. The four hours bind the cloud provider under the contract; they are not a deadline for the Organization. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.lost-device-internal-report-4h",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.8, 3.5 item 3",
+    "text_verbatim": "3. In case of loss of device, the employee shall inform IT \nfunction within 4 hours.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "loss of a personal device enrolled under the BYOD programme"
+      },
+      "action": "The employee informs the IT function within 4 hours of the loss of the device.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "relative",
+        "duration_iso8601": "PT4H",
+        "anchor": "external_event"
+      },
+      "recipient": "The Organization's IT function"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "conditions": [
+        "A device enrolled under the BYOD programme has been lost"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-04T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.8, 3.5 item 3",
+        "page": 212,
+        "char_start": 438093,
+        "char_end": 438177,
+        "excerpt_verbatim": "3. In case of loss of device, the employee shall inform IT \nfunction within 4 hours.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 212)",
+      "date": "2026-10-05"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "An internal duty (employee to IT function), not a report to a regulator. The clock starts from the loss of the device. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
   }
 ]

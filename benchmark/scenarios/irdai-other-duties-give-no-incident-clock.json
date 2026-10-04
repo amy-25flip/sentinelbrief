@@ -1,0 +1,146 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "irdai-other-duties-give-no-incident-clock",
+  "description": "An insurer's ransomware incident starts only the two six-hour clocks. The duties that run from an order, a complaint, a cancellation or a lost device are listed but give no deadline and ask nothing.",
+  "entity_profile": {
+    "entity_classes": [
+      "irdai.insurer"
+    ],
+    "is_listed": false,
+    "holds_personal_data": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "An insurer's ransomware incident starts only the two six-hour clocks. The duties that run from an order, a complaint, a cancellation or a lost device are listed but give no deadline and ask nothing.",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "systems_affected": [
+      "Policy administration system"
+    ],
+    "when_noticed": "2026-10-01T10:00:00+05:30"
+  },
+  "law_snapshot_date": "2026-10-05",
+  "expected": {
+    "law_as_of": "2026-10-01",
+    "regulators": [
+      "CERT-In",
+      "IRDAI"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.incident-reporting-6h",
+        "regulator": "IRDAI",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.incident-reporting-6h",
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.10, 3.5 item 3"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.gov-order-information-72h",
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.24, 3.1 item 7"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.grievance-acknowledge-24h",
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.24, 3.1 item 10(I) (acknowledge)"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.grievance-dispose-15d",
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.24, 3.1 item 10(I) (dispose)"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.content-takedown-24h",
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.24, 3.1 item 11"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.registration-data-retention-180d",
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.24, 3.1 item 5"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.cloud-breach-notice-contract-clause",
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.19, 3.7.2"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.lost-device-internal-report-4h",
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.8, 3.5 item 3"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": [],
+    "time_critical": []
+  },
+  "adversarial_flags": [
+    "external_clock_must_not_start_from_the_incident",
+    "retention_is_not_a_deadline"
+  ],
+  "split": "dev",
+  "labels_source": "docs/LABELS_IRDAI.md Part 2 (written before implementation)",
+  "source_quotes": [
+    {
+      "document": "irdai.ics-guidelines.2023",
+      "page": 298,
+      "quote": "7. The Organization shall as soon as possible, but not later than \nseventy-two hours of the receipt of an order, provide \ninformation under its control or possession, or assistance to \nthe Government agency which is lawfully authorized for \ninvestigative or protective or cybersecurity activities, for the \npurposes of verification of identity, or for the prevention, \ndetection, investigation, or prosecution, of offences under \nany law for the time being in force, or for cyber security \nincidents."
+    },
+    {
+      "document": "irdai.ics-guidelines.2023",
+      "page": 298,
+      "quote": "acknowledge the complaint within twenty-four hours \nand dispose off such complaint within a period of \nfifteen days from the date of its receipt;"
+    },
+    {
+      "document": "irdai.ics-guidelines.2023",
+      "page": 298,
+      "quote": "acknowledge the complaint within twenty-four hours \nand dispose off such complaint within a period of \nfifteen days from the date of its receipt;"
+    },
+    {
+      "document": "irdai.ics-guidelines.2023",
+      "page": 299,
+      "quote": "11. The Organization shall within twenty-four hours from the \nreceipt of a complaint made by an individual or any person \non his behalf under this sub-rule, in relation to any content \nwhich is prima facie in the nature of any material which \nexposes the private area of such individual, shows such \nindividual in full or partial nudity or shows or depicts such \nindividual in any sexual act or conduct, or is in the nature of \nimpersonation in an electronic form, including artificially \nmorphed images of such individual, take all reasonable and \npracticable measures to remove or disable access to such \ncontent which is hosted, stored, published or transmitted by \nit."
+    },
+    {
+      "document": "irdai.ics-guidelines.2023",
+      "page": 297,
+      "quote": "5. The Organization which collects information from a user for \nregistration on the computer resource, shall retained his \ninformation for a period of one hundred and eighty days"
+    },
+    {
+      "document": "irdai.ics-guidelines.2023",
+      "page": 283,
+      "quote": "Organization shall contractually assure that they \nare informed of any confirmed breach immediately without any \ndelay.  For suspected breach, Organization shall be informed within \n4 hours from the time of breach discovery."
+    },
+    {
+      "document": "irdai.ics-guidelines.2023",
+      "page": 212,
+      "quote": "3. In case of loss of device, the employee shall inform IT \nfunction within 4 hours."
+    },
+    {
+      "document": "irdai.ics-guidelines.2023",
+      "page": 224,
+      "quote": "Organization shall mandatorily report cyber incidents to \nCert-In within 6 hours of noticing or being brought to \nnotice about such incidents with a copy to IRDAI and \nother concerned regulators / authorities. The details \nregarding methods and formats of reporting cyber \nincident is published on Cert-In website."
+    }
+  ]
+}

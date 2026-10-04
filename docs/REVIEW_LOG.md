@@ -254,3 +254,11 @@ Labels: `docs/LABELS_IRDAI.md`, committed before ingestion and implementation (2
 - One obligation, two entity classes, one new `requires` key, 9 scenarios (all passed on the first engine run against hand-typed labels), 6 unit tests, 4 mutation tests.
 - The reverify exemption now also covers irdai.gov.in; a test checks a look-alike host is still rejected.
 - Honest scope: of 24 policies, only Policy 2.10 was read in full. The module is partial and the README says so.
+
+## Build 13 - the reviewer agent, 2026-10-05: IRDAI Part 2, duties whose clocks start from another event
+
+Labels: `docs/LABELS_IRDAI.md` Part 2, committed before implementation (8e2a19b). Built by the reviewer agent. **Not independently reviewed.**
+
+- Seven obligations from Policies 2.8, 2.19 and 2.24; new anchor `external_event`; 3 scenarios (passed on the first run), 6 unit tests, 3 mutation tests.
+- Label change to two Part 1 scenarios (`irdai-attested-not-a-cyber-incident`, `irdai-hardware-failure-unattested`): `regulators` gains IRDAI, because an insurer now always has ongoing IRDAI duties even when no incident clock runs. No other expectation changed.
+- Reading the pages changed the task: the reviewer had described these as "unmodelled time-bound duties" after a keyword search for "hours". None is a deadline that runs from a cyber incident, and they are modelled accordingly.

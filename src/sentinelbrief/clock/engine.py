@@ -834,6 +834,16 @@ class IncidentClockEngine:
             )
             return
 
+        if spec.get("anchor") == "external_event":
+            # The clock starts from something other than this incident (an order, a complaint,
+            # a lost device). The duty is listed with its duration; no deadline is computed
+            # from incident facts and no question is asked about it.
+            if spec.get("alternative_anchors"):
+                raise ValueError(
+                    f"{obs_id}: an external_event clock cannot have incident alternative_anchors"
+                )
+            return
+
         duration_str = spec.get("duration_iso8601")
         if not duration_str:
             unknowns.append(

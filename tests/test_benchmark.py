@@ -608,3 +608,41 @@ def test_catches_irdai_valid_from_ignored(monkeypatch):
         engine_module.IncidentClockEngine, "_not_in_force_reason", staticmethod(mutation)
     )
     assert "irdai-before-the-guidelines" in _failed(_run())
+
+
+# --- IRDAI Part 2: clocks that do not start from the incident ---
+
+
+def test_catches_external_clock_started_from_the_incident(monkeypatch):
+    def mutation(items):
+        for item in items:
+            deadline = item["normalized"]["deadline"]
+            if deadline.get("anchor") == "external_event":
+                deadline["anchor"] = "noticing"
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "irdai-other-duties-give-no-incident-clock" in _failed(_run())
+
+
+def test_catches_irdai_retention_treated_as_a_deadline(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"].endswith("registration-data-retention-180d"):
+                item["normalized"]["deadline"] = {
+                    "kind": "relative",
+                    "duration_iso8601": "P180D",
+                    "anchor": "noticing",
+                }
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "irdai-other-duties-give-no-incident-clock" in _failed(_run())
+
+
+def test_catches_irdai_other_duties_leaking_to_an_nbfc(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"].endswith("gov-order-information-72h"):
+                item["applicability"]["entity_classes"].append("nbfc.middle_layer")
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "irdai-other-duties-do-not-reach-an-nbfc" in _failed(_run())

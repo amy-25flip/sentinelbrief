@@ -1,0 +1,99 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "irdai-other-duties-before-the-guidelines",
+  "description": "On 1 April 2023 the guidelines had not been issued.",
+  "entity_profile": {
+    "entity_classes": [
+      "irdai.insurer"
+    ],
+    "is_listed": false,
+    "holds_personal_data": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "On 1 April 2023 the guidelines had not been issued.",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "systems_affected": [
+      "Policy administration system"
+    ],
+    "when_noticed": "2023-04-01T10:00:00+05:30"
+  },
+  "law_snapshot_date": "2026-10-05",
+  "expected": {
+    "law_as_of": "2023-04-01",
+    "regulators": [
+      "CERT-In"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2023-04-01T16:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.incident-reporting-6h",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.gov-order-information-72h",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.grievance-acknowledge-24h",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.grievance-dispose-15d",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.content-takedown-24h",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.registration-data-retention-180d",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.cloud-breach-notice-contract-clause",
+        "reason": "see description"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.lost-device-internal-report-4h",
+        "reason": "see description"
+      }
+    ],
+    "unknowns": []
+  },
+  "adversarial_flags": [
+    "law_as_of_incident_date"
+  ],
+  "split": "dev",
+  "labels_source": "docs/LABELS_IRDAI.md Part 2 (written before implementation)",
+  "source_quotes": [
+    {
+      "document": "irdai.ics-guidelines.2023",
+      "page": 298,
+      "quote": "7. The Organization shall as soon as possible, but not later than \nseventy-two hours of the receipt of an order, provide \ninformation under its control or possession, or assistance to \nthe Government agency which is lawfully authorized for \ninvestigative or protective or cybersecurity activities, for the \npurposes of verification of identity, or for the prevention, \ndetection, investigation, or prosecution, of offences under \nany law for the time being in force, or for cyber security \nincidents."
+    },
+    {
+      "document": "cert-in.directions-70b.2022",
+      "page": 2,
+      "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+    }
+  ]
+}

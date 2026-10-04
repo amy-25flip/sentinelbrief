@@ -366,3 +366,13 @@ Quotes and pages are in `docs/LABELS_IRDAI.md`.
 5. **Detection does not start this clock.** The text says noticing or being brought to notice.
 6. **Re-verification exemption extended to irdai.gov.in.** Its robots.txt disallows all automated access, so `BaseFetcher` refuses and `scripts/reverify_sources.py` would fail on every run. The exemption list is now RBI hosts plus irdai.gov.in; every exempt source is pinned by sha256 in `tests/test_provenance_attacks.py`. Alternative: ignore robots.txt. Rejected.
 7. **This source has no independent anchor.** Unlike the RBI files, the reviewer could not compare the text with the regulator's site. It is accepted on the owner's download, the file's metadata (Microsoft Word 2016, created 24 April 2023), its 305-page structure, and a search-engine snippet of the official file reading "Page 1 of 175". The manifest says so.
+
+## 2026-10-05: Clocks that do not start from the incident (`external_event`), IRDAI Part 2
+
+**Decision:** New deadline anchor `external_event`. A duty with it keeps its duration in the data and is listed as applicable, but the engine computes no deadline for it from incident facts and asks no question about it. The clock page shows "Within PT72H of: receipt of an order ..." and says the clock does not start from the incident. Such duties are not drafted as filings and are not exported to the calendar. A record that combines `external_event` with incident `alternative_anchors` is rejected.
+
+**Why:** Seven further IRDAI duties carry time limits (72 hours, 24 hours, 15 days, 4 hours, 180 days), but each runs from an order, a complaint, a cancellation or a lost device (quotes and pages in `docs/LABELS_IRDAI.md` Part 2). Computing them from the time an incident was noticed would invent deadlines.
+
+**Alternatives rejected:** (a) leaving them out, which hides real duties; (b) recording them with no duration, which loses the time limit; (c) asking for the order or complaint time on every incident, which would put seven irrelevant questions in front of a user on a six-hour clock.
+
+**Readings recorded:** the cloud "4 hours" is a contract term binding the provider, modelled as an ongoing duty on the organization to have the clause; the lost-device 4 hours is an internal duty to the IT function, not a report to a regulator; Policy 2.24 restates the IT Rules 2021 and whether the entity is an "intermediary" under them is shown as an unevaluated condition.

@@ -58,7 +58,7 @@
             },
             "anchor": {
               "type": ["string", "null"],
-              "enum": ["detection", "noticing", "brought_to_notice", "awareness", "occurrence", "publication", "fixed_date", "not_applicable", "reported"]
+              "enum": ["detection", "noticing", "brought_to_notice", "awareness", "occurrence", "publication", "fixed_date", "not_applicable", "reported", "external_event"]
             },
             "calendar": {
               "type": "string",

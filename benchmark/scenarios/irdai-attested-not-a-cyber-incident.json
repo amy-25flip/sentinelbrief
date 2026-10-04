@@ -26,7 +26,8 @@
   "expected": {
     "law_as_of": "2026-10-01",
     "regulators": [
-      "CERT-In"
+      "CERT-In",
+      "IRDAI"
     ],
     "deadlines": [],
     "citations": [],
@@ -53,6 +54,11 @@
       "document": "irdai.ics-guidelines.2023",
       "page": 224,
       "quote": "Organization shall mandatorily report cyber incidents to \nCert-In within 6 hours of noticing or being brought to \nnotice about such incidents with a copy to IRDAI and \nother concerned regulators / authorities. The details \nregarding methods and formats of reporting cyber \nincident is published on Cert-In website."
+    },
+    {
+      "document": "irdai.ics-guidelines.2023",
+      "page": 283,
+      "quote": "Organization shall contractually assure that they \nare informed of any confirmed breach immediately without any \ndelay.  For suspected breach, Organization shall be informed within \n4 hours from the time of breach discovery."
     }
   ]
 }
