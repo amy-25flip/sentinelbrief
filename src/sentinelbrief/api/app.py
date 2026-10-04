@@ -1,19 +1,24 @@
 """FastAPI application for SentinelBrief."""
 
+import io
+import os
 import re
-from datetime import UTC, datetime
+import tempfile
+import zipfile
+from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any
 from urllib.parse import parse_qs
 
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse, JSONResponse, Response
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from sentinelbrief.cards import CardFeed
 from sentinelbrief.clock import IncidentClockEngine, IncidentProfile
 from sentinelbrief.clock.engine import IST
+from sentinelbrief.workspace import CaseStore, recurring_duties_ics
 
 app = FastAPI(
     title="SentinelBrief",
@@ -288,6 +293,183 @@ async def incident_clock(request: Request) -> Response:
             "ongoing": ongoing,
             "matched": matched,
             "n_applicable": len(applicable),
+        },
+    )
+
+
+# --- Incident cases: drafts, human approval, audit bundle, calendar ---
+
+
+def _case_store() -> CaseStore:
+    """Cases live on local disk only. SENTINELBRIEF_CASES_DIR overrides the default location."""
+    root = Path(os.environ.get("SENTINELBRIEF_CASES_DIR") or BASE_DIR / "var" / "cases")
+    root.mkdir(parents=True, exist_ok=True)
+    return CaseStore(root, DATA_DIR)
+
+
+async def _payload(request: Request) -> tuple[dict[str, Any], bool]:
+    """Return (payload, is_json). Form posts keep repeated fields as lists."""
+    if "application/json" in request.headers.get("content-type", ""):
+        value = await request.json()
+        if not isinstance(value, dict):
+            raise ValueError("JSON body must be an object")
+        return value, True
+    raw = parse_qs((await request.body()).decode("utf-8"), keep_blank_values=False)
+    repeated = {"annexure_i_items", "also_classes"}
+    return {k: (v if k in repeated else v[-1]) for k, v in raw.items()}, False
+
+
+def _case_error(exc: Exception) -> JSONResponse:
+    status = 404 if isinstance(exc, KeyError) else 422
+    return JSONResponse({"error": str(exc).strip("'\"")}, status_code=status)
+
+
+@app.post("/api/cases", response_model=None)
+async def create_case(request: Request) -> Response:
+    """Open a case from incident facts. `opened_by` must name a person."""
+    try:
+        payload, is_json = await _payload(request)
+        actor = str(payload.pop("opened_by", ""))
+        profile = _profile_from_payload(payload, form_input=not is_json)
+        case_id = _case_store().create(profile, actor)
+    except (ValueError, KeyError, TypeError) as exc:
+        return JSONResponse({"error": str(exc)}, status_code=422)
+    if is_json:
+        return JSONResponse({"case_id": case_id}, status_code=201)
+    return RedirectResponse(f"/cases/{case_id}", status_code=303)
+
+
+@app.get("/api/cases/{case_id}", response_model=None)
+async def get_case(case_id: str) -> Response:
+    try:
+        return JSONResponse(_case_store().view(case_id))
+    except (ValueError, KeyError) as exc:
+        return _case_error(exc)
+
+
+@app.get("/cases/{case_id}", response_model=None)
+async def case_page(request: Request, case_id: str) -> Response:
+    try:
+        view = _case_store().view(case_id)
+    except (ValueError, KeyError):
+        return HTMLResponse("<h1>Case not found</h1>", status_code=404)
+    return templates.TemplateResponse(request=request, name="case.html", context={"view": view})
+
+
+@app.post("/api/cases/{case_id}/facts", response_model=None)
+async def update_case_facts(request: Request, case_id: str) -> Response:
+    """Record new or corrected facts. Timestamps need a UTC offset. Withdraws unfiled approvals."""
+    try:
+        payload, is_json = await _payload(request)
+        actor = str(payload.pop("recorded_by", ""))
+        changes = {k: v for k, v in payload.items() if v not in ("", None) or is_json}
+        if not is_json:
+            for name in _TIME_FIELDS:
+                if name in changes:
+                    changes[name] = _parse_time(str(changes[name]), form_input=True).isoformat()
+            for name in (
+                "personal_data_involved",
+                "uses_protected_systems",
+                "is_annexure_i_type",
+                "is_cyber_incident",
+            ):
+                if name in changes:
+                    if changes[name] not in {"true", "false"}:
+                        raise ValueError(f"{name} must be true or false")
+                    changes[name] = changes[name] == "true"
+        _case_store().update_facts(case_id, changes, actor)
+    except (ValueError, KeyError, TypeError) as exc:
+        return _case_error(exc)
+    if is_json:
+        return JSONResponse({"ok": True})
+    return RedirectResponse(f"/cases/{case_id}", status_code=303)
+
+
+@app.post("/api/cases/{case_id}/drafts/{obligation_id}/approve", response_model=None)
+async def approve_draft(request: Request, case_id: str, obligation_id: str) -> Response:
+    """A named person approves the current content of one draft. Nothing is submitted."""
+    try:
+        payload, is_json = await _payload(request)
+        digest = _case_store().approve(case_id, obligation_id, str(payload.get("approver", "")))
+    except (ValueError, KeyError, TypeError) as exc:
+        return _case_error(exc)
+    if is_json:
+        return JSONResponse({"status": "approved", "draft_sha256": digest})
+    return RedirectResponse(f"/cases/{case_id}", status_code=303)
+
+
+@app.post("/api/cases/{case_id}/drafts/{obligation_id}/filed", response_model=None)
+async def record_filing(request: Request, case_id: str, obligation_id: str) -> Response:
+    """Record that a person filed on the regulator's own channel. This tool files nothing."""
+    try:
+        payload, is_json = await _payload(request)
+        filed_at = _parse_time(str(payload.get("filed_at", "")), form_input=not is_json)
+        _case_store().record_filing(
+            case_id,
+            obligation_id,
+            str(payload.get("filed_by", "")),
+            str(payload.get("reference", "")),
+            filed_at,
+        )
+    except (ValueError, KeyError, TypeError) as exc:
+        return _case_error(exc)
+    if is_json:
+        return JSONResponse({"status": "filed"})
+    return RedirectResponse(f"/cases/{case_id}", status_code=303)
+
+
+@app.get("/api/cases/{case_id}/export.zip", response_model=None)
+async def export_case(case_id: str) -> Response:
+    """Auditor bundle: timeline, clocks, drafts, the law as applied, hashes."""
+    try:
+        store = _case_store()
+        with tempfile.TemporaryDirectory() as tmp:
+            bundle = store.export(case_id, Path(tmp) / "bundle")
+            buffer = io.BytesIO()
+            with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as archive:
+                for path in sorted(bundle.iterdir()):
+                    archive.write(path, path.name)
+    except (ValueError, KeyError) as exc:
+        return _case_error(exc)
+    return Response(
+        buffer.getvalue(),
+        media_type="application/zip",
+        headers={
+            "Content-Disposition": f'attachment; filename="sentinelbrief-case-{case_id[:8]}.zip"'
+        },
+    )
+
+
+@app.get("/api/calendar.ics", response_model=None)
+async def calendar_export(classes: str = "", last_done: str = "") -> Response:
+    """Recurring duties for the given entity classes as an iCalendar file.
+
+    `classes` is comma-separated; `last_done` (YYYY-MM-DD) is when the duties were last performed.
+    """
+    try:
+        entity_classes = [c.strip() for c in classes.split(",") if c.strip()]
+        if not entity_classes:
+            raise ValueError("classes is required, e.g. classes=nbfc.middle_layer")
+        if not last_done:
+            raise ValueError("last_done is required, e.g. last_done=2026-10-01")
+        ics, undetermined = recurring_duties_ics(
+            IncidentClockEngine(DATA_DIR), entity_classes, date.fromisoformat(last_done)
+        )
+    except (ValueError, TypeError) as exc:
+        return JSONResponse({"error": str(exc)}, status_code=422)
+    if undetermined:
+        return JSONResponse(
+            {
+                "error": "Applicability of some recurring duties cannot be decided from these classes; choose a more specific class.",
+                "undetermined": undetermined,
+            },
+            status_code=422,
+        )
+    return Response(
+        ics,
+        media_type="text/calendar; charset=utf-8",
+        headers={
+            "Content-Disposition": 'attachment; filename="sentinelbrief-recurring-duties.ics"'
         },
     )
 

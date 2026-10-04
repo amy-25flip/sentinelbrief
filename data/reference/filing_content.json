@@ -1,0 +1,120 @@
+{
+  "description": "Content each filing must carry, as exact quotes of the cited text. Loaded and re-verified against the stored page text at start-up. Obligations not listed here have no content list in the modelled text.",
+  "content": {
+    "meity.dpdp-rules.2025.rule7-1-principal-intimation": [
+      {
+        "document": "meity.dpdp-rules.2025",
+        "page": 26,
+        "quote": "(a) a description of the breach, including its nature, extent and the timing of its occurrence;"
+      },
+      {
+        "document": "meity.dpdp-rules.2025",
+        "page": 26,
+        "quote": "(b) the consequences relevant to her, that are likely to arise from the breach;"
+      },
+      {
+        "document": "meity.dpdp-rules.2025",
+        "page": 26,
+        "quote": "(c) the measures implemented and being implemented by the Data Fiduciary, if any, to mitigate risk;"
+      },
+      {
+        "document": "meity.dpdp-rules.2025",
+        "page": 26,
+        "quote": "(d) the safety measures that she may take to protect her interests;"
+      },
+      {
+        "document": "meity.dpdp-rules.2025",
+        "page": 26,
+        "quote": "(e) business contact information of a person who is able to respond on behalf of the Data Fiduciary, to \nqueries, if any, of the Data Principal."
+      }
+    ],
+    "meity.dpdp-rules.2025.rule7-2-a-board-initial": [
+      {
+        "document": "meity.dpdp-rules.2025",
+        "page": 26,
+        "quote": "a description of the breach, including its nature, extent, timing and location of \noccurrence and the likely impact;"
+      }
+    ],
+    "meity.dpdp-rules.2025.rule7-2-b-board-detailed": [
+      {
+        "document": "meity.dpdp-rules.2025",
+        "page": 26,
+        "quote": "updated and detailed information in respect of such description;"
+      },
+      {
+        "document": "meity.dpdp-rules.2025",
+        "page": 26,
+        "quote": "(ii) the broad facts related to the events, circumstances and reasons leading to the breach;"
+      },
+      {
+        "document": "meity.dpdp-rules.2025",
+        "page": 26,
+        "quote": "(iii) measures implemented or proposed, if any, to mitigate risk;"
+      },
+      {
+        "document": "meity.dpdp-rules.2025",
+        "page": 26,
+        "quote": "(iv) any findings regarding the person who caused the breach;"
+      },
+      {
+        "document": "meity.dpdp-rules.2025",
+        "page": 26,
+        "quote": "(v) remedial measures taken to prevent recurrence of such breach;"
+      },
+      {
+        "document": "meity.dpdp-rules.2025",
+        "page": 26,
+        "quote": "(vi) a report regarding the intimations given to affected Data Principals."
+      }
+    ],
+    "sebi.cscrf.2024.post-incident-interim-report-3d": [
+      {
+        "document": "sebi.cscrf.2024",
+        "page": 201,
+        "quote": "Details of the incident \nincluding time of occurrence"
+      },
+      {
+        "document": "sebi.cscrf.2024",
+        "page": 201,
+        "quote": "information regarding affected processes/ \nsystems/ network/ services"
+      },
+      {
+        "document": "sebi.cscrf.2024",
+        "page": 201,
+        "quote": "severity of the incident"
+      },
+      {
+        "document": "sebi.cscrf.2024",
+        "page": 201,
+        "quote": "the steps taken to \ninitiate the process of response and recovery"
+      }
+    ],
+    "sebi.cscrf.2024.post-incident-rca-30d": [
+      {
+        "document": "sebi.cscrf.2024",
+        "page": 201,
+        "quote": "exact cause of the incident (including \nroot cause from vendor(s), if applicable)"
+      },
+      {
+        "document": "sebi.cscrf.2024",
+        "page": 201,
+        "quote": "exact timeline and chronology of the \nincident"
+      },
+      {
+        "document": "sebi.cscrf.2024",
+        "page": 201,
+        "quote": "details of impacted processes/ systems network / services"
+      },
+      {
+        "document": "sebi.cscrf.2024",
+        "page": 201,
+        "quote": "details of \ncorrective/ preventive measures taken (or to be taken) by the entity"
+      },
+      {
+        "document": "sebi.cscrf.2024",
+        "page": 202,
+        "quote": "time when operations/ functions/ services were restored"
+      }
+    ]
+  }
+}

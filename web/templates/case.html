@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}Incident case{% endblock %}
+{% block content %}
+<h1>📁 Incident case <code>{{ view.case.id[:8] }}</code></h1>
+<p style="color: var(--text-muted); font-size: 0.85rem;">
+    Opened {{ view.case.created_at }} by {{ view.case.created_by }} · law evaluated as of
+    <strong>{{ view.clock.law_as_of }}</strong> · stored on this machine only
+</p>
+<div class="disclaimer">
+    Drafts for human review. Not legal advice. This tool does not file anything: a person approves
+    each draft and submits it on the regulator's own channel, then records the reference here.
+</div>
+
+{% for c in view.clock.caveats %}<div class="disclaimer">⚠️ {{ c }}</div>{% endfor %}
+
+{% if view.clock.unknowns %}
+<h2 style="color: var(--warning);">❓ Still unknown</h2>
+<ul>
+    {% for u in view.clock.unknowns %}
+    <li style="margin-bottom: 0.4rem;"><strong>{{ u.question }}</strong><br>
+        <span style="color: var(--text-muted);">{{ u.impact }} Affects: {{ u.affects | join(', ') }}</span></li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<h2>Filing drafts</h2>
+{% if not view.drafts %}<p>No filing duty has been determined yet. Answer the questions above.</p>{% endif %}
+{% for row in view.drafts %}
+{% set d = row.draft %}
+<div class="card" id="draft-{{ d.obligation_id }}" style="margin-bottom: 1.25rem;">
+    <h3 style="margin-top: 0;">
+        <span class="chip">DRAFT</span> {{ d.regulator }}: {{ d.action }}
+    </h3>
+    <p style="font-size: 0.9rem;">
+        <a href="/obligations/{{ d.obligation_id }}">{{ d.clause }}</a> ·
+        {% if d.urgency == 'deadline' %}due <strong>{{ d.due_ist }}</strong>
+        {% elif d.urgency == 'without_delay' %}<strong>without delay</strong>
+        {% else %}no time limit stated in the text{% endif %}
+        · state: <strong>{{ row.status | upper }}</strong>
+        {% if row.note %}<span style="color: var(--warning);">({{ row.note }})</span>{% endif %}
+    </p>
+    <table>
+        <thead><tr><th>Field</th><th>Value</th><th>Where it comes from</th></tr></thead>
+        <tbody>
+        {% for f in d.fields %}
+        <tr>
+            <td>{{ f.label }}</td>
+            <td>{% if f.value is none %}<em style="color: var(--warning);">to be completed by you</em>{% else %}{{ f.value }}{% endif %}</td>
+            <td style="font-size: 0.8rem; color: var(--text-muted);">
+                {% if f.origin == 'source_text' %}required by the clause, quoted ({{ f.citation }})
+                {% elif f.origin == 'your_input' %}your input
+                {% else %}computed ({{ f.citation }}){% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if row.status == 'draft' %}
+    <form method="post" action="/api/cases/{{ view.case.id }}/drafts/{{ d.obligation_id }}/approve" style="margin-top: 0.75rem;">
+        <input type="text" name="approver" placeholder="Approver's name" required>
+        <button type="submit" class="btn">Approve this draft</button>
+    </form>
+    {% elif row.status == 'approved' %}
+    <p style="font-size: 0.85rem;">Approved by {{ row.approved_by }} at {{ row.approved_at }}
+        (content hash <code>{{ row.approved_digest[:16] }}</code>). File it on the regulator's channel, then record it:</p>
+    <form method="post" action="/api/cases/{{ view.case.id }}/drafts/{{ d.obligation_id }}/filed">
+        <input type="text" name="filed_by" placeholder="Filed by (name)" required>
+        <input type="text" name="reference" placeholder="Acknowledgement / reference" required>
+        <input type="datetime-local" name="filed_at" required>
+        <button type="submit" class="btn">Record that I filed it</button>
+    </form>
+    {% else %}
+    <p style="font-size: 0.85rem; color: var(--success);">Recorded as filed by {{ row.filed_by }} at {{ row.filed_at }},
+        reference <code>{{ row.reference }}</code>.</p>
+    {% endif %}
+</div>
+{% endfor %}
+
+<h2>Add or correct a fact</h2>
+<form method="post" action="/api/cases/{{ view.case.id }}/facts">
+    <div class="form-group"><label>Detected at (IST)</label><input type="datetime-local" name="when_detected"></div>
+    <div class="form-group"><label>Noticed at (IST)</label><input type="datetime-local" name="when_noticed"></div>
+    <div class="form-group"><label>Became aware of a personal data breach at (IST)</label><input type="datetime-local" name="when_aware"></div>
+    <div class="form-group"><label>Reported to SEBI at (IST)</label><input type="datetime-local" name="when_reported_to_sebi"></div>
+    <div class="form-group"><label>Personal data involved</label>
+        <select name="personal_data_involved"><option value="">no change</option><option value="true">Yes</option><option value="false">No</option></select></div>
+    <div class="form-group"><label>Protected system identified by NCIIPC</label>
+        <select name="uses_protected_systems"><option value="">no change</option><option value="true">Yes</option><option value="false">No</option></select></div>
+    <div class="form-group"><label>A cyber incident</label>
+        <select name="is_cyber_incident"><option value="">no change</option><option value="true">Yes</option><option value="false">No</option></select></div>
+    <input type="text" name="recorded_by" placeholder="Your name" required>
+    <button type="submit" class="btn">Record</button>
+    <p style="font-size: 0.8rem; color: var(--text-muted);">Changing a fact withdraws approvals that have not been filed, because the draft content may change.</p>
+</form>
+
+<h2>Evidence timeline</h2>
+<p>
+    {{ view.timeline.events }} events · chain
+    {% if view.timeline.valid %}<span style="color: var(--success);">intact</span>
+    {% else %}<span style="color: var(--danger);">BROKEN at event {{ view.timeline.first_break_seq }}</span>{% endif %}
+    · head hash <code>{{ view.timeline.head_hash }}</code>
+</p>
+<p style="font-size: 0.8rem; color: var(--text-muted);">
+    Keep a copy of the head hash somewhere else (email it or print it). The chain shows order and
+    integrity after the fact; it does not prove the recorded times were true.
+</p>
+<p><a class="btn" href="/api/cases/{{ view.case.id }}/export.zip">⬇ Download the audit bundle</a></p>
+{% endblock %}

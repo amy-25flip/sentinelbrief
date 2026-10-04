@@ -1,0 +1,348 @@
+"""Incident cases on local disk: facts, draft approval by a named person, and an audit bundle.
+
+Incident data is sensitive. Cases are plain files under a directory the operator chooses; nothing
+is sent anywhere. Every state change is appended to the case's hash-chained evidence timeline.
+"""
+
+import hashlib
+import json
+import re
+import uuid
+from datetime import UTC, datetime
+from pathlib import Path
+from typing import Any
+
+from sentinelbrief.clock.engine import ClockResult, IncidentClockEngine, IncidentProfile
+from sentinelbrief.evidence.timeline import EvidenceTimeline, canonical_json
+from sentinelbrief.workspace.drafts import FilingDraft, build_drafts, load_filing_content
+
+_CASE_ID_RE = re.compile(r"^[0-9a-f]{32}$")
+_TIME_FIELDS = (
+    "when_noticed",
+    "when_brought_to_notice",
+    "when_detected",
+    "when_occurred",
+    "when_aware",
+    "when_reported_to_sebi",
+)
+_FACT_FIELDS = (
+    *_TIME_FIELDS,
+    "entity_classes",
+    "incident_description",
+    "incident_types",
+    "annexure_i_items",
+    "personal_data_involved",
+    "uses_protected_systems",
+    "systems_affected",
+    "is_annexure_i_type",
+    "is_cyber_incident",
+)
+# A person approves and files. Names that indicate an AI agent or a placeholder are refused.
+_NON_HUMAN = (
+    "agent",
+    "antigravity",
+    "claude",
+    "codex",
+    "gpt",
+    "gemini",
+    "llm",
+    "bot",
+    "system",
+    "auto",
+)
+
+
+def profile_to_facts(profile: IncidentProfile) -> dict[str, Any]:
+    """JSON-safe copy of the profile (timestamps as ISO strings with offset)."""
+    facts: dict[str, Any] = {}
+    for name in _FACT_FIELDS:
+        value = getattr(profile, name)
+        facts[name] = value.isoformat() if isinstance(value, datetime) else value
+    return facts
+
+
+def facts_to_profile(facts: dict[str, Any]) -> IncidentProfile:
+    unknown = set(facts) - set(_FACT_FIELDS)
+    if unknown:
+        raise ValueError(f"Unknown fact field(s): {', '.join(sorted(unknown))}")
+    kwargs = dict(facts)
+    for name in _TIME_FIELDS:
+        if kwargs.get(name) is not None:
+            kwargs[name] = datetime.fromisoformat(str(kwargs[name]))
+    return IncidentProfile(**kwargs)
+
+
+def _require_person(name: str, role: str) -> str:
+    cleaned = (name or "").strip()
+    if len(cleaned) < 2:
+        raise ValueError(f"{role} must be a named person")
+    if any(tag in cleaned.lower().split() or cleaned.lower() == tag for tag in _NON_HUMAN):
+        raise ValueError(f"{role} must be a person, not '{cleaned}'")
+    return cleaned
+
+
+def draft_digest(draft: FilingDraft) -> str:
+    """SHA-256 of the draft's content, recorded when a person approves it."""
+    return hashlib.sha256(canonical_json(draft.to_dict()).encode("utf-8")).hexdigest()
+
+
+class CaseStore:
+    """File-backed incident cases. Single writer; not a multi-user system."""
+
+    def __init__(self, root: str | Path, data_dir: str | Path):
+        self.root = Path(root)
+        self.data_dir = Path(data_dir)
+        self.engine = IncidentClockEngine(self.data_dir)
+        self.content = load_filing_content(self.data_dir)
+
+    # --- storage ---
+
+    def _dir(self, case_id: str) -> Path:
+        if not _CASE_ID_RE.match(case_id):
+            raise ValueError("Invalid case id")
+        path = self.root / case_id
+        if not (path / "case.json").is_file():
+            raise KeyError(f"No such case: {case_id}")
+        return path
+
+    def _read(self, case_id: str) -> dict[str, Any]:
+        value: dict[str, Any] = json.loads(
+            (self._dir(case_id) / "case.json").read_text(encoding="utf-8")
+        )
+        return value
+
+    def _write(self, case: dict[str, Any]) -> None:
+        path = self.root / case["id"] / "case.json"
+        tmp = path.with_suffix(".json.tmp")
+        tmp.write_text(
+            json.dumps(case, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n"
+        )
+        tmp.replace(path)
+
+    def timeline(self, case_id: str) -> EvidenceTimeline:
+        return EvidenceTimeline(self._dir(case_id) / "timeline.jsonl")
+
+    # --- operations ---
+
+    def create(self, profile: IncidentProfile, actor: str) -> str:
+        actor = _require_person(actor, "The person opening the case")
+        self.engine.evaluate(profile)  # reject invalid facts before anything is stored
+        case_id = uuid.uuid4().hex
+        (self.root / case_id).mkdir(parents=True, exist_ok=False)
+        case = {
+            "id": case_id,
+            "created_at": datetime.now(UTC).isoformat(),
+            "created_by": actor,
+            "facts": profile_to_facts(profile),
+            "drafts": {},
+        }
+        self._write(case)
+        self.timeline(case_id).append(actor, "incident_created", {"facts": case["facts"]})
+        return case_id
+
+    def evaluate(
+        self, case_id: str, now: datetime | None = None
+    ) -> tuple[ClockResult, list[FilingDraft]]:
+        case = self._read(case_id)
+        result = self.engine.evaluate(facts_to_profile(case["facts"]), now=now)
+        return result, build_drafts(self.engine, result, self.content)
+
+    def view(self, case_id: str, now: datetime | None = None) -> dict[str, Any]:
+        """Everything a page or API client needs for one case."""
+        case = self._read(case_id)
+        result, drafts = self.evaluate(case_id, now=now)
+        rows = []
+        for draft in drafts:
+            state = dict(case["drafts"].get(draft.obligation_id) or {"status": "draft"})
+            if state["status"] == "approved" and state.get("approved_digest") != draft_digest(
+                draft
+            ):
+                # Defence in depth: an approval never covers content it did not see.
+                state = {"status": "draft", "note": "content changed after approval; approve again"}
+            rows.append(
+                {"draft": draft.to_dict(), "open_fields": len(draft.open_fields()), **state}
+            )
+        ok, first_bad = self.timeline(case_id).verify()
+        return {
+            "case": {k: case[k] for k in ("id", "created_at", "created_by", "facts")},
+            "clock": result.to_dict(),
+            "drafts": rows,
+            "timeline": {
+                "events": len(self.timeline(case_id)),
+                "head_hash": self.timeline(case_id).head_hash(),
+                "valid": ok,
+                "first_break_seq": first_bad,
+            },
+        }
+
+    def update_facts(self, case_id: str, changes: dict[str, Any], actor: str) -> None:
+        """Record new or corrected facts. Approvals not yet filed are withdrawn."""
+        actor = _require_person(actor, "The person recording facts")
+        if not changes:
+            raise ValueError("No facts given")
+        case = self._read(case_id)
+        merged = {**case["facts"], **changes}
+        profile = facts_to_profile(merged)
+        self.engine.evaluate(profile)
+        before = {k: case["facts"].get(k) for k in changes}
+        case["facts"] = profile_to_facts(profile)
+        withdrawn = []
+        for obligation_id, state in case["drafts"].items():
+            if state["status"] == "approved":
+                case["drafts"][obligation_id] = {
+                    "status": "draft",
+                    "note": "facts changed; approve again",
+                }
+                withdrawn.append(obligation_id)
+        timeline = self.timeline(case_id)
+        timeline.append(
+            actor,
+            "fact_recorded",
+            {
+                "changed": {k: case["facts"][k] for k in changes},
+                "previous": before,
+                "approvals_withdrawn": withdrawn,
+            },
+        )
+        self._write(case)
+
+    def _draft(self, case_id: str, obligation_id: str) -> FilingDraft:
+        _, drafts = self.evaluate(case_id)
+        draft = next((d for d in drafts if d.obligation_id == obligation_id), None)
+        if draft is None:
+            raise KeyError(f"No draft for {obligation_id} in this case")
+        return draft
+
+    def approve(self, case_id: str, obligation_id: str, approver: str) -> str:
+        """A named person approves the current draft content. Returns the content digest."""
+        approver = _require_person(approver, "The approver")
+        case = self._read(case_id)
+        if (case["drafts"].get(obligation_id) or {}).get("status") == "filed":
+            raise ValueError("This filing is already recorded as filed")
+        digest = draft_digest(self._draft(case_id, obligation_id))
+        now = datetime.now(UTC).isoformat()
+        self.timeline(case_id).append(
+            approver, "draft_approved", {"obligation_id": obligation_id, "draft_sha256": digest}
+        )
+        case["drafts"][obligation_id] = {
+            "status": "approved",
+            "approved_by": approver,
+            "approved_at": now,
+            "approved_digest": digest,
+        }
+        self._write(case)
+        return digest
+
+    def record_filing(
+        self, case_id: str, obligation_id: str, filed_by: str, reference: str, filed_at: datetime
+    ) -> None:
+        """Record that a person filed on the regulator's own channel. The tool files nothing."""
+        filed_by = _require_person(filed_by, "The person who filed")
+        if filed_at.tzinfo is None or filed_at.utcoffset() is None:
+            raise ValueError("filed_at must be timezone-aware")
+        if not reference.strip():
+            raise ValueError(
+                "A filing reference (acknowledgement number or message id) is required"
+            )
+        case = self._read(case_id)
+        state = case["drafts"].get(obligation_id) or {}
+        if state.get("status") != "approved":
+            raise ValueError("A draft must be approved by a person before a filing is recorded")
+        if state.get("approved_digest") != draft_digest(self._draft(case_id, obligation_id)):
+            raise ValueError(
+                "The draft changed after approval; approve it again before recording a filing"
+            )
+        self.timeline(case_id).append(
+            filed_by,
+            "filing_recorded",
+            {
+                "obligation_id": obligation_id,
+                "reference": reference.strip(),
+                "filed_at": filed_at.isoformat(),
+                "draft_sha256": state["approved_digest"],
+            },
+        )
+        case["drafts"][obligation_id] = {
+            **state,
+            "status": "filed",
+            "filed_by": filed_by,
+            "filed_at": filed_at.isoformat(),
+            "reference": reference.strip(),
+        }
+        self._write(case)
+
+    def export(self, case_id: str, output_dir: str | Path) -> Path:
+        """Write the auditor bundle: timeline, clocks, drafts, the law as applied, and a manifest."""
+        out = Path(output_dir)
+        self.timeline(case_id).export_bundle(out)
+        case = self._read(case_id)
+        result, drafts = self.evaluate(case_id)
+        cited = [d.obligation_id for d in drafts] + result.applicable_obligations
+        law = []
+        for obligation_id in dict.fromkeys(cited):
+            obligation = self.engine.get_obligation(obligation_id) or {}
+            law.append(
+                {
+                    "obligation_id": obligation_id,
+                    "instrument_id": obligation.get("instrument_id"),
+                    "paragraph_ref": obligation.get("paragraph_ref"),
+                    "text_verbatim": obligation.get("text_verbatim"),
+                    "citations": obligation.get("citations"),
+                    "validity": obligation.get("validity"),
+                    "verification": obligation.get("verification"),
+                    "confidence": obligation.get("confidence"),
+                    "confidence_reason": obligation.get("confidence_reason"),
+                }
+            )
+        files: dict[str, Any] = {
+            "case.json": case,
+            "clock_result.json": result.to_dict(),
+            "drafts.json": [
+                {**d.to_dict(), "state": case["drafts"].get(d.obligation_id) or {"status": "draft"}}
+                for d in drafts
+            ],
+            "law_snapshot.json": {"law_as_of": result.law_as_of.isoformat(), "obligations": law},
+        }
+        for name, value in files.items():
+            (out / name).write_text(
+                json.dumps(value, indent=2, ensure_ascii=False) + "\n",
+                encoding="utf-8",
+                newline="\n",
+            )
+        lines = [
+            "# Incident case bundle",
+            "",
+            EvidenceTimeline.DISCLAIMER,
+            "",
+            "Deadlines and applicability were computed by a deterministic engine from the facts in",
+            "`case.json` and the law in `law_snapshot.json` (evaluated as of the incident date).",
+            "Drafts are not filings. A filing appears here only because a person recorded that they",
+            "filed it; this tool submitted nothing. Not legal advice.",
+            "",
+            f"- Case: `{case['id']}` opened {case['created_at']} by {case['created_by']}",
+            f"- Law as of: {result.law_as_of.isoformat()}",
+            f"- Open questions: {len(result.unknowns)}",
+            "",
+            "| Duty | Recipient | Due | State |",
+            "|---|---|---|---|",
+        ]
+        for draft in drafts:
+            state = case["drafts"].get(draft.obligation_id) or {"status": "draft"}
+            lines.append(
+                f"| {draft.obligation_id} | {draft.recipient} | {draft.due_ist or draft.urgency} | {state['status']} |"
+            )
+        (out / "CASE_SUMMARY.md").write_text(
+            "\n".join(lines) + "\n", encoding="utf-8", newline="\n"
+        )
+        manifest = {
+            "generated_at": datetime.now(UTC).isoformat(),
+            "files": {
+                path.name: hashlib.sha256(path.read_bytes()).hexdigest()
+                for path in sorted(out.iterdir())
+                if path.is_file() and path.name != "bundle_manifest.json"
+            },
+        }
+        (out / "bundle_manifest.json").write_text(
+            json.dumps(manifest, indent=2) + "\n", encoding="utf-8", newline="\n"
+        )
+        return out

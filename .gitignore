@@ -24,3 +24,6 @@ node_modules/
 .tmp/
 
 .staging/
+
+# local incident cases (sensitive; never committed)
+var/

@@ -105,6 +105,19 @@
     </fieldset>
 
     <button type="submit" class="btn">⏱ Compute Clocks</button>
+
+    <fieldset style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin: 1rem 0;">
+        <legend style="padding: 0 0.5rem; color: var(--text-muted); font-size: 0.85rem;">
+            Keep a record (optional)
+        </legend>
+        <label for="opened_by">Your name, to open a case with drafts and an evidence timeline</label>
+        <input id="opened_by" type="text" name="opened_by" placeholder="Name of the person handling this incident">
+        <button type="submit" class="btn" formaction="/api/cases" formmethod="post"
+                hx-disable="true" style="margin-top: 0.5rem;">📁 Open case</button>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">
+            Stored on this machine only. Nothing is sent to any regulator or third party.
+        </p>
+    </fieldset>
 </form>
 
 <script>
