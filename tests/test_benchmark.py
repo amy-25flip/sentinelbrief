@@ -646,3 +646,40 @@ def test_catches_irdai_other_duties_leaking_to_an_nbfc(monkeypatch):
 
     _mutate_loaded_obligations(monkeypatch, mutation)
     assert "irdai-other-duties-do-not-reach-an-nbfc" in _failed(_run())
+
+
+# --- IRDAI Part 3: the event that starts an external clock ---
+
+
+def test_catches_external_start_time_ignored(monkeypatch):
+    original = engine_module.IncidentProfile.__post_init__
+
+    def mutation(self):
+        self.external_events = {}
+        original(self)
+
+    monkeypatch.setattr(engine_module.IncidentProfile, "__post_init__", mutation)
+    failed = _failed(_run())
+    assert {"irdai-government-order-clock", "irdai-complaint-clocks"} <= failed
+
+
+def test_catches_external_start_time_used_for_law_as_of(monkeypatch):
+    original = engine_module.IncidentProfile.earliest_known_time
+
+    def mutation(self):
+        times = [t for t in [original(self), *self.external_events.values()] if t is not None]
+        return max(times) if times else None
+
+    monkeypatch.setattr(engine_module.IncidentProfile, "earliest_known_time", mutation)
+    assert "irdai-government-order-clock" in _failed(_run())
+
+
+def test_scenario_the_engine_rejects_is_a_failure_not_a_crash():
+    bench = scorer.BenchmarkScorer(REPO / "data", REPO / "benchmark" / "scenarios")
+    scenario = copy.deepcopy(
+        next(s for s in bench.scenarios if s["id"] == "cert-in-nbfc-ransomware")
+    )
+    scenario["entity_profile"] = {"entity_class": "not.a.class"}
+    result = bench.evaluate_scenario(scenario)
+    assert result["passed"] is False
+    assert "engine rejected the scenario input" in result["failures"][0]

@@ -36,6 +36,7 @@ _FACT_FIELDS = (
     "systems_affected",
     "is_annexure_i_type",
     "is_cyber_incident",
+    "external_events",
 )
 # A person approves and files. Names that indicate an AI agent or a placeholder are refused.
 _NON_HUMAN = (
@@ -57,6 +58,8 @@ def profile_to_facts(profile: IncidentProfile) -> dict[str, Any]:
     facts: dict[str, Any] = {}
     for name in _FACT_FIELDS:
         value = getattr(profile, name)
+        if name == "external_events":
+            value = {key: when.isoformat() for key, when in value.items()}
         facts[name] = value.isoformat() if isinstance(value, datetime) else value
     return facts
 
@@ -69,6 +72,10 @@ def facts_to_profile(facts: dict[str, Any]) -> IncidentProfile:
     for name in _TIME_FIELDS:
         if kwargs.get(name) is not None:
             kwargs[name] = datetime.fromisoformat(str(kwargs[name]))
+    kwargs["external_events"] = {
+        str(key): datetime.fromisoformat(str(when))
+        for key, when in (kwargs.get("external_events") or {}).items()
+    }
     return IncidentProfile(**kwargs)
 
 
@@ -163,7 +170,23 @@ class CaseStore:
                 {"draft": draft.to_dict(), "open_fields": len(draft.open_fields()), **state}
             )
         ok, first_bad = self.timeline(case_id).verify()
+        external = []
+        for obligation_id in result.applicable_obligations:
+            obligation = self.engine.get_obligation(obligation_id) or {}
+            normalized = obligation.get("normalized") or {}
+            deadline = normalized.get("deadline") or {}
+            if deadline.get("anchor") == "external_event":
+                external.append(
+                    {
+                        "id": obligation_id,
+                        "action": normalized.get("action", ""),
+                        "within": deadline.get("duration_iso8601"),
+                        "starts_from": (normalized.get("trigger") or {}).get("description", ""),
+                        "started": (case["facts"].get("external_events") or {}).get(obligation_id),
+                    }
+                )
         return {
+            "external_clocks": external,
             "case": {k: case[k] for k in ("id", "created_at", "created_by", "facts")},
             "clock": result.to_dict(),
             "drafts": rows,

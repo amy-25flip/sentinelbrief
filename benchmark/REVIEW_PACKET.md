@@ -4,7 +4,7 @@ For a compliance professional. Every expected outcome below was written by an AI
 primary texts and has not been checked by a qualified person. Until it has, no accuracy
 figure for this tool should be quoted.
 
-92 dev scenarios over 45 modelled obligations.
+94 dev scenarios over 45 modelled obligations.
 
 How to review: do Part A first. In Part B, tick each scenario or say what is wrong.
 PDF page numbers refer to the files in `data/raw/`.
@@ -2370,7 +2370,7 @@ A Level III UCB is bound by Chapter IV as well, so the VA and PT cadence applies
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-## IRDAI Information and Cyber Security Guidelines (2023) (12 scenarios)
+## IRDAI Information and Cyber Security Guidelines (2023) (14 scenarios)
 
 ### 81. `irdai-attested-not-a-cyber-incident`
 
@@ -2415,7 +2415,30 @@ An incident on 1 April 2023 predates the guidelines of 24 April 2023; CERT-In's 
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 83. `irdai-cyber-incident-not-annexure-i`
+### 83. `irdai-complaint-clocks`
+
+A complaint is received two hours after the incident is noticed; acknowledgement is due in 24 hours and disposal in fifteen days, both from receipt.
+
+- **Entity classes:** `irdai.intermediary`
+- **Incident type(s) as stated:** Malicious code attacks such as Ransomware
+- **Noticed:** `2026-10-01T10:00:00+05:30`
+
+**Expected** (law as of `2026-10-01`; regulators: CERT-In, IRDAI)
+
+- Deadline `2026-10-01T16:00:00+05:30` for `cert-in.directions-70b.2022.incident-reporting-6h` (PT6H from noticing)
+- Deadline `2026-10-01T16:00:00+05:30` for `irdai.ics-guidelines.2023.incident-reporting-6h` (PT6H from noticing)
+- Deadline `2026-10-02T12:00:00+05:30` for `irdai.ics-guidelines.2023.grievance-acknowledge-24h` (PT24H from external event)
+- Deadline `2026-10-16T12:00:00+05:30` for `irdai.ics-guidelines.2023.grievance-dispose-15d` (P15D from external event)
+
+**Clauses relied on**
+
+- `irdai.ics-guidelines.2023`, PDF page 298: "acknowledge the complaint within twenty-four hours and dispose off such complaint within a period of fifteen days from the date of its receipt;"
+- `irdai.ics-guidelines.2023`, PDF page 224: "Organization shall mandatorily report cyber incidents to Cert-In within 6 hours of noticing or being brought to notice about such incidents with a copy to IRDAI and other concerned regulators / authorities. The details regarding methods and formats of reporting cyber incident is published on Cert-In website."
+- `cert-in.directions-70b.2022`, PDF page 2: "(ii) Any service provider, intermediary, data centre, body corporate and Government organisation shall mandatorily report cyber incidents as mentioned in Annexure I to CERT-In within 6 hours of noticing such incidents or being brought to notice about such incidents. The incidents can be reported to CERT-In via email (incident@cert-in.org.in), Phone (1800- 11-4949) and Fax (1800-11-6969). The details regarding methods and formats of reporting cyber security incidents is also published on the website of CERT-In www.cert-in.org.in and will be updated from time to time."
+
+- [ ] Correct   - [ ] Incorrect: ____________________
+
+### 84. `irdai-cyber-incident-not-annexure-i`
 
 Attested a cyber incident but not an Annexure I type: the IRDAI sentence is not limited to Annexure I, so on the conservative reading its clock runs.
 
@@ -2437,7 +2460,7 @@ Attested a cyber incident but not an Annexure I type: the IRDAI sentence is not 
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 84. `irdai-detection-only-asks`
+### 85. `irdai-detection-only-asks`
 
 Only a detection time is known. The IRDAI clause, like CERT-In's, counts from noticing or being brought to notice, so the engine asks.
 
@@ -2458,7 +2481,29 @@ Only a detection time is known. The IRDAI clause, like CERT-In's, counts from no
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 85. `irdai-hardware-failure-unattested`
+### 86. `irdai-government-order-clock`
+
+A government order arrives the day after the incident; its 72 hours run from receipt of the order, not from the incident.
+
+- **Entity classes:** `irdai.insurer`
+- **Incident type(s) as stated:** Malicious code attacks such as Ransomware
+- **Noticed:** `2026-10-01T10:00:00+05:30`
+
+**Expected** (law as of `2026-10-01`; regulators: CERT-In, IRDAI)
+
+- Deadline `2026-10-01T16:00:00+05:30` for `cert-in.directions-70b.2022.incident-reporting-6h` (PT6H from noticing)
+- Deadline `2026-10-01T16:00:00+05:30` for `irdai.ics-guidelines.2023.incident-reporting-6h` (PT6H from noticing)
+- Deadline `2026-10-05T09:00:00+05:30` for `irdai.ics-guidelines.2023.gov-order-information-72h` (PT72H from external event)
+
+**Clauses relied on**
+
+- `irdai.ics-guidelines.2023`, PDF page 298: "7. The Organization shall as soon as possible, but not later than seventy-two hours of the receipt of an order, provide information under its control or possession, or assistance to the Government agency which is lawfully authorized for investigative or protective or cybersecurity activities, for the purposes of verification of identity, or for the prevention, detection, investigation, or prosecution, of offences under any law for the time being in force, or for cyber security incidents."
+- `irdai.ics-guidelines.2023`, PDF page 224: "Organization shall mandatorily report cyber incidents to Cert-In within 6 hours of noticing or being brought to notice about such incidents with a copy to IRDAI and other concerned regulators / authorities. The details regarding methods and formats of reporting cyber incident is published on Cert-In website."
+- `cert-in.directions-70b.2022`, PDF page 2: "(ii) Any service provider, intermediary, data centre, body corporate and Government organisation shall mandatorily report cyber incidents as mentioned in Annexure I to CERT-In within 6 hours of noticing such incidents or being brought to notice about such incidents. The incidents can be reported to CERT-In via email (incident@cert-in.org.in), Phone (1800- 11-4949) and Fax (1800-11-6969). The details regarding methods and formats of reporting cyber security incidents is also published on the website of CERT-In www.cert-in.org.in and will be updated from time to time."
+
+- [ ] Correct   - [ ] Incorrect: ____________________
+
+### 87. `irdai-hardware-failure-unattested`
 
 Free text that matches no Annexure I type: the CERT-In question and the IRDAI cyber-incident question are both asked.
 
@@ -2481,7 +2526,7 @@ Free text that matches no Annexure I type: the CERT-In question and the IRDAI cy
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 86. `irdai-insurer-also-data-fiduciary-2027`
+### 88. `irdai-insurer-also-data-fiduciary-2027`
 
 An insurer that is a Data Fiduciary: CERT-In with a copy to IRDAI in six hours, and the Data Protection Board track.
 
@@ -2507,7 +2552,7 @@ An insurer that is a Data Fiduciary: CERT-In with a copy to IRDAI in six hours, 
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 87. `irdai-insurer-ransomware`
+### 89. `irdai-insurer-ransomware`
 
 An insurer notices ransomware: CERT-In within six hours, with a copy to IRDAI.
 
@@ -2528,7 +2573,7 @@ An insurer notices ransomware: CERT-In within six hours, with a copy to IRDAI.
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 88. `irdai-intermediary-brought-to-notice`
+### 90. `irdai-intermediary-brought-to-notice`
 
 An insurance intermediary is told of the incident by a third party; no noticing time is given.
 
@@ -2549,7 +2594,7 @@ An insurance intermediary is told of the incident by a third party; no noticing 
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 89. `irdai-other-duties-before-the-guidelines`
+### 91. `irdai-other-duties-before-the-guidelines`
 
 On 1 April 2023 the guidelines had not been issued.
 
@@ -2576,7 +2621,7 @@ On 1 April 2023 the guidelines had not been issued.
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 90. `irdai-other-duties-do-not-reach-an-nbfc`
+### 92. `irdai-other-duties-do-not-reach-an-nbfc`
 
 A Middle Layer NBFC is not regulated by IRDAI.
 
@@ -2604,7 +2649,7 @@ A Middle Layer NBFC is not regulated by IRDAI.
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 91. `irdai-other-duties-give-no-incident-clock`
+### 93. `irdai-other-duties-give-no-incident-clock`
 
 An insurer's ransomware incident starts only the two six-hour clocks. The duties that run from an order, a complaint, a cancellation or a lost device are listed but give no deadline and ask nothing.
 
@@ -2637,7 +2682,7 @@ An insurer's ransomware incident starts only the two six-hour clocks. The duties
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 92. `irdai-payments-bank-is-not-an-insurer`
+### 94. `irdai-payments-bank-is-not-an-insurer`
 
 A Payments Bank is not regulated by IRDAI.
 

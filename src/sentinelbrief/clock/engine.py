@@ -121,6 +121,9 @@ class IncidentProfile:
     # A filing timestamp is a downstream event. It is excluded from law_as_of unless no
     # incident timestamp is available, so a late report cannot move the governing-law date.
     when_reported_to_sebi: datetime | None = None
+    # When the starting event of an `external_event` clock happened, keyed by obligation id
+    # (an order or complaint was received, a device was lost). Never used for law_as_of.
+    external_events: dict[str, datetime] = field(default_factory=dict)
     personal_data_involved: bool | None = None
     uses_protected_systems: bool | None = None
     systems_affected: list[str] = field(default_factory=list)
@@ -147,6 +150,11 @@ class IncidentProfile:
                 raise ValueError(
                     f"{name} must be timezone-aware; a naive datetime would be silently read "
                     "in the server's local timezone, which can shift a legal deadline by hours"
+                )
+        for obligation_id, value in self.external_events.items():
+            if not isinstance(value, datetime) or value.tzinfo is None or value.utcoffset() is None:
+                raise ValueError(
+                    f"external_events[{obligation_id}] must be a timezone-aware datetime"
                 )
         if self.is_annexure_i_type is False and self.annexure_i_items:
             raise ValueError(
@@ -488,6 +496,15 @@ class IncidentClockEngine:
                     f"Unknown entity class '{entity_class}'. Refusing to guess: an "
                     f"unrecognised class would silently report that nothing applies. "
                     f"Known classes: {', '.join(sorted(self.taxonomy.classes.keys()))}"
+                )
+
+        for obligation_id in profile.external_events:
+            target = self.get_obligation(obligation_id)
+            anchor = (((target or {}).get("normalized") or {}).get("deadline") or {}).get("anchor")
+            if anchor != "external_event":
+                raise ValueError(
+                    f"external_events: '{obligation_id}' is not an obligation whose clock starts "
+                    "from an external event"
                 )
 
         caveats: list[str] = []
@@ -836,12 +853,38 @@ class IncidentClockEngine:
 
         if spec.get("anchor") == "external_event":
             # The clock starts from something other than this incident (an order, a complaint,
-            # a lost device). The duty is listed with its duration; no deadline is computed
-            # from incident facts and no question is asked about it.
+            # a lost device). Without the time of that event the duty is listed with its
+            # duration; no deadline is computed from incident facts and nothing is asked.
             if spec.get("alternative_anchors"):
                 raise ValueError(
                     f"{obs_id}: an external_event clock cannot have incident alternative_anchors"
                 )
+            started = profile.external_events.get(obs_id)
+            if started is None:
+                return
+            duration = parse_iso8601_duration(
+                spec.get("duration_iso8601") or "", allow_calendar=False
+            )
+            deadline_utc = started.astimezone(UTC) + duration
+            citation = (obs.get("citations") or [{}])[0]
+            instrument_id = obs.get("instrument_id", "")
+            deadlines.append(
+                DeadlineResult(
+                    obligation_id=obs_id,
+                    regulator=self._issuer.get(instrument_id, instrument_id.split(".")[0].upper()),
+                    obligation_action=norm.get("action", ""),
+                    anchor_type="external_event",
+                    anchor_timestamp=started,
+                    deadline_utc=deadline_utc,
+                    deadline_ist=deadline_utc.astimezone(IST),
+                    duration_iso8601=spec["duration_iso8601"],
+                    status="pending" if deadline_utc > now else "overdue",
+                    citation_paragraph=citation.get("paragraph_ref", ""),
+                    citation_instrument=citation.get("instrument_id", ""),
+                    recipient=norm.get("recipient", ""),
+                    channel=None,
+                )
+            )
             return
 
         duration_str = spec.get("duration_iso8601")

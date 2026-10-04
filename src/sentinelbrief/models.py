@@ -292,6 +292,7 @@ class IncidentFacts(BaseModel):
     when_occurred: datetime | None = None
     when_brought_to_notice: datetime | None = None
     when_reported_to_sebi: datetime | None = None
+    external_events: dict[str, datetime] | None = None
     is_annexure_i_type: bool | None = None
     is_cyber_incident: bool | None = None
     annexure_i_items: list[str] | None = None

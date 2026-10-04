@@ -50,6 +50,10 @@ def main(argv: list[str]) -> int:
         if key in TIME_KEYS:
             hh, mm = value.split(":")
             kwargs[TIME_KEYS[key]] = day.replace(hour=int(hh), minute=int(mm), tzinfo=IST)
+        elif key.startswith("ext:"):
+            hh, mm = value.split(":")
+            events = kwargs.setdefault("external_events", {})
+            events[key[4:]] = day.replace(hour=int(hh), minute=int(mm), tzinfo=IST)  # type: ignore[index]
         elif key in BOOL_KEYS:
             kwargs[BOOL_KEYS[key]] = value == "true"
         else:

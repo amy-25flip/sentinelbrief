@@ -120,6 +120,10 @@ class BenchmarkScorer:
             when_occurred=_parse_dt(facts.get("when_occurred")),
             when_aware=_parse_dt(facts.get("when_aware")),
             when_reported_to_sebi=_parse_dt(facts.get("when_reported_to_sebi")),
+            external_events={
+                key: datetime.fromisoformat(value)
+                for key, value in (facts.get("external_events") or {}).items()
+            },
             personal_data_involved=facts.get("personal_data_involved"),
             uses_protected_systems=ep.get("uses_protected_systems"),
             systems_affected=facts.get("systems_affected", []),
@@ -134,7 +138,18 @@ class BenchmarkScorer:
         # law_snapshot_date pins the dataset version and the evaluation time. The law's as-of
         # date is NOT forced from it: the engine must derive it from the incident, and the
         # label asserts what it should be (expected.law_as_of).
-        result = self.engine.evaluate(self._profile(scenario), now=now)
+        try:
+            result = self.engine.evaluate(self._profile(scenario), now=now)
+        except ValueError as exc:
+            # A scenario the engine refuses to evaluate has failed; it must not abort the run.
+            return {
+                "id": scenario["id"],
+                "passed": False,
+                "failures": [f"engine rejected the scenario input: {exc}"],
+                "is_adversarial": bool(scenario.get("adversarial_flags")),
+                "deadlines_expected": len(expected["deadlines"]),
+                "deadlines_matched": 0,
+            }
         failures: list[str] = []
         try:
             verify_source_quotes(scenario, self.data_dir)

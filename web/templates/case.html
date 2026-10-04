@@ -77,6 +77,27 @@
 </div>
 {% endfor %}
 
+{% if view.external_clocks %}
+<h2>Clocks that start from another event</h2>
+<p style="font-size: 0.85rem; color: var(--text-muted);">
+    These duties do not run from the incident. If the event has happened, record when, and the deadline is computed.
+</p>
+<ul>
+    {% for e in view.external_clocks %}
+    <li style="margin-bottom: 0.4rem;">{{ e.action }} <span class="chip">Within {{ e.within }} of: {{ e.starts_from }}</span>
+        {% if e.started %}<span class="chip">started {{ e.started }}</span>{% endif %}</li>
+    {% endfor %}
+</ul>
+<form method="post" action="/api/cases/{{ view.case.id }}/facts">
+    <select name="external_duty" required>
+        {% for e in view.external_clocks %}<option value="{{ e.id }}">{{ e.starts_from }} ({{ e.within }})</option>{% endfor %}
+    </select>
+    <input type="datetime-local" name="external_started" required>
+    <input type="text" name="recorded_by" placeholder="Your name" required>
+    <button type="submit" class="btn">Start this clock</button>
+</form>
+{% endif %}
+
 <h2>Add or correct a fact</h2>
 <form method="post" action="/api/cases/{{ view.case.id }}/facts">
     <div class="form-group"><label>Detected at (IST)</label><input type="datetime-local" name="when_detected"></div>

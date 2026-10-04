@@ -219,6 +219,14 @@ def _profile_from_payload(payload: dict[str, Any], *, form_input: bool) -> Incid
         protected_systems = protected_systems.lower() == "true"
     elif not isinstance(protected_systems, bool):
         raise ValueError("uses_protected_systems must be true, false or null")
+    external_raw = payload.get("external_events") or {}
+    if not isinstance(external_raw, dict):
+        raise ValueError("external_events must be an object of obligation id to timestamp")
+    external_events = {
+        str(key): _parse_time(str(value), form_input=form_input)
+        for key, value in external_raw.items()
+        if value
+    }
     return IncidentProfile(
         entity_class=str(primary_class) if entity_classes is None else None,
         entity_classes=list(entity_classes) if entity_classes is not None else None,
@@ -228,6 +236,7 @@ def _profile_from_payload(payload: dict[str, Any], *, form_input: bool) -> Incid
         is_cyber_incident=cyber_incident,
         personal_data_involved=personal_data,
         uses_protected_systems=protected_systems,
+        external_events=external_events,
         **kwargs,
     )
 
@@ -370,6 +379,18 @@ async def update_case_facts(request: Request, case_id: str) -> Response:
         actor = str(payload.pop("recorded_by", ""))
         changes = {k: v for k, v in payload.items() if v not in ("", None) or is_json}
         if not is_json:
+            duty, started = (
+                changes.pop("external_duty", None),
+                changes.pop("external_started", None),
+            )
+            if duty or started:
+                if not (duty and started):
+                    raise ValueError("Choose the duty and give the time its clock started")
+                current = dict(
+                    _case_store().view(case_id)["case"]["facts"].get("external_events") or {}
+                )
+                current[str(duty)] = _parse_time(str(started), form_input=True).isoformat()
+                changes["external_events"] = current
             for name in _TIME_FIELDS:
                 if name in changes:
                     changes[name] = _parse_time(str(changes[name]), form_input=True).isoformat()

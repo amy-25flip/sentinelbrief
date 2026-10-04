@@ -1,0 +1,101 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "irdai-government-order-clock",
+  "description": "A government order arrives the day after the incident; its 72 hours run from receipt of the order, not from the incident.",
+  "entity_profile": {
+    "entity_classes": [
+      "irdai.insurer"
+    ],
+    "is_listed": false,
+    "holds_personal_data": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "A government order arrives the day after the incident; its 72 hours run from receipt of the order, not from the incident.",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "systems_affected": [
+      "Policy administration system"
+    ],
+    "when_noticed": "2026-10-01T10:00:00+05:30",
+    "external_events": {
+      "irdai.ics-guidelines.2023.gov-order-information-72h": "2026-10-02T09:00:00+05:30"
+    }
+  },
+  "law_snapshot_date": "2026-10-05",
+  "expected": {
+    "law_as_of": "2026-10-01",
+    "regulators": [
+      "CERT-In",
+      "IRDAI"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.incident-reporting-6h",
+        "regulator": "IRDAI",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.gov-order-information-72h",
+        "regulator": "IRDAI",
+        "anchor": "external_event",
+        "deadline_iso8601": "PT72H",
+        "deadline_timestamp": "2026-10-05T09:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.incident-reporting-6h",
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.10, 3.5 item 3"
+      },
+      {
+        "obligation_id": "irdai.ics-guidelines.2023.gov-order-information-72h",
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.24, 3.1 item 7"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": [],
+    "time_critical": []
+  },
+  "adversarial_flags": [
+    "external_clock_runs_from_its_own_event",
+    "external_time_must_not_move_law_as_of"
+  ],
+  "split": "dev",
+  "labels_source": "docs/LABELS_IRDAI.md Part 3 (written before implementation)",
+  "source_quotes": [
+    {
+      "document": "irdai.ics-guidelines.2023",
+      "page": 298,
+      "quote": "7. The Organization shall as soon as possible, but not later than \nseventy-two hours of the receipt of an order, provide \ninformation under its control or possession, or assistance to \nthe Government agency which is lawfully authorized for \ninvestigative or protective or cybersecurity activities, for the \npurposes of verification of identity, or for the prevention, \ndetection, investigation, or prosecution, of offences under \nany law for the time being in force, or for cyber security \nincidents."
+    },
+    {
+      "document": "irdai.ics-guidelines.2023",
+      "page": 224,
+      "quote": "Organization shall mandatorily report cyber incidents to \nCert-In within 6 hours of noticing or being brought to \nnotice about such incidents with a copy to IRDAI and \nother concerned regulators / authorities. The details \nregarding methods and formats of reporting cyber \nincident is published on Cert-In website."
+    },
+    {
+      "document": "cert-in.directions-70b.2022",
+      "page": 2,
+      "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+    }
+  ]
+}
