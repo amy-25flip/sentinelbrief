@@ -683,3 +683,49 @@ def test_scenario_the_engine_rejects_is_a_failure_not_a_crash():
     result = bench.evaluate_scenario(scenario)
     assert result["passed"] is False
     assert "engine rejected the scenario input" in result["failures"][0]
+
+
+# --- SEBI Part 2: forensic report and quarterly reports ---
+
+
+def _forensic(items):
+    return next(i for i in items if i["id"] == "sebi.cscrf.2024.post-incident-forensic-report-75d")
+
+
+def test_catches_forensic_duty_applied_whatever_the_severity(monkeypatch):
+    def mutation(items):
+        _forensic(items)["applicability"]["requires"] = ["sebi_incident_reporting_applies"]
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    failed = _failed(_run())
+    assert {"sebi-forensic-medium-not-required", "sebi-forensic-severity-unknown-asks"} <= failed
+
+
+def test_catches_forensic_clock_started_by_being_brought_to_notice(monkeypatch):
+    def mutation(items):
+        _forensic(items)["normalized"]["deadline"]["alternative_anchors"] = ["brought_to_notice"]
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "sebi-forensic-needs-report-time" in _failed(_run())
+
+
+def test_catches_forensic_period_shortened_to_the_rca_period(monkeypatch):
+    def mutation(items):
+        _forensic(items)["normalized"]["deadline"]["duration_iso8601"] = "P30D"
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "sebi-forensic-high-severity-75-days" in _failed(_run())
+
+
+def test_catches_quarterly_report_treated_as_an_incident_deadline(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"] == "sebi.cscrf.2024.quarterly-report-15d":
+                item["normalized"]["deadline"] = {
+                    "kind": "relative",
+                    "duration_iso8601": "P15D",
+                    "anchor": "noticing",
+                }
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "sebi-portal-24h-after-noticing" in _failed(_run())

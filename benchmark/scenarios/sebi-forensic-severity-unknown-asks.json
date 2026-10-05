@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/benchmark_scenario.schema.json",
-  "id": "sebi-post-incident-reports-from-report-date",
-  "description": "The four Table 36 clocks run from the time the incident was reported to SEBI.",
+  "id": "sebi-forensic-severity-unknown-asks",
+  "description": "The entity has not classified the incident: the tool asks for the severity and computes no forensic deadline.",
   "entity_profile": {
     "entity_classes": [
       "sebi.qualified_re"
@@ -12,17 +12,17 @@
     "uses_protected_systems": false
   },
   "incident_facts": {
-    "description": "The four Table 36 clocks run from the time the incident was reported to SEBI.",
+    "description": "The entity has not classified the incident: the tool asks for the severity and computes no forensic deadline.",
     "incident_types": [
       "Malicious code attacks such as Ransomware"
     ],
     "systems_affected": [
-      "Core system"
+      "Trading system"
     ],
     "when_noticed": "2026-10-01T10:00:00+05:30",
     "when_reported_to_sebi": "2026-10-01T15:00:00+05:30"
   },
-  "law_snapshot_date": "2026-10-04",
+  "law_snapshot_date": "2026-10-05",
   "expected": {
     "law_as_of": "2026-10-01",
     "regulators": [
@@ -140,21 +140,20 @@
     ]
   },
   "adversarial_flags": [
-    "post_incident_anchor_is_report_time_not_noticing",
-    "report_time_does_not_move_law_as_of"
+    "unknown_beats_default"
   ],
   "split": "dev",
-  "labels_source": "docs/LABELS_SEBI.md (written before implementation); SEBI CSCRF pages 123, 124, 200 to 202",
+  "labels_source": "docs/LABELS_SEBI.md Part 2 (written before implementation)",
   "source_quotes": [
+    {
+      "document": "sebi.cscrf.2024",
+      "page": 203,
+      "quote": "4.1. For all incidents classified as High or Critical, the RE shall submit a forensic audit/ \ninvestigation report.  \n \n4.2. For incidents classified as low or medium, forensic report shall be submitted if the \nRCA is inconclusive or if the SEBI/ HPSC-CS directs the same. \n \n4.3. After the completion of forensic audit, RE shall submit a final closure report, which \nshall include the root cause of the incident, its impact and measures to prevent \nrecurrence. The timeline for submission of the reports (including closure reports), \nshall be decided based on discussion with all stakeholders. However, the \nmaximum period for the submission of forensic audit report shall be 75 days from \ndate of reporting of incident."
+    },
     {
       "document": "sebi.cscrf.2024",
       "page": 201,
       "quote": "3.3. RE shall undertake the necessary activities and submit the relevant reports \nas per the following timelines: \nTable 36: Timelines for post-cyber incident activity(ies) and report \nsubmission \nS. \nNo. \nName of the Report/ Activity \nTimeline for Submission \n(from \nthe \ndate \nof \nreporting the incident or \nbeing brought to notice \nabout the incident) \n1 \nInterim Report* \n3 Days \n2 \nMitigation measure \n7 Days \n3 \nRoot Cause Analysis (RCA) report** \n30 Days# \n4 \nForensic Audit Report (on the incident) and \nits closure report \nRefer clause 3.4 below  \n5 \nVulnerability Assessment and Penetration \nTesting (VAPT) for the incident and its \nclosure reports \n45 days"
-    },
-    {
-      "document": "sebi.cscrf.2024",
-      "page": 202,
-      "quote": "# Additional time may be provided by SEBI for the submission of RCA on a \ncase-by-case basis on request of the RE"
     },
     {
       "document": "sebi.cscrf.2024",
@@ -165,11 +164,6 @@
       "document": "cert-in.directions-70b.2022",
       "page": 2,
       "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
-    },
-    {
-      "document": "sebi.cscrf.2024",
-      "page": 203,
-      "quote": "4.1. For all incidents classified as High or Critical, the RE shall submit a forensic audit/ \ninvestigation report.  \n \n4.2. For incidents classified as low or medium, forensic report shall be submitted if the \nRCA is inconclusive or if the SEBI/ HPSC-CS directs the same. \n \n4.3. After the completion of forensic audit, RE shall submit a final closure report, which \nshall include the root cause of the incident, its impact and measures to prevent \nrecurrence. The timeline for submission of the reports (including closure reports), \nshall be decided based on discussion with all stakeholders. However, the \nmaximum period for the submission of forensic audit report shall be 75 days from \ndate of reporting of incident."
     }
   ]
 }

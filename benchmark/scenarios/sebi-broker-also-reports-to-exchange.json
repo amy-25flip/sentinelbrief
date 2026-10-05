@@ -108,6 +108,10 @@
       {
         "question": "reported to SEBI",
         "affects": "sebi.cscrf.2024.post-incident-vapt-45d"
+      },
+      {
+        "question": "severity",
+        "affects": "sebi.cscrf.2024.post-incident-forensic-report-75d"
       }
     ]
   },
@@ -131,6 +135,11 @@
       "document": "cert-in.directions-70b.2022",
       "page": 2,
       "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+    },
+    {
+      "document": "sebi.cscrf.2024",
+      "page": 203,
+      "quote": "4.1. For all incidents classified as High or Critical, the RE shall submit a forensic audit/ \ninvestigation report.  \n \n4.2. For incidents classified as low or medium, forensic report shall be submitted if the \nRCA is inconclusive or if the SEBI/ HPSC-CS directs the same. \n \n4.3. After the completion of forensic audit, RE shall submit a final closure report, which \nshall include the root cause of the incident, its impact and measures to prevent \nrecurrence. The timeline for submission of the reports (including closure reports), \nshall be decided based on discussion with all stakeholders. However, the \nmaximum period for the submission of forensic audit report shall be 75 days from \ndate of reporting of incident."
     }
   ]
 }

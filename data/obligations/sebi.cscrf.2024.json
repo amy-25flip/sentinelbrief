@@ -717,5 +717,164 @@
     },
     "confidence": 0.6,
     "confidence_reason": "Table 36 counts from \"the date of reporting the incident or being brought to notice about the incident\" (PDF page 201); the earlier known of the two is used. Whether \"Days\" runs from the timestamp or the calendar date is an open question; the timestamp reading is the earlier one. Row: \"closure reports \\n45 days\". Binding date contested: paragraph 17.1 states, \"For six categories of REs where cybersecurity and cyber resilience circular already exists - by January 01, 2025.\" Paragraph 17.2 states, \"For other REs where CSCRF is being issued for the first time - by April 01, 2025.\" (PDF page 9). Those are compliance glide-path dates. valid_from uses the circular issue date, 2024-08-20, so the tool does not tell a user they owe less pending legal review."
+  },
+  {
+    "id": "sebi.cscrf.2024.post-incident-forensic-report-75d",
+    "instrument_id": "sebi.cscrf.2024",
+    "paragraph_ref": "Annexure-O B.4.1 and B.4.3",
+    "text_verbatim": "4.1. For all incidents classified as High or Critical, the RE shall submit a forensic audit/ \ninvestigation report.  \n \n4.2. For incidents classified as low or medium, forensic report shall be submitted if the \nRCA is inconclusive or if the SEBI/ HPSC-CS directs the same. \n \n4.3. After the completion of forensic audit, RE shall submit a final closure report, which \nshall include the root cause of the incident, its impact and measures to prevent \nrecurrence. The timeline for submission of the reports (including closure reports), \nshall be decided based on discussion with all stakeholders. However, the \nmaximum period for the submission of forensic audit report shall be 75 days from \ndate of reporting of incident.",
+    "normalized": {
+      "actor": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "A High or Critical incident is reported to SEBI"
+      },
+      "action": "Submit the forensic audit / investigation report, and after it a final closure report. The timeline is decided in discussion with all stakeholders; the maximum is 75 days from the date of reporting of the incident.",
+      "deadline": {
+        "kind": "relative",
+        "duration_iso8601": "P75D",
+        "anchor": "reported",
+        "calendar": "continuous",
+        "fixed_date": null
+      },
+      "recipient": "SEBI"
+    },
+    "applicability": {
+      "entity_classes": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "conditions": [
+        "Incident classified High or Critical by the RE",
+        "For low or medium incidents a report is required if the RCA is inconclusive or SEBI / HPSC-CS directs it (not evaluated)"
+      ],
+      "requires": [
+        "sebi_incident_reporting_applies",
+        "sebi_high_or_critical"
+      ]
+    },
+    "validity": {
+      "valid_from": "2024-08-20",
+      "valid_to": null,
+      "recorded_at": "2026-10-05T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "Annexure-O B.4.1 and B.4.3",
+        "page": 203,
+        "char_start": 364839,
+        "char_end": 365560,
+        "excerpt_verbatim": "4.1. For all incidents classified as High or Critical, the RE shall submit a forensic audit/ \ninvestigation report.  \n \n4.2. For incidents classified as low or medium, forensic report shall be submitted if the \nRCA is inconclusive or if the SEBI/ HPSC-CS directs the same. \n \n4.3. After the completion of forensic audit, RE shall submit a final closure report, which \nshall include the root cause of the incident, its impact and measures to prevent \nrecurrence. The timeline for submission of the reports (including closure reports), \nshall be decided based on discussion with all stakeholders. However, the \nmaximum period for the submission of forensic audit report shall be 75 days from \ndate of reporting of incident.",
+        "source_sha256": "bd9ddb68bb49b9a92771ff01ed3138e01f0962b383e9ff643008b729290fc85d"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored SEBI CSCRF text, PDF page 203)",
+      "date": "2026-10-05"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "75 days is a stated maximum, 'from date of reporting of incident'; unlike Table 36 the clause does not add 'or being brought to notice', so only the report time starts it. Counted from the timestamp. Severity is the RE's own classification; the tool does not classify. Binding date contested: paragraph 17.1 states, \"For six categories of REs where cybersecurity and cyber resilience circular already exists - by January 01, 2025.\" Paragraph 17.2 states, \"For other REs where CSCRF is being issued for the first time - by April 01, 2025.\" (PDF page 9). Those are compliance glide-path dates. valid_from uses the circular issue date, 2024-08-20, so the tool does not tell a user they owe less pending legal review."
+  },
+  {
+    "id": "sebi.cscrf.2024.quarterly-report-15d",
+    "instrument_id": "sebi.cscrf.2024",
+    "paragraph_ref": "RS.CO.S1 item 4",
+    "text_verbatim": "4. The quarterly reports containing information on cyber-attacks, threats, cybersecurity \nincidents and breaches experienced by REs and measures taken to mitigate \nvulnerabilities, threats and attacks including information on bugs/ vulnerabilities, threats \nthat may be useful for other REs and SEBI, shall be submitted to SEBI within 15 days \nfrom the quarter ended June, September, December and March of every year.",
+    "normalized": {
+      "actor": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "End of each quarter (June, September, December, March)"
+      },
+      "action": "Submit the quarterly report on cyber-attacks, threats, cybersecurity incidents and breaches to SEBI within 15 days of the quarter end.",
+      "deadline": {
+        "kind": "recurring",
+        "duration_iso8601": "P3M",
+        "anchor": "not_applicable",
+        "calendar": "continuous",
+        "fixed_date": null,
+        "fixed_schedule": [
+          "01-15",
+          "04-15",
+          "07-15",
+          "10-15"
+        ]
+      },
+      "recipient": "SEBI"
+    },
+    "applicability": {
+      "entity_classes": [
+        "sebi.mii",
+        "sebi.qualified_re",
+        "sebi.midsize_re",
+        "sebi.small_re",
+        "sebi.selfcert_re",
+        "sebi.stock_broker",
+        "sebi.depository_participant"
+      ],
+      "conditions": [
+        "Entity is a SEBI Regulated Entity"
+      ]
+    },
+    "validity": {
+      "valid_from": "2024-08-20",
+      "valid_to": null,
+      "recorded_at": "2026-10-05T00:00:00Z"
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "RS.CO.S1 item 4",
+        "page": 124,
+        "char_start": 245469,
+        "char_end": 245886,
+        "excerpt_verbatim": "4. The quarterly reports containing information on cyber-attacks, threats, cybersecurity \nincidents and breaches experienced by REs and measures taken to mitigate \nvulnerabilities, threats and attacks including information on bugs/ vulnerabilities, threats \nthat may be useful for other REs and SEBI, shall be submitted to SEBI within 15 days \nfrom the quarter ended June, September, December and March of every year.",
+        "source_sha256": "bd9ddb68bb49b9a92771ff01ed3138e01f0962b383e9ff643008b729290fc85d"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored SEBI CSCRF text, PDF page 124)",
+      "date": "2026-10-05"
+    },
+    "confidence": 0.7,
+    "confidence_reason": "Text states the period. '15 days from the quarter ended' is read as the 15th of the following month. Binding date contested: paragraph 17.1 states, \"For six categories of REs where cybersecurity and cyber resilience circular already exists - by January 01, 2025.\" Paragraph 17.2 states, \"For other REs where CSCRF is being issued for the first time - by April 01, 2025.\" (PDF page 9). Those are compliance glide-path dates. valid_from uses the circular issue date, 2024-08-20, so the tool does not tell a user they owe less pending legal review."
   }
 ]

@@ -119,6 +119,10 @@
             {
                 "question": "reported to SEBI",
                 "affects": "sebi.cscrf.2024.post-incident-vapt-45d"
+            },
+            {
+                "question": "severity",
+                "affects": "sebi.cscrf.2024.post-incident-forensic-report-75d"
             }
         ],
         "time_critical": [
@@ -156,6 +160,11 @@
             "document": "sebi.cscrf.2024",
             "page": 124,
             "quote": "Additionally, the REs, whose systems \nhave been identified as “Protected system” by NCIIPC shall also report the incident to \nNCIIPC."
+        },
+        {
+            "document": "sebi.cscrf.2024",
+            "page": 203,
+            "quote": "4.1. For all incidents classified as High or Critical, the RE shall submit a forensic audit/ \ninvestigation report.  \n \n4.2. For incidents classified as low or medium, forensic report shall be submitted if the \nRCA is inconclusive or if the SEBI/ HPSC-CS directs the same. \n \n4.3. After the completion of forensic audit, RE shall submit a final closure report, which \nshall include the root cause of the incident, its impact and measures to prevent \nrecurrence. The timeline for submission of the reports (including closure reports), \nshall be decided based on discussion with all stakeholders. However, the \nmaximum period for the submission of forensic audit report shall be 75 days from \ndate of reporting of incident."
         }
     ]
 }

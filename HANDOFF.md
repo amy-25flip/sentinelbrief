@@ -5,12 +5,12 @@ Written by the reviewer agent. Antigravity is no longer on the project; from Bui
 ## 1. Gate output (`python scripts/check.py`, run by the reviewer agent)
 
 ```
-PASS  pytest             298 passed, 1 deselected, 1 warning
+PASS  pytest             328 passed, 1 deselected, 1 warning
 PASS  ruff check         All checks passed!
-PASS  ruff format        59 files already formatted
+PASS  ruff format        62 files already formatted
 PASS  mypy (strict)      Success: no issues found in 33 source files
 PASS  validate_all       All obligations and citations passed validation successfully!
-PASS  benchmark dev      Scenarios passed:   92/92  Wilson 95% CI [96.0%, 100.0%]
+PASS  benchmark dev      Scenarios passed:   99/99  Wilson 95% CI [96.3%, 100.0%]
 ALL GATES PASSED
 ```
 
@@ -26,9 +26,9 @@ Live source re-verification was last run on 2026-09-25 for the CERT-In, DPDP and
 | DPDP Rule 7 (3) | modelled | Antigravity, repaired by Codex | yes |
 | SEBI six-hour duty (1) | modelled | Antigravity, repaired by Codex | yes |
 | RBI NBFC Direction (6) | modelled | Codex, against the reviewer agent's labels | yes (Review 9) |
-| SEBI remaining duties (8) | modelled | Codex started, the reviewer agent finished | **no** |
+| SEBI remaining duties (10) | modelled | Codex started, the reviewer agent finished | **no** |
 | Evidence-field cleanup | done | The reviewer agent | **no** |
-| Incident workspace | done | The reviewer agent | **no** |
+| Incident workspace (with external clocks and field entry) | done | The reviewer agent | **no** (self-reviewed, Review 11) |
 | Provenance attack tests and source pinning | done | The reviewer agent | **no** |
 | RBI UCB, AIFI, Payments Banks Directions (12) | modelled | The reviewer agent | **no** |
 | IRDAI guidelines (8; partial) | modelled | The reviewer agent | **no** |

@@ -96,3 +96,12 @@ Things needing a human or a primary-source check.
 - [ ] **IRDAI Policy 2.2 section 3.3** (lost device reported "immediately"; treated as an incident if reported after more than 4 hours or if the remote wipe fails) is not modelled.
 - [ ] **A workflow for external clocks:** the tool lists these duties but offers no way to enter the date of an order or complaint and get a deadline.
 - [ ] **IRDAI: about 20 policies remain unread** for duties without the word "hours" (audit cadence, VA/PT frequency, annual reviews).
+
+## Builds 14 and 15, 2026-10-05
+
+- [x] **SEBI forensic audit report and quarterly reports:** modelled in Build 15.
+- [x] **A workflow for external clocks:** the case page and API accept the time an order or complaint was received.
+- [ ] **SEBI severity:** the tool takes the RE's classification as given. Annexure-O A.4 says an incident that disrupts normal operations "must be classified as High or Critical"; the tool does not check a stated Low or Medium against that.
+- [ ] **SEBI forensic report for Low or Medium incidents** (RCA inconclusive, or SEBI / HPSC-CS directs): not evaluated; stated in the not-applicable reason.
+- [ ] **SEBI quarterly report date:** is "within 15 days from the quarter ended" the 15th of the next month, as modelled?
+- [ ] **Workspace has no authentication.** Same-origin checking stops cross-site posts only.

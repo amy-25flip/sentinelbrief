@@ -376,3 +376,24 @@ Quotes and pages are in `docs/LABELS_IRDAI.md`.
 **Alternatives rejected:** (a) leaving them out, which hides real duties; (b) recording them with no duration, which loses the time limit; (c) asking for the order or complaint time on every incident, which would put seven irrelevant questions in front of a user on a six-hour clock.
 
 **Readings recorded:** the cloud "4 hours" is a contract term binding the provider, modelled as an ongoing duty on the organization to have the clause; the lost-device 4 hours is an internal duty to the IT function, not a report to a regulator; Policy 2.24 restates the IT Rules 2021 and whether the entity is an "intermediary" under them is shown as an unevaluated condition.
+
+## 2026-10-05: SEBI forensic report and quarterly reports (Build 15)
+
+Quotes and pages are in `docs/LABELS_SEBI.md` Part 2. This replaces SEBI Decision 8, which left both unmodelled.
+
+1. **Severity is stated by the entity, never inferred.** New fact `sebi_severity` and key `sebi_high_or_critical`. High or Critical: the forensic duty applies. Low or Medium: not applicable, with a reason that says a report may still be required if the RCA is inconclusive or SEBI / HPSC-CS directs it (Annexure-O 4.2). Not given: the tool asks. Alternative: derive severity from the incident type using Table 35. Rejected: the table's criteria need judgement ("significant impact on operations"), and 3.5 says the RE classifies.
+2. **75 days from the report only.** 4.3 says "from date of reporting of incident" and, unlike Table 36, does not add "or being brought to notice". So an incident brought to notice but not yet reported has Table 36 clocks running and no forensic clock. It is a maximum; the action text says the timeline is settled with stakeholders.
+3. **The severity question is asked only after the incident question.** The duty requires `sebi_incident_reporting_applies` first.
+4. **Quarterly reports are an ongoing duty with fixed dates.** New data field `fixed_schedule` (15 January, April, July, October), used by the calendar export. Reading "within 15 days from the quarter ended" as the 15th of the following month. Because this duty always applies to a SEBI entity, SEBI is now listed among its regulators even when no incident clock runs.
+
+## 2026-10-05: External-event duties and impossible timestamps (self-review fixes)
+
+- A duty whose clock starts from another event is judged by the law in force on the day of that event when the day is known, not on the incident date. Reason: an order received in 2026 about a 2023 incident is governed by the rules of 2026.
+- A SEBI report time earlier than every incident time is accepted but produces a caveat. Reason: the input is contradictory, and the tool should say so and not guess which time is wrong.
+
+## 2026-10-05: The incident workspace refuses cross-site posts, future filings and silent blanks
+
+- State-changing requests whose `Origin` differs from `Host` are refused. The app has no login and is meant to run on one machine; without this a page on another site could approve a draft through the user's browser.
+- A filing cannot be recorded with a future time.
+- Fields a clause requires can be completed in the case; entries go on the evidence chain and are covered by the approval digest. Approving with empty required fields needs an explicit statement, recorded with the approval.
+- This is not authentication. The workspace must still not be exposed on a network.

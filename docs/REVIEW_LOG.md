@@ -262,3 +262,27 @@ Labels: `docs/LABELS_IRDAI.md` Part 2, committed before implementation (8e2a19b)
 - Seven obligations from Policies 2.8, 2.19 and 2.24; new anchor `external_event`; 3 scenarios (passed on the first run), 6 unit tests, 3 mutation tests.
 - Label change to two Part 1 scenarios (`irdai-attested-not-a-cyber-incident`, `irdai-hardware-failure-unattested`): `regulators` gains IRDAI, because an insurer now always has ongoing IRDAI duties even when no incident clock runs. No other expectation changed.
 - Reading the pages changed the task: the reviewer had described these as "unmodelled time-bound duties" after a keyword search for "hours". None is a deadline that runs from a cyber incident, and they are modelled accordingly.
+
+## Build 14 - the reviewer agent, 2026-10-05: start times for external clocks
+
+Labels: `docs/LABELS_IRDAI.md` Part 3 (committed first). New fact `external_events`; case page, API and probe support; 2 scenarios (passed on the first run), 7 unit and 2 mutation tests. The scorer now records a scenario the engine rejects as a failure and does not abort. Not independently reviewed.
+
+## Review 11 - the reviewer agent, 2026-10-05: self-review of the reviewer agent's own builds
+
+Not an independent review: the same author. Codex has been at its usage limit. Method: probing with inputs the tests did not cover.
+
+- [major] [workspace] P1. **A filing could be recorded with a future time.** Probe: `filed_at` 2031 accepted. Status: FIXED (`test_filing_cannot_be_recorded_before_it_was_made`).
+- [major] [workspace] P2. **Cross-site posts were accepted.** Probe: a POST with `Origin: https://evil.example` changed case facts. Status: FIXED (same-origin check; `test_cross_site_posts_are_refused`).
+- [major] [workspace] P3. **Clause-required fields could not be completed in the tool**, so every approval covered blanks without saying so. Status: FIXED (`set_entry`, explicit `accept_open_fields`; two tests).
+- [minor] [engine] P4. An external-event duty was judged by the law on the incident date. Status: FIXED (`test_external_duty_is_governed_by_the_law_on_the_day_of_its_event`).
+- [minor] [engine] P5. A SEBI report time before the incident was accepted silently. Status: FIXED (caveat; test).
+- Checked and found sound: HTML escaping of user text on the case page, clock fragment and error fragment; case id and path handling; role-only and mixed-class profiles for SEBI, RBI and IRDAI.
+- Accepted limits: the "person" check on approver names is a speed bump, not identity; contradictory UCB levels in one profile are unioned.
+
+## Build 15 - the reviewer agent, 2026-10-05: SEBI forensic report and quarterly reports
+
+Labels: `docs/LABELS_SEBI.md` Part 2 (9bf76a1), before implementation. Two obligations, the `sebi_severity` fact, the `sebi_high_or_critical` key, `fixed_schedule` in the calendar; 5 scenarios (passed on the first run), 7 unit and 4 mutation tests. Not independently reviewed.
+
+Label changes by the spec's rule, applied by script, which stopped on any disagreement with the engine (none): 21 existing SEBI scenarios gain the forensic duty's expectation (the "severity" unknown, or the same unknown or not-applicable state as the interim report), and those with no SEBI incident duty gain SEBI among their regulators because the quarterly report always applies.
+
+Hidden set A: `h-nbfc-that-is-also-a-stock-broker` gained the same "severity" unknown by the same rule, because the duty did not exist when the scenario was written. The engine was not changed to fit the hidden set. Result after the label update: 14/14. Before it: 13/14, the one failure being that unknown.
