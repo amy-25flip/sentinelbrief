@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "dpdp-simulated-still-asks",
+  "description": "Simulation does not invent the missing awareness anchor for the detailed Board report.",
+  "entity_profile": {"entity_class": "dpdp.data_fiduciary", "is_listed": false, "holds_personal_data": true, "uses_protected_systems": false, "is_regulated_cloud_vps": false},
+  "incident_facts": {"description": "Personal data breach", "incident_types": ["Data breach"], "when_noticed": "2026-10-01T10:00:00+05:30", "personal_data_involved": true, "systems_affected": ["personal data system"]},
+  "simulate_instruments": ["meity.dpdp-rules.2025"],
+  "law_snapshot_date": "2026-10-01",
+  "expected": {
+    "law_as_of": "2026-10-01",
+    "regulators": ["CERT-In"],
+    "deadlines": [{"regulator": "CERT-In", "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "anchor": "noticing", "deadline_iso8601": "PT6H", "deadline_timestamp": "2026-10-01T16:00:00+05:30"}],
+    "citations": [{"obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "instrument_id": "cert-in.directions-70b.2022", "paragraph_ref": "Direction (ii)"}],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": [{"question": "aware", "affects": "meity.dpdp-rules.2025.rule7-2-b-board-detailed"}],
+    "time_critical": ["meity.dpdp-rules.2025.rule7-1-principal-intimation", "meity.dpdp-rules.2025.rule7-2-a-board-initial"],
+    "simulated": ["meity.dpdp-rules.2025.rule7-1-principal-intimation", "meity.dpdp-rules.2025.rule7-2-a-board-initial"]
+  },
+  "adversarial_flags": ["simulation_preserves_unknowns"],
+  "split": "dev",
+  "labels_source": "docs/LABELS_DPDP_SIMULATE.md",
+  "source_quotes": [
+    {"document": "cert-in.directions-70b.2022", "page": 2, "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents."},
+    {"document": "meity.dpdp-rules.2025", "page": 26, "quote": "(b) within seventy-two hours of becoming aware of the breach, or within such longer period as the \nBoard may allow on a request made in writing in this behalf, —"}
+  ]
+}

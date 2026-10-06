@@ -17,11 +17,11 @@
 <p style="margin: 0.75rem 0;">You attested this is not an Annexure I incident type.</p>
 {% endif %}
 
-{% if result.deadlines %}
+{% if real_deadlines %}
 <table>
     <thead><tr><th>Obligation</th><th>Clause</th><th>Clock started by</th><th>Deadline (IST)</th><th>Status</th><th>Report to</th></tr></thead>
     <tbody>
-    {% for d in result.deadlines %}
+    {% for d in real_deadlines %}
     <tr>
         <td><a href="/obligations/{{ d.obligation_id }}">{{ d.obligation_action }}</a></td>
         <td>{{ d.citation_paragraph }}</td>
@@ -33,14 +33,14 @@
     {% endfor %}
     </tbody>
 </table>
-{% else %}
+{% elif not simulated_deadlines %}
 <p style="color: var(--warning); margin: 1rem 0;">No deadline could be computed yet. See the questions below.</p>
 {% endif %}
 
-{% if result.time_critical %}
+{% if real_time_critical %}
 <h2 style="margin-top: 1.5rem;">Do without delay</h2>
 <ul>
-    {% for t in result.time_critical %}
+    {% for t in real_time_critical %}
     <li style="margin-bottom: 0.5rem;">
         <a href="/obligations/{{ t.obligation_id }}">{{ t.obligation_action }}</a>
         {% if t.citation_paragraph %}<span class="chip">{{ t.citation_paragraph }}</span>{% endif %}
@@ -48,6 +48,21 @@
     </li>
     {% endfor %}
 </ul>
+{% endif %}
+
+{% if simulated_deadlines or simulated_time_critical %}
+<section style="margin-top: 1.5rem; border: 2px dashed var(--warning); border-radius: 8px; padding: 1rem; background: rgba(245, 158, 11, 0.08);">
+    <h2 style="margin-top: 0; color: var(--warning);">Simulation — not in force</h2>
+    <p><strong>These items are not in force on the law-as-of date.</strong> They are shown only because DPDP Rule 7 simulation was requested.</p>
+    <ul>
+    {% for d in simulated_deadlines %}
+        <li><a href="/obligations/{{ d.obligation_id }}">{{ d.obligation_action }}</a> — {{ d.deadline_ist.strftime('%d %b %Y, %H:%M') }} IST <span class="chip">SIMULATED</span></li>
+    {% endfor %}
+    {% for t in simulated_time_critical %}
+        <li><a href="/obligations/{{ t.obligation_id }}">{{ t.obligation_action }}</a> — without delay <span class="chip">SIMULATED</span></li>
+    {% endfor %}
+    </ul>
+</section>
 {% endif %}
 
 {% if result.unknowns %}

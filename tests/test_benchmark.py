@@ -4,6 +4,7 @@ import copy
 import importlib.util
 import shutil
 import sys
+from dataclasses import replace
 from datetime import datetime
 from pathlib import Path
 
@@ -288,6 +289,55 @@ def test_catches_structured_requires_ignored(monkeypatch):
     assert {"sebi-mii-hardware-failure-unattested", "sebi-mii-attested-not-annexure-i"} <= _failed(
         _run()
     )
+
+
+@pytest.mark.parametrize(
+    ("obligation_suffix", "mutated_duration", "catching_scenario"),
+    [
+        ("post-incident-interim-report-3d", "P4D", "sebi-post-incident-reports-from-report-date"),
+        ("post-incident-mitigation-7d", "P8D", "sebi-post-incident-reports-from-report-date"),
+        ("post-incident-rca-30d", "P31D", "sebi-post-incident-reports-from-report-date"),
+        ("post-incident-vapt-45d", "P46D", "sebi-post-incident-reports-from-report-date"),
+    ],
+)
+def test_each_sebi_post_incident_duration_mutation_is_caught(
+    monkeypatch, obligation_suffix, mutated_duration, catching_scenario
+):
+    """Each 3/7/30/45-day mutation names the dev scenario whose exact deadline catches it."""
+
+    def mutation(items):
+        target = next(item for item in items if item["id"].endswith(obligation_suffix))
+        target["normalized"]["deadline"]["duration_iso8601"] = mutated_duration
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert catching_scenario in _failed(_run())
+
+
+def test_catches_simulated_deadline_reported_as_pending(monkeypatch):
+    """The `dpdp-simulated-before-commencement` scenario checks simulated status."""
+    original = engine_module.IncidentClockEngine._compute_deadline
+
+    def mutation(self, obs, profile, now, deadlines, time_critical, unknowns):
+        before = len(deadlines)
+        original(self, obs, profile, now, deadlines, time_critical, unknowns)
+        if obs.get("_simulated") and len(deadlines) > before:
+            deadlines[-1] = replace(deadlines[-1], status="pending")
+
+    monkeypatch.setattr(engine_module.IncidentClockEngine, "_compute_deadline", mutation)
+    assert "dpdp-simulated-before-commencement" in _failed(_run())
+
+
+def test_catches_simulated_duty_counted_as_applicable(monkeypatch):
+    """The simulated scenario's real-regulator and exact-set labels catch this mutation."""
+    original = engine_module.IncidentClockEngine.evaluate
+
+    def mutation(self, *args, **kwargs):
+        result = original(self, *args, **kwargs)
+        result.applicable_obligations.extend(result.simulated_obligations)
+        return result
+
+    monkeypatch.setattr(engine_module.IncidentClockEngine, "evaluate", mutation)
+    assert "dpdp-simulated-before-commencement" in _failed(_run())
 
 
 def test_catches_sebi_entity_leak(monkeypatch):
@@ -811,9 +861,15 @@ def test_catches_forensic_duty_applied_whatever_the_severity(monkeypatch):
 def test_catches_low_medium_forensic_condition_inverted(monkeypatch):
     original = engine_module.IncidentClockEngine.evaluate
 
-    def mutation(self, profile, now=None, as_of=None):
+    def mutation(self, profile, now=None, as_of=None, simulate_instruments=None):
         profile.sebi_forensic_directed_or_rca_inconclusive = False
-        return original(self, profile, now=now, as_of=as_of)
+        return original(
+            self,
+            profile,
+            now=now,
+            as_of=as_of,
+            simulate_instruments=simulate_instruments,
+        )
 
     monkeypatch.setattr(engine_module.IncidentClockEngine, "evaluate", mutation)
     assert "sebi-forensic-medium-directed" in _failed(_run())

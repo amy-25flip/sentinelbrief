@@ -332,5 +332,110 @@
     },
     "confidence": 1.0,
     "confidence_reason": "Paragraph 121 expressly gives the 12-month minimum cadence and system scope."
+  },
+  {
+    "id": "rbi.nbfc-cyber.2026.ch2-board-policy-review-annual",
+    "instrument_id": "rbi.nbfc-cyber.2026",
+    "paragraph_ref": "Paragraph 6",
+    "text_verbatim": "6. \nThe Board of Directors (Board) shall approve the strategies and policies related \nto Technology and Cybersecurity frameworks which shall be reviewed at least \nannually by it.",
+    "normalized": {
+      "actor": ["nbfc"],
+      "trigger": {"type": "periodic", "description": "Review of Board-approved Technology and Cybersecurity strategies and policies"},
+      "action": "Review the Board-approved Technology and Cybersecurity strategies and policies at least annually.",
+      "deadline": {"kind": "recurring", "duration_iso8601": "P12M", "anchor": "not_applicable", "calendar": "continuous"}
+    },
+    "applicability": {"entity_classes": ["nbfc"]},
+    "validity": {"valid_from": "2026-07-31", "valid_to": null, "recorded_at": "2026-10-06T00:00:00Z"},
+    "status": "in_force",
+    "citations": [{"instrument_id": "rbi.nbfc-cyber.2026", "paragraph_ref": "Paragraph 6", "page": 9, "char_start": 13391, "char_end": 13569, "excerpt_verbatim": "6. \nThe Board of Directors (Board) shall approve the strategies and policies related \nto Technology and Cybersecurity frameworks which shall be reviewed at least \nannually by it.", "source_sha256": "5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073"}],
+    "extraction": {"method": "manual", "model": null, "prompt_version": null, "extractor_version": "0.1.0"},
+    "verification": "machine_checked",
+    "verification_details": {"reviewer": "the builder agent; checked against stored RBI text", "date": "2026-10-06"},
+    "confidence": 1.0,
+    "confidence_reason": "Paragraph 6 expressly requires review at least annually; Chapter II is outside paragraph 3's chapter-specific scopes."
+  },
+  {
+    "id": "rbi.nbfc-cyber.2026.ch4-it-risk-assessment-annual",
+    "instrument_id": "rbi.nbfc-cyber.2026",
+    "paragraph_ref": "Paragraph 32",
+    "text_verbatim": "32. The NBFC shall undertake a comprehensive risk assessment of its IT systems \nat least on an annual basis.",
+    "normalized": {
+      "actor": ["nbfc.bl_500cr_and_above"],
+      "trigger": {"type": "periodic", "description": "Comprehensive risk assessment of IT systems"},
+      "action": "Undertake a comprehensive risk assessment of IT systems at least annually.",
+      "deadline": {"kind": "recurring", "duration_iso8601": "P12M", "anchor": "not_applicable", "calendar": "continuous"}
+    },
+    "applicability": {"entity_classes": ["nbfc.bl_500cr_and_above"]},
+    "validity": {"valid_from": "2026-07-31", "valid_to": null, "recorded_at": "2026-10-06T00:00:00Z"},
+    "status": "in_force",
+    "citations": [{"instrument_id": "rbi.nbfc-cyber.2026", "paragraph_ref": "Paragraph 32", "page": 19, "char_start": 28755, "char_end": 28863, "excerpt_verbatim": "32. The NBFC shall undertake a comprehensive risk assessment of its IT systems \nat least on an annual basis.", "source_sha256": "5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073"}],
+    "extraction": {"method": "manual", "model": null, "prompt_version": null, "extractor_version": "0.1.0"},
+    "verification": "machine_checked",
+    "verification_details": {"reviewer": "the builder agent; checked against stored RBI text", "date": "2026-10-06"},
+    "confidence": 1.0,
+    "confidence_reason": "Paragraph 32 expressly requires an annual IT-system risk assessment."
+  },
+  {
+    "id": "rbi.nbfc-cyber.2026.ch4-bcp-test-annual",
+    "instrument_id": "rbi.nbfc-cyber.2026",
+    "paragraph_ref": "Paragraph 59(4)",
+    "text_verbatim": "(4) \nThe NBFC shall test its BCP at least annually and whenever significant IT \nor business changes occur",
+    "normalized": {
+      "actor": ["nbfc.bl_500cr_and_above"],
+      "trigger": {"type": "periodic", "description": "Testing the business continuity plan"},
+      "action": "Test the business continuity plan at least annually.",
+      "deadline": {"kind": "recurring", "duration_iso8601": "P12M", "anchor": "not_applicable", "calendar": "continuous"}
+    },
+    "applicability": {"entity_classes": ["nbfc.bl_500cr_and_above"]},
+    "validity": {"valid_from": "2026-07-31", "valid_to": null, "recorded_at": "2026-10-06T00:00:00Z"},
+    "status": "in_force",
+    "citations": [{"instrument_id": "rbi.nbfc-cyber.2026", "paragraph_ref": "Paragraph 59(4)", "page": 25, "char_start": 40308, "char_end": 40413, "excerpt_verbatim": "(4) \nThe NBFC shall test its BCP at least annually and whenever significant IT \nor business changes occur", "source_sha256": "5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073"}],
+    "extraction": {"method": "manual", "model": null, "prompt_version": null, "extractor_version": "0.1.0"},
+    "verification": "machine_checked",
+    "verification_details": {"reviewer": "the builder agent; checked against stored RBI text", "date": "2026-10-06"},
+    "confidence": 1.0,
+    "confidence_reason": "Paragraph 59(4) expressly requires BCP testing at least annually."
+  },
+  {
+    "id": "rbi.nbfc-cyber.2026.ch5-security-review-annual",
+    "instrument_id": "rbi.nbfc-cyber.2026",
+    "paragraph_ref": "Paragraph 98",
+    "text_verbatim": "98. The NBFC shall review the security infrastructure and security policies at least \nannually",
+    "normalized": {
+      "actor": ["nbfc.middle_layer", "nbfc.upper_layer", "nbfc.top_layer"],
+      "trigger": {"type": "periodic", "description": "Review of security infrastructure and security policies"},
+      "action": "Review security infrastructure and security policies at least annually.",
+      "deadline": {"kind": "recurring", "duration_iso8601": "P12M", "anchor": "not_applicable", "calendar": "continuous"}
+    },
+    "applicability": {"entity_classes": ["nbfc.middle_layer", "nbfc.upper_layer", "nbfc.top_layer"], "excluded_entity_classes": ["nbfc.cic"]},
+    "validity": {"valid_from": "2026-07-31", "valid_to": null, "recorded_at": "2026-10-06T00:00:00Z"},
+    "status": "in_force",
+    "citations": [{"instrument_id": "rbi.nbfc-cyber.2026", "paragraph_ref": "Paragraph 98", "page": 36, "char_start": 59248, "char_end": 59342, "excerpt_verbatim": "98. The NBFC shall review the security infrastructure and security policies at least \nannually", "source_sha256": "5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073"}],
+    "extraction": {"method": "manual", "model": null, "prompt_version": null, "extractor_version": "0.1.0"},
+    "verification": "machine_checked",
+    "verification_details": {"reviewer": "the builder agent; checked against stored RBI text", "date": "2026-10-06"},
+    "confidence": 1.0,
+    "confidence_reason": "Paragraph 98 expressly requires review at least annually."
+  },
+  {
+    "id": "rbi.nbfc-cyber.2026.ch5-dr-drill-half-yearly",
+    "instrument_id": "rbi.nbfc-cyber.2026",
+    "paragraph_ref": "Paragraph 129",
+    "text_verbatim": "129. Periodicity of DR drills for critical information systems shall be at least on a half-\nyearly basis",
+    "normalized": {
+      "actor": ["nbfc.middle_layer", "nbfc.upper_layer", "nbfc.top_layer"],
+      "trigger": {"type": "periodic", "description": "DR drills for critical information systems"},
+      "action": "Conduct DR drills for critical information systems at least half-yearly.",
+      "deadline": {"kind": "recurring", "duration_iso8601": "P6M", "anchor": "not_applicable", "calendar": "continuous"}
+    },
+    "applicability": {"entity_classes": ["nbfc.middle_layer", "nbfc.upper_layer", "nbfc.top_layer"], "excluded_entity_classes": ["nbfc.cic"]},
+    "validity": {"valid_from": "2026-07-31", "valid_to": null, "recorded_at": "2026-10-06T00:00:00Z"},
+    "status": "in_force",
+    "citations": [{"instrument_id": "rbi.nbfc-cyber.2026", "paragraph_ref": "Paragraph 129", "page": 42, "char_start": 70439, "char_end": 70543, "excerpt_verbatim": "129. Periodicity of DR drills for critical information systems shall be at least on a half-\nyearly basis", "source_sha256": "5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073"}],
+    "extraction": {"method": "manual", "model": null, "prompt_version": null, "extractor_version": "0.1.0"},
+    "verification": "machine_checked",
+    "verification_details": {"reviewer": "the builder agent; checked against stored RBI text", "date": "2026-10-06"},
+    "confidence": 1.0,
+    "confidence_reason": "Paragraph 129 expressly sets a half-yearly minimum cadence for critical-system DR drills."
   }
 ]

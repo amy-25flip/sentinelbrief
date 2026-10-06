@@ -13,7 +13,8 @@ A deterministic engine over a clause-level, citation-first dataset of Indian cyb
 - **Law as of the incident date.** Each obligation has a validity interval. An incident on 30 July 2026 is not judged by a Direction issued on 31 July 2026.
 - **Every claim is cited.** Each obligation stores the verbatim clause, the PDF page and character offsets, and the SHA-256 of the source file. A validator re-checks all of it on every run.
 - **Incident workspace.** Field-level filing drafts where each field is labelled *computed*, *your input*, or *required by the clause (quoted)*; approval by a named person; a hash-chained evidence timeline; an audit bundle; a calendar export for recurring duties. It never files anything.
-- **Card feed.** Short cards generated from the obligation records, with a grounding check that rejects facts not present in the cited text.
+- **Card feed.** Short cards generated from the obligation records, with a grounding check that rejects facts not present in the cited text. Also served as RSS at `/feed.xml`.
+- **Simulation.** DPDP Rule 7 does not bind until 13 May 2027. You can ask the clock to show what it would require, and everything simulated is marked as not in force.
 
 ## Coverage
 
@@ -22,15 +23,15 @@ A deterministic engine over a clause-level, citation-first dataset of Indian cyb
 | CERT-In | Directions under s.70B(6), 28 April 2022 | 7 |
 | MeitY | DPDP Rules 2025, Rule 7 (breach intimation) | 3 |
 | SEBI | CSCRF circular, 20 August 2024 | 11 |
-| RBI | Cybersecurity Directions, 31 July 2026: NBFCs (6), Urban Co-operative Banks (4), All India Financial Institutions (4), Payments Banks (4) | 18 |
+| RBI | Cybersecurity Directions, 31 July 2026: NBFCs (11), Urban Co-operative Banks (4), All India Financial Institutions (4), Payments Banks (4) | 23 |
 | IRDAI | Information and Cyber Security Guidelines, 2023 (partial) | 8 |
 
-47 obligations in all. Not covered: RBI Directions for commercial banks and small finance banks; most of the IRDAI guidelines; the remaining paragraphs of the RBI Directions. `docs/OPEN_QUESTIONS.md` lists every known gap.
+52 obligations in all. Not covered: RBI Directions for commercial banks and small finance banks; most of the IRDAI guidelines; the remaining paragraphs of the RBI Directions. `docs/OPEN_QUESTIONS.md` lists every known gap.
 
 ## How correctness is checked
 
-- **344 tests**, including **mutation tests**: each deliberately breaks one legal rule in the engine and asserts which named scenarios then fail.
-- **101 dev scenarios**, each carrying the clause quotes it relies on, verified mechanically against the stored page text. All pass.
+- **368 tests**, including **mutation tests**: each deliberately breaks one legal rule in the engine and asserts which named scenarios then fail.
+- **104 dev scenarios**, each carrying the clause quotes it relies on, verified mechanically against the stored page text. All pass.
 - **Labels before code.** For RBI, SEBI and IRDAI the expected outcomes were written and committed before the implementation (`docs/LABELS_*.md`; the commit history shows the order).
 - **Hidden split written by the other party.** 30 scenarios the implementer of each part never saw while building it. They are kept out of this repository so they stay hidden. Current result: **29/30** (Wilson 95% interval 83.3% to 99.4%). The one failure is a recorded disagreement between two reviewers about a contested start date, not a defect either side concedes.
 - **Provenance controls.** Source PDFs are pinned by SHA-256, re-downloaded from the regulators and compared (`scripts/reverify_sources.py`), and guarded by gates that reject generated, truncated or undocumented files. `tests/test_provenance_attacks.py` records which attacks the gates stop and which one they do not.

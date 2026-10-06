@@ -69,6 +69,7 @@ class DeadlineResult:
     citation_instrument: str
     recipient: str
     channel: str | None
+    simulated: bool = False
 
 
 @dataclass(frozen=True)
@@ -82,6 +83,7 @@ class TimeCriticalResult:
     citation_paragraph: str
     citation_instrument: str
     recipient: str | None
+    simulated: bool = False
 
 
 @dataclass(frozen=True)
@@ -202,6 +204,7 @@ class ClockResult:
     time_critical: list[TimeCriticalResult]
     unknowns: list[Unknown]
     applicable_obligations: list[str]
+    simulated_obligations: list[str]
     not_applicable: list[dict[str, Any]]
     undetermined: list[str]
     conditions_unevaluated: dict[str, list[str]]
@@ -225,6 +228,7 @@ class ClockResult:
                     "deadline_ist": d.deadline_ist.isoformat(),
                     "duration": d.duration_iso8601,
                     "status": d.status,
+                    "simulated": d.simulated,
                     "citation": {
                         "instrument_id": d.citation_instrument,
                         "paragraph_ref": d.citation_paragraph,
@@ -244,6 +248,8 @@ class ClockResult:
                         "paragraph_ref": t.citation_paragraph,
                     },
                     "recipient": t.recipient,
+                    "status": "simulated" if t.simulated else "pending",
+                    "simulated": t.simulated,
                 }
                 for t in self.time_critical
             ],
@@ -252,6 +258,7 @@ class ClockResult:
                 for u in self.unknowns
             ],
             "applicable_obligations": self.applicable_obligations,
+            "simulated_obligations": self.simulated_obligations,
             "not_applicable": self.not_applicable,
             "undetermined": self.undetermined,
             "conditions_unevaluated": self.conditions_unevaluated,
@@ -489,6 +496,7 @@ class IncidentClockEngine:
         profile: IncidentProfile,
         now: datetime | None = None,
         as_of: date | None = None,
+        simulate_instruments: list[str] | None = None,
     ) -> ClockResult:
         profile.validate()
         if now is None:
@@ -499,6 +507,35 @@ class IncidentClockEngine:
         if as_of is None:
             earliest = profile.earliest_known_time()
             as_of = (earliest or now).astimezone(IST).date()
+
+        requested_simulations = set(simulate_instruments or [])
+        simulation_caveats: list[str] = []
+        known_instruments = set(self._issuer)
+        unknown_instruments = requested_simulations - known_instruments
+        if unknown_instruments:
+            raise ValueError(
+                "Unknown instrument(s) requested for simulation: "
+                + ", ".join(sorted(unknown_instruments))
+            )
+        for instrument_id in sorted(requested_simulations):
+            future_dates = {
+                str((obs.get("validity") or {}).get("valid_from"))
+                for obs in self.obligations
+                if obs.get("instrument_id") == instrument_id
+                and self._not_in_force_reason(obs, as_of)
+                and str(self._not_in_force_reason(obs, as_of)).startswith("not_yet")
+                and (obs.get("validity") or {}).get("valid_from")
+            }
+            if not future_dates:
+                raise ValueError(
+                    f"Nothing to simulate for {instrument_id} on {as_of.isoformat()}: "
+                    "it has no obligations that are not yet in force."
+                )
+            commencement = min(future_dates)
+            simulation_caveats.append(
+                f"SIMULATION: {instrument_id} obligations begin {commencement}; simulated "
+                "items are not in force on the law-as-of date."
+            )
 
         for entity_class in profile.entity_classes or []:
             if entity_class not in self.taxonomy:
@@ -518,6 +555,7 @@ class IncidentClockEngine:
                 )
 
         caveats: list[str] = []
+        caveats.extend(simulation_caveats)
         if as_of < _MSME_EFFECTIVE:
             caveats.append(
                 "Before 25 Sep 2022 CERT-In's notice of 27 Jun 2022 delayed the Directions for "
@@ -548,6 +586,7 @@ class IncidentClockEngine:
         time_critical: list[TimeCriticalResult] = []
         unknowns: list[Unknown] = []
         applicable: list[str] = []
+        simulated_obligations: list[str] = []
         not_applicable: list[dict[str, Any]] = []
         undetermined: list[str] = []
         conditions_unevaluated: dict[str, list[str]] = {}
@@ -563,8 +602,13 @@ class IncidentClockEngine:
             governing = started.astimezone(IST).date() if started is not None else as_of
             reason = self._not_in_force_reason(obs, governing)
             if reason:
-                not_applicable.append({"obligation_id": obs_id, "reason": reason})
-                continue
+                if obs.get("instrument_id") in requested_simulations and reason.startswith(
+                    "not_yet"
+                ):
+                    obs = {**obs, "_simulated": True}
+                else:
+                    not_applicable.append({"obligation_id": obs_id, "reason": reason})
+                    continue
 
             applicability = obs.get("applicability") or {}
             excluded = applicability.get("excluded_entity_classes") or []
@@ -822,7 +866,9 @@ class IncidentClockEngine:
             if requirement_failed or requirement_unknown:
                 continue
 
-            applicable.append(obs_id)
+            simulated = bool(obs.get("_simulated"))
+            if not simulated:
+                applicable.append(obs_id)
             validity = obs.get("validity") or {}
             contested_until = validity.get("contested_until")
             if contested_until and governing < date.fromisoformat(str(contested_until)):
@@ -832,7 +878,12 @@ class IncidentClockEngine:
             if conditions:
                 conditions_unevaluated[obs_id] = conditions
 
+            unknown_count = len(unknowns)
             self._compute_deadline(obs, profile, now, deadlines, time_critical, unknowns)
+            if simulated and not any(
+                obs_id in unknown.affects for unknown in unknowns[unknown_count:]
+            ):
+                simulated_obligations.append(obs_id)
 
         for note, obligation_ids in contested.items():
             caveats.append(
@@ -867,6 +918,7 @@ class IncidentClockEngine:
             time_critical=time_critical,
             unknowns=unknowns,
             applicable_obligations=applicable,
+            simulated_obligations=simulated_obligations,
             not_applicable=not_applicable,
             undetermined=undetermined,
             conditions_unevaluated=conditions_unevaluated,
@@ -906,6 +958,7 @@ class IncidentClockEngine:
         norm = obs.get("normalized") or {}
         spec = norm.get("deadline") or {}
         kind = spec.get("kind")
+        simulated = bool(obs.get("_simulated"))
 
         if kind in (None, "none", "recurring", "retention"):
             return  # ongoing duties never produce an incident deadline
@@ -921,6 +974,7 @@ class IncidentClockEngine:
                     citation_paragraph=citation.get("paragraph_ref", ""),
                     citation_instrument=citation.get("instrument_id", ""),
                     recipient=norm.get("recipient"),
+                    simulated=simulated,
                 )
             )
             return
@@ -961,11 +1015,16 @@ class IncidentClockEngine:
                     deadline_utc=deadline_utc,
                     deadline_ist=deadline_utc.astimezone(IST),
                     duration_iso8601=spec["duration_iso8601"],
-                    status="pending" if deadline_utc > now else "overdue",
+                    status=(
+                        "simulated"
+                        if simulated
+                        else ("pending" if deadline_utc > now else "overdue")
+                    ),
                     citation_paragraph=citation.get("paragraph_ref", ""),
                     citation_instrument=citation.get("instrument_id", ""),
                     recipient=norm.get("recipient", ""),
                     channel=None,
+                    simulated=simulated,
                 )
             )
             return
@@ -1034,10 +1093,13 @@ class IncidentClockEngine:
                 deadline_utc=deadline_utc,
                 deadline_ist=deadline_utc.astimezone(IST),
                 duration_iso8601=duration_str,
-                status="pending" if deadline_utc > now else "overdue",
+                status=(
+                    "simulated" if simulated else ("pending" if deadline_utc > now else "overdue")
+                ),
                 citation_paragraph=citation.get("paragraph_ref", ""),
                 citation_instrument=citation.get("instrument_id", ""),
                 recipient=norm.get("recipient", ""),
                 channel=None,
+                simulated=simulated,
             )
         )

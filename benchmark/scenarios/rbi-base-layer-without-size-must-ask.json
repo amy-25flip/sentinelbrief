@@ -24,7 +24,8 @@
   "expected": {
     "law_as_of": "2026-10-01",
     "regulators": [
-      "CERT-In"
+        "CERT-In",
+        "RBI"
     ],
     "deadlines": [
       {
@@ -71,10 +72,18 @@
       }
     ],
     "unknowns": [
-      {
-        "question": "NBFC category",
-        "affects": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h"
-      }
+        {
+          "question": "NBFC category",
+          "affects": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h"
+        },
+        {
+          "question": "NBFC category",
+          "affects": "rbi.nbfc-cyber.2026.ch4-it-risk-assessment-annual"
+        },
+        {
+          "question": "NBFC category",
+          "affects": "rbi.nbfc-cyber.2026.ch4-bcp-test-annual"
+        }
     ],
     "time_critical": []
   },

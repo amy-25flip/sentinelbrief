@@ -16,6 +16,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from sentinelbrief.cards import CardFeed
+from sentinelbrief.cards.feed import regulatory_rss
 from sentinelbrief.clock import IncidentClockEngine, IncidentProfile
 from sentinelbrief.clock.engine import IST
 from sentinelbrief.workspace import CaseStore, recurring_duties_ics
@@ -103,6 +104,15 @@ async def home(request: Request) -> HTMLResponse:
             "now_ist": datetime.now(IST).strftime("%Y-%m-%d %H:%M IST"),
         },
     )
+
+
+@app.get("/feed.xml", response_model=None)
+async def rss_feed(request: Request) -> Response:
+    """RSS 2.0 generated from the same regulatory-card data as the home page."""
+    feed = CardFeed(DATA_DIR)
+    feed.load_from_data_dir(fixtures_dir=BASE_DIR / "tests" / "fixtures")
+    payload = regulatory_rss(feed.get_feed(), str(request.base_url))
+    return Response(payload, media_type="application/rss+xml; charset=utf-8")
 
 
 @app.get("/obligations", response_class=HTMLResponse)
@@ -285,11 +295,15 @@ async def incident_clock(request: Request) -> Response:
             payload = await request.json()
         else:
             raw = parse_qs((await request.body()).decode("utf-8"), keep_blank_values=False)
-            repeated = {"annexure_i_items", "also_classes"}
+            repeated = {"annexure_i_items", "also_classes", "simulate_instruments"}
             payload = {k: (v if k in repeated else v[-1]) for k, v in raw.items()}
+        simulation_value = payload.pop("simulate_instruments", []) or []
+        if not isinstance(simulation_value, list):
+            raise ValueError("simulate_instruments must be a list of instrument ids")
+        simulate_instruments = [str(value) for value in simulation_value]
         profile = _profile_from_payload(payload, form_input=not is_json)
         engine = IncidentClockEngine(DATA_DIR)
-        result = engine.evaluate(profile)
+        result = engine.evaluate(profile, simulate_instruments=simulate_instruments)
     except (ValueError, KeyError, TypeError) as exc:
         if is_htmx:
             return templates.TemplateResponse(
@@ -338,6 +352,10 @@ async def incident_clock(request: Request) -> Response:
             "ongoing": ongoing,
             "matched": matched,
             "n_applicable": len(applicable),
+            "simulated_deadlines": [d for d in result.deadlines if d.simulated],
+            "real_deadlines": [d for d in result.deadlines if not d.simulated],
+            "simulated_time_critical": [t for t in result.time_critical if t.simulated],
+            "real_time_critical": [t for t in result.time_critical if not t.simulated],
         },
     )
 
@@ -360,7 +378,7 @@ async def _payload(request: Request) -> tuple[dict[str, Any], bool]:
             raise ValueError("JSON body must be an object")
         return value, True
     raw = parse_qs((await request.body()).decode("utf-8"), keep_blank_values=False)
-    repeated = {"annexure_i_items", "also_classes"}
+    repeated = {"annexure_i_items", "also_classes", "simulate_instruments"}
     return {k: (v if k in repeated else v[-1]) for k, v in raw.items()}, False
 
 
@@ -375,8 +393,12 @@ async def create_case(request: Request) -> Response:
     try:
         payload, is_json = await _payload(request)
         actor = str(payload.pop("opened_by", ""))
+        simulation_value = payload.pop("simulate_instruments", []) or []
+        if not isinstance(simulation_value, list):
+            raise ValueError("simulate_instruments must be a list of instrument ids")
+        simulate_instruments = [str(value) for value in simulation_value]
         profile = _profile_from_payload(payload, form_input=not is_json)
-        case_id = _case_store().create(profile, actor)
+        case_id = _case_store().create(profile, actor, simulate_instruments)
     except (ValueError, KeyError, TypeError) as exc:
         return JSONResponse({"error": str(exc)}, status_code=422)
     if is_json:

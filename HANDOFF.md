@@ -5,12 +5,12 @@ Written by the reviewer agent. Antigravity is no longer on the project; from Bui
 ## 1. Gate output (`python scripts/check.py`, run by the reviewer agent on 2026-10-06)
 
 ```
-PASS  pytest             344 passed, 1 deselected, 1 warning
+PASS  pytest             368 passed, 1 deselected, 1 warning
 PASS  ruff check         All checks passed!
-PASS  ruff format        63 files already formatted
+PASS  ruff format        65 files already formatted
 PASS  mypy (strict)      Success: no issues found in 33 source files
 PASS  validate_all       All obligations and citations passed validation successfully!
-PASS  benchmark dev      Scenarios passed:   101/101  Wilson 95% CI [96.3%, 100.0%]
+PASS  benchmark dev      Scenarios passed:   104/104  Wilson 95% CI [96.4%, 100.0%]
 ALL GATES PASSED
 ```
 

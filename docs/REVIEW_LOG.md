@@ -359,3 +359,28 @@ Scenario changes made by Codex, checked by semantic diff: four scenarios had a f
 Done by the reviewer agent to finish: one stale unit test moved to the SEBI-specific fact; formatting; the contested-date caveat; two hidden set B files updated mechanically (the fact name Codex's Q3 fix introduced, and the clause reference its Q9 fix renamed), with no change to any expected deadline, unknown or applicability.
 
 **Hidden split, final: 29/30** (set A 14/14, set B 15/16; Wilson 95% interval 83.3% to 99.4%). The one failure is Q5.
+
+## Build 16 - Codex, 2026-10-06
+
+Built by the builder agent. Awaiting independent review.
+
+- **Task 1 — RBI NBFC recurring duties:** added the five Amendment 2 records from paragraphs 6, 32, 59(4), 98 and 129 with stored-text spans and page offsets. Added exact calendar tests for all five label-table profiles and mutations for Chapter IV leakage, Chapter II over-restriction and the DR period. Thirteen existing dev scenarios changed mechanically: `cert-in-attack-on-application`, `cert-in-attack-on-servers`, `cert-in-cloud-outage-not-assumed`, `cert-in-detection-time-only`, `cert-in-nbfc-ransomware`, `cert-in-unattested-hardware-failure`, `cert-in-utc-input`, `rbi-base-layer-without-size-must-ask`, `rbi-bl-below-500cr-no-reporting-duty`, `rbi-cic-in-middle-layer-excluded`, `rbi-cic-without-layer-must-ask-category`, `rbi-generic-nbfc-must-ask-category`, and `rbi-hfc-without-layer-must-ask-category`. Each gained RBI because paragraph 6 now applies; generic/category-only profiles also gained only the new chapter-scoped category unknowns reached by refinement. No prior deadline or other expectation changed.
+- **Task 2 — DPDP simulation:** chose the `evaluate(..., simulate_instruments=...)` design. Added marked simulated result fields, API/form support, a separate “not in force” result section, exact benchmark scoring/schema support, three labelled scenarios, probe support, case refusal and draft exclusion. Mutations cover pending status, leakage into real applicability, and simulation after commencement.
+- **Task 3 — Review 13 Q12:** added separate mutations for the SEBI 3-, 7-, 30- and 45-day clocks. Scenario `sebi-post-incident-reports-from-report-date` catches each. Added a fixed-quarter-date mutation; `test_quarterly_report_is_ongoing_and_lands_on_the_fixed_dates` catches it.
+- **Task 4 — RSS:** `/feed.xml` is deterministic RSS 2.0 over the regulatory cards shown by the home feed, with obligation links, non-permalink ids, issuer categories, source publication dates and escaped text. `lastBuildDate` is the newest card date. The base template advertises the feed. Tests parse XML, compare card count, exercise `<` and `&`, and compare repeated bytes.
+- **Could not do:** no fixed label was left unmet. The full pytest command was blocked by the documented Windows sandbox ACL defect: collection encountered an inaccessible pre-existing `tests/pytest-*` directory, and a file-only run could not use pytest's `tmp_path` directories. With the temp plugin disabled, 282 non-temp tests passed and the 85 temp-fixture tests errored at fixture setup; focused new/changed tests passed. The reviewer should rerun full pytest in its normal environment. All other required gates passed.
+
+## Review 14 - the reviewer agent, 2026-10-06: Build 16
+
+Method: `scripts/check.py` (6 gates pass: 368 tests, 104/104 dev); a semantic diff of every scenario against the previous commit; probes of the simulation, the feed and the five new records.
+
+Accepted, with nothing to fix in the builder's work:
+
+- The five recurring NBFC duties: verbatim text found in the stored source, pages 9, 19, 25, 36 and 42, classes and periods as the label table says. Calendar labels all met.
+- Scenario changes are additions only, exactly as Amendment 2 allows: the "NBFC category" unknown now also reaches the new chapter-scoped duties, and RBI joins the regulators of every NBFC profile because the board review binds all NBFCs. No deadline, not-applicable entry or existing unknown changed.
+- Simulation: a simulated deadline has status `simulated`, is not in `applicable_obligations`, carries a "SIMULATION:" caveat with the commencement date, is refused when there is nothing to simulate, and a case cannot be opened with one. Probed for DPDP in 2026 and, unprompted by the labels, for the RBI Direction before 31 July 2026.
+- RSS: well-formed, one item per regulatory card, byte-identical across calls.
+
+Done by the reviewer agent to finish: one of its own calendar tests still expected two events for a Middle Layer NBFC (now five, per the label table); three hidden set A scenarios updated by the Amendment 2 rule (RBI among the regulators; the Chapter IV category unknown for a Base Layer profile with no size). No expected deadline changed.
+
+Hidden split: 29/30, unchanged; the one failure is still Review 12 Q5.

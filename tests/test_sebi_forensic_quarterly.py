@@ -129,7 +129,29 @@ def test_quarterly_report_is_ongoing_and_lands_on_the_fixed_dates(engine):
     on_the_day, _ = recurring_duties_ics(engine, ["sebi.small_re"], date(2026, 10, 15))
     assert "DTSTART;VALUE=DATE:20271015" in on_the_day
     nothing, _ = recurring_duties_ics(engine, ["nbfc.bl_below_500cr"], date(2026, 10, 1))
-    assert "BEGIN:VEVENT" not in nothing
+    assert "Submit the quarterly report" not in nothing
+    assert "Review the Board-approved" in nothing
+
+
+def test_quarterly_fixed_date_mutation_is_caught(engine):
+    """`test_quarterly_report_is_ongoing_and_lands_on_the_fixed_dates` catches wrong dates."""
+    target = engine.get_obligation(QUARTERLY)
+    original = list(target["normalized"]["deadline"]["fixed_schedule"])
+    try:
+        target["normalized"]["deadline"]["fixed_schedule"] = [
+            "01-16",
+            "04-16",
+            "07-16",
+            "10-16",
+        ]
+        ics, _ = recurring_duties_ics(engine, ["sebi.small_re"], date(2026, 10, 1))
+        starts = sorted(
+            line.split(":")[1] for line in ics.split("\r\n") if line.startswith("DTSTART")
+        )
+        assert starts == ["20261016", "20270116", "20270416", "20270716"]
+        assert starts != ["20261015", "20270115", "20270415", "20270715"]
+    finally:
+        target["normalized"]["deadline"]["fixed_schedule"] = original
 
 
 def test_api_and_case_accept_severity(tmp_path, monkeypatch):

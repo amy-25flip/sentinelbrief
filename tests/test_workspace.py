@@ -295,8 +295,106 @@ def test_export_bundle_is_complete_and_hashes_match(store, tmp_path):
 # --- calendar ---
 
 
+def _calendar_events(ics):
+    unfolded = ics.replace("\r\n ", "")
+    events = []
+    for block in unfolded.split("BEGIN:VEVENT\r\n")[1:]:
+        lines = block.split("END:VEVENT", 1)[0].split("\r\n")
+        summary = next(
+            line.removeprefix("SUMMARY:") for line in lines if line.startswith("SUMMARY:")
+        )
+        due = next(line.split(":", 1)[1] for line in lines if line.startswith("DTSTART"))
+        events.append((summary, due))
+    return set(events)
+
+
+@pytest.mark.parametrize(
+    ("classes", "expected", "undetermined"),
+    [
+        (
+            ["nbfc.middle_layer"],
+            {
+                ("Conduct vulnerability assessment at least once in every six months.", "20270401"),
+                ("Conduct penetration testing at least once in 12 months.", "20271001"),
+                (
+                    "Conduct DR drills for critical information systems at least half-yearly.",
+                    "20270401",
+                ),
+                (
+                    "Review security infrastructure and security policies at least annually.",
+                    "20271001",
+                ),
+                (
+                    "Review the Board-approved Technology and Cybersecurity strategies and policies at least annually.",
+                    "20271001",
+                ),
+            },
+            set(),
+        ),
+        (
+            ["nbfc.bl_500cr_and_above"],
+            {
+                (
+                    "Undertake a comprehensive risk assessment of IT systems at least annually.",
+                    "20271001",
+                ),
+                ("Test the business continuity plan at least annually.", "20271001"),
+                (
+                    "Review the Board-approved Technology and Cybersecurity strategies and policies at least annually.",
+                    "20271001",
+                ),
+            },
+            set(),
+        ),
+        (
+            ["nbfc.bl_below_500cr"],
+            {
+                (
+                    "Review the Board-approved Technology and Cybersecurity strategies and policies at least annually.",
+                    "20271001",
+                )
+            },
+            set(),
+        ),
+        (
+            ["nbfc.middle_layer", "nbfc.cic"],
+            {
+                (
+                    "Review the Board-approved Technology and Cybersecurity strategies and policies at least annually.",
+                    "20271001",
+                )
+            },
+            set(),
+        ),
+        (
+            ["nbfc"],
+            {
+                (
+                    "Review the Board-approved Technology and Cybersecurity strategies and policies at least annually.",
+                    "20271001",
+                )
+            },
+            {
+                "rbi.nbfc-cyber.2026.ch5-va-half-yearly",
+                "rbi.nbfc-cyber.2026.ch5-pt-annual",
+                "rbi.nbfc-cyber.2026.ch5-dr-drill-half-yearly",
+                "rbi.nbfc-cyber.2026.ch5-security-review-annual",
+                "rbi.nbfc-cyber.2026.ch4-it-risk-assessment-annual",
+                "rbi.nbfc-cyber.2026.ch4-bcp-test-annual",
+            },
+        ),
+    ],
+)
+def test_rbi_nbfc_calendar_labels(classes, expected, undetermined):
+    """Each Amendment 2 table row has an exact event set, first dates and unknown set."""
+    engine = IncidentClockEngine(DATA)
+    ics, asked = recurring_duties_ics(engine, classes, date(2026, 10, 1))
+    assert _calendar_events(ics) == expected
+    assert set(asked) == undetermined
+
+
 def test_calendar_lists_recurring_duties_with_correct_rules():
-    """Catches: wrong first due date or repeat rule for VA (six months) and PT (12 months)."""
+    """Catches: wrong repeat rules and month-end arithmetic for six- and 12-month duties."""
     engine = IncidentClockEngine(DATA)
     stamp = datetime(2026, 10, 4, tzinfo=IST)
     ics, undetermined = recurring_duties_ics(
@@ -304,7 +402,7 @@ def test_calendar_lists_recurring_duties_with_correct_rules():
     )
     assert undetermined == []
     assert ics.startswith("BEGIN:VCALENDAR\r\n") and ics.endswith("END:VCALENDAR\r\n")
-    assert ics.count("BEGIN:VEVENT") == 2
+    assert ics.count("BEGIN:VEVENT") == 5
     assert "DTSTART;VALUE=DATE:20270228" in ics and "RRULE:FREQ=MONTHLY;INTERVAL=6" in ics
     assert "DTSTART;VALUE=DATE:20270831" in ics and "RRULE:FREQ=YEARLY;INTERVAL=1" in ics
     assert all(len(line.encode("utf-8")) <= 75 for line in ics.split("\r\n"))
@@ -315,15 +413,59 @@ def test_calendar_never_silently_drops_an_undetermined_duty():
     """Catches: a generic NBFC getting an empty calendar instead of being asked its category."""
     engine = IncidentClockEngine(DATA)
     ics, undetermined = recurring_duties_ics(engine, ["nbfc"], date(2026, 10, 1))
-    assert "BEGIN:VEVENT" not in ics
-    assert {u.split(".")[-1] for u in undetermined} == {"ch5-va-half-yearly", "ch5-pt-annual"}
+    assert ics.count("BEGIN:VEVENT") == 1
+    assert {u.split(".")[-1] for u in undetermined} == {
+        "ch5-va-half-yearly",
+        "ch5-pt-annual",
+        "ch5-dr-drill-half-yearly",
+        "ch5-security-review-annual",
+        "ch4-it-risk-assessment-annual",
+        "ch4-bcp-test-annual",
+    }
     ics_bank, asked = recurring_duties_ics(engine, ["bank"], date(2026, 10, 1))
     assert "BEGIN:VEVENT" not in ics_bank  # a generic bank is asked its kind, never told "nothing"
     assert {u.split(".")[-1] for u in asked} == {"va-half-yearly", "pt-annual"}
     ics_small, none = recurring_duties_ics(engine, ["nbfc.bl_below_500cr"], date(2026, 10, 1))
-    assert "BEGIN:VEVENT" not in ics_small and none == []
+    assert ics_small.count("BEGIN:VEVENT") == 1 and none == []
     before, _ = recurring_duties_ics(engine, ["nbfc.middle_layer"], date(2026, 7, 1))
     assert "BEGIN:VEVENT" not in before  # the Direction was not yet in force
+
+
+def test_mutation_chapter_iv_recurring_duty_cannot_leak_to_chapter_v():
+    """The `nbfc.middle_layer` Amendment 2 calendar row catches a Chapter IV leak."""
+    engine = IncidentClockEngine(DATA)
+    target = engine.get_obligation("rbi.nbfc-cyber.2026.ch4-it-risk-assessment-annual")
+    target["applicability"]["entity_classes"].append("nbfc.middle_layer")
+    ics, _ = recurring_duties_ics(engine, ["nbfc.middle_layer"], date(2026, 10, 1))
+    assert "Undertake a comprehensive risk assessment" in ics
+    assert len(_calendar_events(ics)) == 6
+
+
+def test_mutation_board_review_restricted_to_one_chapter_is_caught():
+    """The `nbfc.bl_below_500cr` row catches a board review restricted to Chapter V."""
+    engine = IncidentClockEngine(DATA)
+    target = engine.get_obligation("rbi.nbfc-cyber.2026.ch2-board-policy-review-annual")
+    target["applicability"]["entity_classes"] = ["nbfc.middle_layer"]
+    ics, _ = recurring_duties_ics(engine, ["nbfc.bl_below_500cr"], date(2026, 10, 1))
+    assert "Review the Board-approved" not in ics
+    assert _calendar_events(ics) == set()
+
+
+def test_mutation_dr_drill_changed_to_twelve_months_is_caught():
+    """The `nbfc.middle_layer` row catches a DR cadence mutation from P6M to P12M."""
+    engine = IncidentClockEngine(DATA)
+    target = engine.get_obligation("rbi.nbfc-cyber.2026.ch5-dr-drill-half-yearly")
+    target["normalized"]["deadline"]["duration_iso8601"] = "P12M"
+    ics, _ = recurring_duties_ics(engine, ["nbfc.middle_layer"], date(2026, 10, 1))
+    events = _calendar_events(ics)
+    assert (
+        "Conduct DR drills for critical information systems at least half-yearly.",
+        "20271001",
+    ) in events
+    assert (
+        "Conduct DR drills for critical information systems at least half-yearly.",
+        "20270401",
+    ) not in events
 
 
 # --- HTTP ---
@@ -425,9 +567,9 @@ def test_api_calendar(client):
         "/api/calendar.ics", params={"classes": "nbfc.middle_layer", "last_done": "2026-10-01"}
     )
     assert ok.status_code == 200 and ok.headers["content-type"].startswith("text/calendar")
-    assert ok.text.count("BEGIN:VEVENT") == 2
+    assert ok.text.count("BEGIN:VEVENT") == 5  # VA, PT, DR drill, security review, board review
     vague = client.get("/api/calendar.ics", params={"classes": "nbfc", "last_done": "2026-10-01"})
-    assert vague.status_code == 422 and len(vague.json()["undetermined"]) == 2
+    assert vague.status_code == 422 and len(vague.json()["undetermined"]) == 6
     assert (
         client.get("/api/calendar.ics", params={"classes": "nbfc.middle_layer"}).status_code == 422
     )

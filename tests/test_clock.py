@@ -504,6 +504,10 @@ def test_rbi_generic_nbfc_requires_category_refinement_but_specific_class_does_n
         "rbi.nbfc-cyber.2026.ch5-cert-in-notification",
         "rbi.nbfc-cyber.2026.ch5-va-half-yearly",
         "rbi.nbfc-cyber.2026.ch5-pt-annual",
+        "rbi.nbfc-cyber.2026.ch4-it-risk-assessment-annual",
+        "rbi.nbfc-cyber.2026.ch4-bcp-test-annual",
+        "rbi.nbfc-cyber.2026.ch5-security-review-annual",
+        "rbi.nbfc-cyber.2026.ch5-dr-drill-half-yearly",
     }
     assert affected <= set(generic.undetermined)
     assert not affected.intersection(item["obligation_id"] for item in generic.not_applicable)
@@ -539,6 +543,10 @@ def test_rbi_hfc_role_without_layer_keeps_family_unresolved():
         "rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb",
         "rbi.nbfc-cyber.2026.ch5-va-half-yearly",
         "rbi.nbfc-cyber.2026.ch5-pt-annual",
+        "rbi.nbfc-cyber.2026.ch4-it-risk-assessment-annual",
+        "rbi.nbfc-cyber.2026.ch4-bcp-test-annual",
+        "rbi.nbfc-cyber.2026.ch5-security-review-annual",
+        "rbi.nbfc-cyber.2026.ch5-dr-drill-half-yearly",
     }
     assert "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h" not in questions[0].affects
 
@@ -556,13 +564,17 @@ def test_rbi_cic_role_without_layer_keeps_only_chapter_iv_unresolved():
     )
     questions = [u for u in result.unknowns if "NBFC category" in u.question]
     assert len(questions) == 1
-    assert questions[0].affects == ["rbi.nbfc-cyber.2026.ch4-incident-reporting-6h"]
+    assert set(questions[0].affects) == {
+        "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h",
+        "rbi.nbfc-cyber.2026.ch4-it-risk-assessment-annual",
+        "rbi.nbfc-cyber.2026.ch4-bcp-test-annual",
+    }
     chapter_v = {
         item["obligation_id"]
         for item in result.not_applicable
         if item["obligation_id"].startswith("rbi.nbfc-cyber.2026.ch5")
     }
-    assert len(chapter_v) == 5
+    assert len(chapter_v) == 7
 
 
 def test_rbi_base_layer_without_size_refines_only_its_most_specific_family():
@@ -578,7 +590,11 @@ def test_rbi_base_layer_without_size_refines_only_its_most_specific_family():
     )
     questions = [u for u in result.unknowns if "NBFC category" in u.question]
     assert len(questions) == 1
-    assert questions[0].affects == ["rbi.nbfc-cyber.2026.ch4-incident-reporting-6h"]
+    assert set(questions[0].affects) == {
+        "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h",
+        "rbi.nbfc-cyber.2026.ch4-it-risk-assessment-annual",
+        "rbi.nbfc-cyber.2026.ch4-bcp-test-annual",
+    }
 
 
 def test_rbi_generic_plus_specific_layer_needs_no_refinement_question():

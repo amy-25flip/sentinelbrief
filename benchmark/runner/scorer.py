@@ -145,7 +145,11 @@ class BenchmarkScorer:
         # date is NOT forced from it: the engine must derive it from the incident, and the
         # label asserts what it should be (expected.law_as_of).
         try:
-            result = self.engine.evaluate(self._profile(scenario), now=now)
+            result = self.engine.evaluate(
+                self._profile(scenario),
+                now=now,
+                simulate_instruments=scenario.get("simulate_instruments"),
+            )
         except ValueError as exc:
             # A scenario the engine refuses to evaluate has failed; it must not abort the run.
             return {
@@ -162,7 +166,7 @@ class BenchmarkScorer:
         except ValueError as exc:
             failures.append(str(exc))
 
-        predicted_regs = {_norm_reg(d.regulator) for d in result.deadlines}
+        predicted_regs = {_norm_reg(d.regulator) for d in result.deadlines if not d.simulated}
         for obl_id in result.applicable_obligations:
             obl = self.engine.get_obligation(obl_id) or {}
             issuer = self.engine._issuer.get(obl.get("instrument_id", ""), "")
@@ -205,6 +209,30 @@ class BenchmarkScorer:
             failures.append(f"unexpected deadline produced for {spurious}")
 
         applicable = set(result.applicable_obligations)
+        expected_simulated = set(expected.get("simulated", []))
+        if set(result.simulated_obligations) != expected_simulated:
+            failures.append(
+                f"simulated: expected {sorted(expected_simulated)}, "
+                f"got {sorted(result.simulated_obligations)}"
+            )
+        simulated_outputs = {
+            item.obligation_id: (item.simulated, item.status) for item in result.deadlines
+        }
+        simulated_outputs.update(
+            {
+                item.obligation_id: (
+                    item.simulated,
+                    "simulated" if item.simulated else "pending",
+                )
+                for item in result.time_critical
+            }
+        )
+        for obligation_id in expected_simulated:
+            output = simulated_outputs.get(obligation_id)
+            if output is not None and output != (True, "simulated"):
+                failures.append(
+                    f"simulated output {obligation_id} must be marked simulated, got {output}"
+                )
         for cit in expected["citations"]:
             obl_id = cit["obligation_id"]
             if obl_id not in applicable:

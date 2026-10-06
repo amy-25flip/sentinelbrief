@@ -429,3 +429,19 @@ Quotes and pages are in `docs/LABELS_SEBI.md` Part 2. This replaces SEBI Decisio
 **Why:** Two reviewers read the texts differently (Review 12, Q5 and Q6). Using the later dates could tell a user they owed nothing when they did; using the earlier dates with no warning presents a disputed duty as settled. Showing the duty with the dispute stated does neither.
 
 **Alternatives:** the later dates as `valid_from` (Codex's reading); the earlier dates with no warning (the previous state). Both are recorded in the review log. For counsel.
+
+## 2026-10-06: DPDP simulation is an evaluation overlay
+
+**Decision:** `IncidentClockEngine.evaluate(..., simulate_instruments=[...])` accepts instrument ids. It may evaluate only obligations whose `valid_from` is later than the incident's law-as-of date. Simulated duties are returned in `simulated_obligations`, carry `simulated: true` and `status: simulated`, and never enter `applicable_obligations`. The benchmark's `regulators` set therefore remains a set of real duties. A simulation does not alter stored legal status, validity, or `law_as_of`.
+
+The workspace refuses to open a case with a simulation and draft construction skips simulated clocks. This keeps hypothetical output from entering a filing workflow. The incident page instead shows it in a visually separate “not in force” section.
+
+**Alternative:** add simulation state to `IncidentProfile`. Rejected because simulation is a request about evaluation mode, not a fact about the entity or incident, and storing it in case facts could make hypothetical duties look enforceable.
+
+## 2026-10-06: RBI NBFC Chapter II annual review binds every NBFC
+
+**Decision:** paragraph 6's annual Board review is recorded against the broad `nbfc` class. Paragraph 3 expressly scopes Chapters III, IV and V, but does not restrict Chapter II. A generic NBFC therefore receives the Board-review calendar event without answering a category question. The new Chapter IV and Chapter V recurring duties retain their paragraph 3 scopes, and Chapter V excludes CICs.
+
+**Text:** paragraph 6 says the Board-approved Technology and Cybersecurity strategies and policies “shall be reviewed at least annually by it.” Paragraph 3 assigns Chapter IV only to Base Layer NBFCs at or above ₹500 crore and Chapter V only to Middle, Upper and Top Layer NBFCs, excluding CICs.
+
+Paragraph 56 says an IS audit “may be conducted at least once in a year”. It is not modelled as a duty because “may” is permissive.

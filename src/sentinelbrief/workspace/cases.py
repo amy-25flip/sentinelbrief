@@ -141,7 +141,14 @@ class CaseStore:
 
     # --- operations ---
 
-    def create(self, profile: IncidentProfile, actor: str) -> str:
+    def create(
+        self,
+        profile: IncidentProfile,
+        actor: str,
+        simulate_instruments: list[str] | None = None,
+    ) -> str:
+        if simulate_instruments:
+            raise ValueError("A case cannot be opened with a simulation")
         actor = _require_person(actor, "The person opening the case")
         self.engine.evaluate(profile)  # reject invalid facts before anything is stored
         case_id = uuid.uuid4().hex

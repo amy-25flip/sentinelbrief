@@ -165,6 +165,8 @@ def build_drafts(
         seen.add(obligation_id)
 
     for deadline in sorted(result.deadlines, key=lambda d: d.deadline_utc):
+        if deadline.simulated:
+            continue
         add(
             deadline.obligation_id,
             "deadline",
@@ -172,6 +174,8 @@ def build_drafts(
             deadline.anchor_type,
         )
     for urgent in result.time_critical:
+        if urgent.simulated:
+            continue
         if urgent.obligation_id not in seen:
             add(urgent.obligation_id, "without_delay", None, urgent.anchor_type)
     for obligation_id in result.applicable_obligations:

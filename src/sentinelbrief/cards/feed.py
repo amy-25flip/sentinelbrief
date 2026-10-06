@@ -1,8 +1,10 @@
 """Feed management and ranking for SentinelBrief cards."""
 
 import json
+from email.utils import format_datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
+from xml.etree import ElementTree
 
 from sentinelbrief.cards.generator import CardGenerator
 from sentinelbrief.cards.models import Card
@@ -76,3 +78,35 @@ class CardFeed:
 
     def to_json(self) -> list[dict[str, Any]]:
         return [c.model_dump(mode="json") for c in self.get_feed()]
+
+
+def regulatory_rss(cards: list[Card], base_url: str) -> bytes:
+    """Return deterministic RSS 2.0 bytes for regulatory cards."""
+    regulatory = [card for card in cards if card.stream == "regulatory"]
+    root = ElementTree.Element("rss", {"version": "2.0"})
+    channel = ElementTree.SubElement(root, "channel")
+    ElementTree.SubElement(channel, "title").text = "SentinelBrief regulatory cards"
+    ElementTree.SubElement(channel, "link").text = base_url.rstrip("/") + "/"
+    ElementTree.SubElement(
+        channel, "description"
+    ).text = "Citation-first Indian cyber-regulatory obligation cards."
+    if regulatory:
+        newest = max(card.published_at for card in regulatory)
+        ElementTree.SubElement(channel, "lastBuildDate").text = format_datetime(newest)
+
+    for card in regulatory:
+        if not card.obligation_id:
+            raise ValueError(f"Regulatory card {card.id} has no obligation id")
+        item = ElementTree.SubElement(channel, "item")
+        ElementTree.SubElement(item, "title").text = card.headline
+        ElementTree.SubElement(item, "description").text = f"{card.body}\n\n{card.disclaimer}"
+        link = f"{base_url.rstrip('/')}/obligations/{card.obligation_id}"
+        ElementTree.SubElement(item, "link").text = link
+        guid = ElementTree.SubElement(item, "guid", {"isPermaLink": "false"})
+        guid.text = card.obligation_id
+        ElementTree.SubElement(item, "pubDate").text = format_datetime(card.published_at)
+        issuer = next((chip.value for chip in card.chips if chip.chip_type == "issuer"), "")
+        ElementTree.SubElement(item, "category").text = issuer
+
+    ElementTree.indent(root, space="  ")
+    return cast("bytes", ElementTree.tostring(root, encoding="utf-8", xml_declaration=True))

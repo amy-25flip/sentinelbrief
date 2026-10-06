@@ -1,0 +1,34 @@
+{
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "dpdp-simulation-does-not-reach-non-fiduciary",
+  "description": "Simulation preserves the data-fiduciary entity gate for a Middle Layer NBFC.",
+  "entity_profile": {"entity_class": "nbfc.middle_layer", "is_listed": false, "holds_personal_data": false, "uses_protected_systems": false, "is_regulated_cloud_vps": false},
+  "incident_facts": {"description": "Personal data breach", "incident_types": ["Data breach"], "when_detected": "2026-10-01T10:00:00+05:30", "when_noticed": "2026-10-01T10:00:00+05:30", "personal_data_involved": true, "systems_affected": ["customer system"]},
+  "simulate_instruments": ["meity.dpdp-rules.2025"],
+  "law_snapshot_date": "2026-10-01",
+  "expected": {
+    "law_as_of": "2026-10-01",
+    "regulators": ["CERT-In", "RBI"],
+    "deadlines": [
+      {"regulator": "CERT-In", "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "anchor": "noticing", "deadline_iso8601": "PT6H", "deadline_timestamp": "2026-10-01T16:00:00+05:30"},
+      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h", "anchor": "detection", "deadline_iso8601": "PT6H", "deadline_timestamp": "2026-10-01T16:00:00+05:30"}
+    ],
+    "citations": [
+      {"obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "instrument_id": "cert-in.directions-70b.2022", "paragraph_ref": "Direction (ii)"},
+      {"obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h", "instrument_id": "rbi.nbfc-cyber.2026", "paragraph_ref": "Paragraph 141, first sentence"}
+    ],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": [],
+    "time_critical": [],
+    "simulated": []
+  },
+  "adversarial_flags": ["simulation_preserves_entity_scope"],
+  "split": "dev",
+  "labels_source": "docs/LABELS_DPDP_SIMULATE.md",
+  "source_quotes": [
+    {"document": "cert-in.directions-70b.2022", "page": 2, "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents."},
+    {"document": "rbi.nbfc-cyber.2026", "page": 43, "quote": "141. The NBFC shall report cyber incidents to RBI within six hours of detection on \nDAKSH platform (Reserve Bank’s Advanced Supervisory Monitoring System -"},
+    {"document": "meity.dpdp-rules.2025", "page": 24, "quote": "(4) Rules 3, 5 to 16, 22 and 23 shall come into force eighteen months after the date of publication \nof this Gazette."}
+  ]
+}

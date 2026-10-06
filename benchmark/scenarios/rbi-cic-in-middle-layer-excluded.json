@@ -27,7 +27,8 @@
   "expected": {
     "law_as_of": "2026-10-01",
     "regulators": [
-      "CERT-In"
+        "CERT-In",
+        "RBI"
     ],
     "deadlines": [
       {

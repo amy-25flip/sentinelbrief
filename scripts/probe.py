@@ -6,6 +6,7 @@ Keys: types=a|b  detected=HH:MM  noticed=HH:MM  brought=HH:MM  aware=HH:MM  repo
       date=YYYY-MM-DD  annexure=true|false  cyber=true|false  personal=true|false
       irdai_cyber=true|false  sebi_cyber=true|false  forensic=true|false
       protected=true|false  only=<substring of obligation id to show>
+      simulate=<instrument id>
 """
 
 from __future__ import annotations
@@ -46,6 +47,7 @@ def main(argv: list[str]) -> int:
     opts = dict(a.split("=", 1) for a in argv[1:])
     day = datetime.fromisoformat(opts.pop("date", "2026-10-01"))
     only = opts.pop("only", "")
+    simulate = opts.pop("simulate", "")
     kwargs: dict[str, object] = {
         "entity_classes": classes,
         "incident_types": opts.pop("types", "Malicious code attacks such as Ransomware").split("|"),
@@ -65,7 +67,10 @@ def main(argv: list[str]) -> int:
         else:
             raise SystemExit(f"unknown key {key}")
     try:
-        result = IncidentClockEngine(ROOT / "data").evaluate(IncidentProfile(**kwargs))  # type: ignore[arg-type]
+        result = IncidentClockEngine(ROOT / "data").evaluate(
+            IncidentProfile(**kwargs),  # type: ignore[arg-type]
+            simulate_instruments=[simulate] if simulate else None,
+        )
     except (ValueError, TypeError) as exc:
         print(f"EXC {type(exc).__name__}: {exc}")
         return 1
@@ -76,13 +81,14 @@ def main(argv: list[str]) -> int:
     print("law_as_of", result.law_as_of)
     for d in result.deadlines:
         if keep(d.obligation_id):
-            print(f"  DEADLINE {d.obligation_id} [{d.anchor_type}] {d.deadline_ist:%Y-%m-%d %H:%M}")
+            tag = "SIMULATED" if d.simulated else "DEADLINE"
+            print(f"  {tag:<9} {d.obligation_id} [{d.anchor_type}] {d.deadline_ist:%Y-%m-%d %H:%M}")
     for oid in result.applicable_obligations:
         if keep(oid):
             print(f"  APPLIES  {oid}")
     for t in result.time_critical:
         if keep(t.obligation_id):
-            print(f"  URGENT   {t.obligation_id}")
+            print(f"  {'SIMULATED' if t.simulated else 'URGENT':<9} {t.obligation_id}")
     for n in result.not_applicable:
         if keep(n["obligation_id"]):
             print(f"  NOT      {n['obligation_id']} ({n['reason'][:60]})")
