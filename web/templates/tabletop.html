@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Tabletop exercise — SentinelBrief{% endblock %}
+{% block content %}
+<div class="disclaimer">
+    Training material. The storyline is invented. The answer key is computed by the clock engine from the facts revealed
+    at each stage. Not legal advice; the underlying readings of the law have not been reviewed by a compliance professional.
+</div>
+<h1>Tabletop exercise</h1>
+<form method="get" action="/tabletop" class="card">
+    <label>Entity class
+        <select name="classes" required>
+            {% for cls in entity_classes %}<option value="{{ cls }}" {% if cls == query.classes %}selected{% endif %}>{{ cls }}</option>{% endfor %}
+        </select>
+    </label>
+    <label>Storyline
+        <select name="scenario" required>
+            {% for item in scenarios %}<option value="{{ item.id }}" {% if item.id == query.scenario %}selected{% endif %}>{{ item.title }}</option>{% endfor %}
+        </select>
+    </label>
+    <label>Exercise starts (IST) <input type="datetime-local" name="start" value="{{ query.start }}" required></label>
+    <label><input type="checkbox" name="simulate" value="meity.dpdp-rules.2025" {% if query.simulate %}checked{% endif %}> Simulate DPDP Rule 7 as if in force</label>
+    <button type="submit">Build exercise</button>
+</form>
+{% if error %}<p class="card-body" role="alert">Could not build the exercise: {{ error }}</p>{% endif %}
+{% if exercise %}
+<h2>{{ exercise.scenario.title }}</h2>
+<p class="card-body">{{ exercise.scenario.summary }}</p>
+<p class="card-body">For: {{ exercise.entity_classes | join(", ") }} · starts {{ exercise.start_ist }} ·
+    <a href="/api/tabletop.md?classes={{ query.classes | urlencode }}&scenario={{ query.scenario | urlencode }}&start={{ query.start | urlencode }}&simulate={{ query.simulate | urlencode }}">Download the facilitator hand-out (Markdown)</a></p>
+{% for stage in exercise.stages %}
+<div class="card">
+    <h3 style="margin-top: 0;">Stage {{ stage.stage }} · start + {{ stage.minutes_from_start }} min · {{ stage.at_ist }}</h3>
+    <p class="card-body"><strong>Read out (fiction):</strong> {{ stage.inject }}</p>
+    <p class="card-body"><strong>Ask the team:</strong> {{ stage.question_for_the_team }}</p>
+    <details>
+        <summary>Answer key (computed)</summary>
+        {% if stage.answer_key.deadlines %}
+        <table>
+            <thead><tr><th>Due (IST)</th><th>To</th><th>Starts from</th><th>Clause</th></tr></thead>
+            <tbody>
+            {% for item in stage.answer_key.deadlines %}
+            <tr>
+                <td>{{ item.due_ist }}{% if item.simulated %} <em>(simulated, not in force)</em>{% endif %}</td>
+                <td>{{ item.recipient }}</td>
+                <td>{{ item.starts_from }} at {{ item.started_at_ist }}</td>
+                <td>{{ item.clause }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="card-body">No reporting clock can be computed from what is known at this stage.</p>
+        {% endif %}
+        {% if stage.answer_key.open_questions %}
+        <p class="card-body">The team should be asking:</p>
+        <ul>{% for q in stage.answer_key.open_questions %}<li>{{ q.question }} ({{ q.why_it_matters }})</li>{% endfor %}</ul>
+        {% endif %}
+        {% if stage.answer_key.not_in_force_at_this_date %}
+        <p class="card-body">Not in force at this date (no duty yet): {{ stage.answer_key.not_in_force_at_this_date | join(", ") }}</p>
+        {% endif %}
+        {% for caveat in stage.answer_key.caveats %}<p class="card-body">{{ caveat }}</p>{% endfor %}
+    </details>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}

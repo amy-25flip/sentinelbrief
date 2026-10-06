@@ -29,6 +29,9 @@ from sentinelbrief.workspace.intake import (
     IntakeError,
     IntakeStore,
 )
+from sentinelbrief.workspace.tabletop import SCENARIOS as TABLETOP_SCENARIOS
+from sentinelbrief.workspace.tabletop import build_tabletop
+from sentinelbrief.workspace.tabletop import render_markdown as render_tabletop_markdown
 
 app = FastAPI(
     title="SentinelBrief",
@@ -770,6 +773,79 @@ async def dismiss_alert(request: Request, alert_id: str) -> Response:
     if is_json:
         return JSONResponse(record)
     return RedirectResponse("/intake", status_code=303)
+
+
+def _tabletop(classes: str, scenario: str, start: str, simulate: str) -> dict[str, Any]:
+    entity_classes = [c.strip() for c in classes.split(",") if c.strip()]
+    if not entity_classes:
+        raise ValueError("classes is required (comma-separated entity classes)")
+    if not start:
+        raise ValueError("start is required (the time the exercise begins)")
+    # A time typed into the page has no offset and is read as IST; an API caller may send one.
+    begins = _parse_time(start, form_input="+" not in start[10:] and not start.endswith("Z"))
+    simulated = [s.strip() for s in simulate.split(",") if s.strip()]
+    return build_tabletop(
+        IncidentClockEngine(DATA_DIR), entity_classes, scenario, begins, simulated or None
+    )
+
+
+@app.get("/api/tabletop", response_model=None)
+async def tabletop_json(
+    classes: str = "", scenario: str = "", start: str = "", simulate: str = ""
+) -> Response:
+    """A tabletop exercise: invented storyline, answer key computed by the clock engine."""
+    try:
+        return JSONResponse(_tabletop(classes, scenario, start, simulate))
+    except (ValueError, KeyError) as exc:
+        return JSONResponse({"error": str(exc).strip("'\"")}, status_code=422)
+
+
+@app.get("/api/tabletop.md", response_model=None)
+async def tabletop_markdown(
+    classes: str = "", scenario: str = "", start: str = "", simulate: str = ""
+) -> Response:
+    try:
+        exercise = _tabletop(classes, scenario, start, simulate)
+    except (ValueError, KeyError) as exc:
+        return JSONResponse({"error": str(exc).strip("'\"")}, status_code=422)
+    return Response(
+        render_tabletop_markdown(exercise),
+        media_type="text/markdown; charset=utf-8",
+        headers={
+            "Content-Disposition": f'attachment; filename="tabletop-{exercise["scenario"]["id"]}.md"'
+        },
+    )
+
+
+@app.get("/tabletop", response_class=HTMLResponse)
+async def tabletop_page(
+    request: Request, classes: str = "", scenario: str = "", start: str = "", simulate: str = ""
+) -> HTMLResponse:
+    engine = IncidentClockEngine(DATA_DIR)
+    exercise = None
+    error = None
+    if classes or scenario or start:
+        try:
+            exercise = _tabletop(classes, scenario, start, simulate)
+        except (ValueError, KeyError) as exc:
+            error = str(exc).strip("'\"")
+    return templates.TemplateResponse(
+        request=request,
+        name="tabletop.html",
+        context={
+            "entity_classes": sorted(engine.taxonomy.classes.keys()),
+            "scenarios": TABLETOP_SCENARIOS,
+            "exercise": exercise,
+            "error": error,
+            "query": {
+                "classes": classes,
+                "scenario": scenario,
+                "start": start,
+                "simulate": simulate,
+            },
+        },
+        status_code=422 if error else 200,
+    )
 
 
 @app.get("/api/calendar.ics", response_model=None)
