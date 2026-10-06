@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Any
 
 from sentinelbrief.clock.engine import ClockResult, IncidentClockEngine, IncidentProfile
+from sentinelbrief.evidence.signing import write_signature
 from sentinelbrief.evidence.timeline import EvidenceTimeline, canonical_json
 from sentinelbrief.workspace.drafts import FilingDraft, build_drafts, load_filing_content
 
@@ -408,7 +409,7 @@ class CaseStore:
         }
         self._write(case)
 
-    def export(self, case_id: str, output_dir: str | Path) -> Path:
+    def export(self, case_id: str, output_dir: str | Path, signer: str | None = None) -> Path:
         """Write the auditor bundle: timeline, clocks, drafts, the law as applied, and a manifest."""
         out = Path(output_dir)
         self.timeline(case_id).export_bundle(out)
@@ -474,6 +475,18 @@ class CaseStore:
             lines.append(
                 f"| {draft.obligation_id} | {draft.recipient} | {draft.due_ist or draft.urgency} | {state['status']} |"
             )
+        signature = write_signature(out, self.timeline(case_id), signer or "SentinelBrief export")
+        lines += [
+            "",
+            (
+                f"The timeline head is signed (Ed25519) in `{signature.name}`. The signature shows "
+                "who held the key, not when it was made; check it against a public key you "
+                "obtained outside this bundle (`python -m sentinelbrief.evidence verify`)."
+                if signature
+                else "The timeline head is NOT signed: no signing key was configured for this "
+                "export. Integrity rests on the head hash being held somewhere else."
+            ),
+        ]
         (out / "CASE_SUMMARY.md").write_text(
             "\n".join(lines) + "\n", encoding="utf-8", newline="\n"
         )
