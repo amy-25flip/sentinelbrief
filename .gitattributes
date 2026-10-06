@@ -1,5 +1,6 @@
 * text=auto
 *.pdf binary
+data/raw/*.html binary
 data/raw/*.txt text eol=lf
 data/**/*.json text eol=lf
 web/static/htmx.min.js -text
