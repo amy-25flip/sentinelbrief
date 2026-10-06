@@ -99,3 +99,9 @@ A page listing every proposed mapping with both excerpts side by side, filterabl
 - The six-hour DAKSH reporting duty in paragraph 28 has no time limit in its 2017 predecessor (clause 3.6). The consolidation is not "as is" on this point.
 - Digital signatures and vulnerability management moved from "may" to "shall".
 - The old direction applied Section A to NBFCs "with asset size above Rs 500 crore"; the new Chapter IV applies to Base Layer NBFCs "with asset size Rs 500 crore and above", and Middle Layer and above now have a separate, longer Chapter V.
+
+## Amendment 1 (after implementation; the table above is unchanged)
+
+Written by the label author after Review 15. The method disagreed with the gold status on nine clauses. On re-reading both texts, seven of those are errors in the table above: clauses 3.4, 3.12, 4.4, 5.3, 5.6, 6.4 and 7.1 each have a "may" in 2017 that is "shall" in the successor paragraph, which this document's own definition calls `changed`. The quotes are in `docs/REVIEW_LOG.md`, Review 15, R15-4.
+
+The table and `benchmark/migrator_gold.json` are left as committed, because they were written before the code and a gold set corrected after seeing the system's output is no longer independent of it. Results are reported against the gold as committed (status 38/47), with the corrected count (45/47) stated separately and marked as post hoc.

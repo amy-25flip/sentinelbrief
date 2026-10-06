@@ -445,3 +445,17 @@ The workspace refuses to open a case with a simulation and draft construction sk
 **Text:** paragraph 6 says the Board-approved Technology and Cybersecurity strategies and policies “shall be reviewed at least annually by it.” Paragraph 3 assigns Chapter IV only to Base Layer NBFCs at or above ₹500 crore and Chapter V only to Middle, Upper and Top Layer NBFCs, excluding CICs.
 
 Paragraph 56 says an IS audit “may be conducted at least once in a year”. It is not modelled as a duty because “may” is permissive.
+
+## 2026-10-06: HTML evidence is anchored by raw and extracted-content hashes
+
+The fetched HTML bytes, URL, retrieval time and raw SHA-256 remain in `data/raw/manifest.json`. Deterministic visible-text extraction writes LF text and segment offsets beside the page. Offline provenance requires the raw bytes to match the acquisition hash and requires a fresh extraction to reproduce the stored text and `content_sha256`. Live re-verification of HTML compares the fresh extracted-content hash, not the volatile wrapper bytes. The 2017 clause scheme is `intro-N`, printed clause numbers, `7-closing`, and `annex-i`; the stored page links to rather than embeds the Annex I template, so `annex-i` points to its verbatim index label.
+
+## 2026-10-06: Migrator method, thresholds and non-authoritative output
+
+The migrator uses word unigram/bigram TF-IDF cosine, printed applicability structure (old Section A searches new paragraphs 10–64; old Section B searches 7–9), an old-heading field weight of 3, and a 0.05 exact heading-token bonus. It proposes at most 3 candidates. The numbered-clause candidate floor is 0.12; unstructured introduction/annex text uses 0.20. A top-two margin below 0.015 becomes `needs_human`. Modal comparisons require sentence-token Jaccard 0.15 and number/duration comparisons require 0.25. Named recipients/systems are compared explicitly. These constants were chosen from corpus structure and conservative review ergonomics before scoring, not from old-clause/new-paragraph pairs. Every page and output states that RBI published no concordance and the result is inference.
+
+## 2026-10-06: Three substantive changes found between the stored RBI texts
+
+1. Reporting gained a six-hour limit and a different channel. Old clause 3.6 says NBFCs are “required to report all types of unusual security incidents” to “the DNBS Central Office, Mumbai”; new paragraph 28 says the NBFC “shall report cyber incidents on DAKSH platform ... within six hours of detection.”
+2. Two permissive controls became mandatory. Old clause 3.3 says an NBFC “may devise a strategy for managing and eliminating vulnerabilities”; new paragraph 23 says it “shall establish a vulnerability management process.” Old clause 3.8 says NBFCs “may consider use of Digital signatures”; new paragraph 31 says the NBFC “shall use Digital Signature Certificates”.
+3. Scope changed. The old introduction applies Section A to NBFCs “with asset size above ₹ 500 crore”. New paragraph 3(3) applies Chapter IV to Base Layer NBFCs “with asset size ₹500 crore and above”, while paragraph 3(4) separately assigns Chapter V to Middle, Upper and Top Layer NBFCs, excluding CICs.

@@ -1,0 +1,629 @@
+Sr. No.	Circular Number	Subject	Date
+1.	DoS.CO.PPG.SEC.1/11.01.005/2026-27	Fair Practices Code for Lenders - Charging of Interest	May 21, 2026
+2.	DoS.CO.PPG/SEC.13/11.01.005/2024-25	Coverage of customers under the nomination facility	January 17, 2025
+3.	DoS.CO.PPG.SEC.12/11.01.005/2024-25	Inoperative Accounts / Unclaimed Deposits in banks	December 02, 2024
+4.	DoS.CO.PPG.SEC.10/11.01.005/2024-25	Gold loans - Irregular practices observed in grant of loans against pledge of gold ornaments and jewellery	September 30, 2024
+5.	DOS.CO.PPG.SEC.No.8/11.01.005/2024-25	Prompt Corrective Action (PCA) Framework for Primary (Urban) Co-operative Banks (UCBs)	July 26, 2024
+6.	DOS.CO.FMG.SEC.No.5/23.04.001/2024-25	Master Directions on Fraud Risk Management in Commercial Banks (including Regional Rural Banks) and All India Financial Institutions	July 15, 2024
+7.	DOS.CO.FMG.SEC.No.6/23.04.001/2024-25	Master Directions on Fraud Risk Management in Urban Cooperative Banks (UCBs) / State Cooperative Banks (StCBs) / Central Cooperative Banks (CCBs)	July 15, 2024
+8.	DOS.CO.FMG.SEC.No.7/23.04.001/2024-25	Master Directions on Fraud Risk Management in Non-Banking Financial Companies (NBFCs) (including Housing Finance Companies)	July 15, 2024
+9.	DoS.CO.PPG/SEC.4/11.01.005/2024-25	Withdrawal of Circulars - Internal Review	July 12, 2024
+10.	DoS.CO.PPG.SEC.2/11.01.005/2024-25	Internal Review - Interim Recommendations - Withdrawal of Circulars	May 21, 2024
+11.	DoS.CO.PPG.SEC.1/11.01.005/2024-25	Fair Practices Code for Lenders - Charging of Interest	April 29, 2024
+12.	DoS.CO.ARG/SEC.11/08.91.001/2023-24	Review of Guidelines - Withdrawal of Circulars	March 01, 2024
+13.	DoS.DSG.No.10/33.01.001/2023-24	Master Direction - Reserve Bank of India (Filing of Supervisory Returns) Directions - 2024	February 27, 2024
+14.	DoS.CO.CSITEG.SEC.No.9/31-01-015/2023-24	Streamlining of Internal Compliance monitoring function - leveraging use of technology	January 31, 2024
+15.	DOS.ARG/SEC.8/08.91.001/2023-24	Guidelines on Appointment / Re-appointment of Statutory Auditors of State Co-operative Banks and Central Co-operative Banks	January 15, 2024
+16.	DoS.CO.CSITEG/SEC.7/31.01.015/2023-24	Master Direction on Information Technology Governance, Risk, Controls and Assurance Practices	November 07, 2023
+17.	DoS.CO.PPG/SEC.05/11.01.005/2023-24	Prompt Corrective Action (PCA) Framework for Non-Banking Financial Companies (NBFCs) - Extension to Government NBFCs	October 10, 2023
+18.	DoS.CO.PPG/SEC.04/11.01.005/2022-23	Compliance Function and Role of Chief Compliance Officer (CCO) - Urban Co-operative Banks	September 19, 2022
+19.	DoS.CO.PPG./SEC.02/11.01.005/2022-23	Regulations Review Authority (RRA 2.0) - Interim Recommendations - Withdrawal of Circulars	May 02, 2022
+20.	DoS.CO.PPG./SEC.01/11.01.005/2022-23	Compliance Function and Role of Chief Compliance Officer (CCO) - NBFCs	April 11, 2022
+21.	DoS.CO.PPG.SEC/10/11.01.005/2021-22	Implementation of 'Core Financial Services Solution' by Non-Banking Financial Companies (NBFCs)	February 23, 2022
+22.	DoS.CO.PPG./SEC.08/11.01.005/2021-22	Regulations Review Authority (RRA 2.0) - Interim Recommendations - Discontinuation/Merger/Online Submission of Returns	February 18, 2022
+23.	DoS.CO.PPG./SEC.09/11.01.005/2021-22	Regulations Review Authority (RRA 2.0) - Interim Recommendations - Withdrawal of Circulars	February 18, 2022
+24.	DoS.CO.PPG.SEC.7/11.01.005/2021-22	Prompt Corrective Action (PCA) Framework for Non-Banking Financial Companies (NBFCs)	December 14, 2021
+25.	DoS.CO.PPG./SEC.06/11.01.005/2021-22	Regulations Review Authority (RRA 2.0) - Interim Recommendations - Withdrawal of Redundant Circulars	November 16, 2021
+26.	DOS.CO.PPG.SEC.No.4/11.01.005/2021-22	Prompt Corrective Action (PCA) Framework for Scheduled Commercial Banks	November 02, 2021
+27.	DoS.CO.PPG.SEC/03/11.01.005/2021-22	Risk Based Internal Audit (RBIA)	June 11, 2021
+28.	DoS.CO.ARG/SEC.01/08.91.001/2021-22	Guidelines for Appointment of Statutory Central Auditors (SCAs) / Statutory Auditors (SAs) of Commercial Banks (excluding RRBs), UCBs and NBFCs (including HFCs)	April 27, 2021
+29.	DoS.CO.CSITE.SEC.No.1852/31.01.015/2020-21	Master Direction on Digital Payment Security Controls	February 18, 2021
+30.	DoS.CO.PPG./SEC.05/11.01.005/2020-21	Risk-Based Internal Audit (RBIA)	February 03, 2021
+31.	DoS.CO.PPG./SEC.04/11.01.005/2020-21	Risk Based Internal Audit (RBIA) Framework - Strengthening Governance arrangements	January 07, 2021
+32.	DoS.CO.PPG./SEC.02/11.01.005/2020-21	Compliance functions in banks and Role of Chief Compliance Officer (CCO)	September 11, 2020
+33.	DOS.CO.PPG./SEC.01/11.01.005/2020-21	Long Form Audit Report (LFAR) - Review	September 05, 2020
+34.	DoS.CO.PPG.BC.1/11.01.005/2020-21	Ad-hoc/Short Review/Renewal of Credit Facilities	August 21, 2020
+35.	DoS.CO.PPG.BC.01/11.01.005/2019-20	COVID - 19 - Operational and Business Continuity Measures	March 16, 2020
+36.	DoS.CO/CSITE/BC.4083/31.01.052/2019-20	Comprehensive Cyber Security Framework for Primary (Urban) Cooperative Banks (UCBs) - A Graded Approach	December 31, 2019
+37.	DBS.CO.ARS.No.BC.01/08.91.021/2019-20	Concurrent Audit System	September 18, 2019
+38.	DBS.CO/CSITE/5514/31.01.015/2018-19	Deficiency in Quality of VAPT assessments - Corrective measures	April 04, 2019
+39.	DCBS.CO.BSD-IV No.D-9/12.28.311/2018-19	Directions under Section 35A of the Banking Regulation Act, 1949 (As Applicable to Co-operative Societies) - Hindu Co-operative Bank Limited, Pathankot, Punjab	March 13, 2019
+40.	DBS.CO.PPD.BC/02/11.01.005/2018-19	Inspection of Banks-Sets of Specimen Signatures	October 19, 2018
+41.	DCBS.CO.PCB.Cir.No.1/18.01.000/2018-19	Basic Cyber Security Framework for Primary (Urban) Cooperative Banks (UCBs)	October 19, 2018
+42.	DBS(CO).CSITE/BC.5/31.01.015/2017-18	Control measures for ATMs - Timeline for compliance	June 21, 2018
+43.	DNBS.PD.CC.No.1925/66.08.001/2017-18	Submission of returns by the Government-owned Non-Banking Financial Companies	March 15, 2018
+44.	DBS.CO/CSITE/3082 /31.01.015/2017-18	Securing email system- Implementation of DMARC	December 15, 2017
+45.	DBS.CO/CSITE/3056 /31.01.015/2017-18	Effectiveness of Vulnerability Assessment and Penetration Testing (VAPT) exercise	December 14, 2017
+46.	DCBR.BPD.PCB.Cir.No.03/09.18.300/2017-18	Core Banking Solution (CBS) Requirements for Urban Co-operative Banks (UCBs)	August 16, 2017
+47.	DNBS.PPD.No.04/66.15.001/2016-17	Master Direction - Information Technology Framework for the NBFC Sector	June 08, 2017
+48.	DBS.CO.PPD.BC.No.9/11.01.005/2016-17	Compliance with Ghosh Committee Recommendations	April 20, 2017
+49.	DBS.CO.PPD.BC.No.8/11.01.005/2016-17	Revised Prompt Corrective Action (PCA) Framework for Banks	April 13, 2017
+50.	DNBS.PPD.03/66.15.001/2016-17	Master Direction - Non-Banking Financial Companies Auditor's Report (Reserve Bank) Directions, 2016	September 29, 2016
+51.	DBS.CO.PPD.05/11.01.005/2016-17	Risk- based Internal Audit	August 25, 2016
+52.	DBS.CO.PPD.15123/11.01.021/2015-16	Quarterly reporting system - Foreign branches/ subsidiaries/ joint ventures/ associates of Indian banks	June 30, 2016
+53.	DNBS(PPD)CC.No./04/66.14.001/2015-16	Format of Statutory Auditors' Certificate (SAC) to be submitted by NBFCs	June 23, 2016
+54.	DBS.CO/CSITE/BC.11/33.01.001/2015-16	Cyber Security Framework in Banks	June 02, 2016
+55.	DBS.CO.PPD.BC.No.10/11.01.005/2015-16	Compliance with Jilani Committee Recommendations	April 28, 2016
+56.	DCBR.CO.PCB.Cir.No.14/09.18.300/ 2015-16	Scheme for providing Financial Assistance to Urban Cooperative Banks for Implementation of Core Banking Solution	April 13, 2016
+57.	DBS.CO.PPD.10887/11.01.005/2015-16	Risk Based Supervision - Follow up of Risk Management Systems in Banks	March 31, 2016
+58.	DNBS.(PD).CC.No.03/03.02.02/2015-16	Online Returns to be submitted by NBFCs - Revised	November 26, 2015
+59.	DNBS(IT).CC.No.01/24.01.191/2015-16	Returns to be Submitted by NBFCs (Asset Size Below Rs.500 crore)	July 09, 2015
+60.	DBS.CO.CFMC.BC.No.1/23.04.001/2015-16	Frauds - Classification and Reporting	July 01, 2015
+61.	DBS.CO.PPD.10946/11.01.005/2014-15	Compliance function in banks	March 04, 2015
+62.	DCBR.BPD.PCB.Cir.No.10/12.05.001/2014-15	Monitoring of Large Value Frauds by the Board of Directors	January 07, 2015
+63.	DBS.CO.PPD.7433/11.01.005/2014-15	Effective Implementation of KYC / AML / CFT Norms	December 15, 2014
+64.	DCBR.CO.BPD.(PCB).Cir.No.2/12.05.001/2014-15	Cheque related fraud cases - preventive measures	November 13, 2014
+65.	Notification No.DNBS(PD)278/PCGM.(KKV)-2014	Non-Banking Financial Companies Acceptance of Public Deposits (Reserve Bank) Directions, 1998 (Amendment)	September 25, 2014
+66.	DBS.No.OSMOS.2915/33.01.001/2014-15	Basel III Liquidity Returns	September 05, 2014
+67.	DNBS(PD).277/PCGM(KKV)/2014-15	Non-Banking Financial (Non-Deposit Accepting or Holding) Companies Prudential Norms (Reserve Bank) Directions, 2007 (Amendment)	August 21, 2014
+68.	RPCD.CO.RRB.RCB.BC.No.11/03.05.33/2014-15	Security Incident Tracking Platform - Reporting thereon	July 02, 2014
+69.	DBS.CO.CFMC.BC.No.1/23.04.001/2014-15	Frauds - Classification and Reporting	July 01, 2014
+70.	UBD.BPD.Cir.No.71/12.09.000/2013-14	Introduction of Information System (IS) Audit for Urban Cooperative Banks	June 11, 2014
+71.	Notification No.DNBS.(PD).275/GM(AM)-2014	Notification on Non-Banking Financial Companies (Approval of Acquisition or Transfer of Control) Directions, 2014	May 26, 2014
+72.	DBS.OSMOS.No.14703/33.01.001/2013-14	Reporting to Central Repository of Information on Large Credits (CRILC)	May 22, 2014
+73.	DNBS.(PD)CC.No.36/SCRC/26.03.001/2013-2014	Restructuring Support Finance - participation by investors	March 19, 2014
+74.	DBS.No.OSMOS.9862/33.01.018/2013-14	Central Repository of Information on Large Credits (CRILC)- Revision in Reporting	February 13, 2014
+75.	DNBS(PD).CC.No.368/03.10.01/2013-14	Prepaid Payment Instruments issued by Non-Banking Institutions	January 24, 2014
+76.	Notification No.DNBS.273/PCGM.(NSV)-2014	Notification on Prepaid Payment Instruments issued by Non-Banking Institutions	January 24, 2014
+77.	RPCD.CO.RRB.BC.No.45/03.05.33/2013-14	Sharing of Information Technology Resources by Banks - Guidelines	October 24, 2013
+78.	UBD.CO.BPD.No.31/09.18.300/2013-14	Sharing of Information Technology Resources by banks - guidelines	October 17, 2013
+79.	DBS.CO.PPD.No.3578/11.01.005/2013-14	Pernicious practices of select banks deterring customer protection and accounting integrity	September 17, 2013
+80.	DBS.Dir.OSMOS.No.3324/33.01.001/2013-14	Creation of a Central Repository of Large Common Exposures - Across Banks	September 11, 2013
+81.	DBS.Dir.OSMOS.No.3327/33.01.001/2013-14	Creation of a Central Repository of Large Common Exposures - Across Banks	September 11, 2013
+82.	DNBS.(PD).CC.No.355/03.02.02/2013-14	Returns to be submitted by NBFCs - Introduction of 'Branch Info' return	September 03, 2013
+83.	DBS.FrMC.BC.No.1/23.04.001/2013-14	Frauds - Classification and Reporting	July 01, 2013
+84.	DBS.ARS.No.BC.08/08.92.001/2012-13	Remuneration payable to the Statutory Central and Branch Auditors of Public Sector Banks from the year 2012-13	June 25, 2013
+85.	UBD.CO.BPD.(PCB).Cir.No.56/12.05.001/2012-13	Frauds - Classification and Reporting System	June 13, 2013
+86.	Notification No. DNBS(PD).255/CGM(CRS)2013	Notification on Non-Banking Financial (Deposit Accepting or Holding) Companies Prudential Norms (Reserve Bank) Directions, 2007 (Amendment)	June 11, 2013
+87.	UBD.CO.LS.(PCB).Cir.No.49/07.01.000/2012-13	Best Practices in well run Urban Co-operative Banks	May 28, 2013
+88.	DBS.FrMC.BC.No.6/23.04.001/2012-13	Frauds - Classification and Reporting	May 23, 2013
+89.	UBD.BPD.(PCB).Cir.No.42/09.18.300/2012-13	Implementation of Core Banking Solutions (CBS) by Urban Co-operative Banks (UCBs)	March 13, 2013
+90.	UBD.CO.BPD(PCB)Cir.No.41/12.05.001/2012-13	Frauds - Classification and Reporting	March 08, 2013
+91.	DBS.FrMC.BC.No.5/23.04.001/2012-13	Frauds - Classification and Reporting	January 04, 2013
+92.	RPCD.CO.RCB.BC.No.47/07.38.003/2012-13	National Telecom Policy, 2012 - Migration of current version of Internet Protocol IPv4 to IPv6	November 23, 2012
+93.	UBD.BPD.(PCB)Cir.No.24/09.18.300/2012-13	National Telecom Policy, 2012 Migration of current version of Internet Protocol IPv4 to IPv6	November 09, 2012
+94.	RPCD.CO.RRB.BC.No.44/03.05.33/2012-13	National Telecom Policy, 2012 - Migration of current version of Internet Protocol IPv4 to IPv6	November 08, 2012
+95.	DBOD.CO.BP.BC.No.55/21.04.178/2012-13	National Telecom Policy, 2012 - Migration of current version of Internet Protocol IPv4 to IPv6	November 05, 2012
+96.	DNBS.PD.CC.No.299/03.10.001/2012-13	Revised Capital Adequacy Framework for Off-Balance sheet items for NBFCs - Clarifications	August 01, 2012
+97.	DBS.FrMC.BC.No.1/23.04.001/2012-13	Frauds - Classification and Reporting	July 02, 2012
+98.	DNBS.PD.CC.No.283/03.10.042/2012-13	Master Circular - Frauds - Future approach towards monitoring of frauds in NBFCs	July 02, 2012
+99.	RPCD.CO.RRB.BC.No.87/03.05.33/2011-12	Monetary Policy Statement 2012-13 - IT and IS Governance Structures	June 19, 2012
+100.	DNBS(PD).241/CGM(US)-2012	Non-Banking Financial (Non-Deposit Accepting or Holding) Companies Prudential Norms (Reserve Bank) Directions, 2007	March 21, 2012
+101.	DNBS(PD).242/CGM(US)-2012	Non-Banking Financial (Deposit Accepting or Holding) Companies Prudential Norms (Reserve Bank) Directions, 2007	March 21, 2012
+102.	DNBS.PD.No.239/CGM(US)-2011	Non-Banking Financial (Deposit Accepting or Holding) Companies Prudential Norms (Reserve Bank) Directions, 2007	December 30, 2011
+103.	DNBS.PD.No.240/CGM(US)-2011	Non-Banking Financial (Non-Deposit Accepting or Holding) Companies Prudential Norms (Reserve Bank) Directions, 2007	December 30, 2011
+104.	Notification No.DNBS.PD.No.235/CGM(US)-2011	Notification on Non-Banking Financial (Non-Deposit Accepting or Holding) Companies Prudential Norms (Reserve Bank) Directions, 2007	December 02, 2011
+105.	Notification No.DNBS.PD.No.236/CGM(US)-2011	Notification on Non-Banking Financial Companies Auditor's Report (Reserve Bank) Directions, 2008	December 02, 2011
+106.	UBD.CO.BPD(PCB).No.14/12.05.001/2011-12	Fictitious Offers of Cheap Funds from abroad - Awareness Campaign - Registering Complaints with Cyber Crime Cell / Economic Offences Wing	November 25, 2011
+107.	DBS.FrMC.BC.No.4/23.04.001/2011-12	Frauds - Classification and Reporting	November 21, 2011
+108.	DBS.CO.PPD.5105/11.01.005/2011-12	Remittance towards Participation in Lottery, Money Circulation Schemes, Other fictitious offers of Cheap funds etc.	October 10, 2011
+109.	DNBS(PD).CC.No.243/03.02.02/2011-12	Returns to be submitted by NBFCs - Revised Formats	September 22, 2011
+110.	Notification No.DNBS.232/CGM.(US)-2011	Notification on Reserve Bank of India (Non-Banking Financial Companies) Returns Specifications, 1997	September 22, 2011
+111.	DBS.CO.PPD.No.1950/11.01.005/2011-12	Prudential Norms on Income Recognition, Asset Classification and Provisioning Pertaining to Advances - Divergence in NPA Accounts	August 04, 2011
+112.	DBS.CO.OSMOS.BC.No.1142/33.01.001/2011-12	New Supervisory Return - IRSD (Interest Rate Sensitivity under Duration Gap Analysis)	July 22, 2011
+113.	DBS.CO.FrMC.BC.No.2/23.04.001/2011-12	Frauds - Classification and Reporting	July 01, 2011
+114.	DBS.FrMC.BC.No.1/23.04.001/2011-12	Frauds - Classification and Reporting	July 01, 2011
+115.	DNBS(PD)CC.No.225/03.02.001/2011-12	Notification as amended up to June 30, 2011 – “Non-Banking Financial (Non-Deposit Accepting or Holding) Companies Prudential Norms (Reserve Bank) Directions, 2007”	July 01, 2011
+116.	DNBS.(PD)CC.No.223/03.02.001/2011-12	Notification as amended up to June 30, 2011 – “Non-Banking Financial Companies Acceptance of Public Deposits (Reserve Bank) Directions, 1998”	July 01, 2011
+117.	DNBS.(PD)CC.No.224/03.02.001/2011-12	Notification as amended up to June 30, 2011 – “Non-Banking Financial (Deposit Accepting or Holding) Companies Prudential Norms (Reserve Bank) Directions, 2007”	July 01, 2011
+118.	DNBS.(PD)CC.No.226/03.02.001/2011-12	Notification as amended up to June 30, 2011 “Non-Banking Financial Companies Auditor's Report (Reserve Bank) Directions, 2008”	July 01, 2011
+119.	DNBS.PD.CC.No.229/03.10.042/2011-12	Master Circular - Frauds - Future approach towards monitoring of frauds in NBFCs	July 01, 2011
+120.	DBS.CO.FrMC.BC.No.11/23.04.001/2010-11	Efficacy of Concurrent Audit	June 30, 2011
+121.	DBS.CO.FrMC.BC.No.10/23.04.001/2010-11	Findings of Forensic Scrutiny - Guidelines for prevention of frauds	May 31, 2011
+122.	DBS.CO.FrMC.BC.No.9/23.04.001/2010-11	Internal Vigilance in Private Sector / foreign Banks	May 26, 2011
+123.	DBS.ARS.No.16380/08:91.003/2010-11	Appointment of Statutory Auditors for Overseas Branch / Branches	May 24, 2011
+124.	DBS.CO.ITC.BC.No.6/31.02.008/2010-11	Working Group on Information Security, Electronic Banking, Technology Risk Management and Cyber Frauds - Implementation of recommendations	April 29, 2011
+125.	UBD.CO.BPD.9190/09.50.001/2010-11	Attempted Fraud on Banks - Remittance towards Lottery Prize Money - Issue of Fraudulent Letter for acceptance of Deposit	April 11, 2011
+126.	DBS.FrMC.BC.No.14119/23.04.001/2010-11	Frauds in Retail Loans - Sanction of Bulk Proposals	April 05, 2011
+127.	DBS.CO.FrMC.No.13697/23.02.016/2010-11	Attempt to Defraud using Fake Bank Guarantees - Modus Operandi	March 31, 2011
+128.	Notification No. DNBS.227/CGM(US)-2011	Notification on Non-Banking Financial (Deposit Accepting or Holding) Companies Prudential Norms (Reserve Bank) Directions, 2007	March 30, 2011
+129.	Notification No. DNBS.228/CGM(US)-2011	Notification on Non-Banking Financial (Non-Deposit Accepting or Holding) Companies Prudential Norms (Reserve Bank) Directions, 2007	March 30, 2011
+130.	DBS.CO.FrMC.13094/23.02.016/2010-11	Caution Letter - Attempt to Defraud - Issue of Fraudulent Letter for Acceptance of Deposit	March 25, 2011
+131.	Notification No. DNBS(PD).226/CGM(US)-2011	Notification on Non-Banking Financial (Deposit Accepting or Holding) Companies Prudential Norms (Reserve Bank) Directions, 2007	March 16, 2011
+132.	Notification No. DNBS(PD).225/CGM(US)-2011	Notification on Non-Banking Financial (Non-Deposit Accepting or Holding) Companies Prudential Norms (Reserve Bank) Directions, 2007	March 16, 2011
+133.	DBS.CO.FrMC.No.12452/23.02.016/2010-11	Attempted Fraud - Customer cautioned against Remittance towards Lottery Prize Money - Modus Operandi	March 14, 2011
+134.	DBS.CO.PPD.BC.No.5/11.01.005/2010-11	End Use of Funds - Monitoring	January 14, 2011
+135.	Notification No. DNBS.(PD).216/CGM(US)-2010	Notification on Long Term Infrastructure Finance Bonds issued by Infrastructure Finance Companies (IFCs) under Section 80CCF of the Income Tax Act, 1961 - Exemption from the definition of 'public deposit'	October 22, 2010
+136.	DNBS.(PD).CC.No.193/03.10.42/2010-11	NBFCs - KYC Norms/Anti-Money Laundering Standards	August 09, 2010
+137.	DBS.CO.FrMC.BC.No.2/23.04.001/2010-11	Frauds - Classification and Reporting- UCBs	July 01, 2010
+138.	DBS.FrMC.BC.No.1/23.04.001/2010-11	Frauds - Classification and Reporting	July 01, 2010
+139.	DNBS.PD.CC.No.169/22.05.02/2009-10	Submission of Statement of Interest Rate Sensitivity [NBS-ALM3]	April 22, 2010
+140.	DBS.CO.FrMC.No.13442/23.02.012/2009-10	Attempted Fraud - Fabricated “Funds Release Order” Purportedly issued by RBI	April 01, 2010
+141.	Notification No.DNBS.213/CGM(ASR)-2010	Notification on Infrastructure Finance Companies	February 12, 2010
+142.	DNBS.(PD).CC.No.167/03.10.01/2009-10	Compliance with FDI norms - Half yearly certificate from statutory auditors of NBFCs	February 04, 2010
+143.	DBS.CO.FrMC.No.9331/23.04.001/2009-10	Factor / Loop-holes Responsible for Occurrence of Cyber Crime and Suggestions to Plug them	January 11, 2010
+144.	UBD.BPD.(PCB).Cir.No.39/12.05.001/2009-10	UCBs - Liquidity Risk Management System in Non Scheduled Banks - Reporting	December 30, 2009
+145.	Notification No.DNBS.211/CGM(ANR)-2009	Notification on Capital Adequacy - Risk Weightage on Lending through Collateralized Borrowing and Lending Obligation (CBLO)	December 01, 2009
+146.	Notification No.DNBS.212/CGM(ANR)-2009	Notification on Capital Adequacy - Risk Weightage on Lending through Collateralized Borrowing and Lending Obligation (CBLO)	December 01, 2009
+147.	DNBS.(PD).CC.No.162/03.05.002/2009-2010	Submission of certificate from Statutory Auditor to the Bank	October 22, 2009
+148.	DBS.CO.No.PP.BC.8/11.01.005/2009-10	Exposure to Real Estate Sector - Assessment of Group Risk	September 24, 2009
+149.	DNBS.(PD).CC.No.160/03.10.001/2009-10	RBI approval required for acquisition/transfer of control of NBFCs accepting deposits	September 17, 2009
+150.	Notification No.DNBS.(PD).208/CGM(ANR)-2009	Notification on Requirement for obtaining prior Approval of RBI in Cases of Acquisition / Transfer of Control of NBFCs Accepting Deposits	September 17, 2009
+151.	DBS.CO.FrMC.No.2605/23.04.001/2009-10	Adherence to KYC / AML Guidelines while Opening and Conduct of the Accounts of Multi Level Marketing Firms	August 18, 2009
+152.	DBS.CO.IPC.BC.3/12.01.001/2009-10	Rupee Export Credit - Interest Rate Subvention	August 14, 2009
+153.	DBS.CO.FrMC.BC.No.2/23.04.001/2009-10	Master Circular - Frauds - Classification and Reporting - UCBs	July 01, 2009
+154.	DBS.FrMC.BC.No.1/23.04.001/2009-10	Frauds - Classification and Reporting	July 01, 2009
+155.	DBS.CO.PPD.BC.5/11.01.005/2008-09	Guidelines on Managing Risks and Code of Conduct in Outsourcing of Financial Services by Banks - Compliance Certificate	April 22, 2009
+156.	DO.DBS.CO.OSMOS.No.8164/33.03.011/2008-09	Submission of Fortnightly Credit Data	January 06, 2009
+157.	DNBS/PD(SC/RC) No./10.30.000/2008-09	Draft Guidelines on Change in or Take Over of the Management of the Business of the Borrower by Securitisation Companies or Reconstruction Companies (Reserve Bank) Guidelines, 200…	December 05, 2008
+158.	Notification No.DNBS(PD).203/CGM (PK)-2008	Non-Banking Financial Companies Acceptance of Public Deposits (Reserve Bank) Directions, 1998	October 29, 2008
+159.	Notification No.DNBS.(PD)202/CGM(PK)-2008	Non-Banking Financial (Non- Deposit Accepting or Holding) Companies Prudential Norms (Reserve Bank) Directions, 2007	October 29, 2008
+160.	DNBS(PD).CC.No.125/03.05.002/2008-2009	Guidelines for NBFC-ND-SI as regards capital adequacy, liquidity and disclosure norms	August 01, 2008
+161.	DBS.CO.FrMC.BC.No.15/23.04.001/2008-09	Master Circular - Frauds - Classification and Reporting	July 01, 2008
+162.	DBS.CO.FrMC.BC.No.16/23.04.001/2008-09	Master Circular - Frauds - Classification and Reporting	July 01, 2008
+163.	Notification No.DNBS.199/CGM.(PK)-2008	Notification on Grant of CoR - Requirement of Minimum NOF of Rs. 200 Lakh for All Deposit taking NBFCs	June 17, 2008
+164.	DNBS(PD).CC.No.____/03.05.002/2007-2008	Draft Guidelines on NBFC-ND-SI regarding Prudential Norms	June 02, 2008
+165.	DBS.CO.PPD.BC/13/11.01.005/2007-08	Long Form Audit Reports (LFAR) - Submission of	May 13, 2008
+166.	DBOD.No.BP.BC.68/21.04.098/2007-08	Guidelines on Asset - Liability Management (ALM) System	April 09, 2008
+167.	DBS.CO.OSMOS.No.12799/33.04.008/2007-08	Weekly Report on Flow of Funds to the Capital Market	March 26, 2008
+168.	DBS.CO.PP.BC.11/11.01.005/2007-08	Quarterly Reporting System - Foreign Branches / Subsidiaries / Joint Ventures / Associates of Indian Banks	March 24, 2008
+169.	DBS.CO.BC.OSMOS No.12/33.01.039/2007-08	Annual Reporting System in respect of Non-SSI Sick / Weak Industrial Units	March 19, 2008
+170.	DNBS.PD.CC.No.112/03.10.42/2007-08	Frauds - Future approach towards monitoring of frauds in NBFCs	March 05, 2008
+171.	DBS.CO.FrMC.BC.No.10/23.04.001/2007-08	Frauds - Classification & Reporting	January 31, 2008
+172.	DNBS/PD No.5266/03.10.001/2007-08	Draft Guidelines for Extending No Objection Certificate (NoC) for Opening of Branch / Subsidiary / Joint Venture / Representative Office or Undertaking Investment Abroad by NBFCs	January 24, 2008
+173.	DNBS(PD)MGC No.__/CGM(PK)-2008	Modified Draft - Guidelines on Registration and Operations of Mortgage Guarantee Company Under Section 45L(1)(b) of the Reserve Bank of India Act, 1934	January 23, 2008
+174.	DBS.FrMC.BC.No.9/23.04.001/2007-08	Frauds - Classification and Reporting	December 24, 2007
+175.	DBS.CO.SMC.BC.No.5/22.23.001/2007-08	Review of loss making branches of banks	October 05, 2007
+176.	DNBS.PD.CC.No.106/03.10.42/2005-06	Future approach towards monitoring of frauds in NBFCs	September 04, 2007
+177.	DBS.CO.FrMC.BC..No.2/23.04.001/2007-08	Primary (Urban) Co-operative Banks-Frauds - Classification and Reporting	July 02, 2007
+178.	DBS.FrMC.BC.No.1/23.04.001/2006-07	Commercial Banks and Financial Institutions - Frauds - Classification and Reporting	July 02, 2007
+179.	DBS.CO.PP/15939/11.01.02/2006-07	Quarterly Reporting System of Overseas Operations / Reporting of Overseas Regulatory Violations	May 21, 2007
+180.	DNBS.PD.No.7902/03.05.002/2006-07	Requirement of Minimum Net Owned Fund (NOF) of Rs. 200 Lakh All Public Deposit Taking NBFCs - Under Section 45-IA of the Reserve Bank of India Act, 1934	May 21, 2007
+181.	DNBS.PD/CC.No.93/03.05.002/2006-07	Supervisory Framework for Systemically Important non-deposit taking/holding NBFCs (NBFC-ND-SI)	April 27, 2007
+182.	DBS.CO.PP.BC.6/11.01.005/2006-07	Compliance function in banks	April 20, 2007
+183.	DO.DBS.FrMC.No.BC.5/23.02.011/2006-07	Introduction of 'Protected Disclosures Scheme for Private Sector and Foreign banks'	April 18, 2007
+184.	DNBS No.6625/03.11.01/2006-07	Union Budget Speech for the year 2007-08 Regulations for Creation of Mortgage Guarantee Companies	April 02, 2007
+185.	DBS.CO.IPC.No.10765/12.01.001/06-07	Receipt of Long Form Audit Report (LFAR)	February 09, 2007
+186.	DNBS (PD) CC.No.88/03.02.21/2006-07	Submission of returns by Mutual Benefit Financial Companies (MBFCs) and Mutual Benefit Companies (MBCs)	January 04, 2007
+187.	DNBS(PD)C.C.No.81/03.05.002/2006-07	Amendment to NBFC Regulations - Certificate of Registration (CoR) issued under Section 45-IA of the RBI Act, 1934 – Continuation of Business of NBFI - Submission of Statutory Auditors Certificate - Clarification	October 19, 2006
+188.	Notification No.DNBS.6/CGM (PK)-2006	The Securitisation Companies and Reconstruction Companies (Reserve Bank) (Amendment) Guidelines and Directions, 2006	October 19, 2006
+189.	DNBS(PD)C.C.No.79/03.05.002/2006-07	Amendment to NBFC regulations - Certificate of Registration (CoR) issued under Section 45-IA of the RBI Act, 1934 - Continuation of business of NBFI - Submission of Statutory Auditors Certificate	September 21, 2006
+190.	Notification No.DNBS.5/CGM (PK)/-2006	The Securitisation Companies and Reconstruction Companies (Reserve Bank) (Amendment) Guidelines and Directions, 2006	September 20, 2006
+191.	DBS.CO.FrMC.BC.No.7/23.04.001/2006-07	Frauds - Classification and Reporting	July 27, 2006
+192.	DBS.FrMC.BC.No.6/23.04.001/2006-07	Frauds - Classification and Reporting	July 25, 2006
+193.	DNBS.(CMD I)C.C.No.69/21.05.15/2005-06	Monthly Return on important financial parameters of Non-Banking Financial Companies (NBFCs) not accepting/holding public deposits and having assets size of Rs. 100 crore and above	June 02, 2006
+194.	DBS.CO.BC.OSMOS.No.5/33.01.039/2005-06	Annual Reporting System in respect of Non-SSI (Sick / Weak) Industrial Units	April 12, 2006
+195.	DNBS.(CMDI) C.C.No.67/21.05.15/2005-06	Monthly Return on important financial parameters of Non-Banking Financial Companies (NBFCs) not accepting/ holding public deposits and having assets size of Rs. 100 crore and above	April 05, 2006
+196.	DBS.CO.IPC.No.14051/12.01.001/05-06	Spurt in Capital Market - Need for a Vigilant Approach	March 29, 2006
+197.	DBS.CO.IPC.No.10625/11.01.021/2005-06	Violations of RBI Instructions etc. - Imposition of Penalty	January 23, 2006
+198.	DBS.CO.IPC.No.10626/11.01.021/2005-06	Violations of RBI Instructions etc. - Imposition of Penalty	January 23, 2006
+199.	DBS.CO.IPC.No.10627/11.01.021/2005-06	Violations of RBI Instructions etc. - Imposition of Penalty	January 23, 2006
+200.	DBS.CO.IPC.No.10628/11.01.021/2005-06	Violations of RBI Instructions etc. - Imposition of Penalty	January 23, 2006
+201.	DBS.CO.IPC.No.10629/11.01.021/2005-06	Violations of RBI Instructions etc. - Imposition of Penalty	January 23, 2006
+202.	DBS.CO.IPC.No.10630/11.01.021/2005-06	Violations of RBI Instructions etc. - Imposition of Penalty	January 23, 2006
+203.	DBS.CO.IPC.No.10631/11.01.021/2005-06	Violations of RBI Instructions etc. - Imposition of Penalty	January 23, 2006
+204.	DNBS.(PD) C.C.No.62/02.01/2005-06	Submission of returns by MNBCs	December 27, 2005
+205.	DBS.FrMC.BC.No.2/23.04.001/2005-06	Frauds - Classification and Reporting	December 16, 2005
+206.	DNBS.(PD).CC.No.61/02.82/2005-06	Rotation of partners of the statutory auditors audit firm - with public deposits / deposits of Rs 50 crore and above	December 12, 2005
+207.	DNBS(PD)C.C.No.59/03.10.42/2005-06	Frauds - Future approach towards monitoring of frauds in NBFCs	October 26, 2005
+208.	DBS.FrMC.BC.No.1/23.04.001/2005-06	Master Circular - Frauds – Classification and Reporting	September 09, 2005
+209.	DNBS.(RID).C.C.No.57/02.05.15/2005-06	Quarterly Return on important financial parameters of Non-Banking Financial Companies (NBFCs) not accepting/ holding public deposits and having assets size of Rs. 500 crore and above	September 06, 2005
+210.	DBS.CO.PPD.47/11.01.021/2005-06	Definition of Net Worth	August 18, 2005
+211.	DBS.CO.PP.BC.21/11.01.005/2004-05	Exposure to Real Estate Sector	June 29, 2005
+212.	UBD.No.BPD.IP.Cir.46/12.03.00/2004-05	Frauds - Classification and Reporting	May 04, 2005
+213.	DBS.FIMD.No.C-10/10.06.00/2004-05	Limited Off-Site Supervision of select Financial Institutions - Simplified Information System	April 27, 2005
+214.	DBS.FID.No.C-9/01.02.00/2004-05	Certificates / authentication to be obtained from the Statutory Central auditors of Financial Institutions- FID. No. C - 9	February 11, 2005
+215.	DBS.CO.PP.BC.12/11.01.005/2004-05	Reducing burden on banks Rationalisation of returns submitted by banks to RBI	December 30, 2004
+216.	DBS.CO.OSMOS.BC.No.11/33.01.001/2004-05	Supervisory Reporting System – Off-site Monitoring and Surveillance (OSMOS) - DSB Returns - Changes in the Input Module	December 28, 2004
+217.	DBS.CO.PP.BC.10/11.01.005/2004-05	Concurrent Audit in Banks - Examination of Speed Remittance	December 03, 2004
+218.	DNBS (PD)C.C.No.45/02.02/2004-05	Quarterly Return on important financial parameters of Non-Banking Financial Companies (NBFCs) not accepting/holding public deposits and having assets size of Rs.500 crore and above	November 13, 2004
+219.	DBS.CO.OSMOS.BC.No.9/33.01.001/2004-05	Supervisory Reporting System - Off-site Monitoring and Surveillance (OSMOS) - DSB Returns - Changes in the Input Module	October 26, 2004
+220.	UBD.BSD.IP.14/12.03.00/2004-05	Master Circular Frauds - Classification and Reporting	October 01, 2004
+221.	DBS.FrMC.No.7/23.04.001/2004-05	Strengthening of Internal Vigilance Machinery in Banks and Financial Institutions	September 20, 2004
+222.	DBS.CO.PP.BC.6/11.01.005/2004-05	Opening of LCs for Import/Export of Gold and other commodities	September 08, 2004
+223.	DBS.CO.No.FrMC.BC/5/23.04.086/2004-05	Attempted Fraud in Banks	August 27, 2004
+224.	DBS.FrMC.No.3/23.04.001/2004-05	Frauds in Non-Resident Accounts	August 26, 2004
+225.	DBS.FrMC.BC.No.2/23.04.001/2004-05	Frauds - Classification and Reporting	August 07, 2004
+226.	DBS.FRMC.No.BC.1/23.04.01D/2004-05	Deficiencies found in sanctioning of loans and monitoring of borrowal accounts by banks / Financial Institutions	August 07, 2004
+227.	DBS.CO.PP.BC.13/11.01.005/2003-04	Prompt Corrective Action (PCA)	June 15, 2004
+228.	Notification No. DNBS.4/CGM(OPA)-2004	The Securitisation Companies and Reconstruction Companies (Reserve Bank) Guidelines and Directions, 2003	March 29, 2004
+229.	UBD.No.BSD.IP.39/12.05.01/2003-2004	Concurrent Audit - Serious irregularities	March 20, 2004
+230.	DBS.CO.FGV(F)No.1306/23.08.001/2003-04	Guidelines on Implementation of Best Practices Code in Banks	March 15, 2004
+231.	DNBS (PD) CC No.34/10.01/2003-04	'Know Your Customer' Guidelines for NBFCs	January 06, 2004
+232.	RPCD.RRB.No.BC.60/03.05.33/2003-04	Frauds in the area of housing, consumer and retail finance	January 05, 2004
+233.	UBD.No.BPD.UCB.PCB.Cir.No.27/13.05.00/2003-04	Government of India, Central Vigilance Commission, Office Order No. 52/9/03 - Sanction of Loans by PSBs - Procedural Lapses	December 17, 2003
+234.	DBOD.No.IBS.BC.52/21.04.078/2003-04	Computerisation - Aligning Technology Plan with Business Strategy	December 10, 2003
+235.	DBS.FID.No.C-8/01.02.00/2003-04	Draft guidelines on investment by the FIs in debt securities	November 04, 2003
+236.	DBOD.No.BP.BC.37/21.04.018/2003-04	Guidelines on netting off of old and small value entries - Clearing Differences	October 20, 2003
+237.	UBD.BSD.IP.15/12.03.00/2003-04	Master Circular on Frauds - Classification and Reporting	September 19, 2003
+238.	DBS.CO.OSMOS.BC.6/33.01.001/2003-04	Setting up of Offshore Banking Units (OBUs) in Special Economic Zones (SEZs)	September 18, 2003
+239.	Notification DNBS.175/CGM(OPA)-2003	Miscellaneous Non-Banking Companies (Reserve Bank) Directions, 1977	September 17, 2003
+240.	DBS.Co.PP.BC.5/11.01.005/2003-04	Concurrent Audit in Banks - Margin Trading Transactions	August 30, 2003
+241.	UBD.BPD.PCB.Cir.10/13.05.00/2003-2004	Improvement in Customer Service - Quick Disposal of References received from Urban Co-operative Banks	August 21, 2003
+242.	DBS.CO.OSMOS.BC.No.4/33.01.001.2003-04	Supervisory Reporting System - Off-site Monitoring and Surveillance (OSMOS) - DSB Returns - Changes in the Input Module	August 02, 2003
+243.	Notification DNBS.172/CGM(OPA)-2003	RBI (NBFC) Returns Specifications, 1997	July 31, 2003
+244.	DBS.FID.No.C-4/01.02.00/2003-04	Asset Liability Management System - Submission of Reports to the RBI	July 29, 2003
+245.	UBD.IP.No.1/12/05.01/2003-04	Inspection Reports on Urban Co-operative Banks - Maintenance of Secrecy	July 28, 2003
+246.	DBS.ARS.No.BC.3/08.92.001/2002-03	Guidelines for Consolidated Accounting and other Quantitative Methods to Facilitate Consolidated Supervision - Audit of Consolidated Financial Statements	July 08, 2003
+247.	DBS.Co.OSMOS.BC.No.1/33.01.001/2003-04	Supervisory Reporting System - Off-site Monitoring and Surveillance (OSMOS) - DSB Returns - Changes in the Input Module	July 03, 2003
+248.	DBS.FID.No.C-16/01.02.00/2002-03	Investment Portfolio - Transactions in Securities - Audit Review and Reporting System - Modifications	June 20, 2003
+249.	DBS.FGV(F)No.BC.15/23.08.001/2002-2003	Implementation of the Recommendations of the Committee on Legal Aspects of Bank Frauds and the Recommendations of the High Level Group set up by the Central Vigilance Commission (CVC)	May 14, 2003
+250.	Notification No.DNBS.2/CGM(CSM)-2003	The Securitisation Companies and Reconstruction Companies (Reserve Bank) Guidelines and Directions, 2003	April 23, 2003
+251.	Notification No.DNBS.167/CGM(OPA)-2003	Non-Banking Financial Companies Prudential Norms (Reserve Bank) Directions, 1998	March 29, 2003
+252.	Notification No.DNBS.168/CGM(OPA)-2003	Residuary Non-Banking Companies (Reserve Bank) Directions, 1987	March 29, 2003
+253.	RPCD.RRB.BC.78/03.05.33/2002-03	Concurrent Audit and Certificate of Holding of Securities by RRBs	March 20, 2003
+254.	DBS.FID.No.C-14/04.01.00/2002-2003	Financial Institutions Information System (FIIS)	February 24, 2003
+255.	UBD.No.BPD.Cir.36/09.06.00/2002-03	Audit Committee of Boards (ACBs) to look into Implementation of Guidelines of Reserve Bank of India	February 20, 2003
+256.	DBS.No.OSMOS.BC.12/33.01.001/12/2002-03	Exposure to Capital Market - Clarificatory Note on Reporting under DSB returns and Regulatory Compliance	February 15, 2003
+257.	DBS.CO.PP.BC.11/11.01.005/2002-03	Concurrent Audit in Banks	January 30, 2003
+258.	DBOD.No.BP.BC.64/21.04.103/2002-03	Risk Management Systems in Banks	January 29, 2003
+259.	UBD.No.BSD.IP.33/12.05.01/2002-03	Inspection under Section 35 of the Banking Regulation Act, 1949 (AACS) - Submission of Compliance Report	January 25, 2003
+260.	UBD.No.IP.PCB.32/12.05.00/2002-03	Frauds in Banks - Filing of Police Complaint	January 15, 2003
+261.	DBS.FID.No.C-11/01.02.00/2002-03	Report of the Committee on Computer Audit - Standardised Checklists for Conducting Computer Audit	December 31, 2002
+262.	DBS.CO.PP.BC.10/11.01.005/2002-03	Risk-based internal audit	December 27, 2002
+263.	UBD.BSD.IP.No.29/12.05.00/2002-2003	Procedural Improvement in Banking System	December 24, 2002
+264.	DBS.CO.PP.BC.9/11.01.005/2002-03	Prompt Corrective Action (PCA)	December 21, 2002
+265.	DBS.CO.OSMOS.BC.8/33.01.022/2002-2003	Standardised Checklists for conducting Computer Audit - Report of the Committee on Computer Audit	December 19, 2002
+266.	DBS.CO.BC.FMC.7/22.53.014/2002-2003	Operation of Investment Portfolio by Banks - Submission of Concurrent Audit Reports to RBI	November 07, 2002
+267.	UBD.CO.BSD.SUB.5/12.05.06/2002-03	Supervisory Rating of Urban Co-operative Banks	October 30, 2002
+268.	DBS.FGV(F).BC.No.6/23.04.001/2002-2003	Frauds - Classification and Reporting	October 18, 2002
+269.	DBS.CO.No.5/OSMOS/33.01.001/2002-03	Off-site Surveillance and Monitoring System (OSMOS)	October 12, 2002
+270.	Notification DNBS.160/CGM(CSM)-2002	NBFC Prudential Norms (Reserve Bank) Directions, 1998	October 01, 2002
+271.	Notification DNBS.161/CGM(CSM)-2002	Residuary Non-Banking Companies (Reserve Bank) Directions, 1987	October 01, 2002
+272.	Notification DNBS.162/CGM(CSM)-2002	Miscellaneous Non-Banking Companies (Reserve Bank) Directions, 1977	October 01, 2002
+273.	UBD.No.BSD.I/2/12.05.01/2002-2003	Inspection Reports on Urban Co-operative Banks - Follow-up Action	September 27, 2002
+274.	DBS.CO.OSMOS/B.C./4/33.04.006/2002-2003	Guidelines on preventing slippage of NPA accounts	September 12, 2002
+275.	DBS.CO.RBS.BC.3/36.01.12/2002-2003	Risk Based Supervision (RBS) of Banks - Institutional Mechanism	September 05, 2002
+276.	DBS.FID.No.C-7/01.02.00/2002-03	Draft Guidelines for Consolidated Accounting and Consolidated Supervision	September 02, 2002
+277.	UBD.No.BSD.I.PCB.11/12.05.01/2002-03	Designating Compliance Officers in Urban Co-operative Banks	August 16, 2002
+278.	DBS.FID.No.C-4/18.02.852(Auditors)/2002-03	Rotation and Resting of Statutory Auditors	July 31, 2002
+279.	DBS.FID No.C-2/01.02.00/2002-03	Transactions in Government Securities	July 18, 2002
+280.	DBS.CO.OSMOS/14/34.02.831/2001-02	Record Maintenance Policy of banks - Revised Guidelines	June 27, 2002
+281.	RPCD.RF.BC.No.107/07.02.03/2001-02	Certification of Holding of Securities in Bank's Investment Portfolio	June 18, 2002
+282.	DBS.CO.FGV(F).BC.13/23.04.001/2001-2002	Frauds in Non-Resident accounts	May 21, 2002
+283.	DBS.FGV.(F) No.BC.12/23.08.001/2001-02	Implementation of the Recommendations of the Committee on Legal Aspects of Bank Frauds and the recommendations of the High Level Group set up by the Central Vigilance Commission (CVC)	May 03, 2002
+284.	UBD.No.POT.PCB.30/09.96.00/2001-02	Electronic Data Processing - Audit System	February 12, 2002
+285.	REF.DBS.FID.No.C-13/10.06-00/2001-2002	Off-site Surveillance and Monitoring System (OSMOS) for Financial Institutions - Revision of Returns Formats - New Software for compilation and submission of returns	February 01, 2002
+286.	DBS.CO.BC.No.10/OSMOS/33.01.001/2001-2002	Supervisory Reporting System - Local Area Banks - Changes in DSB returns - Revised Input Module	January 31, 2002
+287.	DBS.CO.BC.No.9/OSMOS/33.01.001/2001-02	Supervisory Reporting System - Off-site Monitoring and Surveillance (OSMOS) - Changes in the DSB Returns - Revised Input Module	January 21, 2002
+288.	Notification DNBS.154/CGM (LMF)-2002	NBFC Acceptance of Public Deposits (Reserve Bank) Directions, 1998	January 01, 2002
+289.	Notification DNBS.156/CGM(LMF)-2002	Residuary Non-Banking Companies (Reserve Bank) Directions, 1987	January 01, 2002
+290.	UBD.No.BSD.I.2327/12.05.01/2001-02	Supervisory Action against Urban Co-operative Banks	December 24, 2001
+291.	DBS.CO.BC.No.8/OSMOS/33.01.001/2001-02	Supervisory Reporting System - Off-site Monitoring and Surveillance (OSMOS) - Changes in the Input Module - Introduction of Monthly DSB Returns	November 24, 2001
+292.	DBS.FID No.C-7A/10.06.00/2001-2002	Prudential off-site Surveillance System (PSRS) for Financial Institutions (FIs) - Revision of Returns Formats	November 12, 2001
+293.	DBS.CO.BC.No.7/OSMOS/33.01.001/2001-02	Supervisory Reporting System - Off-site Monitoring and Surveillance (OSMOS) - DSB Returns - Changes in the Input Module	November 07, 2001
+294.	DBS.No.FGV(F).BC.5/23.08.01/2001-02	Policy and Procedures for Preventing Frauds relating to Export Credit and related Foreign Exchange Transactions	October 27, 2001
+295.	REF.DBS.FID.No.C-7/10.06.00/2001-2002	Prudential off-site surveillance system (PSRS) for Financial Institutions (FIs)- Revision of Returns Formats	October 20, 2001
+296.	DBS.CO/RBS/58/36.01.002/2001-02	Move towards Risk Based Supervision (RBS) of Banks - Discussion Paper	August 13, 2001
+297.	Notification DNBS.148/CGM(RS)-2001	NBFC Acceptance of Public Deposits (Reserve Bank) Directions, 1998	June 27, 2001
+298.	Notification DNBS.149/CGM(RS)-2001	Residuary Non-Banking Companies (Reserve Bank) Directions, 1987	June 27, 2001
+299.	Notification DNBS.150/CGM(RS)-2001	Miscellaneous Non-Banking Companies (Reserve Bank) Directions, 1977	June 27, 2001
+300.	UBD.No.BSD-I.SCB.8/12.05.01/2000-2001	Introduction of Off-Site Surveillance System for Primary (Urban) Co-operative	May 30, 2001
+301.	DBS.No.BC.OSMOS.11/33.01.001/2000-01	Supervisory Reporting System - Off-site Monitoring and Surveillance (OSMOS)	April 19, 2001
+302.	UBD.No.BSD.I.SCB.4/12.05.01/2000-01	Introduction of Off-site Surveillance System for Primary (Urban) Co-operative Banks	April 10, 2001
+303.	DBS.CO.PPD/349 /11.01.039 /2000-2001	Prompt Corrective Action (PCA)	March 30, 2001
+304.	UBD NO.BSD-I.RO.34/12-05.05/2000-01	Inspection of Primary (Urban) Co-operative Banks - Follow-up in respect of Shortfall Provision against NPAs	March 21, 2001
+305.	UBD.No.BSD-I.RO.31/12.05.01/2000-01	Guidelines for Inspection of Primary (Urban) Co-operative Banks	February 08, 2001
+306.	DBS.ARS.BC.7/08.91.001/2000-2001	Appointment of Statutory Central Auditors for Indian Private Sector Banks	January 30, 2001
+307.	Ref DBS.FID.No.C-15/01.02.00/2000-01	Inspection of Financial Institutions	January 24, 2001
+308.	UBD.No.BSD.I/RO.28 /12.05 01/2000-2001	Inspection of Primary (Urban) Co-operative Banks Under Section 35 of the Banking Regulation Act, 1949 (As Applicable to Co-operative Societies) - Supply of Copies of Inspection Report	January 18, 2001
+309.	UBD.CO.BSD.I.27 /12.05.01/2000-01	Clean Note Policy - Inclusion of Paragraphs in Inspection Reports of Primary (Urban) Co-operative Banks	January 17, 2001
+310.	RPCD.No.STAT.BC.41/11.02.16/2000-2001	Local Area Banks - Submission of Periodical Returns/Statements	December 12, 2000
+311.	UBD.BSD.I.RO. 22/12.05.01/2000-2001	Inspection of Urban Cooperative Banks under Section 35 of the Banking Regulation Act, 1949 (AACS)	December 01, 2000
+312.	UBD No.BSD.CO.BSD.I/RO.26/12.05-01/2000-01	Follow-up of Inspection Reports	November 30, 2000
+313.	UBD No.BSD.CO.BSD.I/RO.19/12.05-01/2000-01	Supervision of Newly Licensed Urban Banks	November 23, 2000
+314.	UBD.CO.BSD.I/11/12.05.00/2000-2001	Opening of Deposit Accounts - Completion of Formalities	November 15, 2000
+315.	DBS.FBC.BC.6/13.12.001/2000-2001	Supervisory Reporting System for Overseas Operations of Indian Banks - DSB-O returns	November 10, 2000
+316.	DBS.CO.ITC.BC.5/31.21.01/2000-2001	Record Maintenance Policy of Banks	November 03, 2000
+317.	DNBS.(PD).ROC.24/10.01/2000-2001	New Monetary and Supervisory Return - Return for Companies holding Deposits of Rs. 20 crore and above	October 24, 2000
+318.	UBD No.BSD.I/RO/17/12/05.01/2000-01	System of Inspection of ­Primary (Urban) Cooperative Banks under Section 35 of the B.R. Act., 1949 (AACs) - Review of	October 17, 2000
+319.	UBD.BSD.I/RO/16/12.05.01/2000-2001	Non-Submission of Compliance to Reserve Bank of India's Inspection Reports - Follow-up Action	October 12, 2000
+320.	DBS.CO.PP.BC.3/11.01.005/2000-2001	44th Report of the Committee on Assurances - Ghosh Committee Recommendations relating to Frauds and Malpractices in Banks & Jilani Committee Recommendations relating to Internal Inspection and Audit System in Banks - Implementation thereof	September 29, 2000
+321.	UBD.BSD.I/RO/667/12.05.01/2000-2001	Revision in the System of Inspection of Primary (Urban) Co-operative Banks under Section 35 of the Banking Regulation Act, 1949 (AACs)	August 31, 2000
+322.	UBD.BSD.I.RO.7/12.05.01/2000-2001	Guidelines for Inspection of Primary (Urban) Co-operative Banks	August 29, 2000
+323.	UBD.BSD-I/RO-/6/12.05.01/2000-2001	Guidelines for Inspection of Primary (Urban)Co-operative Banks	August 25, 2000
+324.	RPCD.LAB.No.BC.10/12.01.10/2000-01	Local Area Banks - Submission of Periodical Returns/Statements	August 22, 2000
+325.	DBS.CO.PP.BC.2/11.01.005/2000-2001	Fortnightly statement on FRAs/IRS	August 09, 2000
+326.	UBD. BSD.I.RO/5/12.05.01/2000-2001	Section 35 of the Banking Regulation Act, 1949 (AACS) - Despatch of Inspection Reports to Banks	August 08, 2000
+327.	UBD No.BSD.I/405 /12.05.01/2000-01	Guidelines for Inspection of Primary (Urban) Co-operative Banks	August 03, 2000
+328.	UBD.No.BSD.I/RO.3/12.05.01/99-2000	Inspection under Section 35 of the Banking Regulation Act, 1949 (As Applicable to Co-operative Societies)	July 31, 2000
+329.	Notification DNBS.144/CGM(VSNM)-2000	RBI (NBFC) Returns Specifications - 1997	June 30, 2000
+330.	DBS.CO.PPD.BC.No.39/11.01.005/99-2000	44th Report of the Committee on Government Assurances - Ghosh Committee & Jilani Committee Recommendations relating to Frauds and Malpractices in Banks - Review of - Implementation thereof	June 28, 2000
+331.	UBD.No.BSD.I.RO/6/12.05.01/99-2000	Inspection under Section 35 of the Banking Regulation Act, 1949 (As Applicable to Co-operative Societies) - Common Irregularities Observed in Drafting / Editing of Inspection Report/s	June 16, 2000
+332.	DBS.CO.FGV.BC.38/23.04.001/1999-2000	Frauds by Deposit of Fake Title Deeds of Property	May 19, 2000
+333.	DBS.CO.SMC.No.BC.35/22.03.001/1999-2000	Quarterly Statements on Reconciliation of Clearing Differences - Reporting of Entries Outstanding for more than two years	May 05, 2000
+334.	DO.DBS.FID.No.H.221.229/09.01.02/1999-2000	Raising of Resources by all India FIs - Draft Circular for Comments/Suggestions	May 04, 2000
+335.	UBD No.BSD.I/RO/4/12.05.01/99-2000	Inspection under Section 35A of the Banking Regulation Act, 1949 (AACs)	April 26, 2000
+336.	UBD No.BSD-I/3/12.05,01/99-2000	Guidelines for Inspection of primary (Urban) Co-operative Banks	April 11, 2000
+337.	DBS.CO.PP.BC.32/11.01.005/99-2000	Study of Trends of Certain Important Parameters of Bank Functioning	April 06, 2000
+338.	DBS.No.FBC.BC.34/13.12.001/99-2000	Report of the Working Group on Supervision of Foreign Branches of Indian Banks - Implementation	April 06, 2000
+339.	DBS.CO.PP.31/11.01.005/1999-2000	Draft Guidelines for Banks' investment in Non-SLR securities	April 04, 2000
+340.	DBS.CO.Y2K.BC.29/35.01.00/1999-2000	Year 2000 - Smooth Rollover and Consolidation	January 28, 2000
+341.	DBS.CO.Y2K.BC.30/35.01.00/1999-2000	Year 2000 - Smooth Rollover and Consolidation	January 28, 2000
+342.	DBS.CO.PPD.BC.No.28/11.01.005/99-2000	Compromise / Negotiated Settlements of Non-Performing Assets (NPAs)	January 24, 2000
+343.	DBS.CO.Y2K.BC.27/35.01.00/1999-2000	Year 2000 - Smooth Rollover and Consolidation	January 19, 2000
+344.	DBS.CO.Y2K.BC.26/35.01.00/1999-2000	Year 2000 - Smooth Rollover and Consolidation	January 18, 2000
+345.	DBS.CO.No.OSMOS.BC.25/33.01.001/1999-2000	Contravention of RBI instructions regarding using of Rankings Awarded by Financial Dailies and Magazines	January 14, 2000
+346.	Notification DNBS.137/CGM(VSNM)-2000	NBFC Auditors Report (Reserve Bank) Directions, 1998	January 13, 2000
+347.	Notification DNBS.140/CGM(VSNM)-2000	RBI (NBFC) Returns Specifications - 1997	January 13, 2000
+348.	DBS.CO.Y2K.BC.24/35.01.00/1999-2000	Year 2000 (Y2K) Issues - Event Management Reporting Requirements	December 28, 1999
+349.	DBS.CO.Y2K.BC.23/35.01.00/1999-2000	Year 2000 (Y2K) Issues - Information System Security Programmes to Limit Risk During Roll-Over	December 27, 1999
+350.	DBS.CO.Y2K.BC.21/35.01.00/1999-2000	Year 2000 (Y2K) Issues - Event Management Reporting Requirements	December 21, 1999
+351.	DBS.CO.Y2K.BC.22/35.01.00/1999-2000	Year 2000 (Y2K) Issues - Event Management Reporting Requirements	December 21, 1999
+352.	DBS.No.FGV.BC.20/23.04.001/99-2000	Frauds - Preventive Measures	December 04, 1999
+353.	DBS.No.Y2K/1545/35.01.00/1999-2000	List of Contact Persons for Y2K - Commercial Banks & Financial Institutions	November 24, 1999
+354.	DBS.FID.No.C-8/01.02.00/99-2000	Year 2000 Preparations	November 13, 1999
+355.	UBD.BR.5/16.02.00/99-2000	Year 2000 (Y2K) Preparations	November 06, 1999
+356.	UBD.No.BR.6/16.02.00/99-2000	Year 2000 (Y2K) Preparations	November 06, 1999
+357.	RPCD.Dir.RF.BC.35/07.38.01/99-2000	Year 2000 (Y2K) Preparations	November 05, 1999
+358.	RPCD.No.RF.BC.36/07.38.01/99-2000	Year 2000 (Y2K) Preparations	November 05, 1999
+359.	DBS.CO.Y2K.BC.19/35.01.00/1999-2000	Year 2000 (Y2K) Contingency Planning - Critical Minimum Parameterization (CMP)	November 02, 1999
+360.	DBOD.No.BC.115/09.11.001/99-2000	Year 2000 (Y2K) Preparations	October 30, 1999
+361.	DBOD.No.Dir.BC.116 /09.11.001/99-2000	Year 2000 (Y2K) Preparations	October 30, 1999
+362.	DBS.CO.FMC.BC.18/22.53.014/99-2000	Investment Portfolio of Banks - Transactions in Securities	October 28, 1999
+363.	DBS.FGV.No.BC.16/23.12.001/1999-2000	Preventive Vigilance - Bringing out of Handbooks/Newsletters etc.	October 26, 1999
+364.	DBS.CO.Y2K.BC.13/35.01.00/1999-2000	Year 2000 (Y2K) Issues - Setting up of Event Management Centres (EMC) and Transition Arrangements	October 22, 1999
+365.	DBS.CO.Y2K.BC.14/35.01.00/1999-2000	Year 2000 (Y2K) Issues - Setting up of Event Management Centres (EMC) and Transition Arrangements	October 22, 1999
+366.	DBS.CO.Y2K.BC.15/35.09.00/1999-2000	Year 2000 (Y2K) Issues - Setting up of Event Management Centres (EMC) and Transition Arrangements	October 22, 1999
+367.	DBS.CO.Y2K.BC.12/35.01.00/1999-2000	Year 2000 (Y2K) Issues - Setting up of Event Management Centres (EMC) and Transition Arrangements	October 18, 1999
+368.	DBS.CO.FMC.BC.10/22.53.014/99-2000	Investment Portfolio of Banks - Transaction in Securities	September 29, 1999
+369.	DBS.CO.PP.BC.No.11/11.01.005/99-2000	Report of the Working Group to Review the Internal Control and Inspection/Audit System in Banks (Jilani Committee) - Recommendation No. 51 on Parent-Subsidiary Relationship	September 29, 1999
+370.	DBS.CO.SMC.BC.No.9/22.09.001/99-2000	Reconciliation of Inter-Branch Accounts	September 17, 1999
+371.	DBS.CO.Y2K.BC.8/35.01.00/1999-2000	Year 2000 (Y2K) Issues - Contingency Planning	September 17, 1999
+372.	DBS.No.FGV.CO.No.212/23.02.001/99-00	44th Report of the Committee on Government Assurances - Ghosh Committee Relating to Frauds and Malpractices in Banks - Implementation of	September 14, 1999
+373.	DBS.CO.Y2K.BC.6/35.01.00/1999-2000	Year 2000 (Y2K) Compliance Monitoring Computer System Performance over Critical Dates	August 25, 1999
+374.	DBS.CO.PP.BC.4/11.01.005/1999-2000	Inspection under Section 35 of the Banking Regulation Act, 1949	July 31, 1999
+375.	DBS.FID.No.02/10.06.00/99-00	Prudential Off-Site Surveillance System for Financial Institutions (FIs)	July 28, 1999
+376.	DBS.CO.Y2K.BC.3/35.01.00/1999-2000	Year 2000 (Y2K) Problem - Independent Assessment of Compliance	July 17, 1999
+377.	DO.DBS.OSMOS.6/33.01.001/99-2000	Rankings of banks published by some financial dailies and magazines based on certain financial parameters	July 09, 1999
+378.	DBS.FID.No.44/08.05.00/98-99	Year 2000 (Y2K) Issues - Information Sharing and Disclosure	June 24, 1999
+379.	DBS.NO.FGV.BC.56/23.04.001/98-99	Report of the Study Group on Large Value Bank Frauds	June 21, 1999
+380.	DBS.NO.CO.PP.BC.55/11.01.005/98-99	Report of the Working Group to Review the Internal Control and Inspection/Audit System in Banks - Implementation of the Recommendations	June 19, 1999
+381.	DBS.CO.SMC.BC.No.54/22.09.001/98-99	Reconciliation of Inter-Branch Accounts - Best Practices Followed by Banks	June 15, 1999
+382.	DBS.CO.SMC.No.BC.53/22.04.001/98-99	Balancing of Books	May 26, 1999
+383.	DBS.CO.Y2K.BC.50/35.01.00/98-99	Year 2000 (Y2K) Issues – Information Sharing and Disclosure (Commercial Banks)	May 21, 1999
+384.	DBS.CO.Y2K.BC.51/35.01.00/98-99	Year 2000 (Y2K) Issues – Information Sharing and Disclosure (Financial Institutions/ Non-Banking Subsidiaries of Commercial Banks/Primary (Urban) Cooperative Banks/ Primary/ Satellite Dealersin Government Securities)	May 21, 1999
+385.	DBOD.No.DIR.BC.43/13.01.09/99	Safeguards to be Observed in case of Deposits from NRIs	May 05, 1999
+386.	DBS.CO.FGV.BC.49/23.04.001/98-99	Advances Against Bearer Securities	April 20, 1999
+387.	DNBS(PD).No.CC.9/02.01/98-99	Submission of Statutory Return on Liquid Assets	March 31, 1999
+388.	UBD.No.Admn.24/17:36:01/98-99	Year 2000 (Y2K) Issues - Supervisory Enforcement	March 31, 1999
+389.	UBD.NO.23/17:36:01/98-99	Year 2000 (Y2K) Issues - Contingency Planning	March 17, 1999
+390.	DBS.CO.Y2K.BC.47/35.01.00/98-99	Year 2000 (Y2K) Issues - Contingency Planning	February 27, 1999
+391.	DBS.CO.Y2K.BC.48/35.01.00/98-99	Year 2000 (Y2K) Issues - Contingency Planning	February 27, 1999
+392.	UBD.No.Admn.20/17:36:01/98-99	Y2K Issues - Compliance by PCBs - Supervisory Initiatives	February 13, 1999
+393.	DBOD.No.BP.BC.3/21.04.109/99	Framework on Analysis of Balance Sheets	February 08, 1999
+394.	No.UBD.BSD-I/RO.15/12.05.01/98-99	Revision in the System of Inspection of Primary (urban) Co-operative Banks Under Section 35 of the Banking Regulation Act, 1949 (AACS)	February 05, 1999
+395.	DBS.CO.SMC.BC.No.45/22.02.001(A)/98-99	Report of the Working Group to Look into the System of Reconciliation of Nostro Accounts in Public Sector Banks	January 27, 1999
+396.	DNBS.No.(PD)CC.8/02.01/98-99	Acceptance of public deposits for NBFCs - Submission of statutory return on liquid assets and special return	January 21, 1999
+397.	DBS.CO.BC.44/35.01.00/1998-99	Year 2000 (Y2K) Issues - Supervisory Enforcement	January 15, 1999
+398.	UBD No.BSD-14/12.05.01/98-99	Frauds in banks - Collection of instruments in accounts opened in fictitious names	December 23, 1998
+399.	Notification DNBS.130/CGM(VSNM)-98	NBFC Auditors Report (Reserve Bank) Directions, 1998	December 18, 1998
+400.	Notification DNBS.131/CGM(VSNM)-98	RBI (NBFC) Returns Specifications - 1997	December 18, 1998
+401.	DBS.No.CO.OSMOS.BC.43/33.01.001/98-99	Modifications in Format of DSB Returns & Validation Report for Preparing DSB Returns in Floppy Format	December 16, 1998
+402.	DBS.CO.Y2K.BC.42/35.01.00/98-99	Year 2000 (Y2K) Issues - Contingency Planning	December 01, 1998
+403.	DBS.CO.SMC.BC.No.41/22.09.001/97-98	Inter-Branch Reconciliation Account Additional Information in Quarterly Statement	November 14, 1998
+404.	DBS.CO.Y2K.BC.37/35.01.00/98-99	Year 2000 (Y2K) Problem - Remediation Framework and Compliance Deadlines	November 11, 1998
+405.	DBS.CO.Y2K.BC.38/35.01.00/98-99	Year 2000 (Y2K) Problem-Remediation Framework and Compliance Deadlines	November 11, 1998
+406.	DBS.CO.Y2K.BC.39/35.01.00/98-99	Year 2000 (Y2K) Problem - Remediation Framework and Compliance Deadlines	November 11, 1998
+407.	DBS.CO.Y2K.BC.40/35.08.00/98-99	Year 2000 (Y2K) Problem - Remediation framework and Compliance Deadlines	November 11, 1998
+408.	DBS.CO.Y2K.BC.36/35.01.00/98-99	Year 2000 - Mandatory Test Guide (July 1998 release) by S.W.I.F.T	November 06, 1998
+409.	DBS.CO.Y2K.BC.35/35.01.00/98-99	Year 2000 (Y2K) Problem - Standards of Compliance and Testing	November 05, 1998
+410.	DBS.FGV.393/23.04.001/98-99	Frauds in banks	November 03, 1998
+411.	DBS.CO.BC.32/35.01.00/98-99	Year 2000 (Y2K) Problem - Reporting Requirements	September 14, 1998
+412.	DBS.CO.BC.33/35.08.00/98-99	Year 2000 (Y2K) Problem - Reporting Requirements	September 14, 1998
+413.	DBS.CO.Y2K.BC.29/35.01.00/98-99	Year 2000 (Y2K) Problem - Reporting Requirements	September 14, 1998
+414.	DBS.CO.Y2K.BC.30/35.01.00/98-99	Year 2000 (Y2K) Problem - Reporting Requirements	September 14, 1998
+415.	DBS.CO.Y2K.BC.31/35.01.00/98-99	Year 2000 (Y2K) Problem - Reporting Requirements	September 14, 1998
+416.	DBS.CO.SMC.BC.NO.28/22.09.001/98-99	Inter-Branch Reconciliation System - Accounting Standard for Inter Office remittance Transactions	August 20, 1998
+417.	DBS.CO.Y2K.BC.27/35.09.00/98-99	Standards of Compliance and Testing	August 12, 1998
+418.	DBS.CO.Y2K.BC.23/35.01.00/98-99	Year 2000 (Y2K) Problem - Standards of Compliance and Testing	August 07, 1998
+419.	DBS.CO.Y2K.BC.24/35.01.00/98-99	Year 2000 (Y2K) Problem - Standards of Compliance and Testing	August 07, 1998
+420.	DBS.CO.Y2K.BC.25/35.01.00/98-99	Year 2000 (Y2K) Problem - Standards of Compliance and Testing	August 07, 1998
+421.	DBS.CO.Y2K.BC.26/35.08.00/98-99	Year 2000 (Y2K) Problem - Standards of Compliance and Testing	August 07, 1998
+422.	DBS.CO.OSMOS.BC.No.22/33.01.001/98-99	Submission of DSB Returns - Finalisation of Annual Accounts	July 30, 1998
+423.	DBS.CO.Y2K.BC.21/35.08.00/98-99	Year 2000 (Y2K) Problem	July 24, 1998
+424.	DBS.CO.Y2K.BC.20/35.09.00/98-99	Year 2000 (Y2K) Problem	July 17, 1998
+425.	DBS.CO.Y2K.BC.18/35.01./98-99	Year 2000 (Y2K) Problem - Compliance	July 06, 1998
+426.	DBS.CO.Y2K.BC.19/35.01.00/98-99	Year 2000 Issue - Awareness Among Customers	July 06, 1998
+427.	DBOD.No.BP.BC.59/21.01.023/98	Sanctioning Powers of Bank Officials prior to Retirement	June 15, 1998
+428.	DBS.CO.SMC.BC.NO.17/22.03.001/97-98	Reconciliation of Clearing Differences	June 11, 1998
+429.	DBS.CO.SMC.BC.No.16/22.09.001/97-98	Inter-Branch Reconciliation System - Remittance Transactions Covered by Telegraphic Transfers (TTs), Mail Transfers (MTS) and Demand Drafts (DDS)	May 30, 1998
+430.	DBS.FID.No.29/08-05.00/97-98	Advent of Year 2000 (Y 2 K) - Compliance	May 04, 1998
+431.	DBS.CO.ITC.BC.14/31.14.00/97-98	Submission of Bank Profile - 1998	April 24, 1998
+432.	UBD.No.Admn.46a/17: 36: 00/97-98	Risks and Control in Computer and Telecommunication System	March 30, 1998
+433.	UBD.No.Admn.46b/17:36:00/97- 98	Risk and Control in Computer and Telecommunication System	March 30, 1998
+434.	UBD.NO.BSD-I.RCS.42/12.05.03/97-98	Quarterly inspection programme Submission of statements	March 26, 1998
+435.	DBS.No.CO.PP.BC.13/11.01.005/97-98	Inspection Under Section 35 of the Banking Regulation Act, 1949	March 14, 1998
+436.	DBS.No.CO.PP.BC.12/11.01.005/97-98	Interest Rates on Deposits Held Under Foreign Currency (Non-resident) Accounts (Banks) Scheme - FCNR(B) Scheme	March 09, 1998
+437.	UBD.No.(RO)DS.40/13.10.05/97-98	System and Staffing Inspection 1997 - Urban Banks Department - Central Office - Compliance of Para 07.08	March 04, 1998
+438.	DBS.FID.No.578/01.10.00/97-98	Income Recognition and Provisioning in respect of Government Guaranteed Accounts	February 20, 1998
+439.	DBS.No.FID.27/08.05.00/97-98	Advent of Year 2000 (Y2K) - Compliance	February 19, 1998
+440.	DBS.No.CO.PP.BC.11/11.01.005/97-98	Agenda Papers Relating to Board/Management Committee Meetings of Nationalised Banks	February 09, 1998
+441.	DBS.CO.ITC.BC.9/31.09.001/97-98	Record Maintenance	February 02, 1998
+442.	Notification No. DFC.118/DG(SPT)-98	Amended upto 09.12.2005 - Schedules : Non-Banking Financial Companies Acceptance of Public Deposits (Reserve Bank) Directions, 1998	January 31, 1998
+443.	Notification No. DFC.119/­­DG(SPT)-98	Amended upto 15-06-2004 - Non-Banking Financial Companies Prudential Norms (Reserve Bank) Directions, 1998	January 31, 1998
+444.	Notification No.DFC.118/DG(SPT)-98	Amended upto 22.11.2007 - Schedule : Non-Banking Financial Companies Acceptance of Public Deposits (Reserve Bank) Directions, 1998	January 31, 1998
+445.	Notification No.DFC.121/ED(G)-98	Amended upto 01.07.2005 - Regulation Relating to Maintenance of Liquid Assets by RNBCs	January 31, 1998
+446.	UBD.No.Admn.39/17:36:00/97-98	Computer systems & applications - Advent of year 2000 (Y2K)	January 31, 1998
+447.	Notification DFC.117/DG(SPT)-98	Amended upto 03.08.2004 - NBFC Auditors Report (Reserve Bank) Directions, 1998	January 02, 1998
+448.	Notification DFC.117/DG(SPT)-98	Amended upto 13.01.2000 - NBFC Auditors Report (Reserve Bank) Directions, 1998	January 02, 1998
+449.	Notification DFC.117/DG(SPT)-98	NBFC Auditors Report (Reserve Bank) Directions, 1998	January 02, 1998
+450.	Notification No.DFC.117/DG(SPT)-98	Amended upto 01.07.2005 - Non-Banking Financial Companies Auditor’s Report (Reserve Bank) Directions, 1998	January 02, 1998
+451.	DBS.No.CO.PP.BC.8/11.01.005/97-98	Inter-Branch Reconciliation - Forced Matching of Old Outstanding Entries	December 11, 1997
+452.	DBS.No.CO.PP.BC.7/11.01.005/97-98	Long from Audit Reports (LFARS) - Submissions of	November 06, 1997
+453.	DBS.FGV/446/23.04.001/97-98	Frauds in Banks	November 03, 1997
+454.	UBD.NO.BSD.I/08/12.05.00/97-98	Frauds in Banks - Telegraphic Transfers, etc.	September 18, 1997
+455.	DBS.No.BM(III)/BC.3/15.08.016/97-98	Banking Policy - Preparation of Loan, Investment and Loan Recovery Policies	September 17, 1997
+456.	DOS.No.ARS/1/08.91.001/97-98	Parameters on the Working of Banks	July 23, 1997
+457.	DOS.FID.No.16/01.02.00-96/97	Formation of Financial Institutions Division (FID) under the Department of Supervision	June 28, 1997
+458.	DOS.No.FGV/GC.BC.15/23.04.001/96-97	Opening of Fictitious/Benami Deposit Accounts and Collection of Stolen/Forged Instruments, etc.	June 16, 1997
+459.	DOS.No.BC.9/22.01.001/96-97	Quick Special Audit of Sundry/Suspense Accounts	June 12, 1997
+460.	DOS.No.BC.8/23.08.03/96-97	Frauds in Banks - Grant of 'AT PAR' Facility for Dividend Warrants/Interest Warrants and Refund Orders	May 27, 1997
+461.	DOS.No.FGV.BC.7/23.04.001/96-97	Frauds in Banks - Telegraphic Transfers, etc.	May 23, 1997
+462.	DOS.No.CO.PP.BC.6/11.01.005/96-97	Assessments Relating to Asset Valuation and Loan Loss Provisioning	May 15, 1997
+463.	Notification DFC(COC) No.108.ED(JRP)/97	Amended upto 03-08-2004 - RBI (NBFC) Returns Specifications - 1997	April 30, 1997
+464.	Notification DFC(COC) No.108.ED(JRP)/97	Amended upto 30-06-2000 - RBI (NBFC) Returns Specifications - 1997	April 30, 1997
+465.	Notification DFC(COC).No.108.ED(JRP)/97	Amended upto 18.12.1998 - RBI (NBFC) Returns Specifications - 1997	April 30, 1997
+466.	DOS.No.BC.5/22.04.001/96-97	Balancing of Books	April 28, 1997
+467.	FIC.No.09/01.10.00/96-97	Income Recognition, Asset Classification, Provisioning and other Related Matters	March 21, 1997
+468.	DOS.No.BC.4/22.05.001/97	Write-off of Bad Debts - Reporting	February 24, 1997
+469.	DOS.No.BC.2/23.04.001/96-97	Handling of Complaints and Fraud Cases	January 15, 1997
+470.	DOS.No.BMD.V/BC.23/17.04.01/96-97	Compliance with RBI Instructions - Incorporation of Items Specific to Indian Regulatory Framework in the Manual of Instructions	December 05, 1996
+471.	UBD.No.Plan.(PCB)Cir.32/09.06.00/96-97	Concurrent Audit System in Urban Co-operative Banks-Revision in R.B.I.'s guidelines	December 05, 1996
+472.	DOS.No.PP.BC.22/16.03.026/96-97	Report of the Working Group to Review the Internal Control and Inspection/Audit System in Banks - Implementation of the Recommendations	November 06, 1996
+473.	DOS.No.PP.BC.20/16.03.026/96-97	Report of the Working Group to Review the Internal Control and Inspection/Audit System in Banks - Implementation of the Recommendations	November 01, 1996
+474.	DOS.No.CO.BC.21/11.02.826/96-97	Assessments Relating to Asset Valuation and Loan Loss Provisioning	October 31, 1996
+475.	DOS.No.FGV.BC.19/23.04.82/96	Attempted Fraud - Kite-Flying in Banks	October 30, 1996
+476.	RPCD.No.BC.31/07.38.01/96-97	Fraudulent encashment of payment instruments	September 02, 1996
+477.	DOS.No.BC.12/22.04.001/95-96	Balancing of Books	June 29, 1996
+478.	UBD.No.I&L/PCB.67/12.05.00/95-96	Fraudulent Encashment of Payment Instruments	June 08, 1996
+479.	DOS.No.BC.11/22.23.001/95-96	Review of Loss Making Branches of Banks	June 03, 1996
+480.	DOS.No.FGV.BC.9/23.04.001/96	Fraudulent Encashment of Third Party Refund Orders/Interest Warrants by Co-operative Societies	April 30, 1996
+481.	DOS.No.FGV.BC.8/23.04.001/96	Fraud Committed by Forging Foreign Demand Drafts	April 22, 1996
+482.	DOS.No.FGV(F)/7A/23.04.001/96	Fraudulent Transactions in Deposit Areas	April 13, 1996
+483.	UBD.No.55/12.05.00/95-96	Frauds in Banks	March 27, 1996
+484.	UBD.No.I&L.49/12.05.00/95-96	Frauds in Banks - Extension Counters	March 14, 1996
+485.	UBD.No.I&L.50/12.05.00/95-96	Frauds in Banks - Foreign Exchange Transactions	March 14, 1996
+486.	UBD.No.I&L.51/12.05.00/95-96	Frauds in Banks through Fictitious Accounts	March 14, 1996
+487.	DOS.No.GC.BC.F.7/23.04.001/96	Frauds in Banks - Foreign Exchange Transactions	March 01, 1996
+488.	DOS.No.GC.BC.6/17.12.001/95-96	Committee to Enquire into various Aspects relating to Frauds and Malpractices in Banks	February 08, 1996
+489.	UBD.No.I&L.PCB.36/12.05.00/95-96	Committee to enquire into various aspects relating to frauds and malpractices in banks	February 05, 1996
+490.	DOS.No.GC.BC.5/23.04.01/95	Frauds in Banks	January 20, 1996
+491.	DOS.No.BC.4/16.01.026/95-96	Post-Shipment Credit in Foreign Currency (PSCFC) Scheme - Refinance Availment - Irregularities	January 12, 1996
+492.	DOS.No.GC.BC.2/23.04.001/95-96	Frauds in Banks - Extension Counters	January 12, 1996
+493.	DOS.No.GC.BC.3/23.04.001/95	Frauds in Banks - Foreign Exchange Transactions	January 12, 1996
+494.	DOS.No.GC.BC.1/23.04.001/95-96	Frauds in Banks through Fictitious Accounts	January 10, 1996
+495.	DOS.No.BC.17/16.13.100/95	Credit Assistance to Weaker Sections of the Society under Poverty Alleviation Programme	December 29, 1995
+496.	DOS.No.BC.16/14.02.001/95	Report of the Pendharkar Working Group - Formats for Reporting System in Banks	December 01, 1995
+497.	DOS.No.OSM.SRS.BKS.74/15.02.800/95-96	Supervisory Reporting System - (Group 'C' Banks) - DSB Returns (First Tranche)	November 23, 1995
+498.	DOS.No.BC.15/17.12.001/95	Committee to Enquire into Various Aspects relating to Frauds and Malpractices in Banks	October 10, 1995
+499.	DOS.No.BC.13/16.09.001/95	Inter-Branch Accounts - Reconciliation - Originating Debit Entries	September 11, 1995
+500.	UBD.No.I&L.PCB.12/12.05.00/95-96	Committee to enquire into various aspects relating to frauds and malpractices in banks	September 08, 1995
+501.	DOS.No.BC.12/16.13.100/95	Quick Special Audit of Sundry/Suspense Accounts	August 18, 1995
+502.	DOS.No.BC.11/16.09.001/95	Reconciliation of Inter-Branch Accounts of Banks	July 25, 1995
+503.	DOS.No.GC.BC.10/17.12.001/95-96	Committee to Enquire into Various Aspects relating to Frauds and Malpractices in Banks	July 19, 1995
+504.	DOS.No.BC.8/16.13.100/95	Reconciliation of Clearing Differences	July 06, 1995
+505.	DOS.No.BC.9/16.13.100/95	Reconciliation of Outstanding Entries in Inter-Bank Accounts.	July 06, 1995
+506.	D.O.No.DOS.2321/16.09.001/95	Reconciliation of Inter-branch Accounts	June 20, 1995
+507.	DOS.No.BC.6/16.13.100/94-95	Balancing of Books	June 16, 1995
+508.	DOS.No.BC.7/16.13.100/95	MICR Clearing - Reconciliation of Clearing Differences	June 02, 1995
+509.	DOS.1128/17.05.001/95	Action Plan on Anti-corruption Measures 1995-96 Public Sector Banks and Financial Institutions	May 20, 1995
+510.	DOS.No.BC.5/16.13.100/95	Quick Special Audit of Sundry/Suspense Accounts etc.	May 05, 1995
+511.	DOS.No.GC.BC.3/17.05.001/95	Vigilance Function and Machinery in Public Sector Banks	March 30, 1995
+512.	DOS.No.437/08.01.003/95	DICGC Claims - Certificate to be Issued by Statutory Auditors	March 10, 1995
+513.	DOS.No.16/17.04.001/95	Committee to Enquire into Various Aspects relating to Frauds and Malpractices in Banks	March 02, 1995
+514.	DOS.PS.OSS.BKs.BD.1/95	Off-Site Surveillance of Banks - Maintenance of Bank 'Dossiers'	February 28, 1995
+515.	UBD.No.I&L(PCB)38/12.15.00/94-95	34th Report of the Estimates Committee on the Ministry of Finance (Department of Economic Affairs) - Prevention of frauds	January 10, 1995
+516.	DOS.No.GC.BC.15/17.05.001/94	Vigilance Function and Machinery in Public Sector Banks	December 13, 1994
+517.	UBDNo.I&L27/12.05.00/94-95	Committee to Enquire into various aspects relating to Frauds and Malpractices in Banks - Obtaining Photographs of Depositors	October 31, 1994
+518.	DOS.No.BC.14/16.13.100/94	Compliance of Prudential Norms relating to Capital Adequacy, Income Recognition, Asset Classification, Provisioning, etc.	October 24, 1994
+519.	RPCD.No.BC.57/07.38.01-94/95	Fraudulent Operations in Deposits Accounts - Opening of and Collection of Cheques/Pay Orders etc.	October 24, 1994
+520.	UBD.No.I&L/PCB24/12.05.00/94-95	Fraudulent Encashment of Payment Instruments	October 19, 1994
+521.	DOS.No.GC.BC.13/17.04.001/94	34th Report of the Estimates Committee on the Ministry of Finance (Department of Economic Affairs) - Prevention of Frauds in Nationalised Banks	October 17, 1994
+522.	DOS.No.BC.11/14.02.001/94-95	Report of the Pendharkar Working Group - Formats for Reporting System in Banks	August 24, 1994
+523.	DOS.No.GC.BC.8/17.04.001/94	Committee to Enquire into various Aspects relating to Frauds and Malpractices in Banks	August 17, 1994
+524.	DOS.No.BC.7/16.13.100/94	MICR Clearing - Reconciliation of Clearing Differences	June 17, 1994
+525.	UBD.No.POT.77/09.06.00/93-94	Introduction of a System of Concurrent Audit in Banks as Recommended by the Ghosh Committee on Frauds and Malpractices in Banks	May 31, 1994
+526.	DOS.No.BC.6/16.13.100/94	Write-off of Bad Debts - Reporting	May 27, 1994
+527.	UBD.No.I&L.74/12.05.00/93/94	Committee to Enquire into various aspects relating to Frauds and Malpractices in Banks	May 27, 1994
+528.	DBOD.No.FMC(SIFU).BC.462/27.01.039/93-94	Quick Audit of Sundry/Suspense Accounts	May 19, 1994
+529.	DOS.No.BC.4/16.14.001/93-94	Credit Monitoring System - Health Code System for Borrowal Accounts	March 19, 1994
+530.	DOS.No.BC.3/16.25.001/94	Discounting/Rediscounting of Bills for Finance Companies	March 02, 1994
+531.	DOS.No.BC.No.2/16.13.100/94	Review of Larger Advances	February 28, 1994
+532.	DOS.No.BC.1/16.10.001/93-94	Long Form Audit Reports - Submission of	January 19, 1994
+533.	DBOD.No.BC.212/16.13.100/93-94	Audit of Assets Classification and Income Recognition by Branch and Statutory Auditor/s	December 30, 1993
+534.	UBD.No.Dc.305/13.10.05/93-94	System and Staffing Inspection - Urban Banks Department, Central office 1993 - Compliance of Para 5.8	December 24, 1993
+535.	DBOD.No.BC.205 /14.02.001/93	Access to the Computers of the Banks Being Inspected	December 17, 1993
+536.	UBDNo.36/12.05.00/93-94	Committee to Enquire into various aspects relating to Frauds and Malpractices in Banks - Primary Co-operative Banks	December 08, 1993
+537.	UBD.34/12.05.00/93-94	Fraudulent Encashment of Refund Orders, Interest/Dividend Warrants, etc.	December 03, 1993
+538.	DBOD.No.BC.196/16.13.100/93-94	Audit of Assets Classification and Income Recognition by Statutory Central Auditor/s	November 26, 1993
+539.	UBD.138/12.05.00/93-94	Fraudulent Encashment/Misappropriation of Interest/Dividend Warrants and Refund Orders/Payable to Shareholders and Depositors	September 30, 1993
+540.	UBD.21/12:15:00/93-94	Committee to Enquire into various aspects relating to Frauds and Malpractices in Banks - Primary (Urban) Co-operative Banks	September 21, 1993
+541.	UBD.No.POT.27/09.06.00/93-94	Norms for Audit Classification/Audit of Urban Co-operative Banks	August 17, 1993
+542.	DBOD.No.BC.97/16.10.001/93	Long Form Audit Reports (LFAR)	April 03, 1993
+543.	DBOD.No.BC.96/17.08.03/93	Caution Advices Regarding Un-Scrupulous Borrowers	March 30, 1993
+544.	DBOD.No.BC.56/16.13.100/92	Inspection Under Section 35 of the Banking Regulation Act, 1949	November 30, 1992
+545.	DBOD.No.613/16.10.001/92	Long Form Audit Report	November 18, 1992
+546.	UBD.No.Plan.2/UB.17(B)-92/93	Monitoring of Priority Sector Advances - Submission of Returns/Statements	July 08, 1992
+547.	UBD.I&L.2/M17-91/92	Fraud in Banks - FCNR/NRE Accounts	August 20, 1991
+548.	D.O.FIC.Pol.No.278-287/90-91	Information System for Financial Institutions	March 05, 1991
+549.	D.O.FIC.Pol.No.255-264/90-91	Information System for Financial Institutions	February 27, 1991
+550.	DBOD.No.Fol.BC.125/G.729-89	Long Form Audit Reports (LFAR)	May 12, 1989
+551.	DBOD.No.GC.BC.101/C.408A-89	Benami Transactions by a Branch Manager of a Bank	March 30, 1989
+552.	DBOD.No.Prog.BC.58/C.124(C)-88	Report of the Pendharkar Working Group to Review the Existing System of Inspection of Banks by RBI - Formats for Reporting System in Banks	December 31, 1988
+553.	DBOD.No.Prog.BC.43/C.124(C)-88	Report of Pendharkar Working Group to Review the Existing System of Inspection of Banks by Reserve Bank Of India	October 26, 1988
+554.	DBOD.No.Prog.BC.159/C.124(C)-88	Report of the Pendharkar Working Group to Review the Existing System of Inspection of Banks by Reserve Bank of India - Formats for Reporting System in Banks	June 25, 1988
+555.	DBOD.No.GC.BC.139/C.408A(SA)-88	Security Arrangements in Banks	May 23, 1988
+556.	DBOD.No.IBS.692/IBS.Vl-88	Monitoring of Overseas Branch Operations	May 16, 1988
+557.	DBOD.No.Fol.BC.130/C.249-88	Submission of Compliance Report on Audit Objections	May 02, 1988
+558.	DBOD.No.IBS.511/C.469(91)-88	Visit Reports of the Officials Visiting Abroad	March 30, 1988
+559.	DBOD.No.IBS.200/C.212(MON)-88	Operation of Overseas Branches	January 29, 1988
+560.	UBD.I&L.81/J-1-87/88	Inspection Report on Urban Co-operative Banks	December 16, 1987
+561.	DO.DBOD.No.GC.BC.44/C.408(A)-87	Frauds by a Bombay-based Gang by Intercepting Cheques from Post Offices - Arrest of Five Members of the Gang by CBI, Special Crime Branch, Madras	September 29, 1987
+562.	UBD.No.I&L.21/J-1-87/88	Kite-flying Operations / Purchase of Cheques	July 20, 1987
+563.	DBOD.No.GC.BC.65/C.408(A)-87	Fraudulent Withdrawal from Savings Bank Account/Non-Crediting of Deposits in Savings Bank Account	June 16, 1987
+564.	Notification No. DFC.55/DG(O)-87	Amended up to 09.12.2005 : Residuary Non-Banking Companies (Reserve Bank) Directions, 1987	May 15, 1987
+565.	Notification No. DFC.55/DG(O)-87	Amended up to 14-12-2007 - Residuary Non-Banking Companies (Reserve Bank) Directions, 1987	May 15, 1987
+566.	Notification No. DFC.55/DG(O)-87	Amended up to 30.06.2005 - Residuary Non-Banking Companies (Reserve Bank) Directions, 1987	May 15, 1987
+567.	Notification No.DFC.55/DG (O)-87	Amended up to 03-08-2004 - Residuary Non-Banking Companies (Reserve Bank) Directions, 1987	May 15, 1987
+568.	Notification No.DFC.55/DG (O)-87	Amended up to 05-10-2004 - Master Circular - Acceptance of Deposits by Residuary Non-Banking Companies	May 15, 1987
+569.	Notification No.DFC.55/DG(O)-87	Amended up to 29.03.2003 - Residuary Non-Banking Companies (Reserve Bank) Directions, 1987	May 15, 1987
+570.	Notification No.DFC.55/DG(O)-87	Amended up to 30.06.2007 : Residuary Non-Banking Companies (Reserve Bank) Directions, 1987	May 15, 1987
+571.	DBOD.No.GC.BC.46/C.408A(89)-87	Vigilance Arrangements in the Banks	April 23, 1987
+572.	DBOD.No.GC.BC.27/C.408A(SA)-87	Reporting of Cases of Bank Robberies/Dacoities and Security Arrangements in Banks	March 12, 1987
+573.	DBOD.No.Prog.BC.129/C.283(A)-86	Inspection of Banks - Sets of Specimen Signatures	November 13, 1986
+574.	DBOD.No.SIC.BC.117/C.739(A-1)-86	Frauds in Banks	October 25, 1986
+575.	DBOD.No.Prog.BC.91/C.124(C)-86.	Report of the Pendharkar Working Group to Review the Existing System of Inspection of Banks by Reserve Bank of India and Formats for Reporting System in Banks	September 04, 1986
+576.	DBOD.NO.GC.BC.60/C.408A(SA)-86	Security Arrangements in Banks	May 21, 1986
+577.	DBOD.No.Prog.BC.46/C.124(C)-86	Report of the Pendharkar Working Group to Review the Existing System of Inspection of Banks by Reserve Bank of India and Formats for Reporting System in Banks	April 16, 1986
+578.	DBOD.No.Prog.BC.33/C.124(C)-86	Report of the Pendharkar Working Group to Review the Existing System of Inspection of Banks by RBI - Formats for Reporting System in Banks	March 14, 1986
+579.	DBOD.No.App.465/C.452(K)-85	Banks Discretion in Treating certain Branches Selected for Audit as Unaudited	November 09, 1985
+580.	DBOD.No.Fol.BC.121/729-85	Long Form Audit Report (LFAR)	September 24, 1985
+581.	DBOD.No.Prog.BC.116/C.124(C)-85	Report of the Pendharkar Working Group to Review the Existing System of Inspection of Banks by Reserve Bank of India - Formats for Reporting System in Banks	September 06, 1985
+582.	DBOD.No.GC.BC.104/C/408(A).85	Frauds in Deposit Accounts in Banks	August 23, 1985
+583.	DBOD.No.Fol.BC.97/C.729-85	Long Form Audit Report (LFAR)	August 16, 1985
+584.	DBOD.No.App.174/C.452(K)-95	Remuneration Payable to Auditors for Submission of Long Form Audit Reports (LFARs)	August 13, 1985
+585.	UBD.No.I&L:2076/J.1-84/85	Compliance on the Inspection Reports of the Reserve Bank of India - Follow-up	May 21, 1985
+586.	DBOD.No.GC.BC.49/C.408(A)-85	Payment of Demand Drafts	April 10, 1985
+587.	DBOD.No.App.1016/C.452(G)-85	Section 30(1A) of the Banking Regulation Act, 1949 - Appointment of Auditors	March 19, 1985
+588.	DBOD.No.App.BC.31/C.452(K)-85	Section 30(1A) of the Banking Regulation Act, 1949 - Appointment of Auditors	March 19, 1985
+589.	DBOD No.App.983/C.452(G)-85	Appointment of Statutory Auditors as Internal Auditors of Banks	March 12, 1985
+590.	DBOD.No.Prog.BC.27/C.124(C)-85	Report of the Pendharkar Working Group to Review the Existing System of Inspection of Banks by Reserve Bank of India - Formats for Reporting System in Banks	March 12, 1985
+591.	DBOD No.App.BC.12/C.452(K)-85	Appointment of Statutory Auditors and Branch Auditors	February 01, 1985
+592.	DBOD No.App.BC.13/C.452(K)-85	Appointment of Statutory Auditors and Branch Auditors	February 01, 1985
+593.	DBOD.No.Prog.BC.10/C.283(A)-85	Supply of Sets of Specimen Signatures	January 29, 1985
+594.	DBOD.No.Prog.BC.124/C.283(A)-84	Inspection of Banks - Sets of Specimen Signatures	December 19, 1984
+595.	DBOD.No.App.452/C.452(G)-84	Appointment of Statutory Auditors as Internal Auditors of Banks	November 13, 1984
+596.	DBOD.No.Prog.BC.109/C.124(C)-84	Report of the Pendharkar Working Group to Review the Existing System of Inspection of Banks by Reserve Bank of India - Recommendation No.28 relating to Internal Inspection/Audit of Commercial Banks	November 09, 1984
+597.	DBOD No.App.BC.70/C.452(K)-84	Appointment of Statutory Auditors and Branch Auditors	July 25, 1984
+598.	DBOD.No.App.BC.71/C.452(K)-84	Appointment of Statutory Auditors and Branch Auditors	July 25, 1984
+599.	DBOD.No.GC.BC.53/C.408A(89)-34	Measures to Refine the Systems so as to Strengthen the Preventive Measures for Curbing Malpractices and Harassment in Banks	June 05, 1984
+600.	UBD.No.2420-J.20-83/84	Frauds, Misappropriation, Embezzlements and Defalcation of Funds in Primary (Urban) Co-operative Banks	April 02, 1984
+601.	DBOD.No.GC.SIC.BC.19/C.408(A)-84	Opening of New Deposit Accounts and Issue of Cheque Books to Customers	March 01, 1984
+602.	DBOD.No.App.702/C.452(G)-84	Section 30(1A) of the Banking Regulation Act, 1949 - Appointment of Auditors	January 20, 1984
+603.	DBOD.No.App.BC.4/C.452(K)-84	Section 30(1A) of the Banking Regulation Act, 1949 - Appointment of Statutory Auditors	January 20, 1984
+604.	DBOD.No.GC.(SIC).BC.66/C408A-83	Frauds in Banks	August 03, 1983
+605.	DBOD.No.App.14/C.452(G)-83	Appointment of Statutory Auditors as Internal Auditors of Banks	July 07, 1983
+606.	DBOD.No.GC.BC.3/C.408(A)-83	Frauds in Banks	January 10, 1983
+607.	DBOD.No.GC.BC.14/C.408(A)-82	Frauds in Banks	February 12, 1982
+608.	DBOD.No.HlNDI.BC.4/C.486-82	Use of Hindi in the Banks - Submission of Inspection Reports Forwarded by the Officials of Rajbasha Vibhag	January 08, 1982
+609.	DBOD.No.Com.BC.103/C.408(A)-81	X	August 19, 1981
+610.	ACD.ID(P)6390A/J.27-80/81	Frauds - Chemical Alterations in Negotiable Instruments	February 13, 1981
+611.	ACD.ID.(A).1143:J.1-78/9	Inspection Reports on Co-operative Banks - Follow-up Action	September 16, 1978
+612.	ACD.ID.(A)1141/J.1-78/9	Role of Apex Banks in the Follow-up of Inspection Reports Issued by the Reserve Bank of India	September 16, 1978
+613.	DBOD.No.COM.BC.18/C.408A-78	Frauds in Banks	February 15, 1978
+614.	Notification DNBC.39/DG(H)-77	Miscellaneous Non-Banking Companies (Reserve Bank) Directions, 1977: Amended up to 01.10.2002	June 20, 1977
+615.	Notification No. DNBC.39/DG (H)-77	Miscellaneous Non-Banking Companies (Reserve Bank) Directions, 1977: Amended up to 09.12.2005	June 20, 1977
+616.	Notification No.DNBC.39/DG(H)-77	Master Circular - Acceptance of Deposits by Miscellaneous Non-Banking Companies: Amended upto 05-10-2004	June 20, 1977
+617.	Notification No.DNBC.39/DG(H)-77	Miscellaneous Non-banking Companies (Reserve Bank) Directions, 1977: Amended up to 03-08-2004	June 20, 1977
+618.	Notification No.DNBC.39/DG(H)-77	Miscellaneous Non-Banking Companies (Reserve Bank) Directions, 1977: Amended up to 27.12.2005	June 20, 1977
+619.	DBOD.No.Man.17/C.471D-77	Machinery for Internal Inspection/Audit	January 17, 1977
+620.	ACD.ID.1189/J.1-75/6	Role of Apex Banks in the Follow up of Inspection Reports Issued by the Reserve Bank of India	July 28, 1975
+621.	ACD.ID.1230/J.1-75/6	Inspection Reports on Co-operative Banks - Follow-up Action	July 28, 1975
+622.	DBOD.No.Man.B.C.84/C.47ID-74	Conference of the Heads of Internal Inspection/Audit Departments of Commercial Banks	September 03, 1974
+623.	DBOD.No.FCS.1155/C.408(A)-71	Frauds in Banks	August 05, 1971
+624.	DBOD.No.ARS.568/C.452(K)-71	Appointment of Statutory Central Auditors for the Year 1971	June 23, 1971
+625.	DBOD.No.EFS.636/C.452(K)-70	Section 30(1A) of the BR Act, 1949	March 26, 1970
+626.	ACD:IL 4566/A:3/67-8	Inspection of Co-operative Banks under Section 35 of the Banking Regulation Act, 1949 (As Applicable to Co-operative Societies)	June 25, 1968
+627.	ACD:I&L:2048/A:2(1)/67-8	Inspection of Co-operative Banks under Section 35 of the Banking Regulation Act, 1949 (As Applicable to Co-operative Societies) - Consent Letters - Important Developments which fall under the Administrative Jurisdiction of the Co-operative Department	December 04, 1967
+628.	DBOD.No.EFS.109/C.107-66	Discounting/Collection of Hundies	February 03, 1966

@@ -24,7 +24,7 @@ RAW = REPO / "data" / "raw"
 # Every source document that is legal evidence, with its sha256 and whether it is exempt from
 # live re-verification. Changing this list is a statement that you re-downloaded the document
 # from the regulator (or, for an exempt one, that a named person did) and compared the hash.
-PINNED_SOURCES: dict[str, tuple[str, bool]] = {
+PINNED_SOURCES: dict[str, tuple[str, bool] | tuple[str, bool, str]] = {
     "CERT-In_Directions_70B_28.04.2022.pdf": (
         "202c2f3953d792dcfb3ecb3634fc82ab75437ee596de89b8d59a211e8e42431f",
         False,
@@ -65,6 +65,16 @@ PINNED_SOURCES: dict[str, tuple[str, bool]] = {
         "5b2432e53e1b1d1b500fb21ebe6176d28bcf3386543097b6c53aeb43ad860073",
         True,
     ),
+    "RBI_NBFC_IT_Framework_Master_Direction_2017.html": (
+        "040e28071c8e225737d82e966830d772a06e25ad55890f0428276f1e3d8c317c",
+        False,
+        "f00966dfa118b8c4530b632e598d4eb253ed8c043f57980451b1163e23a9c20c",
+    ),
+    "RBI_Circulars_Withdrawn_List.html": (
+        "976c51313ff1240a17d1b49bf77915d6435df1977f0ed7514eddf7e232a05e2d",
+        False,
+        "31584176c8b4f771c7086d558b3ade6d82156f7b2d4d5f4577a725f85e257124",
+    ),
 }
 
 
@@ -75,13 +85,23 @@ def _manifest() -> list[dict]:
 def test_committed_sources_match_the_pinned_list():
     """Catches: a source added, replaced or newly exempted without a reviewer-visible change."""
     current = {
-        e["filename"]: (e["sha256"], bool(e.get("reverify_exemption")))
+        e["filename"]: (
+            (e["sha256"], bool(e.get("reverify_exemption")), e["content_sha256"])
+            if e.get("content_sha256")
+            else (e["sha256"], bool(e.get("reverify_exemption")))
+        )
         for e in _manifest()
-        if e.get("status", "current") == "current" and e["filename"].lower().endswith(".pdf")
+        if e.get("status", "current") == "current"
+        and e["filename"].lower().endswith((".pdf", ".html"))
     }
     assert current == PINNED_SOURCES
-    for filename, (sha, _) in PINNED_SOURCES.items():
-        assert hashlib.sha256((RAW / filename).read_bytes()).hexdigest() == sha
+    for filename, pin in PINNED_SOURCES.items():
+        assert hashlib.sha256((RAW / filename).read_bytes()).hexdigest() == pin[0]
+        if len(pin) == 3:
+            meta = json.loads(
+                (RAW / filename).with_suffix(".meta.json").read_text(encoding="utf-8")
+            )
+            assert meta["content_sha256"] == pin[2]
 
 
 def test_no_committed_source_waives_the_authenticity_or_integrity_gate():

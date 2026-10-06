@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sentinelbrief.local/schema/migration.schema.json",
+  "title": "Deterministic instrument migration proposal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "old_instrument_id", "new_instrument_id", "disclaimer", "method", "method_version", "mappings"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "id": {"type": "string"},
+    "old_instrument_id": {"type": "string"},
+    "new_instrument_id": {"type": "string"},
+    "disclaimer": {"type": "string", "minLength": 20},
+    "method": {"type": "string"},
+    "method_version": {"type": "string"},
+    "mappings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["old_clause", "old_excerpt", "old_char_start", "old_char_end", "status", "confidence", "candidates", "method", "method_version", "reviewer"],
+        "properties": {
+          "old_clause": {"type": "string"},
+          "old_excerpt": {"type": "string"},
+          "old_char_start": {"type": "integer", "minimum": 0},
+          "old_char_end": {"type": "integer", "minimum": 1},
+          "status": {"enum": ["matched", "changed", "obsolete_no_successor", "needs_human"]},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "candidates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["paragraph", "pdf_page", "score", "excerpt"],
+              "properties": {
+                "paragraph": {"type": "string"},
+                "pdf_page": {"type": "integer", "minimum": 1},
+                "score": {"type": "number", "minimum": 0, "maximum": 1},
+                "excerpt": {"type": "string"}
+              }
+            }
+          },
+          "differences": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "method": {"type": "string"},
+          "method_version": {"type": "string"},
+          "reviewer": {"type": "null"}
+        },
+        "allOf": [
+          {"if": {"properties": {"status": {"const": "changed"}}}, "then": {"required": ["differences"]}}
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "instrument_id": "rbi.nbfc-it-framework.2017",
+  "source_url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=10999&Mode=0",
+  "source_sha256": "040e28071c8e225737d82e966830d772a06e25ad55890f0428276f1e3d8c317c",
+  "content_sha256": "f00966dfa118b8c4530b632e598d4eb253ed8c043f57980451b1163e23a9c20c",
+  "retrieved_at": "2026-10-06T13:33:57Z",
+  "extractor": "sentinelbrief-rbi-html",
+  "extractor_version": "1.0",
+  "segments": [
+    {
+      "id": "annex-i",
+      "char_start": 961,
+      "char_end": 1360
+    },
+    {
+      "id": "intro-2",
+      "char_start": 1360,
+      "char_end": 2352
+    },
+    {
+      "id": "intro-4",
+      "char_start": 2352,
+      "char_end": 2515
+    },
+    {
+      "id": "intro-5",
+      "char_start": 2515,
+      "char_end": 2712
+    },
+    {
+      "id": "1",
+      "char_start": 2712,
+      "char_end": 4190
+    },
+    {
+      "id": "1.1",
+      "char_start": 4190,
+      "char_end": 4873
+    },
+    {
+      "id": "1.2",
+      "char_start": 4873,
+      "char_end": 5660
+    },
+    {
+      "id": "2",
+      "char_start": 5660,
+      "char_end": 6678
+    },
+    {
+      "id": "3",
+      "char_start": 6678,
+      "char_end": 7540
+    },
+    {
+      "id": "3.1",
+      "char_start": 7540,
+      "char_end": 10698
+    },
+    {
+      "id": "3.2",
+      "char_start": 10698,
+      "char_end": 11209
+    },
+    {
+      "id": "3.3",
+      "char_start": 11209,
+      "char_end": 11815
+    },
+    {
+      "id": "3.4",
+      "char_start": 11815,
+      "char_end": 12285
+    },
+    {
+      "id": "3.5",
+      "char_start": 12285,
+      "char_end": 13363
+    },
+    {
+      "id": "3.6",
+      "char_start": 13363,
+      "char_end": 13845
+    },
+    {
+      "id": "3.7",
+      "char_start": 13845,
+      "char_end": 14548
+    },
+    {
+      "id": "3.8",
+      "char_start": 14548,
+      "char_end": 14974
+    },
+    {
+      "id": "3.9",
+      "char_start": 14974,
+      "char_end": 15618
+    },
+    {
+      "id": "3.10",
+      "char_start": 15618,
+      "char_end": 15997
+    },
+    {
+      "id": "3.11",
+      "char_start": 15997,
+      "char_end": 16320
+    },
+    {
+      "id": "3.12",
+      "char_start": 16320,
+      "char_end": 16941
+    },
+    {
+      "id": "4",
+      "char_start": 16941,
+      "char_end": 17317
+    },
+    {
+      "id": "4.1",
+      "char_start": 17317,
+      "char_end": 18011
+    },
+    {
+      "id": "4.2",
+      "char_start": 18011,
+      "char_end": 18778
+    },
+    {
+      "id": "4.3",
+      "char_start": 18778,
+      "char_end": 19108
+    },
+    {
+      "id": "4.4",
+      "char_start": 19108,
+      "char_end": 20566
+    },
+    {
+      "id": "4.5",
+      "char_start": 20566,
+      "char_end": 21107
+    },
+    {
+      "id": "5",
+      "char_start": 21107,
+      "char_end": 21569
+    },
+    {
+      "id": "5.1",
+      "char_start": 21569,
+      "char_end": 22103
+    },
+    {
+      "id": "5.2",
+      "char_start": 22103,
+      "char_end": 22621
+    },
+    {
+      "id": "5.3",
+      "char_start": 22621,
+      "char_end": 23224
+    },
+    {
+      "id": "5.4",
+      "char_start": 23224,
+      "char_end": 23605
+    },
+    {
+      "id": "5.5",
+      "char_start": 23605,
+      "char_end": 23774
+    },
+    {
+      "id": "5.6",
+      "char_start": 23774,
+      "char_end": 24244
+    },
+    {
+      "id": "5.7",
+      "char_start": 24244,
+      "char_end": 24770
+    },
+    {
+      "id": "6",
+      "char_start": 24770,
+      "char_end": 25481
+    },
+    {
+      "id": "6.1",
+      "char_start": 25481,
+      "char_end": 25840
+    },
+    {
+      "id": "6.2",
+      "char_start": 25840,
+      "char_end": 26276
+    },
+    {
+      "id": "6.3",
+      "char_start": 26276,
+      "char_end": 26403
+    },
+    {
+      "id": "6.4",
+      "char_start": 26403,
+      "char_end": 26899
+    },
+    {
+      "id": "7",
+      "char_start": 26899,
+      "char_end": 27555
+    },
+    {
+      "id": "7.1",
+      "char_start": 27555,
+      "char_end": 29237
+    },
+    {
+      "id": "7.2",
+      "char_start": 29237,
+      "char_end": 29731
+    },
+    {
+      "id": "7.3",
+      "char_start": 29731,
+      "char_end": 30877
+    },
+    {
+      "id": "7-closing",
+      "char_start": 30877,
+      "char_end": 31306
+    },
+    {
+      "id": "8",
+      "char_start": 31306,
+      "char_end": 32586
+    },
+    {
+      "id": "8.1",
+      "char_start": 32586,
+      "char_end": 32694
+    }
+  ]
+}

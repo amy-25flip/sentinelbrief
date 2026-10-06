@@ -67,6 +67,9 @@ Things needing a human or a primary-source check.
 - [ ] **IRDAI Information and Cyber Security Guidelines, 2023:** the regulator's robots.txt disallows all automated access. A person must download the PDF from https://irdai.gov.in/document-detail?documentId=3314780 and record `acquired_by` in the manifest. Not ingested; no IRDAI obligation exists.
 - [ ] **RBI cybersecurity Directions for other entity types** (AIFIs, UCBs, Payments Banks found; Commercial Banks and Small Finance Banks not yet located): PDFs need a person to download them. Not ingested.
 - [ ] **RBI list of repealed circulars and the old circular texts** (for the migrator): not located or ingested.
+- [x] **RBI list of repealed circulars and the 2017 NBFC IT Direction:** ingested as HTML in Build 17 with raw-byte and extracted-content hashes.
+- [ ] **2017 Annex I template:** the stored Direction page links to a separate PDF instead of embedding the template. The migrator can identify the Annex label but cannot quote or segment the template until that linked PDF is acquired and pinned.
+- [ ] **Withdrawal circular display:** the stored withdrawn-list page contains row 47 for the 2017 Direction but does not display `RBI/DoS/2026-27/221`. The stored 2026 Direction paragraph 155 does state `DoS.CO.PPG.66/11.01.005/2026-27`; acquire the separate withdrawal circular if its first reference number is needed as primary evidence.
 
 ## Build 11 (RBI Directions for UCBs, AIFIs and Payments Banks), 2026-10-04
 
@@ -105,3 +108,10 @@ Things needing a human or a primary-source check.
 - [ ] **SEBI forensic report for Low or Medium incidents** (RCA inconclusive, or SEBI / HPSC-CS directs): not evaluated; stated in the not-applicable reason.
 - [ ] **SEBI quarterly report date:** is "within 15 days from the quarter ended" the 15th of the next month, as modelled?
 - [ ] **Workspace has no authentication.** Same-origin checking stops cross-site posts only.
+
+## Migrator limits (Review 15)
+
+- The named-recipient rule uses a fixed list of names taken from this one pair of instruments. Another pair needs its own list or a general method.
+- The modal rule compares "may" and "shall" only. "Should" becoming "shall" is not reported as a change, and where it is the only difference the rule can misfire (clause 5.4).
+- The gold mappings have seven known status errors (Amendment 1 in `docs/LABELS_MIGRATOR.md`) and have not been reviewed by a qualified person.
+- Only one pair of instruments is mapped. The other 2026 RBI Directions have predecessors on the same repeal list that are not ingested.

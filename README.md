@@ -14,6 +14,7 @@ A deterministic engine over a clause-level, citation-first dataset of Indian cyb
 - **Every claim is cited.** Each obligation stores the verbatim clause, the PDF page and character offsets, and the SHA-256 of the source file. A validator re-checks all of it on every run.
 - **Incident workspace.** Field-level filing drafts where each field is labelled *computed*, *your input*, or *required by the clause (quoted)*; approval by a named person; a hash-chained evidence timeline; an audit bundle; a calendar export for recurring duties. It never files anything.
 - **Card feed.** Short cards generated from the obligation records, with a grounding check that rejects facts not present in the cited text. Also served as RSS at `/feed.xml`.
+- **Circular migrator.** RBI repealed its 2017 NBFC IT Framework in July 2026 and published no clause-by-clause concordance. The migrator proposes, for each of the 47 old clauses, which paragraph of the 2026 Direction replaced it and whether the duty changed (for example "may" became "shall"). It is deterministic, uses no language model, labels every mapping "proposed, not confirmed" until a named person confirms it, and is browsable at `/migrations`.
 - **Simulation.** DPDP Rule 7 does not bind until 13 May 2027. You can ask the clock to show what it would require, and everything simulated is marked as not in force.
 
 ## Coverage
@@ -30,10 +31,11 @@ A deterministic engine over a clause-level, citation-first dataset of Indian cyb
 
 ## How correctness is checked
 
-- **368 tests**, including **mutation tests**: each deliberately breaks one legal rule in the engine and asserts which named scenarios then fail.
+- **382 tests**, including **mutation tests**: each deliberately breaks one legal rule in the engine and asserts which named scenarios then fail.
 - **104 dev scenarios**, each carrying the clause quotes it relies on, verified mechanically against the stored page text. All pass.
 - **Labels before code.** For RBI, SEBI and IRDAI the expected outcomes were written and committed before the implementation (`docs/LABELS_*.md`; the commit history shows the order).
 - **Hidden split written by the other party.** 30 scenarios the implementer of each part never saw while building it. They are kept out of this repository so they stay hidden. Current result: **29/30** (Wilson 95% interval 83.3% to 99.4%). The one failure is a recorded disagreement between two reviewers about a contested start date, not a defect either side concedes.
+- **Migrator measured against mappings written first.** 47 gold mappings were committed before the migrator existed. It puts the right paragraph first for **46/47** clauses (Wilson 95% interval 88.9% to 99.6%) and gets the status right for 38/47. Review found that seven of the nine status disagreements were mistakes in the gold labels, not in the method (the 2026 text had turned "may" into "shall"); the gold file was left as committed and both counts are in `docs/REVIEW_LOG.md`, Review 15, with an ablation of every tuned choice.
 - **Provenance controls.** Source PDFs are pinned by SHA-256, re-downloaded from the regulators and compared (`scripts/reverify_sources.py`), and guarded by gates that reject generated, truncated or undocumented files. `tests/test_provenance_attacks.py` records which attacks the gates stop and which one they do not.
 - **Independent review.** Each piece of work was reviewed by a different agent than the one that built it; findings and fixes are in `docs/REVIEW_LOG.md`, including the ones that went against the author.
 
@@ -81,7 +83,8 @@ Useful endpoints:
 - `data/instruments/`, `data/obligations/`, `data/entities/`, `data/reference/` the dataset.
 - `schema/` JSON Schemas for every record type.
 - `src/sentinelbrief/clock/` the deterministic engine. `workspace/` cases, drafts, calendar. `verify/` validators. `cards/` the feed. `ingest/`, `extract/` fetching and PDF text extraction.
-- `benchmark/scenarios/` the dev split; `benchmark/runner/scorer.py`; `benchmark/REVIEW_PACKET.md`.
+- `src/sentinelbrief/migrator/` the circular migrator; `data/migrations/` its proposals and human confirmations.
+- `benchmark/scenarios/` the dev split; `benchmark/runner/scorer.py`; `benchmark/migrator_gold.json` and `benchmark/runner/migrator_scorer.py`; `benchmark/REVIEW_PACKET.md`.
 - `tests/` unit, mutation and attack tests.
 - `docs/DECISIONS.md` every modelling decision with its alternative; `docs/OPEN_QUESTIONS.md`; `docs/REVIEW_LOG.md` all reviews; `docs/LABELS_*.md` label specifications; `docs/process/` the build briefs.
 
@@ -93,6 +96,8 @@ uv run python -m sentinelbrief.verify.validate_all           # schemas, citation
 uv run python benchmark/runner/scorer.py --split dev         # benchmark
 uv run python scripts/reverify_sources.py                    # re-download sources and compare (network)
 uv run python scripts/make_review_packet.py                  # regenerate the reviewer packet
+uv run python -m sentinelbrief.migrator build                # rebuild the 2017 to 2026 mapping proposals
+uv run python -m sentinelbrief.migrator score                # score them against the gold mappings
 ```
 
 ## License

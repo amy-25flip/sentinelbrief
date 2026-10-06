@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{{ instrument.title }} — SentinelBrief{% endblock %}
+{% block content %}
+<div class="disclaimer">Primary-source record; verify legal conclusions against the stored source.</div>
+<h1>{{ instrument.title }}</h1>
+<p>{{ instrument.description }}</p>
+<p>Reference: {{ instrument.reference_no }} · Status: {{ instrument.status }}</p>
+{% if instrument.id == 'rbi.nbfc-it-framework.2017' %}
+<p><a href="/migrations/rbi.nbfc-it-framework.2017__rbi.nbfc-cyber.2026">View proposed mappings to the 2026 Direction</a></p>
+{% endif %}
+<p><a href="{{ instrument.url }}" rel="noopener">Official source page</a></p>
+{% endblock %}

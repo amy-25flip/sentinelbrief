@@ -214,6 +214,24 @@ def test_main_respects_robots_by_default(tmp_path):
     assert reverify_sources.main(["--raw-dir", str(raw_dir)]) == 1
 
 
+@respx.mock
+def test_html_wrapper_change_with_same_instrument_content_passes(tmp_path):
+    source = REPO / "data/raw/RBI_NBFC_IT_Framework_Master_Direction_2017.html"
+    changed = source.read_bytes() + b"\n<!-- volatile wrapper marker -->\n"
+    entry = next(
+        item
+        for item in json.loads((REPO / "data/raw/manifest.json").read_text(encoding="utf-8"))[
+            "entries"
+        ]
+        if item["filename"] == source.name
+    )
+    respx.get(entry["url"]).respond(200, content=changed)
+    finding = reverify_sources.compare_entry(entry, tmp_path, respect_robots=False)
+    assert finding.ok
+    assert "content_sha256" in finding.message
+    assert "raw page bytes may differ" in finding.message
+
+
 @pytest.mark.live
 def test_live_reverify_sources_wrapper():
     assert reverify_sources.main(["--raw-dir", str(REPO / "data" / "raw"), "--ignore-robots"]) == 0

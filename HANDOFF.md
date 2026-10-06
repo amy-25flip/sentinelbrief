@@ -5,10 +5,10 @@ Written by the reviewer agent. Antigravity is no longer on the project; from Bui
 ## 1. Gate output (`python scripts/check.py`, run by the reviewer agent on 2026-10-06)
 
 ```
-PASS  pytest             368 passed, 1 deselected, 1 warning
+PASS  pytest             382 passed, 1 deselected, 1 warning
 PASS  ruff check         All checks passed!
-PASS  ruff format        65 files already formatted
-PASS  mypy (strict)      Success: no issues found in 33 source files
+PASS  ruff format        73 files already formatted
+PASS  mypy (strict)      Success: no issues found in 38 source files
 PASS  validate_all       All obligations and citations passed validation successfully!
 PASS  benchmark dev      Scenarios passed:   104/104  Wilson 95% CI [96.4%, 100.0%]
 ALL GATES PASSED
@@ -16,7 +16,9 @@ ALL GATES PASSED
 
 Hidden split (git-ignored, 30 scenarios): 29/30. Set A (14, written by the reviewer agent for Codex-built regimes) 14/14; set B (16, written by Codex for the reviewer agent-built work) 15/16. The one failure is the contested SEBI start date (Review 12, Q5).
 
-Live source re-verification, 2026-10-05: 5 passed, 0 failed, 5 skipped (RBI and IRDAI hosts refuse automated clients; those sources are pinned by sha256).
+Live source re-verification, 2026-10-06: 7 passed, 0 failed, 5 skipped (RBI's document server and IRDAI refuse automated clients; those PDFs are pinned by sha256). The two RBI HTML pages are compared by the hash of their extracted text, because the raw page bytes differ between fetches.
+
+Migrator (`python -m sentinelbrief.migrator score`): hit@1 46/47, status 38/47 against the gold as committed. Seven of the nine status disagreements are errors in the gold (Review 15, R15-4).
 
 ## 2. What exists
 
@@ -28,6 +30,8 @@ Live source re-verification, 2026-10-05: 5 passed, 0 failed, 5 skipped (RBI and 
 | RBI UCB, AIFI, Payments Banks Directions (12) | The reviewer agent | Codex (Review 12: found sound) |
 | IRDAI guidelines (8; partial) | The reviewer agent | Codex (Review 12), fixes checked by the reviewer agent |
 | Incident workspace, external clocks, evidence fields, cards | The reviewer agent | The reviewer agent self-review (Review 11), then Codex (Review 12) |
+| Recurring RBI NBFC duties, DPDP simulation, RSS feed | Codex | The reviewer agent (Review 14) |
+| HTML evidence path, 2017 NBFC IT Framework, circular migrator and its reviewer pages | Codex, against the reviewer agent's gold mappings | The reviewer agent (Review 15) |
 | Provenance attack tests and source pinning | The reviewer agent | Codex (Review 12: found sound) |
 
 ## 3. Claims about the law
@@ -40,7 +44,8 @@ Each rule has a unit test and a mutation test that names the scenarios that catc
 
 ## 5. Not done
 
-- **RBI Directions for commercial banks and small finance banks, the repeal list and old circular texts, and the migrator.** These need source documents a person must download.
+- **RBI Directions for commercial banks and small finance banks.** These need source documents a person must download.
+- **Migrator for other instrument pairs.** Only the 2017 NBFC IT Framework to the 2026 NBFC Direction is mapped.
 - **The rest of the IRDAI guidelines** (about 20 policies unread).
 - **LLM baselines** for the benchmark. Need API access.
 - **Signing the timeline head hash; SIEM input; tabletop generator.** Optional items in the brief, not started.

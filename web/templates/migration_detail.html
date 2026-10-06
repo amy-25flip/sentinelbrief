@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ migration.id }} — SentinelBrief{% endblock %}
+{% block content %}
+<div class="disclaimer">{{ migration.disclaimer }}</div>
+<h1>{{ migration.old_instrument_id }} → {{ migration.new_instrument_id }}</h1>
+<form method="get">
+  <label for="status">Filter by status</label>
+  <select id="status" name="status">
+    <option value="">All</option>
+    {% for value in ['matched','changed','obsolete_no_successor','needs_human'] %}
+    <option value="{{ value }}" {% if status_filter == value %}selected{% endif %}>{{ value }}</option>
+    {% endfor %}
+  </select><button class="btn" type="submit">Filter</button>
+</form>
+{% for mapping in mappings %}
+<section class="card" id="clause-{{ mapping.old_clause }}">
+  <h2>Old clause {{ mapping.old_clause }} <span class="status-badge">{{ mapping.status }}</span></h2>
+  {% if mapping.confirmation %}
+  <p>confirmed by {{ mapping.confirmation.reviewer }} on {{ mapping.confirmation.date }}{% if mapping.confirmation.decision == 'corrected' %} (corrected to {{ mapping.confirmation.paragraphs|join(', ') }}){% endif %}</p>
+  {% else %}<p><strong>proposed, not confirmed</strong></p>{% endif %}
+  <div class="meta-grid">
+    <div><h3>2017 text</h3><div class="verbatim">{{ mapping.old_excerpt }}</div></div>
+    <div><h3>2026 candidate</h3>{% for candidate in mapping.candidates %}<p>Paragraph {{ candidate.paragraph }}, PDF page {{ candidate.pdf_page }}, score {{ candidate.score }}</p><div class="verbatim">{{ candidate.excerpt }}</div>{% else %}<p>No successor proposed.</p>{% endfor %}</div>
+  </div>
+  {% if mapping.differences %}<ul>{% for difference in mapping.differences %}<li>{{ difference }}</li>{% endfor %}</ul>{% endif %}
+  <details>
+    <summary>Record human review</summary>
+    <form method="post" action="/api/migrations/{{ migration.id }}/{{ mapping.old_clause }}/confirm">
+      <label>Reviewer name <input name="reviewer" required></label>
+      <button class="btn" type="submit">Confirm proposal</button>
+    </form>
+    <form method="post" action="/api/migrations/{{ migration.id }}/{{ mapping.old_clause }}/correct">
+      <label>Reviewer name <input name="reviewer" required></label>
+      <label>Correct paragraph(s), comma-separated <input name="paragraphs" required></label>
+      <label>Reason <textarea name="reason" required></textarea></label>
+      <button class="btn" type="submit">Record correction</button>
+    </form>
+  </details>
+</section>
+{% endfor %}
+<div class="disclaimer">{{ migration.disclaimer }}</div>
+{% endblock %}

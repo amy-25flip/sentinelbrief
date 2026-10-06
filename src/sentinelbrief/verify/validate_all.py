@@ -16,6 +16,7 @@ def main() -> None:
     obligations_dir = os.path.join(base_dir, "data", "obligations")
     entities_dir = os.path.join(base_dir, "data", "entities")
     raw_dir = os.path.join(base_dir, "data", "raw")
+    migrations_dir = os.path.join(base_dir, "data", "migrations")
 
     print("Running raw-source provenance checks...")
     prov_errors, prov_warnings = verify_raw_dir(raw_dir)
@@ -35,10 +36,22 @@ def main() -> None:
         if os.path.exists(entities_dir)
         else []
     )
+    invalid_migrations = []
+    migration_file = os.path.join(
+        migrations_dir, "rbi.nbfc-it-framework.2017__rbi.nbfc-cyber.2026.json"
+    )
+    if os.path.exists(migration_file):
+        from sentinelbrief.verify.schema_validator import load_schema, validate_data_file
 
-    if invalid_inst or invalid_obl or invalid_ent:
+        try:
+            validate_data_file(migration_file, load_schema("migration.schema.json"))
+        except Exception as exc:
+            print(f"Schema validation failed for {migration_file}: {exc}")
+            invalid_migrations.append(migration_file)
+
+    if invalid_inst or invalid_obl or invalid_ent or invalid_migrations:
         print(
-            f"Schema validation failed: {len(invalid_inst)} instruments, {len(invalid_obl)} obligations, {len(invalid_ent)} entities"
+            f"Schema validation failed: {len(invalid_inst)} instruments, {len(invalid_obl)} obligations, {len(invalid_ent)} entities, {len(invalid_migrations)} migrations"
         )
         sys.exit(1)
 

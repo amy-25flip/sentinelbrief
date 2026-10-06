@@ -6,6 +6,12 @@ from pathlib import Path
 import pymupdf
 import pytest
 
+from sentinelbrief.extract.html_text import (
+    extract_html_text,
+)
+from sentinelbrief.extract.html_text import (
+    write_extraction as write_html_extraction,
+)
 from sentinelbrief.extract.pdf_text import (
     meta_path_for,
     txt_path_for,
@@ -301,3 +307,50 @@ def test_msme_extension_notice_is_ingested_and_says_25_sep_2022():
     normalised = " ".join(text.split())
     assert "effective on 25th September, 2022" in normalised
     assert "Micro, Small & Medium Enterprises" in normalised
+
+
+def test_rbi_html_extraction_is_deterministic():
+    source = RAW / "RBI_NBFC_IT_Framework_Master_Direction_2017.html"
+    first = extract_html_text(source)
+    second = extract_html_text(source)
+    assert first == second
+    assert len(first[1]) == 47
+
+
+def test_tampered_html_text_is_detected(tmp_path):
+    source = RAW / "RBI_NBFC_IT_Framework_Master_Direction_2017.html"
+    html = tmp_path / source.name
+    html.write_bytes(source.read_bytes())
+    meta = write_html_extraction(html, instrument_id="old", source_url="u", retrieved_at="t")
+    manifest = {
+        "version": 1,
+        "entries": [
+            {
+                "filename": html.name,
+                "url": "u",
+                "sha256": meta["source_sha256"],
+                "retrieved_at": "t",
+                "fetched_by": "BaseFetcher",
+            }
+        ],
+    }
+    (tmp_path / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+    html.with_suffix(".txt").write_text("tampered", encoding="utf-8")
+    errors, _ = verify_raw_dir(tmp_path)
+    assert any("content_sha256" in error for error in errors)
+
+
+def test_html_without_manifest_entry_is_detected(tmp_path):
+    source = RAW / "RBI_NBFC_IT_Framework_Master_Direction_2017.html"
+    html = tmp_path / source.name
+    html.write_bytes(source.read_bytes())
+    write_html_extraction(html, instrument_id="old", source_url="u", retrieved_at="t")
+    (tmp_path / "manifest.json").write_text('{"version":1,"entries":[]}', encoding="utf-8")
+    errors, _ = verify_raw_dir(tmp_path)
+    assert any("HTML present but not listed" in error for error in errors)
+
+
+def test_withdrawn_list_contains_2017_reference_and_title():
+    text = (RAW / "RBI_Circulars_Withdrawn_List.txt").read_text(encoding="utf-8")
+    assert "DNBS.PPD.No.04/66.15.001/2016-17" in text
+    assert "Master Direction - Information Technology Framework for the NBFC Sector" in text

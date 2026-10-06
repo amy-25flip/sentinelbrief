@@ -19,6 +19,7 @@ from sentinelbrief.cards import CardFeed
 from sentinelbrief.cards.feed import regulatory_rss
 from sentinelbrief.clock import IncidentClockEngine, IncidentProfile
 from sentinelbrief.clock.engine import IST
+from sentinelbrief.migrator.review import ConfirmationStore
 from sentinelbrief.workspace import CaseStore, recurring_duties_ics
 
 app = FastAPI(
@@ -89,6 +90,75 @@ def _load_obligations() -> list[dict[str, Any]]:
     return results
 
 
+def _migration_store() -> ConfirmationStore:
+    return ConfirmationStore(DATA_DIR)
+
+
+@app.get("/migrations", response_class=HTMLResponse)
+async def migration_list(request: Request) -> HTMLResponse:
+    migrations = []
+    for path in sorted((DATA_DIR / "migrations").glob("*.json")):
+        migrations.append(_load_json(path))
+    return templates.TemplateResponse(
+        request=request, name="migrations.html", context={"migrations": migrations}
+    )
+
+
+@app.get("/migrations/{migration_id}", response_class=HTMLResponse)
+async def migration_detail(
+    request: Request, migration_id: str, status: str | None = None
+) -> Response:
+    try:
+        migration = _migration_store().load(migration_id)
+    except KeyError:
+        return HTMLResponse("<h1>Migration not found</h1>", status_code=404)
+    mappings = migration["mappings"]
+    if status:
+        mappings = [item for item in mappings if item["status"] == status]
+    return templates.TemplateResponse(
+        request=request,
+        name="migration_detail.html",
+        context={"migration": migration, "mappings": mappings, "status_filter": status},
+    )
+
+
+@app.post("/api/migrations/{migration_id}/{old_clause}/confirm", response_model=None)
+async def confirm_migration(request: Request, migration_id: str, old_clause: str) -> Response:
+    try:
+        payload, is_json = await _payload(request)
+        record = _migration_store().confirm(
+            migration_id, old_clause, str(payload.get("reviewer", ""))
+        )
+        if is_json:
+            return JSONResponse(record)
+        return RedirectResponse(f"/migrations/{migration_id}#clause-{old_clause}", status_code=303)
+    except (ValueError, KeyError, TypeError) as exc:
+        return _case_error(exc)
+
+
+@app.post("/api/migrations/{migration_id}/{old_clause}/correct", response_model=None)
+async def correct_migration(request: Request, migration_id: str, old_clause: str) -> Response:
+    try:
+        payload, is_json = await _payload(request)
+        paragraphs = payload.get("paragraphs") or []
+        if isinstance(paragraphs, str):
+            paragraphs = [part.strip() for part in paragraphs.split(",") if part.strip()]
+        if not isinstance(paragraphs, list):
+            raise ValueError("paragraphs must be a list or comma-separated string")
+        record = _migration_store().correct(
+            migration_id,
+            old_clause,
+            str(payload.get("reviewer", "")),
+            [str(item) for item in paragraphs],
+            str(payload.get("reason", "")),
+        )
+        if is_json:
+            return JSONResponse(record)
+        return RedirectResponse(f"/migrations/{migration_id}#clause-{old_clause}", status_code=303)
+    except (ValueError, KeyError, TypeError) as exc:
+        return _case_error(exc)
+
+
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request) -> HTMLResponse:
     """Home page with deterministic card feed."""
@@ -150,6 +220,16 @@ async def obligation_detail(request: Request, obligation_id: str) -> HTMLRespons
             "obligation": obligation,
             "instrument": instrument,
         },
+    )
+
+
+@app.get("/instruments/{instrument_id}", response_class=HTMLResponse)
+async def instrument_detail(request: Request, instrument_id: str) -> Response:
+    instrument = next((item for item in _load_instruments() if item["id"] == instrument_id), None)
+    if instrument is None:
+        return HTMLResponse("<h1>Instrument not found</h1>", status_code=404)
+    return templates.TemplateResponse(
+        request=request, name="instrument_detail.html", context={"instrument": instrument}
     )
 
 

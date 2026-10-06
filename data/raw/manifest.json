@@ -148,6 +148,32 @@
       "acquired_by": "project owner (a human) downloaded this PDF from the official IRDAI document page in a browser on 2026-10-04; the reviewer then verified: 305 pages (Hindi 1 to 130, English 131 to 305 marked 'Page N of 175'), producer Microsoft® Word 2016, creation date D:20230424111653+05'30', ends with %%EOF, opens without repair. The reviewer did NOT compare these bytes with the regulator's copy: irdai.gov.in/robots.txt disallows all automated access.",
       "acquisition_note": "url is the official document page, not a direct file link. The covering circular (ref IRDAI/GA&HR/GDL/MISC/88/04/2023 dated 24 April 2023) is a separate 2-page scanned letter and is not ingested; its OCR text is unreliable. The Hindi pages extract as unreadable glyphs.",
       "reverify_exemption": "irdai.gov.in/robots.txt disallows all automated access (User-Agent: * / Disallow: /); a human re-checks by downloading from the document page and comparing sha256"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=10999&Mode=0",
+      "filename": "RBI_NBFC_IT_Framework_Master_Direction_2017.html",
+      "sha256": "040e28071c8e225737d82e966830d772a06e25ad55890f0428276f1e3d8c317c",
+      "content_sha256": "f00966dfa118b8c4530b632e598d4eb253ed8c043f57980451b1163e23a9c20c",
+      "retrieved_at": "2026-10-06T13:33:57Z",
+      "etag": null,
+      "last_modified": null,
+      "content_type": "text/html",
+      "size_bytes": 149894,
+      "status": "current",
+      "fetched_by": "BaseFetcher"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/NotificationUserWithdrawnCircular.aspx",
+      "filename": "RBI_Circulars_Withdrawn_List.html",
+      "sha256": "976c51313ff1240a17d1b49bf77915d6435df1977f0ed7514eddf7e232a05e2d",
+      "content_sha256": "31584176c8b4f771c7086d558b3ade6d82156f7b2d4d5f4577a725f85e257124",
+      "retrieved_at": "2026-10-06T13:33:58Z",
+      "etag": null,
+      "last_modified": null,
+      "content_type": "text/html",
+      "size_bytes": 3597158,
+      "status": "current",
+      "fetched_by": "BaseFetcher"
     }
   ]
 }

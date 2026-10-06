@@ -10,7 +10,7 @@
   "retrieved_at": "2026-09-25T00:00:00Z",
   "language": "en",
   "status": "in_force",
-  "supersedes": [],
+  "supersedes": ["rbi.nbfc-it-framework.2017"],
   "superseded_by": [],
   "document_type": "direction",
   "description": "Paragraph 2 states: \"These Directions shall come into force with immediate effect.\"",

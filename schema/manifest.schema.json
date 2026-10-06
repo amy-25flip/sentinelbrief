@@ -16,6 +16,7 @@
           "url": { "type": "string", "format": "uri" },
           "filename": { "type": "string" },
           "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "content_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
           "retrieved_at": { "type": "string", "format": "date-time" },
           "acquired_at": { "type": "string", "format": "date-time" },
           "etag": { "type": ["string", "null"] },

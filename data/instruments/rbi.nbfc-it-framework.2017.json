@@ -1,0 +1,22 @@
+{
+  "id": "rbi.nbfc-it-framework.2017",
+  "issuer": "RBI",
+  "title": "Master Direction - Information Technology Framework for the NBFC Sector",
+  "reference_no": "RBI/DNBS/2016-17/53; DNBS.PPD.No.04/66.15.001/2016-17",
+  "issued_on": "2017-06-08",
+  "in_force_from": "2017-06-08",
+  "in_force_until": "2026-07-31",
+  "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=10999&Mode=0",
+  "source_sha256": "040e28071c8e225737d82e966830d772a06e25ad55890f0428276f1e3d8c317c",
+  "retrieved_at": "2026-10-06T13:33:57Z",
+  "language": "en",
+  "status": "repealed",
+  "supersedes": [],
+  "superseded_by": ["rbi.nbfc-cyber.2026"],
+  "document_type": "direction",
+  "description": "Withdrawn-list row 47 states: \"DNBS.PPD.No.04/66.15.001/2016-17 — Master Direction - Information Technology Framework for the NBFC Sector — June 08, 2017\". Paragraph 155 of the stored successor states that repeal was communicated by circular DoS.CO.PPG.66/11.01.005/2026-27 dated July 31, 2026.",
+  "provenance": {
+    "parser_version": "sentinelbrief-rbi-html-1.0",
+    "extraction_date": "2026-10-06T13:33:57Z"
+  }
+}

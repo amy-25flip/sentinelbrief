@@ -14,6 +14,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from urllib.parse import urlparse
 
+from sentinelbrief.extract.html_text import extract_html_text, sha256_text
 from sentinelbrief.ingest.base import BaseFetcher
 
 # Hosts that refuse automated clients: RBI serves a CAPTCHA; IRDAI's robots.txt disallows all
@@ -66,6 +67,27 @@ def compare_entry(
         result = fetcher.fetch(str(entry["url"]), filename=filename)
     except Exception as exc:
         return ReverifyFinding(filename, False, f"fetch failed: {exc}")
+
+    if filename.lower().endswith(".html"):
+        expected_content = str(entry.get("content_sha256") or "")
+        if not expected_content:
+            return ReverifyFinding(filename, False, "HTML entry lacks content_sha256")
+        try:
+            fresh_text, _ = extract_html_text(result.filepath)
+        except ValueError as exc:
+            return ReverifyFinding(filename, False, f"HTML extraction failed: {exc}")
+        actual_content = sha256_text(fresh_text)
+        if actual_content != expected_content:
+            return ReverifyFinding(
+                filename,
+                False,
+                f"content_sha256 mismatch: manifest {expected_content}, downloaded extraction {actual_content}",
+            )
+        return ReverifyFinding(
+            filename,
+            True,
+            "content_sha256 of fresh HTML extraction matches (raw page bytes may differ)",
+        )
 
     if result.sha256 != expected_sha:
         return ReverifyFinding(

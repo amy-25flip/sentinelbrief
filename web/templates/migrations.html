@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Migration proposals — SentinelBrief{% endblock %}
+{% block content %}
+<div class="disclaimer">Migration mappings are proposed inferences, not RBI concordances or legal advice.</div>
+<h1>Instrument migration proposals</h1>
+{% for migration in migrations %}
+<div class="card">
+  <a href="/migrations/{{ migration.id }}">{{ migration.old_instrument_id }} → {{ migration.new_instrument_id }}</a>
+  <p class="card-body">{{ migration.disclaimer }}</p>
+</div>
+{% else %}<p>No migration proposals.</p>{% endfor %}
+{% endblock %}

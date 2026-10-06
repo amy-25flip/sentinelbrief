@@ -5,7 +5,9 @@ from pathlib import Path
 
 import pymupdf
 
-from sentinelbrief.extract.pdf_text import sha256_bytes, verify_extraction
+from sentinelbrief.extract.html_text import verify_extraction as verify_html_extraction
+from sentinelbrief.extract.pdf_text import sha256_bytes
+from sentinelbrief.extract.pdf_text import verify_extraction as verify_pdf_extraction
 
 
 def _pdf_metadata(path: Path) -> dict[str, str]:
@@ -110,12 +112,20 @@ def verify_raw_dir(
         entry = manifest_entries.get(pdf.name, {})
         errors.extend(verify_pdf_authenticity(pdf, entry, allow_synthetic=allow_synthetic_fixtures))
         errors.extend(verify_pdf_integrity(pdf, entry, allow_synthetic=allow_synthetic_fixtures))
-        errs, warns = verify_extraction(pdf)
+        errs, warns = verify_pdf_extraction(pdf)
         errors.extend(errs)
         warnings.extend(warns)
 
-    pdf_stems = {p.with_suffix("").name for p in pdfs}
+    htmls = sorted(raw.glob("*.html"))
+    for html in htmls:
+        if html.name not in manifest_hashes:
+            errors.append(f"{html.name}: HTML present but not listed in the manifest")
+        errs, warns = verify_html_extraction(html)
+        errors.extend(errs)
+        warnings.extend(warns)
+
+    source_stems = {p.with_suffix("").name for p in [*pdfs, *htmls]}
     for txt in raw.glob("*.txt"):
-        if txt.with_suffix("").name not in pdf_stems:
-            errors.append(f"{txt.name}: extracted text has no matching PDF")
+        if txt.with_suffix("").name not in source_stems:
+            errors.append(f"{txt.name}: extracted text has no matching PDF or HTML source")
     return errors, warnings

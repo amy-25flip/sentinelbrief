@@ -37,7 +37,7 @@ uv-cache-work/
 .pytest*/
 pytest-*/
 *pytest*tmp*/
-SentinelBrief*/
+/SentinelBrief*/
 bt-work/
 test-runtime-fixer/
 tests/pytest-*/
