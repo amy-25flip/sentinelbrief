@@ -69,3 +69,29 @@ The refinement question applies to every RBI duty, not only the three event duti
 | `rbi-generic-plus-specific-class-no-question` | `nbfc` and `nbfc.middle_layer`; same times | As `rbi-ml-ransomware`. ch4 not applicable. No unknowns. |
 | `rbi-base-layer-without-size-must-ask` | `nbfc.base_layer`; same times | CERT-In 6h 16:00. Unknown "NBFC category" affecting ch4 reporting only. Every ch5 duty not applicable. |
 | `rbi-contradictory-attestation-caveat` | `nbfc.middle_layer`; ransomware; attested not a cyber incident | CERT-In 6h 16:00. ch5 reporting and CERT-In notification not applicable. The result carries a caveat containing "re-check". |
+
+## Amendment 2 (2026-10-06): recurring duties in the NBFC Direction, labels before implementation
+
+Written by the label author from the stored text. These are recurring duties for the calendar export. None is an incident deadline.
+
+| Obligation id (prefix `rbi.nbfc-cyber.2026.`) | Text | Page | Binds | Period |
+|---|---|---|---|---|
+| `ch2-board-policy-review-annual` | Para 6: "The Board of Directors (Board) shall approve the strategies and policies related to Technology and Cybersecurity frameworks which shall be reviewed at least annually by it." | 9 | every NBFC (Chapter II is not chapter-scoped by paragraph 3) | P12M |
+| `ch4-it-risk-assessment-annual` | Para 32: "The NBFC shall undertake a comprehensive risk assessment of its IT systems at least on an annual basis." | 19 | Base Layer at or above Rs 500 crore | P12M |
+| `ch4-bcp-test-annual` | Para 59(4): "The NBFC shall test its BCP at least annually and whenever significant IT or business changes occur" | 25 | Base Layer at or above Rs 500 crore | P12M |
+| `ch5-security-review-annual` | Para 98: "The NBFC shall review the security infrastructure and security policies at least annually" | 36 | Middle, Upper, Top Layer, excluding CICs | P12M |
+| `ch5-dr-drill-half-yearly` | Para 129: "Periodicity of DR drills for critical information systems shall be at least on a half-yearly basis" | 42 | Middle, Upper, Top Layer, excluding CICs | P6M |
+
+Decisions: (1) Chapter II binds all NBFCs, so the board review is recorded against `nbfc` and a generic profile gets it without a category question. (2) Para 56 says IS audit "may be conducted at least once in a year"; "may" is not a duty and it is not modelled. (3) Equivalent paragraphs in the UCB, AIFI and Payments Banks Directions have not been read and are not modelled.
+
+Calendar labels (`recurring_duties_ics`, last performed 2026-10-01), as the set of (obligation, first due date):
+
+| Entity classes | Expected events |
+|---|---|
+| `nbfc.middle_layer` | VA 2027-04-01; PT 2027-10-01; DR drill 2027-04-01; security review 2027-10-01; board review 2027-10-01. Nothing undetermined. |
+| `nbfc.bl_500cr_and_above` | IT risk assessment 2027-10-01; BCP test 2027-10-01; board review 2027-10-01. |
+| `nbfc.bl_below_500cr` | board review 2027-10-01 only. |
+| `nbfc.middle_layer` and `nbfc.cic` | board review only (CIC excluded from Chapter V). |
+| `nbfc` | board review 2027-10-01; undetermined: VA, PT, DR drill, security review, IT risk assessment, BCP test. |
+
+Incident scenarios: no deadline changes anywhere. Scenarios with a generic `nbfc` or `nbfc.base_layer` profile, or a role-only profile, on or after 2026-07-31 gain the "NBFC category" unknown for whichever of the four chapter-scoped new duties the refinement rule reaches; this is mechanical and follows Review 9 L2. The hidden scenarios are updated by the same rule.
