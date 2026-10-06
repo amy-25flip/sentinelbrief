@@ -198,6 +198,15 @@ def test_api_json_markdown_and_page():
     assert page.status_code == 200 and "2026-10-01T15:25:00+05:30" in page.text
     assert "Read out (fiction)" in page.text and "The storyline is invented" in page.text
     assert client.get("/tabletop").status_code == 200
+    naive = client.get("/api/tabletop", params={**query, "start": "2026-10-01T09:00"})
+    assert naive.status_code == 422 and "UTC offset" in naive.json()["error"]
+    assert (
+        client.get("/api/tabletop.md", params={**query, "start": "2026-10-01T09:00"}).status_code
+        == 422
+    )
+    assert (
+        "start=2026-10-01T09%3A00%3A00%2B05%3A30" in page.text
+    )  # hand-out link carries the offset
     for bad in (
         {**query, "scenario": "nope"},
         {**query, "classes": ""},

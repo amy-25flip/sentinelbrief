@@ -23,6 +23,7 @@
         "properties": {
           "old_clause": {"type": "string"},
           "old_excerpt": {"type": "string"},
+          "old_footnotes": {"type": "array", "items": {"type": "string"}, "description": "Footnotes of the old instrument that the unit or its group heading cites, verbatim."},
           "old_char_start": {"type": "integer", "minimum": 0},
           "old_char_end": {"type": "integer", "minimum": 1},
           "status": {"enum": ["matched", "changed", "obsolete_no_successor", "needs_human"]},

@@ -208,7 +208,11 @@ class CardGenerator:
         chips: list[CardChip] = [
             CardChip(label="Issuer", value=issuer, chip_type="issuer"),
             CardChip(label="Jurisdiction", value="India", chip_type="jurisdiction"),
-            CardChip(label="Type", value="Mandatory", chip_type="mandatory"),
+            (
+                CardChip(label="Type", value='Recommended ("should")', chip_type="advisory")
+                if norm.get("modality") == "recommended"
+                else CardChip(label="Type", value="Mandatory", chip_type="mandatory")
+            ),
         ]
 
         # Effective date chip

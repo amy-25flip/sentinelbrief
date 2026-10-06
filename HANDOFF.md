@@ -5,9 +5,9 @@ Written by the reviewer agent. Antigravity is no longer on the project; from Bui
 ## 1. Gate output (`python scripts/check.py`, run by the reviewer agent on 2026-10-06)
 
 ```
-PASS  pytest             442 passed, 1 deselected, 1 warning
+PASS  pytest             454 passed, 1 deselected, 1 warning
 PASS  ruff check         All checks passed!
-PASS  ruff format        81 files already formatted
+PASS  ruff format        82 files already formatted
 PASS  mypy (strict)      Success: no issues found in 42 source files
 PASS  validate_all       All obligations and citations passed validation successfully!
 PASS  benchmark dev      Scenarios passed:   107/107  Wilson 95% CI [96.5%, 100.0%]
@@ -18,7 +18,7 @@ Hidden split (git-ignored, 30 scenarios): 29/30. Set A (14, written by the revie
 
 Live source re-verification, 2026-10-06: 9 passed, 0 failed, 5 skipped (RBI's document server and IRDAI refuse automated clients; those PDFs are pinned by sha256). The four RBI HTML pages are compared by the hash of their extracted text, because the raw page bytes differ between fetches.
 
-Migrator (`python -m sentinelbrief.migrator score`): hit@1 46/47, status 38/47 against the gold as committed. Seven of the nine status disagreements are errors in the gold (Review 15, R15-4). Three further pairs, hit@1 only: UCB 59/61, Payments Banks 27/27, AIFI 27/27 (Build 18).
+Migrator (`python -m sentinelbrief.migrator score`): hit@1 46/47, status 38/47 against the gold as committed. Seven of the nine status disagreements are errors in the gold (Review 15, R15-4). Three further pairs, hit@1 only: UCB 59/61 (paragraph level), Payments Banks 27/27 and AIFI 27/27 (section level only; see Review 16).
 
 ## 2. What exists
 
@@ -32,7 +32,7 @@ Migrator (`python -m sentinelbrief.migrator score`): hit@1 46/47, status 38/47 a
 | Incident workspace, external clocks, evidence fields, cards | The reviewer agent | The reviewer agent self-review (Review 11), then Codex (Review 12) |
 | Recurring RBI NBFC duties, DPDP simulation, RSS feed | Codex | The reviewer agent (Review 14) |
 | HTML evidence path, 2017 NBFC IT Framework, circular migrator and its reviewer pages | Codex, against the reviewer agent's gold mappings | The reviewer agent (Review 15) |
-| IRDAI periodic duties (22), migrator on three more pairs, signed evidence head, webhook alert intake, tabletop generator, screenshots | The reviewer agent | Codex (Review 16) |
+| IRDAI periodic duties (26), migrator on three more pairs, signed evidence head, webhook alert intake, tabletop generator, screenshots | The reviewer agent | Codex (Review 16: ten findings, all fixed; the fixes are not yet reviewed) |
 | Provenance attack tests and source pinning | The reviewer agent | Codex (Review 12: found sound) |
 
 ## 3. Claims about the law

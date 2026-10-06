@@ -803,7 +803,8 @@
         "anchor": "not_applicable",
         "fixed_schedule": [
           "06-29"
-        ]
+        ],
+        "earlier_of_days_after_event": 30
       },
       "recipient": "IRDAI"
     },
@@ -1552,7 +1553,8 @@
         "duration_iso8601": "P6M",
         "anchor": "not_applicable"
       },
-      "recipient": "Internal (no recipient outside the entity)"
+      "recipient": "Internal (no recipient outside the entity)",
+      "modality": "recommended"
     },
     "applicability": {
       "entity_classes": [
@@ -1605,16 +1607,17 @@
       ],
       "trigger": {
         "type": "event",
-        "description": "A VAPT report with a high risk gap"
+        "description": "A VAPT reports a high risk gap"
       },
-      "action": "High risk gaps reported from a VAPT should be closed within one month, followed by validation testing (the clause says \"should\"). The month runs from the VAPT report; no date is computed here.",
+      "action": "High risk gaps reported from a VAPT should be closed within a period of one month, followed by validation testing (the clause says \"should\"). The clause does not say what the month runs from; no date is computed here.",
       "deadline": {
         "calendar": "continuous",
         "kind": "none",
         "duration_iso8601": null,
         "anchor": "not_applicable"
       },
-      "recipient": "Internal (no recipient outside the entity)"
+      "recipient": "Internal (no recipient outside the entity)",
+      "modality": "recommended"
     },
     "applicability": {
       "entity_classes": [
@@ -1670,9 +1673,9 @@
       ],
       "trigger": {
         "type": "event",
-        "description": "An audit report with a gap"
+        "description": "An audit reports a gap"
       },
-      "action": "Close all audit gaps within an outer limit of two months, in order of risk. The period runs from the audit finding; no date is computed here.",
+      "action": "Close all audit gaps within the outer time limit of two months, in order of risk. The clause does not say what the two months run from; no date is computed here.",
       "deadline": {
         "calendar": "continuous",
         "kind": "none",
@@ -1910,6 +1913,254 @@
     "verification": "machine_checked",
     "verification_details": {
       "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 297)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.board-quarterly-inputs",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "1.6 Roles and Responsibilities, 1 Board",
+    "text_verbatim": "Receive quarterly inputs on matters related to Information Security",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Each quarter"
+      },
+      "action": "The Board receives inputs on matters related to information security every quarter.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P3M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "The Board"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "1.6 Roles and Responsibilities, 1 Board",
+        "page": 140,
+        "char_start": 300461,
+        "char_end": 300528,
+        "excerpt_verbatim": "Receive quarterly inputs on matters related to Information Security",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 140); found by the independent review of Build 18",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.classification-review-two-yearly",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.1, 3.3 Data Classification Process",
+    "text_verbatim": "Owners shall review the assigned \nclassification label at least every two years to address changed business \nvalue and risks, or as required by laws and regulations that impact \nOrganization.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Every two years"
+      },
+      "action": "Information owners review the classification label assigned to each information asset at least every two years, or as laws and regulations require.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P24M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.1, 3.3 Data Classification Process",
+        "page": 160,
+        "char_start": 344846,
+        "char_end": 345037,
+        "excerpt_verbatim": "Owners shall review the assigned \nclassification label at least every two years to address changed business \nvalue and risks, or as required by laws and regulations that impact \nOrganization.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 160); found by the independent review of Build 18",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.assurance-auditor-rotation-three-yearly",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.16, 3.6 item 5",
+    "text_verbatim": "5. Independent assurance auditor shall be rotated \nevery three years.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Every three years"
+      },
+      "action": "Rotate the independent assurance auditor every three years.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P36M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.16, 3.6 item 5",
+        "page": 268,
+        "char_start": 532195,
+        "char_end": 532264,
+        "excerpt_verbatim": "5. Independent assurance auditor shall be rotated \nevery three years.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 268); found by the independent review of Build 18",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.physical-access-revocation-last-working-day",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "1.6 Roles and Responsibilities, Admin",
+    "text_verbatim": "Admin shall work closely with HR and IT to ensure that all physical access to the office premises \nfor separated employees is revoked on or before the last working day",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "An employee leaves"
+      },
+      "action": "Revoke all physical access to the office premises for a separated employee on or before the employee's last working day. No date is computed here.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "none",
+        "duration_iso8601": null,
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "1.6 Roles and Responsibilities, Admin",
+        "page": 146,
+        "char_start": 315010,
+        "char_end": 315177,
+        "excerpt_verbatim": "Admin shall work closely with HR and IT to ensure that all physical access to the office premises \nfor separated employees is revoked on or before the last working day",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 146); found by the independent review of Build 18",
       "date": "2026-10-06"
     },
     "confidence": 0.6,

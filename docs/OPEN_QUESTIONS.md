@@ -118,7 +118,7 @@ Things needing a human or a primary-source check.
 
 ## Build 18, 2026-10-06
 
-- [x] **IRDAI duties with stated periods:** modelled (22 records).
+- [x] **IRDAI duties with stated periods:** modelled (26 records after Review 16 found four the first search missed). The search is by wording, so others may remain.
 - [ ] **IRDAI duties stated as "periodically" or "at regular intervals":** not modelled; no period in the text.
 - [ ] **IRDAI financial year:** assumed 1 April to 31 March for the audit report and the FRB certificate; the guidelines do not define it.
 - [ ] **IRDAI Foreign Reinsurance Branches** have no entity class; the Annexure VI duty is shown to every insurer with a prose condition.

@@ -143,3 +143,14 @@ Mutation tests: the insurer-only report leaking to intermediaries; the half-year
 - Passwords changed "once in 45 days" (2.3) and third-party user IDs expiring in "not more than 15 days" (2.3): system settings, not dated duties.
 - The insurer obtaining annual self-certification from intermediaries that hold only physical data (1.10): depends on a fact about each intermediary.
 - Every duty stated as "periodically", "on a periodic basis" or "at regular intervals" (storage reviews, access rights reviews, third-party assessments, log reviews, incident trend analysis and others): no period is stated.
+
+### Amendment to Part 4 after Review 16 (2026-10-06)
+
+The independent review changed four things in the labels above; the table is left as written and this amendment governs.
+
+1. Calendar for `irdai.insurer`, last done 2026-04-01: **17 events**, not 18. The audit report to IRDAI, the Foreign Reinsurance Branch certificate and the two IT Rules notices are **not dated**; they are listed in the calendar's notice event. Three duties were added: `board-quarterly-inputs` (2026-07-01), `classification-review-two-yearly` (2028-04-01), `assurance-auditor-rotation-three-yearly` (2029-04-01). For `irdai.intermediary`: **18 events**, with the two IT Rules notices listed as not dated.
+2. The audit report gets a date only when the audit completion date is given: completed 20 April 2026 gives 20 May 2026; completed 20 June 2026 gives 29 June 2026.
+3. `external-pt-half-yearly` and `vapt-high-risk-closure-1m` are `recommended`, not mandatory.
+4. A fourth new record, `physical-access-revocation-last-working-day`, has no computed date. The two closure limits no longer say what their period runs from, because the clauses do not.
+
+The first search missed "every two years", "every three years", "quarterly inputs" and "on or before the last working day". Other wordings of a period may still be missed.

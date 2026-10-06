@@ -11,7 +11,11 @@
     <h1>{{ obligation.paragraph_ref }}</h1>
     <div class="card-chips" style="margin-top: 0.5rem;">
         <span class="chip issuer">{{ instrument.issuer if instrument else 'Unknown' }}</span>
+        {% if obligation.normalized.modality == 'recommended' %}
+        <span class="chip">Recommended: the clause says "should"</span>
+        {% else %}
         <span class="chip mandatory">Mandatory</span>
+        {% endif %}
         <span class="status-badge status-{{ obligation.status }}">{{ obligation.status | replace('_', ' ') }}</span>
         {% if obligation.normalized.deadline.kind == 'relative' and obligation.normalized.deadline.duration_iso8601 %}
         <span class="chip deadline">⏱ {{ obligation.normalized.deadline.duration_iso8601 }}</span>

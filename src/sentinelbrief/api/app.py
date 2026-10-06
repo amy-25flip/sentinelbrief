@@ -720,8 +720,6 @@ async def open_case_from_alert(request: Request, alert_id: str) -> Response:
     try:
         store = _intake_store()
         record = store.get(alert_id)
-        if record["status"] != "pending":
-            raise ValueError(f"This alert is already {record['status']}")
         payload, is_json = await _payload(request)
         actor = str(payload.pop("opened_by", ""))
         use_detected = str(payload.pop("use_alert_detected_at", "")).lower() in {"true", "on", "1"}
@@ -734,7 +732,15 @@ async def open_case_from_alert(request: Request, alert_id: str) -> Response:
                 raise ValueError("Give when_detected or use the alert's time, not both")
             profile = replace(profile, when_detected=datetime.fromisoformat(detected))
         cases = _case_store()
-        case_id = cases.create(profile, actor)
+        # Claim first: of two simultaneous requests only one gets past this line. If opening
+        # the case then fails, the alert goes back to pending and no case is left behind,
+        # because `create` validates the facts and the person before it stores anything.
+        store.claim(alert_id)
+        try:
+            case_id = cases.create(profile, actor)
+        except Exception:
+            store.release(alert_id)
+            raise
         cases.attach(
             case_id,
             actor,
@@ -775,14 +781,16 @@ async def dismiss_alert(request: Request, alert_id: str) -> Response:
     return RedirectResponse("/intake", status_code=303)
 
 
-def _tabletop(classes: str, scenario: str, start: str, simulate: str) -> dict[str, Any]:
+def _tabletop(
+    classes: str, scenario: str, start: str, simulate: str, *, form_input: bool
+) -> dict[str, Any]:
     entity_classes = [c.strip() for c in classes.split(",") if c.strip()]
     if not entity_classes:
         raise ValueError("classes is required (comma-separated entity classes)")
     if not start:
         raise ValueError("start is required (the time the exercise begins)")
-    # A time typed into the page has no offset and is read as IST; an API caller may send one.
-    begins = _parse_time(start, form_input="+" not in start[10:] and not start.endswith("Z"))
+    # A time typed into the page has no offset and is read as IST. API callers must send one.
+    begins = _parse_time(start, form_input=form_input)
     simulated = [s.strip() for s in simulate.split(",") if s.strip()]
     return build_tabletop(
         IncidentClockEngine(DATA_DIR), entity_classes, scenario, begins, simulated or None
@@ -795,7 +803,7 @@ async def tabletop_json(
 ) -> Response:
     """A tabletop exercise: invented storyline, answer key computed by the clock engine."""
     try:
-        return JSONResponse(_tabletop(classes, scenario, start, simulate))
+        return JSONResponse(_tabletop(classes, scenario, start, simulate, form_input=False))
     except (ValueError, KeyError) as exc:
         return JSONResponse({"error": str(exc).strip("'\"")}, status_code=422)
 
@@ -805,7 +813,7 @@ async def tabletop_markdown(
     classes: str = "", scenario: str = "", start: str = "", simulate: str = ""
 ) -> Response:
     try:
-        exercise = _tabletop(classes, scenario, start, simulate)
+        exercise = _tabletop(classes, scenario, start, simulate, form_input=False)
     except (ValueError, KeyError) as exc:
         return JSONResponse({"error": str(exc).strip("'\"")}, status_code=422)
     return Response(
@@ -826,7 +834,7 @@ async def tabletop_page(
     error = None
     if classes or scenario or start:
         try:
-            exercise = _tabletop(classes, scenario, start, simulate)
+            exercise = _tabletop(classes, scenario, start, simulate, form_input=True)
         except (ValueError, KeyError) as exc:
             error = str(exc).strip("'\"")
     return templates.TemplateResponse(
@@ -849,7 +857,9 @@ async def tabletop_page(
 
 
 @app.get("/api/calendar.ics", response_model=None)
-async def calendar_export(classes: str = "", last_done: str = "") -> Response:
+async def calendar_export(
+    classes: str = "", last_done: str = "", audit_completed: str = ""
+) -> Response:
     """Recurring duties for the given entity classes as an iCalendar file.
 
     `classes` is comma-separated; `last_done` (YYYY-MM-DD) is when the duties were last performed.
@@ -861,7 +871,10 @@ async def calendar_export(classes: str = "", last_done: str = "") -> Response:
         if not last_done:
             raise ValueError("last_done is required, e.g. last_done=2026-10-01")
         ics, undetermined = recurring_duties_ics(
-            IncidentClockEngine(DATA_DIR), entity_classes, date.fromisoformat(last_done)
+            IncidentClockEngine(DATA_DIR),
+            entity_classes,
+            date.fromisoformat(last_done),
+            audit_completed=date.fromisoformat(audit_completed) if audit_completed else None,
         )
     except (ValueError, TypeError) as exc:
         return JSONResponse({"error": str(exc)}, status_code=422)

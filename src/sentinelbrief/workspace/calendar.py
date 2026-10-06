@@ -2,7 +2,7 @@
 
 import hashlib
 import re
-from datetime import UTC, date, datetime
+from datetime import UTC, date, datetime, timedelta
 
 from sentinelbrief.clock.engine import IncidentClockEngine, IncidentProfile
 
@@ -47,11 +47,18 @@ def _fold(line: str) -> list[str]:
     return parts
 
 
+# A prose condition ending with this marker is one the engine cannot evaluate (for example
+# "Entity is a Foreign Reinsurance Branch ... (not evaluated)"). A duty that hangs on one is
+# not put in the calendar as if it applied.
+NOT_EVALUATED = "(not evaluated)"
+
+
 def recurring_duties_ics(
     engine: IncidentClockEngine,
     entity_classes: list[str],
     last_done: date,
     generated_at: datetime | None = None,
+    audit_completed: date | None = None,
 ) -> tuple[str, list[str]]:
     """Return (ics_text, undetermined_obligation_ids).
 
@@ -60,6 +67,16 @@ def recurring_duties_ics(
     which the duty next falls due if it was last performed on `last_done`. Duties whose
     applicability is undetermined (for example a generic NBFC class) are returned separately,
     never silently dropped.
+
+    Two kinds of duty are never given a date they have not earned:
+
+    - a duty that depends on a condition the engine cannot evaluate is left out;
+    - a duty whose fixed date is only the latest possible one, because the clause takes the
+      earlier of that date and a number of days after an event (`earlier_of_days_after_event`),
+      is dated only when the event date (`audit_completed`) is given, and then once, not yearly.
+
+    Whatever is left out is listed in a single dated notice event inside the calendar, so the
+    omission is visible wherever the file is opened.
     """
     stamp = (generated_at or datetime.now(UTC)).astimezone(UTC).strftime("%Y%m%dT%H%M%SZ")
     result = engine.evaluate(IncidentProfile(entity_classes=entity_classes), as_of=last_done)
@@ -70,6 +87,7 @@ def recurring_duties_ics(
         "CALSCALE:GREGORIAN",
     ]
     undetermined: list[str] = []
+    omitted: list[tuple[str, str]] = []
     for obligation in engine.obligations:
         normalized = obligation.get("normalized") or {}
         deadline = normalized.get("deadline") or {}
@@ -84,8 +102,45 @@ def recurring_duties_ics(
         citation = (
             f"{obligation.get('instrument_id', '')} {obligation.get('paragraph_ref', '')}".strip()
         )
+        unevaluated = [
+            condition
+            for condition in (obligation.get("applicability") or {}).get("conditions") or []
+            if NOT_EVALUATED in condition
+        ]
+        if unevaluated:
+            omitted.append(
+                (obligation_id, "applies only if: " + "; ".join(unevaluated) + f" ({citation})")
+            )
+            continue
         schedule = deadline.get("fixed_schedule")
-        if schedule:
+        days_after_event = deadline.get("earlier_of_days_after_event")
+        if schedule and days_after_event is not None:
+            if audit_completed is None:
+                omitted.append(
+                    (
+                        obligation_id,
+                        f"due on the earlier of a fixed date ({', '.join(schedule)}) and "
+                        f"{days_after_event} days after the audit is completed; give the audit "
+                        f"completion date to get a date ({citation})",
+                    )
+                )
+                continue
+            month, day = (int(part) for part in schedule[0].split("-"))
+            fixed = date(audit_completed.year, month, day)
+            if fixed < audit_completed:
+                fixed = date(audit_completed.year + 1, month, day)
+            due = min(fixed, audit_completed + timedelta(days=int(days_after_event)))
+            occurrences = [
+                (
+                    due,
+                    "",
+                    "event",
+                    f"The earlier of {fixed.isoformat()} and {days_after_event} days after the "
+                    f"audit completion date you gave ({audit_completed.isoformat()}). This year "
+                    "only; it does not repeat because next year's audit date is not known.",
+                )
+            ]
+        elif schedule:
             # Due dates fixed by the clause (for example the 15th after each quarter end): one
             # yearly event per date, starting at its next occurrence after `last_done`.
             occurrences = []
@@ -106,6 +161,10 @@ def recurring_duties_ics(
             )
             basis = f"Counted from the date you gave as last performed ({last_done.isoformat()})."
             occurrences = [(_add_months(last_done, months), rule, "", basis)]
+        advisory = normalized.get("modality") == "recommended"
+        summary = ("Recommended, not mandatory: " if advisory else "") + normalized.get(
+            "action", obligation_id
+        )
         for first, rule, seed, basis in sorted(occurrences):
             uid = hashlib.sha256(
                 f"{obligation_id}|{last_done.isoformat()}|{seed}".encode()
@@ -120,12 +179,33 @@ def recurring_duties_ics(
                 f"X-SENTINELBRIEF-OBLIGATION:{obligation_id}",
                 f"DTSTAMP:{stamp}",
                 f"DTSTART;VALUE=DATE:{first.strftime('%Y%m%d')}",
-                f"RRULE:{rule}",
-                f"SUMMARY:{_escape(normalized.get('action', obligation_id))}",
+                *([f"RRULE:{rule}"] if rule else []),
+                f"SUMMARY:{_escape(summary)}",
                 f"DESCRIPTION:{_escape(description)}",
                 "END:VEVENT",
             ]
             for line in event:
                 lines.extend(_fold(line))
+    if omitted:
+        listing = "\n".join(f"- {obligation_id}: {why}" for obligation_id, why in omitted)
+        uid = hashlib.sha256(
+            ("omitted|" + last_done.isoformat() + "|" + "|".join(o for o, _ in omitted)).encode()
+        ).hexdigest()[:32]
+        notice = [
+            "BEGIN:VEVENT",
+            f"UID:{uid}@sentinelbrief",
+            f"X-SENTINELBRIEF-OMITTED:{','.join(o for o, _ in omitted)}",
+            f"DTSTAMP:{stamp}",
+            f"DTSTART;VALUE=DATE:{(last_done + timedelta(days=1)).strftime('%Y%m%d')}",
+            f"SUMMARY:{_escape(f'SentinelBrief: {len(omitted)} duties are NOT in this calendar')}",
+            "DESCRIPTION:"
+            + _escape(
+                "These duties may apply to you but were not given a date, because a date would "
+                "be a guess:\n" + listing + "\nNot legal advice; read the cited clauses."
+            ),
+            "END:VEVENT",
+        ]
+        for line in notice:
+            lines.extend(_fold(line))
     lines.append("END:VCALENDAR")
     return "\r\n".join(lines) + "\r\n", undetermined

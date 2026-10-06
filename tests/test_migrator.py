@@ -205,3 +205,18 @@ def test_correction_is_bounded_by_the_new_directions_own_paragraph_count(tmp_pat
         assert "1 to 232" in str(exc)
     else:
         raise AssertionError("paragraph 233 does not exist in the Payments Banks Direction")
+
+
+def test_ucb_units_carry_the_footnotes_they_cite():
+    """Catches: a footnote that limits a control dropped from the unit shown to the reviewer."""
+    migration = json.loads(
+        (
+            REPO / "data" / "migrations" / "rbi.ucb-cyber-framework.2019__rbi.ucb-cyber.2026.json"
+        ).read_text(encoding="utf-8")
+    )
+    notes = {m["old_clause"]: m.get("old_footnotes", []) for m in migration["mappings"]}
+    assert {clause for clause, found in notes.items() if found} == {"II-3.1", "II-3.2", "IV-6.2"}
+    assert notes["II-3.1"][0].startswith("These controls are applicable for the UCBs who are")
+    assert len(notes["IV-6.2"]) == 2 and "substantial expertise" in notes["IV-6.2"][1]
+    page = TestClient(app).get(f"/migrations/{migration['id']}")
+    assert "Footnote cited by this unit or its heading" in page.text

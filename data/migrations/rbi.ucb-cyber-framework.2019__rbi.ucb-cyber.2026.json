@@ -136,6 +136,9 @@
       "old_excerpt": "3.1. The development/test and production environments need to be properly segregated. The data used for development and testing should be appropriately masked.\n",
       "old_char_start": 10661,
       "old_char_end": 10821,
+      "old_footnotes": [
+        "These controls are applicable for the UCBs who are developing the application softwares (ex: core banking solution) themselves or through their subsidiaries. Otherwise, UCBs, apart from securing their production environment, may enforce these requirements with their respective third party vendors developing application softwares."
+      ],
       "status": "matched",
       "confidence": 0.319489,
       "candidates": [
@@ -167,6 +170,9 @@
       "old_excerpt": "3.2. Software/Application development approach should incorporate secure coding principles, security testing (based on global standards) and secure rollout.\n",
       "old_char_start": 10821,
       "old_char_end": 10978,
+      "old_footnotes": [
+        "These controls are applicable for the UCBs who are developing the application softwares (ex: core banking solution) themselves or through their subsidiaries. Otherwise, UCBs, apart from securing their production environment, may enforce these requirements with their respective third party vendors developing application softwares."
+      ],
       "status": "matched",
       "confidence": 0.469799,
       "candidates": [
@@ -1751,6 +1757,10 @@
       "old_excerpt": "6.2. IT Strategy Committee\nUCBs may consider setting up a Board level IT Strategy Committee with a minimum of two directors as members, one of whom should be a professional director. At least two members of the IT Strategy Committee would need to be technically competent\n4\nwhile at least one member would need to have substantial expertise\n5\nin managing/guiding technology initiatives. Some of the roles and responsibilities that the IT Strategy Committee/Board should have are:\nApproving IT strategy and policy documents\nEnsuring that the management has put an effective strategic planning process in place\nEnsuring that the IT organizational structure complements the business model and its direction\nEnsuring IT investments represent a balance of risks and benefits and that budgets are acceptable\nReviewing IT performance measurement and contribution of IT to businesses\n",
       "old_char_start": 26395,
       "old_char_end": 27271,
+      "old_footnotes": [
+        "Technically competent herein will mean the ability to understand and evaluate technology systems.",
+        "A member will be considered to have “substantial expertise” if he has a minimum of five years of experience in managing IT systems and/or leading/guiding technology initiatives/projects. Such a member should also have an understanding of banking processes at a broader level and of the impact of IT on such processes. If not, then the member should be trained on these aspects."
+      ],
       "status": "changed",
       "confidence": 0.616421,
       "candidates": [

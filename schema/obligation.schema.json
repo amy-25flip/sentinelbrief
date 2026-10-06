@@ -125,6 +125,11 @@
                 "pattern": "^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
               },
               "description": "Month-day due dates (MM-DD) for a recurring duty tied to the calendar."
+            },
+            "earlier_of_days_after_event": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "The clause takes the earlier of the fixed date and this many days after an event (for example completion of the audit). The fixed date alone is then only the latest possible date."
             }
           },
           "required": [

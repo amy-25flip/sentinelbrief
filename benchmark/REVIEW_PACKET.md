@@ -4,7 +4,7 @@ For a compliance professional. Every expected outcome below was written by an AI
 primary texts and has not been checked by a qualified person. Until it has, no accuracy
 figure for this tool should be quoted.
 
-107 dev scenarios over 74 modelled obligations.
+107 dev scenarios over 78 modelled obligations.
 
 How to review: do Part A first. In Part B, tick each scenario or say what is wrong.
 PDF page numbers refer to the files in `data/raw/`.
@@ -194,14 +194,14 @@ Confirming or correcting one of these settles every scenario that depends on it.
 ### `irdai.ics-guidelines.2023.vapt-high-risk-closure-1m` (confidence 0.6)
 
 - **Clause** (Policy 2.16, 3.6.1 item 9, PDF page 267): "9. High risk gaps, reported from the VAPT, should be closed within a period of one month followed by validation testing."
-- **Modelled as:** High risk gaps reported from a VAPT should be closed within one month, followed by validation testing (the clause says "should"). The month runs from the VAPT report; no date is computed here.
+- **Modelled as:** High risk gaps reported from a VAPT should be closed within a period of one month, followed by validation testing (the clause says "should"). The clause does not say what the month runs from; no date is computed here.
 - **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
 - [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
 
 ### `irdai.ics-guidelines.2023.audit-gap-closure-2m` (confidence 0.6)
 
 - **Clause** (Policy 2.16, 3.6.1 item 10, PDF page 267): "10. Priority for closure of audit gaps should be based on the risk associated with each gap; however, the outer time limit for closure of all the audit gaps is two months."
-- **Modelled as:** Close all audit gaps within an outer limit of two months, in order of risk. The period runs from the audit finding; no date is computed here.
+- **Modelled as:** Close all audit gaps within the outer time limit of two months, in order of risk. The clause does not say what the two months run from; no date is computed here.
 - **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
 - [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
 
@@ -223,6 +223,34 @@ Confirming or correcting one of these settles every scenario that depends on it.
 
 - **Clause** (Policy 2.24, 3.1 item 4, PDF page 297): "4. The Organization shall periodically, and at least once in a year, inform its users of its rules and regulations, privacy policy or user agreement or any change in the rules and regulations, privacy policy or user agreement, as the case may be."
 - **Modelled as:** Inform users at least once a year of the rules and regulations, privacy policy or user agreement, and of any change to them.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.board-quarterly-inputs` (confidence 0.6)
+
+- **Clause** (1.6 Roles and Responsibilities, 1 Board, PDF page 140): "Receive quarterly inputs on matters related to Information Security"
+- **Modelled as:** The Board receives inputs on matters related to information security every quarter.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.classification-review-two-yearly` (confidence 0.6)
+
+- **Clause** (Policy 2.1, 3.3 Data Classification Process, PDF page 160): "Owners shall review the assigned classification label at least every two years to address changed business value and risks, or as required by laws and regulations that impact Organization."
+- **Modelled as:** Information owners review the classification label assigned to each information asset at least every two years, or as laws and regulations require.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.assurance-auditor-rotation-three-yearly` (confidence 0.6)
+
+- **Clause** (Policy 2.16, 3.6 item 5, PDF page 268): "5. Independent assurance auditor shall be rotated every three years."
+- **Modelled as:** Rotate the independent assurance auditor every three years.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.physical-access-revocation-last-working-day` (confidence 0.6)
+
+- **Clause** (1.6 Roles and Responsibilities, Admin, PDF page 146): "Admin shall work closely with HR and IT to ensure that all physical access to the office premises for separated employees is revoked on or before the last working day"
+- **Modelled as:** Revoke all physical access to the office premises for a separated employee on or before the employee's last working day. No date is computed here.
 - **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
 - [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
 

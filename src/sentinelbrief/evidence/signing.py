@@ -11,8 +11,9 @@ What a signature adds, and what it does not:
   both a signature and "its" public key proves nothing by itself: whoever rewrote the
   timeline could re-sign it with a new key. `verify_head_signature` therefore reports
   `key_pinned: False` unless the caller supplies the key it expects.
-- The private key is supplied by the operator (environment variable). This module never
-  writes a private key to disk.
+- The private key is supplied by the operator: a file named by SENTINELBRIEF_SIGNING_KEY_FILE
+  (preferred) or the SENTINELBRIEF_SIGNING_KEY variable. Key generation writes the seed to a
+  file the operator names and never prints it.
 """
 
 from __future__ import annotations
@@ -20,6 +21,7 @@ from __future__ import annotations
 import json
 import os
 from datetime import UTC, datetime
+from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 from nacl.exceptions import BadSignatureError
@@ -29,10 +31,10 @@ from sentinelbrief.evidence.timeline import EvidenceTimeline, canonical_json
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
-    from pathlib import Path
 
 ALGORITHM = "Ed25519"
 KEY_ENV = "SENTINELBRIEF_SIGNING_KEY"
+KEY_FILE_ENV = "SENTINELBRIEF_SIGNING_KEY_FILE"
 SIGNATURE_FILE = "head_signature.json"
 _SIGNED_FIELDS = ("algorithm", "head_hash", "event_count", "signed_at", "signer")
 
@@ -79,65 +81,75 @@ def sign_head(
     return record
 
 
+def _verdict(consistent: bool, pinned: bool, reason: str) -> dict[str, Any]:
+    """`trusted` is the only field that means "accept this". It needs a pinned key."""
+    return {
+        "trusted": consistent and pinned,
+        "signature_consistent": consistent,
+        "key_pinned": pinned,
+        "reason": reason,
+    }
+
+
 def verify_head_signature(
     record: Mapping[str, Any],
     timeline: EvidenceTimeline | None = None,
     expected_public_key: str | None = None,
 ) -> dict[str, Any]:
-    """Check a signature record. Returns {valid, key_pinned, reason}.
+    """Check a signature record. Returns {trusted, signature_consistent, key_pinned, reason}.
 
-    `valid` is True only if the signature verifies, the key matches `expected_public_key`
-    when one is given, and (when a timeline is given) the timeline is intact and has exactly
-    the signed head hash and event count. `key_pinned` is False when no expected key was
-    supplied: the signature then only shows consistency with the key inside the record.
+    `signature_consistent` means the signature verifies against the key carried in the record
+    and (when a timeline is given) the timeline is intact and has exactly the signed head hash
+    and event count. That alone proves nothing about who signed: whoever rewrote a timeline
+    could re-sign it. `trusted` is True only when, in addition, the key equals
+    `expected_public_key`, which the caller must have obtained outside the bundle.
     """
     pinned = expected_public_key is not None
     missing = [name for name in (*_SIGNED_FIELDS, "public_key", "signature") if name not in record]
     if missing:
-        return {"valid": False, "key_pinned": pinned, "reason": f"missing fields: {missing}"}
+        return _verdict(False, pinned, f"missing fields: {missing}")
     if record["algorithm"] != ALGORITHM:
-        return {"valid": False, "key_pinned": pinned, "reason": "unsupported algorithm"}
+        return _verdict(False, pinned, "unsupported algorithm")
     public_key = str(record["public_key"]).lower()
     if pinned and public_key != str(expected_public_key).strip().lower():
-        return {
-            "valid": False,
-            "key_pinned": True,
-            "reason": "signed with a different key than the one expected",
-        }
+        return _verdict(False, True, "signed with a different key than the one expected")
     try:
         VerifyKey(bytes.fromhex(public_key)).verify(
             _message(record), bytes.fromhex(str(record["signature"]))
         )
     except (BadSignatureError, ValueError):
-        return {"valid": False, "key_pinned": pinned, "reason": "signature does not verify"}
+        return _verdict(False, pinned, "signature does not verify")
     if timeline is not None:
         ok, first_break = timeline.verify()
         if not ok:
-            return {
-                "valid": False,
-                "key_pinned": pinned,
-                "reason": f"timeline hash chain is broken at seq {first_break}",
-            }
+            return _verdict(False, pinned, f"timeline hash chain is broken at seq {first_break}")
         if timeline.head_hash() != record["head_hash"] or len(timeline) != record["event_count"]:
-            return {
-                "valid": False,
-                "key_pinned": pinned,
-                "reason": "timeline does not match the signed head hash and event count",
-            }
-    reason = (
-        "signature verifies against the expected key"
-        if pinned
-        else "signature verifies, but only against the key carried in the record; "
-        "obtain the public key independently and pass it to be sure who signed"
+            return _verdict(
+                False, pinned, "timeline does not match the signed head hash and event count"
+            )
+    if pinned:
+        return _verdict(True, True, "signature verifies against the expected key")
+    return _verdict(
+        True,
+        False,
+        "NOT TRUSTED: the signature is only consistent with the key carried in the record. "
+        "Obtain the public key independently and pass it to establish who signed",
     )
-    return {"valid": True, "key_pinned": pinned, "reason": reason}
+
+
+def load_seed() -> str | None:
+    """The operator's signing seed: a file named by KEY_FILE_ENV, else the KEY_ENV variable."""
+    key_file = os.environ.get(KEY_FILE_ENV)
+    if key_file:
+        return Path(key_file).read_text(encoding="utf-8").strip()
+    return os.environ.get(KEY_ENV) or None
 
 
 def write_signature(
     bundle_dir: Path, timeline: EvidenceTimeline, signer: str, seed_hex: str | None = None
 ) -> Path | None:
     """Write `head_signature.json` into an export bundle if a signing key is configured."""
-    seed = seed_hex if seed_hex is not None else os.environ.get(KEY_ENV)
+    seed = seed_hex if seed_hex is not None else load_seed()
     if not seed:
         return None
     path = bundle_dir / SIGNATURE_FILE
@@ -153,7 +165,7 @@ def verify_bundle(bundle_dir: Path, expected_public_key: str | None = None) -> d
     """Verify the signature in an exported bundle against the bundle's own timeline."""
     signature_path = bundle_dir / SIGNATURE_FILE
     if not signature_path.is_file():
-        return {"valid": False, "key_pinned": False, "reason": "the bundle is not signed"}
+        return _verdict(False, expected_public_key is not None, "the bundle is not signed")
     record = json.loads(signature_path.read_text(encoding="utf-8"))
     timeline = EvidenceTimeline(bundle_dir / "timeline.jsonl")
     return verify_head_signature(record, timeline, expected_public_key)

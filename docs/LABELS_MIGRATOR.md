@@ -135,3 +135,7 @@ In `benchmark/migrator_gold/<pair id>.json`. Each row gives the old unit and the
 ### What will be reported
 
 hit@1 per pair with a Wilson interval and the list of misses, from the method **as it stood after Review 15**, with no threshold changed for these pairs. Anything pair-specific that the method needs (where the new text's body starts, which old units search which chapters, the list of names for the named-recipient rule) is configuration and is listed in the review. If the method needs a change to work on these pairs at all, the change and the before and after numbers on the original 47 are reported.
+
+### Note on Part 2 after Review 16
+
+For the two Master Direction pairs the gold accepts any paragraph of the matching section. The independent reviewer judged four of ten sampled sets too wide and found the top candidate to be the single best paragraph in five of ten. The 27/27 figures therefore mean "the right section was ranked first", not "the right paragraph". The gold is left as committed. The UCB gold names single paragraphs (five sampled sets were judged correct), so 59/61 is a paragraph-level figure.

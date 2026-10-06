@@ -19,7 +19,7 @@
   <p>confirmed by {{ mapping.confirmation.reviewer }} on {{ mapping.confirmation.date }}{% if mapping.confirmation.decision == 'corrected' %} (corrected to {{ mapping.confirmation.paragraphs|join(', ') }}){% endif %}</p>
   {% else %}<p><strong>proposed, not confirmed</strong></p>{% endif %}
   <div class="meta-grid">
-    <div><h3>2017 text</h3><div class="verbatim">{{ mapping.old_excerpt }}</div></div>
+    <div><h3>2017 text</h3><div class="verbatim">{{ mapping.old_excerpt }}</div>{% for note in mapping.old_footnotes %}<div class="verbatim" style="font-size: 0.85rem;">Footnote cited by this unit or its heading: {{ note }}</div>{% endfor %}</div>
     <div><h3>2026 candidate</h3>{% for candidate in mapping.candidates %}<p>Paragraph {{ candidate.paragraph }}, PDF page {{ candidate.pdf_page }}, score {{ candidate.score }}</p><div class="verbatim">{{ candidate.excerpt }}</div>{% else %}<p>No successor proposed.</p>{% endfor %}</div>
   </div>
   {% if mapping.differences %}<ul>{% for difference in mapping.differences %}<li>{{ difference }}</li>{% endfor %}</ul>{% endif %}

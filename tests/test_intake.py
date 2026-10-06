@@ -245,3 +245,59 @@ def test_store_refuses_directly_without_a_secret(tmp_path):
         store.receive(_body(), sign_body(_body(), SECRET), None, datetime(2026, 10, 1, tzinfo=UTC))
     assert error.value.status == 503
     assert list(Path(tmp_path).iterdir()) == []
+
+
+def test_two_requests_cannot_both_open_a_case_for_one_alert(client, tmp_path):
+    """Catches: a double click or a retry leaving two cases for one alert."""
+    alert_id = _received(client)
+    store = IntakeStore(tmp_path / "cases" / "_intake")
+    store.claim(alert_id)  # the first request is between claiming and finishing
+    payload = {
+        "opened_by": "Asha Rao",
+        "entity_classes": ["irdai.insurer"],
+        "incident_types": ["Malicious code attacks such as Ransomware"],
+        "when_noticed": "2026-10-01T10:00:00+05:30",
+    }
+    second = client.post(f"/api/intake/{alert_id}/open-case", json=payload)
+    assert second.status_code == 422 and "already being handled" in second.json()["error"]
+    assert [p.name for p in (tmp_path / "cases").iterdir()] == ["_intake"]
+    with pytest.raises(ValueError, match="already"):
+        store.dismiss(alert_id, "Asha Rao", "duplicate")
+
+
+def test_a_failed_case_opening_returns_the_alert_to_pending(client, tmp_path):
+    """Catches: an alert stuck as claimed, or an orphan case, when opening fails."""
+    alert_id = _received(client)
+    bad = client.post(
+        f"/api/intake/{alert_id}/open-case",
+        json={"opened_by": "Asha Rao", "entity_classes": ["no.such.class"]},
+    )
+    assert bad.status_code == 422
+    assert [p.name for p in (tmp_path / "cases").iterdir()] == ["_intake"]
+    assert client.get("/api/intake").json()["alerts"][0]["status"] == "pending"
+    good = client.post(
+        f"/api/intake/{alert_id}/open-case",
+        json={
+            "opened_by": "Asha Rao",
+            "entity_classes": ["irdai.insurer"],
+            "when_noticed": "2026-10-01T10:00:00+05:30",
+        },
+    )
+    assert good.status_code == 201
+
+
+def test_replay_is_found_without_reading_the_inbox_and_a_full_inbox_refuses(tmp_path, monkeypatch):
+    """Catches: every alert rereading every stored alert, or an unbounded inbox."""
+    from sentinelbrief.workspace import intake
+
+    store = IntakeStore(tmp_path)
+    first, created = store.receive(_body(), sign_body(_body(), SECRET), SECRET)
+    assert created
+    monkeypatch.setattr(IntakeStore, "list", lambda self, status=None: pytest.fail("inbox read"))
+    again, created = store.receive(_body(), sign_body(_body(), SECRET), SECRET)
+    assert not created and again["id"] == first["id"]
+    monkeypatch.setattr(intake, "MAX_PENDING", 1)
+    other = _body({**ALERT, "title": "Second alert"})
+    with pytest.raises(IntakeError) as error:
+        store.receive(other, sign_body(other, SECRET), SECRET)
+    assert error.value.status == 429

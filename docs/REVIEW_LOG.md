@@ -467,3 +467,22 @@ The owner asked the reviewer agent to build this batch alone and send it to the 
 Gates as run by the builder: 442 tests, ruff, ruff format, mypy strict, validate_all (74 obligations), 107/107 dev scenarios, review packet current; hidden split unchanged at 29/30; live re-verification 9 passed, 0 failed, 5 skipped.
 
 Known limits of this batch: the IRDAI reading is keyword-led, not clause by clause; the webhook has no rate limit and its replay check is by body hash only; the signing key is read from an environment variable; the tabletop storylines are three and fixed.
+
+## Review 16 - Codex, 2026-10-06: Build 18 (read-only review), with the builder's response
+
+The reviewer could not run the full test suite or mypy in its sandbox. It reproduced the migrator scores (46/47, 59/61, 27/27, 27/27), dev 107/107, hidden 29/30, validation and ruff, and confirmed the first pair's migration output is byte-identical. Ten findings; the builder (the reviewer agent) accepted all ten.
+
+| # | Finding | Severity | What was done |
+|---|---|---|---|
+| 1 | Every record was displayed as "Mandatory", including two IRDAI clauses that say "should". | blocker | New `normalized.modality`. The two records are `recommended`; the card, the obligation page and the calendar say so. A test fails if any clause that says only "should" is not marked. |
+| 2 | The insurer's audit report was a yearly 29 June calendar event although the clause takes the earlier of that date and 30 days after the audit. | blocker | The record carries `earlier_of_days_after_event: 30`. The calendar gives it no date unless the audit completion date is supplied, then computes the earlier date for that year only. |
+| 3 | Duties that hang on a condition the engine cannot evaluate (Foreign Reinsurance Branch; intermediary under the IT Rules) were dated for every insurer. | should fix | Such duties are left out of the calendar. One dated notice event inside the file lists what was left out and why. |
+| 4 | The search for stated periods missed four duties, and two actions said a closure period ran "from the report" although the clauses name no starting event. | should fix | Added: quarterly inputs to the Board, classification review every two years, auditor rotation every three years, physical access revoked by the last working day (34 IRDAI records, 78 in all). The invented starting events are removed. The README no longer says "every duty". The builder's search pattern did not include "every N years"; that is why two were missed, and it means other wordings may still be missed. |
+| 5 | The Master Direction gold accepts whole sections; in a sample of ten units the top candidate was clearly the single best paragraph in five. | should fix | The 27/27 figures are now described everywhere as "right section", with the reviewer's 5 of 10 beside them. The gold is not tightened after the fact, for the reason given in Review 15. The statement that the method was unchanged was wrong in one respect and is corrected: UCB controls are searched with their printed group heading, which the first pair did not need. |
+| 6 | UCB segmentation dropped footnotes that limit or define controls. | should fix | Units now carry the footnotes cited in them or under their group heading (II-3.1, II-3.2, IV-6.2), shown beside the old text. Scores unchanged. |
+| 7 | `valid: true, key_pinned: false` is easy to misread; key generation printed the private seed. | should fix | The result is now `trusted` / `signature_consistent` / `key_pinned`, and the command prints TRUSTED or NOT TRUSTED. Key generation writes the seed to a new file (exclusive create) and never prints it; the key can be read from a file. Export fails if the key is malformed. |
+| 8 | Opening a case from an alert was not atomic, and every alert reread the whole inbox. | should fix | An alert is claimed with one filesystem operation before the case is created, and released if creation fails. Replays are found through a per-digest marker. The inbox refuses new alerts beyond 1,000 pending. There is still no rate limit. |
+| 9 | The tabletop API accepted a time without an offset. | should fix | Only the page reads a bare time as IST; the API refuses it. |
+| 10 | A stale count in HANDOFF. | note | Corrected. |
+
+After the fixes: 454 tests, all six gates pass, hidden split 29/30, migrator scores unchanged. These fixes have not themselves been reviewed by the other agent.

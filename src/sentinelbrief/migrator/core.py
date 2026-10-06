@@ -136,6 +136,7 @@ class Segment:
     char_end: int
     page: int | None = None
     search_text: str | None = None
+    footnotes: tuple[str, ...] = ()
 
 
 def _page_for(offset: int, page_offsets: list[dict[str, int]]) -> int:
@@ -199,7 +200,13 @@ def segment_old_direction(
         # heading) is searched with that heading as its first line.
         heading = str(item.get("heading") or "")
         search = f"{heading}\n{body}" if heading else None
-        result.append(Segment(str(item["id"]), body, start, end, search_text=search))
+        notes = tuple(
+            text[int(note["char_start"]) : int(note["char_end"])].strip()
+            for note in item.get("footnotes") or []
+        )
+        result.append(
+            Segment(str(item["id"]), body, start, end, search_text=search, footnotes=notes)
+        )
     if len(result) != units:
         raise ValueError(f"expected {units} old clauses, found {len(result)}")
     return result
@@ -412,6 +419,7 @@ def build_migration(base_dir: Path, pair: Pair = PAIRS[0]) -> dict[str, Any]:
                 "old_excerpt": old.text,
                 "old_char_start": old.char_start,
                 "old_char_end": old.char_end,
+                **({"old_footnotes": list(old.footnotes)} if old.footnotes else {}),
                 "status": status,
                 "confidence": round(top_score if ranked else 1.0 - top_score, 6),
                 "candidates": [

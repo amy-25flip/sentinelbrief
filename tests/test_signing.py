@@ -10,6 +10,7 @@ from sentinelbrief.clock.engine import IncidentProfile
 from sentinelbrief.evidence.__main__ import main as evidence_cli
 from sentinelbrief.evidence.signing import (
     KEY_ENV,
+    KEY_FILE_ENV,
     SIGNATURE_FILE,
     generate_keypair,
     sign_head,
@@ -40,7 +41,8 @@ def test_signature_verifies_against_the_expected_key(tmp_path):
     assert seed not in json.dumps(record)
     result = verify_head_signature(record, timeline, public)
     assert result == {
-        "valid": True,
+        "trusted": True,
+        "signature_consistent": True,
         "key_pinned": True,
         "reason": "signature verifies against the expected key",
     }
@@ -51,8 +53,10 @@ def test_unpinned_verification_says_so(tmp_path):
     seed, _ = generate_keypair()
     timeline = _timeline(tmp_path)
     result = verify_head_signature(sign_head(timeline, seed, "Asha Rao"), timeline)
-    assert result["valid"] is True and result["key_pinned"] is False
-    assert "obtain the public key independently" in result["reason"]
+    assert result["trusted"] is False and result["key_pinned"] is False
+    assert result["signature_consistent"] is True
+    assert result["reason"].startswith("NOT TRUSTED")
+    assert "valid" not in result  # no field a reader could take for acceptance
 
 
 def test_attacker_resigning_with_their_own_key_fails_a_pinned_check(tmp_path):
@@ -61,10 +65,11 @@ def test_attacker_resigning_with_their_own_key_fails_a_pinned_check(tmp_path):
     attacker_seed, _ = generate_keypair()
     timeline = _timeline(tmp_path)
     forged = sign_head(timeline, attacker_seed, "Asha Rao")
-    assert verify_head_signature(forged, timeline)["valid"] is True  # consistent with itself
+    unpinned = verify_head_signature(forged, timeline)
+    assert unpinned["signature_consistent"] is True and unpinned["trusted"] is False
     pinned = verify_head_signature(forged, timeline, public)
-    assert pinned["valid"] is False and "different key" in pinned["reason"]
-    assert verify_head_signature(sign_head(timeline, seed, "Asha Rao"), timeline, public)["valid"]
+    assert pinned["trusted"] is False and "different key" in pinned["reason"]
+    assert verify_head_signature(sign_head(timeline, seed, "Asha Rao"), timeline, public)["trusted"]
 
 
 def test_truncating_the_timeline_after_signing_is_detected(tmp_path):
@@ -78,7 +83,8 @@ def test_truncating_the_timeline_after_signing_is_detected(tmp_path):
     shorter = EvidenceTimeline(path)
     assert shorter.verify()[0] is True  # the chain alone cannot see the truncation
     result = verify_head_signature(record, shorter, public)
-    assert result["valid"] is False and "does not match the signed head" in result["reason"]
+    assert result["trusted"] is False and result["signature_consistent"] is False
+    assert "does not match the signed head" in result["reason"]
 
 
 def test_editing_an_event_after_signing_is_detected(tmp_path):
@@ -89,7 +95,7 @@ def test_editing_an_event_after_signing_is_detected(tmp_path):
     path = tmp_path / "timeline.jsonl"
     path.write_text(path.read_text(encoding="utf-8").replace('"n": 1', '"n": 9'), encoding="utf-8")
     result = verify_head_signature(record, EvidenceTimeline(path), public)
-    assert result["valid"] is False and "broken" in result["reason"]
+    assert result["trusted"] is False and "broken" in result["reason"]
 
 
 @pytest.mark.parametrize("field", ["head_hash", "event_count", "signed_at", "signer"])
@@ -98,7 +104,7 @@ def test_every_signed_field_is_covered_by_the_signature(tmp_path, field):
     seed, public = generate_keypair()
     record = sign_head(_timeline(tmp_path), seed, "Asha Rao")
     record[field] = 99 if field == "event_count" else str(record[field]) + "x"
-    assert verify_head_signature(record, None, public)["valid"] is False
+    assert verify_head_signature(record, None, public)["trusted"] is False
 
 
 def test_bad_keys_and_broken_timelines_are_refused(tmp_path):
@@ -137,6 +143,7 @@ def test_export_is_signed_only_when_a_key_is_configured(tmp_path, monkeypatch):
     assert not (plain / SIGNATURE_FILE).exists()
     assert "NOT signed" in (plain / "CASE_SUMMARY.md").read_text(encoding="utf-8")
     assert verify_bundle(plain)["reason"] == "the bundle is not signed"
+    assert verify_bundle(plain)["trusted"] is False
 
     seed, public = generate_keypair()
     monkeypatch.setenv(KEY_ENV, seed)
@@ -147,7 +154,8 @@ def test_export_is_signed_only_when_a_key_is_configured(tmp_path, monkeypatch):
     for path in signed.iterdir():
         assert seed not in path.read_text(encoding="utf-8")
     assert verify_bundle(signed, public) == {
-        "valid": True,
+        "trusted": True,
+        "signature_consistent": True,
         "key_pinned": True,
         "reason": "signature verifies against the expected key",
     }
@@ -162,7 +170,32 @@ def test_cli_exits_nonzero_unless_the_key_is_pinned_and_valid(tmp_path, monkeypa
     assert evidence_cli(["verify", str(bundle), "--public-key", public]) == 0
     assert evidence_cli(["verify", str(bundle)]) == 1
     assert evidence_cli(["verify", str(bundle), "--public-key", generate_keypair()[1]]) == 1
-    capsys.readouterr()
-    assert evidence_cli(["keygen"]) == 0
     printed = capsys.readouterr().out
-    assert "Private seed" in printed and "Public key" in printed
+    assert printed.count("NOT TRUSTED") >= 2 and "TRUSTED\n" in printed
+    assert '"valid"' not in printed
+
+
+def test_keygen_writes_the_seed_to_a_new_file_and_never_prints_it(tmp_path, monkeypatch, capsys):
+    """Catches: the private seed in terminal or CI output, or an existing key overwritten."""
+    out = tmp_path / "signing.key"
+    assert evidence_cli(["keygen", "--out", str(out)]) == 0
+    seed = out.read_text(encoding="utf-8").strip()
+    printed = capsys.readouterr()
+    assert len(seed) == 64 and seed not in printed.out and seed not in printed.err
+    assert "Public key" in printed.out
+    assert evidence_cli(["keygen", "--out", str(out)]) == 2
+    assert out.read_text(encoding="utf-8").strip() == seed
+
+    store, case_id = _case(tmp_path)
+    monkeypatch.delenv(KEY_ENV, raising=False)
+    monkeypatch.setenv(KEY_FILE_ENV, str(out))
+    bundle = store.export(case_id, tmp_path / "from-file")
+    assert (bundle / SIGNATURE_FILE).is_file()
+
+
+def test_export_fails_closed_on_a_malformed_key(tmp_path, monkeypatch):
+    """Catches: a bad key producing an unsigned bundle that looks like a normal export."""
+    store, case_id = _case(tmp_path)
+    monkeypatch.setenv(KEY_ENV, "not-a-key")
+    with pytest.raises(ValueError, match="64 hexadecimal"):
+        store.export(case_id, tmp_path / "bad")

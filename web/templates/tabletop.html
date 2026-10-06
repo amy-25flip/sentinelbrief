@@ -26,7 +26,7 @@
 <h2>{{ exercise.scenario.title }}</h2>
 <p class="card-body">{{ exercise.scenario.summary }}</p>
 <p class="card-body">For: {{ exercise.entity_classes | join(", ") }} · starts {{ exercise.start_ist }} ·
-    <a href="/api/tabletop.md?classes={{ query.classes | urlencode }}&scenario={{ query.scenario | urlencode }}&start={{ query.start | urlencode }}&simulate={{ query.simulate | urlencode }}">Download the facilitator hand-out (Markdown)</a></p>
+    <a href="/api/tabletop.md?classes={{ query.classes | urlencode }}&scenario={{ query.scenario | urlencode }}&start={{ exercise.start_ist | urlencode }}&simulate={{ query.simulate | urlencode }}">Download the facilitator hand-out (Markdown)</a></p>
 {% for stage in exercise.stages %}
 <div class="card">
     <h3 style="margin-top: 0;">Stage {{ stage.stage }} · start + {{ stage.minutes_from_start }} min · {{ stage.at_ist }}</h3>

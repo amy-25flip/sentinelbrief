@@ -200,7 +200,7 @@ def _units(text: str, starts: list[tuple[str, int, str]], end: int) -> list[dict
     return result
 
 
-def _ucb_2019_segments(text: str) -> list[dict[str, int | str]]:
+def _ucb_2019_segments(text: str) -> list[dict[str, Any]]:
     """The numbered controls of Annexes II, III and IV, with ids such as ``II-5.3``.
 
     A control runs to the next control, group heading or annex heading. Each segment records
@@ -216,9 +216,21 @@ def _ucb_2019_segments(text: str) -> list[dict[str, int | str]]:
     footnotes = text.rfind("\n1\nRef:\n")
     if footnotes < annexes[-1][1]:
         raise ValueError("2019 UCB framework: footnote block after Annex IV was not found")
+    # Footnotes sit in one block after Annex IV: a marker line ("3"), then the note's text.
+    # A control is given the notes whose marker stands alone on a line inside the control or
+    # directly under its group heading, so a note that limits a control travels with it.
+    marker_re = re.compile(r"(?m)^(\d)$")
+    marks: list[re.Match[str]] = []
+    for match in marker_re.finditer(text, footnotes):
+        if int(match.group(1)) == len(marks) + 1:  # markers run 1, 2, 3 ... in the block
+            marks.append(match)
+    notes: dict[str, tuple[int, int]] = {}
+    for position, mark in enumerate(marks):
+        stop = marks[position + 1].start() if position + 1 < len(marks) else len(text)
+        notes[mark.group(1)] = (mark.end() + 1, stop)
     control_re = re.compile(r"(?m)^(\d+\.\d+)\. ")
     group_re = re.compile(r"(?m)^(\d+)\. [A-Z][^\n]*$")
-    result: list[dict[str, int | str]] = []
+    result: list[dict[str, Any]] = []
     for index, (name, start) in enumerate(annexes):
         stop = annexes[index + 1][1] if index + 1 < len(annexes) else footnotes
         groups = [(m.start(), m.group(0)) for m in group_re.finditer(text, start, stop)]
@@ -234,12 +246,26 @@ def _ucb_2019_segments(text: str) -> list[dict[str, int | str]]:
         for position, (segment_id, begin, heading) in enumerate(starts):
             following = starts[position + 1][1] if position + 1 < len(starts) else stop
             end = min([b for b in boundaries if b > begin] + [following])
-            segment: dict[str, int | str] = {
+            segment: dict[str, Any] = {
                 "id": segment_id,
                 "char_start": begin,
                 "char_end": end,
                 "heading": heading,
             }
+            heading_at = next(pos for pos, h in groups if h == heading and pos < begin)
+            first_in_group = min(b for _, b, h in starts if h == heading)
+            under_heading = text[heading_at + len(heading) : first_in_group]
+            cited = sorted(
+                {m.group(1) for m in marker_re.finditer(text, begin, end)}
+                | {m.group(1) for m in marker_re.finditer(under_heading)}
+            )
+            if any(mark not in notes for mark in cited):
+                raise ValueError(f"2019 UCB framework: {segment_id} cites an unknown footnote")
+            if cited:
+                segment["footnotes"] = [
+                    {"marker": mark, "char_start": notes[mark][0], "char_end": notes[mark][1]}
+                    for mark in cited
+                ]
             result.append(segment)
     if len(result) != 61:
         raise ValueError(f"2019 UCB framework: expected 61 numbered controls, found {len(result)}")

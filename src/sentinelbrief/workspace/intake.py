@@ -30,6 +30,9 @@ SIGNATURE_HEADER = "x-sentinelbrief-signature"
 MAX_BODY_BYTES = 64 * 1024
 # A shorter secret is guessable; the operator generates it, so there is no reason to allow one.
 MIN_SECRET_CHARS = 32
+# There is no rate limit on the endpoint; a full inbox refuses new alerts instead of filling
+# the disk. Pending alerts are cleared by a person opening a case or dismissing them.
+MAX_PENDING = 1000
 _ID_RE = re.compile(r"^[0-9a-f]{32}$")
 _TEXT_FIELDS = ("title", "source", "description", "severity", "external_id")
 NOTICE = (
@@ -130,9 +133,14 @@ class IntakeStore:
             raise IntakeError("Missing or wrong signature", 401)
         alert = _parse_alert(body)
         digest = hashlib.sha256(body).hexdigest()
-        for existing in self.list():
-            if existing["body_sha256"] == digest:
-                return existing, False
+        # One marker file per body digest: a replay is found without reading the inbox.
+        marker = self.root / f"{digest}.seen"
+        if marker.is_file():
+            return self.get(marker.read_text(encoding="utf-8").strip()), False
+        if sum(1 for _ in self.root.glob("*.pending")) >= MAX_PENDING:
+            raise IntakeError(
+                f"The alert inbox holds {MAX_PENDING} pending alerts; review them first", 429
+            )
         record = {
             "id": uuid.uuid4().hex,
             "received_at": (now or datetime.now(UTC)).astimezone(UTC).isoformat(),
@@ -142,8 +150,14 @@ class IntakeStore:
             "status": "pending",
             "notice": NOTICE,
         }
+        try:
+            with marker.open("x", encoding="utf-8") as handle:
+                handle.write(str(record["id"]))
+        except FileExistsError:  # the same body arrived twice at once
+            return self.get(marker.read_text(encoding="utf-8").strip()), False
         (self.root / f"{record['id']}.body").write_bytes(body)
         self._write(record)
+        (self.root / f"{record['id']}.pending").touch()
         return record, True
 
     def get(self, alert_id: str) -> dict[str, Any]:
@@ -162,7 +176,25 @@ class IntakeStore:
         records.sort(key=lambda item: (item["received_at"], item["id"]))
         return [item for item in records if status is None or item["status"] == status]
 
+    def claim(self, alert_id: str) -> None:
+        """Take the alert out of the pending state, atomically. Exactly one caller succeeds.
+
+        Removing the `.pending` marker is a single filesystem operation, so two requests
+        cannot both open a case for one alert. `release` puts it back if the work fails.
+        """
+        record = self.get(alert_id)
+        try:
+            (self.root / f"{alert_id}.pending").unlink()
+        except FileNotFoundError:
+            status = record["status"] if record["status"] != "pending" else "being handled"
+            raise ValueError(f"This alert is already {status}") from None
+
+    def release(self, alert_id: str) -> None:
+        self._path(alert_id)
+        (self.root / f"{alert_id}.pending").touch()
+
     def _decide(self, alert_id: str, status: str, extra: dict[str, Any]) -> dict[str, Any]:
+        """Record the outcome of an alert that the caller has already claimed."""
         record = self.get(alert_id)
         if record["status"] != "pending":
             raise ValueError(f"This alert is already {record['status']}")
@@ -176,6 +208,7 @@ class IntakeStore:
         person = _require_person(person, "The person dismissing the alert")
         if not reason.strip():
             raise ValueError("Dismissing an alert needs a reason")
+        self.claim(alert_id)
         return self._decide(
             alert_id,
             "dismissed",

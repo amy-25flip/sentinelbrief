@@ -35,13 +35,27 @@
       "id": "II-3.1",
       "char_start": 10661,
       "char_end": 10821,
-      "heading": "3. Application Security Life Cycle (ASLC)"
+      "heading": "3. Application Security Life Cycle (ASLC)",
+      "footnotes": [
+        {
+          "marker": "3",
+          "char_start": 33958,
+          "char_end": 34290
+        }
+      ]
     },
     {
       "id": "II-3.2",
       "char_start": 10821,
       "char_end": 10978,
-      "heading": "3. Application Security Life Cycle (ASLC)"
+      "heading": "3. Application Security Life Cycle (ASLC)",
+      "footnotes": [
+        {
+          "marker": "3",
+          "char_start": 33958,
+          "char_end": 34290
+        }
+      ]
     },
     {
       "id": "II-4.1",
@@ -347,7 +361,19 @@
       "id": "IV-6.2",
       "char_start": 26395,
       "char_end": 27271,
-      "heading": "6. IT and IS Governance Framework"
+      "heading": "6. IT and IS Governance Framework",
+      "footnotes": [
+        {
+          "marker": "4",
+          "char_start": 34292,
+          "char_end": 34390
+        },
+        {
+          "marker": "5",
+          "char_start": 34392,
+          "char_end": 34770
+        }
+      ]
     },
     {
       "id": "IV-6.3",
