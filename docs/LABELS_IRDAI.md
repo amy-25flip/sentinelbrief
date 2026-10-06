@@ -82,3 +82,64 @@ New fact `external_events`: a map from an obligation id to the time its starting
 |---|---|---|
 | `irdai-government-order-clock` | `irdai.insurer`; ransomware; noticed 2026-10-01 10:00; order received 2026-10-02 09:00 | CERT-In 6h and IRDAI 6h 2026-10-01 16:00. `gov-order-information-72h` due 2026-10-05 09:00 (external_event). The other external duties have no deadline. law_as_of 2026-10-01. |
 | `irdai-complaint-clocks` | `irdai.intermediary`; ransomware; noticed 2026-10-01 10:00; complaint received 2026-10-01 12:00, given for both grievance duties | `grievance-acknowledge-24h` due 2026-10-02 12:00; `grievance-dispose-15d` due 2026-10-16 12:00; plus the two six-hour deadlines at 16:00. |
+
+## Part 4 (2026-10-06): duties with a stated period or time limit, labels written before implementation
+
+Method: the whole stored text (305 PDF pages) was searched for every stated period or time limit (annual, yearly, half yearly, quarterly, monthly, "once in", "within N days / months", "N days", "six months"). Each hit was read in context. Duties stated only as "periodically" or "at regular intervals" have no period to model and are listed at the end. This is a keyword-led reading, not a clause-by-clause reading of every policy.
+
+### New obligation ids (all prefixed `irdai.ics-guidelines.2023.`)
+
+| Id | Where (PDF page) | Words relied on | Kind | Classes |
+|---|---|---|---|---|
+| `policy-review-annual` | 1.5 Governance, IV (139) | "This policy shall be reviewed on an annual basis" | recurring P12M | both |
+| `risk-assessment-annual` | 1.8 Risk Management, I (153) | "shall perform Risk Assessment at least annually" | recurring P12M | both |
+| `assurance-audit-annual` | 1.10 Compliance (157) | "An independent Assurance Audit shall be carried out by the Auditor every year." | recurring P12M | both |
+| `intermediary-annexure-iii-to-insurer-annual` | 1.10 (157) | "The Insurance Intermediary shall submit the Annexure – III ... to the Insurer/s annually." | recurring P12M | intermediary only |
+| `insurer-audit-report-to-irdai` | 1.10 (157) | "to IRDAI within 90 days from the end of financial year or within 30 days of completion of Audit, whichever is earlier" | recurring P12M, fixed date 29 June | insurer only |
+| `frb-annexure-vi-year-end` | 1.10 (157) | "shall be submitted to IRDAI at the end of every financial year" | recurring P12M, fixed date 31 March | insurer only, prose condition: Foreign Reinsurance Branch interfaced with an overseas parent (not evaluated) |
+| `remote-access-accounts-monthly` | Policy 2.3, 3.8 item 8 (184) | "On a monthly basis ... shall ensure that the accounts active within the Remote access solutions are accurate" | recurring P1M | both |
+| `restoration-test-half-yearly` | Policy 2.6, 3.1 item 1 (200) | "Data restoration testing must be performed at a minimum of six months" | recurring P6M | both |
+| `bcp-risk-analysis-annual` | Policy 2.13, II (239) | "Risk Analysis shall be performed at least on an annual basis." | recurring P12M | both |
+| `risk-mitigation-plan-review-quarterly` | Policy 2.13, II (239) | "reviewed and tracked to closure on a quarterly basis" | recurring P3M | both |
+| `dr-plan-review-annual` | Policy 2.13, IV (241) | "IT DR plans shall be reviewed at least on an annual basis." | recurring P12M | both |
+| `bcp-dr-test-annual` | Policy 2.13, 3.3.3 item 1 (242) | "shall be tested at least once annually or when significantly changed" | recurring P12M | both |
+| `physical-access-review-half-yearly` | Policy 2.15, 3.2.3 I (259) | "reviewed ... on a half yearly basis" | recurring P6M | both |
+| `evacuation-drill-annual` | Policy 2.15, 3.3.2 item 4 (260) | "Evacuation drills shall be performed at least on an annual basis." | recurring P12M | both |
+| `log-retention-180d` | Policy 2.16, 3.3 item 14 (265) | "maintained for a rolling period of 180 days and within the Indian jurisdiction" | retention P180D | both |
+| `vapt-internet-facing-annual` | Policy 2.16, 3.6.1 item 2 (266) | "to be conducted periodically atleast once in a year" | recurring P12M | both |
+| `external-pt-half-yearly` | Policy 2.16, 3.6.1 item 5 (267) | "should be conducted ... once in 6 months" | recurring P6M | both |
+| `vapt-high-risk-closure-1m` | Policy 2.16, 3.6.1 item 9 (267) | "should be closed within a period of one month" | none (no computed deadline) | both |
+| `audit-gap-closure-2m` | Policy 2.16, 3.6.1 item 10 (267) | "the outer time limit for closure of all the audit gaps is two months" | none (no computed deadline) | both |
+| `is-practices-review-annual` | Policy 2.16, 3.6.2 item 1 (267) | "shall conduct annual review of information security practices" | recurring P12M | both |
+| `users-informed-of-termination-right-annual` | Policy 2.24, 3.1 item 2 (297) | "at least once every year" | recurring P12M | both, prose condition: intermediary under the IT Rules 2021 (not evaluated) |
+| `users-informed-of-rules-annual` | Policy 2.24, 3.1 item 4 (297) | "at least once in a year" | recurring P12M | both, same prose condition |
+
+### Decisions the labels rely on
+
+1. **The audit report date.** The clause gives two limits and takes the earlier. Only the first can be computed without knowing when the audit finished. The guidelines do not define "financial year"; 1 April to 31 March is assumed, so 90 days from the end is 29 June. The record carries that as a fixed date and its action says it is the latest possible date and that the limit is 30 days after the audit is completed if that comes first. The tool must not present 29 June as the due date without that sentence.
+2. **Closure limits are listed, not computed.** "One month" and "two months" run from a VAPT or audit report, and the engine refuses month-long durations for deadlines (a month is not a fixed number of days). They are recorded with kind `none`; the action states the limit.
+3. **"Should" duties are recorded and say so.** Items 5 and 9 of 3.6.1 use "should". The action text uses "should", not "must".
+4. **Recipient.** Only `insurer-audit-report-to-irdai` and `frb-annexure-vi-year-end` go to IRDAI; `intermediary-annexure-iii-to-insurer-annual` goes to the insurer(s). All others are internal duties with no recipient outside the entity.
+5. **No incident clock.** None of these starts from an incident. They add no deadline and no question to an incident evaluation.
+6. Same `valid_from` (2023-04-24, contested until 2024-04-01) as Parts 1 and 2.
+
+### Labels
+
+| Id | Input | Expected |
+|---|---|---|
+| `irdai-recurring-insurer-calendar` (unit test) | calendar for `irdai.insurer`, last done 2026-04-01 | Exactly 18 events from this instrument. First due dates: monthly duty 2026-05-01; quarterly 2026-07-01; the three half-yearly duties 2026-10-01; `insurer-audit-report-to-irdai` 2026-06-29; `frb-annexure-vi-year-end` 2027-03-31; the eleven other annual duties 2027-04-01. No `intermediary-annexure-iii-to-insurer-annual`. Nothing undetermined. |
+| `irdai-recurring-intermediary-calendar` (unit test) | calendar for `irdai.intermediary`, last done 2026-04-01 | Exactly 17 events: the 16 recurring duties common to both classes plus `intermediary-annexure-iii-to-insurer-annual` (2027-04-01). Neither `insurer-audit-report-to-irdai` nor `frb-annexure-vi-year-end`. |
+| `irdai-recurring-not-for-nbfc` (unit test) | calendar for `nbfc.middle_layer` | No event from this instrument. |
+| `irdai-periodic-duties-add-no-incident-clock` (scenario) | `irdai.insurer`; ransomware; noticed 2026-10-01 10:00 | Deadlines exactly CERT-In 6h and IRDAI 6h at 16:00. No unknowns. `assurance-audit-annual`, `insurer-audit-report-to-irdai`, `log-retention-180d`, `vapt-high-risk-closure-1m` applicable. `intermediary-annexure-iii-to-insurer-annual` not applicable. |
+| `irdai-periodic-duties-intermediary` (scenario) | `irdai.intermediary`; same incident | `intermediary-annexure-iii-to-insurer-annual` applicable; `insurer-audit-report-to-irdai` and `frb-annexure-vi-year-end` not applicable. |
+| `irdai-periodic-duties-before-the-guidelines` (scenario) | `irdai.insurer`; noticed 2023-04-01 10:00 | `assurance-audit-annual` and `insurer-audit-report-to-irdai` not applicable, reason containing "not_yet_valid_at_incident_date (2023-04-24)". |
+| audit report wording (unit test) | the record | action contains "29 June", "latest" and "30 days"; recipient IRDAI. |
+
+Mutation tests: the insurer-only report leaking to intermediaries; the half-yearly restoration test changed to twelve months; the audit report date moved from 29 June.
+
+### Read and not modelled
+
+- "all members meeting at least twice in a year" (ISRMC, 1.5): two meetings a year is not a six-month interval.
+- Passwords changed "once in 45 days" (2.3) and third-party user IDs expiring in "not more than 15 days" (2.3): system settings, not dated duties.
+- The insurer obtaining annual self-certification from intermediaries that hold only physical data (1.10): depends on a fact about each intermediary.
+- Every duty stated as "periodically", "on a periodic basis" or "at regular intervals" (storage reviews, access rights reviews, third-party assessments, log reviews, incident trend analysis and others): no period is stated.
