@@ -903,3 +903,23 @@ def test_catches_quarterly_report_treated_as_an_incident_deadline(monkeypatch):
 
     _mutate_loaded_obligations(monkeypatch, mutation)
     assert "sebi-portal-24h-after-noticing" in _failed(_run())
+
+
+def test_catches_irdai_insurer_report_leaking_to_intermediaries(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"] == "irdai.ics-guidelines.2023.insurer-audit-report-to-irdai":
+                item["applicability"]["entity_classes"].append("irdai.intermediary")
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "irdai-periodic-duties-intermediary" in _failed(_run())
+
+
+def test_catches_irdai_periodic_duty_given_an_incident_deadline(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"] == "irdai.ics-guidelines.2023.log-retention-180d":
+                item["normalized"]["deadline"].update(kind="relative", anchor="noticing")
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "irdai-periodic-duties-add-no-incident-clock" in _failed(_run())

@@ -117,6 +117,7 @@ def recurring_duties_ics(
             event = [
                 "BEGIN:VEVENT",
                 f"UID:{uid}@sentinelbrief",
+                f"X-SENTINELBRIEF-OBLIGATION:{obligation_id}",
                 f"DTSTAMP:{stamp}",
                 f"DTSTART;VALUE=DATE:{first.strftime('%Y%m%d')}",
                 f"RRULE:{rule}",

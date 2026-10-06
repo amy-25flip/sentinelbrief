@@ -20,7 +20,7 @@ def test_feed_xml_is_well_formed_complete_and_deterministic():
     assert root.tag == "rss" and root.attrib["version"] == "2.0"
     feed = CardFeed(DATA_DIR)
     feed.load_from_data_dir(fixtures_dir=DATA_DIR.parent / "tests" / "fixtures")
-    regulatory_count = sum(card.stream == "regulatory" for card in feed.get_feed())
+    regulatory_count = sum(card.stream == "regulatory" for card in feed.get_feed(limit=10_000))
     assert len(root.findall("./channel/item")) == regulatory_count
     assert root.findtext("./channel/lastBuildDate")
     for item in root.findall("./channel/item"):

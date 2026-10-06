@@ -34,6 +34,9 @@ WEB_DIR = BASE_DIR / "web"
 TEMPLATES_DIR = WEB_DIR / "templates"
 STATIC_DIR = WEB_DIR / "static"
 DATA_DIR = BASE_DIR / "data"
+# The home page and the RSS feed list every card; the feed's default page size would hide
+# obligations once the dataset outgrows it.
+FEED_LIMIT = 10_000
 
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 templates.env.filters["ist"] = lambda dt: dt.astimezone(IST).strftime("%d %b %Y, %H:%M IST")
@@ -165,7 +168,7 @@ async def home(request: Request) -> HTMLResponse:
     feed = CardFeed(DATA_DIR)
     fixtures_dir = BASE_DIR / "tests" / "fixtures"
     feed.load_from_data_dir(fixtures_dir=fixtures_dir)
-    cards = feed.get_feed()
+    cards = feed.get_feed(limit=FEED_LIMIT)
     return templates.TemplateResponse(
         request=request,
         name="index.html",
@@ -181,7 +184,7 @@ async def rss_feed(request: Request) -> Response:
     """RSS 2.0 generated from the same regulatory-card data as the home page."""
     feed = CardFeed(DATA_DIR)
     feed.load_from_data_dir(fixtures_dir=BASE_DIR / "tests" / "fixtures")
-    payload = regulatory_rss(feed.get_feed(), str(request.base_url))
+    payload = regulatory_rss(feed.get_feed(limit=FEED_LIMIT), str(request.base_url))
     return Response(payload, media_type="application/rss+xml; charset=utf-8")
 
 

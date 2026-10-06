@@ -86,7 +86,11 @@ def test_external_and_contract_duties_are_not_drafted_as_filings(engine):
 def test_calendar_ignores_external_and_retention_duties(engine):
     """Catches: a complaint or retention clock exported as a recurring calendar event."""
     ics, undetermined = recurring_duties_ics(engine, ["irdai.insurer"], T10.date())
-    assert "BEGIN:VEVENT" not in ics and undetermined == []
+    assert undetermined == []
+    unfolded = ics.replace("\r\n ", "")
+    for obligation_id in [*EXTERNAL, *OTHER]:
+        assert f"X-SENTINELBRIEF-OBLIGATION:{obligation_id}" not in unfolded
+    assert "X-SENTINELBRIEF-OBLIGATION:" in unfolded
 
 
 def test_clock_page_says_the_clock_does_not_start_from_the_incident():

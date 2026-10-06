@@ -4,7 +4,7 @@ For a compliance professional. Every expected outcome below was written by an AI
 primary texts and has not been checked by a qualified person. Until it has, no accuracy
 figure for this tool should be quoted.
 
-104 dev scenarios over 52 modelled obligations.
+107 dev scenarios over 74 modelled obligations.
 
 How to review: do Part A first. In Part B, tick each scenario or say what is wrong.
 PDF page numbers refer to the files in `data/raw/`.
@@ -70,6 +70,160 @@ Confirming or correcting one of these settles every scenario that depends on it.
 - **Clause** (Policy 2.8, 3.5 item 3, PDF page 212): "3. In case of loss of device, the employee shall inform IT function within 4 hours."
 - **Modelled as:** The employee informs the IT function within 4 hours of the loss of the device.
 - **Why it is uncertain:** An internal duty (employee to IT function), not a report to a regulator. The clock starts from the loss of the device. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.policy-review-annual` (confidence 0.6)
+
+- **Clause** (1.5 Governance, IV Review Frequency, PDF page 139): "This policy shall be reviewed on an annual basis and if required updated by the CISO and approved by the ISRMC."
+- **Modelled as:** Review the Information and Cyber Security Policy every year; the CISO updates it if required and the ISRMC approves it.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.risk-assessment-annual` (confidence 0.6)
+
+- **Clause** (1.8 Risk Management, I Risk Assessment Scenarios, PDF page 153): "Organization shall perform Risk Assessment at least annually and prior to the following scenarios/circumstances:"
+- **Modelled as:** Perform a risk assessment at least once a year, and before the scenarios the clause lists.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.assurance-audit-annual` (confidence 0.6)
+
+- **Clause** (1.10 Compliance, PDF page 157): "An independent Assurance Audit shall be carried out by the Auditor every year. The annual Audit plan and the reports shall be presented to the Audit Committee / Board of Directors / Principal Officer, as applicable, of the organization."
+- **Modelled as:** Have the Auditor carry out an independent Assurance Audit every year and present the annual audit plan and reports to the Audit Committee, Board of Directors or Principal Officer, as applicable.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.intermediary-annexure-iii-to-insurer-annual` (confidence 0.6)
+
+- **Clause** (1.10 Compliance (intermediary submission), PDF page 157): "The Insurance Intermediary shall submit the Annexure – III along with compliance thereto and the comments of the board to the Insurer/s annually."
+- **Modelled as:** Submit Annexure III, with compliance to it and the comments of the board, to the insurer or insurers every year.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.insurer-audit-report-to-irdai` (confidence 0.6)
+
+- **Clause** (1.10 Compliance (insurer audit report), PDF page 157): "The Insurers shall submit their Audit Report (Annexure III) duly signed by the Auditor along with comments of the Board to IRDAI within 90 days from the end of financial year or within 30 days of completion of Audit, whichever is earlier."
+- **Modelled as:** Submit the Audit Report (Annexure III), signed by the Auditor, with the comments of the Board to IRDAI. 29 June is the latest possible date (90 days after a financial year ending 31 March); the limit is 30 days after the audit is completed if that comes first.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.frb-annexure-vi-year-end` (confidence 0.6)
+
+- **Clause** (1.10 Compliance (Foreign Reinsurance Branches), PDF page 157): "The Foreign Reinsurance Branches (FRBs) where IT Systems are interfaced with overseas parent companies shall comply with Cyber Security Guidelines. The Auditor shall certify the same as per Annexure – VI and the same shall be submitted to IRDAI at the end of every financial year."
+- **Modelled as:** If the insurer is a Foreign Reinsurance Branch whose IT systems are interfaced with an overseas parent: submit the Auditor's Annexure VI certificate to IRDAI at the end of every financial year (31 March is assumed as the year end).
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.remote-access-accounts-monthly` (confidence 0.6)
+
+- **Clause** (Policy 2.3, 3.8 item 8, PDF page 184): "8. On a monthly basis, the system owner’s shall ensure that the accounts active within the Remote access solutions are accurate. All discrepancies shall be resolved quickly."
+- **Modelled as:** Every month, the system owners check that the accounts active in the remote access solutions are accurate and resolve discrepancies.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.restoration-test-half-yearly` (confidence 0.6)
+
+- **Clause** (Policy 2.6, 3.1 item 1, PDF page 200): "Data restoration testing must be performed at a minimum of six months or more frequently, as required by the business."
+- **Modelled as:** Test data restoration at least every six months, or more often if the business requires.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.bcp-risk-analysis-annual` (confidence 0.6)
+
+- **Clause** (Policy 2.13, II Risk Management and Evaluation (risk analysis), PDF page 239): "Risk Analysis shall be performed at least on an annual basis."
+- **Modelled as:** Perform the business continuity risk analysis at least once a year.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.risk-mitigation-plan-review-quarterly` (confidence 0.6)
+
+- **Clause** (Policy 2.13, II Risk Management and Evaluation (mitigation plan), PDF page 239): "The Risk Mitigation plan shall be reviewed and tracked to closure on a quarterly basis."
+- **Modelled as:** Review the risk mitigation plan and track it to closure every quarter.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.dr-plan-review-annual` (confidence 0.6)
+
+- **Clause** (Policy 2.13, IV IT DR Recovery Planning, PDF page 241): "IT DR plans shall be reviewed at least on an annual basis."
+- **Modelled as:** Review the IT disaster recovery plans at least once a year.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.bcp-dr-test-annual` (confidence 0.6)
+
+- **Clause** (Policy 2.13, 3.3.3 item 1, PDF page 242): "The business continuity and DR plans shall be tested at least once annually or when significantly changed to identify incorrect assumptions, oversights, or changes in equipment or personnel."
+- **Modelled as:** Test the business continuity and disaster recovery plans at least once a year, and when they change significantly.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.physical-access-review-half-yearly` (confidence 0.6)
+
+- **Clause** (Policy 2.15, 3.2.3 I, PDF page 259): "The access rights for such individuals shall be reviewed by the designated manager / secured area owner on a half yearly basis to ensure that the access rights remain as required."
+- **Modelled as:** Every half year, the designated manager or secured area owner reviews the secured-area access rights of employees and long term contractors.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.evacuation-drill-annual` (confidence 0.6)
+
+- **Clause** (Policy 2.15, 3.3.2 item 4, PDF page 260): "Evacuation drills shall be performed at least on an annual basis."
+- **Modelled as:** Perform evacuation drills at least once a year.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.log-retention-180d` (confidence 0.6)
+
+- **Clause** (Policy 2.16, 3.3 item 14, PDF page 265): "14. ICT infrastructure logs shall be maintained for a rolling period of 180 days and within the Indian jurisdiction as per directions issued by Cert-In from time to time."
+- **Modelled as:** Keep ICT infrastructure logs for a rolling period of 180 days, within the Indian jurisdiction.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.vapt-internet-facing-annual` (confidence 0.6)
+
+- **Clause** (Policy 2.16, 3.6.1 item 2, PDF page 266): "2. VAPT of internet-facing applications or infrastructure components to be conducted periodically atleast once in a year."
+- **Modelled as:** Conduct VAPT of internet-facing applications and infrastructure components at least once a year.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.external-pt-half-yearly` (confidence 0.6)
+
+- **Clause** (Policy 2.16, 3.6.1 item 5, PDF page 267): "5. External Blackbox Penetration Testing (PT) should be conducted for all internet facing information assets and systems once in 6 months."
+- **Modelled as:** External black-box penetration testing should be conducted for all internet-facing information assets and systems once in six months (the clause says "should").
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.vapt-high-risk-closure-1m` (confidence 0.6)
+
+- **Clause** (Policy 2.16, 3.6.1 item 9, PDF page 267): "9. High risk gaps, reported from the VAPT, should be closed within a period of one month followed by validation testing."
+- **Modelled as:** High risk gaps reported from a VAPT should be closed within one month, followed by validation testing (the clause says "should"). The month runs from the VAPT report; no date is computed here.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.audit-gap-closure-2m` (confidence 0.6)
+
+- **Clause** (Policy 2.16, 3.6.1 item 10, PDF page 267): "10. Priority for closure of audit gaps should be based on the risk associated with each gap; however, the outer time limit for closure of all the audit gaps is two months."
+- **Modelled as:** Close all audit gaps within an outer limit of two months, in order of risk. The period runs from the audit finding; no date is computed here.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.is-practices-review-annual` (confidence 0.6)
+
+- **Clause** (Policy 2.16, 3.6.2 item 1, PDF page 267): "Organization shall conduct annual review of information security practices either by the IS team or by competent independent party appointed by the IS team to ensure compliance with the information"
+- **Modelled as:** Conduct an annual review of information security practices.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.users-informed-of-termination-right-annual` (confidence 0.6)
+
+- **Clause** (Policy 2.24, 3.1 item 2, PDF page 297): "2. The Organization shall periodically inform its users, at least once every year, that in case of non-compliance with rules and regulations, privacy policy or user agreement for access or usage of the computer resource of such intermediary, it has the right to terminate the access or usage rights of the users to the computer resource immediately or remove non- compliant information or both, as the case may be."
+- **Modelled as:** Inform users at least once every year that non-compliance with the rules, privacy policy or user agreement may lead to termination of access or removal of non-compliant information.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
+
+### `irdai.ics-guidelines.2023.users-informed-of-rules-annual` (confidence 0.6)
+
+- **Clause** (Policy 2.24, 3.1 item 4, PDF page 297): "4. The Organization shall periodically, and at least once in a year, inform its users of its rules and regulations, privacy policy or user agreement or any change in the rules and regulations, privacy policy or user agreement, as the case may be."
+- **Modelled as:** Inform users at least once a year of the rules and regulations, privacy policy or user agreement, and of any change to them.
+- **Why it is uncertain:** Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
 - [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
 
 ### `rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb` (confidence 0.5)
@@ -2798,7 +2952,7 @@ A Level III UCB is bound by Chapter IV as well, so the VA and PT cadence applies
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-## IRDAI Information and Cyber Security Guidelines (2023) (14 scenarios)
+## IRDAI Information and Cyber Security Guidelines (2023) (17 scenarios)
 
 ### 91. `irdai-attested-not-a-cyber-incident`
 
@@ -3131,5 +3285,80 @@ A Payments Bank is not regulated by IRDAI.
 
 - `irdai.ics-guidelines.2023`, PDF page 138: "These guidelines are applicable to all Insurers including Foreign Re-Insurance Branches (FRBs) and Insurance Intermediaries regulated by the Insurance Regulatory and Development Authority of India (IRDAI)."
 - `cert-in.directions-70b.2022`, PDF page 2: "(ii) Any service provider, intermediary, data centre, body corporate and Government organisation shall mandatorily report cyber incidents as mentioned in Annexure I to CERT-In within 6 hours of noticing such incidents or being brought to notice about such incidents. The incidents can be reported to CERT-In via email (incident@cert-in.org.in), Phone (1800- 11-4949) and Fax (1800-11-6969). The details regarding methods and formats of reporting cyber security incidents is also published on the website of CERT-In www.cert-in.org.in and will be updated from time to time."
+
+- [ ] Correct   - [ ] Incorrect: ____________________
+
+### 105. `irdai-periodic-duties-add-no-incident-clock`
+
+An insurer's ransomware incident starts only the two six-hour clocks. The yearly audit, the audit report to IRDAI, log retention and the VAPT closure limit apply to the insurer but give no incident deadline and ask nothing. The intermediary's yearly submission to insurers does not apply.
+
+- **Entity classes:** `irdai.insurer`
+- **Incident type(s) as stated:** Malicious code attacks such as Ransomware
+- **Noticed:** `2026-10-01T10:00:00+05:30`
+
+**Expected** (law as of `2026-10-01`; regulators: CERT-In, IRDAI)
+
+- Deadline `2026-10-01T16:00:00+05:30` for `cert-in.directions-70b.2022.incident-reporting-6h` (PT6H from noticing)
+- Deadline `2026-10-01T16:00:00+05:30` for `irdai.ics-guidelines.2023.incident-reporting-6h` (PT6H from noticing)
+- Applies, with no computed deadline: `irdai.ics-guidelines.2023.assurance-audit-annual`
+- Applies, with no computed deadline: `irdai.ics-guidelines.2023.insurer-audit-report-to-irdai`
+- Applies, with no computed deadline: `irdai.ics-guidelines.2023.log-retention-180d`
+- Applies, with no computed deadline: `irdai.ics-guidelines.2023.vapt-high-risk-closure-1m`
+- Does not apply: `irdai.ics-guidelines.2023.intermediary-annexure-iii-to-insurer-annual`
+
+**Clauses relied on**
+
+- `irdai.ics-guidelines.2023`, PDF page 224: "Organization shall mandatorily report cyber incidents to Cert-In within 6 hours of noticing or being brought to notice about such incidents with a copy to IRDAI and other concerned regulators / authorities. The details regarding methods and formats of reporting cyber incident is published on Cert-In website."
+- `irdai.ics-guidelines.2023`, PDF page 157: "An independent Assurance Audit shall be carried out by the Auditor every year. The annual Audit plan and the reports shall be presented to the Audit Committee / Board of Directors / Principal Officer, as applicable, of the organization."
+- `irdai.ics-guidelines.2023`, PDF page 157: "The Insurers shall submit their Audit Report (Annexure III) duly signed by the Auditor along with comments of the Board to IRDAI within 90 days from the end of financial year or within 30 days of completion of Audit, whichever is earlier."
+- `irdai.ics-guidelines.2023`, PDF page 265: "14. ICT infrastructure logs shall be maintained for a rolling period of 180 days and within the Indian jurisdiction as per directions issued by Cert-In from time to time."
+- `irdai.ics-guidelines.2023`, PDF page 267: "9. High risk gaps, reported from the VAPT, should be closed within a period of one month followed by validation testing."
+- `irdai.ics-guidelines.2023`, PDF page 157: "The Insurance Intermediary shall submit the Annexure – III along with compliance thereto and the comments of the board to the Insurer/s annually."
+
+- [ ] Correct   - [ ] Incorrect: ____________________
+
+### 106. `irdai-periodic-duties-before-the-guidelines`
+
+On 1 April 2023 the guidelines had not been issued, so the yearly audit and the audit report to IRDAI are not applicable: not_yet_valid_at_incident_date (2023-04-24).
+
+- **Entity classes:** `irdai.insurer`
+- **Incident type(s) as stated:** Malicious code attacks such as Ransomware
+- **Noticed:** `2023-04-01T10:00:00+05:30`
+
+**Expected** (law as of `2023-04-01`; regulators: CERT-In)
+
+- Deadline `2023-04-01T16:00:00+05:30` for `cert-in.directions-70b.2022.incident-reporting-6h` (PT6H from noticing)
+- Does not apply: `irdai.ics-guidelines.2023.assurance-audit-annual`
+- Does not apply: `irdai.ics-guidelines.2023.insurer-audit-report-to-irdai`
+
+**Clauses relied on**
+
+- `irdai.ics-guidelines.2023`, PDF page 157: "An independent Assurance Audit shall be carried out by the Auditor every year. The annual Audit plan and the reports shall be presented to the Audit Committee / Board of Directors / Principal Officer, as applicable, of the organization."
+- `irdai.ics-guidelines.2023`, PDF page 157: "The Insurers shall submit their Audit Report (Annexure III) duly signed by the Auditor along with comments of the Board to IRDAI within 90 days from the end of financial year or within 30 days of completion of Audit, whichever is earlier."
+
+- [ ] Correct   - [ ] Incorrect: ____________________
+
+### 107. `irdai-periodic-duties-intermediary`
+
+An insurance intermediary submits Annexure III to its insurers every year. The audit report to IRDAI and the Foreign Reinsurance Branch certificate are insurer duties and do not reach it.
+
+- **Entity classes:** `irdai.intermediary`
+- **Incident type(s) as stated:** Malicious code attacks such as Ransomware
+- **Noticed:** `2026-10-01T10:00:00+05:30`
+
+**Expected** (law as of `2026-10-01`; regulators: CERT-In, IRDAI)
+
+- Deadline `2026-10-01T16:00:00+05:30` for `cert-in.directions-70b.2022.incident-reporting-6h` (PT6H from noticing)
+- Deadline `2026-10-01T16:00:00+05:30` for `irdai.ics-guidelines.2023.incident-reporting-6h` (PT6H from noticing)
+- Applies, with no computed deadline: `irdai.ics-guidelines.2023.intermediary-annexure-iii-to-insurer-annual`
+- Does not apply: `irdai.ics-guidelines.2023.insurer-audit-report-to-irdai`
+- Does not apply: `irdai.ics-guidelines.2023.frb-annexure-vi-year-end`
+
+**Clauses relied on**
+
+- `irdai.ics-guidelines.2023`, PDF page 224: "Organization shall mandatorily report cyber incidents to Cert-In within 6 hours of noticing or being brought to notice about such incidents with a copy to IRDAI and other concerned regulators / authorities. The details regarding methods and formats of reporting cyber incident is published on Cert-In website."
+- `irdai.ics-guidelines.2023`, PDF page 157: "The Insurance Intermediary shall submit the Annexure – III along with compliance thereto and the comments of the board to the Insurer/s annually."
+- `irdai.ics-guidelines.2023`, PDF page 157: "The Insurers shall submit their Audit Report (Annexure III) duly signed by the Auditor along with comments of the Board to IRDAI within 90 days from the end of financial year or within 30 days of completion of Audit, whichever is earlier."
+- `irdai.ics-guidelines.2023`, PDF page 157: "The Foreign Reinsurance Branches (FRBs) where IT Systems are interfaced with overseas parent companies shall comply with Cyber Security Guidelines. The Auditor shall certify the same as per Annexure – VI and the same shall be submitted to IRDAI at the end of every financial year."
 
 - [ ] Correct   - [ ] Incorrect: ____________________

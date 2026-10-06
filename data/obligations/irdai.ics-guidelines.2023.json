@@ -535,5 +535,1384 @@
     },
     "confidence": 0.6,
     "confidence_reason": "An internal duty (employee to IT function), not a report to a regulator. The clock starts from the loss of the device. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.policy-review-annual",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "1.5 Governance, IV Review Frequency",
+    "text_verbatim": "This policy shall be reviewed on an annual basis and if required updated by the CISO and \napproved by the ISRMC.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Each year"
+      },
+      "action": "Review the Information and Cyber Security Policy every year; the CISO updates it if required and the ISRMC approves it.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P12M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "1.5 Governance, IV Review Frequency",
+        "page": 139,
+        "char_start": 298823,
+        "char_end": 298935,
+        "excerpt_verbatim": "This policy shall be reviewed on an annual basis and if required updated by the CISO and \napproved by the ISRMC.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 139)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.risk-assessment-annual",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "1.8 Risk Management, I Risk Assessment Scenarios",
+    "text_verbatim": "Organization shall perform Risk Assessment at least annually and prior to the following \nscenarios/circumstances:",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Each year"
+      },
+      "action": "Perform a risk assessment at least once a year, and before the scenarios the clause lists.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P12M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "1.8 Risk Management, I Risk Assessment Scenarios",
+        "page": 153,
+        "char_start": 329985,
+        "char_end": 330098,
+        "excerpt_verbatim": "Organization shall perform Risk Assessment at least annually and prior to the following \nscenarios/circumstances:",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 153)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.assurance-audit-annual",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "1.10 Compliance",
+    "text_verbatim": "An independent Assurance Audit shall be carried out by the Auditor every year. The annual Audit \nplan and the reports shall be presented to the Audit Committee / Board of Directors / Principal \nOfficer, as applicable, of the organization.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Each year"
+      },
+      "action": "Have the Auditor carry out an independent Assurance Audit every year and present the annual audit plan and reports to the Audit Committee, Board of Directors or Principal Officer, as applicable.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P12M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "1.10 Compliance",
+        "page": 157,
+        "char_start": 339474,
+        "char_end": 339712,
+        "excerpt_verbatim": "An independent Assurance Audit shall be carried out by the Auditor every year. The annual Audit \nplan and the reports shall be presented to the Audit Committee / Board of Directors / Principal \nOfficer, as applicable, of the organization.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 157)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.intermediary-annexure-iii-to-insurer-annual",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "1.10 Compliance (intermediary submission)",
+    "text_verbatim": "The Insurance Intermediary shall submit the Annexure – III along with compliance thereto and the \ncomments of the board to the Insurer/s annually.",
+    "normalized": {
+      "actor": [
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Each year"
+      },
+      "action": "Submit Annexure III, with compliance to it and the comments of the board, to the insurer or insurers every year.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P12M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "The insurer or insurers the intermediary is engaged by"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "1.10 Compliance (intermediary submission)",
+        "page": 157,
+        "char_start": 339716,
+        "char_end": 339862,
+        "excerpt_verbatim": "The Insurance Intermediary shall submit the Annexure – III along with compliance thereto and the \ncomments of the board to the Insurer/s annually.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 157)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.insurer-audit-report-to-irdai",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "1.10 Compliance (insurer audit report)",
+    "text_verbatim": "The Insurers shall submit their Audit Report (Annexure III) duly signed by the Auditor along with \ncomments of the Board to IRDAI within 90 days from the end of financial year or within 30 days \nof completion of Audit, whichever is earlier.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "End of each financial year, or completion of the audit if earlier"
+      },
+      "action": "Submit the Audit Report (Annexure III), signed by the Auditor, with the comments of the Board to IRDAI. 29 June is the latest possible date (90 days after a financial year ending 31 March); the limit is 30 days after the audit is completed if that comes first.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P12M",
+        "anchor": "not_applicable",
+        "fixed_schedule": [
+          "06-29"
+        ]
+      },
+      "recipient": "IRDAI"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "1.10 Compliance (insurer audit report)",
+        "page": 157,
+        "char_start": 340905,
+        "char_end": 341145,
+        "excerpt_verbatim": "The Insurers shall submit their Audit Report (Annexure III) duly signed by the Auditor along with \ncomments of the Board to IRDAI within 90 days from the end of financial year or within 30 days \nof completion of Audit, whichever is earlier.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 157)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.frb-annexure-vi-year-end",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "1.10 Compliance (Foreign Reinsurance Branches)",
+    "text_verbatim": "The Foreign Reinsurance Branches (FRBs) where IT Systems are interfaced with overseas parent \ncompanies shall comply with Cyber Security Guidelines. The Auditor shall certify the same as per \nAnnexure – VI and the same shall be submitted to IRDAI at the end of every financial year.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "End of each financial year"
+      },
+      "action": "If the insurer is a Foreign Reinsurance Branch whose IT systems are interfaced with an overseas parent: submit the Auditor's Annexure VI certificate to IRDAI at the end of every financial year (31 March is assumed as the year end).",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P12M",
+        "anchor": "not_applicable",
+        "fixed_schedule": [
+          "03-31"
+        ]
+      },
+      "recipient": "IRDAI"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer"
+      ],
+      "conditions": [
+        "Entity is a Foreign Reinsurance Branch whose IT systems are interfaced with an overseas parent company (not evaluated)"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "1.10 Compliance (Foreign Reinsurance Branches)",
+        "page": 157,
+        "char_start": 340618,
+        "char_end": 340900,
+        "excerpt_verbatim": "The Foreign Reinsurance Branches (FRBs) where IT Systems are interfaced with overseas parent \ncompanies shall comply with Cyber Security Guidelines. The Auditor shall certify the same as per \nAnnexure – VI and the same shall be submitted to IRDAI at the end of every financial year.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 157)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.remote-access-accounts-monthly",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.3, 3.8 item 8",
+    "text_verbatim": "8. On a monthly basis, the system owner’s shall ensure that \nthe accounts active within the Remote access solutions are \naccurate. All discrepancies shall be resolved quickly.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Each month"
+      },
+      "action": "Every month, the system owners check that the accounts active in the remote access solutions are accurate and resolve discrepancies.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P1M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.3, 3.8 item 8",
+        "page": 184,
+        "char_start": 391140,
+        "char_end": 391315,
+        "excerpt_verbatim": "8. On a monthly basis, the system owner’s shall ensure that \nthe accounts active within the Remote access solutions are \naccurate. All discrepancies shall be resolved quickly.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 184)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.restoration-test-half-yearly",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.6, 3.1 item 1",
+    "text_verbatim": "Data restoration testing must be \nperformed at a minimum of six months or more \nfrequently, as required by the business.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Every six months"
+      },
+      "action": "Test data restoration at least every six months, or more often if the business requires.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P6M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.6, 3.1 item 1",
+        "page": 200,
+        "char_start": 415957,
+        "char_end": 416077,
+        "excerpt_verbatim": "Data restoration testing must be \nperformed at a minimum of six months or more \nfrequently, as required by the business.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 200)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.bcp-risk-analysis-annual",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.13, II Risk Management and Evaluation (risk analysis)",
+    "text_verbatim": "Risk Analysis shall be performed at least on an annual \nbasis.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Each year"
+      },
+      "action": "Perform the business continuity risk analysis at least once a year.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P12M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.13, II Risk Management and Evaluation (risk analysis)",
+        "page": 239,
+        "char_start": 482510,
+        "char_end": 482572,
+        "excerpt_verbatim": "Risk Analysis shall be performed at least on an annual \nbasis.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 239)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.risk-mitigation-plan-review-quarterly",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.13, II Risk Management and Evaluation (mitigation plan)",
+    "text_verbatim": "The Risk Mitigation plan shall be reviewed and tracked \nto closure on a quarterly basis.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Each quarter"
+      },
+      "action": "Review the risk mitigation plan and track it to closure every quarter.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P3M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.13, II Risk Management and Evaluation (mitigation plan)",
+        "page": 239,
+        "char_start": 483276,
+        "char_end": 483364,
+        "excerpt_verbatim": "The Risk Mitigation plan shall be reviewed and tracked \nto closure on a quarterly basis.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 239)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.dr-plan-review-annual",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.13, IV IT DR Recovery Planning",
+    "text_verbatim": "IT DR plans shall be reviewed at least on an annual basis.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Each year"
+      },
+      "action": "Review the IT disaster recovery plans at least once a year.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P12M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.13, IV IT DR Recovery Planning",
+        "page": 241,
+        "char_start": 486190,
+        "char_end": 486248,
+        "excerpt_verbatim": "IT DR plans shall be reviewed at least on an annual basis.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 241)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.bcp-dr-test-annual",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.13, 3.3.3 item 1",
+    "text_verbatim": "The business continuity and DR plans shall be tested \nat least once annually or when significantly changed \nto identify incorrect assumptions, oversights, or \nchanges in equipment or personnel.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Each year, or a significant change to the plans"
+      },
+      "action": "Test the business continuity and disaster recovery plans at least once a year, and when they change significantly.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P12M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.13, 3.3.3 item 1",
+        "page": 242,
+        "char_start": 488945,
+        "char_end": 489138,
+        "excerpt_verbatim": "The business continuity and DR plans shall be tested \nat least once annually or when significantly changed \nto identify incorrect assumptions, oversights, or \nchanges in equipment or personnel.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 242)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.physical-access-review-half-yearly",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.15, 3.2.3 I",
+    "text_verbatim": "The access rights for \nsuch individuals shall be reviewed by the \ndesignated manager / secured area owner on a half \nyearly basis to ensure that the access rights remain \nas required.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Every six months"
+      },
+      "action": "Every half year, the designated manager or secured area owner reviews the secured-area access rights of employees and long term contractors.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P6M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.15, 3.2.3 I",
+        "page": 259,
+        "char_start": 515662,
+        "char_end": 515845,
+        "excerpt_verbatim": "The access rights for \nsuch individuals shall be reviewed by the \ndesignated manager / secured area owner on a half \nyearly basis to ensure that the access rights remain \nas required.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 259)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.evacuation-drill-annual",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.15, 3.3.2 item 4",
+    "text_verbatim": "Evacuation drills shall be performed at least on an \nannual basis.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Each year"
+      },
+      "action": "Perform evacuation drills at least once a year.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P12M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.15, 3.3.2 item 4",
+        "page": 260,
+        "char_start": 518987,
+        "char_end": 519053,
+        "excerpt_verbatim": "Evacuation drills shall be performed at least on an \nannual basis.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 260)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.log-retention-180d",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.16, 3.3 item 14",
+    "text_verbatim": "14. ICT infrastructure logs shall be maintained for a rolling \nperiod of 180 days and within the Indian jurisdiction as \nper directions issued by Cert-In from time to time.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "Continuous"
+      },
+      "action": "Keep ICT infrastructure logs for a rolling period of 180 days, within the Indian jurisdiction.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "retention",
+        "duration_iso8601": "P180D",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.16, 3.3 item 14",
+        "page": 265,
+        "char_start": 525862,
+        "char_end": 526034,
+        "excerpt_verbatim": "14. ICT infrastructure logs shall be maintained for a rolling \nperiod of 180 days and within the Indian jurisdiction as \nper directions issued by Cert-In from time to time.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 265)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.vapt-internet-facing-annual",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.16, 3.6.1 item 2",
+    "text_verbatim": "2. VAPT of internet-facing applications or infrastructure \ncomponents to be conducted periodically atleast once \nin a year.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Each year"
+      },
+      "action": "Conduct VAPT of internet-facing applications and infrastructure components at least once a year.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P12M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.16, 3.6.1 item 2",
+        "page": 266,
+        "char_start": 528950,
+        "char_end": 529073,
+        "excerpt_verbatim": "2. VAPT of internet-facing applications or infrastructure \ncomponents to be conducted periodically atleast once \nin a year.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 266)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.external-pt-half-yearly",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.16, 3.6.1 item 5",
+    "text_verbatim": "5. External Blackbox Penetration Testing (PT) should be \nconducted for all internet facing information assets and \nsystems once in 6 months.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Every six months"
+      },
+      "action": "External black-box penetration testing should be conducted for all internet-facing information assets and systems once in six months (the clause says \"should\").",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P6M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.16, 3.6.1 item 5",
+        "page": 267,
+        "char_start": 529439,
+        "char_end": 529579,
+        "excerpt_verbatim": "5. External Blackbox Penetration Testing (PT) should be \nconducted for all internet facing information assets and \nsystems once in 6 months.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 267)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.vapt-high-risk-closure-1m",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.16, 3.6.1 item 9",
+    "text_verbatim": "9. High risk gaps, reported from the VAPT, should be \nclosed within a period of one month followed by \nvalidation testing.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "A VAPT report with a high risk gap"
+      },
+      "action": "High risk gaps reported from a VAPT should be closed within one month, followed by validation testing (the clause says \"should\"). The month runs from the VAPT report; no date is computed here.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "none",
+        "duration_iso8601": null,
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "conditions": [
+        "A VAPT has reported a high risk gap"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.16, 3.6.1 item 9",
+        "page": 267,
+        "char_start": 530090,
+        "char_end": 530212,
+        "excerpt_verbatim": "9. High risk gaps, reported from the VAPT, should be \nclosed within a period of one month followed by \nvalidation testing.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 267)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.audit-gap-closure-2m",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.16, 3.6.1 item 10",
+    "text_verbatim": "10. Priority for closure of audit gaps should be based on \nthe risk associated with each gap; however, the outer \ntime limit for closure of all the audit gaps is two \nmonths.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "event",
+        "description": "An audit report with a gap"
+      },
+      "action": "Close all audit gaps within an outer limit of two months, in order of risk. The period runs from the audit finding; no date is computed here.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "none",
+        "duration_iso8601": null,
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "conditions": [
+        "An audit has reported a gap"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.16, 3.6.1 item 10",
+        "page": 267,
+        "char_start": 530215,
+        "char_end": 530389,
+        "excerpt_verbatim": "10. Priority for closure of audit gaps should be based on \nthe risk associated with each gap; however, the outer \ntime limit for closure of all the audit gaps is two \nmonths.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 267)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.is-practices-review-annual",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.16, 3.6.2 item 1",
+    "text_verbatim": "Organization \nshall \nconduct \nannual \nreview \nof \ninformation security practices either by the IS team or \nby competent independent party appointed by the IS \nteam to ensure compliance with the information",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Each year"
+      },
+      "action": "Conduct an annual review of information security practices.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P12M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Internal (no recipient outside the entity)"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.16, 3.6.2 item 1",
+        "page": 267,
+        "char_start": 530880,
+        "char_end": 531085,
+        "excerpt_verbatim": "Organization \nshall \nconduct \nannual \nreview \nof \ninformation security practices either by the IS team or \nby competent independent party appointed by the IS \nteam to ensure compliance with the information",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 267)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.users-informed-of-termination-right-annual",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.24, 3.1 item 2",
+    "text_verbatim": "2. The Organization shall periodically inform its users, at least \nonce every year, that in case of non-compliance with rules \nand regulations, privacy policy or user agreement for access \nor usage of the computer resource of such intermediary, it \nhas the right to terminate the access or usage rights of the \nusers to the computer resource immediately or remove non-\ncompliant information or both, as the case may be.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Each year"
+      },
+      "action": "Inform users at least once every year that non-compliance with the rules, privacy policy or user agreement may lead to termination of access or removal of non-compliant information.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P12M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Users of the computer resource"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "conditions": [
+        "Entity is an intermediary under the IT Rules 2021 (not evaluated)"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.24, 3.1 item 2",
+        "page": 297,
+        "char_start": 585666,
+        "char_end": 586085,
+        "excerpt_verbatim": "2. The Organization shall periodically inform its users, at least \nonce every year, that in case of non-compliance with rules \nand regulations, privacy policy or user agreement for access \nor usage of the computer resource of such intermediary, it \nhas the right to terminate the access or usage rights of the \nusers to the computer resource immediately or remove non-\ncompliant information or both, as the case may be.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 297)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+  },
+  {
+    "id": "irdai.ics-guidelines.2023.users-informed-of-rules-annual",
+    "instrument_id": "irdai.ics-guidelines.2023",
+    "paragraph_ref": "Policy 2.24, 3.1 item 4",
+    "text_verbatim": "4. The Organization shall periodically, and at least once in a \nyear, inform its users of its rules and regulations, privacy \npolicy or user agreement or any change in the rules and \nregulations, privacy policy or user agreement, as the case may \nbe.",
+    "normalized": {
+      "actor": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "trigger": {
+        "type": "periodic",
+        "description": "Each year"
+      },
+      "action": "Inform users at least once a year of the rules and regulations, privacy policy or user agreement, and of any change to them.",
+      "deadline": {
+        "calendar": "continuous",
+        "kind": "recurring",
+        "duration_iso8601": "P12M",
+        "anchor": "not_applicable"
+      },
+      "recipient": "Users of the computer resource"
+    },
+    "applicability": {
+      "entity_classes": [
+        "irdai.insurer",
+        "irdai.intermediary"
+      ],
+      "conditions": [
+        "Entity is an intermediary under the IT Rules 2021 (not evaluated)"
+      ]
+    },
+    "validity": {
+      "valid_from": "2023-04-24",
+      "valid_to": null,
+      "recorded_at": "2026-10-06T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
+    },
+    "status": "in_force",
+    "citations": [
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.24, 3.1 item 4",
+        "page": 297,
+        "char_start": 586879,
+        "char_end": 587129,
+        "excerpt_verbatim": "4. The Organization shall periodically, and at least once in a \nyear, inform its users of its rules and regulations, privacy \npolicy or user agreement or any change in the rules and \nregulations, privacy policy or user agreement, as the case may \nbe.",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "prompt_version": null,
+      "extractor_version": "0.1.0"
+    },
+    "verification": "machine_checked",
+    "verification_details": {
+      "reviewer": "AI reviewer agent (span located in the stored IRDAI text, PDF page 297)",
+      "date": "2026-10-06"
+    },
+    "confidence": 0.6,
+    "confidence_reason": "Found by a keyword search of the whole text for stated periods, then read in context; not a clause-by-clause reading. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
   }
 ]
