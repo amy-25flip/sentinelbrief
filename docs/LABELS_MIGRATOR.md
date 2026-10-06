@@ -105,3 +105,33 @@ A page listing every proposed mapping with both excerpts side by side, filterabl
 Written by the label author after Review 15. The method disagreed with the gold status on nine clauses. On re-reading both texts, seven of those are errors in the table above: clauses 3.4, 3.12, 4.4, 5.3, 5.6, 6.4 and 7.1 each have a "may" in 2017 that is "shall" in the successor paragraph, which this document's own definition calls `changed`. The quotes are in `docs/REVIEW_LOG.md`, Review 15, R15-4.
 
 The table and `benchmark/migrator_gold.json` are left as committed, because they were written before the code and a gold set corrected after seeing the system's output is no longer independent of it. Results are reported against the gold as committed (status 38/47), with the corrected count (45/47) stated separately and marked as post hoc.
+
+## Part 2 (2026-10-06): three more instrument pairs, gold written before the method was run on them
+
+Three further pairs, chosen from RBI's list of circulars withdrawn by the Department of Supervision (rows 16 and 36 of the stored list):
+
+| Pair id | Old instrument | New instrument |
+|---|---|---|
+| `rbi.ucb-cyber-framework.2019__rbi.ucb-cyber.2026` | Comprehensive Cyber Security Framework for Primary (Urban) Cooperative Banks (UCBs) - A Graded Approach, DoS.CO/CSITE/BC.4083/31.01.052/2019-20, 31 December 2019 (`NotificationUser.aspx?Id=11772`) | RBI (UCBs) Cybersecurity Directions, 2026 (183 paragraphs) |
+| `rbi.it-governance.2023__rbi.payments-banks-cyber.2026` | Master Direction on Information Technology Governance, Risk, Controls and Assurance Practices, DoS.CO.CSITEG/SEC.7/31.01.015/2023-24, 7 November 2023 (`NotificationUser.aspx?Id=12562`) | RBI (Payments Banks) Cybersecurity Directions, 2026 (232 paragraphs) |
+| `rbi.it-governance.2023__rbi.aifi-cyber.2026` | the same Master Direction | RBI (AIFIs) Cybersecurity Directions, 2026 (227 paragraphs) |
+
+Both old texts are HTML pages fetched with the project's fetcher and stored under the HTML provenance rule above.
+
+### Units
+
+- **2019 UCB framework:** the numbered controls of Annex II (22), Annex III (25) and Annex IV (14), 61 units, with ids such as `II-5.3`, `III-2.1`, `IV-6.4`. The covering letter and Annex I are not units: Annex I is an unnumbered list and mostly points back to the 2018 circular, which is not ingested.
+- **2023 Master Direction:** clauses 4 to 30 (27 units). Clauses 1 to 3 (title, applicability, definitions) and 31 to 32 (other laws, interpretation) are boilerplate and are not units.
+
+### Gold
+
+In `benchmark/migrator_gold/<pair id>.json`. Each row gives the old unit and the set of new paragraphs that carry it; the top candidate must be in the set. The sets were written from reading both texts side by side:
+
+- UCB: the 2026 Direction's Chapters IV, V and VI follow Annexes II, III and IV control by control, so most sets have one paragraph. Three controls split into several paragraphs (`II-4.1`, `IV-1.1`, `IV-1.2`, `IV-6.4`, `IV-6.5`); `II-9.1` and `II-9.2` both land in paragraph 124.
+- Master Direction: each old clause is a headed section that the 2026 Directions break into several paragraphs, so the set is the paragraphs of the matching section (for example clause 26, VA / PT, is paragraphs 148 to 160 for payments banks and 144 to 156 for AIFIs). Clause 12 (project management) is scattered: its sub-clauses on the data dictionary, vendor support, source code and vendor certificates moved to other sections (paragraphs 48, 88, 89, 91). Clause 24 covers the security policies, the Information Security Committee and the CISO (13, 14, 22, 26, 27). Clause 30 (IS Audit) is paragraph 9 and the IS Audit chapter.
+
+**No status gold for these pairs.** Review 15 found the label author's status labels unreliable (seven errors in 47). The method still outputs a status and its differences for a human to check, but only hit@1 is scored here.
+
+### What will be reported
+
+hit@1 per pair with a Wilson interval and the list of misses, from the method **as it stood after Review 15**, with no threshold changed for these pairs. Anything pair-specific that the method needs (where the new text's body starts, which old units search which chapters, the list of names for the named-recipient rule) is configuration and is listed in the review. If the method needs a change to work on these pairs at all, the change and the before and after numbers on the original 47 are reported.
