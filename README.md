@@ -1,98 +1,99 @@
 # SentinelBrief
 
-Indian cyber-regulatory compliance - obligation dataset, incident clock, filing copilot, and card feed
+**What Indian cyber law requires after an incident: which regulator, by when, under which clause.**
 
-## Overview
+A deterministic engine over a clause-level, citation-first dataset of Indian cyber-security reporting obligations (CERT-In, RBI, SEBI, IRDAI and the DPDP Rules). Give it who you are and what happened; it returns every clock that is running, the clause behind each one, and the questions it needs answered before it will commit to an answer.
 
-SentinelBrief turns "we have an incident" into what Indian law requires, by when, to whom, with the clause cited.
+> Not legal advice. Not affiliated with any regulator. The expected answers in the benchmark were written by AI from the primary texts and have **not** been reviewed by a compliance professional, so this project quotes no accuracy figure for the law itself. See [Honest status](#honest-status).
 
-1. **Dataset**: clause-level obligations, each with a verbatim citation checked against the stored source text.
-2. **Card feed**: deterministic cards grounded in the obligation records.
-3. **Incident clock**: a deterministic engine (no LLM) that computes every applicable regulator's deadline from the incident facts and one or more entity classes, and asks when a fact it needs is missing. Legal gating uses structured `applicability.requires` keys; prose conditions are shown and never evaluated.
-4. **Incident workspace**: a case with field-level filing drafts, approval by a named person, a hash-chained evidence timeline, an audit bundle and a calendar export for recurring duties. It files nothing: a person submits on the regulator's own channel and records the reference.
+## What it does
 
-Current data status:
-- Modelled obligations (47): CERT-In Directions 70B (2022), 7; DPDP Rules 2025 Rule 7, 3; SEBI CSCRF 2024 incident reporting, post-incident reports, forensic report and quarterly reports, 11; RBI cybersecurity Directions 2026 for NBFCs, 6, and for Urban Co-operative Banks, All India Financial Institutions and Payments Banks, 4 each (incident reporting, CERT-In notification, VA and PT cadence); IRDAI Information and Cyber Security Guidelines 2023, 8 (the six-hour report to CERT-In with a copy to IRDAI, and seven duties whose clocks start from an order, a complaint, a cancellation or a lost device; partial: four policies of 24 read).
-- Not modelled: the rest of the IRDAI guidelines; RBI Directions for commercial banks, small finance banks and other bank types; the remaining paragraphs of the four RBI Directions. See `docs/OPEN_QUESTIONS.md`.
-- Benchmark: 99 dev scenarios, each with clause quotes verified against the page text; labels for RBI and SEBI were written and committed before implementation (`docs/LABELS_RBI.md`, `docs/LABELS_SEBI.md`). Labels are AI-authored and not yet reviewed by a compliance professional, and there is no hidden split yet, so no accuracy figure should be quoted.
-- Contested readings recorded for counsel in `docs/DECISIONS.md`: the date from which SEBI CSCRF duties bind; the DPDP Rule 7 commencement date; the starting event for SEBI's 24-hour "other incident" duty; the time limit for HFCs reporting to NHB.
-- Live re-verification skips the RBI sources (the document server returns a CAPTCHA to automated clients) and the IRDAI source (robots.txt disallows automated access); a person must re-check those by downloading and comparing sha256. The RBI files were cross-checked against RBI's public web pages; the IRDAI file has no independent check yet.
+- **Incident clock.** One incident, every applicable deadline. A Middle Layer NBFC that is also a Data Fiduciary gets three clocks from three different starting events: RBI (six hours from *detection*), CERT-In (six hours from *noticing*), and the Data Protection Board (72 hours from *becoming aware*).
+- **Asks, does not guess.** If the answer depends on a fact it does not have (is this an Annexure I incident type? what is the NBFC's layer? has the entity classified severity?), it asks. Free text can never conclude "not reportable"; only an explicit attestation can.
+- **Law as of the incident date.** Each obligation has a validity interval. An incident on 30 July 2026 is not judged by a Direction issued on 31 July 2026.
+- **Every claim is cited.** Each obligation stores the verbatim clause, the PDF page and character offsets, and the SHA-256 of the source file. A validator re-checks all of it on every run.
+- **Incident workspace.** Field-level filing drafts where each field is labelled *computed*, *your input*, or *required by the clause (quoted)*; approval by a named person; a hash-chained evidence timeline; an audit bundle; a calendar export for recurring duties. It never files anything.
+- **Card feed.** Short cards generated from the obligation records, with a grounding check that rejects facts not present in the cited text.
 
-Disclaimer: This tool is not legal advice and is not affiliated with any regulator.
+## Coverage
 
-## Prerequisites
+| Regulator | Instrument | Obligations |
+|---|---|---|
+| CERT-In | Directions under s.70B(6), 28 April 2022 | 7 |
+| MeitY | DPDP Rules 2025, Rule 7 (breach intimation) | 3 |
+| SEBI | CSCRF circular, 20 August 2024 | 11 |
+| RBI | Cybersecurity Directions, 31 July 2026: NBFCs (6), Urban Co-operative Banks (4), All India Financial Institutions (4), Payments Banks (4) | 18 |
+| IRDAI | Information and Cyber Security Guidelines, 2023 (partial) | 8 |
 
-- Python 3.13 (for example, Python 3.13.15)
-- [`uv`](https://docs.astral.sh/uv/) for Python environment and dependency management
+47 obligations in all. Not covered: RBI Directions for commercial banks and small finance banks; most of the IRDAI guidelines; the remaining paragraphs of the RBI Directions. `docs/OPEN_QUESTIONS.md` lists every known gap.
 
-## Setup & Installation
+## How correctness is checked
 
-1. Clone or navigate to the repository:
-   ```bash
-   cd E:\SentinelBrief
-   ```
+- **344 tests**, including **mutation tests**: each deliberately breaks one legal rule in the engine and asserts which named scenarios then fail.
+- **101 dev scenarios**, each carrying the clause quotes it relies on, verified mechanically against the stored page text. All pass.
+- **Labels before code.** For RBI, SEBI and IRDAI the expected outcomes were written and committed before the implementation (`docs/LABELS_*.md`; the commit history shows the order).
+- **Hidden split written by the other party.** 30 scenarios the implementer of each part never saw while building it. They are kept out of this repository so they stay hidden. Current result: **29/30** (Wilson 95% interval 83.3% to 99.4%). The one failure is a recorded disagreement between two reviewers about a contested start date, not a defect either side concedes.
+- **Provenance controls.** Source PDFs are pinned by SHA-256, re-downloaded from the regulators and compared (`scripts/reverify_sources.py`), and guarded by gates that reject generated, truncated or undocumented files. `tests/test_provenance_attacks.py` records which attacks the gates stop and which one they do not.
+- **Independent review.** Each piece of work was reviewed by a different agent than the one that built it; findings and fixes are in `docs/REVIEW_LOG.md`, including the ones that went against the author.
 
-2. Install dependencies with `uv`:
-   ```bash
-   uv sync
-   ```
+Run everything:
 
-3. Verify environment and quality gates:
-   ```bash
-   uv run python scripts/check.py
-   ```
-
-## Running the Application
-
-Start the local FastAPI development server:
 ```bash
-uv run uvicorn sentinelbrief.api.app:app --reload --port 8000
+uv sync
+uv run python scripts/check.py
 ```
-Open [http://localhost:8000](http://localhost:8000) to access the web application and incident clock.
 
-On the incident page, "Open case" (with your name) creates a case at `/cases/<id>` with filing drafts and an evidence timeline. Cases are plain files under `var/cases/` on this machine (git-ignored; set `SENTINELBRIEF_CASES_DIR` to move them). Nothing is sent to any regulator or third party.
+## Honest status
+
+- **Labels are AI-authored.** `benchmark/REVIEW_PACKET.md` is the packet for a compliance professional; it lists the contested readings first. Until someone qualified has gone through it, the numbers above measure *consistency with the authors' reading of the law*, not legal accuracy.
+- **Contested readings are flagged, not hidden.** Where it is disputed whether a duty was binding on a given date (SEBI before April 2025, IRDAI before April 2024), the tool shows the duty on the earlier reading with a "Contested" warning. All such readings are in `docs/DECISIONS.md` with quotes, pages and the reading that was rejected.
+- **Five sources cannot be re-verified automatically.** RBI's document server serves a CAPTCHA and IRDAI's robots.txt forbids automated access, so those PDFs were downloaded by a person. The RBI files were cross-checked against RBI's public web pages; the IRDAI file has no independent check yet.
+- **The workspace has no login.** It is a single-user, local tool. Do not expose it on a network.
+- **Built with AI coding agents under human direction.** The process (one agent builds, another reviews, labels first, hidden split by the non-author) is part of the project; an early checkpoint in which an agent fabricated source documents, and the controls added afterwards, are documented in `docs/REVIEW_LOG.md` and `docs/process/`.
+
+## Quick start
+
+Requires Python 3.13 and [`uv`](https://docs.astral.sh/uv/).
+
+```bash
+uv sync
+uv run uvicorn sentinelbrief.api.app:app --port 8000
+```
+
+Open http://localhost:8000 . On the incident page, "Open case" (with your name) creates a case with filing drafts and an evidence timeline. Cases are plain files under `var/cases/` on your machine (git-ignored; set `SENTINELBRIEF_CASES_DIR` to move them). Nothing is sent anywhere.
+
+From the command line:
+
+```bash
+uv run python scripts/probe.py nbfc.middle_layer,dpdp.data_fiduciary date=2027-06-01 detected=09:00 noticed=10:00 aware=11:00 personal=true
+```
 
 Useful endpoints:
-- `POST /api/incident/clock` compute clocks without storing anything.
+
+- `POST /api/incident/clock` computes clocks without storing anything.
 - `POST /api/cases`, `GET /api/cases/<id>`, `POST /api/cases/<id>/facts`, `.../drafts/<obligation>/approve`, `.../drafts/<obligation>/filed`, `GET /api/cases/<id>/export.zip`.
-- `GET /api/calendar.ics?classes=nbfc.middle_layer&last_done=2026-10-01` recurring duties as an iCalendar file.
+- `GET /api/calendar.ics?classes=nbfc.middle_layer&last_done=2026-10-01` exports recurring duties.
 
-Check a profile from the command line:
+## Repository layout
+
+- `data/raw/` primary source PDFs, extracted text with page offsets, and `manifest.json` (URL, SHA-256, how each file was acquired).
+- `data/instruments/`, `data/obligations/`, `data/entities/`, `data/reference/` the dataset.
+- `schema/` JSON Schemas for every record type.
+- `src/sentinelbrief/clock/` the deterministic engine. `workspace/` cases, drafts, calendar. `verify/` validators. `cards/` the feed. `ingest/`, `extract/` fetching and PDF text extraction.
+- `benchmark/scenarios/` the dev split; `benchmark/runner/scorer.py`; `benchmark/REVIEW_PACKET.md`.
+- `tests/` unit, mutation and attack tests.
+- `docs/DECISIONS.md` every modelling decision with its alternative; `docs/OPEN_QUESTIONS.md`; `docs/REVIEW_LOG.md` all reviews; `docs/LABELS_*.md` label specifications; `docs/process/` the build briefs.
+
+## Verification commands
+
 ```bash
-uv run --no-sync python scripts/probe.py nbfc.middle_layer,dpdp.data_fiduciary detected=09:00 noticed=10:00 aware=11:00 personal=true date=2027-06-01
+uv run python scripts/check.py                               # all gates
+uv run python -m sentinelbrief.verify.validate_all           # schemas, citations, provenance
+uv run python benchmark/runner/scorer.py --split dev         # benchmark
+uv run python scripts/reverify_sources.py                    # re-download sources and compare (network)
+uv run python scripts/make_review_packet.py                  # regenerate the reviewer packet
 ```
-
-## Data Directory Layout
-
-- `data/raw/`: Verbatim primary source files (`.pdf`, `.txt`, `.meta.json`) tracked by `manifest.json`.
-- `data/instruments/`: Regulatory instrument metadata definitions.
-- `data/obligations/`: Atomic obligations extracted with exact verbatim citations.
-- `data/entities/`: Versioned regulatory entity class taxonomy (`general.json`, `cert-in.json`, `rbi.json`, `sebi.json`, `dpdp.json`).
-- `data/reference/`: `annexure_i.json` (CERT-In incident types) and `filing_content.json` (content each filing must carry, quoted from the source).
-
-## Ingestion & Verification Commands
-
-- Run all gates (tests, ruff, mypy, validation, benchmark):
-  ```bash
-  uv run python scripts/check.py
-  ```
-- Run dataset schema and citation verification:
-  ```bash
-  uv run python -m sentinelbrief.verify.validate_all
-  ```
-- Run benchmark scorer:
-  ```bash
-  uv run python benchmark/runner/scorer.py --split dev
-  ```
-- Re-extract a staged PDF after adding it to `data/raw/`:
-  ```bash
-  uv run --no-sync python -m sentinelbrief.extract.pdf_text data/raw/<file>.pdf --instrument-id <id> --source-url <official-url> --retrieved-at <timestamp>
-  ```
-- Live source re-verification (network required; not part of offline tests):
-  ```bash
-  uv run --no-sync python scripts/reverify_sources.py
-  ```
 
 ## License
 
-MIT
+MIT. The regulator documents in `data/raw/` are public documents of their issuers and are included as evidence; their inclusion implies no endorsement.

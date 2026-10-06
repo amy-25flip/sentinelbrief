@@ -27,3 +27,18 @@ node_modules/
 
 # local incident cases (sensitive; never committed)
 var/
+
+# sandbox scratch left by review agents
+.codex/
+.hypothesis/
+.tmp*/
+.uv-cache*/
+uv-cache-work/
+.pytest*/
+pytest-*/
+*pytest*tmp*/
+SentinelBrief*/
+bt-work/
+test-runtime-fixer/
+tests/pytest-*/
+tests/.pytest*/
