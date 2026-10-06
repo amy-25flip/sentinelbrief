@@ -1,0 +1,24 @@
+{
+  "id": "rbi.ucb-cyber-framework.2019",
+  "issuer": "RBI",
+  "title": "Comprehensive Cyber Security Framework for Primary (Urban) Cooperative Banks (UCBs) – A Graded Approach",
+  "reference_no": "RBI/2019-20/129; DoS.CO/CSITE/BC.4083/31.01.052/2019-20",
+  "issued_on": "2019-12-31",
+  "in_force_from": "2019-12-31",
+  "in_force_until": "2026-07-31",
+  "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11772&Mode=0",
+  "source_sha256": "29db99c383123699d615d3288c52b4e688ea7ab5a7bbae5b379cc650bd9a80f1",
+  "retrieved_at": "2026-10-06T14:43:08Z",
+  "language": "en",
+  "status": "repealed",
+  "supersedes": [],
+  "superseded_by": [
+    "rbi.ucb-cyber.2026"
+  ],
+  "document_type": "direction",
+  "description": "Withdrawn-list row 36 states: \"DoS.CO/CSITE/BC.4083/31.01.052/2019-20 — Comprehensive Cyber Security Framework for Primary (Urban) Cooperative Banks (UCBs) - A Graded Approach — December 31, 2019\". Paragraph 180 of the stored UCB Direction state that repeal was communicated by circular DoS.CO.PPG.66/11.01.005/2026-27 dated July 31, 2026. Which 2026 Direction succeeds it is this project's reading of the two texts, not a statement by RBI.",
+  "provenance": {
+    "parser_version": "sentinelbrief-rbi-html-1.0",
+    "extraction_date": "2026-10-06T14:43:08Z"
+  }
+}

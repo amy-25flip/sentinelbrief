@@ -37,12 +37,13 @@ DISCLAIMER = (
     "RBI published no clause-level concordance; every proposal requires review against the sources."
 )
 
+# The running page header of the 2026 RBI Directions: the two-line title, then the page number.
 HEADER_RE = re.compile(
-    r"(?m)^RBI \(NBFCs \N{EN DASH} Cybersecurity, Technology: Risk, Resilience\s*\n"
+    r"(?m)^RBI \([A-Za-z]+ \N{EN DASH} Cybersecurity, Technology: Risk, Resilience\s*\n"
     r"and Assurance Framework\) Directions, 2026\s*\n(?:\s*\n)*\d+\s*(?:\n|$)"
 )
-SECTION_HEADING_RE = re.compile(r"(?m)^(?:[A-G]\.\d+|[A-G]\.)\s*(?:[^\n]+)?\s*$")
-PARAGRAPH_RE = re.compile(r"(?m)^(?P<number>(?:[1-9]|[1-9]\d|1[0-5]\d))\.\s*")
+SECTION_HEADING_RE = re.compile(r"(?m)^(?:[A-Z]{1,2}\.\d+|[A-Z]{1,2}\.)\s*(?:[^\n]+)?\s*$")
+PARAGRAPH_RE = re.compile(r"(?m)^(?P<number>[1-9]\d{0,2})\.\s*")
 TOKEN_RE = re.compile(r"[a-z0-9₹]+", re.IGNORECASE)
 DURATION_RE = re.compile(
     r"\b(?:within\s+)?(?:six|twelve|twenty-four|thirty|\d+)\s+"
@@ -53,7 +54,78 @@ DATE_RE = re.compile(
     r"\b(?:january|february|march|april|may|june|july|august|september|october|november|december)\s+\d{1,2},?\s+\d{4}\b",
     re.IGNORECASE,
 )
-NAMED_TERMS = ("daksh", "dnbs central office", "cosmos", "ipv6", "core investment companies")
+
+
+@dataclass(frozen=True)
+class Pair:
+    """One old instrument mapped to one new Direction. Everything pair-specific lives here."""
+
+    old_instrument_id: str
+    new_instrument_id: str
+    old_stem: str
+    new_stem: str
+    old_units: int
+    new_paragraphs: int
+    # (old-unit id pattern, first paragraph, last paragraph): where those units may land. The
+    # ranges restate each text's own applicability sections. Units matching no pattern search
+    # the whole Direction.
+    pools: tuple[tuple[str, int, int], ...] = ()
+    # Old units that are not numbered duties (introduction, annex label) need the higher floor.
+    unstructured: str = r"$^"
+    # Names whose presence on one side only is reported by the named-recipient rule. The list
+    # is specific to a pair of texts; an empty list switches the rule off.
+    named_terms: tuple[str, ...] = ()
+
+    @property
+    def id(self) -> str:
+        return f"{self.old_instrument_id}__{self.new_instrument_id}"
+
+
+PAIRS: tuple[Pair, ...] = (
+    Pair(
+        old_instrument_id="rbi.nbfc-it-framework.2017",
+        new_instrument_id="rbi.nbfc-cyber.2026",
+        old_stem="RBI_NBFC_IT_Framework_Master_Direction_2017",
+        new_stem="RBI_NBFC_Cybersecurity_Directions_2026",
+        old_units=47,
+        new_paragraphs=158,
+        # Old Section A (above Rs 500 crore) maps to Chapter IV; old Section B to Chapter III.
+        pools=((r"8(\.1)?", 7, 9), (r"(?!intro-|annex-i$).*", 10, 64)),
+        unstructured=r"intro-.*|annex-i",
+        named_terms=("daksh", "dnbs central office", "cosmos", "ipv6", "core investment companies"),
+    ),
+    Pair(
+        old_instrument_id="rbi.ucb-cyber-framework.2019",
+        new_instrument_id="rbi.ucb-cyber.2026",
+        old_stem="RBI_UCB_Comprehensive_Cyber_Security_Framework_2019",
+        new_stem="RBI_UCB_Cybersecurity_Directions_2026",
+        old_units=61,
+        new_paragraphs=183,
+    ),
+    Pair(
+        old_instrument_id="rbi.it-governance.2023",
+        new_instrument_id="rbi.payments-banks-cyber.2026",
+        old_stem="RBI_IT_Governance_Master_Direction_2023",
+        new_stem="RBI_PaymentsBanks_Cybersecurity_Directions_2026",
+        old_units=27,
+        new_paragraphs=232,
+    ),
+    Pair(
+        old_instrument_id="rbi.it-governance.2023",
+        new_instrument_id="rbi.aifi-cyber.2026",
+        old_stem="RBI_IT_Governance_Master_Direction_2023",
+        new_stem="RBI_AIFI_Cybersecurity_Directions_2026",
+        old_units=27,
+        new_paragraphs=227,
+    ),
+)
+
+
+def pair_by_id(pair_id: str) -> Pair:
+    for pair in PAIRS:
+        if pair.id == pair_id:
+            return pair
+    raise KeyError(f"unknown migration pair: {pair_id}")
 
 
 @dataclass(frozen=True)
@@ -73,15 +145,20 @@ def _page_for(offset: int, page_offsets: list[dict[str, int]]) -> int:
     raise ValueError(f"offset {offset} is outside PDF page offsets")
 
 
-def segment_new_direction(text: str, page_offsets: list[dict[str, int]]) -> list[Segment]:
-    """Return top-level paragraphs 1..158 with source offsets and first PDF page."""
+def segment_new_direction(
+    text: str, page_offsets: list[dict[str, int]], paragraphs: int = 158
+) -> list[Segment]:
+    """Return top-level paragraphs 1..N with source offsets and first PDF page."""
     # Skip the table of contents by starting at the first numbered paragraph after the
-    # operative "hereby issues" sentence.
-    body_start = text.index("hereby issues Directions hereinafter specified.")
-    matches = list(PARAGRAPH_RE.finditer(text, body_start))
-    numbers = [int(match.group("number")) for match in matches]
-    if numbers != list(range(1, 159)):
-        raise ValueError(f"expected top-level paragraphs 1..158, found {numbers}")
+    # operative "hereby issues" sentence. A line is a paragraph start only if it carries the
+    # next number in sequence, so numbered list items inside a paragraph are not mistaken.
+    body_start = text.index("hereby issues")
+    matches: list[re.Match[str]] = []
+    for match in PARAGRAPH_RE.finditer(text, body_start):
+        if int(match.group("number")) == len(matches) + 1:
+            matches.append(match)
+    if len(matches) != paragraphs:
+        raise ValueError(f"expected top-level paragraphs 1..{paragraphs}, found {len(matches)}")
     result: list[Segment] = []
     pending_heading = ""
     for index, match in enumerate(matches):
@@ -111,13 +188,20 @@ def segment_new_direction(text: str, page_offsets: list[dict[str, int]]) -> list
     return result
 
 
-def segment_old_direction(text: str, segments: list[dict[str, Any]]) -> list[Segment]:
+def segment_old_direction(
+    text: str, segments: list[dict[str, Any]], units: int = 47
+) -> list[Segment]:
     result = []
     for item in segments:
         start, end = int(item["char_start"]), int(item["char_end"])
-        result.append(Segment(str(item["id"]), text[start:end], start, end))
-    if len(result) != 47:
-        raise ValueError(f"expected 47 old clauses, found {len(result)}")
+        body = text[start:end]
+        # A unit whose printed heading sits outside its own text (a control under a group
+        # heading) is searched with that heading as its first line.
+        heading = str(item.get("heading") or "")
+        search = f"{heading}\n{body}" if heading else None
+        result.append(Segment(str(item["id"]), body, start, end, search_text=search))
+    if len(result) != units:
+        raise ValueError(f"expected {units} old clauses, found {len(result)}")
     return result
 
 
@@ -190,17 +274,16 @@ def _cosine(left: dict[str, float], right: dict[str, float]) -> float:
     return sum(value * right.get(token, 0.0) for token, value in left.items())
 
 
-def _candidate_pool(old: Segment, new: list[Segment]) -> list[Segment]:
-    # The applicability sections themselves define the lawful structural search space:
-    # old Section A (>₹500 crore) maps to new Chapter IV; old Section B maps to Chapter III.
-    if old.id in {"8", "8.1"}:
-        return [item for item in new if 7 <= int(item.id) <= 9]
-    if old.id.startswith("intro-") or old.id == "annex-i":
-        return new
-    return [item for item in new if 10 <= int(item.id) <= 64]
+def _candidate_pool(old: Segment, new: list[Segment], pair: Pair) -> list[Segment]:
+    for pattern, first, last in pair.pools:
+        if re.fullmatch(pattern, old.id):
+            return [item for item in new if first <= int(item.id) <= last]
+    return new
 
 
-def detect_differences(old: str, new: str) -> list[str]:
+def detect_differences(
+    old: str, new: str, named_terms: tuple[str, ...] = PAIRS[0].named_terms
+) -> list[str]:
     """Apply only explicit, auditable substantive-change rules."""
     differences: list[str] = []
     old_lower, new_lower = old.lower(), new.lower()
@@ -263,8 +346,8 @@ def detect_differences(old: str, new: str) -> list[str]:
             "number or duration shift: old has "
             f"{old_times + old_dates or ['none']}; new has {new_times + new_dates or ['none']}"
         )
-    old_named = [term for term in NAMED_TERMS if term in old_lower]
-    new_named = [term for term in NAMED_TERMS if term in new_lower]
+    old_named = [term for term in named_terms if term in old_lower]
+    new_named = [term for term in named_terms if term in new_lower]
     if old_named != new_named:
         differences.append(
             f"named recipient or system differs: old has {old_named or ['none']}; new has {new_named or ['none']}"
@@ -292,26 +375,24 @@ def _rank(old: Segment, pool: list[Segment]) -> list[tuple[Segment, float]]:
     return sorted(ranked, key=lambda pair: (-pair[1], int(pair[0].id)))[:MAX_CANDIDATES]
 
 
-def build_migration(base_dir: Path) -> dict[str, Any]:
+def build_migration(base_dir: Path, pair: Pair = PAIRS[0]) -> dict[str, Any]:
     raw = base_dir / "data" / "raw"
-    old_text = (raw / "RBI_NBFC_IT_Framework_Master_Direction_2017.txt").read_text(encoding="utf-8")
-    old_meta = json.loads(
-        (raw / "RBI_NBFC_IT_Framework_Master_Direction_2017.meta.json").read_text(encoding="utf-8")
-    )
-    new_text = (raw / "RBI_NBFC_Cybersecurity_Directions_2026.txt").read_text(encoding="utf-8")
-    new_meta = json.loads(
-        (raw / "RBI_NBFC_Cybersecurity_Directions_2026.meta.json").read_text(encoding="utf-8")
-    )
-    old_segments = segment_old_direction(old_text, old_meta["segments"])
-    new_segments = segment_new_direction(new_text, new_meta["page_offsets"])
+    old_text = (raw / f"{pair.old_stem}.txt").read_text(encoding="utf-8")
+    old_meta = json.loads((raw / f"{pair.old_stem}.meta.json").read_text(encoding="utf-8"))
+    new_text = (raw / f"{pair.new_stem}.txt").read_text(encoding="utf-8")
+    new_meta = json.loads((raw / f"{pair.new_stem}.meta.json").read_text(encoding="utf-8"))
+    old_segments = segment_old_direction(old_text, old_meta["segments"], pair.old_units)
+    new_segments = segment_new_direction(new_text, new_meta["page_offsets"], pair.new_paragraphs)
     mappings: list[dict[str, Any]] = []
     for old in old_segments:
-        ranked = _rank(old, _candidate_pool(old, new_segments))
+        ranked = _rank(old, _candidate_pool(old, new_segments, pair))
         top_score = ranked[0][1]
-        differences = detect_differences(old.text, ranked[0][0].search_text or ranked[0][0].text)
+        differences = detect_differences(
+            old.text, ranked[0][0].search_text or ranked[0][0].text, pair.named_terms
+        )
         floor = (
             UNSTRUCTURED_MIN_CANDIDATE_SCORE
-            if old.id.startswith("intro-") or old.id == "annex-i"
+            if re.fullmatch(pair.unstructured, old.id)
             else MIN_CANDIDATE_SCORE
         )
         if top_score < floor:
@@ -350,9 +431,9 @@ def build_migration(base_dir: Path) -> dict[str, Any]:
         )
     return {
         "$schema": "../../schema/migration.schema.json",
-        "id": "rbi.nbfc-it-framework.2017__rbi.nbfc-cyber.2026",
-        "old_instrument_id": "rbi.nbfc-it-framework.2017",
-        "new_instrument_id": "rbi.nbfc-cyber.2026",
+        "id": pair.id,
+        "old_instrument_id": pair.old_instrument_id,
+        "new_instrument_id": pair.new_instrument_id,
         "disclaimer": DISCLAIMER,
         "method": METHOD_NAME,
         "method_version": METHOD_VERSION,
@@ -360,17 +441,19 @@ def build_migration(base_dir: Path) -> dict[str, Any]:
     }
 
 
-def write_migration(base_dir: Path) -> Path:
-    output = (
-        base_dir / "data" / "migrations" / "rbi.nbfc-it-framework.2017__rbi.nbfc-cyber.2026.json"
-    )
+def write_migration(base_dir: Path, pair: Pair = PAIRS[0]) -> Path:
+    output = base_dir / "data" / "migrations" / f"{pair.id}.json"
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(
-        json.dumps(build_migration(base_dir), indent=2, ensure_ascii=False) + "\n",
+        json.dumps(build_migration(base_dir, pair), indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
         newline="\n",
     )
     return output
+
+
+def write_all_migrations(base_dir: Path) -> list[Path]:
+    return [write_migration(base_dir, pair) for pair in PAIRS]
 
 
 def content_digest(path: Path) -> str:

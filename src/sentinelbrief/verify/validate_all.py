@@ -37,12 +37,10 @@ def main() -> None:
         else []
     )
     invalid_migrations = []
-    migration_file = os.path.join(
-        migrations_dir, "rbi.nbfc-it-framework.2017__rbi.nbfc-cyber.2026.json"
-    )
-    if os.path.exists(migration_file):
-        from sentinelbrief.verify.schema_validator import load_schema, validate_data_file
+    from sentinelbrief.verify.schema_validator import load_schema, validate_data_file
 
+    for migration_path in sorted(Path(migrations_dir).glob("*.json")):
+        migration_file = str(migration_path)
         try:
             validate_data_file(migration_file, load_schema("migration.schema.json"))
         except Exception as exc:

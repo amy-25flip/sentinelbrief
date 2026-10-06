@@ -5,7 +5,7 @@ import importlib.util
 import sys
 from pathlib import Path
 
-from sentinelbrief.migrator.core import write_migration
+from sentinelbrief.migrator.core import write_all_migrations
 
 
 def main() -> None:
@@ -14,7 +14,8 @@ def main() -> None:
     args = parser.parse_args()
     base = Path(__file__).resolve().parents[3]
     if args.command == "build":
-        print(write_migration(base))
+        for path in write_all_migrations(base):
+            print(path)
     else:
         scorer_path = base / "benchmark" / "runner" / "migrator_scorer.py"
         spec = importlib.util.spec_from_file_location("migrator_scorer", scorer_path)

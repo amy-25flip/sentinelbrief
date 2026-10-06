@@ -97,6 +97,22 @@ def _migration_store() -> ConfirmationStore:
     return ConfirmationStore(DATA_DIR)
 
 
+def _migrations_for(instrument_id: str) -> list[dict[str, str]]:
+    """Migration proposals in which the instrument is the old or the new text."""
+    found = []
+    for path in sorted((DATA_DIR / "migrations").glob("*.json")):
+        migration = _load_json(path)
+        if instrument_id in (migration["old_instrument_id"], migration["new_instrument_id"]):
+            found.append(
+                {
+                    "id": migration["id"],
+                    "old": migration["old_instrument_id"],
+                    "new": migration["new_instrument_id"],
+                }
+            )
+    return found
+
+
 @app.get("/migrations", response_class=HTMLResponse)
 async def migration_list(request: Request) -> HTMLResponse:
     migrations = []
@@ -222,6 +238,7 @@ async def obligation_detail(request: Request, obligation_id: str) -> HTMLRespons
         context={
             "obligation": obligation,
             "instrument": instrument,
+            "migrations": _migrations_for(obligation["instrument_id"]),
         },
     )
 
@@ -232,7 +249,9 @@ async def instrument_detail(request: Request, instrument_id: str) -> Response:
     if instrument is None:
         return HTMLResponse("<h1>Instrument not found</h1>", status_code=404)
     return templates.TemplateResponse(
-        request=request, name="instrument_detail.html", context={"instrument": instrument}
+        request=request,
+        name="instrument_detail.html",
+        context={"instrument": instrument, "migrations": _migrations_for(instrument_id)},
     )
 
 

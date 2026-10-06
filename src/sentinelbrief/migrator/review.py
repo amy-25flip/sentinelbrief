@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING, Any, cast
 if TYPE_CHECKING:
     from pathlib import Path
 
+from sentinelbrief.migrator.core import pair_by_id
 from sentinelbrief.workspace.cases import _require_person
 
 
@@ -81,8 +82,9 @@ class ConfirmationStore:
     ) -> dict[str, Any]:
         reviewer = _require_person(reviewer, "The reviewer")
         self._mapping(migration_id, old_clause)
-        if not paragraphs or any(not p.isdigit() or not 1 <= int(p) <= 158 for p in paragraphs):
-            raise ValueError("corrections require one or more paragraph numbers from 1 to 158")
+        last = pair_by_id(migration_id).new_paragraphs
+        if not paragraphs or any(not p.isdigit() or not 1 <= int(p) <= last for p in paragraphs):
+            raise ValueError(f"corrections require one or more paragraph numbers from 1 to {last}")
         if not reason.strip():
             raise ValueError("corrections require a reason")
         record = {

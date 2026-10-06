@@ -1,0 +1,1911 @@
+{
+  "$schema": "../../schema/migration.schema.json",
+  "id": "rbi.ucb-cyber-framework.2019__rbi.ucb-cyber.2026",
+  "old_instrument_id": "rbi.ucb-cyber-framework.2019",
+  "new_instrument_id": "rbi.ucb-cyber.2026",
+  "disclaimer": "These mappings are deterministic inferences, not authoritative legal conclusions. RBI published no clause-level concordance; every proposal requires review against the sources.",
+  "method": "tfidf-word-ngram-explicit-change-rules",
+  "method_version": "1.0",
+  "mappings": [
+    {
+      "old_clause": "II-1.1",
+      "old_excerpt": "1.1. Maintain an up-to-date/centralised inventory of authorised devices connected to UCB’s network (within/outside UCB’s premises) and related network devices in the UCB’s network.\n",
+      "old_char_start": 9687,
+      "old_char_end": 9868,
+      "status": "matched",
+      "confidence": 0.834129,
+      "candidates": [
+        {
+          "paragraph": "105",
+          "pdf_page": 31,
+          "score": 0.834129,
+          "excerpt": "105. The UCB shall maintain an up-to-date / centralised inventory of authorised \ndevices connected to its network (within / outside the UCB’s premises) and \nrelated network devices in the UCB’s network."
+        },
+        {
+          "paragraph": "33",
+          "pdf_page": 15,
+          "score": 0.269252,
+          "excerpt": "33. The UCB shall ensure that all the network devices are configured appropriately, \nperiodically assessed, and such configurations are securely maintained."
+        },
+        {
+          "paragraph": "134",
+          "pdf_page": 36,
+          "score": 0.266445,
+          "excerpt": "134. The UCB shall put in place a mechanism to detect and remedy any unusual \nactivities in systems, servers, network devices, and endpoints."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-1.2",
+      "old_excerpt": "1.2. Boundary defences should be multi-layered with properly configured firewalls, proxies, De-Militarized Zone (DMZ) perimeter networks, and network-based Intrusion Prevention System (IPS)/Intrusion Detection System (IDS). Mechanism to filter both inbound and outbound traffic shall be put in place.\n",
+      "old_char_start": 9868,
+      "old_char_end": 10169,
+      "status": "matched",
+      "confidence": 0.8107,
+      "candidates": [
+        {
+          "paragraph": "106",
+          "pdf_page": 31,
+          "score": 0.8107,
+          "excerpt": "106. The UCB shall ensure that the boundary defences are multi-layered with properly \nconfigured firewalls, proxies, De-Militarised Zone (DMZ) perimeter networks, and \nnetwork-based Intrusion Prevention System (IPS) and Intrusion Detection \nSystem (IDS). Mechanism to filter both inbound and outbound traffic shall be put \nin place. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n32"
+        },
+        {
+          "paragraph": "134",
+          "pdf_page": 36,
+          "score": 0.226797,
+          "excerpt": "134. The UCB shall put in place a mechanism to detect and remedy any unusual \nactivities in systems, servers, network devices, and endpoints."
+        },
+        {
+          "paragraph": "33",
+          "pdf_page": 15,
+          "score": 0.205757,
+          "excerpt": "33. The UCB shall ensure that all the network devices are configured appropriately, \nperiodically assessed, and such configurations are securely maintained."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-1.3",
+      "old_excerpt": "1.3. LAN segments for in-house/onsite ATM and CBS/branch network should be different.\n",
+      "old_char_start": 10169,
+      "old_char_end": 10255,
+      "status": "matched",
+      "confidence": 0.627221,
+      "candidates": [
+        {
+          "paragraph": "107",
+          "pdf_page": 32,
+          "score": 0.627221,
+          "excerpt": "107. The UCB shall ensure that the LAN segments for in-house / onsite ATM and CBS \n/ branch network are different."
+        },
+        {
+          "paragraph": "33",
+          "pdf_page": 15,
+          "score": 0.250519,
+          "excerpt": "33. The UCB shall ensure that all the network devices are configured appropriately, \nperiodically assessed, and such configurations are securely maintained."
+        },
+        {
+          "paragraph": "134",
+          "pdf_page": 36,
+          "score": 0.247957,
+          "excerpt": "134. The UCB shall put in place a mechanism to detect and remedy any unusual \nactivities in systems, servers, network devices, and endpoints."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-2.1",
+      "old_excerpt": "2.1. Document and apply baseline security requirements/configurations to all categories of devices (end-points/workstations, mobile devices, operating systems, databases, applications, network devices, security devices, security systems, etc.), throughout the lifecycle (from conception to deployment) and carry out reviews periodically.\n",
+      "old_char_start": 10279,
+      "old_char_end": 10617,
+      "status": "matched",
+      "confidence": 0.57869,
+      "candidates": [
+        {
+          "paragraph": "109",
+          "pdf_page": 32,
+          "score": 0.57869,
+          "excerpt": "109. The UCB shall document and apply baseline security requirements / \nconfigurations to all categories of devices including end-points / workstations, \nmobile devices, operating systems, databases, applications, middleware, \nnetwork devices, and security solutions, throughout the lifecycle (from \nconception to deployment) and carry out reviews periodically.   \nE. \nApplication Security Life Cycle  \n(These controls shall be applicable to the UCB developing the application \nsoftware (e.g., core banking solution) itself or through its subsidiaries. Otherwise, \nthe UCB, apart from securing its production environment, may enforce these \nrequirements with its respective third-party vendors developing application \nsoftware)"
+        },
+        {
+          "paragraph": "38",
+          "pdf_page": 16,
+          "score": 0.250719,
+          "excerpt": "38. The UCB shall ensure that the firewall configurations are set to the highest \nsecurity level and conduct evaluation of configurations of critical devices (such \nas firewall, network switches, and security devices) periodically."
+        },
+        {
+          "paragraph": "136",
+          "pdf_page": 36,
+          "score": 0.151011,
+          "excerpt": "136. The UCB shall disable remote connections from outside machines to the network \nhosting critical payment infrastructure (e.g., RTGS, NEFT, ATM Switch, SWIFT \nInterface) and disable RDP on all critical systems."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-3.1",
+      "old_excerpt": "3.1. The development/test and production environments need to be properly segregated. The data used for development and testing should be appropriately masked.\n",
+      "old_char_start": 10661,
+      "old_char_end": 10821,
+      "status": "matched",
+      "confidence": 0.319489,
+      "candidates": [
+        {
+          "paragraph": "110",
+          "pdf_page": 32,
+          "score": 0.319489,
+          "excerpt": "110. The UCB shall ensure that the development / test and production environments \nare properly segregated."
+        },
+        {
+          "paragraph": "141",
+          "pdf_page": 36,
+          "score": 0.238835,
+          "excerpt": "141. In respect of critical business applications, the UCB may conduct source code \naudits by professionally competent personnel / service providers or have \nassurance from application providers / OEMs that the application is free from \nembedded malicious / fraudulent code."
+        },
+        {
+          "paragraph": "92",
+          "pdf_page": 29,
+          "score": 0.235505,
+          "excerpt": "92. The UCB shall ensure that the sensitive data used for application development \nand testing, whether by the UCB or by third-party shall be appropriately masked.  \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n30"
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-3.2",
+      "old_excerpt": "3.2. Software/Application development approach should incorporate secure coding principles, security testing (based on global standards) and secure rollout.\n",
+      "old_char_start": 10821,
+      "old_char_end": 10978,
+      "status": "matched",
+      "confidence": 0.469799,
+      "candidates": [
+        {
+          "paragraph": "111",
+          "pdf_page": 32,
+          "score": 0.469799,
+          "excerpt": "111. The UCB shall ensure that the software / application development approach \nincorporates secure coding principles, security testing, and secure rollout."
+        },
+        {
+          "paragraph": "141",
+          "pdf_page": 36,
+          "score": 0.243215,
+          "excerpt": "141. In respect of critical business applications, the UCB may conduct source code \naudits by professionally competent personnel / service providers or have \nassurance from application providers / OEMs that the application is free from \nembedded malicious / fraudulent code."
+        },
+        {
+          "paragraph": "83",
+          "pdf_page": 23,
+          "score": 0.201587,
+          "excerpt": "83. The UCB shall ensure that following cybersecurity controls are implemented and \nmaintained by third-party ATM Switch Application Service Providers (ASPs) \nwhere the UCB manages its ATM Switch ecosystem through their shared \nservices: \n(1) \nPreventing Access of Unauthorised Software: Paragraph 26 of these \nDirections. \n(2) \nEnvironmental Controls: Paragraphs 30, 31 of these Directions. \n(3) \nNetwork Management and Security: Paragraphs 33, 34, 36, 105, 106, 134, \n135 of these Directions. \n(4) \nSecure Configuration: Paragraphs 109, 136, 137 of these Directions. \n(5) \nApplication Security Life Cycle (ASLC): Paragraph 110 of these Directions. \n(6) \nPatch / Vulnerability and Change Management: Paragraph 114 of these \nDirections. \n(7) \nUser Access Control / Management: Paragraphs 120, 145 of these \nDirections. \n(8) \nAudit Logs: Paragraphs 126, 127, 150, 151 of these Directions. \n(9) \nIncident Response and Management: Paragraph 152 of these Directions. \n(10) Advanced Real-time Threat Defence and Management: Paragraph 147 of \nthese Directions. \n(11) Vulnerability Assessment and Penetration Test: Paragraph 118 of these \nDirections. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n24 \n \n(12) Forensics: Paragraph 170 of these Directions."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-4.1",
+      "old_excerpt": "4.1. UCBs should have a robust change management process in place to record/ monitor all the changes that are moved/ pushed into production environment. Changes to business applications, supporting technology, service components and facilities should be managed using robust configuration management processes that ensure integrity of any changes thereto.\n",
+      "old_char_start": 10999,
+      "old_char_end": 11355,
+      "status": "matched",
+      "confidence": 0.69968,
+      "candidates": [
+        {
+          "paragraph": "114",
+          "pdf_page": 33,
+          "score": 0.69968,
+          "excerpt": "114. The UCB shall ensure that the changes to business applications, supporting \ntechnology, service components, and facilities are managed using robust \nconfiguration management processes that ensure integrity of any changes \nthereto. \nG. \nPeriodic Testing"
+        },
+        {
+          "paragraph": "113",
+          "pdf_page": 32,
+          "score": 0.639395,
+          "excerpt": "113. The UCB shall have a robust change management process in place to record / \nmonitor all the changes that are moved / pushed into production environment. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n33"
+        },
+        {
+          "paragraph": "85",
+          "pdf_page": 24,
+          "score": 0.179597,
+          "excerpt": "85. The UCB shall ensure to mandate the following baseline cybersecurity controls \nin their contractual agreements with these ASPs: \n(1) \nThe ASP shall continuously monitor the release of patches by various \nvendors / Original Equipment Manufacturers (OEMs), advisories issued by \nCERT-In and other similar agencies and expeditiously apply the security \npatches as per the patch management policy of the ASP. If a patch / series \nof patches is / are released by the OEM / manufacturer / vendor for \nprotection against well-known / well publicised / reported attacks exploiting \nthe vulnerability patched, the ASPs must have a mechanism to apply them \nexpeditiously following an emergency patch management process. \n(2) \nThe ASP shall put in place a clearly defined framework including \nrequirements justifying the exception(s), duration of exception(s), process \nof granting exceptions, and authority for approving, authority for review of \nexceptions granted on a periodic basis by officer(s) preferably at senior \nlevels who are well equipped to understand the business and technical \ncontext of the exception(s). \n(3) \nThe ASP shall prepare and maintain an up-to-date network architecture \ndiagram at the organisation level including wired / wireless networks. \n(4) \nThe ASP may consider implementing solutions to automate network \ndiscovery and management. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n25 \n \n(5) \nThe ASP shall put in place mechanisms to identify authorised hardware / \nmobile devices such as laptops, mobile phones, and tablets, and ensure \nthat they are provided connectivity only when they meet the security \nrequirements prescribed by the ASP.  \n(6) \nThe ASP shall put in place a mechanism to automatically identify \nunauthorised device connections to the ASP’s network and block such \nconnections. \n(7) \nThe ASP shall establish Standard Operating Procedures (SOP) for all major \nIT activities including for connecting devices to the network. \n(8) \nThe ASP shall periodically evaluate the configuration of all such devices \nincluding firewall, network switches, and security devices, and patch levels \nfor all systems in the ASP’s IT ecosystem. \n(9) \nThe ASP shall ensure the software integrity of the ATM Switch related \napplications. \n(10) The ASP shall ensure information security across all stages of application \nlife cycle. \n(11) The ASP shall implement secure coding practices for internally / \ncollaboratively developed applications. \n(12) The ASP shall ensure that the Software / Application development \napproach is based on threat modelling, incorporate secure coding \nprinciples, security testing (based on global standards), and secure rollout. \n(13) The ASP shall ensure that adoption of new technologies is adequately \nevaluated for existing / evolving security threats and that the IT / security \nteam of the ASP achieve reasonable level of comfort and maturity with such \ntechnologies before introducing in the IT ecosystem. \n(14) The ASP shall certify any new products, updates, and upgrades as having \nbeen developed following secure coding practices. The application \narchitecture shall be tested to safeguard the confidentiality and integrity of \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n26 \n \ndata being stored, processed, and transmitted. An assurance to this effect \nshall be shared with the UCB / RBI as and when requested. \n(15) In respect of critical business applications, the ASP shall conduct source \ncode audits by professionally competent personnel / service providers. \nThey shall provide assurance to the UCB that the application is free from \nembedded malicious / fraudulent code. \n(16) The ASP shall ensure that their software / application development \npractices address common vulnerabilities highlighted in baselines such as \nOpen Web Application Security Project (OWASP) proactively and adopt the \nprinciple of defence-in-depth to provide layered security mechanism. \n(17) The ASP shall follow a documented risk-based strategy for inventorying IT \ncomponents that need to be patched, identification of patches and applying \npatches to minimise the number of vulnerable systems and the time window \nof vulnerability / exposure. \n(18) The ASP shall periodically conduct Application security testing of web / \nmobile applications throughout their lifecycle (pre-implementation, post \nimplementation, after changes) in an environment closely resembling or a \nreplica of the production environment. \n(19) As a threat mitigation strategy, the ASP shall identify the root cause of \nincident and apply necessary patches to plug the vulnerabilities. \n(20) The ASP shall periodically evaluate the access device configurations and \npatch levels to ensure that all access points, nodes between (i) different \nVirtual Local Area Networks (VLANs) in the Data Centre, (ii) Local Area \nNetwork (LAN) / Wide Area Network (WAN) interfaces, (iii) ASP’s network \nto external network and interconnections with partner, vendor, and service \nprovider networks are securely configured. \n(21) The ASP shall put in place a robust change management process in place \nto record / monitor all the changes that are moved / pushed into the \nproduction environment. Such a change management process must clearly \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n27 \n \nmention the test cases, chain of approving authority for the particular \nchange, deployment plan, and rollback plan. \n(22) The ASP shall carefully protect access credentials such as logon user-id, \nauthentication \ninformation \nand \ntokens, \naccess \nprofiles, \nagainst \nleakage / attacks. \n(23) The ASP shall implement controls to monitor and minimise invalid logon \ncounts and deactivate dormant accounts. \n(24) The ASP shall ensure that access to critical servers, network and security \ndevices / systems is provided through Privileged User Management \nSystems / Identity and Access Management (IAM) systems. \n(25) The ASP shall monitor any abnormal change in pattern of logon. \n(26) The ASP shall put in place a mechanism to monitor the database security \nevents, backend access to the databases to ensure access to the database \nis restricted and the activities carried out through the backend are logged \nand reviewed. \n(27) The ASP shall ensure that trivial and / or default passwords are not used. \n(28) The ASP shall develop a comprehensive data loss / leakage prevention \nstrategy to safeguard sensitive (including confidential) business and \ncustomer data / information. This shall include protecting data processed in \nend point devices, data in transmission, as well as data stored in servers \nand other digital stores, whether online or offline. \n(29) The ASP shall ensure to generate and capture logs from devices / \napplications / databases.  \n(30) The ASP shall ensure that logs / audit trails of device / system software and \napplication software capture relevant elements, as per the applicability of \neach packet, event, and / or transaction. \n(31) The ASP shall put in place a mechanism / resources to take appropriate \naction in case of any cyber incident. The ASP shall have written incident \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n28 \n \nresponse procedures including the roles of staff / outsourced staff handling \nsuch incidents. The response strategies shall consider readiness to meet \nvarious incident scenarios based on situational awareness, potential / post \nimpact, and consistent communication and co-ordination with stakeholders, \nspecifically with the UCB, during response. \n(32) The ASP shall be responsible for meeting the requirements prescribed for \nincident management and Business Continuity Plan (BCP) / Disaster \nRecovery (DR) even if their information assets including  IT infrastructure, \nsystems, and applications are managed by third party vendors / service \nproviders. The ASP shall have necessary arrangements, including a \ndocumented procedure for such purpose. This shall, inter alia, include \ninforming the UCB about any cyber incident occurring in respect of the UCB \non a timely basis to mitigate the risk at the earliest as well as to meet extant \nregulatory requirements. \n(33) The ASP shall implement anti-malware, antivirus protection including \nbehavioural detection capabilities across all relevant devices and \nenvironments, such as endpoints, servers (including operating systems, \ndatabases, and applications), Web / Internet gateways, email-gateways \nand wireless networks. The ASP shall also implement tools and processes \nfor centralised management and monitoring of such protection. \n(34) The ASP shall periodically conduct Vulnerability Assessment / Penetration \nTesting (VA / PT) of applications, servers, and network components. \n(35) The ASP shall ensure to share the VA / PT report(s) and compliance to its \nfindings with the UCB / RBI as and when requested. \n(36) The ASP shall ensure constant and continuous monitoring of the \nenvironment using appropriate and cost-effective technology tools, clearly \ndefined policies and procedures based on best practices and monitored by \ntechnically competent and capable manpower. The ASP shall setup a \nCyber Security Operations Centre (CSOC). It is also essential that the \nCSOC, inter alia, ensures seamless collection of the logs relevant to the IT \necosystem, storing, processing and correlation of the logs through \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n29 \n \nappropriate SIEM solution for continuous surveillance and keeps itself \nregularly updated on the latest nature of emerging cyber threats. \n(37) The ASP shall comply with the relevant standards including Payment Card \nIndustry Data Security Standard (PCI-DSS) and Payment Card Industry - \nSoftware Security Framework (PCI-SSF), as applicable to the IT \necosystem."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-5.1",
+      "old_excerpt": "5.1. Periodically conduct Vulnerability Assessment/ Penetration Testing (VA/PT) of internet facing web/mobile applications, servers and network components throughout their lifecycle (pre-implementation, post implementation, after changes etc.). VA of critical applications and those on DMZ shall be conducted atleast once in every 6 months. PT shall be conducted atleast once in a year.\n",
+      "old_char_start": 11375,
+      "old_char_end": 11762,
+      "status": "changed",
+      "confidence": 0.643402,
+      "candidates": [
+        {
+          "paragraph": "116",
+          "pdf_page": 33,
+          "score": 0.643402,
+          "excerpt": "116. The UCB shall periodically conduct VA / PT of internet facing web / mobile \napplications, servers, and network components throughout their lifecycle (pre-\nimplementation, post implementation, and after changes). VA of critical \napplications and those on DMZ shall be conducted at least once in every six \nmonths. PT shall be conducted at least once in a year."
+        },
+        {
+          "paragraph": "115",
+          "pdf_page": 33,
+          "score": 0.293228,
+          "excerpt": "115. The UCB shall ensure that the application security testing of web / mobile \napplications is conducted before going live and after every major change in the \napplications."
+        },
+        {
+          "paragraph": "85",
+          "pdf_page": 24,
+          "score": 0.15341,
+          "excerpt": "85. The UCB shall ensure to mandate the following baseline cybersecurity controls \nin their contractual agreements with these ASPs: \n(1) \nThe ASP shall continuously monitor the release of patches by various \nvendors / Original Equipment Manufacturers (OEMs), advisories issued by \nCERT-In and other similar agencies and expeditiously apply the security \npatches as per the patch management policy of the ASP. If a patch / series \nof patches is / are released by the OEM / manufacturer / vendor for \nprotection against well-known / well publicised / reported attacks exploiting \nthe vulnerability patched, the ASPs must have a mechanism to apply them \nexpeditiously following an emergency patch management process. \n(2) \nThe ASP shall put in place a clearly defined framework including \nrequirements justifying the exception(s), duration of exception(s), process \nof granting exceptions, and authority for approving, authority for review of \nexceptions granted on a periodic basis by officer(s) preferably at senior \nlevels who are well equipped to understand the business and technical \ncontext of the exception(s). \n(3) \nThe ASP shall prepare and maintain an up-to-date network architecture \ndiagram at the organisation level including wired / wireless networks. \n(4) \nThe ASP may consider implementing solutions to automate network \ndiscovery and management. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n25 \n \n(5) \nThe ASP shall put in place mechanisms to identify authorised hardware / \nmobile devices such as laptops, mobile phones, and tablets, and ensure \nthat they are provided connectivity only when they meet the security \nrequirements prescribed by the ASP.  \n(6) \nThe ASP shall put in place a mechanism to automatically identify \nunauthorised device connections to the ASP’s network and block such \nconnections. \n(7) \nThe ASP shall establish Standard Operating Procedures (SOP) for all major \nIT activities including for connecting devices to the network. \n(8) \nThe ASP shall periodically evaluate the configuration of all such devices \nincluding firewall, network switches, and security devices, and patch levels \nfor all systems in the ASP’s IT ecosystem. \n(9) \nThe ASP shall ensure the software integrity of the ATM Switch related \napplications. \n(10) The ASP shall ensure information security across all stages of application \nlife cycle. \n(11) The ASP shall implement secure coding practices for internally / \ncollaboratively developed applications. \n(12) The ASP shall ensure that the Software / Application development \napproach is based on threat modelling, incorporate secure coding \nprinciples, security testing (based on global standards), and secure rollout. \n(13) The ASP shall ensure that adoption of new technologies is adequately \nevaluated for existing / evolving security threats and that the IT / security \nteam of the ASP achieve reasonable level of comfort and maturity with such \ntechnologies before introducing in the IT ecosystem. \n(14) The ASP shall certify any new products, updates, and upgrades as having \nbeen developed following secure coding practices. The application \narchitecture shall be tested to safeguard the confidentiality and integrity of \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n26 \n \ndata being stored, processed, and transmitted. An assurance to this effect \nshall be shared with the UCB / RBI as and when requested. \n(15) In respect of critical business applications, the ASP shall conduct source \ncode audits by professionally competent personnel / service providers. \nThey shall provide assurance to the UCB that the application is free from \nembedded malicious / fraudulent code. \n(16) The ASP shall ensure that their software / application development \npractices address common vulnerabilities highlighted in baselines such as \nOpen Web Application Security Project (OWASP) proactively and adopt the \nprinciple of defence-in-depth to provide layered security mechanism. \n(17) The ASP shall follow a documented risk-based strategy for inventorying IT \ncomponents that need to be patched, identification of patches and applying \npatches to minimise the number of vulnerable systems and the time window \nof vulnerability / exposure. \n(18) The ASP shall periodically conduct Application security testing of web / \nmobile applications throughout their lifecycle (pre-implementation, post \nimplementation, after changes) in an environment closely resembling or a \nreplica of the production environment. \n(19) As a threat mitigation strategy, the ASP shall identify the root cause of \nincident and apply necessary patches to plug the vulnerabilities. \n(20) The ASP shall periodically evaluate the access device configurations and \npatch levels to ensure that all access points, nodes between (i) different \nVirtual Local Area Networks (VLANs) in the Data Centre, (ii) Local Area \nNetwork (LAN) / Wide Area Network (WAN) interfaces, (iii) ASP’s network \nto external network and interconnections with partner, vendor, and service \nprovider networks are securely configured. \n(21) The ASP shall put in place a robust change management process in place \nto record / monitor all the changes that are moved / pushed into the \nproduction environment. Such a change management process must clearly \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n27 \n \nmention the test cases, chain of approving authority for the particular \nchange, deployment plan, and rollback plan. \n(22) The ASP shall carefully protect access credentials such as logon user-id, \nauthentication \ninformation \nand \ntokens, \naccess \nprofiles, \nagainst \nleakage / attacks. \n(23) The ASP shall implement controls to monitor and minimise invalid logon \ncounts and deactivate dormant accounts. \n(24) The ASP shall ensure that access to critical servers, network and security \ndevices / systems is provided through Privileged User Management \nSystems / Identity and Access Management (IAM) systems. \n(25) The ASP shall monitor any abnormal change in pattern of logon. \n(26) The ASP shall put in place a mechanism to monitor the database security \nevents, backend access to the databases to ensure access to the database \nis restricted and the activities carried out through the backend are logged \nand reviewed. \n(27) The ASP shall ensure that trivial and / or default passwords are not used. \n(28) The ASP shall develop a comprehensive data loss / leakage prevention \nstrategy to safeguard sensitive (including confidential) business and \ncustomer data / information. This shall include protecting data processed in \nend point devices, data in transmission, as well as data stored in servers \nand other digital stores, whether online or offline. \n(29) The ASP shall ensure to generate and capture logs from devices / \napplications / databases.  \n(30) The ASP shall ensure that logs / audit trails of device / system software and \napplication software capture relevant elements, as per the applicability of \neach packet, event, and / or transaction. \n(31) The ASP shall put in place a mechanism / resources to take appropriate \naction in case of any cyber incident. The ASP shall have written incident \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n28 \n \nresponse procedures including the roles of staff / outsourced staff handling \nsuch incidents. The response strategies shall consider readiness to meet \nvarious incident scenarios based on situational awareness, potential / post \nimpact, and consistent communication and co-ordination with stakeholders, \nspecifically with the UCB, during response. \n(32) The ASP shall be responsible for meeting the requirements prescribed for \nincident management and Business Continuity Plan (BCP) / Disaster \nRecovery (DR) even if their information assets including  IT infrastructure, \nsystems, and applications are managed by third party vendors / service \nproviders. The ASP shall have necessary arrangements, including a \ndocumented procedure for such purpose. This shall, inter alia, include \ninforming the UCB about any cyber incident occurring in respect of the UCB \non a timely basis to mitigate the risk at the earliest as well as to meet extant \nregulatory requirements. \n(33) The ASP shall implement anti-malware, antivirus protection including \nbehavioural detection capabilities across all relevant devices and \nenvironments, such as endpoints, servers (including operating systems, \ndatabases, and applications), Web / Internet gateways, email-gateways \nand wireless networks. The ASP shall also implement tools and processes \nfor centralised management and monitoring of such protection. \n(34) The ASP shall periodically conduct Vulnerability Assessment / Penetration \nTesting (VA / PT) of applications, servers, and network components. \n(35) The ASP shall ensure to share the VA / PT report(s) and compliance to its \nfindings with the UCB / RBI as and when requested. \n(36) The ASP shall ensure constant and continuous monitoring of the \nenvironment using appropriate and cost-effective technology tools, clearly \ndefined policies and procedures based on best practices and monitored by \ntechnically competent and capable manpower. The ASP shall setup a \nCyber Security Operations Centre (CSOC). It is also essential that the \nCSOC, inter alia, ensures seamless collection of the logs relevant to the IT \necosystem, storing, processing and correlation of the logs through \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n29 \n \nappropriate SIEM solution for continuous surveillance and keeps itself \nregularly updated on the latest nature of emerging cyber threats. \n(37) The ASP shall comply with the relevant standards including Payment Card \nIndustry Data Security Standard (PCI-DSS) and Payment Card Industry - \nSoftware Security Framework (PCI-SSF), as applicable to the IT \necosystem."
+        }
+      ],
+      "differences": [
+        "number or duration shift: old has ['6 months']; new has ['six months']"
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-5.2",
+      "old_excerpt": "5.2. UCBs having their CBS on a shared infrastructure of an Application Service Provider (CBS-ASP) shall get their CBS application including the infrastructure hosting it subjected to VA/PT through the CBS-ASP.\n",
+      "old_char_start": 11762,
+      "old_char_end": 11973,
+      "status": "matched",
+      "confidence": 0.708974,
+      "candidates": [
+        {
+          "paragraph": "117",
+          "pdf_page": 33,
+          "score": 0.708974,
+          "excerpt": "117. The UCB having its CBS on a shared infrastructure of an Application Service \nProvider (CBS-ASP) shall get its CBS application including the infrastructure \nhosting it subjected to VA / PT through the CBS-ASP."
+        },
+        {
+          "paragraph": "115",
+          "pdf_page": 33,
+          "score": 0.209857,
+          "excerpt": "115. The UCB shall ensure that the application security testing of web / mobile \napplications is conducted before going live and after every major change in the \napplications."
+        },
+        {
+          "paragraph": "81",
+          "pdf_page": 22,
+          "score": 0.15326,
+          "excerpt": "81. The UCB shall ensure that the service provider devises effective encryption and \nkey management procedures for data in transit, at rest, and on backup media, \nsecure storage and protection of encryption keys, use of industry standards, \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n23 \n \nrestricted access to key stores, key backup and recoverability, and periodic \ntesting of these procedures."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-5.3",
+      "old_excerpt": "5.3. Application security testing of web/mobile applications should be conducted before going live and after every major changes in the applications.\n",
+      "old_char_start": 11973,
+      "old_char_end": 12123,
+      "status": "matched",
+      "confidence": 0.852187,
+      "candidates": [
+        {
+          "paragraph": "115",
+          "pdf_page": 33,
+          "score": 0.852187,
+          "excerpt": "115. The UCB shall ensure that the application security testing of web / mobile \napplications is conducted before going live and after every major change in the \napplications."
+        },
+        {
+          "paragraph": "81",
+          "pdf_page": 22,
+          "score": 0.150219,
+          "excerpt": "81. The UCB shall ensure that the service provider devises effective encryption and \nkey management procedures for data in transit, at rest, and on backup media, \nsecure storage and protection of encryption keys, use of industry standards, \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n23 \n \nrestricted access to key stores, key backup and recoverability, and periodic \ntesting of these procedures."
+        },
+        {
+          "paragraph": "116",
+          "pdf_page": 33,
+          "score": 0.131042,
+          "excerpt": "116. The UCB shall periodically conduct VA / PT of internet facing web / mobile \napplications, servers, and network components throughout their lifecycle (pre-\nimplementation, post implementation, and after changes). VA of critical \napplications and those on DMZ shall be conducted at least once in every six \nmonths. PT shall be conducted at least once in a year."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-5.4",
+      "old_excerpt": "5.4. The vulnerabilities detected are to be remedied promptly in terms of the UCB’s risk management/treatment framework so as to avoid exploitation of such vulnerabilities.\n",
+      "old_char_start": 12123,
+      "old_char_end": 12296,
+      "status": "matched",
+      "confidence": 0.602184,
+      "candidates": [
+        {
+          "paragraph": "118",
+          "pdf_page": 33,
+          "score": 0.602184,
+          "excerpt": "118. The UCB shall ensure that the vulnerabilities detected are remediated promptly \nin terms of the UCB’s risk management / treatment framework so as to avoid \nexploitation of such vulnerabilities."
+        },
+        {
+          "paragraph": "115",
+          "pdf_page": 33,
+          "score": 0.207718,
+          "excerpt": "115. The UCB shall ensure that the application security testing of web / mobile \napplications is conducted before going live and after every major change in the \napplications."
+        },
+        {
+          "paragraph": "81",
+          "pdf_page": 22,
+          "score": 0.151163,
+          "excerpt": "81. The UCB shall ensure that the service provider devises effective encryption and \nkey management procedures for data in transit, at rest, and on backup media, \nsecure storage and protection of encryption keys, use of industry standards, \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n23 \n \nrestricted access to key stores, key backup and recoverability, and periodic \ntesting of these procedures."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-5.5",
+      "old_excerpt": "5.5. Penetration testing of public facing systems as well as other critical applications are to be carried out by professionally qualified teams. Findings of VA/PT and the follow up actions necessitated are to be monitored closely by the Information Security/Information Technology Audit team as well as Top Management.\n",
+      "old_char_start": 12296,
+      "old_char_end": 12616,
+      "status": "matched",
+      "confidence": 0.762844,
+      "candidates": [
+        {
+          "paragraph": "119",
+          "pdf_page": 33,
+          "score": 0.762844,
+          "excerpt": "119. The UCB shall ensure that the penetration testing of public facing systems as \nwell as other critical applications are carried out by professionally qualified \nteams. Findings of VA / PT and the follow up actions necessitated shall be \nmonitored closely by the Information Security / IS Audit team as well as Senior \nManagement. \nH. \nUser Access Control / Management"
+        },
+        {
+          "paragraph": "115",
+          "pdf_page": 33,
+          "score": 0.193665,
+          "excerpt": "115. The UCB shall ensure that the application security testing of web / mobile \napplications is conducted before going live and after every major change in the \napplications."
+        },
+        {
+          "paragraph": "81",
+          "pdf_page": 22,
+          "score": 0.131079,
+          "excerpt": "81. The UCB shall ensure that the service provider devises effective encryption and \nkey management procedures for data in transit, at rest, and on backup media, \nsecure storage and protection of encryption keys, use of industry standards, \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n23 \n \nrestricted access to key stores, key backup and recoverability, and periodic \ntesting of these procedures."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-6.1",
+      "old_excerpt": "6.1. Provide secure access to the UCB’s assets/services from within/outside UCB’s network by protecting data/information at rest (e.g. using encryption, if supported by the device) and in-transit (e.g. using technologies such as VPN or other standard secure protocols, etc.)\n",
+      "old_char_start": 12652,
+      "old_char_end": 12927,
+      "status": "matched",
+      "confidence": 0.772833,
+      "candidates": [
+        {
+          "paragraph": "120",
+          "pdf_page": 33,
+          "score": 0.772833,
+          "excerpt": "120. The UCB shall provide secure access to its assets / services from within / outside \nits network by protecting data / information at rest (e.g., using encryption, if \nsupported by the device) and in-transit (e.g., using technologies such as Virtual \nPrivate Network (VPN) or other standard secure protocols). \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n34 \n \nI. \nAuthentication Framework for Customers"
+        },
+        {
+          "paragraph": "43",
+          "pdf_page": 16,
+          "score": 0.243792,
+          "excerpt": "43. The UCB shall disallow administrative rights on end-user workstations / PCs / \nlaptops and provide access rights on a ‘need to know’ and ‘need to do’ basis."
+        },
+        {
+          "paragraph": "83",
+          "pdf_page": 23,
+          "score": 0.150012,
+          "excerpt": "83. The UCB shall ensure that following cybersecurity controls are implemented and \nmaintained by third-party ATM Switch Application Service Providers (ASPs) \nwhere the UCB manages its ATM Switch ecosystem through their shared \nservices: \n(1) \nPreventing Access of Unauthorised Software: Paragraph 26 of these \nDirections. \n(2) \nEnvironmental Controls: Paragraphs 30, 31 of these Directions. \n(3) \nNetwork Management and Security: Paragraphs 33, 34, 36, 105, 106, 134, \n135 of these Directions. \n(4) \nSecure Configuration: Paragraphs 109, 136, 137 of these Directions. \n(5) \nApplication Security Life Cycle (ASLC): Paragraph 110 of these Directions. \n(6) \nPatch / Vulnerability and Change Management: Paragraph 114 of these \nDirections. \n(7) \nUser Access Control / Management: Paragraphs 120, 145 of these \nDirections. \n(8) \nAudit Logs: Paragraphs 126, 127, 150, 151 of these Directions. \n(9) \nIncident Response and Management: Paragraph 152 of these Directions. \n(10) Advanced Real-time Threat Defence and Management: Paragraph 147 of \nthese Directions. \n(11) Vulnerability Assessment and Penetration Test: Paragraph 118 of these \nDirections. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n24 \n \n(12) Forensics: Paragraph 170 of these Directions."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-7.1",
+      "old_excerpt": "7.1. UCBs should have adequate checks and balance to ensure (including security of customer access credentials held with them) that transactions are put only through the genuine/authorised applications and that authentication methodology is robust, secure and centralised.\n",
+      "old_char_start": 12969,
+      "old_char_end": 13242,
+      "status": "matched",
+      "confidence": 0.924284,
+      "candidates": [
+        {
+          "paragraph": "121",
+          "pdf_page": 34,
+          "score": 0.924284,
+          "excerpt": "121. The UCB shall have adequate checks and balances to ensure (including security \nof customer access credentials held with them) that transactions are put only \nthrough the genuine / authorised applications and that authentication \nmethodology is robust, secure, and centralised."
+        },
+        {
+          "paragraph": "122",
+          "pdf_page": 34,
+          "score": 0.237408,
+          "excerpt": "122. The UCB shall implement an authentication framework to securely verify and \nidentify the applications of UCB to customers. \nJ. \nAnti-Phishing"
+        },
+        {
+          "paragraph": "67",
+          "pdf_page": 19,
+          "score": 0.096039,
+          "excerpt": "67. The UCB shall educate the customers on securing their account and card details, \ncredentials, and other sensitive authentication information, and on not sharing \nsuch information with any third party."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-7.2",
+      "old_excerpt": "7.2. Implement authentication framework/mechanism to securely verify and identify the applications of UCB to customers (Example, with digital certificate).\n",
+      "old_char_start": 13242,
+      "old_char_end": 13398,
+      "status": "matched",
+      "confidence": 0.606856,
+      "candidates": [
+        {
+          "paragraph": "122",
+          "pdf_page": 34,
+          "score": 0.606856,
+          "excerpt": "122. The UCB shall implement an authentication framework to securely verify and \nidentify the applications of UCB to customers. \nJ. \nAnti-Phishing"
+        },
+        {
+          "paragraph": "121",
+          "pdf_page": 34,
+          "score": 0.279006,
+          "excerpt": "121. The UCB shall have adequate checks and balances to ensure (including security \nof customer access credentials held with them) that transactions are put only \nthrough the genuine / authorised applications and that authentication \nmethodology is robust, secure, and centralised."
+        },
+        {
+          "paragraph": "67",
+          "pdf_page": 19,
+          "score": 0.088651,
+          "excerpt": "67. The UCB shall educate the customers on securing their account and card details, \ncredentials, and other sensitive authentication information, and on not sharing \nsuch information with any third party."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-8.1",
+      "old_excerpt": "8.1. Subscribe to Anti-phishing/anti-rogue application services from external service providers for identifying and taking down phishing websites/rogue applications.\n",
+      "old_char_start": 13415,
+      "old_char_end": 13581,
+      "status": "matched",
+      "confidence": 0.943695,
+      "candidates": [
+        {
+          "paragraph": "123",
+          "pdf_page": 34,
+          "score": 0.943695,
+          "excerpt": "123. The UCB shall subscribe to anti-phishing / anti-rogue application services from \nexternal service providers for identifying and taking down phishing websites / \nrogue applications. \nK. \nData Leak Prevention Strategy"
+        },
+        {
+          "paragraph": "54",
+          "pdf_page": 18,
+          "score": 0.22454,
+          "excerpt": "54. The UCB shall implement its bank name specific email domains (For example, \nXYZ bank with mail domain xyz.bank.in) with anti-phishing and anti-malware, \nDomain-based Message Authentication, Reporting, and Conformance (DMARC) \ncontrols enforced at the email solution.  \nQ. \nRemovable Media"
+        },
+        {
+          "paragraph": "40",
+          "pdf_page": 16,
+          "score": 0.096886,
+          "excerpt": "40. The UCB shall implement and update antivirus protection for servers and end \npoints. The UCB may ensure anti-virus updation through a centralised system.  \nN. \nChange and Patch Management"
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-9.1",
+      "old_excerpt": "9.1. Develop and implement a comprehensive data loss/leakage prevention strategy to safeguard sensitive (including confidential) business and customer data/information.\n",
+      "old_char_start": 13614,
+      "old_char_end": 13783,
+      "status": "matched",
+      "confidence": 0.753733,
+      "candidates": [
+        {
+          "paragraph": "124",
+          "pdf_page": 34,
+          "score": 0.753733,
+          "excerpt": "124. The UCB shall develop and implement a comprehensive data loss / leakage \nprevention strategy to safeguard sensitive (including confidential) business and \ncustomer data / information. Similar arrangements need to be ensured at vendor \nmanaged facilities as well. \nL. \nDatabase Integrity"
+        },
+        {
+          "paragraph": "85",
+          "pdf_page": 24,
+          "score": 0.125554,
+          "excerpt": "85. The UCB shall ensure to mandate the following baseline cybersecurity controls \nin their contractual agreements with these ASPs: \n(1) \nThe ASP shall continuously monitor the release of patches by various \nvendors / Original Equipment Manufacturers (OEMs), advisories issued by \nCERT-In and other similar agencies and expeditiously apply the security \npatches as per the patch management policy of the ASP. If a patch / series \nof patches is / are released by the OEM / manufacturer / vendor for \nprotection against well-known / well publicised / reported attacks exploiting \nthe vulnerability patched, the ASPs must have a mechanism to apply them \nexpeditiously following an emergency patch management process. \n(2) \nThe ASP shall put in place a clearly defined framework including \nrequirements justifying the exception(s), duration of exception(s), process \nof granting exceptions, and authority for approving, authority for review of \nexceptions granted on a periodic basis by officer(s) preferably at senior \nlevels who are well equipped to understand the business and technical \ncontext of the exception(s). \n(3) \nThe ASP shall prepare and maintain an up-to-date network architecture \ndiagram at the organisation level including wired / wireless networks. \n(4) \nThe ASP may consider implementing solutions to automate network \ndiscovery and management. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n25 \n \n(5) \nThe ASP shall put in place mechanisms to identify authorised hardware / \nmobile devices such as laptops, mobile phones, and tablets, and ensure \nthat they are provided connectivity only when they meet the security \nrequirements prescribed by the ASP.  \n(6) \nThe ASP shall put in place a mechanism to automatically identify \nunauthorised device connections to the ASP’s network and block such \nconnections. \n(7) \nThe ASP shall establish Standard Operating Procedures (SOP) for all major \nIT activities including for connecting devices to the network. \n(8) \nThe ASP shall periodically evaluate the configuration of all such devices \nincluding firewall, network switches, and security devices, and patch levels \nfor all systems in the ASP’s IT ecosystem. \n(9) \nThe ASP shall ensure the software integrity of the ATM Switch related \napplications. \n(10) The ASP shall ensure information security across all stages of application \nlife cycle. \n(11) The ASP shall implement secure coding practices for internally / \ncollaboratively developed applications. \n(12) The ASP shall ensure that the Software / Application development \napproach is based on threat modelling, incorporate secure coding \nprinciples, security testing (based on global standards), and secure rollout. \n(13) The ASP shall ensure that adoption of new technologies is adequately \nevaluated for existing / evolving security threats and that the IT / security \nteam of the ASP achieve reasonable level of comfort and maturity with such \ntechnologies before introducing in the IT ecosystem. \n(14) The ASP shall certify any new products, updates, and upgrades as having \nbeen developed following secure coding practices. The application \narchitecture shall be tested to safeguard the confidentiality and integrity of \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n26 \n \ndata being stored, processed, and transmitted. An assurance to this effect \nshall be shared with the UCB / RBI as and when requested. \n(15) In respect of critical business applications, the ASP shall conduct source \ncode audits by professionally competent personnel / service providers. \nThey shall provide assurance to the UCB that the application is free from \nembedded malicious / fraudulent code. \n(16) The ASP shall ensure that their software / application development \npractices address common vulnerabilities highlighted in baselines such as \nOpen Web Application Security Project (OWASP) proactively and adopt the \nprinciple of defence-in-depth to provide layered security mechanism. \n(17) The ASP shall follow a documented risk-based strategy for inventorying IT \ncomponents that need to be patched, identification of patches and applying \npatches to minimise the number of vulnerable systems and the time window \nof vulnerability / exposure. \n(18) The ASP shall periodically conduct Application security testing of web / \nmobile applications throughout their lifecycle (pre-implementation, post \nimplementation, after changes) in an environment closely resembling or a \nreplica of the production environment. \n(19) As a threat mitigation strategy, the ASP shall identify the root cause of \nincident and apply necessary patches to plug the vulnerabilities. \n(20) The ASP shall periodically evaluate the access device configurations and \npatch levels to ensure that all access points, nodes between (i) different \nVirtual Local Area Networks (VLANs) in the Data Centre, (ii) Local Area \nNetwork (LAN) / Wide Area Network (WAN) interfaces, (iii) ASP’s network \nto external network and interconnections with partner, vendor, and service \nprovider networks are securely configured. \n(21) The ASP shall put in place a robust change management process in place \nto record / monitor all the changes that are moved / pushed into the \nproduction environment. Such a change management process must clearly \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n27 \n \nmention the test cases, chain of approving authority for the particular \nchange, deployment plan, and rollback plan. \n(22) The ASP shall carefully protect access credentials such as logon user-id, \nauthentication \ninformation \nand \ntokens, \naccess \nprofiles, \nagainst \nleakage / attacks. \n(23) The ASP shall implement controls to monitor and minimise invalid logon \ncounts and deactivate dormant accounts. \n(24) The ASP shall ensure that access to critical servers, network and security \ndevices / systems is provided through Privileged User Management \nSystems / Identity and Access Management (IAM) systems. \n(25) The ASP shall monitor any abnormal change in pattern of logon. \n(26) The ASP shall put in place a mechanism to monitor the database security \nevents, backend access to the databases to ensure access to the database \nis restricted and the activities carried out through the backend are logged \nand reviewed. \n(27) The ASP shall ensure that trivial and / or default passwords are not used. \n(28) The ASP shall develop a comprehensive data loss / leakage prevention \nstrategy to safeguard sensitive (including confidential) business and \ncustomer data / information. This shall include protecting data processed in \nend point devices, data in transmission, as well as data stored in servers \nand other digital stores, whether online or offline. \n(29) The ASP shall ensure to generate and capture logs from devices / \napplications / databases.  \n(30) The ASP shall ensure that logs / audit trails of device / system software and \napplication software capture relevant elements, as per the applicability of \neach packet, event, and / or transaction. \n(31) The ASP shall put in place a mechanism / resources to take appropriate \naction in case of any cyber incident. The ASP shall have written incident \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n28 \n \nresponse procedures including the roles of staff / outsourced staff handling \nsuch incidents. The response strategies shall consider readiness to meet \nvarious incident scenarios based on situational awareness, potential / post \nimpact, and consistent communication and co-ordination with stakeholders, \nspecifically with the UCB, during response. \n(32) The ASP shall be responsible for meeting the requirements prescribed for \nincident management and Business Continuity Plan (BCP) / Disaster \nRecovery (DR) even if their information assets including  IT infrastructure, \nsystems, and applications are managed by third party vendors / service \nproviders. The ASP shall have necessary arrangements, including a \ndocumented procedure for such purpose. This shall, inter alia, include \ninforming the UCB about any cyber incident occurring in respect of the UCB \non a timely basis to mitigate the risk at the earliest as well as to meet extant \nregulatory requirements. \n(33) The ASP shall implement anti-malware, antivirus protection including \nbehavioural detection capabilities across all relevant devices and \nenvironments, such as endpoints, servers (including operating systems, \ndatabases, and applications), Web / Internet gateways, email-gateways \nand wireless networks. The ASP shall also implement tools and processes \nfor centralised management and monitoring of such protection. \n(34) The ASP shall periodically conduct Vulnerability Assessment / Penetration \nTesting (VA / PT) of applications, servers, and network components. \n(35) The ASP shall ensure to share the VA / PT report(s) and compliance to its \nfindings with the UCB / RBI as and when requested. \n(36) The ASP shall ensure constant and continuous monitoring of the \nenvironment using appropriate and cost-effective technology tools, clearly \ndefined policies and procedures based on best practices and monitored by \ntechnically competent and capable manpower. The ASP shall setup a \nCyber Security Operations Centre (CSOC). It is also essential that the \nCSOC, inter alia, ensures seamless collection of the logs relevant to the IT \necosystem, storing, processing and correlation of the logs through \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n29 \n \nappropriate SIEM solution for continuous surveillance and keeps itself \nregularly updated on the latest nature of emerging cyber threats. \n(37) The ASP shall comply with the relevant standards including Payment Card \nIndustry Data Security Standard (PCI-DSS) and Payment Card Industry - \nSoftware Security Framework (PCI-SSF), as applicable to the IT \necosystem."
+        },
+        {
+          "paragraph": "22",
+          "pdf_page": 14,
+          "score": 0.068633,
+          "excerpt": "22. The UCB, as owner of customer data, shall take appropriate steps in preserving \nthe confidentiality, integrity, and availability of the same, irrespective of whether \nthe data is stored / processed / accessed / in transit within or outside the UCB’s \nnetwork including third-party vendors; the confidentiality of such custodial \ninformation shall not be compromised in any situation. To achieve this, suitable \nsystems and processes across the data / information lifecycle shall be put in \nplace by the UCB. As regards customers, the UCB shall educate and create \nawareness among them about cybersecurity risks."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-9.2",
+      "old_excerpt": "9.2. Similar arrangements need to be ensured at vendor managed facilities as well.\n",
+      "old_char_start": 13783,
+      "old_char_end": 13866,
+      "status": "matched",
+      "confidence": 0.655708,
+      "candidates": [
+        {
+          "paragraph": "124",
+          "pdf_page": 34,
+          "score": 0.655708,
+          "excerpt": "124. The UCB shall develop and implement a comprehensive data loss / leakage \nprevention strategy to safeguard sensitive (including confidential) business and \ncustomer data / information. Similar arrangements need to be ensured at vendor \nmanaged facilities as well. \nL. \nDatabase Integrity"
+        },
+        {
+          "paragraph": "85",
+          "pdf_page": 24,
+          "score": 0.081319,
+          "excerpt": "85. The UCB shall ensure to mandate the following baseline cybersecurity controls \nin their contractual agreements with these ASPs: \n(1) \nThe ASP shall continuously monitor the release of patches by various \nvendors / Original Equipment Manufacturers (OEMs), advisories issued by \nCERT-In and other similar agencies and expeditiously apply the security \npatches as per the patch management policy of the ASP. If a patch / series \nof patches is / are released by the OEM / manufacturer / vendor for \nprotection against well-known / well publicised / reported attacks exploiting \nthe vulnerability patched, the ASPs must have a mechanism to apply them \nexpeditiously following an emergency patch management process. \n(2) \nThe ASP shall put in place a clearly defined framework including \nrequirements justifying the exception(s), duration of exception(s), process \nof granting exceptions, and authority for approving, authority for review of \nexceptions granted on a periodic basis by officer(s) preferably at senior \nlevels who are well equipped to understand the business and technical \ncontext of the exception(s). \n(3) \nThe ASP shall prepare and maintain an up-to-date network architecture \ndiagram at the organisation level including wired / wireless networks. \n(4) \nThe ASP may consider implementing solutions to automate network \ndiscovery and management. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n25 \n \n(5) \nThe ASP shall put in place mechanisms to identify authorised hardware / \nmobile devices such as laptops, mobile phones, and tablets, and ensure \nthat they are provided connectivity only when they meet the security \nrequirements prescribed by the ASP.  \n(6) \nThe ASP shall put in place a mechanism to automatically identify \nunauthorised device connections to the ASP’s network and block such \nconnections. \n(7) \nThe ASP shall establish Standard Operating Procedures (SOP) for all major \nIT activities including for connecting devices to the network. \n(8) \nThe ASP shall periodically evaluate the configuration of all such devices \nincluding firewall, network switches, and security devices, and patch levels \nfor all systems in the ASP’s IT ecosystem. \n(9) \nThe ASP shall ensure the software integrity of the ATM Switch related \napplications. \n(10) The ASP shall ensure information security across all stages of application \nlife cycle. \n(11) The ASP shall implement secure coding practices for internally / \ncollaboratively developed applications. \n(12) The ASP shall ensure that the Software / Application development \napproach is based on threat modelling, incorporate secure coding \nprinciples, security testing (based on global standards), and secure rollout. \n(13) The ASP shall ensure that adoption of new technologies is adequately \nevaluated for existing / evolving security threats and that the IT / security \nteam of the ASP achieve reasonable level of comfort and maturity with such \ntechnologies before introducing in the IT ecosystem. \n(14) The ASP shall certify any new products, updates, and upgrades as having \nbeen developed following secure coding practices. The application \narchitecture shall be tested to safeguard the confidentiality and integrity of \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n26 \n \ndata being stored, processed, and transmitted. An assurance to this effect \nshall be shared with the UCB / RBI as and when requested. \n(15) In respect of critical business applications, the ASP shall conduct source \ncode audits by professionally competent personnel / service providers. \nThey shall provide assurance to the UCB that the application is free from \nembedded malicious / fraudulent code. \n(16) The ASP shall ensure that their software / application development \npractices address common vulnerabilities highlighted in baselines such as \nOpen Web Application Security Project (OWASP) proactively and adopt the \nprinciple of defence-in-depth to provide layered security mechanism. \n(17) The ASP shall follow a documented risk-based strategy for inventorying IT \ncomponents that need to be patched, identification of patches and applying \npatches to minimise the number of vulnerable systems and the time window \nof vulnerability / exposure. \n(18) The ASP shall periodically conduct Application security testing of web / \nmobile applications throughout their lifecycle (pre-implementation, post \nimplementation, after changes) in an environment closely resembling or a \nreplica of the production environment. \n(19) As a threat mitigation strategy, the ASP shall identify the root cause of \nincident and apply necessary patches to plug the vulnerabilities. \n(20) The ASP shall periodically evaluate the access device configurations and \npatch levels to ensure that all access points, nodes between (i) different \nVirtual Local Area Networks (VLANs) in the Data Centre, (ii) Local Area \nNetwork (LAN) / Wide Area Network (WAN) interfaces, (iii) ASP’s network \nto external network and interconnections with partner, vendor, and service \nprovider networks are securely configured. \n(21) The ASP shall put in place a robust change management process in place \nto record / monitor all the changes that are moved / pushed into the \nproduction environment. Such a change management process must clearly \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n27 \n \nmention the test cases, chain of approving authority for the particular \nchange, deployment plan, and rollback plan. \n(22) The ASP shall carefully protect access credentials such as logon user-id, \nauthentication \ninformation \nand \ntokens, \naccess \nprofiles, \nagainst \nleakage / attacks. \n(23) The ASP shall implement controls to monitor and minimise invalid logon \ncounts and deactivate dormant accounts. \n(24) The ASP shall ensure that access to critical servers, network and security \ndevices / systems is provided through Privileged User Management \nSystems / Identity and Access Management (IAM) systems. \n(25) The ASP shall monitor any abnormal change in pattern of logon. \n(26) The ASP shall put in place a mechanism to monitor the database security \nevents, backend access to the databases to ensure access to the database \nis restricted and the activities carried out through the backend are logged \nand reviewed. \n(27) The ASP shall ensure that trivial and / or default passwords are not used. \n(28) The ASP shall develop a comprehensive data loss / leakage prevention \nstrategy to safeguard sensitive (including confidential) business and \ncustomer data / information. This shall include protecting data processed in \nend point devices, data in transmission, as well as data stored in servers \nand other digital stores, whether online or offline. \n(29) The ASP shall ensure to generate and capture logs from devices / \napplications / databases.  \n(30) The ASP shall ensure that logs / audit trails of device / system software and \napplication software capture relevant elements, as per the applicability of \neach packet, event, and / or transaction. \n(31) The ASP shall put in place a mechanism / resources to take appropriate \naction in case of any cyber incident. The ASP shall have written incident \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n28 \n \nresponse procedures including the roles of staff / outsourced staff handling \nsuch incidents. The response strategies shall consider readiness to meet \nvarious incident scenarios based on situational awareness, potential / post \nimpact, and consistent communication and co-ordination with stakeholders, \nspecifically with the UCB, during response. \n(32) The ASP shall be responsible for meeting the requirements prescribed for \nincident management and Business Continuity Plan (BCP) / Disaster \nRecovery (DR) even if their information assets including  IT infrastructure, \nsystems, and applications are managed by third party vendors / service \nproviders. The ASP shall have necessary arrangements, including a \ndocumented procedure for such purpose. This shall, inter alia, include \ninforming the UCB about any cyber incident occurring in respect of the UCB \non a timely basis to mitigate the risk at the earliest as well as to meet extant \nregulatory requirements. \n(33) The ASP shall implement anti-malware, antivirus protection including \nbehavioural detection capabilities across all relevant devices and \nenvironments, such as endpoints, servers (including operating systems, \ndatabases, and applications), Web / Internet gateways, email-gateways \nand wireless networks. The ASP shall also implement tools and processes \nfor centralised management and monitoring of such protection. \n(34) The ASP shall periodically conduct Vulnerability Assessment / Penetration \nTesting (VA / PT) of applications, servers, and network components. \n(35) The ASP shall ensure to share the VA / PT report(s) and compliance to its \nfindings with the UCB / RBI as and when requested. \n(36) The ASP shall ensure constant and continuous monitoring of the \nenvironment using appropriate and cost-effective technology tools, clearly \ndefined policies and procedures based on best practices and monitored by \ntechnically competent and capable manpower. The ASP shall setup a \nCyber Security Operations Centre (CSOC). It is also essential that the \nCSOC, inter alia, ensures seamless collection of the logs relevant to the IT \necosystem, storing, processing and correlation of the logs through \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n29 \n \nappropriate SIEM solution for continuous surveillance and keeps itself \nregularly updated on the latest nature of emerging cyber threats. \n(37) The ASP shall comply with the relevant standards including Payment Card \nIndustry Data Security Standard (PCI-DSS) and Payment Card Industry - \nSoftware Security Framework (PCI-SSF), as applicable to the IT \necosystem."
+        },
+        {
+          "paragraph": "7",
+          "pdf_page": 10,
+          "score": 0.049003,
+          "excerpt": "7. \nThe Board of Directors (Board) shall approve the strategies and policies related \nto Technology and Cybersecurity frameworks. \nB. \nCommittees of the Board"
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-10.1",
+      "old_excerpt": "10.1. Capture the audit logs pertaining to user actions in a system. Such arrangements should facilitate forensic auditing, if need be.\n",
+      "old_char_start": 13881,
+      "old_char_end": 14017,
+      "status": "matched",
+      "confidence": 0.73463,
+      "candidates": [
+        {
+          "paragraph": "126",
+          "pdf_page": 34,
+          "score": 0.73463,
+          "excerpt": "126. The UCB shall capture the audit logs pertaining to user actions in a system. Such \narrangements shall facilitate forensic auditing, if need be."
+        },
+        {
+          "paragraph": "128",
+          "pdf_page": 34,
+          "score": 0.17673,
+          "excerpt": "128. The retention of audit logs / trails shall be in line with business, regulatory, and \nlegal requirements. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n35 \n \nN. \nIncident Response and Management"
+        },
+        {
+          "paragraph": "149",
+          "pdf_page": 38,
+          "score": 0.158385,
+          "excerpt": "149. The UCB shall consult all the stakeholders before finalising the scope, frequency, \nand storage of log collection."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-10.2",
+      "old_excerpt": "10.2. An alert mechanism should be set to monitor any change in the log settings.\n",
+      "old_char_start": 14017,
+      "old_char_end": 14099,
+      "status": "matched",
+      "confidence": 0.427923,
+      "candidates": [
+        {
+          "paragraph": "127",
+          "pdf_page": 34,
+          "score": 0.427923,
+          "excerpt": "127. The UCB shall set an alert mechanism to monitor any change in the log settings."
+        },
+        {
+          "paragraph": "126",
+          "pdf_page": 34,
+          "score": 0.225173,
+          "excerpt": "126. The UCB shall capture the audit logs pertaining to user actions in a system. Such \narrangements shall facilitate forensic auditing, if need be."
+        },
+        {
+          "paragraph": "128",
+          "pdf_page": 34,
+          "score": 0.180124,
+          "excerpt": "128. The retention of audit logs / trails shall be in line with business, regulatory, and \nlegal requirements. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n35 \n \nN. \nIncident Response and Management"
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-11.1",
+      "old_excerpt": "11.1. Put in place an effective Incident Response programme. UCBs must have a mechanism/ resources to take appropriate action in case of any cyber security incident. They must have written incident response procedures including the roles of staff / outsourced staff handling such incidents.\n",
+      "old_char_start": 14136,
+      "old_char_end": 14427,
+      "status": "matched",
+      "confidence": 0.6967,
+      "candidates": [
+        {
+          "paragraph": "129",
+          "pdf_page": 35,
+          "score": 0.6967,
+          "excerpt": "129. The UCB shall put in place an effective Incident Response plan. The UCB shall \nhave a mechanism / resource to take appropriate action in case of any cyber \nincident. The UCB shall have written incident response procedures including the \nroles of staff / outsourced staff handling such incidents."
+        },
+        {
+          "paragraph": "87",
+          "pdf_page": 29,
+          "score": 0.260471,
+          "excerpt": "87. The UCB shall put in place an effective mechanism to report the cyber incidents \nin a timely manner and take appropriate action to mitigate the incident. The UCB \nshall also proactively notify CERT-In regarding cyber incidents."
+        },
+        {
+          "paragraph": "167",
+          "pdf_page": 42,
+          "score": 0.206837,
+          "excerpt": "167. The UCB shall ensure incident response capabilities in all interconnected \nsystems and networks including those of vendors and partners and readiness \ndemonstrated through collaborative and co-ordinated resilience testing that \nmeets the UCB’s recovery time objectives."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "II-11.2",
+      "old_excerpt": "11.2. UCBs are responsible for meeting the requirements prescribed for incident management and BCP/DR even if their IT infrastructure, systems, applications, etc., are managed by third party vendors/service providers.\n",
+      "old_char_start": 14427,
+      "old_char_end": 14645,
+      "status": "matched",
+      "confidence": 0.567057,
+      "candidates": [
+        {
+          "paragraph": "130",
+          "pdf_page": 35,
+          "score": 0.567057,
+          "excerpt": "130. The UCB shall be responsible for meeting the requirements prescribed for \nincident management and BCP / DR even if its information assets including IT \ninfrastructure, systems, and applications are managed by third party vendors / \nservice providers."
+        },
+        {
+          "paragraph": "129",
+          "pdf_page": 35,
+          "score": 0.240252,
+          "excerpt": "129. The UCB shall put in place an effective Incident Response plan. The UCB shall \nhave a mechanism / resource to take appropriate action in case of any cyber \nincident. The UCB shall have written incident response procedures including the \nroles of staff / outsourced staff handling such incidents."
+        },
+        {
+          "paragraph": "167",
+          "pdf_page": 42,
+          "score": 0.227941,
+          "excerpt": "167. The UCB shall ensure incident response capabilities in all interconnected \nsystems and networks including those of vendors and partners and readiness \ndemonstrated through collaborative and co-ordinated resilience testing that \nmeets the UCB’s recovery time objectives."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-1.1",
+      "old_excerpt": "1.1. Put in place mechanism to detect and remedy any unusual activities in systems, servers, network devices and endpoints.\n",
+      "old_char_start": 14810,
+      "old_char_end": 14934,
+      "status": "matched",
+      "confidence": 0.838215,
+      "candidates": [
+        {
+          "paragraph": "134",
+          "pdf_page": 36,
+          "score": 0.838215,
+          "excerpt": "134. The UCB shall put in place a mechanism to detect and remedy any unusual \nactivities in systems, servers, network devices, and endpoints."
+        },
+        {
+          "paragraph": "33",
+          "pdf_page": 15,
+          "score": 0.278317,
+          "excerpt": "33. The UCB shall ensure that all the network devices are configured appropriately, \nperiodically assessed, and such configurations are securely maintained."
+        },
+        {
+          "paragraph": "105",
+          "pdf_page": 31,
+          "score": 0.263151,
+          "excerpt": "105. The UCB shall maintain an up-to-date / centralised inventory of authorised \ndevices connected to its network (within / outside the UCB’s premises) and \nrelated network devices in the UCB’s network."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-1.2",
+      "old_excerpt": "1.2. Firewall rules shall be defined to block unidentified outbound connections, reverse TCP shells and other potential backdoor connections.\n",
+      "old_char_start": 14934,
+      "old_char_end": 15076,
+      "status": "matched",
+      "confidence": 0.555177,
+      "candidates": [
+        {
+          "paragraph": "135",
+          "pdf_page": 36,
+          "score": 0.555177,
+          "excerpt": "135. The UCB shall define firewall rules to block unidentified outbound connections, \nreverse Transmission Control Protocol (TCP) shells and other potential backdoor \nconnections. \nB. \nSecure Configuration"
+        },
+        {
+          "paragraph": "33",
+          "pdf_page": 15,
+          "score": 0.220709,
+          "excerpt": "33. The UCB shall ensure that all the network devices are configured appropriately, \nperiodically assessed, and such configurations are securely maintained."
+        },
+        {
+          "paragraph": "134",
+          "pdf_page": 36,
+          "score": 0.218528,
+          "excerpt": "134. The UCB shall put in place a mechanism to detect and remedy any unusual \nactivities in systems, servers, network devices, and endpoints."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-2.1",
+      "old_excerpt": "2.1. Disable remote connections from outside machines to the network hosting critical payment infrastructure (Ex: RTGS/NEFT, ATM Switch, SWIFT Interface). Disable Remote Desktop Protocol (RDP) on all critical systems.\n",
+      "old_char_start": 15100,
+      "old_char_end": 15318,
+      "status": "matched",
+      "confidence": 0.809026,
+      "candidates": [
+        {
+          "paragraph": "136",
+          "pdf_page": 36,
+          "score": 0.809026,
+          "excerpt": "136. The UCB shall disable remote connections from outside machines to the network \nhosting critical payment infrastructure (e.g., RTGS, NEFT, ATM Switch, SWIFT \nInterface) and disable RDP on all critical systems."
+        },
+        {
+          "paragraph": "38",
+          "pdf_page": 16,
+          "score": 0.192825,
+          "excerpt": "38. The UCB shall ensure that the firewall configurations are set to the highest \nsecurity level and conduct evaluation of configurations of critical devices (such \nas firewall, network switches, and security devices) periodically."
+        },
+        {
+          "paragraph": "37",
+          "pdf_page": 15,
+          "score": 0.167065,
+          "excerpt": "37. Remote Desktop Protocol (RDP) shall be disabled and enabled only with the \napproval of the authorised officer of the UCB. Logs for such remote access shall \nbe enabled and monitored for suspicious activities. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n16 \n \nL. \nSecure Configuration"
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-2.2",
+      "old_excerpt": "2.2. Enable IP table to restrict access to the clients and servers in SWIFT and ATM Switch environment only to authorised systems.\n",
+      "old_char_start": 15318,
+      "old_char_end": 15449,
+      "status": "matched",
+      "confidence": 0.623139,
+      "candidates": [
+        {
+          "paragraph": "137",
+          "pdf_page": 36,
+          "score": 0.623139,
+          "excerpt": "137. The UCB shall enable Internet Protocol (IP) table to restrict access to the clients \nand servers in SWIFT and ATM Switch environment only to authorised systems."
+        },
+        {
+          "paragraph": "136",
+          "pdf_page": 36,
+          "score": 0.216281,
+          "excerpt": "136. The UCB shall disable remote connections from outside machines to the network \nhosting critical payment infrastructure (e.g., RTGS, NEFT, ATM Switch, SWIFT \nInterface) and disable RDP on all critical systems."
+        },
+        {
+          "paragraph": "38",
+          "pdf_page": 16,
+          "score": 0.205018,
+          "excerpt": "38. The UCB shall ensure that the firewall configurations are set to the highest \nsecurity level and conduct evaluation of configurations of critical devices (such \nas firewall, network switches, and security devices) periodically."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-2.3",
+      "old_excerpt": "2.3. Ensure the software integrity of the ATM Switch/SWIFT related applications.\n",
+      "old_char_start": 15449,
+      "old_char_end": 15530,
+      "status": "matched",
+      "confidence": 0.536711,
+      "candidates": [
+        {
+          "paragraph": "138",
+          "pdf_page": 36,
+          "score": 0.536711,
+          "excerpt": "138. The UCB shall ensure the software integrity of the ATM Switch / SWIFT related \napplications."
+        },
+        {
+          "paragraph": "136",
+          "pdf_page": 36,
+          "score": 0.271328,
+          "excerpt": "136. The UCB shall disable remote connections from outside machines to the network \nhosting critical payment infrastructure (e.g., RTGS, NEFT, ATM Switch, SWIFT \nInterface) and disable RDP on all critical systems."
+        },
+        {
+          "paragraph": "38",
+          "pdf_page": 16,
+          "score": 0.243767,
+          "excerpt": "38. The UCB shall ensure that the firewall configurations are set to the highest \nsecurity level and conduct evaluation of configurations of critical devices (such \nas firewall, network switches, and security devices) periodically."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-2.4",
+      "old_excerpt": "2.4. Disable PowerShell in servers where not required and disable PowerShell in Desktop systems.\n",
+      "old_char_start": 15530,
+      "old_char_end": 15627,
+      "status": "matched",
+      "confidence": 0.672133,
+      "candidates": [
+        {
+          "paragraph": "139",
+          "pdf_page": 36,
+          "score": 0.672133,
+          "excerpt": "139. The UCB shall disable PowerShell in servers where not required and disable \nPowerShell in Desktop systems."
+        },
+        {
+          "paragraph": "136",
+          "pdf_page": 36,
+          "score": 0.22816,
+          "excerpt": "136. The UCB shall disable remote connections from outside machines to the network \nhosting critical payment infrastructure (e.g., RTGS, NEFT, ATM Switch, SWIFT \nInterface) and disable RDP on all critical systems."
+        },
+        {
+          "paragraph": "38",
+          "pdf_page": 16,
+          "score": 0.21153,
+          "excerpt": "38. The UCB shall ensure that the firewall configurations are set to the highest \nsecurity level and conduct evaluation of configurations of critical devices (such \nas firewall, network switches, and security devices) periodically."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-2.5",
+      "old_excerpt": "2.5. Restrict default shares including IPC$ share (inter-process communication share)\n",
+      "old_char_start": 15627,
+      "old_char_end": 15713,
+      "status": "matched",
+      "confidence": 0.65488,
+      "candidates": [
+        {
+          "paragraph": "140",
+          "pdf_page": 36,
+          "score": 0.65488,
+          "excerpt": "140. The UCB shall restrict default shares including IPC$ share (Inter-Process \nCommunication share). \nC. \nApplication Security Life Cycle"
+        },
+        {
+          "paragraph": "38",
+          "pdf_page": 16,
+          "score": 0.215033,
+          "excerpt": "38. The UCB shall ensure that the firewall configurations are set to the highest \nsecurity level and conduct evaluation of configurations of critical devices (such \nas firewall, network switches, and security devices) periodically."
+        },
+        {
+          "paragraph": "136",
+          "pdf_page": 36,
+          "score": 0.16429,
+          "excerpt": "136. The UCB shall disable remote connections from outside machines to the network \nhosting critical payment infrastructure (e.g., RTGS, NEFT, ATM Switch, SWIFT \nInterface) and disable RDP on all critical systems."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-3.1",
+      "old_excerpt": "3.1. In respect of critical business applications, UCBs may conduct source code audits by professionally competent personnel/service providers or have assurance from application providers/OEMs that the application is free from embedded malicious / fraudulent code.\n",
+      "old_char_start": 15755,
+      "old_char_end": 16020,
+      "status": "matched",
+      "confidence": 0.829874,
+      "candidates": [
+        {
+          "paragraph": "141",
+          "pdf_page": 36,
+          "score": 0.829874,
+          "excerpt": "141. In respect of critical business applications, the UCB may conduct source code \naudits by professionally competent personnel / service providers or have \nassurance from application providers / OEMs that the application is free from \nembedded malicious / fraudulent code."
+        },
+        {
+          "paragraph": "83",
+          "pdf_page": 23,
+          "score": 0.1909,
+          "excerpt": "83. The UCB shall ensure that following cybersecurity controls are implemented and \nmaintained by third-party ATM Switch Application Service Providers (ASPs) \nwhere the UCB manages its ATM Switch ecosystem through their shared \nservices: \n(1) \nPreventing Access of Unauthorised Software: Paragraph 26 of these \nDirections. \n(2) \nEnvironmental Controls: Paragraphs 30, 31 of these Directions. \n(3) \nNetwork Management and Security: Paragraphs 33, 34, 36, 105, 106, 134, \n135 of these Directions. \n(4) \nSecure Configuration: Paragraphs 109, 136, 137 of these Directions. \n(5) \nApplication Security Life Cycle (ASLC): Paragraph 110 of these Directions. \n(6) \nPatch / Vulnerability and Change Management: Paragraph 114 of these \nDirections. \n(7) \nUser Access Control / Management: Paragraphs 120, 145 of these \nDirections. \n(8) \nAudit Logs: Paragraphs 126, 127, 150, 151 of these Directions. \n(9) \nIncident Response and Management: Paragraph 152 of these Directions. \n(10) Advanced Real-time Threat Defence and Management: Paragraph 147 of \nthese Directions. \n(11) Vulnerability Assessment and Penetration Test: Paragraph 118 of these \nDirections. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n24 \n \n(12) Forensics: Paragraph 170 of these Directions."
+        },
+        {
+          "paragraph": "109",
+          "pdf_page": 32,
+          "score": 0.163407,
+          "excerpt": "109. The UCB shall document and apply baseline security requirements / \nconfigurations to all categories of devices including end-points / workstations, \nmobile devices, operating systems, databases, applications, middleware, \nnetwork devices, and security solutions, throughout the lifecycle (from \nconception to deployment) and carry out reviews periodically.   \nE. \nApplication Security Life Cycle  \n(These controls shall be applicable to the UCB developing the application \nsoftware (e.g., core banking solution) itself or through its subsidiaries. Otherwise, \nthe UCB, apart from securing its production environment, may enforce these \nrequirements with its respective third-party vendors developing application \nsoftware)"
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-3.2",
+      "old_excerpt": "3.2. Besides business functionalities, security requirements relating to system access control, authentication, transaction authorization, data integrity, system activity logging, audit trail, session management, security event tracking and exception handling are required to be clearly specified at the initial and ongoing stages of system development/acquisition/implementation.\n",
+      "old_char_start": 16020,
+      "old_char_end": 16401,
+      "status": "matched",
+      "confidence": 0.67592,
+      "candidates": [
+        {
+          "paragraph": "142",
+          "pdf_page": 36,
+          "score": 0.67592,
+          "excerpt": "142. The UCB shall ensure that besides business functionalities, security \nrequirements relating to system access control, authentication, transaction \nauthorisation, data integrity, system activity logging, audit trail, session \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n37 \n \nmanagement, security event tracking, and exception handling are clearly \nspecified at the initial and ongoing stages of system development / acquisition / \nimplementation."
+        },
+        {
+          "paragraph": "141",
+          "pdf_page": 36,
+          "score": 0.211594,
+          "excerpt": "141. In respect of critical business applications, the UCB may conduct source code \naudits by professionally competent personnel / service providers or have \nassurance from application providers / OEMs that the application is free from \nembedded malicious / fraudulent code."
+        },
+        {
+          "paragraph": "83",
+          "pdf_page": 23,
+          "score": 0.18388,
+          "excerpt": "83. The UCB shall ensure that following cybersecurity controls are implemented and \nmaintained by third-party ATM Switch Application Service Providers (ASPs) \nwhere the UCB manages its ATM Switch ecosystem through their shared \nservices: \n(1) \nPreventing Access of Unauthorised Software: Paragraph 26 of these \nDirections. \n(2) \nEnvironmental Controls: Paragraphs 30, 31 of these Directions. \n(3) \nNetwork Management and Security: Paragraphs 33, 34, 36, 105, 106, 134, \n135 of these Directions. \n(4) \nSecure Configuration: Paragraphs 109, 136, 137 of these Directions. \n(5) \nApplication Security Life Cycle (ASLC): Paragraph 110 of these Directions. \n(6) \nPatch / Vulnerability and Change Management: Paragraph 114 of these \nDirections. \n(7) \nUser Access Control / Management: Paragraphs 120, 145 of these \nDirections. \n(8) \nAudit Logs: Paragraphs 126, 127, 150, 151 of these Directions. \n(9) \nIncident Response and Management: Paragraph 152 of these Directions. \n(10) Advanced Real-time Threat Defence and Management: Paragraph 147 of \nthese Directions. \n(11) Vulnerability Assessment and Penetration Test: Paragraph 118 of these \nDirections. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n24 \n \n(12) Forensics: Paragraph 170 of these Directions."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-3.3",
+      "old_excerpt": "3.3. Ensure that software/application development practices adopt principle of defence-in-depth to provide layered security mechanism.\n",
+      "old_char_start": 16401,
+      "old_char_end": 16536,
+      "status": "matched",
+      "confidence": 0.537864,
+      "candidates": [
+        {
+          "paragraph": "143",
+          "pdf_page": 37,
+          "score": 0.537864,
+          "excerpt": "143. The UCB shall ensure that software / application development practices adopt \nthe principle of defence-in-depth to provide a layered security mechanism."
+        },
+        {
+          "paragraph": "141",
+          "pdf_page": 36,
+          "score": 0.251168,
+          "excerpt": "141. In respect of critical business applications, the UCB may conduct source code \naudits by professionally competent personnel / service providers or have \nassurance from application providers / OEMs that the application is free from \nembedded malicious / fraudulent code."
+        },
+        {
+          "paragraph": "83",
+          "pdf_page": 23,
+          "score": 0.204108,
+          "excerpt": "83. The UCB shall ensure that following cybersecurity controls are implemented and \nmaintained by third-party ATM Switch Application Service Providers (ASPs) \nwhere the UCB manages its ATM Switch ecosystem through their shared \nservices: \n(1) \nPreventing Access of Unauthorised Software: Paragraph 26 of these \nDirections. \n(2) \nEnvironmental Controls: Paragraphs 30, 31 of these Directions. \n(3) \nNetwork Management and Security: Paragraphs 33, 34, 36, 105, 106, 134, \n135 of these Directions. \n(4) \nSecure Configuration: Paragraphs 109, 136, 137 of these Directions. \n(5) \nApplication Security Life Cycle (ASLC): Paragraph 110 of these Directions. \n(6) \nPatch / Vulnerability and Change Management: Paragraph 114 of these \nDirections. \n(7) \nUser Access Control / Management: Paragraphs 120, 145 of these \nDirections. \n(8) \nAudit Logs: Paragraphs 126, 127, 150, 151 of these Directions. \n(9) \nIncident Response and Management: Paragraph 152 of these Directions. \n(10) Advanced Real-time Threat Defence and Management: Paragraph 147 of \nthese Directions. \n(11) Vulnerability Assessment and Penetration Test: Paragraph 118 of these \nDirections. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n24 \n \n(12) Forensics: Paragraph 170 of these Directions."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-3.4",
+      "old_excerpt": "3.4. Ensure that adoption of new technologies is adequately evaluated for existing/evolving security threats and that the IT/security team of the UCB achieve reasonable level of comfort and maturity with such technologies before introducing them for critical systems of the UCB.\n",
+      "old_char_start": 16536,
+      "old_char_end": 16815,
+      "status": "matched",
+      "confidence": 0.677038,
+      "candidates": [
+        {
+          "paragraph": "144",
+          "pdf_page": 37,
+          "score": 0.677038,
+          "excerpt": "144. The UCB shall ensure that adoption of new technologies is adequately evaluated \nfor existing / evolving security threats and that the IT / security team of the UCB \nachieves a reasonable level of comfort and maturity with such technologies \nbefore introducing them for critical systems of the UCB. \nD. \nUser Access Control"
+        },
+        {
+          "paragraph": "141",
+          "pdf_page": 36,
+          "score": 0.228961,
+          "excerpt": "141. In respect of critical business applications, the UCB may conduct source code \naudits by professionally competent personnel / service providers or have \nassurance from application providers / OEMs that the application is free from \nembedded malicious / fraudulent code."
+        },
+        {
+          "paragraph": "83",
+          "pdf_page": 23,
+          "score": 0.179459,
+          "excerpt": "83. The UCB shall ensure that following cybersecurity controls are implemented and \nmaintained by third-party ATM Switch Application Service Providers (ASPs) \nwhere the UCB manages its ATM Switch ecosystem through their shared \nservices: \n(1) \nPreventing Access of Unauthorised Software: Paragraph 26 of these \nDirections. \n(2) \nEnvironmental Controls: Paragraphs 30, 31 of these Directions. \n(3) \nNetwork Management and Security: Paragraphs 33, 34, 36, 105, 106, 134, \n135 of these Directions. \n(4) \nSecure Configuration: Paragraphs 109, 136, 137 of these Directions. \n(5) \nApplication Security Life Cycle (ASLC): Paragraph 110 of these Directions. \n(6) \nPatch / Vulnerability and Change Management: Paragraph 114 of these \nDirections. \n(7) \nUser Access Control / Management: Paragraphs 120, 145 of these \nDirections. \n(8) \nAudit Logs: Paragraphs 126, 127, 150, 151 of these Directions. \n(9) \nIncident Response and Management: Paragraph 152 of these Directions. \n(10) Advanced Real-time Threat Defence and Management: Paragraph 147 of \nthese Directions. \n(11) Vulnerability Assessment and Penetration Test: Paragraph 118 of these \nDirections. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n24 \n \n(12) Forensics: Paragraph 170 of these Directions."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-4.1",
+      "old_excerpt": "4.1. Implement a centralised authentication and authorisation system through an Identity and Access Management solution for accessing and administering critical applications, operating systems, databases, network and security devices/systems, point of connectivity (local/remote, etc.) including enforcement of strong password policy, two-factor/multi-factor authentication, securing privileged accesses following the principle of least privileges and separation of duties. This shall be implemented by the bank either with the in-house team managing the infrastructure or through the service provider if their infrastructure is hosted at a shared location at the service provider’s end.\n",
+      "old_char_start": 16838,
+      "old_char_end": 17526,
+      "status": "matched",
+      "confidence": 0.898036,
+      "candidates": [
+        {
+          "paragraph": "145",
+          "pdf_page": 37,
+          "score": 0.898036,
+          "excerpt": "145. The UCB shall implement a centralised authentication and authorisation system \nthrough an IAM solution for accessing and administering critical applications, \noperating systems, databases, network, and security devices / systems, point of \nconnectivity (local / remote) including enforcement of strong password policy, \ntwo-factor / multi-factor authentication, securing privileged accesses following \nthe principle of least privileges and separation of duties. This shall be \nimplemented either with the in-house team managing the infrastructure or \nthrough the service provider if its infrastructure is hosted at a shared location at \nthe service provider’s end."
+        },
+        {
+          "paragraph": "82",
+          "pdf_page": 23,
+          "score": 0.181755,
+          "excerpt": "82. The UCB shall assess the user access management process of service provider \nincluding provisioning, de-provisioning, authentication, federation, authorisation, \nand user profile management."
+        },
+        {
+          "paragraph": "43",
+          "pdf_page": 16,
+          "score": 0.174016,
+          "excerpt": "43. The UCB shall disallow administrative rights on end-user workstations / PCs / \nlaptops and provide access rights on a ‘need to know’ and ‘need to do’ basis."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-4.2",
+      "old_excerpt": "4.2. Implement centralised policies through Active Directory or Endpoint management systems to whitelist/blacklist/restrict removable media use.\n",
+      "old_char_start": 17526,
+      "old_char_end": 17671,
+      "status": "matched",
+      "confidence": 0.695038,
+      "candidates": [
+        {
+          "paragraph": "146",
+          "pdf_page": 37,
+          "score": 0.695038,
+          "excerpt": "146. The UCB shall implement centralised policies through Active Directory or \nEndpoint management systems to whitelist / blacklist / restrict removable media \nuse. \nE. \nAdvanced Real-time Threat Defence and Management"
+        },
+        {
+          "paragraph": "43",
+          "pdf_page": 16,
+          "score": 0.224349,
+          "excerpt": "43. The UCB shall disallow administrative rights on end-user workstations / PCs / \nlaptops and provide access rights on a ‘need to know’ and ‘need to do’ basis."
+        },
+        {
+          "paragraph": "145",
+          "pdf_page": 37,
+          "score": 0.187558,
+          "excerpt": "145. The UCB shall implement a centralised authentication and authorisation system \nthrough an IAM solution for accessing and administering critical applications, \noperating systems, databases, network, and security devices / systems, point of \nconnectivity (local / remote) including enforcement of strong password policy, \ntwo-factor / multi-factor authentication, securing privileged accesses following \nthe principle of least privileges and separation of duties. This shall be \nimplemented either with the in-house team managing the infrastructure or \nthrough the service provider if its infrastructure is hosted at a shared location at \nthe service provider’s end."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-5.1",
+      "old_excerpt": "5.1. Build a robust defence against the installation, spread, and execution of malicious code at multiple points in the enterprise.\n",
+      "old_char_start": 17723,
+      "old_char_end": 17855,
+      "status": "matched",
+      "confidence": 0.814871,
+      "candidates": [
+        {
+          "paragraph": "147",
+          "pdf_page": 37,
+          "score": 0.814871,
+          "excerpt": "147. The UCB shall build a robust defence against the installation, spread, and \nexecution of malicious code at multiple points in its environment."
+        },
+        {
+          "paragraph": "83",
+          "pdf_page": 23,
+          "score": 0.208648,
+          "excerpt": "83. The UCB shall ensure that following cybersecurity controls are implemented and \nmaintained by third-party ATM Switch Application Service Providers (ASPs) \nwhere the UCB manages its ATM Switch ecosystem through their shared \nservices: \n(1) \nPreventing Access of Unauthorised Software: Paragraph 26 of these \nDirections. \n(2) \nEnvironmental Controls: Paragraphs 30, 31 of these Directions. \n(3) \nNetwork Management and Security: Paragraphs 33, 34, 36, 105, 106, 134, \n135 of these Directions. \n(4) \nSecure Configuration: Paragraphs 109, 136, 137 of these Directions. \n(5) \nApplication Security Life Cycle (ASLC): Paragraph 110 of these Directions. \n(6) \nPatch / Vulnerability and Change Management: Paragraph 114 of these \nDirections. \n(7) \nUser Access Control / Management: Paragraphs 120, 145 of these \nDirections. \n(8) \nAudit Logs: Paragraphs 126, 127, 150, 151 of these Directions. \n(9) \nIncident Response and Management: Paragraph 152 of these Directions. \n(10) Advanced Real-time Threat Defence and Management: Paragraph 147 of \nthese Directions. \n(11) Vulnerability Assessment and Penetration Test: Paragraph 118 of these \nDirections. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n24 \n \n(12) Forensics: Paragraph 170 of these Directions."
+        },
+        {
+          "paragraph": "160",
+          "pdf_page": 40,
+          "score": 0.103076,
+          "excerpt": "160. The UCB shall ensure that the CSOC delivers the following: \n(1) \nability to protect critical business and customer data / information, \ndemonstrate compliance with relevant internal guidelines, country \nregulations and laws; \n(2) \nability to provide real-time / near-real time information on and insight into \nthe security posture of the UCB; \n(3) \nability to effectively and efficiently manage security operations by preparing \nfor and responding to cyber risks / threats, facilitate continuity and recovery; \n(4) \nability to know who did what, when, how and preservation of evidence; \n(5) \nintegration of various log types and logging options into a SIEM system, \nticketing / workflow / case management, unstructured data / big data, \nreporting / dashboard, and use cases / rule design (customised based on \nrisk and compliance requirements / drivers); and  \n(6) \nmonitor the logs of various network activities and the capability to escalate \nany abnormal / undesirable activities."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-5.2",
+      "old_excerpt": "5.2. Implement whitelisting of internet websites/systems.\n",
+      "old_char_start": 17855,
+      "old_char_end": 17913,
+      "status": "matched",
+      "confidence": 0.47345,
+      "candidates": [
+        {
+          "paragraph": "147",
+          "pdf_page": 37,
+          "score": 0.47345,
+          "excerpt": "147. The UCB shall build a robust defence against the installation, spread, and \nexecution of malicious code at multiple points in its environment."
+        },
+        {
+          "paragraph": "148",
+          "pdf_page": 37,
+          "score": 0.294105,
+          "excerpt": "148. The UCB shall implement whitelisting of internet websites / systems. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n38 \n \nF. \nMaintenance, Monitoring, and Analysis of Audit Logs"
+        },
+        {
+          "paragraph": "83",
+          "pdf_page": 23,
+          "score": 0.226547,
+          "excerpt": "83. The UCB shall ensure that following cybersecurity controls are implemented and \nmaintained by third-party ATM Switch Application Service Providers (ASPs) \nwhere the UCB manages its ATM Switch ecosystem through their shared \nservices: \n(1) \nPreventing Access of Unauthorised Software: Paragraph 26 of these \nDirections. \n(2) \nEnvironmental Controls: Paragraphs 30, 31 of these Directions. \n(3) \nNetwork Management and Security: Paragraphs 33, 34, 36, 105, 106, 134, \n135 of these Directions. \n(4) \nSecure Configuration: Paragraphs 109, 136, 137 of these Directions. \n(5) \nApplication Security Life Cycle (ASLC): Paragraph 110 of these Directions. \n(6) \nPatch / Vulnerability and Change Management: Paragraph 114 of these \nDirections. \n(7) \nUser Access Control / Management: Paragraphs 120, 145 of these \nDirections. \n(8) \nAudit Logs: Paragraphs 126, 127, 150, 151 of these Directions. \n(9) \nIncident Response and Management: Paragraph 152 of these Directions. \n(10) Advanced Real-time Threat Defence and Management: Paragraph 147 of \nthese Directions. \n(11) Vulnerability Assessment and Penetration Test: Paragraph 118 of these \nDirections. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n24 \n \n(12) Forensics: Paragraph 170 of these Directions."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-6.1",
+      "old_excerpt": "6.1. Consult all the stakeholders before finalising the scope, frequency and storage of log collection.\n",
+      "old_char_start": 17968,
+      "old_char_end": 18072,
+      "status": "matched",
+      "confidence": 0.844912,
+      "candidates": [
+        {
+          "paragraph": "149",
+          "pdf_page": 38,
+          "score": 0.844912,
+          "excerpt": "149. The UCB shall consult all the stakeholders before finalising the scope, frequency, \nand storage of log collection."
+        },
+        {
+          "paragraph": "126",
+          "pdf_page": 34,
+          "score": 0.1689,
+          "excerpt": "126. The UCB shall capture the audit logs pertaining to user actions in a system. Such \narrangements shall facilitate forensic auditing, if need be."
+        },
+        {
+          "paragraph": "128",
+          "pdf_page": 34,
+          "score": 0.132358,
+          "excerpt": "128. The retention of audit logs / trails shall be in line with business, regulatory, and \nlegal requirements. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n35 \n \nN. \nIncident Response and Management"
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-6.2",
+      "old_excerpt": "6.2. Manage and analyse audit logs in a systematic manner so as to detect, respond, understand or recover from an attack.\n",
+      "old_char_start": 18072,
+      "old_char_end": 18194,
+      "status": "matched",
+      "confidence": 0.591263,
+      "candidates": [
+        {
+          "paragraph": "150",
+          "pdf_page": 38,
+          "score": 0.591263,
+          "excerpt": "150. The UCB shall manage and analyse audit logs in a systematic manner so as to \ndetect, respond, understand, or recover from an attack."
+        },
+        {
+          "paragraph": "149",
+          "pdf_page": 38,
+          "score": 0.430324,
+          "excerpt": "149. The UCB shall consult all the stakeholders before finalising the scope, frequency, \nand storage of log collection."
+        },
+        {
+          "paragraph": "126",
+          "pdf_page": 34,
+          "score": 0.176075,
+          "excerpt": "126. The UCB shall capture the audit logs pertaining to user actions in a system. Such \narrangements shall facilitate forensic auditing, if need be."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-6.3",
+      "old_excerpt": "6.3. Implement and periodically validate settings for capturing of appropriate logs/audit trails of each device, system software and application software, ensuring that logs include minimum information to uniquely identify the log for example by including a date, timestamp, source addresses, destination addresses.\n",
+      "old_char_start": 18194,
+      "old_char_end": 18510,
+      "status": "matched",
+      "confidence": 0.617857,
+      "candidates": [
+        {
+          "paragraph": "151",
+          "pdf_page": 38,
+          "score": 0.617857,
+          "excerpt": "151. The UCB shall implement and periodically validate settings for capturing \nappropriate logs / audit trails of each device, system software, and application \nsoftware, ensuring that such logs include the minimum information required to \nuniquely identify each log, such as date, timestamp, source addresses, and \ndestination addresses.  \nG. \nIncident Response and Management"
+        },
+        {
+          "paragraph": "149",
+          "pdf_page": 38,
+          "score": 0.361958,
+          "excerpt": "149. The UCB shall consult all the stakeholders before finalising the scope, frequency, \nand storage of log collection."
+        },
+        {
+          "paragraph": "126",
+          "pdf_page": 34,
+          "score": 0.149842,
+          "excerpt": "126. The UCB shall capture the audit logs pertaining to user actions in a system. Such \narrangements shall facilitate forensic auditing, if need be."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-7.1",
+      "old_excerpt": "7.1. UCB’s BCP/DR capabilities shall adequately and effectively support the UCB’s cyber resilience objectives and should be so designed to enable the UCB to recover rapidly from cyber-attacks/other incidents and safely resume critical operations aligned with recovery time objectives while ensuring security of processes and data is protected.\n",
+      "old_char_start": 18546,
+      "old_char_end": 18890,
+      "status": "matched",
+      "confidence": 0.874673,
+      "candidates": [
+        {
+          "paragraph": "152",
+          "pdf_page": 38,
+          "score": 0.874673,
+          "excerpt": "152. The UCB’s BCP / DR capabilities shall adequately and effectively support its \ncyber resilience objectives and shall be so designed to enable the UCB to \nrecover rapidly from cyber-attacks / other incidents and safely resume critical \noperations aligned with recovery time objectives while ensuring security of \nprocesses and protection of data."
+        },
+        {
+          "paragraph": "167",
+          "pdf_page": 42,
+          "score": 0.280985,
+          "excerpt": "167. The UCB shall ensure incident response capabilities in all interconnected \nsystems and networks including those of vendors and partners and readiness \ndemonstrated through collaborative and co-ordinated resilience testing that \nmeets the UCB’s recovery time objectives."
+        },
+        {
+          "paragraph": "129",
+          "pdf_page": 35,
+          "score": 0.239537,
+          "excerpt": "129. The UCB shall put in place an effective Incident Response plan. The UCB shall \nhave a mechanism / resource to take appropriate action in case of any cyber \nincident. The UCB shall have written incident response procedures including the \nroles of staff / outsourced staff handling such incidents."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-7.2",
+      "old_excerpt": "7.2. UCBs shall have necessary arrangements, including a documented procedure, with such third party vendors/service providers for such purpose. This shall include, among other things, to get informed about any cyber security incident occurring in respect of the bank on timely basis to early mitigate the risk as well as to meet extant regulatory requirements.\n",
+      "old_char_start": 18890,
+      "old_char_end": 19252,
+      "status": "matched",
+      "confidence": 0.582808,
+      "candidates": [
+        {
+          "paragraph": "153",
+          "pdf_page": 38,
+          "score": 0.582808,
+          "excerpt": "153. The UCB shall have necessary arrangements, including a documented \nprocedure, with third-party vendors / service providers for such purpose. This \nshall, inter alia, include being informed about any cyber incident occurring in \nrespect of the UCB on a timely basis to mitigate the risk early as well as to meet \nextant regulatory requirements."
+        },
+        {
+          "paragraph": "129",
+          "pdf_page": 35,
+          "score": 0.270637,
+          "excerpt": "129. The UCB shall put in place an effective Incident Response plan. The UCB shall \nhave a mechanism / resource to take appropriate action in case of any cyber \nincident. The UCB shall have written incident response procedures including the \nroles of staff / outsourced staff handling such incidents."
+        },
+        {
+          "paragraph": "167",
+          "pdf_page": 42,
+          "score": 0.218312,
+          "excerpt": "167. The UCB shall ensure incident response capabilities in all interconnected \nsystems and networks including those of vendors and partners and readiness \ndemonstrated through collaborative and co-ordinated resilience testing that \nmeets the UCB’s recovery time objectives."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-7.3",
+      "old_excerpt": "7.3. Have a mechanism to dynamically incorporate lessons learnt to continually improve the response strategies. Response strategies shall consider readiness to meet various incident scenarios based on situational awareness and potential/post impact, consistent communication and co-ordination with stakeholders during response.\n",
+      "old_char_start": 19252,
+      "old_char_end": 19580,
+      "status": "matched",
+      "confidence": 0.868682,
+      "candidates": [
+        {
+          "paragraph": "154",
+          "pdf_page": 38,
+          "score": 0.868682,
+          "excerpt": "154. The UCB shall have a mechanism to dynamically incorporate lessons learnt to \ncontinually improve the response strategies. Response strategies shall consider \nreadiness to meet various incident scenarios based on situational awareness, \npotential / post impact, and consistent communication, and co-ordination with \nstakeholders during response. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n39 \n \nH. \nUser / Employee / Management Awareness"
+        },
+        {
+          "paragraph": "129",
+          "pdf_page": 35,
+          "score": 0.252294,
+          "excerpt": "129. The UCB shall put in place an effective Incident Response plan. The UCB shall \nhave a mechanism / resource to take appropriate action in case of any cyber \nincident. The UCB shall have written incident response procedures including the \nroles of staff / outsourced staff handling such incidents."
+        },
+        {
+          "paragraph": "167",
+          "pdf_page": 42,
+          "score": 0.245589,
+          "excerpt": "167. The UCB shall ensure incident response capabilities in all interconnected \nsystems and networks including those of vendors and partners and readiness \ndemonstrated through collaborative and co-ordinated resilience testing that \nmeets the UCB’s recovery time objectives."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-8.1",
+      "old_excerpt": "8.1. Encourage them to report suspicious behaviour incidents to the incident management team.\n",
+      "old_char_start": 19621,
+      "old_char_end": 19715,
+      "status": "matched",
+      "confidence": 0.752556,
+      "candidates": [
+        {
+          "paragraph": "155",
+          "pdf_page": 39,
+          "score": 0.752556,
+          "excerpt": "155. The UCB shall encourage the reporting of suspicious behaviour incidents to the \nincident management team."
+        },
+        {
+          "paragraph": "59",
+          "pdf_page": 18,
+          "score": 0.25843,
+          "excerpt": "59. The UCB may update its Board members on basic tenets / principles of IT risk / \ncybersecurity risk at least once a year."
+        },
+        {
+          "paragraph": "62",
+          "pdf_page": 19,
+          "score": 0.134605,
+          "excerpt": "62. The UCB shall communicate to users / employees, vendors and partners security \npolicies covering secure and acceptable use of the UCB’s information assets \nincluding customer information / data and educating them about cybersecurity \nrisks and protection measures at their level."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-8.2",
+      "old_excerpt": "8.2. Make cyber security awareness programs mandatory for new recruits and web-based quiz and training for lower, middle and upper management every year.\n",
+      "old_char_start": 19715,
+      "old_char_end": 19869,
+      "status": "matched",
+      "confidence": 0.569068,
+      "candidates": [
+        {
+          "paragraph": "156",
+          "pdf_page": 39,
+          "score": 0.569068,
+          "excerpt": "156. The UCB shall conduct mandatory cybersecurity awareness programs for new \nrecruits and web-based quiz and training for lower, middle, and upper \nmanagement every year."
+        },
+        {
+          "paragraph": "155",
+          "pdf_page": 39,
+          "score": 0.345897,
+          "excerpt": "155. The UCB shall encourage the reporting of suspicious behaviour incidents to the \nincident management team."
+        },
+        {
+          "paragraph": "59",
+          "pdf_page": 18,
+          "score": 0.246295,
+          "excerpt": "59. The UCB may update its Board members on basic tenets / principles of IT risk / \ncybersecurity risk at least once a year."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-8.3",
+      "old_excerpt": "8.3. Board members may be sensitised on various technological developments and cyber security related developments periodically.\n",
+      "old_char_start": 19869,
+      "old_char_end": 19998,
+      "status": "matched",
+      "confidence": 0.380673,
+      "candidates": [
+        {
+          "paragraph": "155",
+          "pdf_page": 39,
+          "score": 0.380673,
+          "excerpt": "155. The UCB shall encourage the reporting of suspicious behaviour incidents to the \nincident management team."
+        },
+        {
+          "paragraph": "59",
+          "pdf_page": 18,
+          "score": 0.305217,
+          "excerpt": "59. The UCB may update its Board members on basic tenets / principles of IT risk / \ncybersecurity risk at least once a year."
+        },
+        {
+          "paragraph": "157",
+          "pdf_page": 39,
+          "score": 0.202264,
+          "excerpt": "157. The UCB shall sensitise its Board members on various technological \ndevelopments and cybersecurity related developments periodically. \nI. \nRisk - based Transaction Monitoring System  \n(This control shall be applicable to the UCB which is a direct member of CPS as \nwell as having its own ATM Switch interface or SWIFT interface)"
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "III-9.1",
+      "old_excerpt": "9.1. Risk based transaction monitoring or surveillance process shall be implemented as part of fraud risk management system across all -delivery channels.\n",
+      "old_char_start": 20183,
+      "old_char_end": 20338,
+      "status": "matched",
+      "confidence": 0.532079,
+      "candidates": [
+        {
+          "paragraph": "158",
+          "pdf_page": 39,
+          "score": 0.532079,
+          "excerpt": "158. The UCB, which is a direct member of CPS as well as having its own ATM Switch \ninterface or SWIFT interface, shall implement risk-based transaction monitoring \nor surveillance process as part of fraud risk management system across all \ndelivery channels. \n \n \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n40 \n \nChapter VI - Level IV Baseline Cybersecurity and Resilience Requirements  \nA. \nCyber Security Operations Centre"
+        },
+        {
+          "paragraph": "157",
+          "pdf_page": 39,
+          "score": 0.264671,
+          "excerpt": "157. The UCB shall sensitise its Board members on various technological \ndevelopments and cybersecurity related developments periodically. \nI. \nRisk - based Transaction Monitoring System  \n(This control shall be applicable to the UCB which is a direct member of CPS as \nwell as having its own ATM Switch interface or SWIFT interface)"
+        },
+        {
+          "paragraph": "85",
+          "pdf_page": 24,
+          "score": 0.097136,
+          "excerpt": "85. The UCB shall ensure to mandate the following baseline cybersecurity controls \nin their contractual agreements with these ASPs: \n(1) \nThe ASP shall continuously monitor the release of patches by various \nvendors / Original Equipment Manufacturers (OEMs), advisories issued by \nCERT-In and other similar agencies and expeditiously apply the security \npatches as per the patch management policy of the ASP. If a patch / series \nof patches is / are released by the OEM / manufacturer / vendor for \nprotection against well-known / well publicised / reported attacks exploiting \nthe vulnerability patched, the ASPs must have a mechanism to apply them \nexpeditiously following an emergency patch management process. \n(2) \nThe ASP shall put in place a clearly defined framework including \nrequirements justifying the exception(s), duration of exception(s), process \nof granting exceptions, and authority for approving, authority for review of \nexceptions granted on a periodic basis by officer(s) preferably at senior \nlevels who are well equipped to understand the business and technical \ncontext of the exception(s). \n(3) \nThe ASP shall prepare and maintain an up-to-date network architecture \ndiagram at the organisation level including wired / wireless networks. \n(4) \nThe ASP may consider implementing solutions to automate network \ndiscovery and management. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n25 \n \n(5) \nThe ASP shall put in place mechanisms to identify authorised hardware / \nmobile devices such as laptops, mobile phones, and tablets, and ensure \nthat they are provided connectivity only when they meet the security \nrequirements prescribed by the ASP.  \n(6) \nThe ASP shall put in place a mechanism to automatically identify \nunauthorised device connections to the ASP’s network and block such \nconnections. \n(7) \nThe ASP shall establish Standard Operating Procedures (SOP) for all major \nIT activities including for connecting devices to the network. \n(8) \nThe ASP shall periodically evaluate the configuration of all such devices \nincluding firewall, network switches, and security devices, and patch levels \nfor all systems in the ASP’s IT ecosystem. \n(9) \nThe ASP shall ensure the software integrity of the ATM Switch related \napplications. \n(10) The ASP shall ensure information security across all stages of application \nlife cycle. \n(11) The ASP shall implement secure coding practices for internally / \ncollaboratively developed applications. \n(12) The ASP shall ensure that the Software / Application development \napproach is based on threat modelling, incorporate secure coding \nprinciples, security testing (based on global standards), and secure rollout. \n(13) The ASP shall ensure that adoption of new technologies is adequately \nevaluated for existing / evolving security threats and that the IT / security \nteam of the ASP achieve reasonable level of comfort and maturity with such \ntechnologies before introducing in the IT ecosystem. \n(14) The ASP shall certify any new products, updates, and upgrades as having \nbeen developed following secure coding practices. The application \narchitecture shall be tested to safeguard the confidentiality and integrity of \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n26 \n \ndata being stored, processed, and transmitted. An assurance to this effect \nshall be shared with the UCB / RBI as and when requested. \n(15) In respect of critical business applications, the ASP shall conduct source \ncode audits by professionally competent personnel / service providers. \nThey shall provide assurance to the UCB that the application is free from \nembedded malicious / fraudulent code. \n(16) The ASP shall ensure that their software / application development \npractices address common vulnerabilities highlighted in baselines such as \nOpen Web Application Security Project (OWASP) proactively and adopt the \nprinciple of defence-in-depth to provide layered security mechanism. \n(17) The ASP shall follow a documented risk-based strategy for inventorying IT \ncomponents that need to be patched, identification of patches and applying \npatches to minimise the number of vulnerable systems and the time window \nof vulnerability / exposure. \n(18) The ASP shall periodically conduct Application security testing of web / \nmobile applications throughout their lifecycle (pre-implementation, post \nimplementation, after changes) in an environment closely resembling or a \nreplica of the production environment. \n(19) As a threat mitigation strategy, the ASP shall identify the root cause of \nincident and apply necessary patches to plug the vulnerabilities. \n(20) The ASP shall periodically evaluate the access device configurations and \npatch levels to ensure that all access points, nodes between (i) different \nVirtual Local Area Networks (VLANs) in the Data Centre, (ii) Local Area \nNetwork (LAN) / Wide Area Network (WAN) interfaces, (iii) ASP’s network \nto external network and interconnections with partner, vendor, and service \nprovider networks are securely configured. \n(21) The ASP shall put in place a robust change management process in place \nto record / monitor all the changes that are moved / pushed into the \nproduction environment. Such a change management process must clearly \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n27 \n \nmention the test cases, chain of approving authority for the particular \nchange, deployment plan, and rollback plan. \n(22) The ASP shall carefully protect access credentials such as logon user-id, \nauthentication \ninformation \nand \ntokens, \naccess \nprofiles, \nagainst \nleakage / attacks. \n(23) The ASP shall implement controls to monitor and minimise invalid logon \ncounts and deactivate dormant accounts. \n(24) The ASP shall ensure that access to critical servers, network and security \ndevices / systems is provided through Privileged User Management \nSystems / Identity and Access Management (IAM) systems. \n(25) The ASP shall monitor any abnormal change in pattern of logon. \n(26) The ASP shall put in place a mechanism to monitor the database security \nevents, backend access to the databases to ensure access to the database \nis restricted and the activities carried out through the backend are logged \nand reviewed. \n(27) The ASP shall ensure that trivial and / or default passwords are not used. \n(28) The ASP shall develop a comprehensive data loss / leakage prevention \nstrategy to safeguard sensitive (including confidential) business and \ncustomer data / information. This shall include protecting data processed in \nend point devices, data in transmission, as well as data stored in servers \nand other digital stores, whether online or offline. \n(29) The ASP shall ensure to generate and capture logs from devices / \napplications / databases.  \n(30) The ASP shall ensure that logs / audit trails of device / system software and \napplication software capture relevant elements, as per the applicability of \neach packet, event, and / or transaction. \n(31) The ASP shall put in place a mechanism / resources to take appropriate \naction in case of any cyber incident. The ASP shall have written incident \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n28 \n \nresponse procedures including the roles of staff / outsourced staff handling \nsuch incidents. The response strategies shall consider readiness to meet \nvarious incident scenarios based on situational awareness, potential / post \nimpact, and consistent communication and co-ordination with stakeholders, \nspecifically with the UCB, during response. \n(32) The ASP shall be responsible for meeting the requirements prescribed for \nincident management and Business Continuity Plan (BCP) / Disaster \nRecovery (DR) even if their information assets including  IT infrastructure, \nsystems, and applications are managed by third party vendors / service \nproviders. The ASP shall have necessary arrangements, including a \ndocumented procedure for such purpose. This shall, inter alia, include \ninforming the UCB about any cyber incident occurring in respect of the UCB \non a timely basis to mitigate the risk at the earliest as well as to meet extant \nregulatory requirements. \n(33) The ASP shall implement anti-malware, antivirus protection including \nbehavioural detection capabilities across all relevant devices and \nenvironments, such as endpoints, servers (including operating systems, \ndatabases, and applications), Web / Internet gateways, email-gateways \nand wireless networks. The ASP shall also implement tools and processes \nfor centralised management and monitoring of such protection. \n(34) The ASP shall periodically conduct Vulnerability Assessment / Penetration \nTesting (VA / PT) of applications, servers, and network components. \n(35) The ASP shall ensure to share the VA / PT report(s) and compliance to its \nfindings with the UCB / RBI as and when requested. \n(36) The ASP shall ensure constant and continuous monitoring of the \nenvironment using appropriate and cost-effective technology tools, clearly \ndefined policies and procedures based on best practices and monitored by \ntechnically competent and capable manpower. The ASP shall setup a \nCyber Security Operations Centre (CSOC). It is also essential that the \nCSOC, inter alia, ensures seamless collection of the logs relevant to the IT \necosystem, storing, processing and correlation of the logs through \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n29 \n \nappropriate SIEM solution for continuous surveillance and keeps itself \nregularly updated on the latest nature of emerging cyber threats. \n(37) The ASP shall comply with the relevant standards including Payment Card \nIndustry Data Security Standard (PCI-DSS) and Payment Card Industry - \nSoftware Security Framework (PCI-SSF), as applicable to the IT \necosystem."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "IV-1.1",
+      "old_excerpt": "1.1. Expectations from C-SOC\ni. Ability to Protect critical business and customer data/information, demonstrate compliance with relevant internal guidelines, country regulations and laws\nii. Ability to Provide real-time/near-real time information on and insight into the security posture of the UCB\niii. Ability to effectively and efficiently manage security operations by preparing for and responding to cyber risks/threats, facilitate continuity and recovery\niv. Ability to know who did what, when, how and preservation of evidence\nv. Integration of various log types and logging options into a Security Information and Event Management (SIEM) system, ticketing/workflow/case management, unstructured data/big data, reporting/dashboard, use cases/rule design (customised based on risk and compliance requirements/drivers, etc.), etc.\nvi. C-SOC should be able to monitor the logs of various network activities and should have the capability to escalate any abnormal / undesirable activities.\nvii. Key Responsibilities of C-SOC could include:\nMonitor, analyse and escalate security incidents\nDevelop Response - protect, detect, respond, recover\nConduct Incident Management and Forensic Analysis\nCo-ordination with relevant stakeholders within the UCB/external agencies\n",
+      "old_char_start": 20833,
+      "old_char_end": 22102,
+      "status": "matched",
+      "confidence": 0.673355,
+      "candidates": [
+        {
+          "paragraph": "160",
+          "pdf_page": 40,
+          "score": 0.673355,
+          "excerpt": "160. The UCB shall ensure that the CSOC delivers the following: \n(1) \nability to protect critical business and customer data / information, \ndemonstrate compliance with relevant internal guidelines, country \nregulations and laws; \n(2) \nability to provide real-time / near-real time information on and insight into \nthe security posture of the UCB; \n(3) \nability to effectively and efficiently manage security operations by preparing \nfor and responding to cyber risks / threats, facilitate continuity and recovery; \n(4) \nability to know who did what, when, how and preservation of evidence; \n(5) \nintegration of various log types and logging options into a SIEM system, \nticketing / workflow / case management, unstructured data / big data, \nreporting / dashboard, and use cases / rule design (customised based on \nrisk and compliance requirements / drivers); and  \n(6) \nmonitor the logs of various network activities and the capability to escalate \nany abnormal / undesirable activities."
+        },
+        {
+          "paragraph": "159",
+          "pdf_page": 40,
+          "score": 0.19034,
+          "excerpt": "159. The UCB shall put in place a CSOC. It is also essential that CSOC ensures \ncontinuous surveillance and keeps itself regularly updated on the latest nature of \nemerging cyber threats. \nA.1   Expectations from CSOC"
+        },
+        {
+          "paragraph": "161",
+          "pdf_page": 40,
+          "score": 0.162312,
+          "excerpt": "161. The UCB shall ensure that CSOC is responsible for the following: \n(1) \nmonitoring, analysing and escalating security incidents; \n(2) \ndeveloping and executing response measures across the protect, detect, \nrespond, and recover phases; \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n41 \n \n(3) \nconducting incident management and forensic analysis; and \n(4) \ncoordinating with relevant contact groups within the UCB as well as with \nexternal agencies, as required. \nA.2   Technological Aspects"
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "IV-1.2",
+      "old_excerpt": "1.2. Steps for setting up C-SOC – Technological Aspects\ni. First step is to arrive at a suitable and cost effective technology framework designed and implemented to ensure proactive monitoring capabilities aligned with the banking technology risk profile and business and regulatory requirements. Clear understanding of the service delivery architecture deployed by the UCB will enable identification of the location for the sensors to collect the logs that are required to carry out the analysis and investigation. SIEM is able to meet this requirement to some extent but a holistic approach to problem identification and solution is required.\nii. Second step is to have a security analytics engine which can process the logs within reasonable time frame and come out with possible recommendations with options for further deep dive investigations\niii. Third step is to look at deep packet inspection approaches\niv. Fourth step is to have tools and technologies for malware detection and analysis as well as imaging solutions for data to address the forensics requirements\nv. It is to be noted that the solution architecture deployed for the above has to address performance and scalability requirements in addition to high availability requirements. Some of the aspects to be considered are:\nStaffing of C-SOC - is it required to be 24x7x365, in shifts, business hours only, etc.\nModel used - Finding staff with required skills /managed security service provider with required skill set\nMetrics to measure performance of C-SOC\nEnsuring scalability and continuity of staff through appropriate capacity planning initiatives\n",
+      "old_char_start": 22102,
+      "old_char_end": 23726,
+      "status": "matched",
+      "confidence": 0.396795,
+      "candidates": [
+        {
+          "paragraph": "162",
+          "pdf_page": 41,
+          "score": 0.396795,
+          "excerpt": "162. The UCB shall arrive at a suitable and cost-effective technology framework \ndesigned and implemented to ensure proactive monitoring capabilities aligned \nwith the technology risk profile, business, and regulatory requirements. The UCB \nshall have clear understanding of the service delivery architecture deployed to \nenable identification of the location for the sensors, to collect the logs that are \nrequired to carry out the analysis, and investigation."
+        },
+        {
+          "paragraph": "165",
+          "pdf_page": 41,
+          "score": 0.378428,
+          "excerpt": "165. The UCB shall ensure that the solution architecture deployed addresses \nperformance and scalability requirements in addition to high availability \nrequirements. Some of the aspects to be considered are:  \n(1) \nstaffing of CSOC for continuous monitoring on 24x7 basis;  \n(2) \nfinding staff with required skills / managing security service provider with \nrequired skill set; \n(3) \nmetrics to measure performance of CSOC; and \n(4) \nensuring scalability and continuity of staff through appropriate capacity \nplanning initiatives. \nB. \nParticipation in Cyber Drills"
+        },
+        {
+          "paragraph": "163",
+          "pdf_page": 41,
+          "score": 0.307485,
+          "excerpt": "163. The CSOC shall have security analytics engine which can process the logs within \na reasonable time frame and come out with possible recommendations with \noptions for further deep dive investigations including deep packet inspections."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "IV-2.1",
+      "old_excerpt": "2.1. UCBs shall participate in cyber drills conducted under the aegis of Cert-IN, IDRBT etc.\n",
+      "old_char_start": 23759,
+      "old_char_end": 23852,
+      "status": "matched",
+      "confidence": 0.742534,
+      "candidates": [
+        {
+          "paragraph": "166",
+          "pdf_page": 41,
+          "score": 0.742534,
+          "excerpt": "166. The UCB shall participate in cyber drills conducted under the aegis of institutions \n/ agencies such as CERT-IN and IDRBT. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n42 \n \nC. \nIncident Response and Management"
+        },
+        {
+          "paragraph": "87",
+          "pdf_page": 29,
+          "score": 0.069488,
+          "excerpt": "87. The UCB shall put in place an effective mechanism to report the cyber incidents \nin a timely manner and take appropriate action to mitigate the incident. The UCB \nshall also proactively notify CERT-In regarding cyber incidents."
+        },
+        {
+          "paragraph": "15",
+          "pdf_page": 12,
+          "score": 0.053721,
+          "excerpt": "15. The UCB may refer to Indian Computer Emergency Response Team (CERT-In) / \nNational Critical Information Infrastructure Protection Centre (NCIIPC) guidelines \nas reference material for guidance on preparation of Cyber Crisis Management \nPlan (CCMP)."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "IV-3.1",
+      "old_excerpt": "3.1. UCBs shall ensure incident response capabilities in all interconnected systems and networks including those of vendors and partners and readiness demonstrated through collaborative and co-ordinated resilience testing that meet the UCB’s recovery time objectives.\n",
+      "old_char_start": 23888,
+      "old_char_end": 24156,
+      "status": "matched",
+      "confidence": 0.934566,
+      "candidates": [
+        {
+          "paragraph": "167",
+          "pdf_page": 42,
+          "score": 0.934566,
+          "excerpt": "167. The UCB shall ensure incident response capabilities in all interconnected \nsystems and networks including those of vendors and partners and readiness \ndemonstrated through collaborative and co-ordinated resilience testing that \nmeets the UCB’s recovery time objectives."
+        },
+        {
+          "paragraph": "129",
+          "pdf_page": 35,
+          "score": 0.271333,
+          "excerpt": "129. The UCB shall put in place an effective Incident Response plan. The UCB shall \nhave a mechanism / resource to take appropriate action in case of any cyber \nincident. The UCB shall have written incident response procedures including the \nroles of staff / outsourced staff handling such incidents."
+        },
+        {
+          "paragraph": "152",
+          "pdf_page": 38,
+          "score": 0.248408,
+          "excerpt": "152. The UCB’s BCP / DR capabilities shall adequately and effectively support its \ncyber resilience objectives and shall be so designed to enable the UCB to \nrecover rapidly from cyber-attacks / other incidents and safely resume critical \noperations aligned with recovery time objectives while ensuring security of \nprocesses and protection of data."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "IV-3.2",
+      "old_excerpt": "3.2. Implement a policy & framework for aligning Security Operation Centre, Incident Response and Digital forensics to reduce the business downtime/ to bounce back to normalcy.\n",
+      "old_char_start": 24156,
+      "old_char_end": 24333,
+      "status": "matched",
+      "confidence": 0.637745,
+      "candidates": [
+        {
+          "paragraph": "168",
+          "pdf_page": 42,
+          "score": 0.637745,
+          "excerpt": "168. The UCB shall implement a framework for aligning CSOC, Incident Response \nand Digital forensics to reduce the business downtime / to bounce back to \nnormalcy. \nD. \nMetrics"
+        },
+        {
+          "paragraph": "129",
+          "pdf_page": 35,
+          "score": 0.284435,
+          "excerpt": "129. The UCB shall put in place an effective Incident Response plan. The UCB shall \nhave a mechanism / resource to take appropriate action in case of any cyber \nincident. The UCB shall have written incident response procedures including the \nroles of staff / outsourced staff handling such incidents."
+        },
+        {
+          "paragraph": "167",
+          "pdf_page": 42,
+          "score": 0.242489,
+          "excerpt": "167. The UCB shall ensure incident response capabilities in all interconnected \nsystems and networks including those of vendors and partners and readiness \ndemonstrated through collaborative and co-ordinated resilience testing that \nmeets the UCB’s recovery time objectives."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "IV-4.1",
+      "old_excerpt": "4.1. Develop a comprehensive set of metrics that provides for prospective and retrospective measures, like key performance indicators and key risk indicators. Some illustrative metrics include coverage of anti-malware software and their updation percentage, patch latency, extent of user awareness training, vulnerability related metrics, number of open vulnerabilities, IS/security audit observations, etc.\n",
+      "old_char_start": 24358,
+      "old_char_end": 24766,
+      "status": "matched",
+      "confidence": 0.88638,
+      "candidates": [
+        {
+          "paragraph": "169",
+          "pdf_page": 42,
+          "score": 0.88638,
+          "excerpt": "169. The UCB shall develop a comprehensive set of metrics that provide for \nprospective and retrospective measures, like key performance indicators and key \nrisk indicators. Some illustrative metrics include coverage of anti-malware \nsoftware and their updation percentage, patch latency, extent of user awareness \ntraining, vulnerability related metrics, number of open vulnerabilities, and IS / \nsecurity audit observations. \nE. \nForensics"
+        },
+        {
+          "paragraph": "165",
+          "pdf_page": 41,
+          "score": 0.093314,
+          "excerpt": "165. The UCB shall ensure that the solution architecture deployed addresses \nperformance and scalability requirements in addition to high availability \nrequirements. Some of the aspects to be considered are:  \n(1) \nstaffing of CSOC for continuous monitoring on 24x7 basis;  \n(2) \nfinding staff with required skills / managing security service provider with \nrequired skill set; \n(3) \nmetrics to measure performance of CSOC; and \n(4) \nensuring scalability and continuity of staff through appropriate capacity \nplanning initiatives. \nB. \nParticipation in Cyber Drills"
+        },
+        {
+          "paragraph": "170",
+          "pdf_page": 42,
+          "score": 0.077357,
+          "excerpt": "170. The UCB shall have support / arrangement for network forensics / forensic \ninvestigation / DDoS mitigation services on standby. \nF. \nInformation Technology Strategy and Policy"
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "IV-4.2",
+      "old_excerpt": "4.2. Have support/ arrangement for network forensics/forensic investigation/distributed denial-of-service (DDOS) mitigation services on stand-by.\n",
+      "old_char_start": 24766,
+      "old_char_end": 24912,
+      "status": "matched",
+      "confidence": 0.506548,
+      "candidates": [
+        {
+          "paragraph": "170",
+          "pdf_page": 42,
+          "score": 0.506548,
+          "excerpt": "170. The UCB shall have support / arrangement for network forensics / forensic \ninvestigation / DDoS mitigation services on standby. \nF. \nInformation Technology Strategy and Policy"
+        },
+        {
+          "paragraph": "169",
+          "pdf_page": 42,
+          "score": 0.102972,
+          "excerpt": "169. The UCB shall develop a comprehensive set of metrics that provide for \nprospective and retrospective measures, like key performance indicators and key \nrisk indicators. Some illustrative metrics include coverage of anti-malware \nsoftware and their updation percentage, patch latency, extent of user awareness \ntraining, vulnerability related metrics, number of open vulnerabilities, and IS / \nsecurity audit observations. \nE. \nForensics"
+        },
+        {
+          "paragraph": "126",
+          "pdf_page": 34,
+          "score": 0.076195,
+          "excerpt": "126. The UCB shall capture the audit logs pertaining to user actions in a system. Such \narrangements shall facilitate forensic auditing, if need be."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "IV-5.1",
+      "old_excerpt": "5.1. The UCB shall have a Board approved IT-related strategy and policies covering areas such as:\nExisting and proposed hardware and networking architecture for the UCB and its rationale\nStandards for hardware or software prescribed by the proposed architecture\nStrategy for outsourcing, in-sourcing, procuring off-the-shelf software, and in-house development\nIT Department’s Organisational Structure\nDesired number and level of IT expertise or competencies in UCB's human resources, plan to bridge the gap (if any) and requirements relating to training and development\nStrategy for keeping abreast with technology developments and to update systems as and when required\nStrategy for independent assessment, evaluation and monitoring of IT risks, findings of IT/IS/Cyber security related audits.\n",
+      "old_char_start": 24938,
+      "old_char_end": 25734,
+      "status": "matched",
+      "confidence": 0.873272,
+      "candidates": [
+        {
+          "paragraph": "171",
+          "pdf_page": 42,
+          "score": 0.873272,
+          "excerpt": "171. The UCB shall have a Board approved IT-related strategy and policy covering \nthe following:  \n(1) \nExisting and proposed hardware and networking architecture for the UCB \nand its rationale. \n(2) \nStandards for hardware or software prescribed by the proposed \narchitecture.  \n(3) \nStrategy for outsourcing, in-sourcing, procuring off-the-shelf software, and \ninhouse development. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n43 \n \n(4) \nIT Department’s organisational structure. \n(5) \nDesired number and level of IT expertise or competencies in UCB's human \nresources, plan to bridge the gap (if any) and requirements relating to \ntraining and development. \n(6) \nStrategy for keeping abreast with technology developments and to upgrade \nsystems as and when required. \n(7) \nStrategy for independent assessment, evaluation and monitoring of IT risks, \nfindings of IT / IS / cybersecurity related audits. \nG. \nInformation Technology and Information Systems Governance Framework \nG.1   Cybersecurity Function / Group"
+        },
+        {
+          "paragraph": "7",
+          "pdf_page": 10,
+          "score": 0.218562,
+          "excerpt": "7. \nThe Board of Directors (Board) shall approve the strategies and policies related \nto Technology and Cybersecurity frameworks. \nB. \nCommittees of the Board"
+        },
+        {
+          "paragraph": "173",
+          "pdf_page": 43,
+          "score": 0.129083,
+          "excerpt": "173. The UCB may consider setting up a Board level IT Strategy Committee (ITSC) \nwith a minimum of two directors as members, one of whom shall be a \nprofessional director. At least two members of the ITSC shall be technically \ncompetent, while at least one member shall have substantial expertise in \nmanaging / guiding technology initiatives. Technically competent herein shall \nmean the ability to understand and evaluate technology systems. A member shall \nbe considered to have ‘substantial expertise’ if they have a minimum of five years \nof experience in managing IT systems and / or in leading / guiding technology \ninitiatives / projects. Such a member shall also have an understanding of banking \nprocesses at a broader level and of the impact of IT on such processes. If not, \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n44 \n \nthen the member shall be trained on these aspects. A member with substantial \nexpertise is deemed to be considered as technically competent. Roles and \nresponsibilities of the ITSC / Board shall, inter alia, include the following:  \n(1) \napproving IT strategy and policy documents; \n(2) \nensuring that the management has put an effective strategic planning \nprocess in place; \n(3) \nensuring that the IT organisational structure complements the business \nmodel and its direction; \n(4) \nensuring IT investments represent a balance of risks and benefits and that \nbudgets are acceptable; and \n(5) \nreviewing IT performance measurement and contribution of IT to \nbusinesses. \nG.3   Information Technology Steering Committee"
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "IV-6.1",
+      "old_excerpt": "6.1. Cyber Security Team/Function\nUCBs shall form a separate cyber security function/group to focus exclusively on cyber security management. The organisation of the cyber security function should be commensurate with the nature and size of activities of the UCB including factors such as technologies adopted, delivery channels, digital products being offered, internal and external threats, etc. The cyber security function should be adequately resourced in terms of the number of staff, level of skills and tools or techniques like risk assessment, security architecture, vulnerability assessment, forensic assessment, etc.\n",
+      "old_char_start": 25768,
+      "old_char_end": 26395,
+      "status": "matched",
+      "confidence": 0.675761,
+      "candidates": [
+        {
+          "paragraph": "172",
+          "pdf_page": 43,
+          "score": 0.675761,
+          "excerpt": "172. The UCB shall form a separate cybersecurity function / group to focus exclusively \non cybersecurity management. The organisation of the cybersecurity function \nshall be commensurate with the nature and size of activities of the UCB including \nfactors such as technologies adopted, delivery channels, digital products being \noffered, internal and external threats. The cybersecurity function shall be \nadequately resourced in terms of the number of staff, level of skills and tools or \ntechniques such as risk assessment, security architecture, vulnerability \nassessment, and forensic assessment. \nG.2   Information Technology Strategy Committee"
+        },
+        {
+          "paragraph": "10",
+          "pdf_page": 11,
+          "score": 0.143213,
+          "excerpt": "10. The UCB shall undertake a self-assessment of the level in which it fits into, based \non the above-mentioned criteria, and ensure compliance with the applicable \ncontrols. However, the UCB may adopt higher level of security measures as \ndecided by the Board based on its own assessment of risk and capabilities. \nFurther, if the UCB, irrespective of its asset size already has a dedicated Chief \nInformation Security Officer (CISO) and / or governance framework as discussed \nin Chapter VI of these Directions, then as a matter of best practice, the UCB may \ncontinue with the existing governance structure. \nB. \nCybersecurity Policy"
+        },
+        {
+          "paragraph": "171",
+          "pdf_page": 42,
+          "score": 0.118133,
+          "excerpt": "171. The UCB shall have a Board approved IT-related strategy and policy covering \nthe following:  \n(1) \nExisting and proposed hardware and networking architecture for the UCB \nand its rationale. \n(2) \nStandards for hardware or software prescribed by the proposed \narchitecture.  \n(3) \nStrategy for outsourcing, in-sourcing, procuring off-the-shelf software, and \ninhouse development. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n43 \n \n(4) \nIT Department’s organisational structure. \n(5) \nDesired number and level of IT expertise or competencies in UCB's human \nresources, plan to bridge the gap (if any) and requirements relating to \ntraining and development. \n(6) \nStrategy for keeping abreast with technology developments and to upgrade \nsystems as and when required. \n(7) \nStrategy for independent assessment, evaluation and monitoring of IT risks, \nfindings of IT / IS / cybersecurity related audits. \nG. \nInformation Technology and Information Systems Governance Framework \nG.1   Cybersecurity Function / Group"
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "IV-6.2",
+      "old_excerpt": "6.2. IT Strategy Committee\nUCBs may consider setting up a Board level IT Strategy Committee with a minimum of two directors as members, one of whom should be a professional director. At least two members of the IT Strategy Committee would need to be technically competent\n4\nwhile at least one member would need to have substantial expertise\n5\nin managing/guiding technology initiatives. Some of the roles and responsibilities that the IT Strategy Committee/Board should have are:\nApproving IT strategy and policy documents\nEnsuring that the management has put an effective strategic planning process in place\nEnsuring that the IT organizational structure complements the business model and its direction\nEnsuring IT investments represent a balance of risks and benefits and that budgets are acceptable\nReviewing IT performance measurement and contribution of IT to businesses\n",
+      "old_char_start": 26395,
+      "old_char_end": 27271,
+      "status": "changed",
+      "confidence": 0.616421,
+      "candidates": [
+        {
+          "paragraph": "173",
+          "pdf_page": 43,
+          "score": 0.616421,
+          "excerpt": "173. The UCB may consider setting up a Board level IT Strategy Committee (ITSC) \nwith a minimum of two directors as members, one of whom shall be a \nprofessional director. At least two members of the ITSC shall be technically \ncompetent, while at least one member shall have substantial expertise in \nmanaging / guiding technology initiatives. Technically competent herein shall \nmean the ability to understand and evaluate technology systems. A member shall \nbe considered to have ‘substantial expertise’ if they have a minimum of five years \nof experience in managing IT systems and / or in leading / guiding technology \ninitiatives / projects. Such a member shall also have an understanding of banking \nprocesses at a broader level and of the impact of IT on such processes. If not, \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n44 \n \nthen the member shall be trained on these aspects. A member with substantial \nexpertise is deemed to be considered as technically competent. Roles and \nresponsibilities of the ITSC / Board shall, inter alia, include the following:  \n(1) \napproving IT strategy and policy documents; \n(2) \nensuring that the management has put an effective strategic planning \nprocess in place; \n(3) \nensuring that the IT organisational structure complements the business \nmodel and its direction; \n(4) \nensuring IT investments represent a balance of risks and benefits and that \nbudgets are acceptable; and \n(5) \nreviewing IT performance measurement and contribution of IT to \nbusinesses. \nG.3   Information Technology Steering Committee"
+        },
+        {
+          "paragraph": "8",
+          "pdf_page": 10,
+          "score": 0.358284,
+          "excerpt": "8. \nThe Level IV UCB may consider setting up Information Technology Strategy \nCommittee (ITSC) of the Board with a minimum of two directors as members, \none of whom shall be a professional director. The roles and responsibilities of \nITSC are provided in paragraph 173 of these Directions."
+        },
+        {
+          "paragraph": "171",
+          "pdf_page": 42,
+          "score": 0.145105,
+          "excerpt": "171. The UCB shall have a Board approved IT-related strategy and policy covering \nthe following:  \n(1) \nExisting and proposed hardware and networking architecture for the UCB \nand its rationale. \n(2) \nStandards for hardware or software prescribed by the proposed \narchitecture.  \n(3) \nStrategy for outsourcing, in-sourcing, procuring off-the-shelf software, and \ninhouse development. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n43 \n \n(4) \nIT Department’s organisational structure. \n(5) \nDesired number and level of IT expertise or competencies in UCB's human \nresources, plan to bridge the gap (if any) and requirements relating to \ntraining and development. \n(6) \nStrategy for keeping abreast with technology developments and to upgrade \nsystems as and when required. \n(7) \nStrategy for independent assessment, evaluation and monitoring of IT risks, \nfindings of IT / IS / cybersecurity related audits. \nG. \nInformation Technology and Information Systems Governance Framework \nG.1   Cybersecurity Function / Group"
+        }
+      ],
+      "differences": [
+        "modal verb shift: old has may; new has may, shall"
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "IV-6.3",
+      "old_excerpt": "6.3. IT Steering Committee\nAn IT Steering Committee shall be formed with representatives from the IT, HR, legal and business sectors. Its role is to assist the Executive Management in implementing IT strategy that has been approved by the Board. It includes prioritization of IT-enabled investment, reviewing the status of projects (including, resource conflict), monitoring service levels and improvements, IT service delivery and projects. The IT Steering committee/Board should appraise/report to the IT strategy Committee periodically. The committee should focus on implementation. Its functions, inter-alia, include:\nDefining project priorities and assessing strategic fit for IT proposals\nReviewing, approving and funding initiatives, after assessing value-addition to business process\nEnsuring that all critical projects have a component for “project risk management”\nSponsoring or assisting in governance, risk and control framework, and also directing and monitoring key IT Governance processes\nDefining project success measures and following up progress on IT projects\nProvide direction relating to technology standards and practices\nEnsure that vulnerability assessments of new technology is performed\nVerify compliance with technology standards and guidelines\nEnsure compliance to regulatory and statutory requirements\nProvide direction to IT architecture design and ensure that the IT architecture reflects the need for legal and regulatory compliance, the ethical use of information and business continuity\n",
+      "old_char_start": 27271,
+      "old_char_end": 28792,
+      "status": "matched",
+      "confidence": 0.741833,
+      "candidates": [
+        {
+          "paragraph": "174",
+          "pdf_page": 44,
+          "score": 0.741833,
+          "excerpt": "174. The UCB shall form an IT Steering Committee with representatives from the IT, \nHR, legal, and business verticals. Its role is to assist the Senior Management in \nimplementing Board-approved IT strategy, including prioritisation of IT-enabled \ninvestment, reviewing the status of projects (including, resource conflict), \nmonitoring service levels and improvements, and IT service delivery. The IT \nSteering Committee shall report to the ITSC / Board periodically. Its functions, \ninter-alia, include:  \n(1) \ndefining project priorities and assessing strategic fit for IT proposals;  \n(2) \nreviewing, approving, and funding initiatives, after assessing value addition \nto business process; \n(3) \nensuring that all critical projects have a component for ‘project risk \nmanagement’; \n(4) \nassisting in governance, risk and control framework, and monitoring key IT \ngovernance processes; \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n45 \n \n(5) \ndefining project success measures and following up progress on IT \nprojects; \n(6) \nproviding direction relating to IT architecture design, technology standards \nand practices; \n(7) \nensuring that vulnerability assessments of new technology are performed; \n(8) \nverifying compliance with technology standards and guidelines; and \n(9) \nensuring compliance to legal, regulatory, and statutory requirements.  \nG.4   Chief Information Security Officer"
+        },
+        {
+          "paragraph": "171",
+          "pdf_page": 42,
+          "score": 0.142298,
+          "excerpt": "171. The UCB shall have a Board approved IT-related strategy and policy covering \nthe following:  \n(1) \nExisting and proposed hardware and networking architecture for the UCB \nand its rationale. \n(2) \nStandards for hardware or software prescribed by the proposed \narchitecture.  \n(3) \nStrategy for outsourcing, in-sourcing, procuring off-the-shelf software, and \ninhouse development. \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n43 \n \n(4) \nIT Department’s organisational structure. \n(5) \nDesired number and level of IT expertise or competencies in UCB's human \nresources, plan to bridge the gap (if any) and requirements relating to \ntraining and development. \n(6) \nStrategy for keeping abreast with technology developments and to upgrade \nsystems as and when required. \n(7) \nStrategy for independent assessment, evaluation and monitoring of IT risks, \nfindings of IT / IS / cybersecurity related audits. \nG. \nInformation Technology and Information Systems Governance Framework \nG.1   Cybersecurity Function / Group"
+        },
+        {
+          "paragraph": "10",
+          "pdf_page": 11,
+          "score": 0.139,
+          "excerpt": "10. The UCB shall undertake a self-assessment of the level in which it fits into, based \non the above-mentioned criteria, and ensure compliance with the applicable \ncontrols. However, the UCB may adopt higher level of security measures as \ndecided by the Board based on its own assessment of risk and capabilities. \nFurther, if the UCB, irrespective of its asset size already has a dedicated Chief \nInformation Security Officer (CISO) and / or governance framework as discussed \nin Chapter VI of these Directions, then as a matter of best practice, the UCB may \ncontinue with the existing governance structure. \nB. \nCybersecurity Policy"
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "IV-6.4",
+      "old_excerpt": "6.4. Chief Information Security Officer (CISO)\nA sufficiently senior level official should be designated as Chief Information Security Officer (CISO), responsible for articulating and enforcing the policies that the UCB uses to protect its information assets apart from coordinating the cyber security related issues / implementation within the organisation as well as relevant external agencies. The CISO shall be primarily responsible for ensuring compliance to various instructions issued on information/cyber security by RBI. The following may be noted in this regard:\nThe CISO should report directly to the top executive overseeing the risk management function or in his absence to the CEO directly.\nThe CISO should have the requisite technical background and expertise.\nThe CISO should have a reasonable minimum term.\nThe CISO should place a separate review of cyber security arrangements/ preparedness of the UCB before the Board on a quarterly basis.\nThe UCB’s Board should be able to objectively measure steps to assess the effectiveness of the CISO’s office.\nThe CISO will be responsible for bringing to the notice of the Board about the vulnerabilities and cyber security risks that the UCB is exposed to.\nThe CISO, by virtue of his role as member secretary of information security and/or related committees(s), if any, may ensure, inter alia, current/ emerging cyber threats to banking (including payment systems) sector and the UCB’s preparedness in these aspects are invariably discussed in such committee(s).\nThe CISO’s office shall manage and monitor the C-SOC and drive cyber security related projects. It can have a dotted relation with Chief Information Officer (CIO)/ Chief Technology Officer (CTO) for driving such projects.\nThe CISO shall be an invitee to the IT Strategy committee and IT Steering Committee. The CISO may also be a member of (or invited to) committees on operational risk where IT/ IS risk is also discussed.\nThe CISO’s office shall be adequately staffed with technically competent people, if necessary, through recruitment of specialist officers, commensurate with the business volume, extent of technology adoption and complexity.\nThe CISO shall not have any direct reporting relationship with the CIO/CTO and shall not be given any business targets.\nThe budget for IT security/ CISO’s office may be determined keeping in view the current/ emerging cyber threat landscape.\n",
+      "old_char_start": 28792,
+      "old_char_end": 31206,
+      "status": "matched",
+      "confidence": 0.766117,
+      "candidates": [
+        {
+          "paragraph": "175",
+          "pdf_page": 45,
+          "score": 0.766117,
+          "excerpt": "175. The UCB shall designate a sufficiently senior level official as Chief Information \nSecurity Officer (CISO) who will be responsible for articulating and enforcing the \npolicies that the UCB uses to protect its information assets apart from \ncoordinating the cybersecurity related issues / implementation within the UCB as \nwell as relevant external agencies. The CISO shall be primarily responsible for \nensuring compliance to various instructions issued on information security / \ncybersecurity by RBI. The UCB shall ensure the following in this regard: \n(1) \nThe CISO shall report directly to the top executive overseeing the risk \nmanagement function or in their absence to the Managing Director and \nChief Executive Officer (MD and CEO). \n(2) \nThe CISO shall have the requisite technical background and expertise. \n(3) \nThe CISO shall have a reasonable minimum term. \n(4) \nThe CISO shall place a separate review of cybersecurity arrangements / \npreparedness of the UCB before the ITSC / Board on a quarterly basis. \n(5) \nThe CISO shall be responsible for bringing to the notice of the Board about \nthe vulnerabilities and cybersecurity risks that the UCB is exposed to.  \n(6) \nThe CISO, by virtue of its role as member secretary of information security \nand / or related committee(s), if any, shall, inter alia, ensure discussion of \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n46 \n \ncurrent / emerging cyber threats to banking (including payment systems) \nsector and the UCB’s preparedness in these aspects in such committee(s).  \n(7) \nThe CISO’s office shall manage and monitor the CSOC and drive \ncybersecurity related projects.  \n(8) \nThe CISO shall not have any direct reporting relationship with the Chief \nInformation Officer (CIO) / Chief Technology Officer (CTO) and shall not be \ngiven any business targets. \n(9) \nThe CISO shall be an invitee to the ITSC and IT Steering Committee. The \nCISO may also be a member of (or invited to) committees on operational \nrisk where IT / Information Security risk is also discussed.  \n(10) The CISO’s office shall be adequately staffed with technically competent \npeople, if necessary, through recruitment of specialist officers, \ncommensurate with the business volume, extent of technology adoption, \nand complexity.  \n(11) The budget for IT security / CISO’s office shall be determined keeping in \nview the current / emerging cyber threat landscape."
+        },
+        {
+          "paragraph": "104",
+          "pdf_page": 31,
+          "score": 0.297139,
+          "excerpt": "104. The UCB shall identify an official (not necessarily designated as CISO), \nresponsible for articulating and enforcing the policies used by the UCB to protect \nits information assets, apart from coordinating the cybersecurity related issues / \nimplementation within the UCB as well as relevant external agencies. The official \nshall be primarily responsible for ensuring compliance to various instructions \nissued on information security / cybersecurity by RBI.  \nC. \nNetwork Management and Security"
+        },
+        {
+          "paragraph": "10",
+          "pdf_page": 11,
+          "score": 0.171491,
+          "excerpt": "10. The UCB shall undertake a self-assessment of the level in which it fits into, based \non the above-mentioned criteria, and ensure compliance with the applicable \ncontrols. However, the UCB may adopt higher level of security measures as \ndecided by the Board based on its own assessment of risk and capabilities. \nFurther, if the UCB, irrespective of its asset size already has a dedicated Chief \nInformation Security Officer (CISO) and / or governance framework as discussed \nin Chapter VI of these Directions, then as a matter of best practice, the UCB may \ncontinue with the existing governance structure. \nB. \nCybersecurity Policy"
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "IV-6.5",
+      "old_excerpt": "6.5. Information Security Committee\nSince IT/ cyber security affects all aspects of an organisation, in order to consider IT/ cyber security from a UCB-wide perspective a steering committee of executives should be formed with formal terms of reference. The CISO would be the member secretary of the Committee. The Information Security Committee may include, among others, the Chief Executive Officer (CEO) or designee and two senior management officials well versed in the subject. The Committee shall meet atleast on a quarterly basis. Major responsibilities of the Information Security Committee, inter-alia, include:\nDeveloping and facilitating the implementation of information security policies, standards and procedures to ensure that all identified risks are managed within a UCB’s risk appetite.\nApproving and monitoring major cyber security projects and the status of cyber security plans and budgets, establishing priorities, approving standards and procedures\nSupporting the development and implementation of a UCB-wide information security management programme\nReviewing the position of security incidents and various information security assessments and monitoring activities across the UCB\nReviewing the status of security awareness programmes\nAssessing new developments or issues relating to information/ cyber security\nReporting to the Board of Directors on cyber security activities\nMinutes of the Information Security Committee meetings should be maintained to document the committee’s activities and decisions and a review on information/cyber security needs to be escalated to the Board on a quarterly basis.\n",
+      "old_char_start": 31206,
+      "old_char_end": 32835,
+      "status": "changed",
+      "confidence": 0.655162,
+      "candidates": [
+        {
+          "paragraph": "177",
+          "pdf_page": 46,
+          "score": 0.655162,
+          "excerpt": "177. The UCB shall form an Information Security Committee (ISC) as a Committee of \nexecutives, with formal terms of reference, to consider IT and cybersecurity from \na UCB-wide perspective. The CISO shall be the member secretary of the \nCommittee. The ISC shall, inter alia, include, the MD and CEO or designee and \ntwo Senior Management officials well versed in the subject. ISC shall meet at \nleast on a quarterly basis. Major responsibilities of the ISC, inter-alia, include: \n(1) \ndeveloping and facilitating the implementation of information security / \ncybersecurity policies, standards, and procedures to ensure that all \nidentified risks are managed within the UCB’s risk appetite; \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n47 \n \n(2) \napproving and monitoring major cybersecurity projects and the status of \ncybersecurity plans and budgets, establishing priorities, approving \nstandards and procedures; \n(3) \nsupporting the development and implementation of a UCB-wide information \nsecurity management programme; \n(4) \nreviewing the position of cyber incidents and various information security \nassessments and monitoring activities across the UCB; \n(5) \nreviewing the status of security awareness programmes; and \n(6) \nassessing new developments or issues relating to information security / \ncybersecurity."
+        },
+        {
+          "paragraph": "174",
+          "pdf_page": 44,
+          "score": 0.170794,
+          "excerpt": "174. The UCB shall form an IT Steering Committee with representatives from the IT, \nHR, legal, and business verticals. Its role is to assist the Senior Management in \nimplementing Board-approved IT strategy, including prioritisation of IT-enabled \ninvestment, reviewing the status of projects (including, resource conflict), \nmonitoring service levels and improvements, and IT service delivery. The IT \nSteering Committee shall report to the ITSC / Board periodically. Its functions, \ninter-alia, include:  \n(1) \ndefining project priorities and assessing strategic fit for IT proposals;  \n(2) \nreviewing, approving, and funding initiatives, after assessing value addition \nto business process; \n(3) \nensuring that all critical projects have a component for ‘project risk \nmanagement’; \n(4) \nassisting in governance, risk and control framework, and monitoring key IT \ngovernance processes; \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n45 \n \n(5) \ndefining project success measures and following up progress on IT \nprojects; \n(6) \nproviding direction relating to IT architecture design, technology standards \nand practices; \n(7) \nensuring that vulnerability assessments of new technology are performed; \n(8) \nverifying compliance with technology standards and guidelines; and \n(9) \nensuring compliance to legal, regulatory, and statutory requirements.  \nG.4   Chief Information Security Officer"
+        },
+        {
+          "paragraph": "178",
+          "pdf_page": 47,
+          "score": 0.158146,
+          "excerpt": "178. The UCB shall ensure that minutes of the ISC meetings are maintained and that \ndecisions, activities, and reviews relating to cybersecurity are escalated to the \nBoard / ITSC on a quarterly basis. \nG.6   Audit Committee of the Board"
+        }
+      ],
+      "differences": [
+        "modal verb shift: old has may; new has shall"
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    },
+    {
+      "old_clause": "IV-6.6",
+      "old_excerpt": "6.6. Audit Committee of Board (ACB)\nVide\nDCBR.CO.BPD.(PCB).MC.No.3/12.05.001/2015-16 Master circular dated July 1, 2015\nall UCBs have been advised to set up an Audit Committee (ACB) at the Board level. In addition to its prescribed role as per extant instructions, the ACB shall also be responsible for the following:\nPerformance of IS Audit and Evaluation of significant IS Audit issues – The ACB should devote appropriate and sufficient time to IS Audit findings identified and members of ACB need to review critical issues highlighted and provide appropriate guidance to the UCB’s management.\nMonitor the compliance in respect of the information security reviews/VA-PT audits under various scope conducted by internal as well as external auditors/consultants to ensure that open issues are closed on a timely basis and sustenance of the compliance is adhered to.",
+      "old_char_start": 32835,
+      "old_char_end": 33700,
+      "status": "matched",
+      "confidence": 0.533804,
+      "candidates": [
+        {
+          "paragraph": "179",
+          "pdf_page": 47,
+          "score": 0.533804,
+          "excerpt": "179. The Audit Committee of the Board (ACB) shall be responsible for the following:  \n(1) \ndevoting sufficient time to identified IS Audit findings, review of critical \nissues highlighted and providing appropriate guidance to the UCB’s \nmanagement; and \n(2) \nmonitoring the compliance in respect of the information security reviews / \nVA-PT audits under various scopes conducted by internal as well as \nexternal auditors / consultants to ensure that open issues are closed on a \ntimely basis and sustenance of the compliance is adhered to. \n \n \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n48 \n \nChapter VII - Repeal and Other Provisions \nA. \nRepeal and Saving"
+        },
+        {
+          "paragraph": "9",
+          "pdf_page": 10,
+          "score": 0.252657,
+          "excerpt": "9. \nIn respect of Level IV UCB, the Audit Committee of the Board (ACB) shall review \nhighlighted critical Information Systems (IS) audit issues, provide appropriate \nguidance to the UCB’s management, and monitor compliance arising from \ninformation security reviews and Vulnerability Assessment and Penetration \nTesting (VA-PT) audits as detailed in paragraph 179  of these Directions. \n \n \nRBI (UCBs – Cybersecurity, Technology: Risk, Resilience  \nand Assurance Framework) Directions, 2026 \n \n \n11 \n \nChapter III - Level I Baseline Cybersecurity and Resilience Requirements  \nA. \nSelf-Assessment"
+        },
+        {
+          "paragraph": "100",
+          "pdf_page": 30,
+          "score": 0.134433,
+          "excerpt": "100. IS audit reports shall be placed before the Audit Committee of the Board (ACB) \nand compliance shall be ensured within the time frame as outlined in the IS audit \npolicy."
+        }
+      ],
+      "method": "tfidf-word-ngram-explicit-change-rules",
+      "method_version": "1.0",
+      "reviewer": null
+    }
+  ]
+}

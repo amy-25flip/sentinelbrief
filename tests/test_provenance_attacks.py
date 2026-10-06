@@ -75,6 +75,16 @@ PINNED_SOURCES: dict[str, tuple[str, bool] | tuple[str, bool, str]] = {
         False,
         "31584176c8b4f771c7086d558b3ade6d82156f7b2d4d5f4577a725f85e257124",
     ),
+    "RBI_UCB_Comprehensive_Cyber_Security_Framework_2019.html": (
+        "29db99c383123699d615d3288c52b4e688ea7ab5a7bbae5b379cc650bd9a80f1",
+        False,
+        "231884921ae523fb93105f1e417c6f04d0189a5f25f4aebcf44bb64853660606",
+    ),
+    "RBI_IT_Governance_Master_Direction_2023.html": (
+        "b504b4fb8296f532ef04fdff7a544a0bfea14d14fe7de8726c4a93c78c55b252",
+        False,
+        "d0300ba6fc210ed9ff11e416caa89d1b5b02b976ac5ae0612d3ae834d43290a4",
+    ),
 }
 
 

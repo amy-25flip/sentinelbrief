@@ -1,0 +1,377 @@
+{
+  "instrument_id": "rbi.ucb-cyber-framework.2019",
+  "source_url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11772&Mode=0",
+  "source_sha256": "29db99c383123699d615d3288c52b4e688ea7ab5a7bbae5b379cc650bd9a80f1",
+  "content_sha256": "231884921ae523fb93105f1e417c6f04d0189a5f25f4aebcf44bb64853660606",
+  "retrieved_at": "2026-10-06T14:43:08Z",
+  "extractor": "sentinelbrief-rbi-html",
+  "extractor_version": "1.0",
+  "segments": [
+    {
+      "id": "II-1.1",
+      "char_start": 9687,
+      "char_end": 9868,
+      "heading": "1. Network Management and Security"
+    },
+    {
+      "id": "II-1.2",
+      "char_start": 9868,
+      "char_end": 10169,
+      "heading": "1. Network Management and Security"
+    },
+    {
+      "id": "II-1.3",
+      "char_start": 10169,
+      "char_end": 10255,
+      "heading": "1. Network Management and Security"
+    },
+    {
+      "id": "II-2.1",
+      "char_start": 10279,
+      "char_end": 10617,
+      "heading": "2. Secure Configuration"
+    },
+    {
+      "id": "II-3.1",
+      "char_start": 10661,
+      "char_end": 10821,
+      "heading": "3. Application Security Life Cycle (ASLC)"
+    },
+    {
+      "id": "II-3.2",
+      "char_start": 10821,
+      "char_end": 10978,
+      "heading": "3. Application Security Life Cycle (ASLC)"
+    },
+    {
+      "id": "II-4.1",
+      "char_start": 10999,
+      "char_end": 11355,
+      "heading": "4. Change Management"
+    },
+    {
+      "id": "II-5.1",
+      "char_start": 11375,
+      "char_end": 11762,
+      "heading": "5. Periodic Testing"
+    },
+    {
+      "id": "II-5.2",
+      "char_start": 11762,
+      "char_end": 11973,
+      "heading": "5. Periodic Testing"
+    },
+    {
+      "id": "II-5.3",
+      "char_start": 11973,
+      "char_end": 12123,
+      "heading": "5. Periodic Testing"
+    },
+    {
+      "id": "II-5.4",
+      "char_start": 12123,
+      "char_end": 12296,
+      "heading": "5. Periodic Testing"
+    },
+    {
+      "id": "II-5.5",
+      "char_start": 12296,
+      "char_end": 12616,
+      "heading": "5. Periodic Testing"
+    },
+    {
+      "id": "II-6.1",
+      "char_start": 12652,
+      "char_end": 12927,
+      "heading": "6. User Access Control / Management"
+    },
+    {
+      "id": "II-7.1",
+      "char_start": 12969,
+      "char_end": 13242,
+      "heading": "7. Authentication Framework for Customers"
+    },
+    {
+      "id": "II-7.2",
+      "char_start": 13242,
+      "char_end": 13398,
+      "heading": "7. Authentication Framework for Customers"
+    },
+    {
+      "id": "II-8.1",
+      "char_start": 13415,
+      "char_end": 13581,
+      "heading": "8. Anti-Phishing"
+    },
+    {
+      "id": "II-9.1",
+      "char_start": 13614,
+      "char_end": 13783,
+      "heading": "9. Data Leak Prevention Strategy"
+    },
+    {
+      "id": "II-9.2",
+      "char_start": 13783,
+      "char_end": 13866,
+      "heading": "9. Data Leak Prevention Strategy"
+    },
+    {
+      "id": "II-10.1",
+      "char_start": 13881,
+      "char_end": 14017,
+      "heading": "10. Audit Logs"
+    },
+    {
+      "id": "II-10.2",
+      "char_start": 14017,
+      "char_end": 14099,
+      "heading": "10. Audit Logs"
+    },
+    {
+      "id": "II-11.1",
+      "char_start": 14136,
+      "char_end": 14427,
+      "heading": "11. Incident Response and Management"
+    },
+    {
+      "id": "II-11.2",
+      "char_start": 14427,
+      "char_end": 14645,
+      "heading": "11. Incident Response and Management"
+    },
+    {
+      "id": "III-1.1",
+      "char_start": 14810,
+      "char_end": 14934,
+      "heading": "1. Network Management and Security"
+    },
+    {
+      "id": "III-1.2",
+      "char_start": 14934,
+      "char_end": 15076,
+      "heading": "1. Network Management and Security"
+    },
+    {
+      "id": "III-2.1",
+      "char_start": 15100,
+      "char_end": 15318,
+      "heading": "2. Secure Configuration"
+    },
+    {
+      "id": "III-2.2",
+      "char_start": 15318,
+      "char_end": 15449,
+      "heading": "2. Secure Configuration"
+    },
+    {
+      "id": "III-2.3",
+      "char_start": 15449,
+      "char_end": 15530,
+      "heading": "2. Secure Configuration"
+    },
+    {
+      "id": "III-2.4",
+      "char_start": 15530,
+      "char_end": 15627,
+      "heading": "2. Secure Configuration"
+    },
+    {
+      "id": "III-2.5",
+      "char_start": 15627,
+      "char_end": 15713,
+      "heading": "2. Secure Configuration"
+    },
+    {
+      "id": "III-3.1",
+      "char_start": 15755,
+      "char_end": 16020,
+      "heading": "3. Application Security Life Cycle (ASLC)"
+    },
+    {
+      "id": "III-3.2",
+      "char_start": 16020,
+      "char_end": 16401,
+      "heading": "3. Application Security Life Cycle (ASLC)"
+    },
+    {
+      "id": "III-3.3",
+      "char_start": 16401,
+      "char_end": 16536,
+      "heading": "3. Application Security Life Cycle (ASLC)"
+    },
+    {
+      "id": "III-3.4",
+      "char_start": 16536,
+      "char_end": 16815,
+      "heading": "3. Application Security Life Cycle (ASLC)"
+    },
+    {
+      "id": "III-4.1",
+      "char_start": 16838,
+      "char_end": 17526,
+      "heading": "4. User Access Control"
+    },
+    {
+      "id": "III-4.2",
+      "char_start": 17526,
+      "char_end": 17671,
+      "heading": "4. User Access Control"
+    },
+    {
+      "id": "III-5.1",
+      "char_start": 17723,
+      "char_end": 17855,
+      "heading": "5. Advanced Real-time Threat Defence and Management"
+    },
+    {
+      "id": "III-5.2",
+      "char_start": 17855,
+      "char_end": 17913,
+      "heading": "5. Advanced Real-time Threat Defence and Management"
+    },
+    {
+      "id": "III-6.1",
+      "char_start": 17968,
+      "char_end": 18072,
+      "heading": "6. Maintenance, Monitoring, and Analysis of Audit Logs"
+    },
+    {
+      "id": "III-6.2",
+      "char_start": 18072,
+      "char_end": 18194,
+      "heading": "6. Maintenance, Monitoring, and Analysis of Audit Logs"
+    },
+    {
+      "id": "III-6.3",
+      "char_start": 18194,
+      "char_end": 18510,
+      "heading": "6. Maintenance, Monitoring, and Analysis of Audit Logs"
+    },
+    {
+      "id": "III-7.1",
+      "char_start": 18546,
+      "char_end": 18890,
+      "heading": "7. Incident Response and Management"
+    },
+    {
+      "id": "III-7.2",
+      "char_start": 18890,
+      "char_end": 19252,
+      "heading": "7. Incident Response and Management"
+    },
+    {
+      "id": "III-7.3",
+      "char_start": 19252,
+      "char_end": 19580,
+      "heading": "7. Incident Response and Management"
+    },
+    {
+      "id": "III-8.1",
+      "char_start": 19621,
+      "char_end": 19715,
+      "heading": "8. User / Employee/ Management Awareness"
+    },
+    {
+      "id": "III-8.2",
+      "char_start": 19715,
+      "char_end": 19869,
+      "heading": "8. User / Employee/ Management Awareness"
+    },
+    {
+      "id": "III-8.3",
+      "char_start": 19869,
+      "char_end": 19998,
+      "heading": "8. User / Employee/ Management Awareness"
+    },
+    {
+      "id": "III-9.1",
+      "char_start": 20183,
+      "char_end": 20338,
+      "heading": "9. Risk based transaction monitoring"
+    },
+    {
+      "id": "IV-1.1",
+      "char_start": 20833,
+      "char_end": 22102,
+      "heading": "1. Arrangement for continuous surveillance - Setting up of Cyber Security Operation Centre (C-SOC)"
+    },
+    {
+      "id": "IV-1.2",
+      "char_start": 22102,
+      "char_end": 23726,
+      "heading": "1. Arrangement for continuous surveillance - Setting up of Cyber Security Operation Centre (C-SOC)"
+    },
+    {
+      "id": "IV-2.1",
+      "char_start": 23759,
+      "char_end": 23852,
+      "heading": "2. Participation in Cyber Drills"
+    },
+    {
+      "id": "IV-3.1",
+      "char_start": 23888,
+      "char_end": 24156,
+      "heading": "3. Incident Response and Management"
+    },
+    {
+      "id": "IV-3.2",
+      "char_start": 24156,
+      "char_end": 24333,
+      "heading": "3. Incident Response and Management"
+    },
+    {
+      "id": "IV-4.1",
+      "char_start": 24358,
+      "char_end": 24766,
+      "heading": "4. Forensics and Metrics"
+    },
+    {
+      "id": "IV-4.2",
+      "char_start": 24766,
+      "char_end": 24912,
+      "heading": "4. Forensics and Metrics"
+    },
+    {
+      "id": "IV-5.1",
+      "char_start": 24938,
+      "char_end": 25734,
+      "heading": "5. IT Strategy and Policy"
+    },
+    {
+      "id": "IV-6.1",
+      "char_start": 25768,
+      "char_end": 26395,
+      "heading": "6. IT and IS Governance Framework"
+    },
+    {
+      "id": "IV-6.2",
+      "char_start": 26395,
+      "char_end": 27271,
+      "heading": "6. IT and IS Governance Framework"
+    },
+    {
+      "id": "IV-6.3",
+      "char_start": 27271,
+      "char_end": 28792,
+      "heading": "6. IT and IS Governance Framework"
+    },
+    {
+      "id": "IV-6.4",
+      "char_start": 28792,
+      "char_end": 31206,
+      "heading": "6. IT and IS Governance Framework"
+    },
+    {
+      "id": "IV-6.5",
+      "char_start": 31206,
+      "char_end": 32835,
+      "heading": "6. IT and IS Governance Framework"
+    },
+    {
+      "id": "IV-6.6",
+      "char_start": 32835,
+      "char_end": 33700,
+      "heading": "6. IT and IS Governance Framework"
+    }
+  ]
+}

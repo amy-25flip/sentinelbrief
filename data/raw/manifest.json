@@ -174,6 +174,32 @@
       "size_bytes": 3597158,
       "status": "current",
       "fetched_by": "BaseFetcher"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11772&Mode=0",
+      "filename": "RBI_UCB_Comprehensive_Cyber_Security_Framework_2019.html",
+      "sha256": "29db99c383123699d615d3288c52b4e688ea7ab5a7bbae5b379cc650bd9a80f1",
+      "content_sha256": "231884921ae523fb93105f1e417c6f04d0189a5f25f4aebcf44bb64853660606",
+      "retrieved_at": "2026-10-06T14:43:08Z",
+      "etag": null,
+      "last_modified": null,
+      "content_type": "text/html",
+      "size_bytes": 153581,
+      "status": "current",
+      "fetched_by": "BaseFetcher"
+    },
+    {
+      "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12562&Mode=0",
+      "filename": "RBI_IT_Governance_Master_Direction_2023.html",
+      "sha256": "b504b4fb8296f532ef04fdff7a544a0bfea14d14fe7de8726c4a93c78c55b252",
+      "content_sha256": "d0300ba6fc210ed9ff11e416caa89d1b5b02b976ac5ae0612d3ae834d43290a4",
+      "retrieved_at": "2026-10-06T14:43:11Z",
+      "etag": null,
+      "last_modified": null,
+      "content_type": "text/html",
+      "size_bytes": 171242,
+      "status": "current",
+      "fetched_by": "BaseFetcher"
     }
   ]
 }

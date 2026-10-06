@@ -135,3 +135,73 @@ def test_migration_page_escapes_excerpts(tmp_path, monkeypatch):
     page = TestClient(app).get(f"/migrations/{MIGRATION_ID}")
     assert "&lt;script&gt;alert(1)&lt;/script&gt;" in page.text
     assert "<script>alert(1)</script>" not in page.text
+
+
+def test_every_configured_pair_segments_to_its_declared_size():
+    """Catches: a pair whose old units or new paragraphs silently change count."""
+    from sentinelbrief.migrator.core import PAIRS, build_migration
+
+    for pair in PAIRS:
+        built = build_migration(REPO, pair)
+        assert len(built["mappings"]) == pair.old_units
+        assert built["id"] == pair.id
+        committed = json.loads(
+            (REPO / "data" / "migrations" / f"{pair.id}.json").read_text(encoding="utf-8")
+        )
+        assert committed == built
+
+
+def test_ucb_controls_carry_their_group_heading_and_exact_text():
+    """Catches: a control cut at the wrong place or given another group's heading."""
+    raw = REPO / "data" / "raw"
+    stem = "RBI_UCB_Comprehensive_Cyber_Security_Framework_2019"
+    text = (raw / f"{stem}.txt").read_text(encoding="utf-8")
+    segments = {
+        item["id"]: item
+        for item in json.loads((raw / f"{stem}.meta.json").read_text(encoding="utf-8"))["segments"]
+    }
+    assert len(segments) == 61
+    control = segments["II-8.1"]
+    body = text[control["char_start"] : control["char_end"]]
+    assert control["heading"] == "8. Anti-Phishing"
+    assert body.startswith("8.1. Subscribe to Anti-phishing") and "9. Data Leak" not in body
+    assert segments["IV-6.6"]["heading"] == "6. IT and IS Governance Framework"
+    assert "Ref:" not in text[segments["IV-6.6"]["char_start"] : segments["IV-6.6"]["char_end"]]
+
+
+def test_master_direction_clause_stops_before_the_next_chapter_heading():
+    """Catches: a chapter heading swallowed into the clause before it."""
+    raw = REPO / "data" / "raw"
+    stem = "RBI_IT_Governance_Master_Direction_2023"
+    text = (raw / f"{stem}.txt").read_text(encoding="utf-8")
+    segments = json.loads((raw / f"{stem}.meta.json").read_text(encoding="utf-8"))["segments"]
+    assert [item["id"] for item in segments] == [str(n) for n in range(4, 31)]
+    for item in segments:
+        assert "\nChapter " not in text[item["char_start"] : item["char_end"]]
+
+
+def test_scorer_handles_gold_without_status():
+    """Catches: a pair with paragraph-only gold counted as status failures."""
+    result = _scorer.score_pair("rbi.ucb-cyber-framework.2019__rbi.ucb-cyber.2026")
+    assert result["total"] == 61 and result["status_total"] == 0
+    assert result["status_accuracy"] is None
+    assert all(not miss["hit"] for miss in result["misses"])
+
+
+def test_correction_is_bounded_by_the_new_directions_own_paragraph_count(tmp_path):
+    """Catches: the 158-paragraph bound of the NBFC Direction applied to another Direction."""
+    import shutil
+
+    from sentinelbrief.migrator.review import ConfirmationStore
+
+    shutil.copytree(REPO / "data" / "migrations", tmp_path / "migrations")
+    store = ConfirmationStore(tmp_path)
+    pair = "rbi.it-governance.2023__rbi.payments-banks-cyber.2026"
+    record = store.correct(pair, "30", "Asha Rao", ["223"], "IS Audit chapter")
+    assert record["paragraphs"] == ["223"]
+    try:
+        store.correct(pair, "30", "Asha Rao", ["233"], "beyond the last paragraph")
+    except ValueError as exc:
+        assert "1 to 232" in str(exc)
+    else:
+        raise AssertionError("paragraph 233 does not exist in the Payments Banks Direction")

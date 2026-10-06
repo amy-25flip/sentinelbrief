@@ -188,9 +188,112 @@ def _old_segments(text: str) -> list[dict[str, int | str]]:
     return result
 
 
+def _units(text: str, starts: list[tuple[str, int, str]], end: int) -> list[dict[str, int | str]]:
+    """Turn ordered (id, start, heading) triples into segments that end at the next boundary."""
+    result: list[dict[str, int | str]] = []
+    for index, (segment_id, start, heading) in enumerate(starts):
+        stop = starts[index + 1][1] if index + 1 < len(starts) else end
+        segment: dict[str, int | str] = {"id": segment_id, "char_start": start, "char_end": stop}
+        if heading:
+            segment["heading"] = heading
+        result.append(segment)
+    return result
+
+
+def _ucb_2019_segments(text: str) -> list[dict[str, int | str]]:
+    """The numbered controls of Annexes II, III and IV, with ids such as ``II-5.3``.
+
+    A control runs to the next control, group heading or annex heading. Each segment records
+    its printed group heading (for example "5. Periodic Testing") because the heading is not
+    part of the control's own text.
+    """
+    annex_re = re.compile(
+        r"(?m)^Annex (II|III|IV)\nBaseline Cyber Security and Resilience Requirements \(in addition"
+    )
+    annexes = [(match.group(1), match.start()) for match in annex_re.finditer(text)]
+    if [name for name, _ in annexes] != ["II", "III", "IV"]:
+        raise ValueError("2019 UCB framework: Annex II, III and IV headings were not found")
+    footnotes = text.rfind("\n1\nRef:\n")
+    if footnotes < annexes[-1][1]:
+        raise ValueError("2019 UCB framework: footnote block after Annex IV was not found")
+    control_re = re.compile(r"(?m)^(\d+\.\d+)\. ")
+    group_re = re.compile(r"(?m)^(\d+)\. [A-Z][^\n]*$")
+    result: list[dict[str, int | str]] = []
+    for index, (name, start) in enumerate(annexes):
+        stop = annexes[index + 1][1] if index + 1 < len(annexes) else footnotes
+        groups = [(m.start(), m.group(0)) for m in group_re.finditer(text, start, stop)]
+        starts: list[tuple[str, int, str]] = []
+        boundaries = sorted({g[0] for g in groups} | {stop})
+        for match in control_re.finditer(text, start, stop):
+            heading = next((h for pos, h in reversed(groups) if pos < match.start()), "")
+            if not heading.startswith(match.group(1).split(".")[0] + ". "):
+                raise ValueError(
+                    f"2019 UCB framework: control {name}-{match.group(1)} has no group"
+                )
+            starts.append((f"{name}-{match.group(1)}", match.start(), heading))
+        for position, (segment_id, begin, heading) in enumerate(starts):
+            following = starts[position + 1][1] if position + 1 < len(starts) else stop
+            end = min([b for b in boundaries if b > begin] + [following])
+            segment: dict[str, int | str] = {
+                "id": segment_id,
+                "char_start": begin,
+                "char_end": end,
+                "heading": heading,
+            }
+            result.append(segment)
+    if len(result) != 61:
+        raise ValueError(f"2019 UCB framework: expected 61 numbered controls, found {len(result)}")
+    return result
+
+
+def _it_governance_2023_segments(text: str) -> list[dict[str, int | str]]:
+    """Clauses 4 to 30 of the Master Direction; a clause ends at the next clause or chapter."""
+    body = text.index("Chapter II - IT Governance\n4. IT Governance Framework")
+    end = text.index("Chapter VII \N{EN DASH} Repeal and Other Provisions", body)
+    chapters = [m.start() for m in re.finditer(r"(?m)^Chapter [IVX]+ ", text) if m.start() > body]
+    starts: list[tuple[str, int, str]] = []
+    cursor = body
+    for number in range(4, 31):
+        match = re.compile(rf"(?m)^{number}\. ?[A-Z][^\n]*$").search(text, cursor, end)
+        if not match:
+            raise ValueError(f"2023 Master Direction clause {number} was not found")
+        starts.append((str(number), match.start(), ""))
+        cursor = match.end()
+    result = _units(text, starts, end)
+    for segment in result:
+        begin, stop = int(segment["char_start"]), int(segment["char_end"])
+        segment["char_end"] = min([c for c in chapters if begin < c < stop] + [stop])
+    return result
+
+
+# filename -> (first visible line of the instrument, segmenter). The text ends before the
+# site's archive navigation, whose first visible line is the year "2026".
+_DIRECTIONS = {
+    "RBI_UCB_Comprehensive_Cyber_Security_Framework_2019.html": (
+        "RBI/2019-20/129",
+        _ucb_2019_segments,
+    ),
+    "RBI_IT_Governance_Master_Direction_2023.html": (
+        "RBI/2023-24/107",
+        _it_governance_2023_segments,
+    ),
+}
+
+
 def extract_html_text(html_path: Path) -> tuple[str, list[dict[str, int | str]]]:
     """Extract a supported RBI page into stable citation text and segments."""
     source = html_path.read_text(encoding="utf-8")
+    if html_path.name in _DIRECTIONS:
+        first_line, segmenter = _DIRECTIONS[html_path.name]
+        visible = _VisibleText()
+        visible.feed(source)
+        try:
+            start = visible.parts.index(first_line)
+            end = visible.parts.index("2026", start)
+        except ValueError as exc:
+            raise ValueError(f"{html_path.name}: content boundaries changed") from exc
+        text = "\n".join(visible.parts[start:end]).strip() + "\n"
+        return text, segmenter(text)
     if html_path.name == OLD_FILENAME:
         visible_parser = _VisibleText()
         visible_parser.feed(source)

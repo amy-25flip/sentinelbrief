@@ -1,0 +1,25 @@
+{
+  "id": "rbi.it-governance.2023",
+  "issuer": "RBI",
+  "title": "Master Direction on Information Technology Governance, Risk, Controls and Assurance Practices",
+  "reference_no": "RBI/2023-24/107; DoS.CO.CSITEG/SEC.7/31.01.015/2023-24",
+  "issued_on": "2023-11-07",
+  "in_force_from": "2023-11-07",
+  "in_force_until": "2026-07-31",
+  "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12562&Mode=0",
+  "source_sha256": "b504b4fb8296f532ef04fdff7a544a0bfea14d14fe7de8726c4a93c78c55b252",
+  "retrieved_at": "2026-10-06T14:43:11Z",
+  "language": "en",
+  "status": "repealed",
+  "supersedes": [],
+  "superseded_by": [
+    "rbi.payments-banks-cyber.2026",
+    "rbi.aifi-cyber.2026"
+  ],
+  "document_type": "direction",
+  "description": "Withdrawn-list row 16 states: \"DoS.CO.CSITEG/SEC.7/31.01.015/2023-24 — Master Direction on Information Technology Governance, Risk, Controls and Assurance Practices — November 07, 2023\". Paragraph 229 of the stored Payments Banks Direction and paragraph 224 of the stored AIFI Direction state that repeal was communicated by circular DoS.CO.PPG.66/11.01.005/2026-27 dated July 31, 2026. Which 2026 Direction succeeds it is this project's reading of the two texts, not a statement by RBI.",
+  "provenance": {
+    "parser_version": "sentinelbrief-rbi-html-1.0",
+    "extraction_date": "2026-10-06T14:43:11Z"
+  }
+}

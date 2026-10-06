@@ -1,0 +1,146 @@
+{
+  "instrument_id": "rbi.it-governance.2023",
+  "source_url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12562&Mode=0",
+  "source_sha256": "b504b4fb8296f532ef04fdff7a544a0bfea14d14fe7de8726c4a93c78c55b252",
+  "content_sha256": "d0300ba6fc210ed9ff11e416caa89d1b5b02b976ac5ae0612d3ae834d43290a4",
+  "retrieved_at": "2026-10-06T14:43:11Z",
+  "extractor": "sentinelbrief-rbi-html",
+  "extractor_version": "1.0",
+  "segments": [
+    {
+      "id": "4",
+      "char_start": 8764,
+      "char_end": 9660
+    },
+    {
+      "id": "5",
+      "char_start": 9660,
+      "char_end": 10026
+    },
+    {
+      "id": "6",
+      "char_start": 10026,
+      "char_end": 11529
+    },
+    {
+      "id": "7",
+      "char_start": 11529,
+      "char_end": 12704
+    },
+    {
+      "id": "8",
+      "char_start": 12704,
+      "char_end": 13603
+    },
+    {
+      "id": "9",
+      "char_start": 13657,
+      "char_end": 14645
+    },
+    {
+      "id": "10",
+      "char_start": 14645,
+      "char_end": 15371
+    },
+    {
+      "id": "11",
+      "char_start": 15371,
+      "char_end": 16040
+    },
+    {
+      "id": "12",
+      "char_start": 16040,
+      "char_end": 18033
+    },
+    {
+      "id": "13",
+      "char_start": 18033,
+      "char_end": 18715
+    },
+    {
+      "id": "14",
+      "char_start": 18715,
+      "char_end": 19077
+    },
+    {
+      "id": "15",
+      "char_start": 19077,
+      "char_end": 19701
+    },
+    {
+      "id": "16",
+      "char_start": 19701,
+      "char_end": 20146
+    },
+    {
+      "id": "17",
+      "char_start": 20146,
+      "char_end": 20727
+    },
+    {
+      "id": "18",
+      "char_start": 20727,
+      "char_end": 21147
+    },
+    {
+      "id": "19",
+      "char_start": 21147,
+      "char_end": 21739
+    },
+    {
+      "id": "20",
+      "char_start": 21739,
+      "char_end": 22265
+    },
+    {
+      "id": "21",
+      "char_start": 22265,
+      "char_end": 22706
+    },
+    {
+      "id": "22",
+      "char_start": 22763,
+      "char_end": 23073
+    },
+    {
+      "id": "23",
+      "char_start": 23073,
+      "char_end": 24114
+    },
+    {
+      "id": "24",
+      "char_start": 24114,
+      "char_end": 27281
+    },
+    {
+      "id": "25",
+      "char_start": 27281,
+      "char_end": 27894
+    },
+    {
+      "id": "26",
+      "char_start": 27894,
+      "char_end": 29565
+    },
+    {
+      "id": "27",
+      "char_start": 29565,
+      "char_end": 31036
+    },
+    {
+      "id": "28",
+      "char_start": 31101,
+      "char_end": 31664
+    },
+    {
+      "id": "29",
+      "char_start": 31664,
+      "char_end": 33454
+    },
+    {
+      "id": "30",
+      "char_start": 33498,
+      "char_end": 34726
+    }
+  ]
+}

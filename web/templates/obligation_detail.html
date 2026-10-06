@@ -20,9 +20,9 @@
         {% endif %}
     </div>
 </div>
-{% if obligation.instrument_id == 'rbi.nbfc-cyber.2026' %}
-<p><a href="/migrations/rbi.nbfc-it-framework.2017__rbi.nbfc-cyber.2026">View proposed mappings from the repealed 2017 Direction</a></p>
-{% endif %}
+{% for migration in migrations %}
+<p><a href="/migrations/{{ migration.id }}">View proposed mappings from the repealed instrument {{ migration.old }}</a></p>
+{% endfor %}
 
 <h2>Normalized Action</h2>
 <p style="font-size: 1.05rem; margin-bottom: 1rem;">{{ obligation.normalized.action }}</p>
