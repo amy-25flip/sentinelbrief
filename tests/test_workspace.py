@@ -34,7 +34,6 @@ RBI_6H = "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h"
 DPDP_72H = "meity.dpdp-rules.2025.rule7-2-b-board-detailed"
 DPDP_PRINCIPAL = "meity.dpdp-rules.2025.rule7-1-principal-intimation"
 RBI_CERT_IN = "rbi.nbfc-cyber.2026.ch5-cert-in-notification"
-FILED = datetime(2026, 10, 4, 12, 0, tzinfo=IST)  # a filing can only be recorded after it was made
 
 
 def _profile(**overrides) -> IncidentProfile:
@@ -62,6 +61,10 @@ def client(tmp_path, monkeypatch) -> TestClient:
     return TestClient(app, follow_redirects=False)
 
 
+def _filed_now() -> datetime:
+    return datetime.now(IST)
+
+
 # --- drafts ---
 
 
@@ -69,6 +72,14 @@ def test_filing_content_is_quoted_from_the_stated_pages():
     """Catches: a 'required content' item that is not in the source text."""
     content = load_filing_content(DATA)
     assert DPDP_72H in content and len(content[DPDP_72H]) == 6
+    rca_quotes = {item["quote"] for item in content["sebi.cscrf.2024.post-incident-rca-30d"]}
+    assert "timelines and any other aspect relevant to the incident" in rca_quotes
+    assert "in the \nevent of a disaster, time when disaster was declared" in rca_quotes
+    forensic = content["sebi.cscrf.2024.post-incident-forensic-report-75d"]
+    assert {
+        "the root cause of the incident, its impact and measures to prevent \nrecurrence",
+        "For all the issues/ observations submitted in the forensic report, the RE shall \nprovide a timeline for fixing the same",
+    } <= {item["quote"] for item in forensic}
     obligations = {o["id"] for o in IncidentClockEngine(DATA).obligations}
     assert set(content) <= obligations
 
@@ -148,16 +159,16 @@ def test_case_lifecycle_requires_a_person_at_each_step(store):
     """Catches: filing recorded without approval, or approval by an AI agent or nobody."""
     case_id = store.create(_profile(), "Asha Rao")
     with pytest.raises(ValueError, match="approved by a person"):
-        store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", FILED)
+        store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", _filed_now())
     for bad in ("", " ", "Claude", "codex", "auto"):
         with pytest.raises(ValueError, match="person"):
             store.approve(case_id, CERT_6H, bad)
     digest = store.approve(case_id, CERT_6H, "Asha Rao")
     with pytest.raises(ValueError, match="reference"):
-        store.record_filing(case_id, CERT_6H, "Asha Rao", " ", FILED)
+        store.record_filing(case_id, CERT_6H, "Asha Rao", " ", _filed_now())
     with pytest.raises(ValueError, match="timezone-aware"):
         store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", datetime(2027, 6, 1, 12, 0))
-    store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", FILED)
+    store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", _filed_now())
     row = next(r for r in store.view(case_id)["drafts"] if r["draft"]["obligation_id"] == CERT_6H)
     assert (
         row["status"] == "filed"
@@ -175,7 +186,7 @@ def test_changing_a_fact_withdraws_unfiled_approvals(store):
     case_id = store.create(_profile(), "Asha Rao")
     store.approve(case_id, RBI_6H, "Asha Rao")
     store.approve(case_id, CERT_6H, "Asha Rao")
-    store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", FILED)
+    store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", _filed_now())
     store.update_facts(
         case_id, {"when_detected": (T10 - timedelta(hours=3)).isoformat()}, "Asha Rao"
     )
@@ -184,7 +195,33 @@ def test_changing_a_fact_withdraws_unfiled_approvals(store):
     assert rows[RBI_6H]["draft"]["due_ist"] == "01 Jun 2027, 13:00 IST"
     assert rows[CERT_6H]["status"] == "filed"
     with pytest.raises(ValueError, match="approved by a person"):
-        store.record_filing(case_id, RBI_6H, "Asha Rao", "DAKSH-9", FILED)
+        store.record_filing(case_id, RBI_6H, "Asha Rao", "DAKSH-9", _filed_now())
+
+
+def test_filed_draft_snapshot_is_immutable_when_facts_change(store, tmp_path):
+    """Catches: a filed draft re-rendering from changed facts while the timeline still verifies."""
+    case_id = store.create(_profile(), "Asha Rao")
+    before_due = next(
+        r for r in store.view(case_id)["drafts"] if r["draft"]["obligation_id"] == CERT_6H
+    )["draft"]["due_ist"]
+    store.approve(case_id, CERT_6H, "Asha Rao")
+    store.record_filing(case_id, CERT_6H, "Vikram Shah", "CERTIN-1", _filed_now())
+    filed_event = [e for e in store.timeline(case_id) if e.type == "filing_recorded"][-1]
+    assert filed_event.payload["filed_snapshot_sha256"]
+
+    store.update_facts(
+        case_id, {"when_noticed": (T10 + timedelta(hours=1)).isoformat()}, "Asha Rao"
+    )
+
+    row = next(r for r in store.view(case_id)["drafts"] if r["draft"]["obligation_id"] == CERT_6H)
+    assert row["status"] == "filed"
+    assert row["draft"]["due_ist"] == before_due
+    assert "filed snapshot shown" in row["note"]
+    assert store.timeline(case_id).verify() == (True, None)
+    bundle = store.export(case_id, tmp_path / "bundle")
+    drafts = json.loads((bundle / "drafts.json").read_text(encoding="utf-8"))
+    exported = next(d for d in drafts if d["obligation_id"] == CERT_6H)
+    assert exported["due_ist"] == before_due
 
 
 def test_answering_an_unknown_through_facts_produces_the_deadline(store):
@@ -215,7 +252,7 @@ def test_every_state_change_is_on_the_evidence_chain(store):
     """Catches: an approval or filing that leaves no tamper-evident record."""
     case_id = store.create(_profile(), "Asha Rao")
     store.approve(case_id, CERT_6H, "Asha Rao")
-    store.record_filing(case_id, CERT_6H, "Vikram Shah", "CERTIN-1", FILED)
+    store.record_filing(case_id, CERT_6H, "Vikram Shah", "CERTIN-1", _filed_now())
     timeline = store.timeline(case_id)
     assert [e.type for e in timeline] == ["incident_created", "draft_approved", "filing_recorded"]
     assert [e.actor for e in timeline] == ["Asha Rao", "Asha Rao", "Vikram Shah"]
@@ -330,7 +367,7 @@ def test_api_case_flow(client):
     assert naive.status_code == 422
     filed = client.post(
         f"{base}/drafts/{RBI_6H}/filed",
-        json={"filed_by": "Asha Rao", "reference": "D-1", "filed_at": "2026-10-01T12:00:00+05:30"},
+        json={"filed_by": "Asha Rao", "reference": "D-1", "filed_at": _filed_now().isoformat()},
     )
     assert filed.status_code == 200, filed.text
 
@@ -415,10 +452,32 @@ def test_filing_cannot_be_recorded_before_it_was_made(store):
     """Catches: a filing recorded with a future time, making the timeline claim it already happened."""
     case_id = store.create(_profile(), "Asha Rao")
     store.approve(case_id, CERT_6H, "Asha Rao")
+    created_at = datetime.fromisoformat(store.view(case_id)["case"]["created_at"])
+    approved_at = datetime.fromisoformat(
+        next(r for r in store.view(case_id)["drafts"] if r["draft"]["obligation_id"] == CERT_6H)[
+            "approved_at"
+        ]
+    )
+    with pytest.raises(ValueError, match="before the case was opened"):
+        store.record_filing(
+            case_id,
+            CERT_6H,
+            "Asha Rao",
+            "CERTIN-0",
+            created_at.astimezone(IST) - timedelta(seconds=1),
+        )
+    with pytest.raises(ValueError, match="before the draft was approved"):
+        store.record_filing(
+            case_id,
+            CERT_6H,
+            "Asha Rao",
+            "CERTIN-0",
+            approved_at.astimezone(IST) - timedelta(microseconds=1),
+        )
     future = datetime.now(IST) + timedelta(days=1)
     with pytest.raises(ValueError, match="in the future"):
         store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", future)
-    store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", FILED)
+    store.record_filing(case_id, CERT_6H, "Asha Rao", "CERTIN-1", _filed_now())
 
 
 def test_clause_fields_can_be_completed_and_are_covered_by_the_approval(store):

@@ -37,7 +37,10 @@ _FACT_FIELDS = (
     "systems_affected",
     "is_annexure_i_type",
     "is_cyber_incident",
+    "is_irdai_cyber_incident",
+    "is_sebi_cybersecurity_incident",
     "sebi_severity",
+    "sebi_forensic_directed_or_rca_inconclusive",
     "external_events",
 )
 # A person approves and files. Names that indicate an AI agent or a placeholder are refused.
@@ -93,6 +96,11 @@ def _require_person(name: str, role: str) -> str:
 def draft_digest(draft: FilingDraft) -> str:
     """SHA-256 of the draft's content, recorded when a person approves it."""
     return hashlib.sha256(canonical_json(draft.to_dict()).encode("utf-8")).hexdigest()
+
+
+def draft_dict_digest(draft: dict[str, Any]) -> str:
+    """SHA-256 of a serialized draft snapshot."""
+    return hashlib.sha256(canonical_json(draft).encode("utf-8")).hexdigest()
 
 
 class CaseStore:
@@ -173,13 +181,33 @@ class CaseStore:
         rows = []
         for draft in drafts:
             state = dict(case["drafts"].get(draft.obligation_id) or {"status": "draft"})
+            rendered = draft.to_dict()
+            if state["status"] == "filed":
+                snapshot = state.get("filed_snapshot")
+                if not isinstance(snapshot, dict):
+                    state = {"status": "draft", "note": "filed draft snapshot missing"}
+                elif state.get("filed_snapshot_digest") != draft_dict_digest(snapshot):
+                    state = {"status": "draft", "note": "filed draft snapshot digest mismatch"}
+                else:
+                    rendered = snapshot
+                    live_digest = draft_digest(draft)
+                    if live_digest != state.get("filed_snapshot_digest"):
+                        state["note"] = (
+                            "filed snapshot shown; live draft would now differ from the filed content"
+                        )
             if state["status"] == "approved" and state.get("approved_digest") != draft_digest(
                 draft
             ):
                 # Defence in depth: an approval never covers content it did not see.
                 state = {"status": "draft", "note": "content changed after approval; approve again"}
             rows.append(
-                {"draft": draft.to_dict(), "open_fields": len(draft.open_fields()), **state}
+                {
+                    "draft": rendered,
+                    "open_fields": len(
+                        [f for f in rendered.get("fields", []) if f.get("value") is None]
+                    ),
+                    **state,
+                }
             )
         ok, first_bad = self.timeline(case_id).verify()
         external = []
@@ -335,13 +363,22 @@ class CaseStore:
                 "A filing reference (acknowledgement number or message id) is required"
             )
         case = self._read(case_id)
+        created_at = datetime.fromisoformat(case["created_at"])
+        if filed_at.astimezone(UTC) < created_at.astimezone(UTC):
+            raise ValueError("filed_at cannot be before the case was opened")
         state = case["drafts"].get(obligation_id) or {}
         if state.get("status") != "approved":
             raise ValueError("A draft must be approved by a person before a filing is recorded")
-        if state.get("approved_digest") != draft_digest(self._draft(case_id, obligation_id)):
+        approved_at = datetime.fromisoformat(state.get("approved_at", ""))
+        if filed_at.astimezone(UTC) < approved_at.astimezone(UTC):
+            raise ValueError("filed_at cannot be before the draft was approved")
+        draft = self._draft(case_id, obligation_id)
+        if state.get("approved_digest") != draft_digest(draft):
             raise ValueError(
                 "The draft changed after approval; approve it again before recording a filing"
             )
+        snapshot = draft.to_dict()
+        snapshot_digest = draft_dict_digest(snapshot)
         self.timeline(case_id).append(
             filed_by,
             "filing_recorded",
@@ -350,6 +387,7 @@ class CaseStore:
                 "reference": reference.strip(),
                 "filed_at": filed_at.isoformat(),
                 "draft_sha256": state["approved_digest"],
+                "filed_snapshot_sha256": snapshot_digest,
             },
         )
         case["drafts"][obligation_id] = {
@@ -358,6 +396,8 @@ class CaseStore:
             "filed_by": filed_by,
             "filed_at": filed_at.isoformat(),
             "reference": reference.strip(),
+            "filed_snapshot": snapshot,
+            "filed_snapshot_digest": snapshot_digest,
         }
         self._write(case)
 
@@ -388,7 +428,13 @@ class CaseStore:
             "case.json": case,
             "clock_result.json": result.to_dict(),
             "drafts.json": [
-                {**d.to_dict(), "state": case["drafts"].get(d.obligation_id) or {"status": "draft"}}
+                {
+                    **(
+                        (case["drafts"].get(d.obligation_id) or {}).get("filed_snapshot")
+                        or d.to_dict()
+                    ),
+                    "state": case["drafts"].get(d.obligation_id) or {"status": "draft"},
+                }
                 for d in drafts
             ],
             "law_snapshot.json": {"law_as_of": result.law_as_of.isoformat(), "obligations": law},

@@ -114,6 +114,28 @@
         "document": "sebi.cscrf.2024",
         "page": 202,
         "quote": "time when operations/ functions/ services were restored"
+      },
+      {
+        "document": "sebi.cscrf.2024",
+        "page": 202,
+        "quote": "timelines and any other aspect relevant to the incident"
+      },
+      {
+        "document": "sebi.cscrf.2024",
+        "page": 202,
+        "quote": "in the \nevent of a disaster, time when disaster was declared"
+      }
+    ],
+    "sebi.cscrf.2024.post-incident-forensic-report-75d": [
+      {
+        "document": "sebi.cscrf.2024",
+        "page": 203,
+        "quote": "the root cause of the incident, its impact and measures to prevent \nrecurrence"
+      },
+      {
+        "document": "sebi.cscrf.2024",
+        "page": 204,
+        "quote": "For all the issues/ observations submitted in the forensic report, the RE shall \nprovide a timeline for fixing the same"
       }
     ]
   }

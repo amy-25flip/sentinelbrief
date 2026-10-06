@@ -186,6 +186,18 @@ def test_regulatory_card_grounding_rejects_fact_only_in_evidence_required(
         )
 
 
+def test_regulatory_card_grounding_rejects_unsupported_non_numeric_duty(
+    obligations_and_instruments,
+):
+    obligations, _ = obligations_and_instruments
+    obligation = next(o for o in obligations if o["id"].endswith("incident-reporting-6h"))
+    with pytest.raises(ValueError, match="ungrounded duty term"):
+        verify_grounded_body(
+            "Compliance records and relevant evidence must be preserved for regulatory inspection.",
+            obligation,
+        )
+
+
 def test_every_regulatory_card_body_passes_grounding(obligations_and_instruments):
     obligations, instruments = obligations_and_instruments
     generator = CardGenerator()

@@ -2,29 +2,97 @@
   "$schema": "../../schema/benchmark_scenario.schema.json",
   "id": "rbi-bl-below-500cr-no-reporting-duty",
   "description": "A below-₹500-crore Base Layer NBFC is in Chapter III, which contains no RBI incident-reporting duty.",
-  "entity_profile": {"entity_class": "nbfc.bl_below_500cr", "is_listed": false, "holds_personal_data": false, "uses_protected_systems": false, "is_regulated_cloud_vps": false},
-  "incident_facts": {"description": "Ransomware incident", "incident_types": ["Malicious code attacks such as Ransomware"], "when_detected": "2026-10-01T10:00:00+05:30", "when_noticed": "2026-10-01T10:00:00+05:30", "systems_affected": ["server"]},
+  "entity_profile": {
+    "entity_class": "nbfc.bl_below_500cr",
+    "is_listed": false,
+    "holds_personal_data": false,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Ransomware incident",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "when_detected": "2026-10-01T10:00:00+05:30",
+    "when_noticed": "2026-10-01T10:00:00+05:30",
+    "systems_affected": [
+      "server"
+    ]
+  },
   "law_snapshot_date": "2026-10-04",
   "expected": {
-    "law_as_of": "2026-10-01", "regulators": ["CERT-In"],
-    "deadlines": [{"regulator": "CERT-In", "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "anchor": "noticing", "deadline_iso8601": "PT6H", "deadline_timestamp": "2026-10-01T16:00:00+05:30"}],
-    "citations": [{"obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "instrument_id": "cert-in.directions-70b.2022", "paragraph_ref": "Direction (ii)"}],
+    "law_as_of": "2026-10-01",
+    "regulators": [
+      "CERT-In"
+    ],
+    "deadlines": [
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      }
+    ],
     "required_evidence": [],
     "not_applicable": [
-      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h", "reason": "Chapter IV class mismatch"},
-      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h", "reason": "Chapter V class mismatch"},
-      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-cert-in-notification", "reason": "Chapter V class mismatch"},
-      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb", "reason": "Chapter V class mismatch"},
-      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-va-half-yearly", "reason": "Chapter V class mismatch"},
-      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-pt-annual", "reason": "Chapter V class mismatch"}
+      {
+        "regulator": "RBI",
+        "obligation_id": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h",
+        "reason": "Chapter IV class mismatch"
+      },
+      {
+        "regulator": "RBI",
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h",
+        "reason": "Chapter V class mismatch"
+      },
+      {
+        "regulator": "RBI",
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-cert-in-notification",
+        "reason": "Chapter V class mismatch"
+      },
+      {
+        "regulator": "RBI",
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb",
+        "reason": "Chapter V class mismatch"
+      },
+      {
+        "regulator": "RBI",
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-va-half-yearly",
+        "reason": "Chapter V class mismatch"
+      },
+      {
+        "regulator": "RBI",
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-pt-annual",
+        "reason": "Chapter V class mismatch"
+      }
     ],
-    "unknowns": [], "time_critical": []
+    "unknowns": [],
+    "time_critical": []
   },
-  "adversarial_flags": ["chapter_iii_has_no_modelled_reporting_duty"],
+  "adversarial_flags": [
+    "chapter_iii_has_no_modelled_reporting_duty"
+  ],
   "split": "dev",
   "labels_source": "RBI NBFC Direction paragraph 3(2), Chapter III paragraphs 7-9; CERT-In Direction (ii)",
   "source_quotes": [
-    {"document": "rbi.nbfc-cyber.2026", "page": 3, "quote": "The provisions contained in Chapter III shall be applicable only for NBFCs-\nBase Layer (NBFCs-BL) with asset size below ₹500 crore, and Core \nInvestment Companies (CICs)"},
-    {"document": "cert-in.directions-70b.2022", "page": 2, "quote": "mentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents."}
+    {
+      "document": "rbi.nbfc-cyber.2026",
+      "page": 3,
+      "quote": "The provisions contained in Chapter III shall be applicable only for NBFCs-\nBase Layer (NBFCs-BL) with asset size below ₹500 crore, and Core \nInvestment Companies (CICs)"
+    },
+    {
+      "document": "cert-in.directions-70b.2022",
+      "page": 2,
+      "quote": "mentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents."
+    }
   ]
 }

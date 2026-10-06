@@ -129,7 +129,12 @@ class BenchmarkScorer:
             systems_affected=facts.get("systems_affected", []),
             is_annexure_i_type=facts.get("is_annexure_i_type"),
             is_cyber_incident=facts.get("is_cyber_incident"),
+            is_irdai_cyber_incident=facts.get("is_irdai_cyber_incident"),
+            is_sebi_cybersecurity_incident=facts.get("is_sebi_cybersecurity_incident"),
             sebi_severity=facts.get("sebi_severity"),
+            sebi_forensic_directed_or_rca_inconclusive=facts.get(
+                "sebi_forensic_directed_or_rca_inconclusive"
+            ),
         )
 
     def evaluate_scenario(self, scenario: dict[str, Any]) -> dict[str, Any]:

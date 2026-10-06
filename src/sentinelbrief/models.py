@@ -118,7 +118,7 @@ class Applicability(BaseModel):
                 "sebi_cybersecurity_incident",
                 "sebi_incident_reporting_applies",
                 "nciipc_protected_system",
-                "sebi_high_or_critical",
+                "sebi_forensic_required",
             ]
         ]
         | None
@@ -133,6 +133,10 @@ class Validity(BaseModel):
     valid_from: date
     valid_to: date | None = None
     recorded_at: datetime
+    # Before this date it is disputed whether the duty was binding at all. The duty is still
+    # shown (the earlier reading), with contested_note as a warning.
+    contested_until: date | None = None
+    contested_note: str | None = None
 
 
 class Extraction(BaseModel):
@@ -298,7 +302,10 @@ class IncidentFacts(BaseModel):
     external_events: dict[str, datetime] | None = None
     is_annexure_i_type: bool | None = None
     is_cyber_incident: bool | None = None
+    is_irdai_cyber_incident: bool | None = None
+    is_sebi_cybersecurity_incident: bool | None = None
     sebi_severity: Literal["low", "medium", "high", "critical"] | None = None
+    sebi_forensic_directed_or_rca_inconclusive: bool | None = None
     annexure_i_items: list[str] | None = None
     personal_data_involved: bool | None = None
     systems_affected: list[str]

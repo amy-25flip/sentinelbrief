@@ -1,75 +1,71 @@
 {
-    "id":  "cert-in-vps-provider",
-    "description":  "A VPS provider experiences unauthorized access.",
-    "entity_profile":  {
-                           "entity_class":  "vps_provider",
-                           "is_listed":  false,
-                           "holds_personal_data":  true,
-                           "uses_protected_systems":  false,
-                           "is_regulated_cloud_vps":  true,
-                           "additional_properties":  {
-                                                         "is_service_provider":  true
-                                                     }
-                       },
-    "incident_facts":  {
-                           "description":  "Unauthorized access to VPS infrastructure.",
-                           "incident_types":  [
-                                                  "unauthorized access"
-                                              ],
-                           "when_detected":  "2026-09-15T10:00:00+05:30",
-                           "when_noticed":  "2026-09-15T10:00:00+05:30",
-                           "when_occurred":  "2026-09-15T08:00:00+05:30",
-                           "personal_data_involved":  false,
-                           "systems_affected":  [
-                                                    "vps_infrastructure"
-                                                ]
-                       },
-    "law_snapshot_date":  "2026-09-24",
-    "expected":  {
-                     "law_as_of":  "2026-09-15",
-                     "regulators":  [
-                                        "CERT-In"
-                                    ],
-                     "deadlines":  [
-                                       {
-                                           "regulator":  "CERT-In",
-                                           "obligation_id":  "cert-in.directions-70b.2022.incident-reporting-6h",
-                                           "anchor":  "noticing",
-                                           "deadline_iso8601":  "PT6H",
-                                           "deadline_timestamp":  "2026-09-15T16:00:00+05:30"
-                                       }
-                                   ],
-                     "citations":  [
-                                       {
-                                           "obligation_id":  "cert-in.directions-70b.2022.vps-cloud-vpn-customer-data-5y",
-                                           "instrument_id":  "cert-in.directions-70b.2022",
-                                           "paragraph_ref":  "Direction (v)"
-                                       }
-                                   ],
-                     "required_evidence":  [
-                                               "subscriber registration records"
-                                           ],
-                     "not_applicable":  [
-                                            {
-                                                "regulator":  "CERT-In",
-                                                "obligation_id":  "cert-in.directions-70b.2022.virtual-asset-kyc-5y",
-                                                "reason":  "Direction (vi) names only virtual asset service, exchange and custodian wallet providers"
-                                            }
-                                        ],
-                     "unknowns":  [
-
-                                  ]
-                 },
-    "adversarial_flags":  [
-
-                          ],
-    "split":  "dev",
-    "labels_source":  "CERT-In Directions 70B dated 28 April 2022 (primary text)",
-    "source_quotes":  [
-                          {
-                              "document":  "cert-in.directions-70b.2022",
-                              "page":  3,
-                              "quote":  "(v) Data Centres, Virtual Private Server (VPS) providers, Cloud Service \nproviders and Virtual Private Network Service (VPN Service) providers, \nshall be required to register the  following accurate information \nwhich  must be maintained by them for a period of 5 years or longer \nduration as mandated by the law after any cancellation or withdrawal of \nthe registration as the case may be: \na. Validated names of subscribers/customers hiring the services \nb. Period of hire including dates \nc. IPs allotted to / being used by the members \nd. Email address and IP address and time stamp used at the time of \nregistration / on-boarding \ne. Purpose for hiring services \nf. Validated address and contact numbers \ng. Ownership pattern of the subscribers / customers hiring services"
-                          }
-                      ]
+  "id": "cert-in-vps-provider",
+  "description": "A VPS provider experiences unauthorized access.",
+  "entity_profile": {
+    "entity_class": "vps_provider",
+    "is_listed": false,
+    "holds_personal_data": true,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": true,
+    "additional_properties": {
+      "is_service_provider": true
+    }
+  },
+  "incident_facts": {
+    "description": "Unauthorized access to VPS infrastructure.",
+    "incident_types": [
+      "unauthorized access"
+    ],
+    "when_detected": "2026-09-15T10:00:00+05:30",
+    "when_noticed": "2026-09-15T10:00:00+05:30",
+    "when_occurred": "2026-09-15T08:00:00+05:30",
+    "personal_data_involved": false,
+    "systems_affected": [
+      "vps_infrastructure"
+    ]
+  },
+  "law_snapshot_date": "2026-09-24",
+  "expected": {
+    "law_as_of": "2026-09-15",
+    "regulators": [
+      "CERT-In"
+    ],
+    "deadlines": [
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-09-15T16:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.vps-cloud-vpn-customer-data-5y",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (v)"
+      }
+    ],
+    "required_evidence": [
+      "subscriber registration records"
+    ],
+    "not_applicable": [
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.virtual-asset-kyc-5y",
+        "reason": "Direction (vi) names only virtual asset service, exchange and custodian wallet providers"
+      }
+    ],
+    "unknowns": []
+  },
+  "adversarial_flags": [],
+  "split": "dev",
+  "labels_source": "CERT-In Directions 70B dated 28 April 2022 (primary text)",
+  "source_quotes": [
+    {
+      "document": "cert-in.directions-70b.2022",
+      "page": 3,
+      "quote": "(v) Data Centres, Virtual Private Server (VPS) providers, Cloud Service \nproviders and Virtual Private Network Service (VPN Service) providers, \nshall be required to register the  following accurate information \nwhich  must be maintained by them for a period of 5 years or longer \nduration as mandated by the law after any cancellation or withdrawal of \nthe registration as the case may be: \na. Validated names of subscribers/customers hiring the services \nb. Period of hire including dates \nc. IPs allotted to / being used by the members \nd. Email address and IP address and time stamp used at the time of \nregistration / on-boarding \ne. Purpose for hiring services \nf. Validated address and contact numbers \ng. Ownership pattern of the subscribers / customers hiring services"
+    }
+  ]
 }

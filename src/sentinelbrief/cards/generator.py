@@ -62,6 +62,14 @@ _NAMED_BODIES = (
     "Data Protection Board",
     "Board",
 )
+_SUBSTANTIVE_DUTY_TERMS = (
+    "preserve",
+    "preserved",
+    "inspection",
+    "evidence",
+    "compliance records",
+    "regulatory inspection",
+)
 
 
 def _norm_text(text: str) -> str:
@@ -116,6 +124,12 @@ def verify_grounded_body(body: str, obligation: dict[str, Any]) -> None:
         if name in body and _norm_text(name) not in grounded:
             raise ValueError(
                 f"Card body for {obligation.get('id')} contains ungrounded named body: {name}"
+            )
+    lowered = _norm_text(body)
+    for term in _SUBSTANTIVE_DUTY_TERMS:
+        if _norm_text(term) in lowered and _norm_text(term) not in grounded:
+            raise ValueError(
+                f"Card body for {obligation.get('id')} contains ungrounded duty term: {term}"
             )
 
 

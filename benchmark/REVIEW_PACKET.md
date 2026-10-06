@@ -4,7 +4,7 @@ For a compliance professional. Every expected outcome below was written by an AI
 primary texts and has not been checked by a qualified person. Until it has, no accuracy
 figure for this tool should be quoted.
 
-99 dev scenarios over 47 modelled obligations.
+101 dev scenarios over 47 modelled obligations.
 
 How to review: do Part A first. In Part B, tick each scenario or say what is wrong.
 PDF page numbers refer to the files in `data/raw/`.
@@ -53,9 +53,9 @@ Confirming or correcting one of these settles every scenario that depends on it.
 
 ### `irdai.ics-guidelines.2023.registration-data-retention-180d` (confidence 0.6)
 
-- **Clause** (Policy 2.24, 3.1 item 5, PDF page 297): "5. The Organization which collects information from a user for registration on the computer resource, shall retained his information for a period of one hundred and eighty days"
+- **Clause** (Policy 2.24, 3.1 item 5, PDF page 297): "5. The Organization which collects information from a user for registration on the computer resource, shall retained his information for a period of one hundred and eighty days Page 168 of 175 after any cancellation or withdrawal of his registration, as the case may be."
 - **Modelled as:** Retain the user's registration information for one hundred and eighty days after any cancellation or withdrawal of the registration.
-- **Why it is uncertain:** A retention period, not a deadline. The sentence continues on PDF page 298 ('after any cancellation or withdrawal of his registration'). Policy 2.24 restates the IT (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021; whether the entity is an intermediary under those Rules is not evaluated. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
+- **Why it is uncertain:** A retention period, not a deadline. The cited sentence crosses PDF pages 297 and 298; the second citation carries the operative continuation, after any cancellation or withdrawal of his registration. Policy 2.24 restates the IT (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021; whether the entity is an intermediary under those Rules is not evaluated. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year.
 - [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
 
 ### `irdai.ics-guidelines.2023.cloud-breach-notice-contract-clause` (confidence 0.6)
@@ -137,8 +137,8 @@ Confirming or correcting one of these settles every scenario that depends on it.
 
 ### `sebi.cscrf.2024.nciipc-protected-system-report` (confidence 0.7)
 
-- **Clause** (RS.CO.S1 item 3 (NCIIPC), PDF page 124): "Additionally, the REs, whose systems have been identified as “Protected system” by NCIIPC shall also report the incident to NCIIPC."
-- **Modelled as:** Also report the incident to NCIIPC.
+- **Clause** (Annexure-O B.3.1 (NCIIPC), PDF page 200): "Additionally, any entity whose systems have been identified as “Critical Information Infrastructure (CII)/ protected system” by National Critical Information Infrastructure Protection Centre (NCIIPC), shall report and inform the incident to NCIIPC in a timely manner."
+- **Modelled as:** Report and inform the incident to NCIIPC in a timely manner.
 - **Why it is uncertain:** No time limit in the text; Annexure-O 3.1 (page 200) says "in a timely manner". Modelled as an applicable duty with no computed deadline. Binding date contested: paragraph 17.1 states, "For six categories of REs where cybersecurity and cyber resilience circular already exists - by January 01, 2025." Paragraph 17.2 states, "For other REs where CSCRF is being issued for the first time - by April 01, 2025." (PDF page 9). Those are compliance glide-path dates. valid_from uses the circular issue date, 2024-08-20, so the tool does not tell a user they owe less pending legal review.
 - [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
 
@@ -174,7 +174,7 @@ Confirming or correcting one of these settles every scenario that depends on it.
 
 - **Clause** (Annexure-O B.4.1 and B.4.3, PDF page 203): "4.1. For all incidents classified as High or Critical, the RE shall submit a forensic audit/ investigation report. 4.2. For incidents classified as low or medium, forensic report shall be submitted if the RCA is inconclusive or if the SEBI/ HPSC-CS directs the same. 4.3. After the completion of forensic audit, RE shall submit a final closure report, which shall include the root cause of the incident, its impact and measures to prevent recurrence. The timeline for submission of the reports (including closure reports), shall be decided based on discussion with all stakeholders. However, the maximum period for the submission of forensic audit report shall be 75 days from date of reporting of incident."
 - **Modelled as:** Submit the forensic audit / investigation report, and after it a final closure report. The timeline is decided in discussion with all stakeholders; the maximum is 75 days from the date of reporting of the incident.
-- **Why it is uncertain:** 75 days is a stated maximum, 'from date of reporting of incident'; unlike Table 36 the clause does not add 'or being brought to notice', so only the report time starts it. Counted from the timestamp. Severity is the RE's own classification; the tool does not classify. Binding date contested: paragraph 17.1 states, "For six categories of REs where cybersecurity and cyber resilience circular already exists - by January 01, 2025." Paragraph 17.2 states, "For other REs where CSCRF is being issued for the first time - by April 01, 2025." (PDF page 9). Those are compliance glide-path dates. valid_from uses the circular issue date, 2024-08-20, so the tool does not tell a user they owe less pending legal review.
+- **Why it is uncertain:** 75 days is a stated maximum, from date of reporting of incident; unlike Table 36 the clause does not add brought to notice, so only the report time starts it. Severity is the RE's own classification. For Low or Medium incidents, Annexure-O 4.2 requires the forensic report only if RCA is inconclusive or SEBI / HPSC-CS directs it; an unknown condition is asked, so the tool does not tell a user they owe less. Binding date contested: paragraph 17.1 states, For six categories of REs where cybersecurity and cyber resilience circular already exists - by January 01, 2025. Paragraph 17.2 states, For other REs where CSCRF is being issued for the first time - by April 01, 2025. (PDF page 9). Those are compliance glide-path dates. valid_from uses the circular issue date, 2024-08-20, so the tool does not tell a user they owe less pending legal review.
 - [ ] Reading is right   - [ ] Reading is wrong (say why): ____________________
 
 ### `sebi.cscrf.2024.quarterly-report-15d` (confidence 0.7)
@@ -641,6 +641,7 @@ Adversarial anchor test: A breach occurred on 2027-06-01 but the Data Fiduciary 
 - **Noticed:** `2027-06-03T09:00:00+05:30`
 - **Became aware (DPDP):** `2027-06-03T09:00:00+05:30`
 - **Personal data involved:** `True`
+- **Selected Annexure I items:** `annexure_i.xi`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2027-06-01`; regulators: CERT-In, MeitY)
@@ -663,6 +664,7 @@ Adversarial missing fact test: In June 2027, a personal data breach is detected 
 - **Detected:** `2027-06-15T10:00:00+05:30`
 - **Noticed:** `2027-06-15T10:00:00+05:30`
 - **Personal data involved:** `True`
+- **Selected Annexure I items:** `annexure_i.xi`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2027-06-15`; regulators: CERT-In, MeitY)
@@ -688,6 +690,7 @@ In June 2027 (after DPDP Rules 2025 Rule 7 commencement on 13 May 2027), a Data 
 - **Noticed:** `2027-06-01T10:00:00+05:30`
 - **Became aware (DPDP):** `2027-06-01T10:00:00+05:30`
 - **Personal data involved:** `True`
+- **Selected Annexure I items:** `annexure_i.xi`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2027-06-01`; regulators: CERT-In, MeitY)
@@ -716,6 +719,7 @@ Adversarial commencement test: An incident occurs in September 2026. DPDP Rules 
 - **Noticed:** `2026-09-01T10:00:00+05:30`
 - **Became aware (DPDP):** `2026-09-01T10:00:00+05:30`
 - **Personal data involved:** `True`
+- **Selected Annexure I items:** `annexure_i.v, annexure_i.xi`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2026-09-01`; regulators: CERT-In)
@@ -743,6 +747,7 @@ Multi-regulator overlap test: In July 2027, an online platform that is a Data Fi
 - **Noticed:** `2027-07-01T10:00:00+05:30`
 - **Became aware (DPDP):** `2027-07-01T10:00:00+05:30`
 - **Personal data involved:** `True`
+- **Selected Annexure I items:** `annexure_i.v, annexure_i.xi`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2027-07-01`; regulators: CERT-In, MeitY)
@@ -767,6 +772,7 @@ Adversarial condition test: In June 2027, a Data Fiduciary suffers a server fail
 - **Noticed:** `2027-06-25T16:00:00+05:30`
 - **Became aware (DPDP):** `2027-06-25T16:00:00+05:30`
 - **Personal data involved:** `False`
+- **Selected Annexure I items:** `annexure_i.iv`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2027-06-25`; regulators: CERT-In)
@@ -791,6 +797,7 @@ Adversarial entity scope test: A pure body corporate that is not a Data Fiduciar
 - **Noticed:** `2027-06-01T10:00:00+05:30`
 - **Became aware (DPDP):** `2027-06-01T10:00:00+05:30`
 - **Personal data involved:** `False`
+- **Selected Annexure I items:** `annexure_i.v`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2027-06-01`; regulators: CERT-In)
@@ -818,6 +825,7 @@ A Significant Data Fiduciary (SDF) designated under DPDP Act Section 10 suffers 
 - **Noticed:** `2027-06-15T14:00:00+05:30`
 - **Became aware (DPDP):** `2027-06-15T14:00:00+05:30`
 - **Personal data involved:** `True`
+- **Selected Annexure I items:** `annexure_i.xi`
 - **Protected system (NCIIPC):** `True`
 
 **Expected** (law as of `2027-06-15`; regulators: CERT-In, MeitY)
@@ -831,7 +839,7 @@ A Significant Data Fiduciary (SDF) designated under DPDP Act Section 10 suffers 
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-## SEBI CSCRF (2024) (29 scenarios)
+## SEBI CSCRF (2024) (31 scenarios)
 
 ### 26. `sebi-anchor-detection-vs-noticing`
 
@@ -844,6 +852,7 @@ Adversarial anchor test: A Small-size RE detects an incident via automated SIEM 
 - **Noticed:** `2025-08-01T10:00:00+05:30`
 - **Became aware (DPDP):** `2025-08-01T10:00:00+05:30`
 - **Personal data involved:** `False`
+- **Selected Annexure I items:** `annexure_i.iii`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2025-08-01`; regulators: CERT-In, SEBI)
@@ -938,6 +947,7 @@ A Critical severity incident: the same 75-day maximum.
 - **Incident type(s) as stated:** Malicious code attacks such as Ransomware
 - **Noticed:** `2026-10-01T10:00:00+05:30`
 - **Reported to SEBI:** `2026-10-01T15:00:00+05:30`
+- **SEBI severity:** `critical`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2026-10-01`; regulators: CERT-In, SEBI)
@@ -971,6 +981,7 @@ A High severity incident: the forensic report is due at most 75 days after the r
 - **Incident type(s) as stated:** Malicious code attacks such as Ransomware
 - **Noticed:** `2026-10-01T10:00:00+05:30`
 - **Reported to SEBI:** `2026-10-01T15:00:00+05:30`
+- **SEBI severity:** `high`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2026-10-01`; regulators: CERT-In, SEBI)
@@ -996,14 +1007,16 @@ A High severity incident: the forensic report is due at most 75 days after the r
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 31. `sebi-forensic-medium-not-required`
+### 31. `sebi-forensic-low-not-directed`
 
-A Medium severity incident: no forensic report is required by default, and the tool does not ask.
+A Low severity incident where RCA is not inconclusive and SEBI / HPSC-CS has not directed a forensic report.
 
 - **Entity classes:** `sebi.qualified_re`
 - **Incident type(s) as stated:** Malicious code attacks such as Ransomware
 - **Noticed:** `2026-10-01T10:00:00+05:30`
 - **Reported to SEBI:** `2026-10-01T15:00:00+05:30`
+- **SEBI severity:** `low`
+- **SEBI forensic directed or RCA inconclusive:** `False`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2026-10-01`; regulators: CERT-In, SEBI)
@@ -1029,13 +1042,83 @@ A Medium severity incident: no forensic report is required by default, and the t
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 32. `sebi-forensic-needs-report-time`
+### 32. `sebi-forensic-medium-asks-condition`
+
+A Medium severity incident: the tool asks whether RCA is inconclusive or SEBI / HPSC-CS directs a forensic report.
+
+- **Entity classes:** `sebi.qualified_re`
+- **Incident type(s) as stated:** Malicious code attacks such as Ransomware
+- **Noticed:** `2026-10-01T10:00:00+05:30`
+- **Reported to SEBI:** `2026-10-01T15:00:00+05:30`
+- **SEBI severity:** `medium`
+- **Protected system (NCIIPC):** `False`
+
+**Expected** (law as of `2026-10-01`; regulators: CERT-In, SEBI)
+
+- Deadline `2026-10-01T16:00:00+05:30` for `cert-in.directions-70b.2022.incident-reporting-6h` (PT6H from noticing)
+- Deadline `2026-10-01T16:00:00+05:30` for `sebi.cscrf.2024.incident-reporting-6h` (PT6H from noticing)
+- Deadline `2026-10-02T10:00:00+05:30` for `sebi.cscrf.2024.incident-portal-24h` (PT24H from noticing)
+- Deadline `2026-10-04T15:00:00+05:30` for `sebi.cscrf.2024.post-incident-interim-report-3d` (P3D from reported)
+- Deadline `2026-10-08T15:00:00+05:30` for `sebi.cscrf.2024.post-incident-mitigation-7d` (P7D from reported)
+- Deadline `2026-10-31T15:00:00+05:30` for `sebi.cscrf.2024.post-incident-rca-30d` (P30D from reported)
+- Deadline `2026-11-15T15:00:00+05:30` for `sebi.cscrf.2024.post-incident-vapt-45d` (P45D from reported)
+- Does not apply: `sebi.cscrf.2024.other-incidents-24h`
+- Does not apply: `sebi.cscrf.2024.nciipc-protected-system-report`
+- Does not apply: `sebi.cscrf.2024.broker-dp-exchange-reporting-6h`
+- The tool must ask (question contains "RCA is inconclusive or SEBI / HPSC-CS directs") before deciding `sebi.cscrf.2024.post-incident-forensic-report-75d`
+
+**Clauses relied on**
+
+- `sebi.cscrf.2024`, PDF page 203: "4.1. For all incidents classified as High or Critical, the RE shall submit a forensic audit/ investigation report. 4.2. For incidents classified as low or medium, forensic report shall be submitted if the RCA is inconclusive or if the SEBI/ HPSC-CS directs the same. 4.3. After the completion of forensic audit, RE shall submit a final closure report, which shall include the root cause of the incident, its impact and measures to prevent recurrence. The timeline for submission of the reports (including closure reports), shall be decided based on discussion with all stakeholders. However, the maximum period for the submission of forensic audit report shall be 75 days from date of reporting of incident."
+- `sebi.cscrf.2024`, PDF page 201: "3.3. RE shall undertake the necessary activities and submit the relevant reports as per the following timelines: Table 36: Timelines for post-cyber incident activity(ies) and report submission S. No. Name of the Report/ Activity Timeline for Submission (from the date of reporting the incident or being brought to notice about the incident) 1 Interim Report* 3 Days 2 Mitigation measure 7 Days 3 Root Cause Analysis (RCA) report** 30 Days# 4 Forensic Audit Report (on the incident) and its closure report Refer clause 3.4 below 5 Vulnerability Assessment and Penetration Testing (VAPT) for the incident and its closure reports 45 days"
+- `sebi.cscrf.2024`, PDF page 123: "1. Any cyber-attack, cybersecurity incident and/ or breach falling under CERT-In Cybersecurity directions29 shall be notified to SEBI and CERT-In within 6 hours of noticing/ detecting such incidents or being brought to notice about such incidents. This information shall be shared with SEBI through the mkt_incidents@sebi.gov.in within 6 hours. However, necessary details of the incidents shall be reported on SEBI Incident Reporting Portal within 24 hours. Stock Brokers/ Depository Participants shall also report the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In within 6 hours of noticing/ detecting such incidents or being brought to notice about such incidents. All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and NCIIPC (as applicable) within 24 hours."
+- `cert-in.directions-70b.2022`, PDF page 2: "(ii) Any service provider, intermediary, data centre, body corporate and Government organisation shall mandatorily report cyber incidents as mentioned in Annexure I to CERT-In within 6 hours of noticing such incidents or being brought to notice about such incidents. The incidents can be reported to CERT-In via email (incident@cert-in.org.in), Phone (1800- 11-4949) and Fax (1800-11-6969). The details regarding methods and formats of reporting cyber security incidents is also published on the website of CERT-In www.cert-in.org.in and will be updated from time to time."
+
+- [ ] Correct   - [ ] Incorrect: ____________________
+
+### 33. `sebi-forensic-medium-directed`
+
+A Medium severity incident where RCA is inconclusive or SEBI / HPSC-CS directs the forensic report.
+
+- **Entity classes:** `sebi.qualified_re`
+- **Incident type(s) as stated:** Malicious code attacks such as Ransomware
+- **Noticed:** `2026-10-01T10:00:00+05:30`
+- **Reported to SEBI:** `2026-10-01T15:00:00+05:30`
+- **SEBI severity:** `medium`
+- **SEBI forensic directed or RCA inconclusive:** `True`
+- **Protected system (NCIIPC):** `False`
+
+**Expected** (law as of `2026-10-01`; regulators: CERT-In, SEBI)
+
+- Deadline `2026-10-01T16:00:00+05:30` for `cert-in.directions-70b.2022.incident-reporting-6h` (PT6H from noticing)
+- Deadline `2026-10-01T16:00:00+05:30` for `sebi.cscrf.2024.incident-reporting-6h` (PT6H from noticing)
+- Deadline `2026-10-02T10:00:00+05:30` for `sebi.cscrf.2024.incident-portal-24h` (PT24H from noticing)
+- Deadline `2026-10-04T15:00:00+05:30` for `sebi.cscrf.2024.post-incident-interim-report-3d` (P3D from reported)
+- Deadline `2026-10-08T15:00:00+05:30` for `sebi.cscrf.2024.post-incident-mitigation-7d` (P7D from reported)
+- Deadline `2026-10-31T15:00:00+05:30` for `sebi.cscrf.2024.post-incident-rca-30d` (P30D from reported)
+- Deadline `2026-11-15T15:00:00+05:30` for `sebi.cscrf.2024.post-incident-vapt-45d` (P45D from reported)
+- Deadline `2026-12-15T15:00:00+05:30` for `sebi.cscrf.2024.post-incident-forensic-report-75d` (P75D from reported)
+- Does not apply: `sebi.cscrf.2024.other-incidents-24h`
+- Does not apply: `sebi.cscrf.2024.nciipc-protected-system-report`
+- Does not apply: `sebi.cscrf.2024.broker-dp-exchange-reporting-6h`
+
+**Clauses relied on**
+
+- `sebi.cscrf.2024`, PDF page 203: "4.1. For all incidents classified as High or Critical, the RE shall submit a forensic audit/ investigation report. 4.2. For incidents classified as low or medium, forensic report shall be submitted if the RCA is inconclusive or if the SEBI/ HPSC-CS directs the same. 4.3. After the completion of forensic audit, RE shall submit a final closure report, which shall include the root cause of the incident, its impact and measures to prevent recurrence. The timeline for submission of the reports (including closure reports), shall be decided based on discussion with all stakeholders. However, the maximum period for the submission of forensic audit report shall be 75 days from date of reporting of incident."
+- `sebi.cscrf.2024`, PDF page 201: "3.3. RE shall undertake the necessary activities and submit the relevant reports as per the following timelines: Table 36: Timelines for post-cyber incident activity(ies) and report submission S. No. Name of the Report/ Activity Timeline for Submission (from the date of reporting the incident or being brought to notice about the incident) 1 Interim Report* 3 Days 2 Mitigation measure 7 Days 3 Root Cause Analysis (RCA) report** 30 Days# 4 Forensic Audit Report (on the incident) and its closure report Refer clause 3.4 below 5 Vulnerability Assessment and Penetration Testing (VAPT) for the incident and its closure reports 45 days"
+- `sebi.cscrf.2024`, PDF page 123: "1. Any cyber-attack, cybersecurity incident and/ or breach falling under CERT-In Cybersecurity directions29 shall be notified to SEBI and CERT-In within 6 hours of noticing/ detecting such incidents or being brought to notice about such incidents. This information shall be shared with SEBI through the mkt_incidents@sebi.gov.in within 6 hours. However, necessary details of the incidents shall be reported on SEBI Incident Reporting Portal within 24 hours. Stock Brokers/ Depository Participants shall also report the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In within 6 hours of noticing/ detecting such incidents or being brought to notice about such incidents. All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and NCIIPC (as applicable) within 24 hours."
+- `cert-in.directions-70b.2022`, PDF page 2: "(ii) Any service provider, intermediary, data centre, body corporate and Government organisation shall mandatorily report cyber incidents as mentioned in Annexure I to CERT-In within 6 hours of noticing such incidents or being brought to notice about such incidents. The incidents can be reported to CERT-In via email (incident@cert-in.org.in), Phone (1800- 11-4949) and Fax (1800-11-6969). The details regarding methods and formats of reporting cyber security incidents is also published on the website of CERT-In www.cert-in.org.in and will be updated from time to time."
+
+- [ ] Correct   - [ ] Incorrect: ____________________
+
+### 34. `sebi-forensic-needs-report-time`
 
 High severity, brought to notice but not yet reported: being brought to notice starts the Table 36 clocks, not the forensic clock, which runs only from the report.
 
 - **Entity classes:** `sebi.qualified_re`
 - **Incident type(s) as stated:** Malicious code attacks such as Ransomware
 - **Brought to notice:** `2026-10-01T09:00:00+05:30`
+- **SEBI severity:** `high`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2026-10-01`; regulators: CERT-In, SEBI)
@@ -1061,7 +1144,7 @@ High severity, brought to notice but not yet reported: being brought to notice s
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 33. `sebi-forensic-severity-unknown-asks`
+### 35. `sebi-forensic-severity-unknown-asks`
 
 The entity has not classified the incident: the tool asks for the severity and computes no forensic deadline.
 
@@ -1094,7 +1177,7 @@ The entity has not classified the incident: the tool asks for the severity and c
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 34. `sebi-incident-before-issue-date`
+### 36. `sebi-incident-before-issue-date`
 
 A SEBI MII notices ransomware before the CSCRF circular issue date; CERT-In applies and SEBI is not yet valid.
 
@@ -1115,7 +1198,7 @@ A SEBI MII notices ransomware before the CSCRF circular issue date; CERT-In appl
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 35. `sebi-incident-between-issue-and-glide-path-contested`
+### 37. `sebi-incident-between-issue-and-glide-path-contested`
 
 Conservative reading pending legal review: the SEBI duty is applied after issue but before the paragraph 17 glide-path dates; see J2.
 
@@ -1145,7 +1228,7 @@ Conservative reading pending legal review: the SEBI duty is applied after issue 
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 36. `sebi-midsize-re-unauthorized-access`
+### 38. `sebi-midsize-re-unauthorized-access`
 
 A Mid-size Regulated Entity experiences unauthorized access of IT systems and data on 2025-07-01 at 12:00 IST. Dual reporting to CERT-In (6h) and SEBI (6h) applies.
 
@@ -1156,6 +1239,7 @@ A Mid-size Regulated Entity experiences unauthorized access of IT systems and da
 - **Noticed:** `2025-07-01T12:00:00+05:30`
 - **Became aware (DPDP):** `2025-07-01T12:00:00+05:30`
 - **Personal data involved:** `False`
+- **Selected Annexure I items:** `annexure_i.ii`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2025-07-01`; regulators: CERT-In, SEBI)
@@ -1177,7 +1261,7 @@ A Mid-size Regulated Entity experiences unauthorized access of IT systems and da
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 37. `sebi-mii-also-data-fiduciary-2027`
+### 39. `sebi-mii-also-data-fiduciary-2027`
 
 One incident profile carries both SEBI MII and DPDP Data Fiduciary classes, so all applicable regimes are evaluated.
 
@@ -1217,7 +1301,7 @@ One incident profile carries both SEBI MII and DPDP Data Fiduciary classes, so a
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 38. `sebi-mii-attested-not-annexure-i`
+### 40. `sebi-mii-attested-not-annexure-i`
 
 The same hardware failure is explicitly attested not to be an Annexure I incident type.
 
@@ -1252,7 +1336,7 @@ The same hardware failure is explicitly attested not to be an Annexure I inciden
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 39. `sebi-mii-hardware-failure-unattested`
+### 41. `sebi-mii-hardware-failure-unattested`
 
 A SEBI MII reports a hardware failure without attesting that it is an Annexure I type; free text never excludes either structured 6-hour duty.
 
@@ -1287,7 +1371,7 @@ A SEBI MII reports a hardware failure without attesting that it is an Annexure I
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 40. `sebi-mii-ransomware-6h`
+### 42. `sebi-mii-ransomware-6h`
 
 A Market Infrastructure Institution (MII) detects ransomware on 2025-05-15 at 10:00 IST. Dual reporting to CERT-In (6h) and SEBI (6h to mkt_incidents@sebi.gov.in per Annexure O) applies.
 
@@ -1298,6 +1382,7 @@ A Market Infrastructure Institution (MII) detects ransomware on 2025-05-15 at 10
 - **Noticed:** `2025-05-15T10:00:00+05:30`
 - **Became aware (DPDP):** `2025-05-15T10:00:00+05:30`
 - **Personal data involved:** `False`
+- **Selected Annexure I items:** `annexure_i.v`
 - **Protected system (NCIIPC):** `True`
 
 **Expected** (law as of `2025-05-15`; regulators: CERT-In, SEBI)
@@ -1321,13 +1406,14 @@ A Market Infrastructure Institution (MII) detects ransomware on 2025-05-15 at 10
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 41. `sebi-missing-anchor-unknown`
+### 43. `sebi-missing-anchor-unknown`
 
 Adversarial missing fact test: A Self-certification RE discovers a cyber incident on 2025-09-01, but does not record when it was first noticed or detected. The engine must emit an Unknown asking for the noticing/detection timestamp.
 
 - **Entity classes:** `sebi.selfcert_re`
 - **Incident type(s) as stated:** Malicious code attacks such as Ransomware
 - **Personal data involved:** `False`
+- **Selected Annexure I items:** `annexure_i.v`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2025-09-01`; regulators: CERT-In, SEBI)
@@ -1352,7 +1438,7 @@ Adversarial missing fact test: A Self-certification RE discovers a cyber inciden
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 42. `sebi-nbfc-is-not-a-sebi-re`
+### 44. `sebi-nbfc-is-not-a-sebi-re`
 
 A Middle Layer NBFC is not a SEBI regulated entity: no SEBI duty and no SEBI question, while its RBI and CERT-In clocks run.
 
@@ -1385,7 +1471,7 @@ A Middle Layer NBFC is not a SEBI regulated entity: no SEBI duty and no SEBI que
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 43. `sebi-non-broker-no-exchange-duty`
+### 45. `sebi-non-broker-no-exchange-duty`
 
 A small-size RE that is not a broker or depository participant has no exchange-reporting duty.
 
@@ -1417,7 +1503,7 @@ A small-size RE that is not a broker or depository participant has no exchange-r
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 44. `sebi-non-sebi-entity-bank-trap`
+### 46. `sebi-non-sebi-entity-bank-trap`
 
 Adversarial entity scope test: A scheduled commercial bank suffers a ransomware incident on 2025-06-01. The bank is regulated by RBI/CERT-In, not SEBI. SEBI CSCRF obligations must be marked entity_class_mismatch.
 
@@ -1428,6 +1514,7 @@ Adversarial entity scope test: A scheduled commercial bank suffers a ransomware 
 - **Noticed:** `2025-06-01T10:00:00+05:30`
 - **Became aware (DPDP):** `2025-06-01T10:00:00+05:30`
 - **Personal data involved:** `True`
+- **Selected Annexure I items:** `annexure_i.v`
 - **Protected system (NCIIPC):** `True`
 
 **Expected** (law as of `2025-06-01`; regulators: CERT-In)
@@ -1442,7 +1529,7 @@ Adversarial entity scope test: A scheduled commercial bank suffers a ransomware 
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 45. `sebi-not-a-cyber-incident`
+### 47. `sebi-not-a-cyber-incident`
 
 The user attests the event is neither an Annexure I type nor a cyber incident: no SEBI reporting duty and no questions.
 
@@ -1450,7 +1537,7 @@ The user attests the event is neither an Annexure I type nor a cyber incident: n
 - **Incident type(s) as stated:** hardware failure
 - **Noticed:** `2026-10-01T10:00:00+05:30`
 - **Attested Annexure I type:** `False`
-- **Attested a cyber incident:** `False`
+- **SEBI cybersecurity incident:** `False`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2026-10-01`; regulators: CERT-In, SEBI)
@@ -1476,7 +1563,7 @@ The user attests the event is neither an Annexure I type nor a cyber incident: n
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 46. `sebi-other-incident-24h`
+### 48. `sebi-other-incident-24h`
 
 A cybersecurity incident attested not to be a CERT-In Annexure I type is an 'other' incident: 24 hours, on the contested conservative anchor. No six-hour duty.
 
@@ -1484,7 +1571,7 @@ A cybersecurity incident attested not to be a CERT-In Annexure I type is an 'oth
 - **Incident type(s) as stated:** hardware failure
 - **Noticed:** `2026-10-01T10:00:00+05:30`
 - **Attested Annexure I type:** `False`
-- **Attested a cyber incident:** `True`
+- **SEBI cybersecurity incident:** `True`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2026-10-01`; regulators: CERT-In, SEBI)
@@ -1509,7 +1596,7 @@ A cybersecurity incident attested not to be a CERT-In Annexure I type is an 'oth
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 47. `sebi-other-incident-unresolved-asks`
+### 49. `sebi-other-incident-unresolved-asks`
 
 Free text that matches no Annexure I type and no attestation: the engine must ask, because the answer decides between the six-hour and the 24-hour duties.
 
@@ -1542,7 +1629,7 @@ Free text that matches no Annexure I type and no attestation: the engine must as
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 48. `sebi-portal-24h-after-noticing`
+### 50. `sebi-portal-24h-after-noticing`
 
 A SEBI MII notices ransomware. The portal filing is due 24 hours after the same starting event as the six-hour duty; the post-incident clocks cannot start until the report time is known.
 
@@ -1575,7 +1662,7 @@ A SEBI MII notices ransomware. The portal filing is due 24 hours after the same 
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 49. `sebi-post-incident-brought-to-notice-earlier`
+### 51. `sebi-post-incident-brought-to-notice-earlier`
 
 Table 36 counts from reporting or being brought to notice; the earlier known time wins. No noticing time is given, so the six-hour clocks run from being brought to notice.
 
@@ -1608,7 +1695,7 @@ Table 36 counts from reporting or being brought to notice; the earlier known tim
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 50. `sebi-post-incident-reports-from-report-date`
+### 52. `sebi-post-incident-reports-from-report-date`
 
 The four Table 36 clocks run from the time the incident was reported to SEBI.
 
@@ -1642,7 +1729,7 @@ The four Table 36 clocks run from the time the incident was reported to SEBI.
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 51. `sebi-protected-system-reports-to-nciipc`
+### 53. `sebi-protected-system-reports-to-nciipc`
 
 An MII whose systems NCIIPC has identified as a Protected system must also report to NCIIPC; the text gives no time limit.
 
@@ -1675,7 +1762,7 @@ An MII whose systems NCIIPC has identified as a Protected system must also repor
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 52. `sebi-protected-system-unknown-asks`
+### 54. `sebi-protected-system-unknown-asks`
 
 Protected-system status is not given: the engine asks, and the six-hour duty is unaffected.
 
@@ -1707,7 +1794,7 @@ Protected-system status is not given: the engine asks, and the six-hour duty is 
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 53. `sebi-qualified-re-ddos`
+### 55. `sebi-qualified-re-ddos`
 
 A Qualified Regulated Entity experiences a Distributed Denial of Service (DDoS) attack on its public trading API. Reporting to CERT-In (6h) and SEBI (6h) applies.
 
@@ -1718,6 +1805,7 @@ A Qualified Regulated Entity experiences a Distributed Denial of Service (DDoS) 
 - **Noticed:** `2025-06-10T08:00:00+05:30`
 - **Became aware (DPDP):** `2025-06-10T08:00:00+05:30`
 - **Personal data involved:** `False`
+- **Selected Annexure I items:** `annexure_i.i`
 - **Protected system (NCIIPC):** `True`
 
 **Expected** (law as of `2025-06-10`; regulators: CERT-In, SEBI)
@@ -1741,7 +1829,7 @@ A Qualified Regulated Entity experiences a Distributed Denial of Service (DDoS) 
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 54. `sebi-selfcert-re-incident`
+### 56. `sebi-selfcert-re-incident`
 
 A Self-certification Regulated Entity experiences a cyber security incident. Reporting to CERT-In (6h) and SEBI (6h) applies.
 
@@ -1752,6 +1840,7 @@ A Self-certification Regulated Entity experiences a cyber security incident. Rep
 - **Noticed:** `2025-07-15T11:00:00+05:30`
 - **Became aware (DPDP):** `2025-07-15T11:00:00+05:30`
 - **Personal data involved:** `False`
+- **Selected Annexure I items:** `annexure_i.ii`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2025-07-15`; regulators: CERT-In, SEBI)
@@ -1775,7 +1864,7 @@ A Self-certification Regulated Entity experiences a cyber security incident. Rep
 
 ## RBI cybersecurity Directions (2026) (31 scenarios)
 
-### 55. `rbi-aifi-hardware-failure-unattested`
+### 57. `rbi-aifi-hardware-failure-unattested`
 
 Free text that matches nothing: the engine asks both the CERT-In question and the RBI cyber-incident question.
 
@@ -1799,7 +1888,7 @@ Free text that matches nothing: the engine asks both the CERT-In question and th
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 56. `rbi-aifi-ransomware`
+### 58. `rbi-aifi-ransomware`
 
 An All India Financial Institution: reporting, CERT-In notification, VA and PT all apply.
 
@@ -1826,7 +1915,7 @@ An All India Financial Institution: reporting, CERT-In notification, VA and PT a
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 57. `rbi-bank-is-not-an-nbfc`
+### 59. `rbi-bank-is-not-an-nbfc`
 
 A bank is a body corporate for CERT-In but is not covered by the NBFC-specific RBI Direction.
 
@@ -1858,7 +1947,7 @@ A bank is a body corporate for CERT-In but is not covered by the NBFC-specific R
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 58. `rbi-base-layer-without-size-must-ask`
+### 60. `rbi-base-layer-without-size-must-ask`
 
 Base Layer without an asset-size band leaves Chapter IV unresolved but cannot imply a Chapter V duty.
 
@@ -1884,7 +1973,7 @@ Base Layer without an asset-size band leaves Chapter IV unresolved but cannot im
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 59. `rbi-bl-above-500cr-ransomware`
+### 61. `rbi-bl-above-500cr-ransomware`
 
 A Base Layer NBFC at or above ₹500 crore receives the Chapter IV reporting duty, not Chapter V duties.
 
@@ -1912,7 +2001,7 @@ A Base Layer NBFC at or above ₹500 crore receives the Chapter IV reporting dut
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 60. `rbi-bl-below-500cr-no-reporting-duty`
+### 62. `rbi-bl-below-500cr-no-reporting-duty`
 
 A below-₹500-crore Base Layer NBFC is in Chapter III, which contains no RBI incident-reporting duty.
 
@@ -1939,7 +2028,7 @@ A below-₹500-crore Base Layer NBFC is in Chapter III, which contains no RBI in
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 61. `rbi-cic-in-middle-layer-excluded`
+### 63. `rbi-cic-in-middle-layer-excluded`
 
 A profile carrying both Middle Layer and CIC must be excluded from every Chapter V duty.
 
@@ -1966,7 +2055,7 @@ A profile carrying both Middle Layer and CIC must be excluded from every Chapter
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 62. `rbi-cic-without-layer-must-ask-category`
+### 64. `rbi-cic-without-layer-must-ask-category`
 
 A CIC role alone leaves the Chapter IV layer question open while its Chapter V exclusion remains decisive.
 
@@ -1992,7 +2081,7 @@ A CIC role alone leaves the Chapter IV layer question open while its Chapter V e
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 63. `rbi-contradictory-attestation-caveat`
+### 65. `rbi-contradictory-attestation-caveat`
 
 A negative RBI cyber-incident attestation controls applicability but conflicts visibly with a ransomware type match.
 
@@ -2000,7 +2089,7 @@ A negative RBI cyber-incident attestation controls applicability but conflicts v
 - **Incident type(s) as stated:** Malicious code attacks such as Ransomware
 - **Detected:** `2026-10-01T10:00:00+05:30`
 - **Noticed:** `2026-10-01T10:00:00+05:30`
-- **Attested a cyber incident:** `False`
+- **RBI paragraph 4(7) cyber incident:** `False`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2026-10-01`; regulators: CERT-In, RBI)
@@ -2018,7 +2107,7 @@ A negative RBI cyber-incident attestation controls applicability but conflicts v
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 64. `rbi-detected-before-noticed`
+### 66. `rbi-detected-before-noticed`
 
 RBI and CERT-In clocks diverge when detection precedes noticing.
 
@@ -2041,7 +2130,7 @@ RBI and CERT-In clocks diverge when detection precedes noticing.
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 65. `rbi-detection-time-unknown`
+### 67. `rbi-detection-time-unknown`
 
 A Middle Layer NBFC knows the CERT-In noticing time but not RBI's distinct detection anchor.
 
@@ -2064,7 +2153,7 @@ A Middle Layer NBFC knows the CERT-In noticing time but not RBI's distinct detec
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 66. `rbi-each-direction-keeps-to-its-own-entities`
+### 68. `rbi-each-direction-keeps-to-its-own-entities`
 
 A Middle Layer NBFC gets the NBFC Direction's duties and none from the UCB, AIFI or Payments Banks Directions.
 
@@ -2099,7 +2188,7 @@ A Middle Layer NBFC gets the NBFC Direction's duties and none from the UCB, AIFI
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 67. `rbi-generic-bank-is-asked-its-kind`
+### 69. `rbi-generic-bank-is-asked-its-kind`
 
 A bank whose kind is not given: only the Payments Banks Direction is in the dataset, so the engine asks and does not say that no RBI duty applies.
 
@@ -2133,7 +2222,7 @@ A bank whose kind is not given: only the Payments Banks Direction is in the data
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 68. `rbi-generic-nbfc-must-ask-category`
+### 70. `rbi-generic-nbfc-must-ask-category`
 
 A generic NBFC class is too coarse to choose Chapter IV or V and must produce category questions.
 
@@ -2160,7 +2249,7 @@ A generic NBFC class is too coarse to choose Chapter IV or V and must produce ca
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 69. `rbi-generic-plus-specific-class-no-question`
+### 71. `rbi-generic-plus-specific-class-no-question`
 
 A generic NBFC class plus a concrete Middle Layer class resolves the family without a category question.
 
@@ -2184,7 +2273,7 @@ A generic NBFC class plus a concrete Middle Layer class resolves the family with
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 70. `rbi-hfc-middle-layer-reports-to-nhb`
+### 72. `rbi-hfc-middle-layer-reports-to-nhb`
 
 A Middle Layer HFC reports to NHB rather than RBI under the contested paragraph 141 note, while retaining the separate CERT-In duties.
 
@@ -2209,7 +2298,7 @@ A Middle Layer HFC reports to NHB rather than RBI under the contested paragraph 
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 71. `rbi-hfc-without-layer-must-ask-category`
+### 73. `rbi-hfc-without-layer-must-ask-category`
 
 An HFC role alone does not identify its NBFC layer and must not suppress potentially applicable duties.
 
@@ -2236,7 +2325,7 @@ An HFC role alone does not identify its NBFC layer and must not suppress potenti
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 72. `rbi-incident-before-commencement`
+### 74. `rbi-incident-before-commencement`
 
 An incident before 31 July 2026 must not receive any duty from the later RBI Direction.
 
@@ -2264,7 +2353,7 @@ An incident before 31 July 2026 must not receive any duty from the later RBI Dir
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 73. `rbi-ml-also-data-fiduciary-2027`
+### 75. `rbi-ml-also-data-fiduciary-2027`
 
 A Middle Layer NBFC that is also a Data Fiduciary has three distinct regimes and anchors after DPDP Rule 7 commences.
 
@@ -2296,7 +2385,7 @@ A Middle Layer NBFC that is also a Data Fiduciary has three distinct regimes and
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 74. `rbi-ml-attested-not-a-cyber-incident`
+### 76. `rbi-ml-attested-not-a-cyber-incident`
 
 Explicit negative attestations make both incident-reporting regimes not applicable while recurring Chapter V duties remain.
 
@@ -2305,7 +2394,7 @@ Explicit negative attestations make both incident-reporting regimes not applicab
 - **Detected:** `2026-10-01T10:00:00+05:30`
 - **Noticed:** `2026-10-01T10:00:00+05:30`
 - **Attested Annexure I type:** `False`
-- **Attested a cyber incident:** `False`
+- **RBI paragraph 4(7) cyber incident:** `False`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2026-10-01`; regulators: CERT-In, RBI)
@@ -2322,7 +2411,7 @@ Explicit negative attestations make both incident-reporting regimes not applicab
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 75. `rbi-ml-hardware-failure-unattested`
+### 77. `rbi-ml-hardware-failure-unattested`
 
 Hardware failure without either attestation leaves both the Annexure I and wider RBI cyber-incident questions unresolved.
 
@@ -2346,7 +2435,7 @@ Hardware failure without either attestation leaves both the Annexure I and wider
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 76. `rbi-ml-it-incident-not-annexure-i`
+### 78. `rbi-ml-it-incident-not-annexure-i`
 
 An attested RBI cyber incident can trigger RBI duties even when the user attests it is not Annexure I.
 
@@ -2355,7 +2444,7 @@ An attested RBI cyber incident can trigger RBI duties even when the user attests
 - **Detected:** `2026-10-01T10:00:00+05:30`
 - **Noticed:** `2026-10-01T10:00:00+05:30`
 - **Attested Annexure I type:** `False`
-- **Attested a cyber incident:** `True`
+- **RBI paragraph 4(7) cyber incident:** `True`
 - **Protected system (NCIIPC):** `False`
 
 **Expected** (law as of `2026-10-01`; regulators: CERT-In, RBI)
@@ -2372,7 +2461,7 @@ An attested RBI cyber incident can trigger RBI duties even when the user attests
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 77. `rbi-ml-ransomware`
+### 79. `rbi-ml-ransomware`
 
 A Middle Layer NBFC has an Annexure I ransomware incident with equal detection and noticing times.
 
@@ -2399,7 +2488,7 @@ A Middle Layer NBFC has an Annexure I ransomware incident with equal detection a
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 78. `rbi-payments-bank-detection-unknown`
+### 80. `rbi-payments-bank-detection-unknown`
 
 Only the noticing time is known: CERT-In's clock runs, RBI's needs the detection time.
 
@@ -2420,7 +2509,7 @@ Only the noticing time is known: CERT-In's clock runs, RBI's needs the detection
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 79. `rbi-payments-bank-ransomware`
+### 81. `rbi-payments-bank-ransomware`
 
 A Payments Bank.
 
@@ -2446,7 +2535,7 @@ A Payments Bank.
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 80. `rbi-ucb-attested-not-a-cyber-incident`
+### 82. `rbi-ucb-attested-not-a-cyber-incident`
 
 The user attests the event is neither an Annexure I type nor a cyber incident.
 
@@ -2455,7 +2544,7 @@ The user attests the event is neither an Annexure I type nor a cyber incident.
 - **Detected:** `2026-10-01T10:00:00+05:30`
 - **Noticed:** `2026-10-01T10:00:00+05:30`
 - **Attested Annexure I type:** `False`
-- **Attested a cyber incident:** `False`
+- **RBI paragraph 4(7) cyber incident:** `False`
 
 **Expected** (law as of `2026-10-01`; regulators: CERT-In)
 
@@ -2471,7 +2560,7 @@ The user attests the event is neither an Annexure I type nor a cyber incident.
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 81. `rbi-ucb-before-commencement`
+### 83. `rbi-ucb-before-commencement`
 
 An incident on 1 July 2026 predates the Direction.
 
@@ -2495,7 +2584,7 @@ An incident on 1 July 2026 predates the Direction.
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 82. `rbi-ucb-detected-before-noticed`
+### 84. `rbi-ucb-detected-before-noticed`
 
 RBI counts from detection; CERT-In from noticing.
 
@@ -2516,7 +2605,7 @@ RBI counts from detection; CERT-In from noticing.
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 83. `rbi-ucb-generic-reports-and-is-asked-level`
+### 85. `rbi-ucb-generic-reports-and-is-asked-level`
 
 A UCB whose level is not given still gets the reporting deadline (all UCBs); the level is asked only for VA and PT.
 
@@ -2542,7 +2631,7 @@ A UCB whose level is not given still gets the reporting deadline (all UCBs); the
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 84. `rbi-ucb-level1-ransomware`
+### 86. `rbi-ucb-level1-ransomware`
 
 A Level I UCB: the reporting duty is in Chapter III, which binds every UCB; VA and PT are Chapter IV duties and do not reach Level I.
 
@@ -2568,7 +2657,7 @@ A Level I UCB: the reporting duty is in Chapter III, which binds every UCB; VA a
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 85. `rbi-ucb-level3-has-va-pt`
+### 87. `rbi-ucb-level3-has-va-pt`
 
 A Level III UCB is bound by Chapter IV as well, so the VA and PT cadence applies.
 
@@ -2596,7 +2685,7 @@ A Level III UCB is bound by Chapter IV as well, so the VA and PT cadence applies
 
 ## IRDAI Information and Cyber Security Guidelines (2023) (14 scenarios)
 
-### 86. `irdai-attested-not-a-cyber-incident`
+### 88. `irdai-attested-not-a-cyber-incident`
 
 Attested neither an Annexure I type nor a cyber incident.
 
@@ -2604,7 +2693,7 @@ Attested neither an Annexure I type nor a cyber incident.
 - **Incident type(s) as stated:** hardware failure
 - **Noticed:** `2026-10-01T10:00:00+05:30`
 - **Attested Annexure I type:** `False`
-- **Attested a cyber incident:** `False`
+- **IRDAI cyber incident:** `False`
 
 **Expected** (law as of `2026-10-01`; regulators: CERT-In, IRDAI)
 
@@ -2619,7 +2708,7 @@ Attested neither an Annexure I type nor a cyber incident.
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 87. `irdai-before-the-guidelines`
+### 89. `irdai-before-the-guidelines`
 
 An incident on 1 April 2023 predates the guidelines of 24 April 2023; CERT-In's Directions already applied.
 
@@ -2639,13 +2728,14 @@ An incident on 1 April 2023 predates the guidelines of 24 April 2023; CERT-In's 
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 88. `irdai-complaint-clocks`
+### 90. `irdai-complaint-clocks`
 
 A complaint is received two hours after the incident is noticed; acknowledgement is due in 24 hours and disposal in fifteen days, both from receipt.
 
 - **Entity classes:** `irdai.intermediary`
 - **Incident type(s) as stated:** Malicious code attacks such as Ransomware
 - **Noticed:** `2026-10-01T10:00:00+05:30`
+- **External clock events:** `irdai.ics-guidelines.2023.grievance-acknowledge-24h=2026-10-01T12:00:00+05:30, irdai.ics-guidelines.2023.grievance-dispose-15d=2026-10-01T12:00:00+05:30`
 
 **Expected** (law as of `2026-10-01`; regulators: CERT-In, IRDAI)
 
@@ -2662,7 +2752,7 @@ A complaint is received two hours after the incident is noticed; acknowledgement
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 89. `irdai-cyber-incident-not-annexure-i`
+### 91. `irdai-cyber-incident-not-annexure-i`
 
 Attested a cyber incident but not an Annexure I type: the IRDAI sentence is not limited to Annexure I, so on the conservative reading its clock runs.
 
@@ -2670,7 +2760,7 @@ Attested a cyber incident but not an Annexure I type: the IRDAI sentence is not 
 - **Incident type(s) as stated:** hardware failure
 - **Noticed:** `2026-10-01T10:00:00+05:30`
 - **Attested Annexure I type:** `False`
-- **Attested a cyber incident:** `True`
+- **IRDAI cyber incident:** `True`
 
 **Expected** (law as of `2026-10-01`; regulators: CERT-In, IRDAI)
 
@@ -2684,7 +2774,7 @@ Attested a cyber incident but not an Annexure I type: the IRDAI sentence is not 
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 90. `irdai-detection-only-asks`
+### 92. `irdai-detection-only-asks`
 
 Only a detection time is known. The IRDAI clause, like CERT-In's, counts from noticing or being brought to notice, so the engine asks.
 
@@ -2705,13 +2795,14 @@ Only a detection time is known. The IRDAI clause, like CERT-In's, counts from no
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 91. `irdai-government-order-clock`
+### 93. `irdai-government-order-clock`
 
 A government order arrives the day after the incident; its 72 hours run from receipt of the order, not from the incident.
 
 - **Entity classes:** `irdai.insurer`
 - **Incident type(s) as stated:** Malicious code attacks such as Ransomware
 - **Noticed:** `2026-10-01T10:00:00+05:30`
+- **External clock events:** `irdai.ics-guidelines.2023.gov-order-information-72h=2026-10-02T09:00:00+05:30`
 
 **Expected** (law as of `2026-10-01`; regulators: CERT-In, IRDAI)
 
@@ -2727,7 +2818,7 @@ A government order arrives the day after the incident; its 72 hours run from rec
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 92. `irdai-hardware-failure-unattested`
+### 94. `irdai-hardware-failure-unattested`
 
 Free text that matches no Annexure I type: the CERT-In question and the IRDAI cyber-incident question are both asked.
 
@@ -2750,7 +2841,7 @@ Free text that matches no Annexure I type: the CERT-In question and the IRDAI cy
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 93. `irdai-insurer-also-data-fiduciary-2027`
+### 95. `irdai-insurer-also-data-fiduciary-2027`
 
 An insurer that is a Data Fiduciary: CERT-In with a copy to IRDAI in six hours, and the Data Protection Board track.
 
@@ -2776,7 +2867,7 @@ An insurer that is a Data Fiduciary: CERT-In with a copy to IRDAI in six hours, 
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 94. `irdai-insurer-ransomware`
+### 96. `irdai-insurer-ransomware`
 
 An insurer notices ransomware: CERT-In within six hours, with a copy to IRDAI.
 
@@ -2797,7 +2888,7 @@ An insurer notices ransomware: CERT-In within six hours, with a copy to IRDAI.
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 95. `irdai-intermediary-brought-to-notice`
+### 97. `irdai-intermediary-brought-to-notice`
 
 An insurance intermediary is told of the incident by a third party; no noticing time is given.
 
@@ -2818,7 +2909,7 @@ An insurance intermediary is told of the incident by a third party; no noticing 
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 96. `irdai-other-duties-before-the-guidelines`
+### 98. `irdai-other-duties-before-the-guidelines`
 
 On 1 April 2023 the guidelines had not been issued.
 
@@ -2845,7 +2936,7 @@ On 1 April 2023 the guidelines had not been issued.
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 97. `irdai-other-duties-do-not-reach-an-nbfc`
+### 99. `irdai-other-duties-do-not-reach-an-nbfc`
 
 A Middle Layer NBFC is not regulated by IRDAI.
 
@@ -2873,7 +2964,7 @@ A Middle Layer NBFC is not regulated by IRDAI.
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 98. `irdai-other-duties-give-no-incident-clock`
+### 100. `irdai-other-duties-give-no-incident-clock`
 
 An insurer's ransomware incident starts only the two six-hour clocks. The duties that run from an order, a complaint, a cancellation or a lost device are listed but give no deadline and ask nothing.
 
@@ -2906,7 +2997,7 @@ An insurer's ransomware incident starts only the two six-hour clocks. The duties
 
 - [ ] Correct   - [ ] Incorrect: ____________________
 
-### 99. `irdai-payments-bank-is-not-an-insurer`
+### 101. `irdai-payments-bank-is-not-an-insurer`
 
 A Payments Bank is not regulated by IRDAI.
 

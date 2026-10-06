@@ -2,29 +2,92 @@
   "$schema": "../../schema/benchmark_scenario.schema.json",
   "id": "rbi-generic-nbfc-must-ask-category",
   "description": "A generic NBFC class is too coarse to choose Chapter IV or V and must produce category questions.",
-  "entity_profile": {"entity_class": "nbfc", "is_listed": false, "holds_personal_data": false, "uses_protected_systems": false, "is_regulated_cloud_vps": false},
-  "incident_facts": {"description": "Ransomware incident", "incident_types": ["Malicious code attacks such as Ransomware"], "when_detected": "2026-10-01T10:00:00+05:30", "when_noticed": "2026-10-01T10:00:00+05:30", "systems_affected": ["server"]},
+  "entity_profile": {
+    "entity_class": "nbfc",
+    "is_listed": false,
+    "holds_personal_data": false,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Ransomware incident",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "when_detected": "2026-10-01T10:00:00+05:30",
+    "when_noticed": "2026-10-01T10:00:00+05:30",
+    "systems_affected": [
+      "server"
+    ]
+  },
   "law_snapshot_date": "2026-10-04",
   "expected": {
-    "law_as_of": "2026-10-01", "regulators": ["CERT-In"],
-    "deadlines": [{"regulator": "CERT-In", "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "anchor": "noticing", "deadline_iso8601": "PT6H", "deadline_timestamp": "2026-10-01T16:00:00+05:30"}],
-    "citations": [{"obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "instrument_id": "cert-in.directions-70b.2022", "paragraph_ref": "Direction (ii)"}],
-    "required_evidence": [], "not_applicable": [],
+    "law_as_of": "2026-10-01",
+    "regulators": [
+      "CERT-In"
+    ],
+    "deadlines": [
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [],
     "unknowns": [
-      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h"},
-      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h"},
-      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch5-cert-in-notification"},
-      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch5-va-half-yearly"},
-      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch5-pt-annual"}
+      {
+        "question": "NBFC category",
+        "affects": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h"
+      },
+      {
+        "question": "NBFC category",
+        "affects": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h"
+      },
+      {
+        "question": "NBFC category",
+        "affects": "rbi.nbfc-cyber.2026.ch5-cert-in-notification"
+      },
+      {
+        "question": "NBFC category",
+        "affects": "rbi.nbfc-cyber.2026.ch5-va-half-yearly"
+      },
+      {
+        "question": "NBFC category",
+        "affects": "rbi.nbfc-cyber.2026.ch5-pt-annual"
+      }
     ],
     "time_critical": []
   },
-  "adversarial_flags": ["coarse_nbfc_must_not_silently_be_not_applicable"],
+  "adversarial_flags": [
+    "coarse_nbfc_must_not_silently_be_not_applicable"
+  ],
   "split": "dev",
   "labels_source": "RBI NBFC Direction paragraph 3; CERT-In Direction (ii)",
   "source_quotes": [
-    {"document": "rbi.nbfc-cyber.2026", "page": 3, "quote": "The provisions contained in Chapter III shall be applicable only for NBFCs-\nBase Layer (NBFCs-BL) with asset size below ₹500 crore, and Core \nInvestment Companies (CICs)"},
-    {"document": "rbi.nbfc-cyber.2026", "page": 3, "quote": "The provisions contained in Chapter IV shall be applicable only for NBFCs-\nBL with asset size ₹500 crore and above."},
-    {"document": "rbi.nbfc-cyber.2026", "page": 4, "quote": "Middle Layer (NBFCs-ML) as defined in Reserve Bank of India (Non-\nBanking Financial Companies – Registration, Exemptions and Framework \nfor Scale Based Regulation) Directions, 2025, excluding CICs."}
+    {
+      "document": "rbi.nbfc-cyber.2026",
+      "page": 3,
+      "quote": "The provisions contained in Chapter III shall be applicable only for NBFCs-\nBase Layer (NBFCs-BL) with asset size below ₹500 crore, and Core \nInvestment Companies (CICs)"
+    },
+    {
+      "document": "rbi.nbfc-cyber.2026",
+      "page": 3,
+      "quote": "The provisions contained in Chapter IV shall be applicable only for NBFCs-\nBL with asset size ₹500 crore and above."
+    },
+    {
+      "document": "rbi.nbfc-cyber.2026",
+      "page": 4,
+      "quote": "Middle Layer (NBFCs-ML) as defined in Reserve Bank of India (Non-\nBanking Financial Companies – Registration, Exemptions and Framework \nfor Scale Based Regulation) Directions, 2025, excluding CICs."
+    }
   ]
 }

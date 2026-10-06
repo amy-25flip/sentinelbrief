@@ -45,6 +45,9 @@
         "is_annexure_i_type": { "type": ["boolean", "null"], "description": "Explicit user attestation; only false can exclude Annexure I" },
         "sebi_severity": { "type": ["string", "null"], "enum": ["low", "medium", "high", "critical", null] },
         "is_cyber_incident": { "type": ["boolean", "null"], "description": "Explicit user attestation against the RBI paragraph 4(7) definition" },
+        "is_irdai_cyber_incident": { "type": ["boolean", "null"], "description": "Explicit user attestation for the IRDAI cyber-incident question" },
+        "is_sebi_cybersecurity_incident": { "type": ["boolean", "null"], "description": "Explicit user attestation for the SEBI cybersecurity-incident question" },
+        "sebi_forensic_directed_or_rca_inconclusive": { "type": ["boolean", "null"], "description": "For SEBI Low/Medium incidents, whether RCA is inconclusive or SEBI/HPSC-CS directs the forensic report" },
         "annexure_i_items": { "type": "array", "items": { "type": "string" } },
         "personal_data_involved": { "type": ["boolean", "null"] },
         "systems_affected": {

@@ -1,37 +1,34 @@
-# SentinelBrief handoff (2026-10-04)
+# SentinelBrief handoff (2026-10-06)
 
 Written by the reviewer agent. Antigravity is no longer on the project; from Build 9 on, the reviewer agent writes the labels and reviews, and Codex builds. Earlier history is in `docs/REVIEW_LOG.md`.
 
-## 1. Gate output (`python scripts/check.py`, run by the reviewer agent)
+## 1. Gate output (`python scripts/check.py`, run by the reviewer agent on 2026-10-06)
 
 ```
-PASS  pytest             328 passed, 1 deselected, 1 warning
+PASS  pytest             344 passed, 1 deselected, 1 warning
 PASS  ruff check         All checks passed!
-PASS  ruff format        62 files already formatted
+PASS  ruff format        63 files already formatted
 PASS  mypy (strict)      Success: no issues found in 33 source files
 PASS  validate_all       All obligations and citations passed validation successfully!
-PASS  benchmark dev      Scenarios passed:   99/99  Wilson 95% CI [96.3%, 100.0%]
+PASS  benchmark dev      Scenarios passed:   101/101  Wilson 95% CI [96.3%, 100.0%]
 ALL GATES PASSED
 ```
 
-Hidden set A (14 scenarios written by the reviewer agent for Codex-built regimes): 14/14 on its only scored run before Build 11, and unchanged after Builds 11 and 12.
+Hidden split (git-ignored, 30 scenarios): 29/30. Set A (14, written by the reviewer agent for Codex-built regimes) 14/14; set B (16, written by Codex for the reviewer agent-built work) 15/16. The one failure is the contested SEBI start date (Review 12, Q5).
 
-Live source re-verification was last run on 2026-09-25 for the CERT-In, DPDP and SEBI sources. The five RBI and IRDAI sources are exempt and pinned by sha256.
+Live source re-verification, 2026-10-05: 5 passed, 0 failed, 5 skipped (RBI and IRDAI hosts refuse automated clients; those sources are pinned by sha256).
 
 ## 2. What exists
 
-| Area | State | Built by | Independently reviewed |
-|---|---|---|---|
-| CERT-In (7 obligations) | modelled | Antigravity, repaired by Codex | yes |
-| DPDP Rule 7 (3) | modelled | Antigravity, repaired by Codex | yes |
-| SEBI six-hour duty (1) | modelled | Antigravity, repaired by Codex | yes |
-| RBI NBFC Direction (6) | modelled | Codex, against the reviewer agent's labels | yes (Review 9) |
-| SEBI remaining duties (10) | modelled | Codex started, the reviewer agent finished | **no** |
-| Evidence-field cleanup | done | The reviewer agent | **no** |
-| Incident workspace (with external clocks and field entry) | done | The reviewer agent | **no** (self-reviewed, Review 11) |
-| Provenance attack tests and source pinning | done | The reviewer agent | **no** |
-| RBI UCB, AIFI, Payments Banks Directions (12) | modelled | The reviewer agent | **no** |
-| IRDAI guidelines (8; partial) | modelled | The reviewer agent | **no** |
+| Area | Built by | Reviewed by |
+|---|---|---|
+| CERT-In (7), DPDP Rule 7 (3), SEBI six-hour duty | Antigravity, repaired by Codex | The reviewer agent (Reviews 1 to 8) |
+| RBI NBFC Direction (6) | Codex, against the reviewer agent's labels | The reviewer agent (Review 9) |
+| SEBI remaining duties, forensic and quarterly (10 more) | Codex and the reviewer agent | Codex (Review 12), fixes checked by the reviewer agent (Review 13) |
+| RBI UCB, AIFI, Payments Banks Directions (12) | The reviewer agent | Codex (Review 12: found sound) |
+| IRDAI guidelines (8; partial) | The reviewer agent | Codex (Review 12), fixes checked by the reviewer agent |
+| Incident workspace, external clocks, evidence fields, cards | The reviewer agent | The reviewer agent self-review (Review 11), then Codex (Review 12) |
+| Provenance attack tests and source pinning | The reviewer agent | Codex (Review 12: found sound) |
 
 ## 3. Claims about the law
 
@@ -43,8 +40,6 @@ Each rule has a unit test and a mutation test that names the scenarios that catc
 
 ## 5. Not done
 
-- **Independent review of the reviewer agent's builds** (SEBI remaining duties, evidence fields, workspace). Codex hit its usage limit on 2026-10-04; it should review them and its findings go in `docs/REVIEW_LOG.md`.
-- **Hidden set B.** Set A (14 scenarios, by the reviewer agent, for Codex-built regimes) exists. Set B, for everything the reviewer agent built, must be written by Codex.
 - **RBI Directions for commercial banks and small finance banks, the repeal list and old circular texts, and the migrator.** These need source documents a person must download.
 - **The rest of the IRDAI guidelines** (about 20 policies unread).
 - **LLM baselines** for the benchmark. Need API access.

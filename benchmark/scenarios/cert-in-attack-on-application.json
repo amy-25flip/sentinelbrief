@@ -1,71 +1,86 @@
 {
-    "id":  "cert-in-attack-on-application",
-    "description":  "Annexure I item x \u0027Attacks on Application such as E-Governance, E-Commerce\u0027 contains none of the usual attack keywords.",
-    "entity_profile":  {
-                           "entity_class":  "nbfc",
-                           "is_listed":  false,
-                           "holds_personal_data":  true,
-                           "uses_protected_systems":  false,
-                           "is_regulated_cloud_vps":  false
-                       },
-    "incident_facts":  {
-                           "description":  "Annexure I item x \u0027Attacks on Application such as E-Governance, E-Commerce\u0027 contains none of the usual attack keywords.",
-                           "incident_types":  [
-                                                  "Attacks on Application such as E-Governance, E-Commerce"
-                                              ],
-                           "systems_affected":  [
-                                                    "core_systems"
-                                                ],
-                           "personal_data_involved":  null,
-                           "when_noticed":  "2026-09-15T10:00:00+05:30"
-                       },
-    "law_snapshot_date":  "2026-09-24",
-    "expected":  {
-                     "law_as_of":  "2026-09-15",
-                     "regulators":  [
-                                        "CERT-In"
-                                    ],
-                     "deadlines":  [
-                                       {
-                                           "regulator":  "CERT-In",
-                                           "obligation_id":  "cert-in.directions-70b.2022.incident-reporting-6h",
-                                           "anchor":  "noticing",
-                                           "deadline_iso8601":  "PT6H",
-                                           "deadline_timestamp":  "2026-09-15T16:00:00+05:30"
-                                       }
-                                   ],
-                     "citations":  [
-                                       {
-                                           "obligation_id":  "cert-in.directions-70b.2022.incident-reporting-6h",
-                                           "instrument_id":  "cert-in.directions-70b.2022",
-                                           "paragraph_ref":  "Direction (ii)"
-                                       }
-                                   ],
-                     "required_evidence":  [
-
-                                           ],
-                     "not_applicable":  [
-
-                                        ],
-                     "unknowns":  [
-                                      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h"},
-                                      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h"},
-                                      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch5-cert-in-notification"},
-                                      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch5-va-half-yearly"},
-                                      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch5-pt-annual"}
-                                  ]
-                 },
-    "adversarial_flags":  [
-                              "annexure_vocabulary_gap"
-                          ],
-    "split":  "dev",
-    "labels_source":  "CERT-In Directions 70B dated 28 April 2022 (primary text), labelled independently of the engine",
-    "source_quotes":  [
-                          {
-                              "document":  "cert-in.directions-70b.2022",
-                              "page":  2,
-                              "quote":  "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
-                          },
-                          {"document": "rbi.nbfc-cyber.2026", "page": 3, "quote": "The provisions contained in Chapter IV shall be applicable only for NBFCs-\nBL with asset size ₹500 crore and above."}
-                      ]
+  "id": "cert-in-attack-on-application",
+  "description": "Annexure I item x 'Attacks on Application such as E-Governance, E-Commerce' contains none of the usual attack keywords.",
+  "entity_profile": {
+    "entity_class": "nbfc",
+    "is_listed": false,
+    "holds_personal_data": true,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Annexure I item x 'Attacks on Application such as E-Governance, E-Commerce' contains none of the usual attack keywords.",
+    "incident_types": [
+      "Attacks on Application such as E-Governance, E-Commerce"
+    ],
+    "systems_affected": [
+      "core_systems"
+    ],
+    "personal_data_involved": null,
+    "when_noticed": "2026-09-15T10:00:00+05:30"
+  },
+  "law_snapshot_date": "2026-09-24",
+  "expected": {
+    "law_as_of": "2026-09-15",
+    "regulators": [
+      "CERT-In"
+    ],
+    "deadlines": [
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-09-15T16:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": [
+      {
+        "question": "NBFC category",
+        "affects": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h"
+      },
+      {
+        "question": "NBFC category",
+        "affects": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h"
+      },
+      {
+        "question": "NBFC category",
+        "affects": "rbi.nbfc-cyber.2026.ch5-cert-in-notification"
+      },
+      {
+        "question": "NBFC category",
+        "affects": "rbi.nbfc-cyber.2026.ch5-va-half-yearly"
+      },
+      {
+        "question": "NBFC category",
+        "affects": "rbi.nbfc-cyber.2026.ch5-pt-annual"
+      }
+    ]
+  },
+  "adversarial_flags": [
+    "annexure_vocabulary_gap"
+  ],
+  "split": "dev",
+  "labels_source": "CERT-In Directions 70B dated 28 April 2022 (primary text), labelled independently of the engine",
+  "source_quotes": [
+    {
+      "document": "cert-in.directions-70b.2022",
+      "page": 2,
+      "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+    },
+    {
+      "document": "rbi.nbfc-cyber.2026",
+      "page": 3,
+      "quote": "The provisions contained in Chapter IV shall be applicable only for NBFCs-\nBL with asset size ₹500 crore and above."
+    }
+  ]
 }

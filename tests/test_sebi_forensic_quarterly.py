@@ -45,16 +45,35 @@ def _asked(result, obligation_id):
 
 
 def test_forensic_report_follows_the_severity_the_entity_states(engine):
-    """Catches: a forensic deadline for Low or Medium incidents, or none for High or Critical."""
+    """Catches: no forensic deadline for High/Critical, or unconditional Low/Medium handling."""
     for severity in ("high", "critical"):
         due = _deadlines(_run(engine, when_reported_to_sebi=REPORTED, sebi_severity=severity))[
             FORENSIC
         ]
         assert due.anchor_type == "reported" and due.deadline_ist == REPORTED + timedelta(days=75)
     for severity in ("low", "medium"):
-        result = _run(engine, when_reported_to_sebi=REPORTED, sebi_severity=severity)
-        reason = next(n["reason"] for n in result.not_applicable if n["obligation_id"] == FORENSIC)
-        assert "may still be required" in reason and not _asked(result, FORENSIC)
+        asked = _run(engine, when_reported_to_sebi=REPORTED, sebi_severity=severity)
+        assert FORENSIC in asked.undetermined
+        assert any(
+            "RCA is inconclusive or SEBI / HPSC-CS directs" in q for q in _asked(asked, FORENSIC)
+        )
+        directed = _run(
+            engine,
+            when_reported_to_sebi=REPORTED,
+            sebi_severity=severity,
+            sebi_forensic_directed_or_rca_inconclusive=True,
+        )
+        assert _deadlines(directed)[FORENSIC].deadline_ist == REPORTED + timedelta(days=75)
+        not_directed = _run(
+            engine,
+            when_reported_to_sebi=REPORTED,
+            sebi_severity=severity,
+            sebi_forensic_directed_or_rca_inconclusive=False,
+        )
+        reason = next(
+            n["reason"] for n in not_directed.not_applicable if n["obligation_id"] == FORENSIC
+        )
+        assert "no inconclusive RCA" in reason and not _asked(not_directed, FORENSIC)
 
 
 def test_severity_is_asked_never_assumed(engine):
@@ -84,7 +103,7 @@ def test_severity_question_waits_for_the_incident_question(engine):
         engine,
         incident_types=["hardware failure"],
         is_annexure_i_type=False,
-        is_cyber_incident=False,
+        is_sebi_cybersecurity_incident=False,
     )
     assert FORENSIC in {n["obligation_id"] for n in none.not_applicable} and not none.unknowns
 

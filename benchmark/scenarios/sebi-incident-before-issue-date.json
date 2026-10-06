@@ -1,76 +1,72 @@
 {
-    "$schema":  "../../schema/benchmark_scenario.schema.json",
-    "id":  "sebi-incident-before-issue-date",
-    "description":  "A SEBI MII notices ransomware before the CSCRF circular issue date; CERT-In applies and SEBI is not yet valid.",
-    "entity_profile":  {
-                           "entity_class":  "sebi.mii",
-                           "is_listed":  true,
-                           "holds_personal_data":  false,
-                           "uses_protected_systems":  true,
-                           "is_regulated_cloud_vps":  false
-                       },
-    "incident_facts":  {
-                           "description":  "Incident facts as stated in the scenario.",
-                           "incident_types":  [
-                                                  "Malicious code attacks such as Ransomware"
-                                              ],
-                           "when_noticed":  "2024-08-01T10:00:00+05:30",
-                           "systems_affected":  [
-                                                    "Core system"
-                                                ],
-                           "is_annexure_i_type":  null
-                       },
-    "law_snapshot_date":  "2026-09-25",
-    "expected":  {
-                     "law_as_of":  "2024-08-01",
-                     "regulators":  [
-                                        "CERT-In"
-                                    ],
-                     "deadlines":  [
-                                       {
-                                           "obligation_id":  "cert-in.directions-70b.2022.incident-reporting-6h",
-                                           "regulator":  "CERT-In",
-                                           "anchor":  "noticing",
-                                           "deadline_iso8601":  "PT6H",
-                                           "deadline_timestamp":  "2024-08-01T16:00:00+05:30"
-                                       }
-                                   ],
-                     "citations":  [
-                                       {
-                                           "obligation_id":  "cert-in.directions-70b.2022.incident-reporting-6h",
-                                           "instrument_id":  "cert-in.directions-70b.2022",
-                                           "paragraph_ref":  "Direction (ii)"
-                                       }
-                                   ],
-                     "required_evidence":  [
-
-                                           ],
-                     "not_applicable":  [
-                                            {
-                                                "regulator":  "SEBI",
-                                                "obligation_id":  "sebi.cscrf.2024.incident-reporting-6h",
-                                                "reason":  "not_yet_valid_at_incident_date (2024-08-20)"
-                                            }
-                                        ],
-                     "unknowns":  [
-
-                                  ]
-                 },
-    "adversarial_flags":  [
-                              "law_as_of_incident_date"
-                          ],
-    "split":  "dev",
-    "labels_source":  "SEBI CSCRF issue date, circular PDF page 1; CERT-In Directions page 2",
-    "source_quotes":  [
-                          {
-                              "document":  "cert-in.directions-70b.2022",
-                              "page":  2,
-                              "quote":  "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
-                          },
-                          {
-                              "document":  "sebi.cscrf.2024",
-                              "page":  1,
-                              "quote":  "August 20, 2024"
-                          }
-                      ]
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "sebi-incident-before-issue-date",
+  "description": "A SEBI MII notices ransomware before the CSCRF circular issue date; CERT-In applies and SEBI is not yet valid.",
+  "entity_profile": {
+    "entity_class": "sebi.mii",
+    "is_listed": true,
+    "holds_personal_data": false,
+    "uses_protected_systems": true,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Incident facts as stated in the scenario.",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "when_noticed": "2024-08-01T10:00:00+05:30",
+    "systems_affected": [
+      "Core system"
+    ],
+    "is_annexure_i_type": null
+  },
+  "law_snapshot_date": "2026-09-25",
+  "expected": {
+    "law_as_of": "2024-08-01",
+    "regulators": [
+      "CERT-In"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2024-08-01T16:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [
+      {
+        "regulator": "SEBI",
+        "obligation_id": "sebi.cscrf.2024.incident-reporting-6h",
+        "reason": "not_yet_valid_at_incident_date (2024-08-20)"
+      }
+    ],
+    "unknowns": []
+  },
+  "adversarial_flags": [
+    "law_as_of_incident_date"
+  ],
+  "split": "dev",
+  "labels_source": "SEBI CSCRF issue date, circular PDF page 1; CERT-In Directions page 2",
+  "source_quotes": [
+    {
+      "document": "cert-in.directions-70b.2022",
+      "page": 2,
+      "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents. The incidents can \nbe reported to CERT-In via email (incident@cert-in.org.in), Phone (1800-\n11-4949) and Fax (1800-11-6969). The details regarding methods and \nformats of reporting cyber security incidents is also published on the \nwebsite of CERT-In www.cert-in.org.in and will be updated from time to \ntime."
+    },
+    {
+      "document": "sebi.cscrf.2024",
+      "page": 1,
+      "quote": "August 20, 2024"
+    }
+  ]
 }

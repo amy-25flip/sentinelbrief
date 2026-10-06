@@ -1,6 +1,6 @@
 """Deterministic incident clock. No LLM is involved anywhere in this module.
 
-Design rules (see BUILD_BRIEF sections 2 and 9):
+Design rules (see docs/process/BUILD_BRIEF.md sections 2 and 9):
 - Free text can never establish that an incident is NOT reportable. Only an explicit
   user attestation can. Anything unresolved becomes an Unknown the user must answer.
 - Every timestamp must be timezone-aware. Naive datetimes are rejected, never guessed.
@@ -133,6 +133,11 @@ class IncidentProfile:
     is_annexure_i_type: bool | None = None
     # Explicit user attestation against RBI paragraph 4(7)'s cyber-incident definition.
     is_cyber_incident: bool | None = None
+    # Regime-specific attestations. Annexure I still establishes each positively, but a
+    # negative RBI answer must not suppress wider IRDAI or SEBI duties.
+    is_irdai_cyber_incident: bool | None = None
+    is_sebi_cybersecurity_incident: bool | None = None
+    sebi_forensic_directed_or_rca_inconclusive: bool | None = None
 
     def __post_init__(self) -> None:
         self.validate()
@@ -454,21 +459,17 @@ class IncidentClockEngine:
 
     @staticmethod
     def _resolve_cyber_incident(
-        profile: IncidentProfile,
+        attestation: bool | None,
         annexure: AnnexureResolution,
         *,
         negative_requires_annexure_false: bool,
     ) -> bool | None:
-        """Resolve the shared cyber-incident fact without inferring false from free text.
-
-        RBI's explicit paragraph-4(7) attestation remains decisive. SEBI's broader key is
-        false only when both the cyber-incident and Annexure-I attestations are false.
-        """
-        if profile.is_cyber_incident is False and (
+        """Resolve a regime-specific cyber incident fact without inferring false from text."""
+        if attestation is False and (
             annexure.decision is False or not negative_requires_annexure_false
         ):
             return False
-        if annexure.decision is True or profile.is_cyber_incident is True:
+        if annexure.decision is True or attestation is True:
             return True
         return None
 
@@ -551,6 +552,7 @@ class IncidentClockEngine:
         undetermined: list[str] = []
         conditions_unevaluated: dict[str, list[str]] = {}
         refinement_unknowns: dict[str, dict[str, list[str]]] = {}
+        contested: dict[str, list[str]] = {}
 
         for obs in self.obligations:
             obs_id = obs["id"]
@@ -640,8 +642,13 @@ class IncidentClockEngine:
                         break
 
                 elif requirement in {"rbi_cyber_incident", "irdai_cyber_incident"}:
+                    attestation = (
+                        profile.is_irdai_cyber_incident
+                        if requirement == "irdai_cyber_incident"
+                        else profile.is_cyber_incident
+                    )
                     cyber = self._resolve_cyber_incident(
-                        profile, annexure, negative_requires_annexure_false=False
+                        attestation, annexure, negative_requires_annexure_false=False
                     )
                     if cyber is False:
                         not_applicable.append(
@@ -691,7 +698,9 @@ class IncidentClockEngine:
                         requirement_unknown = True
                         break
                     cyber = self._resolve_cyber_incident(
-                        profile, annexure, negative_requires_annexure_false=True
+                        profile.is_sebi_cybersecurity_incident,
+                        annexure,
+                        negative_requires_annexure_false=True,
                     )
                     if cyber is False:
                         not_applicable.append(
@@ -719,7 +728,9 @@ class IncidentClockEngine:
                     "sebi_incident_reporting_applies",
                 }:
                     cyber = self._resolve_cyber_incident(
-                        profile, annexure, negative_requires_annexure_false=True
+                        profile.is_sebi_cybersecurity_incident,
+                        annexure,
+                        negative_requires_annexure_false=True,
                     )
                     if cyber is False:
                         not_applicable.append(
@@ -745,29 +756,41 @@ class IncidentClockEngine:
                         requirement_unknown = True
                         break
 
-                elif requirement == "sebi_high_or_critical":
+                elif requirement == "sebi_forensic_required":
+                    if profile.sebi_severity in ("high", "critical"):
+                        continue
                     if profile.sebi_severity in ("low", "medium"):
-                        not_applicable.append(
-                            {
-                                "obligation_id": obs_id,
-                                "reason": "condition_not_met: severity classified low or medium; a "
-                                "forensic report may still be required if the RCA is inconclusive "
-                                "or SEBI / HPSC-CS directs it (Annexure-O 4.2)",
-                            }
-                        )
-                        requirement_failed = True
-                        break
-                    if profile.sebi_severity is None:
+                        if profile.sebi_forensic_directed_or_rca_inconclusive is True:
+                            continue
+                        if profile.sebi_forensic_directed_or_rca_inconclusive is False:
+                            not_applicable.append(
+                                {
+                                    "obligation_id": obs_id,
+                                    "reason": "condition_not_met: Low or Medium incident with no inconclusive RCA and no SEBI / HPSC-CS direction",
+                                }
+                            )
+                            requirement_failed = True
+                            break
                         unknowns.append(
                             Unknown(
-                                question="What severity has the entity classified the incident as (low, medium, high or critical)?",
+                                question="For this Low or Medium incident, is the RCA is inconclusive or SEBI / HPSC-CS directs a forensic report?",
                                 affects=[obs_id],
-                                impact="A forensic report is required for High or Critical incidents (Annexure-O 4.1).",
+                                impact="Annexure-O 4.2 requires the forensic report for Low or Medium incidents only if that condition is met.",
                             )
                         )
                         undetermined.append(obs_id)
                         requirement_unknown = True
                         break
+                    unknowns.append(
+                        Unknown(
+                            question="What severity has the entity classified the incident as (low, medium, high or critical)?",
+                            affects=[obs_id],
+                            impact="A forensic report is required for High or Critical incidents, and may be required for Low or Medium incidents under Annexure-O 4.2.",
+                        )
+                    )
+                    undetermined.append(obs_id)
+                    requirement_unknown = True
+                    break
 
                 elif requirement == "nciipc_protected_system":
                     if profile.uses_protected_systems is False:
@@ -800,11 +823,22 @@ class IncidentClockEngine:
                 continue
 
             applicable.append(obs_id)
+            validity = obs.get("validity") or {}
+            contested_until = validity.get("contested_until")
+            if contested_until and governing < date.fromisoformat(str(contested_until)):
+                note = validity.get("contested_note") or ""
+                contested.setdefault(note, []).append(obs_id)
             conditions = applicability.get("conditions") or []
             if conditions:
                 conditions_unevaluated[obs_id] = conditions
 
             self._compute_deadline(obs, profile, now, deadlines, time_critical, unknowns)
+
+        for note, obligation_ids in contested.items():
+            caveats.append(
+                "Contested: it is disputed whether these duties were binding on the incident date. "
+                f"{note} They are shown on the earlier reading. Affects: {', '.join(obligation_ids)}."
+            )
 
         for family, pending in refinement_unknowns.items():
             entity = self.taxonomy.classes[family]

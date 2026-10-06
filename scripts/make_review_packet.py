@@ -34,8 +34,17 @@ FACT_LABELS = [
     ("when_aware", "Became aware (DPDP)"),
     ("when_reported_to_sebi", "Reported to SEBI"),
     ("personal_data_involved", "Personal data involved"),
+    ("annexure_i_items", "Selected Annexure I items"),
     ("is_annexure_i_type", "Attested Annexure I type"),
-    ("is_cyber_incident", "Attested a cyber incident"),
+    ("is_cyber_incident", "RBI paragraph 4(7) cyber incident"),
+    ("is_irdai_cyber_incident", "IRDAI cyber incident"),
+    ("is_sebi_cybersecurity_incident", "SEBI cybersecurity incident"),
+    ("sebi_severity", "SEBI severity"),
+    (
+        "sebi_forensic_directed_or_rca_inconclusive",
+        "SEBI forensic directed or RCA inconclusive",
+    ),
+    ("external_events", "External clock events"),
 ]
 
 
@@ -91,7 +100,14 @@ def _scenario(index: int, s: dict[str, Any], obligations: dict[str, dict[str, An
     ]
     for key, label in FACT_LABELS:
         if facts.get(key) is not None:
-            lines.append(f"- **{label}:** `{facts[key]}`")
+            value = facts[key]
+            if isinstance(value, dict):
+                rendered = ", ".join(f"{k}={v}" for k, v in sorted(value.items()))
+            elif isinstance(value, list):
+                rendered = ", ".join(str(v) for v in value) or "none"
+            else:
+                rendered = str(value)
+            lines.append(f"- **{label}:** `{rendered}`")
     if ep.get("uses_protected_systems") is not None:
         lines.append(f"- **Protected system (NCIIPC):** `{ep['uses_protected_systems']}`")
     lines += [

@@ -397,3 +397,35 @@ Quotes and pages are in `docs/LABELS_SEBI.md` Part 2. This replaces SEBI Decisio
 - A filing cannot be recorded with a future time.
 - Fields a clause requires can be completed in the case; entries go on the evidence chain and are covered by the approval digest. Approving with empty required fields needs an explicit statement, recorded with the approval.
 - This is not authentication. The workspace must still not be exposed on a network.
+
+## 2026-10-05: Review 12 Q1 - SEBI Low/Medium forensic condition
+
+**Decision:** `post-incident-forensic-report-75d` now uses `sebi_forensic_required`, not the old High/Critical-only key. High or Critical still applies. Low or Medium applies if `sebi_forensic_directed_or_rca_inconclusive` is true, does not apply if false, and asks if unknown.
+
+**Text:** Annexure-O 4.2, PDF page 203: "For incidents classified as low or medium, forensic report shall be submitted if the RCA is inconclusive or if the SEBI/ HPSC-CS directs the same." Annexure-O 4.3, page 203: "the maximum period for the submission of forensic audit report shall be 75 days from date of reporting of incident."
+
+**Alternative:** treat every Low/Medium forensic report as not applicable unless the user independently knows to override it. Rejected because it can tell a user they owe less. Asking the condition when unknown is conservative and source-bound.
+
+## 2026-10-05: Review 12 Q2/Q4 - filed draft snapshots are immutable
+
+**Decision:** Recording a filing stores the full filed draft snapshot and its SHA-256 digest. Case views and exports render that filed snapshot, not a recomputed live draft. If later facts would change the live draft, the case view says the filed snapshot is being shown. `filed_at` must be timezone-aware, not in the future, not before the case was opened, and not before the draft was approved.
+
+**Reason:** A filing is a historical record of what a person submitted on the regulator's channel. A later fact correction may change the live clock or draft, but it cannot rewrite what was filed.
+
+**Alternative:** reject every later fact change that would affect a filed draft. Rejected because a case still needs corrections and additional facts after a filing; freezing the filed snapshot preserves history without blocking correction.
+
+## 2026-10-05: Review 12 Q3 - regime-specific incident classification
+
+**Decision:** `is_cyber_incident` is only the RBI paragraph 4(7) attestation. IRDAI uses `is_irdai_cyber_incident`; SEBI uses `is_sebi_cybersecurity_incident`; Annexure I matches still establish each positively. A negative RBI answer no longer suppresses IRDAI or SEBI duties.
+
+**Text:** RBI directions define a cyber incident as "A cyber event that adversely affects the cybersecurity of an information asset whether resulting from malicious activity or not." IRDAI Policy 2.10, PDF page 219, defines an incident as "the occurrence of any exceptional situation that could compromise the Confidentiality, Integrity or Availability of Information assets"; its reporting clause on page 224 says "cyber incidents" without saying Annexure I. SEBI uses "cybersecurity incident(s)" in RS.CO.S1 / Annexure-O.
+
+**Alternative:** keep one shared attestation for every regulator. Rejected because a user answering the RBI definition negatively could be told they owe no IRDAI or SEBI duty. Separate facts never tell a user they owe less; they ask the regime-specific question when unresolved.
+
+## 2026-10-06: Contested start dates are shown with a warning
+
+**Decision:** `validity.contested_until` and `contested_note`. When an obligation applies on a date before `contested_until`, the engine keeps the duty and its deadline and adds a caveat that begins "Contested:". Set for all SEBI CSCRF obligations (until 2025-04-01) and all IRDAI obligations (until 2024-04-01).
+
+**Why:** Two reviewers read the texts differently (Review 12, Q5 and Q6). Using the later dates could tell a user they owed nothing when they did; using the earlier dates with no warning presents a disputed duty as settled. Showing the duty with the dispute stated does neither.
+
+**Alternatives:** the later dates as `valid_from` (Codex's reading); the earlier dates with no warning (the previous state). Both are recorded in the review log. For counsel.

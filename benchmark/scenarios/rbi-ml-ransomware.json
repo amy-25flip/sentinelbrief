@@ -2,36 +2,107 @@
   "$schema": "../../schema/benchmark_scenario.schema.json",
   "id": "rbi-ml-ransomware",
   "description": "A Middle Layer NBFC has an Annexure I ransomware incident with equal detection and noticing times.",
-  "entity_profile": {"entity_class": "nbfc.middle_layer", "is_listed": false, "holds_personal_data": false, "uses_protected_systems": false, "is_regulated_cloud_vps": false},
-  "incident_facts": {"description": "Ransomware incident", "incident_types": ["Malicious code attacks such as Ransomware"], "when_detected": "2026-10-01T10:00:00+05:30", "when_noticed": "2026-10-01T10:00:00+05:30", "systems_affected": ["critical information system"]},
+  "entity_profile": {
+    "entity_class": "nbfc.middle_layer",
+    "is_listed": false,
+    "holds_personal_data": false,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Ransomware incident",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "when_detected": "2026-10-01T10:00:00+05:30",
+    "when_noticed": "2026-10-01T10:00:00+05:30",
+    "systems_affected": [
+      "critical information system"
+    ]
+  },
   "law_snapshot_date": "2026-10-04",
   "expected": {
     "law_as_of": "2026-10-01",
-    "regulators": ["CERT-In", "RBI"],
+    "regulators": [
+      "CERT-In",
+      "RBI"
+    ],
     "deadlines": [
-      {"regulator": "CERT-In", "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "anchor": "noticing", "deadline_iso8601": "PT6H", "deadline_timestamp": "2026-10-01T16:00:00+05:30"},
-      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h", "anchor": "detection", "deadline_iso8601": "PT6H", "deadline_timestamp": "2026-10-01T16:00:00+05:30"}
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      },
+      {
+        "regulator": "RBI",
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h",
+        "anchor": "detection",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      }
     ],
     "citations": [
-      {"obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "instrument_id": "cert-in.directions-70b.2022", "paragraph_ref": "Direction (ii)"},
-      {"obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h", "instrument_id": "rbi.nbfc-cyber.2026", "paragraph_ref": "Paragraph 141, first sentence"},
-      {"obligation_id": "rbi.nbfc-cyber.2026.ch5-cert-in-notification", "instrument_id": "rbi.nbfc-cyber.2026", "paragraph_ref": "Paragraph 141, second sentence"}
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      },
+      {
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h",
+        "instrument_id": "rbi.nbfc-cyber.2026",
+        "paragraph_ref": "Paragraph 141, first sentence"
+      },
+      {
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-cert-in-notification",
+        "instrument_id": "rbi.nbfc-cyber.2026",
+        "paragraph_ref": "Paragraph 141, second sentence"
+      }
     ],
     "required_evidence": [],
     "not_applicable": [
-      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h", "reason": "Chapter IV applies only to Base Layer NBFCs at ₹500 crore and above"},
-      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb", "reason": "Entity is not an HFC"}
+      {
+        "regulator": "RBI",
+        "obligation_id": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h",
+        "reason": "Chapter IV applies only to Base Layer NBFCs at ₹500 crore and above"
+      },
+      {
+        "regulator": "RBI",
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb",
+        "reason": "Entity is not an HFC"
+      }
     ],
     "unknowns": [],
     "time_critical": []
   },
-  "adversarial_flags": ["chapter_v_not_chapter_iv", "rbi_and_cert_in_are_separate_duties", "none_deadline_is_applicable"],
+  "adversarial_flags": [
+    "chapter_v_not_chapter_iv",
+    "rbi_and_cert_in_are_separate_duties",
+    "none_deadline_is_applicable"
+  ],
   "split": "dev",
   "labels_source": "RBI NBFC Direction paragraphs 3 and 141; CERT-In Direction (ii)",
   "source_quotes": [
-    {"document": "rbi.nbfc-cyber.2026", "page": 4, "quote": "Middle Layer (NBFCs-ML) as defined in Reserve Bank of India (Non-\nBanking Financial Companies – Registration, Exemptions and Framework \nfor Scale Based Regulation) Directions, 2025, excluding CICs."},
-    {"document": "rbi.nbfc-cyber.2026", "page": 43, "quote": "141. The NBFC shall report cyber incidents to RBI within six hours of detection on \nDAKSH platform (Reserve Bank’s Advanced Supervisory Monitoring System -"},
-    {"document": "rbi.nbfc-cyber.2026", "page": 44, "quote": "The NBFC shall also pro-actively notify Indian Computer \nEmergency Response Team (CERT-In) regarding cyber incidents."},
-    {"document": "cert-in.directions-70b.2022", "page": 2, "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents."}
+    {
+      "document": "rbi.nbfc-cyber.2026",
+      "page": 4,
+      "quote": "Middle Layer (NBFCs-ML) as defined in Reserve Bank of India (Non-\nBanking Financial Companies – Registration, Exemptions and Framework \nfor Scale Based Regulation) Directions, 2025, excluding CICs."
+    },
+    {
+      "document": "rbi.nbfc-cyber.2026",
+      "page": 43,
+      "quote": "141. The NBFC shall report cyber incidents to RBI within six hours of detection on \nDAKSH platform (Reserve Bank’s Advanced Supervisory Monitoring System -"
+    },
+    {
+      "document": "rbi.nbfc-cyber.2026",
+      "page": 44,
+      "quote": "The NBFC shall also pro-actively notify Indian Computer \nEmergency Response Team (CERT-In) regarding cyber incidents."
+    },
+    {
+      "document": "cert-in.directions-70b.2022",
+      "page": 2,
+      "quote": "(ii) Any service provider, intermediary, data centre, body corporate and \nGovernment organisation shall mandatorily report cyber incidents as \nmentioned in Annexure I to CERT-In within 6 hours of noticing such \nincidents or being brought to notice about such incidents."
+    }
   ]
 }

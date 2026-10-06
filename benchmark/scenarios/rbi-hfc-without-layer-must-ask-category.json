@@ -2,30 +2,94 @@
   "$schema": "../../schema/benchmark_scenario.schema.json",
   "id": "rbi-hfc-without-layer-must-ask-category",
   "description": "An HFC role alone does not identify its NBFC layer and must not suppress potentially applicable duties.",
-  "entity_profile": {"entity_class": "nbfc.hfc", "is_listed": false, "holds_personal_data": false, "uses_protected_systems": false, "is_regulated_cloud_vps": false},
-  "incident_facts": {"description": "Ransomware incident", "incident_types": ["Malicious code attacks such as Ransomware"], "when_detected": "2026-10-01T10:00:00+05:30", "when_noticed": "2026-10-01T10:00:00+05:30", "systems_affected": ["server"]},
+  "entity_profile": {
+    "entity_class": "nbfc.hfc",
+    "is_listed": false,
+    "holds_personal_data": false,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Ransomware incident",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "when_detected": "2026-10-01T10:00:00+05:30",
+    "when_noticed": "2026-10-01T10:00:00+05:30",
+    "systems_affected": [
+      "server"
+    ]
+  },
   "law_snapshot_date": "2026-10-04",
   "expected": {
     "law_as_of": "2026-10-01",
-    "regulators": ["CERT-In"],
-    "deadlines": [{"regulator": "CERT-In", "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "anchor": "noticing", "deadline_iso8601": "PT6H", "deadline_timestamp": "2026-10-01T16:00:00+05:30"}],
-    "citations": [{"obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "instrument_id": "cert-in.directions-70b.2022", "paragraph_ref": "Direction (ii)"}],
+    "regulators": [
+      "CERT-In"
+    ],
+    "deadlines": [
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      }
+    ],
     "required_evidence": [],
-    "not_applicable": [{"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h", "reason": "HFC is excluded from RBI recipient duty"}],
+    "not_applicable": [
+      {
+        "regulator": "RBI",
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h",
+        "reason": "HFC is excluded from RBI recipient duty"
+      }
+    ],
     "unknowns": [
-      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h"},
-      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb"},
-      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch5-cert-in-notification"},
-      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch5-va-half-yearly"},
-      {"question": "NBFC category", "affects": "rbi.nbfc-cyber.2026.ch5-pt-annual"}
+      {
+        "question": "NBFC category",
+        "affects": "rbi.nbfc-cyber.2026.ch4-incident-reporting-6h"
+      },
+      {
+        "question": "NBFC category",
+        "affects": "rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb"
+      },
+      {
+        "question": "NBFC category",
+        "affects": "rbi.nbfc-cyber.2026.ch5-cert-in-notification"
+      },
+      {
+        "question": "NBFC category",
+        "affects": "rbi.nbfc-cyber.2026.ch5-va-half-yearly"
+      },
+      {
+        "question": "NBFC category",
+        "affects": "rbi.nbfc-cyber.2026.ch5-pt-annual"
+      }
     ],
     "time_critical": []
   },
-  "adversarial_flags": ["role_class_does_not_resolve_layer", "hfc_exclusion_precedes_refinement"],
+  "adversarial_flags": [
+    "role_class_does_not_resolve_layer",
+    "hfc_exclusion_precedes_refinement"
+  ],
   "split": "dev",
   "labels_source": "docs/LABELS_RBI.md Amendment 1; RBI NBFC Direction paragraphs 3 and 141",
   "source_quotes": [
-    {"document": "rbi.nbfc-cyber.2026", "page": 4, "quote": "Middle Layer (NBFCs-ML) as defined in Reserve Bank of India (Non-\nBanking Financial Companies – Registration, Exemptions and Framework \nfor Scale Based Regulation) Directions, 2025, excluding CICs."},
-    {"document": "rbi.nbfc-cyber.2026", "page": 44, "quote": "(Note: In respect of Housing Finance Companies, cyber incidents shall continue \nto be reported to NHB and not RBI)"}
+    {
+      "document": "rbi.nbfc-cyber.2026",
+      "page": 4,
+      "quote": "Middle Layer (NBFCs-ML) as defined in Reserve Bank of India (Non-\nBanking Financial Companies – Registration, Exemptions and Framework \nfor Scale Based Regulation) Directions, 2025, excluding CICs."
+    },
+    {
+      "document": "rbi.nbfc-cyber.2026",
+      "page": 44,
+      "quote": "(Note: In respect of Housing Finance Companies, cyber incidents shall continue \nto be reported to NHB and not RBI)"
+    }
   ]
 }

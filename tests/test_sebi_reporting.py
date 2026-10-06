@@ -91,13 +91,21 @@ def test_other_incident_duty_states(engine):
     assert any(oid == OTHER and "cybersecurity incident" in q for oid, q in _asked(not_listed))
 
     other = _run(
-        engine, ["sebi.midsize_re"], is_annexure_i_type=False, is_cyber_incident=True, **hardware
+        engine,
+        ["sebi.midsize_re"],
+        is_annexure_i_type=False,
+        is_sebi_cybersecurity_incident=True,
+        **hardware,
     )
     assert set(_deadlines(other)) == {OTHER}
     assert _deadlines(other)[OTHER].deadline_ist == T10 + timedelta(hours=24)
 
     nothing = _run(
-        engine, ["sebi.midsize_re"], is_annexure_i_type=False, is_cyber_incident=False, **hardware
+        engine,
+        ["sebi.midsize_re"],
+        is_annexure_i_type=False,
+        is_sebi_cybersecurity_incident=False,
+        **hardware,
     )
     assert {SIX, PORTAL, OTHER, *POST} <= _not_applicable(nothing)
     assert not nothing.unknowns

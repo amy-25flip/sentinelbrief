@@ -43,7 +43,22 @@ def test_clause_is_on_the_cited_page_of_the_english_text():
         224,
         "report cyber incidents to Cert-In within 6 hours of noticing",
     )
+    pages.require_quote(
+        "irdai.ics-guidelines.2023",
+        298,
+        "after any cancellation or withdrawal of his registration",
+    )
     assert "Page 94 of 175" in pages.page_text("irdai.ics-guidelines.2023", 224)
+
+
+def test_retention_citation_includes_the_page_298_operational_condition(engine):
+    """Catches: citing only the duration while omitting the cancellation/withdrawal trigger."""
+    obligation = engine.get_obligation("irdai.ics-guidelines.2023.registration-data-retention-180d")
+    assert obligation is not None
+    excerpts = "\n".join(c["excerpt_verbatim"] for c in obligation["citations"])
+    assert "one hundred and eighty days" in excerpts
+    assert "after any cancellation or withdrawal of his registration" in excerpts
+    assert {c["page"] for c in obligation["citations"]} >= {297, 298}
 
 
 def test_insurers_and_intermediaries_owe_the_duty_and_others_do_not(engine):
@@ -76,13 +91,39 @@ def test_cyber_incident_gate_states(engine):
     asked = next(u for u in unknown.unknowns if IRDAI in u.affects)
     assert "cyber incident" in asked.question and "Policy 2.10" in asked.question
     wider = _run(
-        engine, ["irdai.insurer"], is_annexure_i_type=False, is_cyber_incident=True, **hardware
+        engine,
+        ["irdai.insurer"],
+        is_annexure_i_type=False,
+        is_irdai_cyber_incident=True,
+        **hardware,
     )
     assert set(_deadlines(wider)) == {IRDAI}
     neither = _run(
-        engine, ["irdai.insurer"], is_annexure_i_type=False, is_cyber_incident=False, **hardware
+        engine,
+        ["irdai.insurer"],
+        is_annexure_i_type=False,
+        is_irdai_cyber_incident=False,
+        **hardware,
     )
     assert not neither.deadlines and not neither.unknowns
+
+
+def test_rbi_cyber_attestation_does_not_decide_irdai(engine):
+    """Catches: a negative RBI paragraph 4(7) answer suppressing the IRDAI duty."""
+    result = _run(
+        engine,
+        ["bank.payments_bank", "irdai.insurer"],
+        incident_types=["hardware failure"],
+        when_detected=T10 - timedelta(hours=1),
+        when_noticed=T10,
+        is_annexure_i_type=False,
+        is_cyber_incident=False,
+    )
+    assert any(IRDAI in u.affects and "Policy 2.10" in u.question for u in result.unknowns)
+    assert not any(
+        n["obligation_id"] == IRDAI and "not a cyber incident" in n["reason"]
+        for n in result.not_applicable
+    )
 
 
 def test_not_in_force_before_24_april_2023(engine):

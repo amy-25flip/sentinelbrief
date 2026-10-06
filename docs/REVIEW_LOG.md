@@ -332,3 +332,30 @@ Added 16 schema-valid `hb-*.json` scenarios in `benchmark/hidden/`, covering SEB
 **13/16 scenarios, 50/50 deadlines.** The three failures are exactly the three Codex said it expected: `hb-sebi-other-incident-medium-at-month-end` (Q1), `hb-irdai-payments-bank-mixed-definition-attestation` (Q3) and `hb-sebi-stock-broker-last-minute-before-glide-path` (Q5). Hidden sets A and B together: 27/30 (Wilson 95% interval 74.4% to 96.5%).
 
 the reviewer agent's response to the findings: Q1 to Q4 and Q7 to Q12 are accepted as defects. Q5 and Q6 are disagreements about a contested legal reading (when the SEBI and IRDAI duties began to bind), already recorded in DECISIONS and OPEN_QUESTIONS; they go to the project owner, and the labels of the hidden scenario stay as Codex wrote them until that is decided.
+
+## Review 13 - the reviewer agent, 2026-10-06: Codex's fixes for Review 12
+
+Codex stopped at its usage limit before reporting or marking statuses, leaving the tree uncommitted with one failing test and unformatted files. The reviewer agent checked what it had done, finished the remainder, and records the statuses here.
+
+Method: `scripts/check.py` (6 gates pass: 344 tests, 101/101 dev); a semantic diff of every scenario against the previous commit; probes for Q1 and Q3; reading the changed records.
+
+| Finding | Status | Proof |
+|---|---|---|
+| Q1 forensic report for Low or Medium | FIXED (Codex) | New fact `sebi_forensic_directed_or_rca_inconclusive`; probe with severity medium asks, with it true gives 2026-12-15 15:00; scenarios `sebi-forensic-medium-asks-condition`, `-medium-directed`, `-low-not-directed`; mutation `test_catches_low_medium_forensic_condition_inverted` |
+| Q2 filed draft could change | FIXED (Codex) | Filed snapshot and digest stored and shown; `test_filed_draft_snapshot_is_immutable_when_facts_change` |
+| Q3 shared cyber-incident fact | FIXED (Codex) | `is_irdai_cyber_incident`, `is_sebi_cybersecurity_incident`; `test_rbi_cyber_attestation_does_not_decide_irdai`; hidden `hb-irdai-payments-bank-mixed-definition-attestation` passes unedited |
+| Q4 filing time lower bounds | FIXED (Codex) | `test_filing_cannot_be_recorded_before_it_was_made` covers case creation and approval |
+| Q5 SEBI start date | OPEN, mitigated | Contested by the two reviewers. The earlier date is kept and a "Contested" caveat is shown for incidents before 2025-04-01 (`validity.contested_until`; `tests/test_contested_dates.py`). Hidden `hb-sebi-stock-broker-last-minute-before-glide-path` still fails by design: its label is Codex's reading. For counsel. |
+| Q6 IRDAI start date | OPEN, mitigated | Same treatment, caveat before 2024-04-01. The covering circular is still not ingested (2-page scan, unreliable OCR). |
+| Q7 retention citation | FIXED (Codex) | Second citation for the page 298 continuation; `test_retention_citation_includes_the_page_298_operational_condition` |
+| Q8 filing content | FIXED (Codex) | RCA list 5 to 7 items; forensic list added; loader verifies each quote |
+| Q9 NCIIPC "in a timely manner" | FIXED (Codex) | Record now cites Annexure-O B.3.1 (page 200) and keeps the words |
+| Q10 unsupported non-numeric duty in cards | FIXED (Codex) | `test_regulatory_card_grounding_rejects_unsupported_non_numeric_duty` |
+| Q11 reviewer packet omitted facts | FIXED (Codex) | Packet renders severity, the new facts and external events; `--check` passes |
+| Q12 mutation coverage | PARTLY FIXED (Codex) | Eight one-property mutations added. Not added: separate mutations for each of the SEBI 3/7/30/45-day durations and for the quarterly dates. |
+
+Scenario changes made by Codex, checked by semantic diff: four scenarios had a fact renamed to the regime's own field with the same value; five had a citation reference updated for Q9; one was renamed and two added for Q1. No expected deadline, unknown or applicability changed except as Q1 requires.
+
+Done by the reviewer agent to finish: one stale unit test moved to the SEBI-specific fact; formatting; the contested-date caveat; two hidden set B files updated mechanically (the fact name Codex's Q3 fix introduced, and the clause reference its Q9 fix renamed), with no change to any expected deadline, unknown or applicability.
+
+**Hidden split, final: 29/30** (set A 14/14, set B 15/16; Wilson 95% interval 83.3% to 99.4%). The one failure is Q5.

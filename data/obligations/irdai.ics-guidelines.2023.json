@@ -41,7 +41,9 @@
     "validity": {
       "valid_from": "2023-04-24",
       "valid_to": null,
-      "recorded_at": "2026-10-04T00:00:00Z"
+      "recorded_at": "2026-10-04T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
     },
     "status": "in_force",
     "citations": [
@@ -105,7 +107,9 @@
     "validity": {
       "valid_from": "2023-04-24",
       "valid_to": null,
-      "recorded_at": "2026-10-04T00:00:00Z"
+      "recorded_at": "2026-10-04T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
     },
     "status": "in_force",
     "citations": [
@@ -169,7 +173,9 @@
     "validity": {
       "valid_from": "2023-04-24",
       "valid_to": null,
-      "recorded_at": "2026-10-04T00:00:00Z"
+      "recorded_at": "2026-10-04T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
     },
     "status": "in_force",
     "citations": [
@@ -233,7 +239,9 @@
     "validity": {
       "valid_from": "2023-04-24",
       "valid_to": null,
-      "recorded_at": "2026-10-04T00:00:00Z"
+      "recorded_at": "2026-10-04T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
     },
     "status": "in_force",
     "citations": [
@@ -296,7 +304,9 @@
     "validity": {
       "valid_from": "2023-04-24",
       "valid_to": null,
-      "recorded_at": "2026-10-04T00:00:00Z"
+      "recorded_at": "2026-10-04T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
     },
     "status": "in_force",
     "citations": [
@@ -328,7 +338,7 @@
     "id": "irdai.ics-guidelines.2023.registration-data-retention-180d",
     "instrument_id": "irdai.ics-guidelines.2023",
     "paragraph_ref": "Policy 2.24, 3.1 item 5",
-    "text_verbatim": "5. The Organization which collects information from a user for \nregistration on the computer resource, shall retained his \ninformation for a period of one hundred and eighty days",
+    "text_verbatim": "5. The Organization which collects information from a user for \nregistration on the computer resource, shall retained his \ninformation for a period of one hundred and eighty days \n \n \n \n \n Page 168 of 175 \n \nafter any cancellation or withdrawal of his registration, as the \ncase may be.",
     "normalized": {
       "actor": [
         "irdai.insurer",
@@ -358,7 +368,9 @@
     "validity": {
       "valid_from": "2023-04-24",
       "valid_to": null,
-      "recorded_at": "2026-10-04T00:00:00Z"
+      "recorded_at": "2026-10-04T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
     },
     "status": "in_force",
     "citations": [
@@ -369,6 +381,15 @@
         "char_start": 587131,
         "char_end": 587309,
         "excerpt_verbatim": "5. The Organization which collects information from a user for \nregistration on the computer resource, shall retained his \ninformation for a period of one hundred and eighty days",
+        "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
+      },
+      {
+        "instrument_id": "irdai.ics-guidelines.2023",
+        "paragraph_ref": "Policy 2.24, 3.1 item 5 (continued)",
+        "page": 298,
+        "char_start": 587339,
+        "char_end": 587417,
+        "excerpt_verbatim": "after any cancellation or withdrawal of his registration, as the \ncase may be.",
         "source_sha256": "2c8d2fdac0008ee348a3c8fc12dcd27c2c14e61a3e1c9479344baae2ea618c98"
       }
     ],
@@ -384,7 +405,7 @@
       "date": "2026-10-05"
     },
     "confidence": 0.6,
-    "confidence_reason": "A retention period, not a deadline. The sentence continues on PDF page 298 ('after any cancellation or withdrawal of his registration'). Policy 2.24 restates the IT (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021; whether the entity is an intermediary under those Rules is not evaluated. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
+    "confidence_reason": "A retention period, not a deadline. The cited sentence crosses PDF pages 297 and 298; the second citation carries the operative continuation, after any cancellation or withdrawal of his registration. Policy 2.24 restates the IT (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021; whether the entity is an intermediary under those Rules is not evaluated. Date contested: valid_from is the covering circular's date, 24 April 2023; that circular gives entities that had completed their FY 2022-23 security audit until the next financial year."
   },
   {
     "id": "irdai.ics-guidelines.2023.cloud-breach-notice-contract-clause",
@@ -420,7 +441,9 @@
     "validity": {
       "valid_from": "2023-04-24",
       "valid_to": null,
-      "recorded_at": "2026-10-04T00:00:00Z"
+      "recorded_at": "2026-10-04T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
     },
     "status": "in_force",
     "citations": [
@@ -483,7 +506,9 @@
     "validity": {
       "valid_from": "2023-04-24",
       "valid_to": null,
-      "recorded_at": "2026-10-04T00:00:00Z"
+      "recorded_at": "2026-10-04T00:00:00Z",
+      "contested_until": "2024-04-01",
+      "contested_note": "The IRDAI covering circular of 24 April 2023 lets entities that had completed their FY 2022-23 security audit comply from the next financial year."
     },
     "status": "in_force",
     "citations": [

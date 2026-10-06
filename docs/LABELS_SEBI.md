@@ -109,3 +109,15 @@ All five also expect the Part 1 outcomes for the same facts.
 ### Existing scenarios that change
 
 For each existing scenario, the forensic duty follows the interim-report duty: where that is not applicable, so is Forensic; where it carries the "Annexure I" or "cybersecurity incident" unknown, Forensic carries the same; where it has a deadline or the "reported to SEBI" unknown, Forensic carries the "severity" unknown (no existing scenario states a severity).
+
+### Amendment after Review 12 (2026-10-05, by the label author)
+
+Annexure-O 4.2, PDF page 203, says exactly: "For incidents classified as low or medium, forensic report shall be submitted if the RCA is inconclusive or if the SEBI/ HPSC-CS directs the same."
+
+The Low/Medium labels are corrected accordingly:
+
+- `sebi-forensic-medium-not-required` is renamed to `sebi-forensic-medium-asks-condition`: severity medium, no condition fact supplied, no forensic deadline, unknown question containing "RCA is inconclusive or SEBI / HPSC-CS directs".
+- New `sebi-forensic-medium-directed`: same facts, plus `sebi_forensic_directed_or_rca_inconclusive: true`; forensic deadline 2026-12-15 15:00 IST, anchor reported.
+- New `sebi-forensic-low-not-directed`: severity low, plus `sebi_forensic_directed_or_rca_inconclusive: false`; forensic duty not applicable and no unknown.
+
+The fact is named `sebi_forensic_directed_or_rca_inconclusive`. High and Critical labels are unchanged.

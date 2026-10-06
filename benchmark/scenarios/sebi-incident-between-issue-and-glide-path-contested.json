@@ -1,127 +1,127 @@
 {
-    "$schema": "../../schema/benchmark_scenario.schema.json",
-    "id": "sebi-incident-between-issue-and-glide-path-contested",
-    "description": "Conservative reading pending legal review: the SEBI duty is applied after issue but before the paragraph 17 glide-path dates; see J2.",
-    "entity_profile": {
-        "entity_class": "sebi.mii",
-        "is_listed": true,
-        "holds_personal_data": false,
-        "uses_protected_systems": true,
-        "is_regulated_cloud_vps": false
-    },
-    "incident_facts": {
-        "description": "Incident facts as stated in the scenario.",
-        "incident_types": [
-            "Malicious code attacks such as Ransomware"
-        ],
-        "when_noticed": "2024-10-01T10:00:00+05:30",
-        "systems_affected": [
-            "Core system"
-        ],
-        "is_annexure_i_type": null
-    },
-    "law_snapshot_date": "2026-09-25",
-    "expected": {
-        "law_as_of": "2024-10-01",
-        "regulators": [
-            "CERT-In",
-            "SEBI"
-        ],
-        "deadlines": [
-            {
-                "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
-                "regulator": "CERT-In",
-                "anchor": "noticing",
-                "deadline_iso8601": "PT6H",
-                "deadline_timestamp": "2024-10-01T16:00:00+05:30"
-            },
-            {
-                "obligation_id": "sebi.cscrf.2024.incident-reporting-6h",
-                "regulator": "SEBI",
-                "anchor": "noticing",
-                "deadline_iso8601": "PT6H",
-                "deadline_timestamp": "2024-10-01T16:00:00+05:30"
-            },
-            {
-                "obligation_id": "sebi.cscrf.2024.incident-portal-24h",
-                "regulator": "SEBI",
-                "anchor": "noticing",
-                "deadline_iso8601": "PT24H",
-                "deadline_timestamp": "2024-10-02T10:00:00+05:30"
-            }
-        ],
-        "citations": [
-            {
-                "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
-                "instrument_id": "cert-in.directions-70b.2022",
-                "paragraph_ref": "Direction (ii)"
-            },
-            {
-                "obligation_id": "sebi.cscrf.2024.incident-reporting-6h",
-                "instrument_id": "sebi.cscrf.2024",
-                "paragraph_ref": "RS.CO.S1 / Annexure-O Section B.1"
-            },
-            {
-                "obligation_id": "sebi.cscrf.2024.incident-portal-24h",
-                "instrument_id": "sebi.cscrf.2024",
-                "paragraph_ref": "RS.CO.S1 (Incident Reporting Portal)"
-            },
-            {
-                "obligation_id": "sebi.cscrf.2024.nciipc-protected-system-report",
-                "instrument_id": "sebi.cscrf.2024",
-                "paragraph_ref": "RS.CO.S1 item 3 (NCIIPC)"
-            }
-        ],
-        "required_evidence": [],
-        "not_applicable": [],
-        "unknowns": [
-            {
-                "question": "reported to SEBI",
-                "affects": "sebi.cscrf.2024.post-incident-interim-report-3d"
-            },
-            {
-                "question": "reported to SEBI",
-                "affects": "sebi.cscrf.2024.post-incident-mitigation-7d"
-            },
-            {
-                "question": "reported to SEBI",
-                "affects": "sebi.cscrf.2024.post-incident-rca-30d"
-            },
-            {
-                "question": "reported to SEBI",
-                "affects": "sebi.cscrf.2024.post-incident-vapt-45d"
-            },
-            {
-                "question": "severity",
-                "affects": "sebi.cscrf.2024.post-incident-forensic-report-75d"
-            }
-        ]
-    },
-    "adversarial_flags": [
-        "contested_interpretation"
+  "$schema": "../../schema/benchmark_scenario.schema.json",
+  "id": "sebi-incident-between-issue-and-glide-path-contested",
+  "description": "Conservative reading pending legal review: the SEBI duty is applied after issue but before the paragraph 17 glide-path dates; see J2.",
+  "entity_profile": {
+    "entity_class": "sebi.mii",
+    "is_listed": true,
+    "holds_personal_data": false,
+    "uses_protected_systems": true,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Incident facts as stated in the scenario.",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
     ],
-    "split": "dev",
-    "labels_source": "SEBI CSCRF page 9 paragraphs 17.1-17.2 and page 123 RS.CO.S1; conservative contested interpretation",
-    "source_quotes": [
-        {
-            "document": "sebi.cscrf.2024",
-            "page": 123,
-            "quote": "1. Any cyber-attack, cybersecurity incident and/ or breach falling under CERT-In \nCybersecurity directions29 shall be notified to SEBI and CERT-In within 6 hours of \nnoticing/ detecting such incidents or being brought to notice about such incidents. This \ninformation shall be shared with SEBI through the mkt_incidents@sebi.gov.in within \n6 hours. However, necessary details of the incidents shall be reported on SEBI Incident \nReporting Portal within 24 hours. Stock Brokers/ Depository Participants shall also \nreport the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In \nwithin 6 hours of noticing/ detecting such incidents or being brought to notice about such \nincidents. All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and \nNCIIPC (as applicable) within 24 hours."
-        },
-        {
-            "document": "sebi.cscrf.2024",
-            "page": 201,
-            "quote": "3.3. RE shall undertake the necessary activities and submit the relevant reports \nas per the following timelines: \nTable 36: Timelines for post-cyber incident activity(ies) and report \nsubmission \nS. \nNo. \nName of the Report/ Activity \nTimeline for Submission \n(from \nthe \ndate \nof \nreporting the incident or \nbeing brought to notice \nabout the incident) \n1 \nInterim Report* \n3 Days \n2 \nMitigation measure \n7 Days \n3 \nRoot Cause Analysis (RCA) report** \n30 Days# \n4 \nForensic Audit Report (on the incident) and \nits closure report \nRefer clause 3.4 below  \n5 \nVulnerability Assessment and Penetration \nTesting (VAPT) for the incident and its \nclosure reports \n45 days"
-        },
-        {
-            "document": "sebi.cscrf.2024",
-            "page": 124,
-            "quote": "Additionally, the REs, whose systems \nhave been identified as “Protected system” by NCIIPC shall also report the incident to \nNCIIPC."
-        },
-        {
-            "document": "sebi.cscrf.2024",
-            "page": 203,
-            "quote": "4.1. For all incidents classified as High or Critical, the RE shall submit a forensic audit/ \ninvestigation report.  \n \n4.2. For incidents classified as low or medium, forensic report shall be submitted if the \nRCA is inconclusive or if the SEBI/ HPSC-CS directs the same. \n \n4.3. After the completion of forensic audit, RE shall submit a final closure report, which \nshall include the root cause of the incident, its impact and measures to prevent \nrecurrence. The timeline for submission of the reports (including closure reports), \nshall be decided based on discussion with all stakeholders. However, the \nmaximum period for the submission of forensic audit report shall be 75 days from \ndate of reporting of incident."
-        }
+    "when_noticed": "2024-10-01T10:00:00+05:30",
+    "systems_affected": [
+      "Core system"
+    ],
+    "is_annexure_i_type": null
+  },
+  "law_snapshot_date": "2026-09-25",
+  "expected": {
+    "law_as_of": "2024-10-01",
+    "regulators": [
+      "CERT-In",
+      "SEBI"
+    ],
+    "deadlines": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "regulator": "CERT-In",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2024-10-01T16:00:00+05:30"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.incident-reporting-6h",
+        "regulator": "SEBI",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2024-10-01T16:00:00+05:30"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.incident-portal-24h",
+        "regulator": "SEBI",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT24H",
+        "deadline_timestamp": "2024-10-02T10:00:00+05:30"
+      }
+    ],
+    "citations": [
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.incident-reporting-6h",
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "RS.CO.S1 / Annexure-O Section B.1"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.incident-portal-24h",
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "RS.CO.S1 (Incident Reporting Portal)"
+      },
+      {
+        "obligation_id": "sebi.cscrf.2024.nciipc-protected-system-report",
+        "instrument_id": "sebi.cscrf.2024",
+        "paragraph_ref": "Annexure-O B.3.1 (NCIIPC)"
+      }
+    ],
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": [
+      {
+        "question": "reported to SEBI",
+        "affects": "sebi.cscrf.2024.post-incident-interim-report-3d"
+      },
+      {
+        "question": "reported to SEBI",
+        "affects": "sebi.cscrf.2024.post-incident-mitigation-7d"
+      },
+      {
+        "question": "reported to SEBI",
+        "affects": "sebi.cscrf.2024.post-incident-rca-30d"
+      },
+      {
+        "question": "reported to SEBI",
+        "affects": "sebi.cscrf.2024.post-incident-vapt-45d"
+      },
+      {
+        "question": "severity",
+        "affects": "sebi.cscrf.2024.post-incident-forensic-report-75d"
+      }
     ]
+  },
+  "adversarial_flags": [
+    "contested_interpretation"
+  ],
+  "split": "dev",
+  "labels_source": "SEBI CSCRF page 9 paragraphs 17.1-17.2 and page 123 RS.CO.S1; conservative contested interpretation",
+  "source_quotes": [
+    {
+      "document": "sebi.cscrf.2024",
+      "page": 123,
+      "quote": "1. Any cyber-attack, cybersecurity incident and/ or breach falling under CERT-In \nCybersecurity directions29 shall be notified to SEBI and CERT-In within 6 hours of \nnoticing/ detecting such incidents or being brought to notice about such incidents. This \ninformation shall be shared with SEBI through the mkt_incidents@sebi.gov.in within \n6 hours. However, necessary details of the incidents shall be reported on SEBI Incident \nReporting Portal within 24 hours. Stock Brokers/ Depository Participants shall also \nreport the incidents to Stock Exchanges/ Depositories along with SEBI and CERT-In \nwithin 6 hours of noticing/ detecting such incidents or being brought to notice about such \nincidents. All other cybersecurity incident(s) shall be reported to SEBI, CERT-In and \nNCIIPC (as applicable) within 24 hours."
+    },
+    {
+      "document": "sebi.cscrf.2024",
+      "page": 201,
+      "quote": "3.3. RE shall undertake the necessary activities and submit the relevant reports \nas per the following timelines: \nTable 36: Timelines for post-cyber incident activity(ies) and report \nsubmission \nS. \nNo. \nName of the Report/ Activity \nTimeline for Submission \n(from \nthe \ndate \nof \nreporting the incident or \nbeing brought to notice \nabout the incident) \n1 \nInterim Report* \n3 Days \n2 \nMitigation measure \n7 Days \n3 \nRoot Cause Analysis (RCA) report** \n30 Days# \n4 \nForensic Audit Report (on the incident) and \nits closure report \nRefer clause 3.4 below  \n5 \nVulnerability Assessment and Penetration \nTesting (VAPT) for the incident and its \nclosure reports \n45 days"
+    },
+    {
+      "document": "sebi.cscrf.2024",
+      "page": 124,
+      "quote": "Additionally, the REs, whose systems \nhave been identified as “Protected system” by NCIIPC shall also report the incident to \nNCIIPC."
+    },
+    {
+      "document": "sebi.cscrf.2024",
+      "page": 203,
+      "quote": "4.1. For all incidents classified as High or Critical, the RE shall submit a forensic audit/ \ninvestigation report.  \n \n4.2. For incidents classified as low or medium, forensic report shall be submitted if the \nRCA is inconclusive or if the SEBI/ HPSC-CS directs the same. \n \n4.3. After the completion of forensic audit, RE shall submit a final closure report, which \nshall include the root cause of the incident, its impact and measures to prevent \nrecurrence. The timeline for submission of the reports (including closure reports), \nshall be decided based on discussion with all stakeholders. However, the \nmaximum period for the submission of forensic audit report shall be 75 days from \ndate of reporting of incident."
+    }
+  ]
 }

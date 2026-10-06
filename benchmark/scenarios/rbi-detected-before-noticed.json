@@ -2,27 +2,84 @@
   "$schema": "../../schema/benchmark_scenario.schema.json",
   "id": "rbi-detected-before-noticed",
   "description": "RBI and CERT-In clocks diverge when detection precedes noticing.",
-  "entity_profile": {"entity_class": "nbfc.middle_layer", "is_listed": false, "holds_personal_data": false, "uses_protected_systems": false, "is_regulated_cloud_vps": false},
-  "incident_facts": {"description": "Ransomware detected before it was noticed", "incident_types": ["Malicious code attacks such as Ransomware"], "when_detected": "2026-10-01T08:00:00+05:30", "when_noticed": "2026-10-01T10:00:00+05:30", "systems_affected": ["server"]},
+  "entity_profile": {
+    "entity_class": "nbfc.middle_layer",
+    "is_listed": false,
+    "holds_personal_data": false,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Ransomware detected before it was noticed",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "when_detected": "2026-10-01T08:00:00+05:30",
+    "when_noticed": "2026-10-01T10:00:00+05:30",
+    "systems_affected": [
+      "server"
+    ]
+  },
   "law_snapshot_date": "2026-10-04",
   "expected": {
-    "law_as_of": "2026-10-01", "regulators": ["CERT-In", "RBI"],
+    "law_as_of": "2026-10-01",
+    "regulators": [
+      "CERT-In",
+      "RBI"
+    ],
     "deadlines": [
-      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h", "anchor": "detection", "deadline_iso8601": "PT6H", "deadline_timestamp": "2026-10-01T14:00:00+05:30"},
-      {"regulator": "CERT-In", "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "anchor": "noticing", "deadline_iso8601": "PT6H", "deadline_timestamp": "2026-10-01T16:00:00+05:30"}
+      {
+        "regulator": "RBI",
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h",
+        "anchor": "detection",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T14:00:00+05:30"
+      },
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      }
     ],
     "citations": [
-      {"obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h", "instrument_id": "rbi.nbfc-cyber.2026", "paragraph_ref": "Paragraph 141, first sentence"},
-      {"obligation_id": "rbi.nbfc-cyber.2026.ch5-cert-in-notification", "instrument_id": "rbi.nbfc-cyber.2026", "paragraph_ref": "Paragraph 141, second sentence"},
-      {"obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "instrument_id": "cert-in.directions-70b.2022", "paragraph_ref": "Direction (ii)"}
+      {
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h",
+        "instrument_id": "rbi.nbfc-cyber.2026",
+        "paragraph_ref": "Paragraph 141, first sentence"
+      },
+      {
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-cert-in-notification",
+        "instrument_id": "rbi.nbfc-cyber.2026",
+        "paragraph_ref": "Paragraph 141, second sentence"
+      },
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      }
     ],
-    "required_evidence": [], "not_applicable": [], "unknowns": [], "time_critical": []
+    "required_evidence": [],
+    "not_applicable": [],
+    "unknowns": [],
+    "time_critical": []
   },
-  "adversarial_flags": ["different_regimes_keep_different_anchors"],
+  "adversarial_flags": [
+    "different_regimes_keep_different_anchors"
+  ],
   "split": "dev",
   "labels_source": "RBI NBFC Direction paragraph 141 and CERT-In Direction (ii)",
   "source_quotes": [
-    {"document": "rbi.nbfc-cyber.2026", "page": 43, "quote": "within six hours of detection"},
-    {"document": "cert-in.directions-70b.2022", "page": 2, "quote": "within 6 hours of noticing such \nincidents or being brought to notice about such incidents."}
+    {
+      "document": "rbi.nbfc-cyber.2026",
+      "page": 43,
+      "quote": "within six hours of detection"
+    },
+    {
+      "document": "cert-in.directions-70b.2022",
+      "page": 2,
+      "quote": "within 6 hours of noticing such \nincidents or being brought to notice about such incidents."
+    }
   ]
 }

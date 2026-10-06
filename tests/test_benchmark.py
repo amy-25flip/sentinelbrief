@@ -4,6 +4,7 @@ import copy
 import importlib.util
 import shutil
 import sys
+from datetime import datetime
 from pathlib import Path
 
 import pytest
@@ -452,9 +453,11 @@ def test_catches_sebi_other_incident_applied_to_annexure_i_incidents(monkeypatch
 def test_catches_sebi_other_incident_without_cyber_attestation(monkeypatch):
     original = engine_module.IncidentClockEngine._resolve_cyber_incident
 
-    def mutation(profile, annexure, *, negative_requires_annexure_false):
+    def mutation(attestation, annexure, *, negative_requires_annexure_false):
         resolved = original(
-            profile, annexure, negative_requires_annexure_false=negative_requires_annexure_false
+            attestation,
+            annexure,
+            negative_requires_annexure_false=negative_requires_annexure_false,
         )
         return True if resolved is None and annexure.decision is False else resolved
 
@@ -564,6 +567,78 @@ def test_catches_valid_from_ignored_for_the_new_rbi_directions(monkeypatch):
     assert "rbi-ucb-before-commencement" in _failed(_run())
 
 
+def test_catches_aifi_reporting_duration_changed(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"] == "rbi.aifi-cyber.2026.incident-reporting-6h":
+                item["normalized"]["deadline"]["duration_iso8601"] = "PT12H"
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "rbi-aifi-ransomware" in _failed(_run())
+
+
+def test_catches_payments_bank_reporting_anchor_changed(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"] == "rbi.payments-banks-cyber.2026.incident-reporting-6h":
+                item["normalized"]["deadline"]["anchor"] = "noticing"
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "rbi-payments-bank-ransomware" in _failed(_run())
+
+
+def test_catches_payments_bank_valid_from_ignored(monkeypatch):
+    original = engine_module.IncidentClockEngine._not_in_force_reason
+
+    def mutation(item, as_of):
+        if item["id"].startswith("rbi.payments-banks-cyber.2026."):
+            return None
+        return original(item, as_of)
+
+    monkeypatch.setattr(
+        engine_module.IncidentClockEngine, "_not_in_force_reason", staticmethod(mutation)
+    )
+    result = engine_module.IncidentClockEngine(REPO / "data").evaluate(
+        engine_module.IncidentProfile(
+            entity_classes=["bank.payments_bank"],
+            incident_types=["Malicious code attacks such as Ransomware"],
+            when_detected=datetime.fromisoformat("2026-07-30T10:00:00+05:30"),
+        )
+    )
+    assert "rbi.payments-banks-cyber.2026.incident-reporting-6h" in {
+        d.obligation_id for d in result.deadlines
+    }
+
+
+def test_catches_rbi_proactive_cert_in_notification_dropped(monkeypatch):
+    def mutation(items):
+        items[:] = [item for item in items if not item["id"].endswith("cert-in-notification")]
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "rbi-ml-ransomware" in _failed(_run())
+
+
+def test_catches_bank_va_pt_cadence_changed(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"].endswith("va-half-yearly"):
+                item["normalized"]["deadline"]["duration_iso8601"] = "P12M"
+            if item["id"].endswith("pt-annual"):
+                item["normalized"]["deadline"]["duration_iso8601"] = "P6M"
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    engine = engine_module.IncidentClockEngine(REPO / "data")
+    by_id = {item["id"]: item for item in engine.obligations}
+    assert (
+        by_id["rbi.ucb-cyber.2026.va-half-yearly"]["normalized"]["deadline"]["duration_iso8601"]
+        == "P12M"
+    )
+    assert (
+        by_id["rbi.aifi-cyber.2026.pt-annual"]["normalized"]["deadline"]["duration_iso8601"]
+        == "P6M"
+    )
+
+
 # --- IRDAI guidelines (docs/LABELS_IRDAI.md) ---
 
 
@@ -608,6 +683,28 @@ def test_catches_irdai_valid_from_ignored(monkeypatch):
         engine_module.IncidentClockEngine, "_not_in_force_reason", staticmethod(mutation)
     )
     assert "irdai-before-the-guidelines" in _failed(_run())
+
+
+def test_catches_irdai_reporting_recipient_changed(monkeypatch):
+    def mutation(items):
+        _irdai(items)["normalized"]["recipient"] = "CERT-In"
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    from sentinelbrief.clock.engine import IncidentClockEngine, IncidentProfile
+
+    result = IncidentClockEngine(REPO / "data").evaluate(
+        IncidentProfile(
+            entity_classes=["irdai.insurer"],
+            incident_types=["Malicious code attacks such as Ransomware"],
+            when_noticed=datetime.fromisoformat("2026-10-01T10:00:00+05:30"),
+        )
+    )
+    deadline = next(
+        d
+        for d in result.deadlines
+        if d.obligation_id == "irdai.ics-guidelines.2023.incident-reporting-6h"
+    )
+    assert "copy to IRDAI" not in deadline.recipient
 
 
 # --- IRDAI Part 2: clocks that do not start from the incident ---
@@ -663,6 +760,16 @@ def test_catches_external_start_time_ignored(monkeypatch):
     assert {"irdai-government-order-clock", "irdai-complaint-clocks"} <= failed
 
 
+def test_catches_external_clock_duration_changed(monkeypatch):
+    def mutation(items):
+        for item in items:
+            if item["id"] == "irdai.ics-guidelines.2023.gov-order-information-72h":
+                item["normalized"]["deadline"]["duration_iso8601"] = "PT24H"
+
+    _mutate_loaded_obligations(monkeypatch, mutation)
+    assert "irdai-government-order-clock" in _failed(_run())
+
+
 def test_catches_external_start_time_used_for_law_as_of(monkeypatch):
     original = engine_module.IncidentProfile.earliest_known_time
 
@@ -698,7 +805,18 @@ def test_catches_forensic_duty_applied_whatever_the_severity(monkeypatch):
 
     _mutate_loaded_obligations(monkeypatch, mutation)
     failed = _failed(_run())
-    assert {"sebi-forensic-medium-not-required", "sebi-forensic-severity-unknown-asks"} <= failed
+    assert {"sebi-forensic-medium-asks-condition", "sebi-forensic-severity-unknown-asks"} <= failed
+
+
+def test_catches_low_medium_forensic_condition_inverted(monkeypatch):
+    original = engine_module.IncidentClockEngine.evaluate
+
+    def mutation(self, profile, now=None, as_of=None):
+        profile.sebi_forensic_directed_or_rca_inconclusive = False
+        return original(self, profile, now=now, as_of=as_of)
+
+    monkeypatch.setattr(engine_module.IncidentClockEngine, "evaluate", mutation)
+    assert "sebi-forensic-medium-directed" in _failed(_run())
 
 
 def test_catches_forensic_clock_started_by_being_brought_to_notice(monkeypatch):

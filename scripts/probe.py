@@ -4,6 +4,7 @@ Usage: uv run --no-sync python scripts/probe.py CLASS[,CLASS...] [key=value ...]
 
 Keys: types=a|b  detected=HH:MM  noticed=HH:MM  brought=HH:MM  aware=HH:MM  reported=HH:MM
       date=YYYY-MM-DD  annexure=true|false  cyber=true|false  personal=true|false
+      irdai_cyber=true|false  sebi_cyber=true|false  forensic=true|false
       protected=true|false  only=<substring of obligation id to show>
 """
 
@@ -28,6 +29,9 @@ TIME_KEYS = {
 BOOL_KEYS = {
     "annexure": "is_annexure_i_type",
     "cyber": "is_cyber_incident",
+    "irdai_cyber": "is_irdai_cyber_incident",
+    "sebi_cyber": "is_sebi_cybersecurity_incident",
+    "forensic": "sebi_forensic_directed_or_rca_inconclusive",
     "personal": "personal_data_involved",
     "protected": "uses_protected_systems",
 }

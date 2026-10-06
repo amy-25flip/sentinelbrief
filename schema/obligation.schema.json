@@ -198,7 +198,7 @@
               "sebi_cybersecurity_incident",
               "sebi_incident_reporting_applies",
               "nciipc_protected_system",
-              "sebi_high_or_critical"
+              "sebi_forensic_required"
             ]
           },
           "uniqueItems": true
@@ -222,6 +222,20 @@
         "recorded_at": {
           "type": "string",
           "format": "date-time"
+        },
+        "contested_until": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date",
+          "description": "Before this date it is disputed whether the duty was binding. The duty is still shown, with contested_note as a warning."
+        },
+        "contested_note": {
+          "type": [
+            "string",
+            "null"
+          ]
         }
       },
       "required": [

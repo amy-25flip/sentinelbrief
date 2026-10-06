@@ -2,30 +2,100 @@
   "$schema": "../../schema/benchmark_scenario.schema.json",
   "id": "rbi-hfc-middle-layer-reports-to-nhb",
   "description": "A Middle Layer HFC reports to NHB rather than RBI under the contested paragraph 141 note, while retaining the separate CERT-In duties.",
-  "entity_profile": {"entity_classes": ["nbfc.middle_layer", "nbfc.hfc"], "is_listed": false, "holds_personal_data": false, "uses_protected_systems": false, "is_regulated_cloud_vps": false},
-  "incident_facts": {"description": "Ransomware incident", "incident_types": ["Malicious code attacks such as Ransomware"], "when_detected": "2026-10-01T10:00:00+05:30", "when_noticed": "2026-10-01T10:00:00+05:30", "systems_affected": ["server"]},
+  "entity_profile": {
+    "entity_classes": [
+      "nbfc.middle_layer",
+      "nbfc.hfc"
+    ],
+    "is_listed": false,
+    "holds_personal_data": false,
+    "uses_protected_systems": false,
+    "is_regulated_cloud_vps": false
+  },
+  "incident_facts": {
+    "description": "Ransomware incident",
+    "incident_types": [
+      "Malicious code attacks such as Ransomware"
+    ],
+    "when_detected": "2026-10-01T10:00:00+05:30",
+    "when_noticed": "2026-10-01T10:00:00+05:30",
+    "systems_affected": [
+      "server"
+    ]
+  },
   "law_snapshot_date": "2026-10-04",
   "expected": {
-    "law_as_of": "2026-10-01", "regulators": ["CERT-In", "RBI"],
+    "law_as_of": "2026-10-01",
+    "regulators": [
+      "CERT-In",
+      "RBI"
+    ],
     "deadlines": [
-      {"regulator": "CERT-In", "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "anchor": "noticing", "deadline_iso8601": "PT6H", "deadline_timestamp": "2026-10-01T16:00:00+05:30"},
-      {"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb", "anchor": "detection", "deadline_iso8601": "PT6H", "deadline_timestamp": "2026-10-01T16:00:00+05:30"}
+      {
+        "regulator": "CERT-In",
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "anchor": "noticing",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      },
+      {
+        "regulator": "RBI",
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb",
+        "anchor": "detection",
+        "deadline_iso8601": "PT6H",
+        "deadline_timestamp": "2026-10-01T16:00:00+05:30"
+      }
     ],
     "citations": [
-      {"obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h", "instrument_id": "cert-in.directions-70b.2022", "paragraph_ref": "Direction (ii)"},
-      {"obligation_id": "rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb", "instrument_id": "rbi.nbfc-cyber.2026", "paragraph_ref": "Paragraph 141, note"},
-      {"obligation_id": "rbi.nbfc-cyber.2026.ch5-cert-in-notification", "instrument_id": "rbi.nbfc-cyber.2026", "paragraph_ref": "Paragraph 141, second sentence"}
+      {
+        "obligation_id": "cert-in.directions-70b.2022.incident-reporting-6h",
+        "instrument_id": "cert-in.directions-70b.2022",
+        "paragraph_ref": "Direction (ii)"
+      },
+      {
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-hfc-incident-reporting-nhb",
+        "instrument_id": "rbi.nbfc-cyber.2026",
+        "paragraph_ref": "Paragraph 141, note"
+      },
+      {
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-cert-in-notification",
+        "instrument_id": "rbi.nbfc-cyber.2026",
+        "paragraph_ref": "Paragraph 141, second sentence"
+      }
     ],
     "required_evidence": [],
-    "not_applicable": [{"regulator": "RBI", "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h", "reason": "HFC is excluded from RBI recipient duty"}],
-    "unknowns": [], "time_critical": []
+    "not_applicable": [
+      {
+        "regulator": "RBI",
+        "obligation_id": "rbi.nbfc-cyber.2026.ch5-incident-reporting-6h",
+        "reason": "HFC is excluded from RBI recipient duty"
+      }
+    ],
+    "unknowns": [],
+    "time_critical": []
   },
-  "adversarial_flags": ["all_of_requires_both_hfc_and_chapter_v_layer", "hfc_reports_to_nhb_not_rbi", "hfc_time_limit_is_contested"],
+  "adversarial_flags": [
+    "all_of_requires_both_hfc_and_chapter_v_layer",
+    "hfc_reports_to_nhb_not_rbi",
+    "hfc_time_limit_is_contested"
+  ],
   "split": "dev",
   "labels_source": "RBI NBFC Direction paragraph 141 note and second sentence; CERT-In Direction (ii)",
   "source_quotes": [
-    {"document": "rbi.nbfc-cyber.2026", "page": 44, "quote": "(Note: In respect of Housing Finance Companies, cyber incidents shall continue \nto be reported to NHB and not RBI)"},
-    {"document": "rbi.nbfc-cyber.2026", "page": 44, "quote": "The NBFC shall also pro-actively notify Indian Computer \nEmergency Response Team (CERT-In) regarding cyber incidents."},
-    {"document": "cert-in.directions-70b.2022", "page": 2, "quote": "within 6 hours of noticing such \nincidents or being brought to notice about such incidents."}
+    {
+      "document": "rbi.nbfc-cyber.2026",
+      "page": 44,
+      "quote": "(Note: In respect of Housing Finance Companies, cyber incidents shall continue \nto be reported to NHB and not RBI)"
+    },
+    {
+      "document": "rbi.nbfc-cyber.2026",
+      "page": 44,
+      "quote": "The NBFC shall also pro-actively notify Indian Computer \nEmergency Response Team (CERT-In) regarding cyber incidents."
+    },
+    {
+      "document": "cert-in.directions-70b.2022",
+      "page": 2,
+      "quote": "within 6 hours of noticing such \nincidents or being brought to notice about such incidents."
+    }
   ]
 }

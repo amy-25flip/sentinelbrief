@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema/benchmark_scenario.schema.json",
-  "id": "sebi-forensic-medium-not-required",
-  "description": "A Medium severity incident: no forensic report is required by default, and the tool does not ask.",
+  "id": "sebi-forensic-medium-asks-condition",
+  "description": "A Medium severity incident: the tool asks whether RCA is inconclusive or SEBI / HPSC-CS directs a forensic report.",
   "entity_profile": {
     "entity_classes": [
       "sebi.qualified_re"
@@ -12,7 +12,7 @@
     "uses_protected_systems": false
   },
   "incident_facts": {
-    "description": "A Medium severity incident: no forensic report is required by default, and the tool does not ask.",
+    "description": "A Medium severity incident: the tool asks whether RCA is inconclusive or SEBI / HPSC-CS directs a forensic report.",
     "incident_types": [
       "Malicious code attacks such as Ransomware"
     ],
@@ -131,20 +131,21 @@
       {
         "obligation_id": "sebi.cscrf.2024.broker-dp-exchange-reporting-6h",
         "reason": "see description"
-      },
-      {
-        "obligation_id": "sebi.cscrf.2024.post-incident-forensic-report-75d",
-        "reason": "see description"
       }
     ],
-    "unknowns": []
+    "unknowns": [
+      {
+        "question": "RCA is inconclusive or SEBI / HPSC-CS directs",
+        "affects": "sebi.cscrf.2024.post-incident-forensic-report-75d"
+      }
+    ]
   },
   "adversarial_flags": [
     "severity_gate",
-    "must_not_leak_to_lower_severity"
+    "unknown_condition_not_assumed"
   ],
   "split": "dev",
-  "labels_source": "docs/LABELS_SEBI.md Part 2 (written before implementation)",
+  "labels_source": "docs/LABELS_SEBI.md Part 2 Amendment after Review 12 (written by label author)",
   "source_quotes": [
     {
       "document": "sebi.cscrf.2024",

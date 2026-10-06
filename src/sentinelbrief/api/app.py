@@ -203,20 +203,28 @@ def _profile_from_payload(payload: dict[str, Any], *, form_input: bool) -> Incid
         if personal_data.lower() not in {"true", "false"}:
             raise ValueError("personal_data_involved must be true or false")
         personal_data = personal_data.lower() == "true"
-    cyber_incident = payload.get("is_cyber_incident")
-    if cyber_incident is None:
-        cyber_attestation = payload.get("cyber_incident_attestation", "unknown")
-        if cyber_attestation not in {"unknown", "yes", "no"}:
-            raise ValueError("cyber_incident_attestation must be unknown, yes or no")
-        cyber_incident = (
-            True if cyber_attestation == "yes" else False if cyber_attestation == "no" else None
-        )
-    elif isinstance(cyber_incident, str):
-        if cyber_incident.lower() not in {"true", "false"}:
-            raise ValueError("is_cyber_incident must be true, false or null")
-        cyber_incident = cyber_incident.lower() == "true"
-    elif not isinstance(cyber_incident, bool):
-        raise ValueError("is_cyber_incident must be true, false or null")
+
+    def optional_bool(name: str, attestation_name: str | None = None) -> bool | None:
+        value = payload.get(name)
+        if value is None and attestation_name is not None:
+            attestation = payload.get(attestation_name, "unknown")
+            if attestation not in {"unknown", "yes", "no"}:
+                raise ValueError(f"{attestation_name} must be unknown, yes or no")
+            return True if attestation == "yes" else False if attestation == "no" else None
+        if value is None:
+            return None
+        if isinstance(value, str):
+            if value.lower() not in {"true", "false"}:
+                raise ValueError(f"{name} must be true, false or null")
+            return value.lower() == "true"
+        if not isinstance(value, bool):
+            raise ValueError(f"{name} must be true, false or null")
+        return value
+
+    cyber_incident = optional_bool("is_cyber_incident", "cyber_incident_attestation")
+    irdai_cyber_incident = optional_bool("is_irdai_cyber_incident")
+    sebi_cybersecurity_incident = optional_bool("is_sebi_cybersecurity_incident")
+    sebi_forensic = optional_bool("sebi_forensic_directed_or_rca_inconclusive")
     protected_systems = payload.get("uses_protected_systems")
     if protected_systems is None:
         protected_attestation = payload.get("protected_system_attestation", "unknown")
@@ -250,9 +258,12 @@ def _profile_from_payload(payload: dict[str, Any], *, form_input: bool) -> Incid
         annexure_i_items=list(payload.get("annexure_i_items") or []),
         is_annexure_i_type=False if attestation == "no" else None,
         is_cyber_incident=cyber_incident,
+        is_irdai_cyber_incident=irdai_cyber_incident,
+        is_sebi_cybersecurity_incident=sebi_cybersecurity_incident,
         sebi_severity=(str(payload["sebi_severity"]).lower() or None)
         if payload.get("sebi_severity")
         else None,
+        sebi_forensic_directed_or_rca_inconclusive=sebi_forensic,
         personal_data_involved=personal_data,
         uses_protected_systems=protected_systems,
         external_events=external_events,
@@ -418,6 +429,9 @@ async def update_case_facts(request: Request, case_id: str) -> Response:
                 "uses_protected_systems",
                 "is_annexure_i_type",
                 "is_cyber_incident",
+                "is_irdai_cyber_incident",
+                "is_sebi_cybersecurity_incident",
+                "sebi_forensic_directed_or_rca_inconclusive",
             ):
                 if name in changes:
                     if changes[name] not in {"true", "false"}:

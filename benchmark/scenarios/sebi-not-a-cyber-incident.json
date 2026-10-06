@@ -21,7 +21,7 @@
     ],
     "when_noticed": "2026-10-01T10:00:00+05:30",
     "is_annexure_i_type": false,
-    "is_cyber_incident": false
+    "is_sebi_cybersecurity_incident": false
   },
   "law_snapshot_date": "2026-10-04",
   "expected": {
