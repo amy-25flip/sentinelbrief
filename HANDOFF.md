@@ -5,20 +5,20 @@ Written by the reviewer agent. Antigravity is no longer on the project; from Bui
 ## 1. Gate output (`python scripts/check.py`, run by the reviewer agent on 2026-10-06)
 
 ```
-PASS  pytest             382 passed, 1 deselected, 1 warning
+PASS  pytest             442 passed, 1 deselected, 1 warning
 PASS  ruff check         All checks passed!
-PASS  ruff format        73 files already formatted
-PASS  mypy (strict)      Success: no issues found in 38 source files
+PASS  ruff format        81 files already formatted
+PASS  mypy (strict)      Success: no issues found in 42 source files
 PASS  validate_all       All obligations and citations passed validation successfully!
-PASS  benchmark dev      Scenarios passed:   104/104  Wilson 95% CI [96.4%, 100.0%]
+PASS  benchmark dev      Scenarios passed:   107/107  Wilson 95% CI [96.5%, 100.0%]
 ALL GATES PASSED
 ```
 
 Hidden split (git-ignored, 30 scenarios): 29/30. Set A (14, written by the reviewer agent for Codex-built regimes) 14/14; set B (16, written by Codex for the reviewer agent-built work) 15/16. The one failure is the contested SEBI start date (Review 12, Q5).
 
-Live source re-verification, 2026-10-06: 7 passed, 0 failed, 5 skipped (RBI's document server and IRDAI refuse automated clients; those PDFs are pinned by sha256). The two RBI HTML pages are compared by the hash of their extracted text, because the raw page bytes differ between fetches.
+Live source re-verification, 2026-10-06: 9 passed, 0 failed, 5 skipped (RBI's document server and IRDAI refuse automated clients; those PDFs are pinned by sha256). The four RBI HTML pages are compared by the hash of their extracted text, because the raw page bytes differ between fetches.
 
-Migrator (`python -m sentinelbrief.migrator score`): hit@1 46/47, status 38/47 against the gold as committed. Seven of the nine status disagreements are errors in the gold (Review 15, R15-4).
+Migrator (`python -m sentinelbrief.migrator score`): hit@1 46/47, status 38/47 against the gold as committed. Seven of the nine status disagreements are errors in the gold (Review 15, R15-4). Three further pairs, hit@1 only: UCB 59/61, Payments Banks 27/27, AIFI 27/27 (Build 18).
 
 ## 2. What exists
 
@@ -32,6 +32,7 @@ Migrator (`python -m sentinelbrief.migrator score`): hit@1 46/47, status 38/47 a
 | Incident workspace, external clocks, evidence fields, cards | The reviewer agent | The reviewer agent self-review (Review 11), then Codex (Review 12) |
 | Recurring RBI NBFC duties, DPDP simulation, RSS feed | Codex | The reviewer agent (Review 14) |
 | HTML evidence path, 2017 NBFC IT Framework, circular migrator and its reviewer pages | Codex, against the reviewer agent's gold mappings | The reviewer agent (Review 15) |
+| IRDAI periodic duties (22), migrator on three more pairs, signed evidence head, webhook alert intake, tabletop generator, screenshots | The reviewer agent | Codex (Review 16) |
 | Provenance attack tests and source pinning | The reviewer agent | Codex (Review 12: found sound) |
 
 ## 3. Claims about the law
@@ -45,8 +46,8 @@ Each rule has a unit test and a mutation test that names the scenarios that catc
 ## 5. Not done
 
 - **RBI Directions for commercial banks and small finance banks.** These need source documents a person must download.
-- **Migrator for other instrument pairs.** Only the 2017 NBFC IT Framework to the 2026 NBFC Direction is mapped.
-- **The rest of the IRDAI guidelines** (about 20 policies unread).
+- **Migrator for the remaining pairs.** Four pairs are mapped. The 2018 UCB basic framework, the 2016 cyber security framework for banks and the 2021 digital payment security controls are on the repeal list and not mapped.
+- **IRDAI duties without a stated period** ("periodically", "at regular intervals"). Not modelled; the text gives no period.
 - **LLM baselines** for the benchmark. Need API access.
 - **Jev (TypeSafe AI, early beta) as a supporting model.** Proposed, not started; needs an API key the owner must create. It returns typed probabilities rather than text, so it may only suggest or rank, never decide a deadline, applicability or anything shown as law. In order of value:
   1. Benchmark baseline: ask it "does this duty apply: yes, no or unknown" on the dev scenarios and report accuracy and calibration next to the deterministic engine. Store its responses so the result is reproducible.
@@ -55,7 +56,7 @@ Each rule has a unit test and a mutation test that names the scenarios that catc
   4. Card grounding: a probability that each card sentence is supported by the quoted clause, alongside the existing check.
   5. New-circular routing: which entity classes a new publication likely affects, to prioritise human reading.
   Unverified before any build: pricing and limits, run-to-run repeatability, data handling terms.
-- **Signing the timeline head hash; SIEM input; tabletop generator.** Optional items in the brief, not started.
+- **External timestamping of the signed head (RFC 3161), rate limiting on the webhook, more tabletop storylines.** Not started.
 
 ## 6. Needs a human
 

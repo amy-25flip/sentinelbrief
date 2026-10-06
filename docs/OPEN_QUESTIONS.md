@@ -115,3 +115,16 @@ Things needing a human or a primary-source check.
 - The modal rule compares "may" and "shall" only. "Should" becoming "shall" is not reported as a change, and where it is the only difference the rule can misfire (clause 5.4).
 - The gold mappings have seven known status errors (Amendment 1 in `docs/LABELS_MIGRATOR.md`) and have not been reviewed by a qualified person.
 - Only one pair of instruments is mapped. The other 2026 RBI Directions have predecessors on the same repeal list that are not ingested.
+
+## Build 18, 2026-10-06
+
+- [x] **IRDAI duties with stated periods:** modelled (22 records).
+- [ ] **IRDAI duties stated as "periodically" or "at regular intervals":** not modelled; no period in the text.
+- [ ] **IRDAI financial year:** assumed 1 April to 31 March for the audit report and the FRB certificate; the guidelines do not define it.
+- [ ] **IRDAI Foreign Reinsurance Branches** have no entity class; the Annexure VI duty is shown to every insurer with a prose condition.
+- [ ] **Is the 2023 IT Governance Master Direction succeeded by the Payments Banks and AIFI Directions?** It is on the withdrawn list (row 16) and those Directions repeal "IT Governance as applicable"; that they are its successors for these entities is this project's reading.
+- [ ] **The 2023 Master Direction also applied to commercial banks, small finance banks, NBFCs and credit information companies.** Those successor Directions are not all ingested.
+- [ ] **UCB 2019 Annex I and the 2018 basic framework** are not mapped.
+- [ ] **Webhook intake:** no rate limit; replay detection is by body hash only; no per-sender keys.
+- [ ] **Signing:** no external timestamp (RFC 3161) and no key rotation.
+- [x] **Signing the timeline head, SIEM input, tabletop generator:** built.

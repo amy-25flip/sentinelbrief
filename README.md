@@ -14,8 +14,22 @@ A deterministic engine over a clause-level, citation-first dataset of Indian cyb
 - **Every claim is cited.** Each obligation stores the verbatim clause, the PDF page and character offsets, and the SHA-256 of the source file. A validator re-checks all of it on every run.
 - **Incident workspace.** Field-level filing drafts where each field is labelled *computed*, *your input*, or *required by the clause (quoted)*; approval by a named person; a hash-chained evidence timeline; an audit bundle; a calendar export for recurring duties. It never files anything.
 - **Card feed.** Short cards generated from the obligation records, with a grounding check that rejects facts not present in the cited text. Also served as RSS at `/feed.xml`.
-- **Circular migrator.** RBI repealed its 2017 NBFC IT Framework in July 2026 and published no clause-by-clause concordance. The migrator proposes, for each of the 47 old clauses, which paragraph of the 2026 Direction replaced it and whether the duty changed (for example "may" became "shall"). It is deterministic, uses no language model, labels every mapping "proposed, not confirmed" until a named person confirms it, and is browsable at `/migrations`.
+- **Circular migrator.** RBI repealed its older cyber and IT circulars in July 2026 and published no clause-by-clause concordance. For four pairs of instruments (the 2017 NBFC IT Framework, the 2019 UCB cyber framework and the 2023 IT Governance Master Direction against their 2026 successors) the migrator proposes, for each old clause, which paragraph of the 2026 Direction replaced it and whether the duty changed (for example "may" became "shall"). It is deterministic, uses no language model, labels every mapping "proposed, not confirmed" until a named person confirms it, and is browsable at `/migrations`.
+- **Signed evidence.** The timeline's head hash can be signed with Ed25519; the verifier refuses to call a signature trustworthy unless you supply the public key you expect.
+- **Alert intake.** A SIEM can push alerts to an HMAC-signed webhook. An alert never starts a clock or opens a case; a named person does.
+- **Tabletop exercises.** Three scripted incidents for rehearsals. The storyline is fiction; the answer key at each stage is computed by the engine from what the story has revealed so far.
 - **Simulation.** DPDP Rule 7 does not bind until 13 May 2027. You can ask the clock to show what it would require, and everything simulated is marked as not in force.
+
+## What it looks like
+
+| | |
+|---|---|
+| ![Incident case with filing drafts](docs/screenshots/02-incident-case.png) | ![Migrator: clauses that changed](docs/screenshots/04-migrator-changed-clauses.png) |
+| An incident case: two regulators, two clocks from two starting events, every field labelled with where it came from. | The migrator: a 2017 "may" beside the 2026 "shall" that replaced it. |
+| ![An obligation with its citation](docs/screenshots/03-obligation-with-citation.png) | ![Tabletop exercise](docs/screenshots/05-tabletop.png) |
+| An obligation with its verbatim clause, page and source hash. | A tabletop exercise whose answer key is computed by the engine. |
+
+Regenerate with `uv run python scripts/capture_screenshots.py`.
 
 ## Coverage
 
@@ -25,17 +39,17 @@ A deterministic engine over a clause-level, citation-first dataset of Indian cyb
 | MeitY | DPDP Rules 2025, Rule 7 (breach intimation) | 3 |
 | SEBI | CSCRF circular, 20 August 2024 | 11 |
 | RBI | Cybersecurity Directions, 31 July 2026: NBFCs (11), Urban Co-operative Banks (4), All India Financial Institutions (4), Payments Banks (4) | 23 |
-| IRDAI | Information and Cyber Security Guidelines, 2023 (partial) | 8 |
+| IRDAI | Information and Cyber Security Guidelines, 2023 (incident reporting and every duty with a stated period or time limit) | 30 |
 
-52 obligations in all. Not covered: RBI Directions for commercial banks and small finance banks; most of the IRDAI guidelines; the remaining paragraphs of the RBI Directions. `docs/OPEN_QUESTIONS.md` lists every known gap.
+74 obligations in all. Not covered: RBI Directions for commercial banks and small finance banks; IRDAI duties stated only as "periodically"; the remaining paragraphs of the RBI Directions. `docs/OPEN_QUESTIONS.md` lists every known gap.
 
 ## How correctness is checked
 
-- **382 tests**, including **mutation tests**: each deliberately breaks one legal rule in the engine and asserts which named scenarios then fail.
-- **104 dev scenarios**, each carrying the clause quotes it relies on, verified mechanically against the stored page text. All pass.
+- **442 tests**, including **mutation tests**: each deliberately breaks one legal rule in the engine and asserts which named scenarios then fail.
+- **107 dev scenarios**, each carrying the clause quotes it relies on, verified mechanically against the stored page text. All pass.
 - **Labels before code.** For RBI, SEBI and IRDAI the expected outcomes were written and committed before the implementation (`docs/LABELS_*.md`; the commit history shows the order).
 - **Hidden split written by the other party.** 30 scenarios the implementer of each part never saw while building it. They are kept out of this repository so they stay hidden. Current result: **29/30** (Wilson 95% interval 83.3% to 99.4%). The one failure is a recorded disagreement between two reviewers about a contested start date, not a defect either side concedes.
-- **Migrator measured against mappings written first.** 47 gold mappings were committed before the migrator existed. It puts the right paragraph first for **46/47** clauses (Wilson 95% interval 88.9% to 99.6%) and gets the status right for 38/47. Review found that seven of the nine status disagreements were mistakes in the gold labels, not in the method (the 2026 text had turned "may" into "shall"); the gold file was left as committed and both counts are in `docs/REVIEW_LOG.md`, Review 15, with an ablation of every tuned choice.
+- **Migrator measured against mappings written first.** 47 gold mappings were committed before the migrator existed. It puts the right paragraph first for **46/47** clauses (Wilson 95% interval 88.9% to 99.6%) and gets the status right for 38/47. On three further pairs, scored once against gold written beforehand with no change to the method, it puts the right paragraph first for 59/61, 27/27 and 27/27 (the last two against wider, easier gold; see Build 18 in the review log). Review found that seven of the nine status disagreements were mistakes in the gold labels, not in the method (the 2026 text had turned "may" into "shall"); the gold file was left as committed and both counts are in `docs/REVIEW_LOG.md`, Review 15, with an ablation of every tuned choice.
 - **Provenance controls.** Source PDFs are pinned by SHA-256, re-downloaded from the regulators and compared (`scripts/reverify_sources.py`), and guarded by gates that reject generated, truncated or undocumented files. `tests/test_provenance_attacks.py` records which attacks the gates stop and which one they do not.
 - **Independent review.** Each piece of work was reviewed by a different agent than the one that built it; findings and fixes are in `docs/REVIEW_LOG.md`, including the ones that went against the author.
 
@@ -76,6 +90,9 @@ Useful endpoints:
 - `POST /api/incident/clock` computes clocks without storing anything.
 - `POST /api/cases`, `GET /api/cases/<id>`, `POST /api/cases/<id>/facts`, `.../drafts/<obligation>/approve`, `.../drafts/<obligation>/filed`, `GET /api/cases/<id>/export.zip`.
 - `GET /api/calendar.ics?classes=nbfc.middle_layer&last_done=2026-10-01` exports recurring duties.
+- `GET /api/tabletop?classes=nbfc.middle_layer&scenario=ransomware-with-personal-data&start=2026-10-01T09:00:00%2B05:30` builds a tabletop exercise (`/tabletop` for the page, `/api/tabletop.md` for a hand-out).
+- `POST /api/intake/alert` receives a monitoring alert. Off unless `SENTINELBRIEF_WEBHOOK_SECRET` (32 characters or more) is set; the sender signs the body with HMAC-SHA256 in `X-SentinelBrief-Signature: sha256=<hex>`. Review alerts at `/intake`.
+- Signing: `uv run python -m sentinelbrief.evidence keygen`, set `SENTINELBRIEF_SIGNING_KEY`, then `uv run python -m sentinelbrief.evidence verify <bundle> --public-key <hex>`.
 
 ## Repository layout
 

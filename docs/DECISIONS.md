@@ -459,3 +459,35 @@ The migrator uses word unigram/bigram TF-IDF cosine, printed applicability struc
 1. Reporting gained a six-hour limit and a different channel. Old clause 3.6 says NBFCs are “required to report all types of unusual security incidents” to “the DNBS Central Office, Mumbai”; new paragraph 28 says the NBFC “shall report cyber incidents on DAKSH platform ... within six hours of detection.”
 2. Two permissive controls became mandatory. Old clause 3.3 says an NBFC “may devise a strategy for managing and eliminating vulnerabilities”; new paragraph 23 says it “shall establish a vulnerability management process.” Old clause 3.8 says NBFCs “may consider use of Digital signatures”; new paragraph 31 says the NBFC “shall use Digital Signature Certificates”.
 3. Scope changed. The old introduction applies Section A to NBFCs “with asset size above ₹ 500 crore”. New paragraph 3(3) applies Chapter IV to Base Layer NBFCs “with asset size ₹500 crore and above”, while paragraph 3(4) separately assigns Chapter V to Middle, Upper and Top Layer NBFCs, excluding CICs.
+
+## 2026-10-06: IRDAI periodic duties are found by a search for stated periods
+
+**Decision:** model every duty in the IRDAI guidelines that states a period or a time limit, found by searching the whole stored text for period wording and reading each hit; list duties stated only as "periodically" as not modelled.
+**Why:** a period can be turned into a calendar entry; "periodically" cannot without inventing a number.
+**Alternative rejected:** assigning a default period (for example yearly) to "periodic" duties. That would be an invented legal fact.
+**Consequence:** coverage is of duties with stated periods, not of the guidelines as a whole. `docs/LABELS_IRDAI.md` Part 4 lists what was read and left out.
+
+## 2026-10-06: The insurer's audit report date is the latest date, and says so
+
+Section 1.10 (PDF page 157): "within 90 days from the end of financial year or within 30 days of completion of Audit, whichever is earlier". Only the first limit can be computed without the audit date. The record carries 29 June (90 days after 31 March; the guidelines do not define the financial year, so 1 April to 31 March is assumed) and its action text says this is the latest possible date. **Alternative rejected:** no date at all, which would hide a real filing duty from the calendar.
+
+## 2026-10-06: A signature in a bundle is not trusted unless the key is pinned
+
+**Decision:** `verify_head_signature` returns `key_pinned: false` when the caller does not supply the expected public key, and the command-line verifier exits non-zero in that case.
+**Why:** anyone who rewrites a timeline can re-sign it with a new key and put that key in the bundle.
+**Limits:** the signature does not prove when it was made; the private key comes from an environment variable and is only as safe as that machine.
+
+## 2026-10-06: A monitoring alert is evidence, never a fact
+
+**Decision:** an alert received by webhook is stored and stays pending. It sets no incident fact, starts no clock and opens no case. A named person opens the case and attests the times; the sender's detection time is copied only when that person asks for it.
+**Why:** whether a machine alert is "detection" or "noticing" under each regulator's wording is a judgement the tool must not make, and alert text ("not reportable") must never decide applicability.
+**Alternative rejected:** opening a case automatically with the alert time as the starting event, which would start legal clocks on unreviewed machine output.
+
+## 2026-10-06: Tabletop answer keys are computed, storylines are fiction
+
+**Decision:** the storyline text carries no legal statement that the tool relies on; every deadline, clause and open question in the answer key comes from running the engine on the facts revealed so far.
+**Why:** hand-written answer keys would be a second, unverified copy of the law.
+
+## 2026-10-06: Migrator pairs are configuration; thresholds are shared
+
+Each instrument pair declares its texts, unit count, paragraph count, optional search ranges and optional name list. The similarity method and every threshold are the same for all pairs. The three pairs added on this date use no search ranges and no name list, so their scores reflect the plain method.
