@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Alerts — SentinelBrief{% endblock %}
+{% block content %}
+<div class="disclaimer">
+    Alerts come from another system. Nothing in an alert is treated as a fact about the incident, no clock starts
+    from it, and no case opens by itself. A person decides whether its receipt is when the incident was noticed.
+</div>
+<h1>Alerts received</h1>
+{% if not enabled %}
+<p class="card-body">Webhook intake is off: set <code>{{ secret_env }}</code> to a secret of at least 32 characters to accept alerts at <code>POST /api/intake/alert</code>.</p>
+{% endif %}
+{% for alert in alerts %}
+<div class="card" id="alert-{{ alert.id }}">
+    <h2 style="margin-top: 0;">{{ alert.alert.title }}</h2>
+    <div class="card-chips">
+        <span class="chip">{{ alert.status }}</span>
+        {% if alert.alert.source %}<span class="chip">Source: {{ alert.alert.source }}</span>{% endif %}
+        {% if alert.alert.severity %}<span class="chip">Sender's severity: {{ alert.alert.severity }}</span>{% endif %}
+    </div>
+    <p class="card-body">Received {{ alert.received_at }} ({{ alert.received_at_clock }}).
+        {% if alert.alert.detected_at %}The sender says it detected this at {{ alert.alert.detected_at }}.{% endif %}</p>
+    {% if alert.alert.description %}<p class="card-body">{{ alert.alert.description }}</p>{% endif %}
+    {% if alert.alert.systems_affected %}<p class="card-body">Systems named by the sender: {{ alert.alert.systems_affected | join(", ") }}</p>{% endif %}
+    <p class="card-body" style="font-size: 0.8rem;">Body SHA-256: <code>{{ alert.body_sha256 }}</code></p>
+    {% if alert.status == "pending" %}
+    <form method="post" action="/api/intake/{{ alert.id }}/open-case" style="margin-top: 0.75rem;">
+        <label>Your name <input name="opened_by" required></label>
+        <label>Entity class
+            <select name="entity_class" required>
+                {% for cls in entity_classes %}<option value="{{ cls }}">{{ cls }}</option>{% endfor %}
+            </select>
+        </label>
+        <label>When you noticed it (IST) <input type="datetime-local" name="when_noticed"></label>
+        {% if alert.alert.detected_at %}
+        <label><input type="checkbox" name="use_alert_detected_at" value="true"> I accept the sender's detection time as the time of detection</label>
+        {% endif %}
+        <button type="submit">Open a case</button>
+    </form>
+    <form method="post" action="/api/intake/{{ alert.id }}/dismiss" style="margin-top: 0.5rem;">
+        <label>Your name <input name="dismissed_by" required></label>
+        <label>Reason <input name="reason" required></label>
+        <button type="submit">Dismiss</button>
+    </form>
+    {% elif alert.status == "case_opened" %}
+    <p class="card-body"><a href="/cases/{{ alert.case_id }}">Case opened by {{ alert.opened_by }}</a></p>
+    {% else %}
+    <p class="card-body">Dismissed by {{ alert.dismissed_by }} on {{ alert.dismissed_at }}: {{ alert.dismissal_reason }}. {{ alert.dismissal_note }}</p>
+    {% endif %}
+</div>
+{% else %}
+<p>No alerts received.</p>
+{% endfor %}
+{% endblock %}

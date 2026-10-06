@@ -165,6 +165,12 @@ class CaseStore:
         self.timeline(case_id).append(actor, "incident_created", {"facts": case["facts"]})
         return case_id
 
+    def attach(self, case_id: str, actor: str, attachment: dict[str, Any]) -> None:
+        """Record a reference to outside material (for example a monitoring alert) on the timeline."""
+        actor = _require_person(actor, "The person attaching material")
+        self._dir(case_id)
+        self.timeline(case_id).append(actor, "attachment_added", attachment)
+
     def evaluate(
         self, case_id: str, now: datetime | None = None
     ) -> tuple[ClockResult, list[FilingDraft]]:

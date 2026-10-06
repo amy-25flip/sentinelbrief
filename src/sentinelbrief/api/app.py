@@ -5,6 +5,7 @@ import os
 import re
 import tempfile
 import zipfile
+from dataclasses import replace
 from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any
@@ -21,6 +22,13 @@ from sentinelbrief.clock import IncidentClockEngine, IncidentProfile
 from sentinelbrief.clock.engine import IST
 from sentinelbrief.migrator.review import ConfirmationStore
 from sentinelbrief.workspace import CaseStore, recurring_duties_ics
+from sentinelbrief.workspace.intake import (
+    MIN_SECRET_CHARS,
+    SECRET_ENV,
+    SIGNATURE_HEADER,
+    IntakeError,
+    IntakeStore,
+)
 
 app = FastAPI(
     title="SentinelBrief",
@@ -644,6 +652,124 @@ async def export_case(case_id: str) -> Response:
             "Content-Disposition": f'attachment; filename="sentinelbrief-case-{case_id[:8]}.zip"'
         },
     )
+
+
+def _intake_store() -> IntakeStore:
+    """Alerts live beside the cases on local disk."""
+    root = Path(os.environ.get("SENTINELBRIEF_CASES_DIR") or BASE_DIR / "var" / "cases")
+    return IntakeStore(root / "_intake")
+
+
+@app.post("/api/intake/alert", response_model=None)
+async def receive_alert(request: Request) -> Response:
+    """Webhook for a SIEM or monitoring system. Stores the alert; opens nothing, decides nothing.
+
+    The sender signs the raw body: `X-SentinelBrief-Signature: sha256=<HMAC-SHA256 hex>` with
+    the secret in SENTINELBRIEF_WEBHOOK_SECRET. With no secret set the endpoint answers 503.
+    """
+    try:
+        record, created = _intake_store().receive(
+            await request.body(),
+            request.headers.get(SIGNATURE_HEADER),
+            os.environ.get(SECRET_ENV),
+        )
+    except IntakeError as exc:
+        return JSONResponse({"error": str(exc)}, status_code=exc.status)
+    return JSONResponse(
+        {
+            "id": record["id"],
+            "status": record["status"],
+            "received_at": record["received_at"],
+            "duplicate": not created,
+            "notice": record["notice"],
+        },
+        status_code=201 if created else 200,
+    )
+
+
+@app.get("/api/intake", response_model=None)
+async def list_alerts(status: str | None = None) -> Response:
+    return JSONResponse({"alerts": _intake_store().list(status)})
+
+
+@app.get("/intake", response_class=HTMLResponse)
+async def intake_page(request: Request) -> HTMLResponse:
+    engine = IncidentClockEngine(DATA_DIR)
+    return templates.TemplateResponse(
+        request=request,
+        name="intake.html",
+        context={
+            "alerts": list(reversed(_intake_store().list())),
+            "entity_classes": sorted(engine.taxonomy.classes.keys()),
+            "enabled": len(os.environ.get(SECRET_ENV) or "") >= MIN_SECRET_CHARS,
+            "secret_env": SECRET_ENV,
+        },
+    )
+
+
+@app.post("/api/intake/{alert_id}/open-case", response_model=None)
+async def open_case_from_alert(request: Request, alert_id: str) -> Response:
+    """A named person opens a case for an alert and attests the facts, as for any case.
+
+    The alert supplies no fact unless the person asks for it: `use_alert_detected_at` copies the
+    alert's `detected_at` into `when_detected`. The alert is attached to the case timeline.
+    """
+    try:
+        store = _intake_store()
+        record = store.get(alert_id)
+        if record["status"] != "pending":
+            raise ValueError(f"This alert is already {record['status']}")
+        payload, is_json = await _payload(request)
+        actor = str(payload.pop("opened_by", ""))
+        use_detected = str(payload.pop("use_alert_detected_at", "")).lower() in {"true", "on", "1"}
+        profile = _profile_from_payload(payload, form_input=not is_json)
+        if use_detected:
+            detected = record["alert"].get("detected_at")
+            if not detected:
+                raise ValueError("The alert carries no detected_at time to use")
+            if profile.when_detected is not None:
+                raise ValueError("Give when_detected or use the alert's time, not both")
+            profile = replace(profile, when_detected=datetime.fromisoformat(detected))
+        cases = _case_store()
+        case_id = cases.create(profile, actor)
+        cases.attach(
+            case_id,
+            actor,
+            {
+                "kind": "siem_alert",
+                "alert_id": record["id"],
+                "body_sha256": record["body_sha256"],
+                "received_at": record["received_at"],
+                "source": record["alert"].get("source"),
+                "title": record["alert"]["title"],
+                "detected_at_used_as_fact": use_detected,
+            },
+        )
+        store.mark_case_opened(alert_id, case_id, actor)
+    except KeyError as exc:
+        return _case_error(exc)
+    except (ValueError, TypeError) as exc:
+        return JSONResponse({"error": str(exc)}, status_code=422)
+    if is_json:
+        return JSONResponse({"case_id": case_id}, status_code=201)
+    return RedirectResponse(f"/cases/{case_id}", status_code=303)
+
+
+@app.post("/api/intake/{alert_id}/dismiss", response_model=None)
+async def dismiss_alert(request: Request, alert_id: str) -> Response:
+    """A named person dismisses an alert with a reason. Not a finding on reportability."""
+    try:
+        payload, is_json = await _payload(request)
+        record = _intake_store().dismiss(
+            alert_id, str(payload.get("dismissed_by", "")), str(payload.get("reason", ""))
+        )
+    except KeyError as exc:
+        return _case_error(exc)
+    except ValueError as exc:
+        return JSONResponse({"error": str(exc)}, status_code=422)
+    if is_json:
+        return JSONResponse(record)
+    return RedirectResponse("/intake", status_code=303)
 
 
 @app.get("/api/calendar.ics", response_model=None)
