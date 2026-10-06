@@ -48,6 +48,13 @@ Each rule has a unit test and a mutation test that names the scenarios that catc
 - **Migrator for other instrument pairs.** Only the 2017 NBFC IT Framework to the 2026 NBFC Direction is mapped.
 - **The rest of the IRDAI guidelines** (about 20 policies unread).
 - **LLM baselines** for the benchmark. Need API access.
+- **Jev (TypeSafe AI, early beta) as a supporting model.** Proposed, not started; needs an API key the owner must create. It returns typed probabilities rather than text, so it may only suggest or rank, never decide a deadline, applicability or anything shown as law. In order of value:
+  1. Benchmark baseline: ask it "does this duty apply: yes, no or unknown" on the dev scenarios and report accuracy and calibration next to the deterministic engine. Store its responses so the result is reproducible.
+  2. Incident intake triage: estimate the facts the clock needs from a free-text description, used only to order the questions; a person still attests each fact. Off by default, because it sends incident text to a third party.
+  3. Second opinion in the migrator: where it disagrees with the lexical method, the mapping becomes `needs_human`. Score it on the same 47 gold mappings.
+  4. Card grounding: a probability that each card sentence is supported by the quoted clause, alongside the existing check.
+  5. New-circular routing: which entity classes a new publication likely affects, to prioritise human reading.
+  Unverified before any build: pricing and limits, run-to-run repeatability, data handling terms.
 - **Signing the timeline head hash; SIEM input; tabletop generator.** Optional items in the brief, not started.
 
 ## 6. Needs a human
